@@ -1,0 +1,99 @@
+### Command enhancement functions ###
+.1() { cd ../ ; }                                  # Go back 1 directory level
+.2() { cd ../../ ; }                               # Go back 2 directory levels
+.3() { cd ../../../ ; }                            # Go back 3 directory levels
+.4() { cd ../../../../ ; }                         # Go back 4 directory levels
+.5() { cd ../../../../../ ; }                      # Go back 5 directory levels
+.6() { cd ../../../../../../ ; }                   # Go back 6 directory levels
+root() { sudo su - ; }                             # root:         Switch to root user using sudo
+c() { clear ; }                                    # c:            Clear terminal display
+path() { echo -e ${PATH//:/\\n} ; }                # path:         Echo all executable Paths
+
+### Functions (network) ###
+myip() { curl ip-api.com ; }                   # myip:         Public facing IP Address
+netCons() { lsof -i ; }                            # netCons:      Show all open TCP/IP sockets
+lsock() { sudo /usr/sbin/lsof -i -P ; }            # lsock:        Display open sockets
+lsockU() { sudo /usr/sbin/lsof -nP | grep UDP ; }  # lsockU:       Display only open UDP sockets
+lsockT() { sudo /usr/sbin/lsof -nP | grep TCP ; }  # lsockT:       Display only open TCP sockets
+ipInfo0() { ipconfig getpacket en0 ; }             # ipInfo0:      Get info on connections for en0
+ipInfo1() { ipconfig getpacket en1 ; }             # ipInfo1:      Get info on connections for en1
+openPorts() { sudo lsof -i | grep LISTEN ; }       # openPorts:    All listening connections
+showBlocked() { sudo ipfw list ; }                 # showBlocked:  All ipfw rules inc/ blocked IPs
+httpHeaders() { /usr/bin/curl -I -L $@ ; }         # httpHeaders:  Grabs headers from web page
+httpDebug() { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+
+### Functions (filemanagement) ###
+dush() { du -sm * | sort -n | tail ; }
+
+# example: extract file
+extract () {
+   if [ -f $1 ] ; then
+   case $1 in
+   *.tar.bz2)   tar xjf $1        ;;
+   *.tar.gz)    tar xzf $1     ;;
+   *.bz2)       bunzip2 $1       ;;
+   *.rar)       unrar x $1     ;;
+   *.gz)        gunzip $1     ;;
+   *.tar)       tar xf $1        ;;
+   *.tbz2)      tar xjf $1      ;;
+   *.tbz)       tar -xjvf $1    ;;
+   *.tgz)       tar xzf $1       ;;
+   *.zip)       unzip $1     ;;
+   *.Z)         uncompress $1  ;;
+   *.7z)        7z x $1    ;;
+   *)          echo "I don't know how to extract '$1'..." ;;
+   esac
+   else
+   echo "'$1' is not a valid file"
+   fi
+}
+
+# example: pk tar file
+pk () {
+   if [ $1 ] ; then
+   case $1 in
+   tbz)       tar cjvf $2.tar.bz2 $2      ;;
+   tgz)       tar czvf $2.tar.gz  $2       ;;
+   tar)      tar cpvf $2.tar  $2       ;;
+   bz2)    bzip $2 ;;
+   gz)        gzip -c -9 -n $2 > $2.gz ;;
+   zip)       zip -r $2.zip $2   ;;
+   7z)        7z a $2.7z $2    ;;
+   *)         echo "'$1' cannot be packed via pk()" ;;
+   esac
+   else
+   echo "'$1' is not a valid file"
+   fi
+}
+
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+#Fuzzy find a file, with optional initial file name, and then edit:
+se() {
+    local file=$(
+      fzf --query="$1" --no-multi --select-1 --exit-0 \
+          --preview 'bat --color=always --line-range :500 {}'
+      )
+    if [[ -n $file ]]; then
+        $EDITOR "$file"
+    fi
+}
+
+cdl () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}

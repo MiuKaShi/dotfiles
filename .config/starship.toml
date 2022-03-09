@@ -1,0 +1,97 @@
+# Replace the "❯" symbol in the prompt with "❯❯"
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+# Use custom format
+# format = """
+#[┌───────────────────>](bold green)
+#[│](bold green)$directory$rust$package
+#[└─>](bold green) """
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Disable the AWS module.
+[aws]
+disabled = true
+format = '\[AWS: [$profile/($region)]($style)\]'
+symbol = ''
+style = 'bold white'
+
+[custom.tztime]
+#command = 'date +"%a %b %d %Y %l:%M%p (%Z%z)"'
+command = 'date +"%l:%M%p"'
+when = "true"
+format = '[\[$symbol($output)\]](bold black)'
+
+# Set the time format
+[time]
+time_format = "%T"
+format = "🕙 $time($style) "
+style = "bright-white"
+disabled = false
+
+# Directory setttings
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 5
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[username]
+style_user = "bold dimmed blue"
+show_always = false
+
+[hostname]
+disabled = true
+ssh_only = false
+format =  "[$hostname](bold green) ❯ "
+
+# Workaround for slow prompt with git status
+[git_branch]
+format = " [$symbol$branch]($style) "
+symbol = "🍣 "
+style = "bold yellow"
+
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 ×${count}"
+behind = "🐢 ×${count}"
+diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
+untracked = "🛤️  ×${count}"
+stashed = "📦 "
+modified = "📝 ×${count}"
+staged = "🗃️  ×${count}"
+renamed = "📛 ×${count}"
+deleted = "🗑️  ×${count}"
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[ruby]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[python]
+symbol = " "

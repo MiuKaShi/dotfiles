@@ -1,0 +1,146 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
+# sudo not required for some system commands
+for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+	alias $command="sudo $command"
+done; unset command
+
+alias \
+    ls="lsd" \
+    l="ls -l" \
+    la="ls -a" \
+    lla="ls -la" \
+    lt="ls --tree"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+    q="exit" \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    bc="bc -ql" \
+    mkd="mkdir -pv" \
+    lf="lfrun" \
+    df="df -h" \
+    yt="youtube-dl --add-metadata -i" \
+    yta="yt -x -f bestaudio/best" \
+    ffmpeg="ffmpeg -hide_banner" \
+    ns="newsboat" \
+    nsb="vim ~/.newsboat/bookmarks.txt" \
+    sci="scidownl -o ~/Downloads -D" \
+    cite="cite --style elsevier-vancouver" \
+    citebib="cite --bibtex" \
+    bibup="betterbib up -i" \
+
+# Colorize commands when possible.
+alias \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    ccat="highlight --out-format=ansi"
+
+alias matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+    ka="killall" \
+    g="git" \
+    trem="transmission-remote" \
+    YT="youtube-viewer" \
+    sdn="shutdown -h now" \
+    e="$EDITOR" \
+    v="$EDITOR" \
+    p="pacman" \
+    clc="clear" \
+    s="neofetch" 
+
+# Some Doc Path
+alias \
+    home="cd $HOME" \
+    jnot="cd $HOME/notes/" \
+    jdow="cd $HOME/Downloads/" \
+    jdoc="cd $HOME/Documents/" \
+    jdat="cd $HOME/data/" \
+    jbib="cd $HOME/Paperbib/"
+
+# Download
+alias wget="wget --continue --progress=bar --timestamping"
+alias ydv="youtube-dl --add-metadata --restrict-filenames -i"
+alias yda="ydv -x -f bestaudio/best"
+
+#bym open
+alias bym-open="bym -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0|sed 's/ /\\ /g')\""
+
+alias -g G='| grep -i'  # for use ls -l G do
+
+alias cdls="cd && ls"
+alias rep=project_wide_replace
+alias tmuxattach='tmux attach -t $(tmux ls | fzf)'
+
+alias frm="fzf | xargs rm -v"
+alias ff='fzf --print0 -e | xargs -0 -r code'
+alias fe='fzf_find_edit'
+
+alias chmod755='find . -type d -exec chmod 0755 {} \;'
+alias chmod644='find . -type f -exec chmod 0644 {} \;'
+
+alias d='dirs -v | head -10'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+alias npmlist="npm list -g --depth 0"
+alias refresh="cd $(pwd)"  # for refresh DIR , because if I opened DIR and then I will move the DIR then I see old files in DIR
+alias ref="cd $(pwd)"  # reload current DIR, because if I open DIR and will move the DIR -> I see old files in DIR
+alias grep='grep --colour=auto'
+
+alias ducks='du -chsh * | sort -rn | head -11'
+alias wea='curl wttr.in' #check weather
+alias vtop="vtop --theme=wal" #vhop system
+
+alias vi='nvim'
+alias nv="$(which nvim)"
+alias vi="$(which nvim)"
+alias vim="nvim"
+alias vfm="vicd"
+#alias nvimb="tabbed -c vimb -e"
+alias nvimb="proxychains4 vimb"
+
+alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
+alias zshreload="source $HOME/.config/zsh/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias tmuxreload='tmux source-file ~/.tmux.conf'
+# The command alias to start the browser-sync server access the server inside my private network and test the webpage on several devices.
+
+alias history='fc -il 1'
+
+# Git Command
+alias g='git'
+alias gl='git clone'
+alias gs='git status '
+alias gss='git status -s'
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit '
+alias gd='git diff'
+alias gt='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias lg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias got='git '
+alias get='git '
+
+alias \
+    magit="nvim -c MagitOnly" \
+    ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
+    weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"

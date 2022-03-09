@@ -1,0 +1,544 @@
+# lf settings
+# github.com/rafi/.config
+
+set shell bash
+set shellopts '-eu'
+set ifs "\n"
+
+set icons
+set drawbox
+set incsearch
+set scrolloff 4
+set tabstop 2
+set smartcase
+#set hidden
+set dircounts
+set info size
+set sortby natural
+set ratios '1:2:3'
+set timefmt '2006-01-02 15:04:05 -0700'
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+set preview true
+
+set promptfmt "
+\033[38;5;8m\033[48;5;236m %u@%h \033[38;5;236m\033[48;5;234m
+\033[38;5;8m\033[48;5;234m %w/%f \033[0m\033[38;5;234m\033[0m
+"
+
+# Bindings
+# Remove some defaults
+map m
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map y
+map r
+map f
+map v
+
+# Basic Functions
+map v :toggle; down
+map . set hidden!
+map DD delete
+map x cut
+map yy copy
+map <enter> open
+map bg $setbg $f
+#map o open_config
+map br $vimv $fx
+map rr rename
+map K top
+map J bottom
+map R reload
+#map C clear
+map U unselect
+map o &mimeopen $f
+map O $mimeopen --ask $f
+map +       chmod+x
+map _       chmod-x
+
+# show documentation
+map g? $lf -doc | less
+
+# Command definitions {{{
+# the prefix shows what kind of command it is
+#   $: runs as shell command
+#   %: runs as piped shell command (stdout => statusline)
+#   !: runs as interactive shell command (puts lf in the bg)
+#   :: runs as lf command
+#
+# commands run in the shell, you can use $f, $fs, $fx vars.
+# you can also send remote commands.
+map <c-c> cmd-interrupt
+
+map p
+map pp paste
+# paste as a symbolic link to original
+cmd paste_link %{{
+    for file in $(lf -remote 'load'); do
+        if [ ! -n "${mode+1}" ]; then
+            mode="$file"
+            continue
+        fi
+        files+=("$file")
+    done
+    if [ -z "$files" ] || [ "${#files[@]}" -lt 1 ]; then
+        lf -remote "send $id echo no files to link files: ${files}"
+        exit 0
+    fi
+    ln -sr $files -t .
+}}
+map pl paste_link
+
+# execute current file (must be executable)
+#map x $$f
+#map X !$f
+
+cmd open-with %"$@" $fx
+map ` push :open-with<space>
+
+# cmds/functions
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        application/json) $EDITOR $fx;;
+        text/*) $EDITOR $fx;;
+	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|bmp\|webp\|tif\|ico\)\(_large\)*$" | setsid -f nsxiv -aio 2>/dev/null | lf-select & ;;
+	audio/*) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+	application/pgp-encrypted) $EDITOR $fx ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+
+# move selected files in NEW folder
+cmd newfold ${{
+    set -f
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+map <c-n> newfold
+
+cmd mkdir %mkdir -p "$@"
+map ad push :mkdir<space>
+
+cmd touch %touch  "$@"
+map af push :touch<space>
+
+# {{{ === Make files, dirs
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+map mf mkfile
+map md mkdir
+map ch chmod
+map mr sudomkfile
+map ms $mkscript
+# }}} === Make files, dirs
+
+cmd open_config  ${{
+  $EDITOR $(bookmenu -b ~/.config/bookmenu/configs -f fzf -o)
+}}
+# File Openers
+map ee $$EDITOR "$f"
+map es $sudo $EDITOR "$f"
+
+map cz $$EDITOR ~/.zshrc
+map cn $$EDITOR ~/.config/nvim/init.vim
+map cl $$EDITOR ~/.config/lf/lfrc
+
+#map u $view "$f"
+
+cmd moveto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Move to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval mv -iv \"$x\" \"$dest\"
+	done &&
+	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
+}}
+
+map M moveto
+
+cmd copyto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Copy to where?"
+	dest="$(sed -e 's/\s*#.*//' -e '/^$/d' -e 's/^\S*\s*//' ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|')" &&
+	for x in $fx; do
+		eval cp -ivr \"$x\" \"$dest\"
+	done &&
+	notify-send "📋 File(s) copied." "File(s) copies to $dest."
+}}
+
+map C copyto
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Dragon >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+cmd dragon %dragon-drag-and-drop -a -x $fx
+cmd dragon-stay %dragon-drag-and-drop -a $fx
+cmd dragon-individual %dragon-drag-and-drop $fx
+cmd cpdragon %cpdragon
+cmd mvdragon %mvdragon
+cmd dlfile %dlfile
+
+# Dragon Mapping
+map dr dragon
+map ds dragon-stay
+map di dragon-individual
+map dm mvdragon
+map dc cpdragon
+map dl dlfile
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Search >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+map n search-next
+map N search-prev
+# Select based on glob filter
+cmd filter %{{
+    printf "Filter: "
+    read -r filter_expr
+    lf -remote "send $id unselect"
+    lf -remote "send $id glob-select $filter_expr"
+}}
+map fi filter
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Search >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Archive >>>>>>>>>>>>>>>>>>>>>>>>>>>
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unar $f;;
+        *.rar) unar x $f;;
+        *.7z) 7z x $f;;
+      *) echo "Unsupported format" ;;
+    esac
+}}
+
+# zip a directory/file
+cmd zip ${{
+    set -f
+    mkdir $f-zip
+    cp -r $fx $f-zip
+    (cd $f-zip/ && zip -r $f.zip .)
+    rm -rf $f-zip/
+}}
+
+cmd tar ${{
+    set -f
+    mkdir $f-tgz
+    cp -r $fx $f-tgz
+    (cd $f-tgz && tar cvzf $f.tar.gz .)
+    rm -rf $f-tgz
+}}
+
+cmd tgz ${{
+    set -f
+    tar -cvf - $fx | pigz -k > $f.gz
+}}
+
+map tz zip
+map tt tar
+map tg tgz
+map tu extract
+
+#cmd zip %zip -r "$f" "$f"
+#cmd tar %tar cvf "$f.tar" "$f"
+#cmd targz %tar cvzf "$f.tar.gz" "$f"
+#cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+# Archive Mappings
+#map ag targz
+#map ab targz
+#map au unarchive
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Archive >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Trash <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# Implement trash command
+
+# move current file or selected files to trash folder
+# (also see 'man mv' for backup/overwrite options)
+#cmd trash %set -f; mv $fx ~/.trash
+# Trash Mappings
+map dd $trash -rf $fx
+# make sure trash folder exists
+# %mkdir -p ~/.trash
+
+# define a custom 'delete' command
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}
+
+# use '<delete>' key for either 'trash' or 'delete' command
+# map <delete> trash
+ map <delete> delete
+
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Trash >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Run chmod on a file
+cmd chmod+x %{{
+  chmod +x $f
+  lf -remote "send reload"
+}}
+
+cmd chmod-x %{{
+  chmod -x $f
+  lf -remote "send reload"
+}}
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Quick Preview <<<<<<<<<<<<<<<<<<<<<<<<<<
+map i $LESS='-iWQMXR~' bat --paging=always --theme=TwoDark "$f"
+map I $$PAGER "$f"
+
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Quick Preview >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Sort <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+map sn :{{ set sortby natural; set info size; set preview; set ratios 1:2:3; }}
+map sa :{{ set sortby natural; set info size; set nopreview; set ratios 3:5; }}
+map ss :{{ set sortby size; set info size; set preview; }}
+map st :{{ set sortby time; set info time; set preview; }}
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Sort >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Movement <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+map gr cd /
+map gy. cd ~/videos/youtube
+map gc cd ~/code
+map g. cd ~/.config
+map gD  cd ~/Downloads
+map gd cd ~/Documents
+map gv cd /Volumes
+# define a custom 'rename' command without prompt for overwrite
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+# map r push :rename<space>
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Movement >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FZF <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd rg ${{
+    res = "$(rg --color=never --no-heading  --ignore-case --no-ignore --hidden --follow --glob=\!{.git,.idea,node_modules,vendor,tags} --line-number '' . | fzf --no-multi --delimiter=: --preview 'bat --color=always --line-range {2}: {1}
+' )"
+    cmd="select"
+  lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :fzf_jump
+map <c-g> :rg
+
+# Quickly locate a file with fzf and select it in lf
+map gf $lf -remote "send $id select $(fzf)"
+#map ff fzf_jump
+
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  FZF >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<< Rename <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+map zc ${{
+    filename="$(basename "${f##*/}" | sed 's/\(.*\)\..*/\1/' | sed 's/[ ][ ]*/_/g')"
+    curl -X POST -H "Accept: application/x-bibtex" --form input=@"$f" --form consolidateCitations=2 http://104.237.1.140:50000/api/processReferences > $filename.bib
+    bibtex2html $filename.bib
+}}
+
+
+cmd rename-reference $paper -r "$f"
+
+map rx rename-reference
+
+# Edit filename before the extension
+map re ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
+}}
+
+cmd bulkrename $vidir
+map <f-2> bulkrename
+map rb  $printf '%s\n' $fx | vidir -
+
+# rename multiple files the way nnn does it
+cmd batch_rename !{{
+    contentsfile=$(mktemp)
+    trap 'rm $contentsfile' INT TERM EXIT
+    dircontents="$(command ls -1p)"
+    printf "%s" "$dircontents" | nl -n ln > "$contentsfile";
+    $EDITOR "$contentsfile"
+    printf "%s" "$dircontents" | paste "$contentsfile" -d'\t' - \
+        | while read -r line; do
+        orig="$(printf "%s" "$line" | cut -f3 | sed 's!/$!!')"
+        new="$(printf "%s" "$line" | cut -f2 | sed 's!/$!!')"
+        if [ "$new" != "$orig" ]; then
+            if [ -e "$new" ]; then
+                printf "%s already exists, not overwriting.\n" "$new"
+            else
+                printf "./%s -> ./%s\n" "$orig" "$new"
+                command mv -i ./"$orig" ./"$new"
+            fi
+        fi
+    done
+    rm "$contentsfile"
+    trap - INT TERM EXIT
+}}
+map rbb batch_rename
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>>> Rename >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ =========================== Yank paths ===========================
+
+cmd yank-bibtex $papers extract "$f" | xclip -sel clip
+cmd yank-citeinfo $papers doi "$f" | xargs cite --style elsevier-vancouver | xclip -sel clip
+cmd yank-dirname $dirname -- "$f" | head -n 1 | xclip -sel clip
+cmd yank-path $printf '%s' "$fx" | xclip -sel clip
+cmd yank-basename $printf '%s' "$(basename -a -- $fx)" |  xclip -sel clip
+#cmd yank-basename $basename -a -- $fx | head -n 1 | pbcopy
+
+cmd yank-basename-without-extension ${{
+    echo "$fx" |
+      xargs -r -d '\n' basename -a |
+      awk -e '{
+      for (i=length($0); i > 0; i--) {
+        if (substr($0, i, 1) == ".") {
+          if (i == 1)
+              print $0
+          else
+              print substr($0, 0, i-1)
+          break
+        }
+      }
+
+      if (i == 0)
+        print $0
+      }' |
+      if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
+      xclip -sel clip
+}}
+# copy the path of the highlighted file
+cmd copy_path ${{
+    set -f
+    if command -v pbcopy > /dev/null 2> /dev/null; then
+        echo "$f" | tr -d '\n' | pbcopy
+    elif command -v xclip > /dev/null 2> /dev/null; then
+        echo "$f" | tr -d '\n' | xclip -sel clip
+    fi
+}}
+map y
+#map yY copy_path
+map yb yank-bibtex
+map yc yank-citeinfo
+map yd yank-dirname
+map yp yank-path
+map yn yank-basename
+map yN yank-basename-without-extension
+
+# }}} =========================== Yank paths ===========================
+
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<< Toggle Preview <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+cmd showpreview &{{
+    lf -remote "send $id set preview"
+    lf -remote "send $id set ratios 1:2:3"
+    lf -remote "send $id map zp nopreview"
+}}
+cmd nopreview &{{
+    lf -remote "send $id set nopreview"
+    lf -remote "send $id ratios 1:3"
+    lf -remote "send $id map zp showpreview"
+}}
+map zp nopreview
+
+cmd zoteradd ${{
+            zotadd "$f"
+}}
+map zz zoteradd
+# }}} >>>>>>>>>>>>>>>>>>>>>>>>> Toggle Preview >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# {{{ <<<<<<<<<<<<<<<<<<<<<<<<< Disk Usage <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+#show disk usage
+#map du !du -h -d 1
+#map dU !du -h -d 1 | sort -rh
+#map du !du -hsx * | sort -rh | less
+#map du !ncdu
+#map di !stat $f; echo ; du -sh $f ; echo ; file -I -b -p $f
+
+map W $setsid -f $TERMINAL >/dev/null 2>&1
+
+# Broot Mapping
+cmd broot_jump ${{
+  f=$(mktemp)
+  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
+  rm -f "$f"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+#map F broot_jump
+map F  $lf -remote "send $id select $(broot)"
+# }}}} >>>>>>>>>>>>>>>>>>>>>>>> Disk Usage >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+

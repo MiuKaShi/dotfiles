@@ -1,0 +1,80 @@
+#touchbar
+super + ctrl + space
+	touchpadtoggle
+
+#dwm
+hyper + q
+   dwmc killclient
+
+hyper + space
+    dwmc zoom
+
+hyper + 1
+    dwmc view 0
+
+hyper + 2
+    dwmc view 1
+
+hyper + 3
+    dwmc view 2
+
+hyper + 4
+    dwmc view 3
+
+hyper + 5
+    dwmc view 4
+
+hyper + 6
+    dwmc view 5
+
+hyper + 7
+    dwmc view 6
+
+hyper + 8
+    dwmc view 7
+
+hyper + 9
+    dwmc view 8
+
+hyper + f
+    dwmc togglefullscr
+
+hyper + b
+    dwmc togglebar
+
+#application launch
+hyper + w
+    proxychains4 vimb
+
+hyper + Return
+    $TERMINAL
+
+alt + @space
+    rofi -show drun
+
+hyper + z
+    zotero
+
+hyper + shift + c
+    clipmenu
+
+hyper + m
+    env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop
+
+hyper + r
+    st -e lfrun
+
+hyper + slash
+    rofi-zotero
+
+hyper + s
+     ~/.config/script/rofi-file-selector/rofi-file-selector.sh
+
+hyper + shift + BackSpace
+    killall screenkey || screenkey --bg-color "#222d32" -s small -f "Apercu Mono" -t 1 --font-color "#BABABA" --mods-mode tux
+
+hyper + BackSpace
+    find-cursor -l 4 -c "#66aabb" -s 150
+
+hyper + Escape
+    pkill -USR1 -x sxhkd && notify-send -- "SXHKD" "Reloaded key bindings"

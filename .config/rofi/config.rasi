@@ -1,0 +1,28 @@
+configuration {
+    	display-drun: "Applications:";
+        display-window: "Windows:";
+        drun-display-format: "{name}";
+	font: "MonoLisa 14";
+	location: 0;
+	yoffset: -150;
+	matching: "fuzzy";
+	sort: true;
+        modi: "window,run,drun";
+        show-icons: true;
+        icon-theme: "Papirus";
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+
+listview {
+	scrollbar: false;
+	lines: 10;
+	border: false;
+}
+
+element {
+	padding: 6px;
+}
+
+
