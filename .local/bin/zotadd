@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# author: sdx23
+# github: https://github.com/sdx23/zotadd
+
+import os
+from requests import post
+import subprocess
+import sys
+from shutil import copyfile
+from tempfile import TemporaryDirectory
+from time import sleep
+from urllib.parse import quote
+
+zapi_url = "http://127.0.0.1:23119/connector/"
+zapi_timeout = 20
+zserv_port = 25852
+
+if __name__ == "__main__":
+    # check file
+    fname = " ".join(sys.argv[1:])
+    if not os.path.isfile(fname):
+        print("No such file '{}'. Aborting.".format(fname))
+        sys.exit(1)
+
+    rv = 0
+    # TODO: replace this hacky approach
+    with TemporaryDirectory() as temp_wdir:
+        # serve file
+        copyfile(fname, temp_wdir + "/" + os.path.basename(fname))
+        os.chdir(temp_wdir)
+        zserv_process = subprocess.Popen(
+            ["python3", "-m", "http.server", "{}".format(zserv_port)]
+        )
+
+        zserv_url = "http://localhost:{}/{}".format(zserv_port, quote(os.path.basename(fname)))
+        print(zserv_url)
+
+        # import in zotero
+        sleep(0.1)
+        try:
+            response = post(
+                zapi_url + "saveSnapshot",
+                json={"url": zserv_url, "pdf": True},
+                timeout=zapi_timeout,
+            )
+        except:
+            rv = 0
+            print("Failed to contact Zotero API. Aborting.")
+
+        sleep(0.1)
+
+    # cleanup
+    zserv_process.terminate()
+
+    sys.exit(rv)

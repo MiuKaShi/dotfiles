@@ -1,0 +1,6 @@
+#! /bin/sh
+
+cd $HOME/paperbib
+cat mybib.bib | python journal_abbrev.py > mybib_abb.bib
+
+

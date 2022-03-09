@@ -1,0 +1,4 @@
+#! /bin/sh
+
+fswatch -o $HOME/paperbib/mybib.bib | xargs -n1 -I{} updatebib &
+
