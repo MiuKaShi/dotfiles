@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Terminal=false
+Icon=nutstore-lightapp
+Exec=sh -c "exec ~/.nutstore/dist/bin/nutstore-pydaemon.py --lightappFilePath %f"
+StartupWMClass=net.lightapp.app.LightAppGUI
+Name=Nutstore LightApp
+Name[zh_CN]=坚果云轻应用
+Comment=flowchart, outline notes, markdown, mindmap
+Comment[zh_CN]=流程图，大纲笔记，markdown, 思维导图
+Categories=Office;FlowChart;Chart;Java;
+MimeType=application/x-nol;application/x-ngm;application/x-md;text/markdown;text/x-markdown;application/x-nbmx
+
