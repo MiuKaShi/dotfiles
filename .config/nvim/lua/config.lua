@@ -600,9 +600,4 @@ utils.safe_require('nvim-tree', function(tree)
     })
 end)
 
-utils.safe_require('fidget', function(fid)
-  fid.setup({})
-end)
-
-
 -- [end] 文件树配置
