@@ -1,0 +1,151 @@
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
+" Plug 'tridactyl/vim-tridactyl'
+
+" clean all previous configurations
+sanitise tridactylsync
+sanitise tridactyllocal
+
+" ====================环境变量====================
+set yankto both
+set putfrom selection
+
+set autofocus false
+set viewsource default
+
+" Sometimes the status bar in the bottom left corner overlaps the Tridactyl
+" command line, so set an option to move the status bar to the right.
+guiset_quiet hoverlink right
+guiset_quiet tabs count
+
+colors midnight
+
+" 新标签页设置
+set newtab https://www.google.com
+
+" 平滑滚动
+set smoothscroll true
+
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintnames numeric
+
+" unbind
+unbind <C-f>
+unbind F
+
+" navigation
+bind --mode=normal H back
+bind --mode=normal L forward
+bind --mode=normal h tabprev
+bind --mode=normal l tabnext
+bind --mode=normal j scrollline 30
+bind --mode=normal k scrollline -30
+
+" 但也支持 Tridactyl 搜索
+bind --mode=normal / fillcmdline find
+bind --mode=normal ? fillcmdline find -?
+bind --mode=normal n findnext 1
+bind --mode=normal N findnext -1
+
+" zoom
+bind --mode=normal K zoom 0.1 true
+bind --mode=normal J zoom -0.1 true
+bind --mode=normal 0 zoom 1
+
+bind c current_url open
+bind C current_url tabopen
+
+unbind --mode=normal m
+bind m pin
+
+" make d take you to the tab you were just on (I find it much less confusing)
+bind --mode=normal q composite tab #; tabclose #
+bind --mode=normal Q qall
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate; tabdetach
+
+" Make yy use canonical / short links on the 5 websites that support them
+unbind --mode=normal y
+bind yy clipboard yankcanon
+bind yt composite js document.title + '\n' + document.location.href | yank
+
+" swap p and P
+bind p clipboard tabopen
+bind P clipboard open
+
+" F opens in FOREGROUND new tab
+bind --mode=normal F hint -t
+
+" ====================搜索引擎====================
+" ** Search Engines
+" Disable all searchurls
+jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
+
+set searchengine g
+" set searchurls.KEYWORD URL
+set searchurls.w https://en.wikipedia.org/wiki/Special:Search?search=%s
+set searchurls.b https://www.baidu.com/s?ie=UTF-8&wd=%s
+set searchurls.bi https://search.bilibili.com/all?keyword=%s
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
+set searchurls.y https://www.youtube.com/results?search_query=%s
+
+" Site specific
+bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+
+" Textfields
+bind --mode=insert <C-d> text.delete_char
+" bind --mode=insert <C-t> text.transpose_char
+bind --mode=insert <C-k> text.kill_line
+bind --mode=insert <CS-Backspace> text.kill_whole_line
+bind --mode=insert <A-Backspace> text.backward_kill_word
+bind --mode=insert <C-a> text.beginning_of_line
+bind --mode=insert <C-e> text.end_of_line
+bind --mode=insert <C-f> text.forward_char
+bind --mode=insert <C-b> text.backward_char
+bind --mode=insert <CA-ArrowRight> text.forward_word
+bind --mode=insert <CA-ArrowLeft> text.backward_word
+
+" Selection
+bind <C-Space> hint -h
+" bind --mode=visual <C-g> composite js document.getSelection().empty(); mode normal; hidecmdline
+bind --mode=visual <ArrowDown> js document.getSelection().modify("extend","forward","line")
+bind --mode=visual <ArrowUp> js document.getSelection().modify("extend","backward","line")
+bind --mode=visual <ArrowLeft> js document.getSelection().modify("extend","backward","character")
+bind --mode=visual <ArrowRight> js document.getSelection().modify("extend","forward","character")
+bind --mode=visual <A-ArrowRight> js document.getSelection().modify("extend","forward","word")
+bind --mode=visual <A-ArrowLeft> js document.getSelection().modify("extend","backward","character"); document.getSelection().modify("extend","backward","word"); document.getSelection().modify("extend","backward","character")
+bind --mode=visual <A-w> composite js document.getSelection().toString() | clipboard yank
+" bind --mode=visual <C-n> js document.getSelection().modify("extend","forward","line")
+" bind --mode=visual <C-p> js document.getSelection().modify("extend","backward","line")
+" bind --mode=visual <C-b> js document.getSelection().modify("extend","backward","character")
+" bind --mode=visual <C-f> js document.getSelection().modify("extend","forward","character")
+" bind --mode=visual <A-f> js document.getSelection().modify("extend","forward","word")
+" bind --mode=visual <A-b> js document.getSelection().modify("extend","backward","character"); document.getSelection().modify("extend","backward","word"); document.getSelection().modify("extend","forward","character")
+
+" Commands
+bind --mode=ex <ArrowDown> ex.next_completion
+bind --mode=ex <ArrowUp> ex.prev_completion
+bind --mode=ex <A-ArrowDown> ex.next_history
+bind --mode=ex <A-ArrowUp> ex.prev_history
+bind --mode=ex <C-g> ex.hide_and_clear
+bind --mode=ex <C-f> text.forward_char
+bind --mode=ex <C-b> text.backward_char
+bind --mode=ex <C-a> text.beginning_of_line
+bind --mode=ex <C-e> text.end_of_line
+bind --mode=ex <C-k> text.kill_line
+bind --mode=ex <CS-Backspace> text.kill_whole_line
+bind --mode=ex <A-Backspace> text.backward_kill_word
+" bind --mode=ex <C-n> ex.next_completion
+" bind --mode=ex <C-p> ex.prev_completion
+" bind --mode=ex <A-n> ex.next_history
+" bind --mode=ex <A-p> ex.prev_history
+
+command w open w
+command f hint -f
+command F hint -tf
+
