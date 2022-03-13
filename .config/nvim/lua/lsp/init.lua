@@ -21,9 +21,6 @@ require'lspconfig'.tsserver.setup{
 require'lspconfig'.solargraph.setup{
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
-require'lspconfig'.cssls.setup{
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-}
 require'lspconfig'.dockerls.setup{
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }

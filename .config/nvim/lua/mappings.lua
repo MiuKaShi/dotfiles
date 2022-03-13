@@ -41,6 +41,8 @@ set_keymap('i', '<C-n>', '<Plug>(fzf-complete-wordnet)', {}) -- dicitonal
 set_keymap('n', '<C-l>', ':bnext<CR>', {}) -- quickfixlist 跳转
 set_keymap('n', '<C-h>', ':bprev<CR>', {})
 set_keymap('n', '<C-s>', ':w<CR>', {}) -- save file
+set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', {}) -- file tree
+set_keymap('n', '<C-w>', ':bdelete<CR>', {}) -- file tree
 
 -- command line mode
 set_keymap('c', '<C-a>', '<Home>', {})
@@ -102,7 +104,6 @@ utils.safe_require('which-key', function(wk)
       f = { '<cmd>Telescope find_files<CR>', 'Find file by name(<CTRL-P>)' },
       F = { ':Telescope live_grep<CR>', 'Find file by content(SPC /)'},
       t = { ':NvimTreeToggle<CR>', 'Toggle directory tree' },
-      T = { ':NvimTreeToggle<CR>:NvimTreeToggle<CR>', 'Auto resize directory tree' }, -- tree 宽度auto_resize失效
     },
     j = {
       name = '+Jump',

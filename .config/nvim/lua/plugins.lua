@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
     use 'h-hg/fcitx.nvim'
     use 'ActivityWatch/aw-watcher-vim'
     use 'numEricL/vim-gf-list' -- gf 自定义
-    use 'justinmk/vim-gtfo' -- gf 自定义
+    use 'justinmk/vim-gtfo' -- gf打开文件
     -- term
     use 'skywind3000/asyncrun.vim' -- 异步运行
     -- use 'ygm2/rooter.nvim'
