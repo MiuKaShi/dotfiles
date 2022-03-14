@@ -28,10 +28,12 @@ set smoothscroll true
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
-set hintnames numeric
+set hintnames short
+set hintchars asdfgqwertvbn
 
 " unbind
 unbind <C-f>
+unbind <C-b>
 unbind F
 
 " navigation
@@ -39,8 +41,14 @@ bind --mode=normal H back
 bind --mode=normal L forward
 bind --mode=normal h tabprev
 bind --mode=normal l tabnext
-bind --mode=normal j scrollline 30
-bind --mode=normal k scrollline -30
+bind --mode=normal j scrollline 10
+bind --mode=normal k scrollline -10
+bind --mode=normal d scrollline 50
+bind --mode=normal u scrollline -50
+
+" close tab
+bind --mode=normal x composite tab #; tabclose #
+bind --mode=normal X undo
 
 " 但也支持 Tridactyl 搜索
 bind --mode=normal / fillcmdline find
@@ -59,9 +67,6 @@ bind C current_url tabopen
 unbind --mode=normal m
 bind m pin
 
-" make d take you to the tab you were just on (I find it much less confusing)
-bind --mode=normal q composite tab #; tabclose #
-bind --mode=normal Q qall
 
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
@@ -148,4 +153,3 @@ bind --mode=ex <A-Backspace> text.backward_kill_word
 command w open w
 command f hint -f
 command F hint -tf
-
