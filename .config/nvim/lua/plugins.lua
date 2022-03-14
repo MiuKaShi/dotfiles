@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
       run = ':call mkdp#util#install()',
     }
     use 'preservim/vim-markdown'  -- markdown 方程高亮
-    use "dhruvasagar/vim-table-mode"  -- markdown table
+    -- use "dhruvasagar/vim-table-mode"  -- markdown table
     -- 效率
     use 'folke/which-key.nvim' -- 助记快捷键
     use 'tpope/vim-surround'
@@ -81,6 +81,7 @@ return require('packer').startup(function(use)
     use { 'p00f/nvim-ts-rainbow', requires = {{ 'nvim-treesitter/nvim-treesitter' }}}
     use 'RRethy/vim-illuminate' -- 单词高亮
     use 'folke/lua-dev.nvim' -- lua 语法提示
+    use 'tridactyl/vim-tridactyl' --tridactyl 高亮
     -- comment
     use 'tpope/vim-commentary' -- 添加注释
     use { 'JoosepAlviste/nvim-ts-context-commentstring', requires = {{ 'nvim-treesitter/nvim-treesitter' }}}

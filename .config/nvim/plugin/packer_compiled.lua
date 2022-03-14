@@ -380,10 +380,10 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
   },
-  ["vim-table-mode"] = {
+  ["vim-tridactyl"] = {
     loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-table-mode",
-    url = "https://github.com/dhruvasagar/vim-table-mode"
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-tridactyl",
+    url = "https://github.com/tridactyl/vim-tridactyl"
   },
   ["vim-vsnip"] = {
     loaded = true,

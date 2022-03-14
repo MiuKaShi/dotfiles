@@ -77,12 +77,14 @@ opt.smarttab = true
 opt.list = true -- 显示不可打印的字符
 opt.listchars = 'tab:»·,trail:·,nbsp:·'
 
-opt.ttimeout = true
-opt.ttimeoutlen = 100
-
 opt.undofile = true
 opt.backup= true
 opt.swapfile= false
+opt.ruler = true
+opt.undolevels = 1000
+opt.backspace = 'indent,eol,start' -- 使 backspace 按您预期的方式工作
+opt.clipboard = 'unnamedplus'
+opt.shell = 'zsh'
 
 vim.cmd [[
 if has("nvim")
@@ -102,12 +104,6 @@ if !isdirectory(&backupdir)
   call mkdir(&backupdir, 'p')
 endif
 ]]
-
-opt.ruler = true
-opt.undolevels = 1000
-opt.backspace = 'indent,eol,start' -- 使 backspace 按您预期的方式工作
-opt.clipboard = 'unnamedplus'
-opt.shell = 'zsh'
 
 -- 自动保存
 g.auto_save_events = {"WinLeave","BufLeave","CursorHold"}
