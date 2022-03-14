@@ -42,6 +42,7 @@ return a -- 返回模块
 - `vim.ui.select`: 选择框
 
 ## `VimScript`语法
+
 ```vim
 " v:lua允许从vim中调用lua函数
 call v:lua.print('hello lua')
