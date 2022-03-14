@@ -1,4 +1,5 @@
 -- Snippets support
+local lspconfig = require'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true;
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -32,7 +33,20 @@ local on_attach = function(client, bufnr)
 end
 
 -- LSP servers
-local lspconfig = require'lspconfig'
+
+-- go
+lspconfig.gopls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150}
+}
+
+-- c
+lspconfig.clangd.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150}
+}
 
 -- bash
 lspconfig.bashls.setup{on_attach = on_attach, capabilities = capabilities}
@@ -48,6 +62,13 @@ lspconfig.efm.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {documentFormatting = true},
+    filetypes = {
+        'matlab',
+        'fish',
+        'lua',
+        'python',
+        'pandoc'
+    },
     settings = {
         rootMarkers = {'.git/'},
         languages = {
@@ -85,8 +106,8 @@ lspconfig.efm.setup{
                     formatCommand = 'pandoc -f markdown -t markdown -sp --tab-stop=2'
                 }
             },
-            lua = {{formatCommand = 'lua-format -i', formatStdin = true}}
+            lua = {{formatCommand = 'lua-format -i', formatStdin = true}},
+            python = {{formatCommand = 'yapf --quiet', formatStdin = true}}
         }
-    },
-    filetypes = {'matlab', 'fish', 'pandoc', 'lua'}
+    }
 }
