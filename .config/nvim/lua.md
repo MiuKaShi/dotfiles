@@ -69,5 +69,8 @@ function _G.statusline()
 end
 EOF
 
+
+
+
 set statusline=%!v:lua.statusline()
 ```

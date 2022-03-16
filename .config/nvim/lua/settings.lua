@@ -18,6 +18,7 @@ g.user_emmet_install_global = 0
 -- g.copilot_no_tab_map = true
 -- g.copilot_assume_mapped = true
 
+g.better_escape_shortcut = {'jk', 'jj', 'kj', 'лл'}
 g.vsnip_snippet_dir = '~/.config/nvim/snippets/'
 
 g.GfList_map_n_gf = 'gf' -- gf 自定义
@@ -99,9 +100,6 @@ if !isdirectory(&backupdir)
   call mkdir(&backupdir, 'p')
 endif
 ]]
-
--- 自动保存
-g.auto_save_events = {'WinLeave', 'BufLeave', 'CursorHold'}
 
 -- 高亮配置
 g.Illuminate_delay = 300

@@ -1,6 +1,6 @@
 # neovim 配置
 
-依赖
+安装依赖
 
 - `ripgrep`
 - `fd`

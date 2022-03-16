@@ -1,5 +1,21 @@
 local utils = require('utils')
 
+-- Scroll
+require("neoscroll").setup({
+  easing_function = "quadratic",
+})
+
+local t = {}
+-- Syntax: t[keys] = {function, {function arguments}}
+-- Use the "sine" easing function
+t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "20", [['cubic']] } }
+t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "20", [['cubic']] } }
+-- When no easing function is provided the default easing function (in this case "quadratic") will be used
+t["zt"] = { "zt", { "10" } }
+t["zz"] = { "zz", { "10" } }
+t["zb"] = { "zb", { "10" } }
+require("neoscroll.config").set_mappings(t)
+
 -- Setup for lualine
 utils.safe_require('lualine', function(lualine)
 

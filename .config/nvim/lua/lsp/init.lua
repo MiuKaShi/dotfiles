@@ -45,6 +45,7 @@ lspconfig.gopls.setup{
 lspconfig.clangd.setup{
     capabilities = capabilities,
     on_attach = on_attach,
+    filetypes = { "c", "cpp", "cc" },
     flags = {debounce_text_changes = 150}
 }
 
@@ -62,13 +63,7 @@ lspconfig.efm.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {documentFormatting = true},
-    filetypes = {
-        'matlab',
-        'fish',
-        'lua',
-        'python',
-        'pandoc'
-    },
+    filetypes = {'matlab', 'fish', 'lua', 'python', 'pandoc'},
     settings = {
         rootMarkers = {'.git/'},
         languages = {

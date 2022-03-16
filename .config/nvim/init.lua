@@ -27,8 +27,6 @@ lualine.setup {
 
 -- 键位映射
 vim.cmd [[
-  inoremap kj <ESC>
-  inoremap jk <ESC>
   noremap j gj
   nnoremap k gk
 ]]

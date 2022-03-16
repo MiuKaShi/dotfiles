@@ -126,8 +126,8 @@ return require('packer').startup(function(use)
     use'tpope/vim-fugitive'
     use'rbong/vim-flog'
     -- others
-    use'dstein64/vim-startuptime' -- 计算启动时间 :StartupTime
-    use'907th/vim-auto-save' -- auto save files
+    use "karb94/neoscroll.nvim"
+    use{'jdhao/better-escape.vim', event = 'InsertEnter'}
     -- File manager
     use{
         'kyazdani42/nvim-tree.lua', -- 文件树 <C-]>进入cursor目录 H 切换.文件隐藏
@@ -140,6 +140,5 @@ return require('packer').startup(function(use)
         commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844' -- 指定版本 最新版本可能会有问题
     }
     if packer_bootstrap then require('packer').sync() end
-
 
 end)
