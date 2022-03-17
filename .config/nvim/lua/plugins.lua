@@ -44,13 +44,19 @@ return require('packer').startup(function(use)
     use'norcalli/nvim-colorizer.lua' -- 颜色
     -- icon
     use'coreyja/fzf.devicon.vim'
-    use'ryanoasis/vim-devicons'
+    use'ryanoasis/vim-devicons' -- 各种图标
     -- writting
     use'junegunn/goyo.vim'
     use'junegunn/limelight.vim'
     use'ferdinandyb/bibtexcite.vim'
     use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     use'preservim/vim-markdown' -- markdown 方程高亮
+    -- GTD
+    use({
+        'nvim-neorg/neorg',
+        -- tag = "latest", (see below)
+        requires = 'nvim-lua/plenary.nvim'
+    })
     -- 效率
     use'folke/which-key.nvim' -- 助记快捷键
     use'tpope/vim-surround'
@@ -82,7 +88,7 @@ return require('packer').startup(function(use)
         requires = {{'nvim-treesitter/nvim-treesitter'}}
     }
     use'RRethy/vim-illuminate' -- 单词高亮
-    use'folke/lua-dev.nvim' -- lua 语法提示
+    use'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮
     -- comment
     use'tpope/vim-commentary' -- 注释代码
@@ -90,6 +96,7 @@ return require('packer').startup(function(use)
         'JoosepAlviste/nvim-ts-context-commentstring',
         requires = {{'nvim-treesitter/nvim-treesitter'}}
     }
+
     -- buffer
     use'nvim-lua/plenary.nvim' -- vim的lua接口封装
     use'nvim-lualine/lualine.nvim' -- 底部状态栏
@@ -103,16 +110,22 @@ return require('packer').startup(function(use)
         requires = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'lukas-reineke/cmp-rg',
-            'mstanciu552/cmp-matlab', -- matlab 自动补偿
-            'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip',
-            'hrsh7th/vim-vsnip-integ'
+            -- 'mstanciu552/cmp-octave', -- octave 自动补偿
+            'mstanciu552/cmp-matlab' -- matlab 自动补偿
         }
     }
-    use'onsails/lspkind-nvim' -- octave 自动补偿
+    use{
+        'tzachar/cmp-tabnine',
+        run = './install.sh',
+        requires = 'hrsh7th/nvim-cmp'
+    }
+    use'onsails/lspkind-nvim' -- vscode-like lsp
     use'windwp/nvim-autopairs'
     -- git graph
     use'tpope/vim-fugitive'
@@ -125,7 +138,7 @@ return require('packer').startup(function(use)
         config = function()
             require'nvim-tree'.setup{}
         end,
-        commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844' -- 指定版本 最新版本可能会有问题
+        commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844' -- 指定版本 最新版本C-e有问题
     }
     if packer_bootstrap then require('packer').sync() end
 

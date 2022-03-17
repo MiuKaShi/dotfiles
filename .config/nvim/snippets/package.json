@@ -1,0 +1,35 @@
+{
+  "name": "snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "rmarkdown",
+        "path": "./rmarkdown.json"
+      },
+      {
+        "language": "matlab",
+        "path": "./matlab.json"
+      },
+      {
+        "language": "latex",
+        "path": "./latex.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
+        "path": "./shell.json"
+      }
+    ]
+  }
+}

@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["asyncrun.vim"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
@@ -109,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-path",
@@ -119,10 +129,15 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-rg",
     url = "https://github.com/lukas-reineke/cmp-rg"
   },
-  ["cmp-vsnip"] = {
+  ["cmp-tabnine"] = {
     loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
-    url = "https://github.com/hrsh7th/cmp-vsnip"
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
+    url = "https://github.com/tzachar/cmp-tabnine"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["editorconfig-vim"] = {
     loaded = true,
@@ -208,6 +223,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
+  },
+  neorg = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neorg",
+    url = "https://github.com/nvim-neorg/neorg"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -359,16 +379,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-tridactyl",
     url = "https://github.com/tridactyl/vim-tridactyl"
-  },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
-  },
-  ["vim-vsnip-integ"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
-    url = "https://github.com/hrsh7th/vim-vsnip-integ"
   },
   ["which-key.nvim"] = {
     loaded = true,
