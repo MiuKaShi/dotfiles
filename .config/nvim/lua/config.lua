@@ -1,26 +1,9 @@
 local utils = require('utils')
 
--- Scroll
-require("neoscroll").setup({
-  easing_function = "quadratic",
-})
-
-local t = {}
--- Syntax: t[keys] = {function, {function arguments}}
--- Use the "sine" easing function
-t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "20", [['cubic']] } }
-t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "20", [['cubic']] } }
--- When no easing function is provided the default easing function (in this case "quadratic") will be used
-t["zt"] = { "zt", { "10" } }
-t["zz"] = { "zz", { "10" } }
-t["zb"] = { "zb", { "10" } }
-require("neoscroll.config").set_mappings(t)
-
 -- Setup for lualine
 utils.safe_require('lualine', function(lualine)
 
     local auto_theme = require('lualine.themes.auto')
-
     auto_theme.normal.c.bg = auto_theme.normal.a.fg
 
     local config = {
@@ -53,13 +36,6 @@ utils.safe_require('lualine', function(lualine)
         tabline = {},
         extensions = {}
     }
-
-    -- Inserts a component in lualine_b at left section
-    local function ins_config_left(component)
-        if utils.index_of(config.sections.lualine_c, component) < 0 then
-            table.insert(config.sections.lualine_c, component)
-        end
-    end
 
     lualine.setup(config)
 end)
@@ -351,111 +327,6 @@ utils.safe_require('bufferline', function(bufferline)
 end)
 -- End of setup for bufferline
 
--- Setup for gitsigns
-utils.safe_require('gitsigns', function(gitsigns)
-    gitsigns.setup({
-        current_line_blame = true,
-        current_line_blame_opts = {
-            virt_text = true,
-            virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-            delay = 100,
-            ignore_whitespace = false
-        },
-        current_line_blame_formatter_opts = {relative_time = false}
-    })
-end)
--- End of setup for gitsigns
-
--- Setup for alpha
-utils.safe_require('alpha', function(alpha)
-    math.randomseed(os.time())
-    local colors = {'white', 'violet', 'lightyellow'}
-    local function random_colors(color_lst)
-        return color_lst[math.random(1, #color_lst)]
-    end
-    vim.cmd(string.format('highlight dashboard guifg=%s guibg=bg',
-             random_colors(colors)))
-
-    -- 首页定制
-    local dashboard = require('alpha.themes.dashboard')
-    local header = {
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[    █████   █████                         █████             ]],
-        [[    ░░███   ░░███                         ░░███             ]],
-        [[     ░███    ░████████  ██████  ██████  ███████  ██████     ]],
-        [[     ░███    ░█████░░  ███░░██████░░██████░░███ ███░░███    ]],
-        [[     ░░███   ██░░█████░███ ░░░░███ ░██░███ ░███░███████     ]],
-        [[      ░░░█████░ ░░░░██░███  ██░███ ░██░███ ░███░███░░░      ]],
-        [[        ░░███   ██████░░██████░░██████░░███████░░██████     ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[         Visual Studio Code 2022 ONLY for terminal          ]],
-        [[                                                            ]],
-        [[                                                            ]],
-        [[                                                            ]]
-    }
-
-    local function button(sc, txt, keybind, keybind_opts)
-        local b = dashboard.button(sc, txt, keybind, keybind_opts)
-        b.opts.hl = 'Function'
-        b.opts.hl_shortcut = 'Type'
-        return b
-    end
-
-    local function pick_color()
-        local colors = {'String', 'Identifier', 'Keyword', 'Number', 'Constant'}
-        return colors[math.random(#colors)]
-    end
-
-    local function footer()
-        local v = vim.version()
-        local datetime = os.date' %d-%m-%Y   %H:%M:%S'
-        return string.format('\n\nNeoVim  v%s.%s.%s  %s', v.major, v.minor,
-                v.patch, datetime)
-    end
-
-    dashboard.section.header.val = header
-    dashboard.section.header.opts.hl = pick_color()
-
-    dashboard.section.buttons.val = {
-        button('e', '  New File    ', ':enew<CR>'),
-        button('r', '  Recently opened files', ':Telescope oldfiles<CR>'),
-        button('f', '  Find working space file', ':Telescope find_files<CR>'),
-        button('t', '  Find Text   ', ':Telescope live_grep<CR>'),
-        button('c', '  NVIM Config ',
-         ':e ~/.config/nvim/init.lua<CR>:Telescope find_files<CR>'),
-        button('q', '  Quit        ', ':qa<CR>')
-    }
-
-    dashboard.section.footer.val = footer()
-    dashboard.section.footer.opts.hl = dashboard.section.header.opts.hl
-
-    alpha.setup(dashboard.opts)
-end)
--- End of setup for alpha
-
--- -- Setup for octo 远程管理github issue和pr，暂时用不到
--- utils.safe_require('octo', function(octo)
---   octo.setup({
---     default_remote = { "upsteam", "origin", "main" },
---   })
--- end)
--- -- End of setup for octo
-
 -- [start] 颜色配置
 utils.safe_require('colorizer', function(color)
     color.setup()
@@ -530,11 +401,11 @@ utils.safe_require('nvim-tree', function(tree)
             hide_root_folder = false,
             side = 'left',
             auto_resize = true,
-            mappings = {custom_only = false, list = {}},
             number = false,
             relativenumber = false,
             signcolumn = 'yes',
             mappings = {
+                custom_only = false,
                 list = {
                     {key = 's', cb = tree_bind_callback('vsplit')},
                     {key = 'v', cb = tree_bind_callback('vsplit')}

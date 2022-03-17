@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["alpha-nvim"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/alpha-nvim",
-    url = "https://github.com/goolord/alpha-nvim"
-  },
   ["asyncrun.vim"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
@@ -83,13 +78,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/aw-watcher-vim",
     url = "https://github.com/ActivityWatch/aw-watcher-vim"
-  },
-  ["better-escape.vim"] = {
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/opt/better-escape.vim",
-    url = "https://github.com/jdhao/better-escape.vim"
   },
   ["bibtexcite.vim"] = {
     loaded = true,
@@ -166,11 +154,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/fzf.vim",
     url = "https://github.com/junegunn/fzf.vim"
   },
-  ["gitsigns.nvim"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
-    url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
   ["goyo.vim"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/goyo.vim",
@@ -225,11 +208,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
-  },
-  ["neoscroll.nvim"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
-    url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -347,11 +325,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-easymotion",
     url = "https://github.com/easymotion/vim-easymotion"
   },
-  ["vim-flog"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-flog",
-    url = "https://github.com/rbong/vim-flog"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -409,13 +382,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Event lazy-loads
-time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'better-escape.vim'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-time([[Defining lazy-load event autocommands]], false)
-vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

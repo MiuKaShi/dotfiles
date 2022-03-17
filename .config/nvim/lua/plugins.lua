@@ -39,10 +39,6 @@ return require('packer').startup(function(use)
     use'tami5/lspsaga.nvim'
     use'tamago324/nlsp-settings.nvim' -- 用json配置LSP，像coc.nvim一样
     -- theme
-    use{
-        'goolord/alpha-nvim', -- start page
-        requires = {'kyazdani42/nvim-web-devicons'}
-    }
     use'morhetz/gruvbox' -- gruvbox 主题
     use{'AlphaTechnolog/pywal.nvim', as = 'pywal'}
     use'norcalli/nvim-colorizer.lua' -- 颜色
@@ -55,7 +51,6 @@ return require('packer').startup(function(use)
     use'ferdinandyb/bibtexcite.vim'
     use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     use'preservim/vim-markdown' -- markdown 方程高亮
-    -- use "dhruvasagar/vim-table-mode"  -- markdown table
     -- 效率
     use'folke/which-key.nvim' -- 助记快捷键
     use'tpope/vim-surround'
@@ -66,7 +61,6 @@ return require('packer').startup(function(use)
     use'justinmk/vim-gtfo' -- gf打开文件
     -- term
     use'skywind3000/asyncrun.vim' -- 异步运行
-    -- use 'ygm2/rooter.nvim'
     -- search
     use'ahmedkhalf/project.nvim' -- telescope 查找文件
     use'easymotion/vim-easymotion' -- 单词搜索
@@ -91,13 +85,11 @@ return require('packer').startup(function(use)
     use'folke/lua-dev.nvim' -- lua 语法提示
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮
     -- comment
-    use'tpope/vim-commentary' -- 添加注释
+    use'tpope/vim-commentary' -- 注释代码
     use{
         'JoosepAlviste/nvim-ts-context-commentstring',
         requires = {{'nvim-treesitter/nvim-treesitter'}}
     }
-    -- git
-    use{'lewis6991/gitsigns.nvim', requires = {{'nvim-lua/plenary.nvim'}}} -- git blame
     -- buffer
     use'nvim-lua/plenary.nvim' -- vim的lua接口封装
     use'nvim-lualine/lualine.nvim' -- 底部状态栏
@@ -124,10 +116,6 @@ return require('packer').startup(function(use)
     use'windwp/nvim-autopairs'
     -- git graph
     use'tpope/vim-fugitive'
-    use'rbong/vim-flog'
-    -- others
-    use "karb94/neoscroll.nvim"
-    use{'jdhao/better-escape.vim', event = 'InsertEnter'}
     -- File manager
     use{
         'kyazdani42/nvim-tree.lua', -- 文件树 <C-]>进入cursor目录 H 切换.文件隐藏
