@@ -14,5 +14,6 @@ else
 	. "$HOME/.xprofile"
 fi
 
-sxhkd &
+/usr/bin/prime-offload
 ssh-agent dwm
+sudo /usr/bin/prime-switch
