@@ -17,11 +17,13 @@ g.indentLine_fileTypeExclude = {'alpha'}
 g.user_emmet_install_global = 0
 -- g.copilot_no_tab_map = true
 -- g.copilot_assume_mapped = true
-
-g.better_escape_shortcut = {'jk', 'jj', 'kj', 'лл'}
+-- snippets
 g.vsnip_snippet_dir = '~/.config/nvim/snippets/'
-
-g.GfList_map_n_gf = 'gf' -- gf 自定义
+-- vimwiki
+g.vimwiki_list = { { path = '~/vimwiki/', syntax = 'markdown', ext = '.md' } }
+g.taskwiki_dont_fold = 'yes'
+ -- gf 自定义
+g.GfList_map_n_gf = 'gf'
 g.GfList_map_v_gf = 'gf'
 vim.cmd[[
 let g:gtfo#terminals = { 'unix': 'st -e nvim' }
@@ -48,12 +50,19 @@ autocmd WinLeave * setlocal nocursorline
 ]]
 opt.timeoutlen = 500
 opt.mouse = 'a'
-opt.encoding = 'utf-8'
+opt.encoding = 'UTF-8'
+opt.fileencoding = 'UTF-8'
+opt.fileencodings = 'UTF-8'
 opt.termguicolors = true
 opt.number = true
-opt.relativenumber = true
-opt.linebreak = true
+opt.lazyredraw = true -- Speeds up scrolling
+opt.redrawtime = 10000
+opt.regexpengine = 1
 -- opt.showbreak = '+++'
+opt.relativenumber = true
+opt.scrolloff = 2 -- Always show at least one line above/below the cursor.
+opt.sidescrolloff = 5 -- Always show at least one line left/right of the cursor.
+opt.linebreak = true
 opt.showmatch = true
 opt.visualbell = true
 
@@ -64,8 +73,9 @@ opt.incsearch = true -- 搜索时高亮
 
 opt.autoindent = true -- 根据前一行进行缩进
 opt.copyindent = true
-opt.shiftwidth = indent
-opt.softtabstop = -1 -- Tab键替换空格数
+opt.shiftwidth = 4
+opt.softtabstop = 4 -- Tab键替换空格数
+opt.tabstop = 4
 opt.expandtab = true -- 使用空格键替换tabs
 opt.smartindent = true
 opt.smarttab = true
@@ -78,6 +88,7 @@ opt.backup = true
 opt.swapfile = false
 opt.ruler = true
 opt.undolevels = 1000
+opt.updatetime = 100 -- default updatetime 4000ms is not good for async update (vim/signify)
 opt.backspace = 'indent,eol,start' -- 使 backspace 按您预期的方式工作
 opt.clipboard = 'unnamedplus'
 opt.shell = 'zsh'

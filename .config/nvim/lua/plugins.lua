@@ -51,18 +51,51 @@ return require('packer').startup(function(use)
     use'ferdinandyb/bibtexcite.vim'
     use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     use'preservim/vim-markdown' -- markdown 方程高亮
-    -- GTD
-    use({
+    -- Task Warrior / Vim Wiki
+    use{'vimwiki/vimwiki', branch = 'dev'}
+    use{
         'nvim-neorg/neorg',
-        -- tag = "latest", (see below)
-        requires = 'nvim-lua/plenary.nvim'
-    })
+        tag = '0.0.11',
+        requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
+        config = function()
+            require('neorg').setup{
+                load = {
+                    ['core.defaults'] = {},
+                    ['core.integrations.telescope'] = {},
+                    ['core.keybinds'] = {
+                        config = {
+                            neorg_leader = ',',
+                            hook = function(keybinds)
+                                keybinds.unmap('norg', 'i', '<C-l>')
+                            end
+                        }
+                    },
+                    ['core.norg.concealer'] = {},
+                    ['core.norg.completion'] = {config = {engine = 'nvim-cmp'}},
+                    ['core.norg.dirman'] = {
+                        config = {
+                            workspaces = {
+                                notes = '~/neorg/notes',
+                                tasks = '~/neorg/tasks'
+                            },
+                            autodetect = true,
+                            autochdir = true
+                        }
+                    },
+                    ['core.gtd.base'] = {config = {workspace = 'tasks'}},
+                    ['core.presenter'] = {config = {zen_mode = 'zen-mode'}},
+                    ['core.norg.qol.toc'] = {}
+                }
+            }
+        end
+    }
     -- 效率
     use'folke/which-key.nvim' -- 助记快捷键
     use'tpope/vim-surround'
     use'sbdchd/neoformat'
     use'h-hg/fcitx.nvim'
-    use'ActivityWatch/aw-watcher-vim'
+    use'wakatime/vim-wakatime'
+    -- use'ActivityWatch/aw-watcher-vim'
     use'numEricL/vim-gf-list' -- gf 自定义
     use'justinmk/vim-gtfo' -- gf打开文件
     -- term

@@ -240,7 +240,7 @@ set_keymap('v', '<leader>;', 'gcc<esc>', {})
 
 -- force save
 vim.cmd[[
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w ! sudo tee > /dev/null %
 ]]
 
 -- 保存前格式化

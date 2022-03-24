@@ -305,6 +305,8 @@ syn keyword matlabFunc fitsinfo fitsread
 syn keyword matlabFunc hdf hdf5 hdf5info hdf5read hdf5write hdfinfo hdfread hdftool
 "Band-Interleaved Data
 syn keyword matlabFunc multibandread multibandwrite
+"Python
+syn keyword matlabFunc pyrun pyrunfile
 
 
 " Define the default highlighting.

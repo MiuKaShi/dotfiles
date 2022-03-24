@@ -79,11 +79,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/asyncrun.vim",
     url = "https://github.com/skywind3000/asyncrun.vim"
   },
-  ["aw-watcher-vim"] = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/aw-watcher-vim",
-    url = "https://github.com/ActivityWatch/aw-watcher-vim"
-  },
   ["bibtexcite.vim"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/bibtexcite.vim",
@@ -225,9 +220,15 @@ _G.packer_plugins = {
     url = "https://github.com/sbdchd/neoformat"
   },
   neorg = {
+    config = { "\27LJ\2\n2\0\1\6\0\4\0\0069\1\0\0'\3\1\0'\4\2\0'\5\3\0B\1\4\1K\0\1\0\n<C-l>\6i\tnorg\nunmap¤\4\1\0\a\0\30\0)6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\28\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\6\0003\6\a\0=\6\b\5=\5\n\4=\4\v\0034\4\0\0=\4\f\0035\4\14\0005\5\r\0=\5\n\4=\4\15\0035\4\19\0005\5\17\0005\6\16\0=\6\18\5=\5\n\4=\4\20\0035\4\22\0005\5\21\0=\5\n\4=\4\23\0035\4\25\0005\5\24\0=\5\n\4=\4\26\0034\4\0\0=\4\27\3=\3\29\2B\0\2\1K\0\1\0\tload\1\0\0\22core.norg.qol.toc\19core.presenter\1\0\0\1\0\1\rzen_mode\rzen-mode\18core.gtd.base\1\0\0\1\0\1\14workspace\ntasks\21core.norg.dirman\1\0\0\15workspaces\1\0\2\14autochdir\2\15autodetect\2\1\0\2\ntasks\18~/neorg/tasks\nnotes\18~/neorg/notes\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\24core.norg.concealer\18core.keybinds\vconfig\1\0\0\thook\0\1\0\1\17neorg_leader\6, core.integrations.telescope\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neorg",
     url = "https://github.com/nvim-neorg/neorg"
+  },
+  ["neorg-telescope"] = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neorg-telescope",
+    url = "https://github.com/nvim-neorg/neorg-telescope"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -380,6 +381,16 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-tridactyl",
     url = "https://github.com/tridactyl/vim-tridactyl"
   },
+  ["vim-wakatime"] = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-wakatime",
+    url = "https://github.com/wakatime/vim-wakatime"
+  },
+  vimwiki = {
+    loaded = true,
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vimwiki",
+    url = "https://github.com/vimwiki/vimwiki"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/which-key.nvim",
@@ -388,6 +399,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+try_loadstring("\27LJ\2\n2\0\1\6\0\4\0\0069\1\0\0'\3\1\0'\4\2\0'\5\3\0B\1\4\1K\0\1\0\n<C-l>\6i\tnorg\nunmap¤\4\1\0\a\0\30\0)6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\28\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\6\0003\6\a\0=\6\b\5=\5\n\4=\4\v\0034\4\0\0=\4\f\0035\4\14\0005\5\r\0=\5\n\4=\4\15\0035\4\19\0005\5\17\0005\6\16\0=\6\18\5=\5\n\4=\4\20\0035\4\22\0005\5\21\0=\5\n\4=\4\23\0035\4\25\0005\5\24\0=\5\n\4=\4\26\0034\4\0\0=\4\27\3=\3\29\2B\0\2\1K\0\1\0\tload\1\0\0\22core.norg.qol.toc\19core.presenter\1\0\0\1\0\1\rzen_mode\rzen-mode\18core.gtd.base\1\0\0\1\0\1\14workspace\ntasks\21core.norg.dirman\1\0\0\15workspaces\1\0\2\14autochdir\2\15autodetect\2\1\0\2\ntasks\18~/neorg/tasks\nnotes\18~/neorg/notes\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\24core.norg.concealer\18core.keybinds\vconfig\1\0\0\thook\0\1\0\1\17neorg_leader\6, core.integrations.telescope\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
+time([[Config for neorg]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
