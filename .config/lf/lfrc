@@ -58,8 +58,8 @@ map R reload
 map U unselect
 map o &mimeopen $f
 map O $mimeopen --ask $f
-map +       chmod+x
-map _       chmod-x
+map =      chmod+x
+map -      chmod-x
 
 # show documentation
 map g? $lf -doc | less
