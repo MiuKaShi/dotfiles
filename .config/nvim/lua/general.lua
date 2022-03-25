@@ -119,7 +119,9 @@ vim.cmd[[
 hi Pmenu ctermfg=white ctermbg=238
 ]]
 
--- markdown 高亮设置
+-- markdown vim 高亮设置
+g.vim_markdown_folding_disabled=1
+g.vim_markdown_no_default_key_mappings = 1
 g.vim_markdown_math = 1
 g.vim_markdown_conceal = 0
 g.vim_markdown_conceal_code_blocks = 0
