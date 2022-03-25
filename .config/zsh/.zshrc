@@ -1,7 +1,6 @@
 # config for the Zoomer Shell
 
-#[[ -s /home/miuka/.autojump/etc/profile.d/autojump.sh ]] && source /home/miuka/.autojump/etc/profile.d/autojump.sh
-eval "$(zoxide init zsh)"
+eval "$(lua /usr/share/zsh/plugins/z.lua/z.lua --init zsh enhanced once)"
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -117,10 +116,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-
-#perl5 setting
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
-
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"
@@ -150,8 +145,6 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh 2>/dev/null
 
