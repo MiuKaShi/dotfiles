@@ -87,7 +87,10 @@ return require('packer').startup(function(use)
     use'junegunn/fzf.vim'
     use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
     -- Indent
-    use'Yggdroot/indentLine'
+    use{
+        'lukas-reineke/indent-blankline.nvim',
+        config = [[require('configs.indentline')]]
+    }
     -- Highlight
     use{
         'nvim-treesitter/nvim-treesitter',

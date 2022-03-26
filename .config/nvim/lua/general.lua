@@ -32,7 +32,6 @@ g.EasyMotion_smartcase = 1
 g.swoopAutoInsertMode = 1
 -- g.rust_clip_command = 'pbcopy'
 -- g.python3_host_prog = '~/.pyenv/versions/nvim-py3/bin/python'
-g.indentLine_fileTypeExclude = {'alpha'}
 g.user_emmet_install_global = 0
 -- g.copilot_no_tab_map = true
 -- g.copilot_assume_mapped = true
