@@ -35,13 +35,21 @@ return require('packer').startup(function(use)
     use'wbthomason/packer.nvim'
     -- LSP
     use'neovim/nvim-lspconfig'
-    use'williamboman/nvim-lsp-installer'
-    use'tami5/lspsaga.nvim'
-    use'tamago324/nlsp-settings.nvim' -- 用json配置LSP，像coc.nvim一样
+    use{
+        'williamboman/nvim-lsp-installer',
+        config = [[require('configs.lspinstaller')]]
+    }
+    use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]}
+    use{'tamago324/nlsp-settings.nvim', config = [[require('configs.nlspset')]]} -- 用json配置LSP，像coc.nvim一样
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
     use{'AlphaTechnolog/pywal.nvim', as = 'pywal'}
-    use'norcalli/nvim-colorizer.lua' -- 颜色
+
+    use{
+        'norcalli/nvim-colorizer.lua', -- 颜色
+        config = [[require('configs.colorizer')]]
+    }
+
     -- icon
     use'coreyja/fzf.devicon.vim'
     use'ryanoasis/vim-devicons' -- 各种图标
@@ -57,37 +65,7 @@ return require('packer').startup(function(use)
         'nvim-neorg/neorg',
         tag = '0.0.11',
         requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
-        config = function()
-            require('neorg').setup{
-                load = {
-                    ['core.defaults'] = {},
-                    ['core.integrations.telescope'] = {},
-                    ['core.keybinds'] = {
-                        config = {
-                            neorg_leader = ',',
-                            hook = function(keybinds)
-                                keybinds.unmap('norg', 'i', '<C-l>')
-                            end
-                        }
-                    },
-                    ['core.norg.concealer'] = {},
-                    ['core.norg.completion'] = {config = {engine = 'nvim-cmp'}},
-                    ['core.norg.dirman'] = {
-                        config = {
-                            workspaces = {
-                                notes = '~/neorg/notes',
-                                tasks = '~/neorg/tasks'
-                            },
-                            autodetect = true,
-                            autochdir = true
-                        }
-                    },
-                    ['core.gtd.base'] = {config = {workspace = 'tasks'}},
-                    ['core.presenter'] = {config = {zen_mode = 'zen-mode'}},
-                    ['core.norg.qol.toc'] = {}
-                }
-            }
-        end
+        config = [[require('configs.neorg')]]
     }
     -- 效率
     use'folke/which-key.nvim' -- 助记快捷键
@@ -101,7 +79,7 @@ return require('packer').startup(function(use)
     -- term
     use'skywind3000/asyncrun.vim' -- 异步运行
     -- search
-    use'ahmedkhalf/project.nvim' -- telescope 查找文件
+    use{'ahmedkhalf/project.nvim', config = [[require('configs.project')]]}
     use'easymotion/vim-easymotion' -- 单词搜索
     use'wellle/targets.vim' -- 修改一串字符 da< cin) da{
     use'editorconfig/editorconfig-vim' -- .editorconfig 配置
@@ -111,7 +89,13 @@ return require('packer').startup(function(use)
     -- Indent
     use'Yggdroot/indentLine'
     -- Highlight
-    use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use{
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        before = 'neorg',
+        config = [[require('configs.treesitter')]]
+    }
+
     use{
         'nvim-treesitter/playground',
         requires = {{'nvim-treesitter/nvim-treesitter'}}
@@ -132,12 +116,28 @@ return require('packer').startup(function(use)
 
     -- buffer
     use'nvim-lua/plenary.nvim' -- vim的lua接口封装
-    use'nvim-lualine/lualine.nvim' -- 底部状态栏
-    use{'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
-    use{'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/plenary.nvim'}}} -- 搜索 需要搭配ripgrep(live_grep grep_string功能)
+    use{
+        'nvim-lualine/lualine.nvim', -- 底部状态栏
+        config = [[require('configs.lualine')]]
+    }
+    use{
+        'kyazdani42/nvim-web-devicons',
+        config = [[require('configs.webdevicons')]]
+    }
+    use{
+        'akinsho/bufferline.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = [[require('configs.bufferline')]]
+    }
+    use{
+        'nvim-telescope/telescope.nvim',
+        requires = 'nvim-lua/plenary.nvim', -- 搜索 需要搭配ripgrep(live_grep grep_string功能)
+        config = [[require('configs.telescope')]]
+    }
     use'nvim-telescope/telescope-file-browser.nvim'
     use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
     -- Completion
+    use{'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]]}
     use{
         'hrsh7th/nvim-cmp',
         requires = {
@@ -145,21 +145,24 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
-            'L3MON4D3/LuaSnip',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'lukas-reineke/cmp-rg',
             -- 'mstanciu552/cmp-octave', -- octave 自动补偿
             'mstanciu552/cmp-matlab' -- matlab 自动补偿
-        }
+        },
+        config = [[require('configs.cmp')]]
     }
+
     use{
         'tzachar/cmp-tabnine',
         run = './install.sh',
-        requires = 'hrsh7th/nvim-cmp'
+        requires = 'hrsh7th/nvim-cmp',
+        config = [[require('configs.tabnine')]]
     }
     use'onsails/lspkind-nvim' -- vscode-like lsp
-    use'windwp/nvim-autopairs'
+
+    use{'windwp/nvim-autopairs', config = [[require('configs.autopairs')]]}
     -- git graph
     use'tpope/vim-fugitive'
     -- File manager
@@ -168,9 +171,7 @@ return require('packer').startup(function(use)
         requires = {
             'kyazdani42/nvim-web-devicons' -- optional, for file icon
         },
-        config = function()
-            require'nvim-tree'.setup{}
-        end,
+        config = [[require('configs.tree')]],
         commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844' -- 指定版本 最新版本C-e有问题
     }
     if packer_bootstrap then require('packer').sync() end

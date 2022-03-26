@@ -70,6 +70,7 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
+    config = { "require('configs.luasnip')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
@@ -85,6 +86,7 @@ _G.packer_plugins = {
     url = "https://github.com/ferdinandyb/bibtexcite.vim"
   },
   ["bufferline.nvim"] = {
+    config = { "require('configs.bufferline')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
@@ -125,6 +127,7 @@ _G.packer_plugins = {
     url = "https://github.com/lukas-reineke/cmp-rg"
   },
   ["cmp-tabnine"] = {
+    config = { "require('configs.tabnine')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
     url = "https://github.com/tzachar/cmp-tabnine"
@@ -195,6 +198,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
+    config = { "require('configs.lspsaga')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
@@ -205,6 +209,7 @@ _G.packer_plugins = {
     url = "https://github.com/folke/lua-dev.nvim"
   },
   ["lualine.nvim"] = {
+    config = { "require('configs.lualine')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -220,7 +225,7 @@ _G.packer_plugins = {
     url = "https://github.com/sbdchd/neoformat"
   },
   neorg = {
-    config = { "\27LJ\2\n2\0\1\6\0\4\0\0069\1\0\0'\3\1\0'\4\2\0'\5\3\0B\1\4\1K\0\1\0\n<C-l>\6i\tnorg\nunmap¤\4\1\0\a\0\30\0)6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\28\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\6\0003\6\a\0=\6\b\5=\5\n\4=\4\v\0034\4\0\0=\4\f\0035\4\14\0005\5\r\0=\5\n\4=\4\15\0035\4\19\0005\5\17\0005\6\16\0=\6\18\5=\5\n\4=\4\20\0035\4\22\0005\5\21\0=\5\n\4=\4\23\0035\4\25\0005\5\24\0=\5\n\4=\4\26\0034\4\0\0=\4\27\3=\3\29\2B\0\2\1K\0\1\0\tload\1\0\0\22core.norg.qol.toc\19core.presenter\1\0\0\1\0\1\rzen_mode\rzen-mode\18core.gtd.base\1\0\0\1\0\1\14workspace\ntasks\21core.norg.dirman\1\0\0\15workspaces\1\0\2\15autodetect\2\14autochdir\2\1\0\2\nnotes\18~/neorg/notes\ntasks\18~/neorg/tasks\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\24core.norg.concealer\18core.keybinds\vconfig\1\0\0\thook\0\1\0\1\17neorg_leader\6, core.integrations.telescope\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
+    config = { "require('configs.neorg')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/neorg",
     url = "https://github.com/nvim-neorg/neorg"
@@ -231,26 +236,31 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-neorg/neorg-telescope"
   },
   ["nlsp-settings.nvim"] = {
+    config = { "require('configs.nlspset')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nlsp-settings.nvim",
     url = "https://github.com/tamago324/nlsp-settings.nvim"
   },
   ["nvim-autopairs"] = {
+    config = { "require('configs.autopairs')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
+    config = { "require('configs.cmp')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
+    config = { "require('configs.colorizer')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lsp-installer"] = {
+    config = { "require('configs.lspinstaller')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
     url = "https://github.com/williamboman/nvim-lsp-installer"
@@ -261,12 +271,13 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
+    config = { "require('configs.tree')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
+    config = { "require('configs.treesitter')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -282,6 +293,7 @@ _G.packer_plugins = {
     url = "https://github.com/p00f/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
+    config = { "require('configs.webdevicons')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
@@ -302,6 +314,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["project.nvim"] = {
+    config = { "require('configs.project')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
@@ -327,6 +340,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-ui-select.nvim"
   },
   ["telescope.nvim"] = {
+    config = { "require('configs.telescope')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -399,14 +413,70 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require('configs.webdevicons')
+time([[Config for nvim-web-devicons]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('configs.treesitter')
+time([[Config for nvim-treesitter]], false)
 -- Config for: neorg
 time([[Config for neorg]], true)
-try_loadstring("\27LJ\2\n2\0\1\6\0\4\0\0069\1\0\0'\3\1\0'\4\2\0'\5\3\0B\1\4\1K\0\1\0\n<C-l>\6i\tnorg\nunmap¤\4\1\0\a\0\30\0)6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\28\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\6\0003\6\a\0=\6\b\5=\5\n\4=\4\v\0034\4\0\0=\4\f\0035\4\14\0005\5\r\0=\5\n\4=\4\15\0035\4\19\0005\5\17\0005\6\16\0=\6\18\5=\5\n\4=\4\20\0035\4\22\0005\5\21\0=\5\n\4=\4\23\0035\4\25\0005\5\24\0=\5\n\4=\4\26\0034\4\0\0=\4\27\3=\3\29\2B\0\2\1K\0\1\0\tload\1\0\0\22core.norg.qol.toc\19core.presenter\1\0\0\1\0\1\rzen_mode\rzen-mode\18core.gtd.base\1\0\0\1\0\1\14workspace\ntasks\21core.norg.dirman\1\0\0\15workspaces\1\0\2\15autodetect\2\14autochdir\2\1\0\2\nnotes\18~/neorg/notes\ntasks\18~/neorg/tasks\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp\24core.norg.concealer\18core.keybinds\vconfig\1\0\0\thook\0\1\0\1\17neorg_leader\6, core.integrations.telescope\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
+require('configs.neorg')
 time([[Config for neorg]], false)
+-- Config for: nlsp-settings.nvim
+time([[Config for nlsp-settings.nvim]], true)
+require('configs.nlspset')
+time([[Config for nlsp-settings.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('configs.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require('configs.autopairs')
+time([[Config for nvim-autopairs]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require('configs.lspsaga')
+time([[Config for lspsaga.nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('configs.telescope')
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('configs.colorizer')
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('configs.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+require('configs.lspinstaller')
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+require('configs.bufferline')
+time([[Config for bufferline.nvim]], false)
+-- Config for: cmp-tabnine
+time([[Config for cmp-tabnine]], true)
+require('configs.tabnine')
+time([[Config for cmp-tabnine]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+require('configs.project')
+time([[Config for project.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('configs.tree')
+time([[Config for nvim-tree.lua]], false)
 if should_profile then save_profiles() end
 
 end)
