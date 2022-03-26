@@ -5,7 +5,8 @@
 
 #labscreen # Set screens for lab
 #homescreen # Set screens for home
-displayset
+notescreen # Set screens for home
+#displayset
 
 #xrandr --dpi 96		# Set DPI. User may want to use a larger number for larger screens.
 setbg &			# set the background with the `setbg` script
