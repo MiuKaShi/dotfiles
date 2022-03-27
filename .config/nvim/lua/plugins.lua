@@ -68,12 +68,14 @@ return require('packer').startup(function(use)
         config = [[require('configs.neorg')]]
     }
     -- 效率
-    use'folke/which-key.nvim' -- 助记快捷键
+    use{
+        'folke/which-key.nvim', -- 助记快捷键
+        config = [[require('configs.whichkey')]]
+    }
     use'tpope/vim-surround'
     use'sbdchd/neoformat'
     use'h-hg/fcitx.nvim'
     use'wakatime/vim-wakatime'
-    -- use'ActivityWatch/aw-watcher-vim'
     use'numEricL/vim-gf-list' -- gf 自定义
     use'justinmk/vim-gtfo' -- gf打开文件
     -- term
@@ -140,6 +142,7 @@ return require('packer').startup(function(use)
     use'nvim-telescope/telescope-file-browser.nvim'
     use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
     -- Completion
+    use{'windwp/nvim-autopairs', config = [[require('configs.autopairs')]]}
     use{'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]]}
     use{
         'hrsh7th/nvim-cmp',
@@ -163,9 +166,13 @@ return require('packer').startup(function(use)
         requires = 'hrsh7th/nvim-cmp',
         config = [[require('configs.tabnine')]]
     }
+    use{
+        'github/copilot.vim',
+        opt = true,
+        config = [[require('configs.copilot')]]
+    }
     use'onsails/lspkind-nvim' -- vscode-like lsp
 
-    use{'windwp/nvim-autopairs', config = [[require('configs.autopairs')]]}
     -- git graph
     use'tpope/vim-fugitive'
     -- File manager

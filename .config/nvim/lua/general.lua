@@ -20,7 +20,6 @@ g.loaded_python3_provider = 0
 
 g.do_filetype_lua = 1
 
-g.mapleader = ' '
 g.user_emmet_settings = {
     javascript = {extends = 'jsx'},
     typescript = {extends = 'tsx'}
@@ -35,8 +34,6 @@ g.swoopAutoInsertMode = 1
 g.user_emmet_install_global = 0
 -- g.copilot_no_tab_map = true
 -- g.copilot_assume_mapped = true
--- snippets
-g.vsnip_snippet_dir = '~/.config/nvim/snippets/'
 -- vimwiki
 g.vimwiki_list = { { path = '~/vimwiki/', syntax = 'markdown', ext = '.md' } }
 g.taskwiki_dont_fold = 'yes'
@@ -58,8 +55,6 @@ opt.background = 'dark'
 -- vim.cmd('silent! colorscheme neon')
 vim.cmd('syntax on') -- 打开语法高亮
 vim.cmd('filetype plugin indent on') -- 根据检测到文件类型加载插件
-
-local indent = 4
 
 opt.cursorline = true -- 快速找到当前行
 vim.cmd[[
@@ -207,10 +202,10 @@ set spellfile=$HOME/.config/nvim/spell/en.utf-8.add
 set complete+=kspell
 ]]
 
--- 拼写检测
+-- 保存前格式化
 vim.cmd[[
-autocmd FileType markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
+autocmd BufWritePre *.md Neoformat
+autocmd BufWritePre *.m Neoformat
 ]]
 
 vim.cmd[[

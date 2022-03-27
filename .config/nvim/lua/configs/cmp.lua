@@ -97,6 +97,13 @@ utils.safe_require({'cmp', 'lspkind', 'nvim-autopairs.completion.cmp'},
           })
      })
 
+     cmp.setup.filetype('norg', {
+         sources = {
+             {name = 'luasnip'},
+             {name = 'neorg'},
+             {name = 'buffer', keyword_length = 3}
+         }
+     })
      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
      cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
