@@ -86,9 +86,6 @@ g.swoopAutoInsertMode = 1
 -- g.rust_clip_command = 'pbcopy'
 -- g.python3_host_prog = '~/.pyenv/versions/nvim-py3/bin/python'
 g.user_emmet_install_global = 0
--- vimwiki
-g.vimwiki_list = { { path = '~/vimwiki/', syntax = 'markdown', ext = '.md' } }
-g.taskwiki_dont_fold = 'yes'
  -- gf 自定义
 g.GfList_map_n_gf = 'gf'
 g.GfList_map_v_gf = 'gf'
@@ -138,10 +135,6 @@ autocmd BufRead,BufNewFile *.m set filetype=matlab
 ]]
 
 -- 保存前格式化
-vim.cmd[[
-autocmd BufWritePre *.md Neoformat
-autocmd BufWritePre *.m Neoformat
-]]
 
 vim.cmd[[
 " Uncomment the following to have Vim jump to the last position when

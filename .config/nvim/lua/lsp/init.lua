@@ -32,16 +32,14 @@ local on_attach = function(client, bufnr)
     end
 end
 
--- LSP servers
-
--- go
+-- go lsp
 lspconfig.gopls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     flags = {debounce_text_changes = 150}
 }
 
--- c
+-- c lsp
 lspconfig.clangd.setup{
     capabilities = capabilities,
     on_attach = on_attach,
@@ -57,7 +55,7 @@ lspconfig.cssls.setup{
     flags = {debounce_text_changes = 150}
 }
 
--- yamlls
+-- yamlls lsp
 lspconfig.yamlls.setup{
     on_attach = on_attach,
     settings = {
@@ -129,7 +127,7 @@ lspconfig.yamlls.setup{
     }
 }
 
--- jsonls
+-- json lsp
 lspconfig.jsonls.setup{
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
@@ -151,13 +149,13 @@ lspconfig.jsonls.setup{
     }
 }
 
--- bash
+-- bash lsp
 lspconfig.bashls.setup{on_attach = on_attach, capabilities = capabilities}
 
--- Python language server
+-- Python lsp
 lspconfig.pyright.setup{on_attach = on_attach, capabilities = capabilities}
 
--- vimls
+-- vim lsp
 lspconfig.vimls.setup{on_attach = on_attach, capabilities = capabilities}
 
 -- lua
@@ -179,75 +177,34 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- Linters and formatters (efm-lang-server)
-local prettier = function(parameters)
-    parameters = parameters or ''
-    return {
-        formatCommand = 'prettier --stdin-filepath ${INPUT} ' .. parameters,
-        formatStdin = true
-    }
-end
+local prettier = require'lsp.efm.prettier'
+local yamlfmt = require'lsp.efm.yamlfmt'
+local shfmt = require'lsp.efm.shfmt'
+local luafmt = require'lsp.efm.luafmt'
+local yapf = require'lsp.efm.yapf'
+local markdownfmt = require'lsp.efm.markdownfmt'
+local matlabfmt = require'lsp.efm.matlabfmt'
+
+local languages = {
+    java = {prettier},
+    json = {prettier},
+    yaml = {yamlfmt},
+    sh = {shfmt},
+    matlab = {matlabfmt},
+    markdown = {markdownfmt},
+    lua = {luafmt},
+    python = {yapf}
+}
+
 lspconfig.efm.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {documentFormatting = true},
-    filetypes = {
-        'json',
-        'java',
-        'yaml',
-        'sh',
-        'matlab',
-        'markdown',
-        'lua',
-        'python'
-    },
+    filetypes = vim.tbl_keys(languages),
     settings = {
         rootMarkers = {'.git/'},
-        languages = {
-            java = {prettier()},
-            json = {prettier()},
-            yaml = {
-                prettier('--single-quote'),
-                {
-                    lintCommand = 'yamllint -f parsable -',
-                    lintStdin = true,
-                    lintFormats = {'%f:%l %m'}
-                }
-            },
-            sh = {
-                {
-                    formatCommand = 'shfmt -filename ${INPUT}',
-                    formatStdin = true,
-                    lintCommand = 'shellcheck -f gcc -x',
-                    lintSource = 'shellcheck'
-                }
-            },
-            matlab = {
-                {
-                    lintCommand = '/usr/bin/mlint -severity',
-                    lintStdin = false,
-                    lintStderr = true,
-                    lintIgnoreExitCode = true,
-                    lintFormats = {
-                        'L %l (C %c): ML%t: %m',
-                        'L %l (C %c-%*[0-9]): ML%t: %m'
-                    },
-                    lintCategoryMap = { -- Severities
-                        ['0'] = 'I',
-                        ['1'] = 'W',
-                        ['2'] = 'W',
-                        ['3'] = 'E'
-                    }
-                }
-            },
-            markdown = {
-                {
-                    lintCommand = 'markdownlint -s -c ${HOME}/.config/.markdownlintrc',
-                    lintStdin = true,
-                    lintFormats = {'%f:%l %m', '%f:%l:%c %m', '%f: %l: %m'}
-                }
-            },
-            lua = {{formatCommand = 'lua-format -i', formatStdin = true}},
-            python = {{formatCommand = 'yapf --quiet', formatStdin = true}}
-        }
+        languages = languages,
+        log_level = 1,
+        log_file = '~/efm.log'
     }
 }

@@ -406,11 +406,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-wakatime",
     url = "https://github.com/wakatime/vim-wakatime"
   },
-  vimwiki = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vimwiki",
-    url = "https://github.com/vimwiki/vimwiki"
-  },
   ["which-key.nvim"] = {
     config = { "require('configs.whichkey')" },
     loaded = true,
@@ -420,38 +415,46 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: vim-illuminate
-time([[Config for vim-illuminate]], true)
-require('configs.illuminate')
-time([[Config for vim-illuminate]], false)
 -- Config for: vim-markdown
 time([[Config for vim-markdown]], true)
 require('configs.vim-markdown')
 time([[Config for vim-markdown]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
--- Config for: nlsp-settings.nvim
-time([[Config for nlsp-settings.nvim]], true)
-require('configs.nlspset')
-time([[Config for nlsp-settings.nvim]], false)
 -- Config for: bibtexcite.vim
 time([[Config for bibtexcite.vim]], true)
 require('configs.bibtexcite')
 time([[Config for bibtexcite.vim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require('configs.autopairs')
-time([[Config for nvim-autopairs]], false)
 -- Config for: bufferline.nvim
 time([[Config for bufferline.nvim]], true)
 require('configs.bufferline')
 time([[Config for bufferline.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('configs.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('configs.whichkey')
+time([[Config for which-key.nvim]], false)
+-- Config for: nlsp-settings.nvim
+time([[Config for nlsp-settings.nvim]], true)
+require('configs.nlspset')
+time([[Config for nlsp-settings.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('configs.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('configs.cmp')
 time([[Config for nvim-cmp]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: cmp-tabnine
+time([[Config for cmp-tabnine]], true)
+require('configs.tabnine')
+time([[Config for cmp-tabnine]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
@@ -460,50 +463,42 @@ time([[Config for nvim-colorizer.lua]], false)
 time([[Config for nvim-lsp-installer]], true)
 require('configs.lspinstaller')
 time([[Config for nvim-lsp-installer]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('configs.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('configs.indentline')
-time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('configs.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: limelight.vim
-time([[Config for limelight.vim]], true)
-require('configs.limelight')
-time([[Config for limelight.vim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 require('configs.lspsaga')
 time([[Config for lspsaga.nvim]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require('configs.webdevicons')
-time([[Config for nvim-web-devicons]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('configs.indentline')
+time([[Config for indent-blankline.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require('configs.autopairs')
+time([[Config for nvim-autopairs]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require('configs.tree')
 time([[Config for nvim-tree.lua]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('configs.whichkey')
-time([[Config for which-key.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('configs.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: cmp-tabnine
-time([[Config for cmp-tabnine]], true)
-require('configs.tabnine')
-time([[Config for cmp-tabnine]], false)
+-- Config for: limelight.vim
+time([[Config for limelight.vim]], true)
+require('configs.limelight')
+time([[Config for limelight.vim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('configs.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+require('configs.illuminate')
+time([[Config for vim-illuminate]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require('configs.webdevicons')
+time([[Config for nvim-web-devicons]], false)
 if should_profile then save_profiles() end
 
 end)

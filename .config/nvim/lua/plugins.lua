@@ -66,7 +66,6 @@ return require('packer').startup(function(use)
         config = [[require('configs.vim-markdown')]]
     }
     -- Task Warrior / Vim Wiki
-    use{'vimwiki/vimwiki', branch = 'dev'}
     use{
         'nvim-neorg/neorg',
         tag = '0.0.11',
