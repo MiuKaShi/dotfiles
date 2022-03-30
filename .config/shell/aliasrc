@@ -37,6 +37,8 @@ alias \
     cite="cite --style elsevier-vancouver" \
     citebib="cite --bibtex" \
     bibup="betterbib up -i" \
+    powerstat="powerstat -d 5 2" \
+
 
 # Colorize commands when possible.
 alias \
