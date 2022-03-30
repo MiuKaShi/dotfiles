@@ -1,7 +1,7 @@
 require('plugins') -- 插件list
 require('functions')
 require('general') -- 全局设置
-require('mappings') -- 键位映射关系
+require('keymaps') -- 键位映射关系
 require('lsp')
 
 -- %%%%%%%%%%%%%%%%%
@@ -13,5 +13,3 @@ vim.cmd[[
 autocmd vimenter * ++nested colorscheme gruvbox
 autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
 ]]
-
-

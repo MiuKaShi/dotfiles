@@ -11,7 +11,7 @@ wk.register({
         k = {'<C-w>k', 'Go to the up window'},
         h = {'<C-w>h', 'Go to the left window'},
         l = {'<C-w>l', 'Go to the right window'},
-        d = {'<C-w>c', 'Delete window'},
+        q = {'<C-w>c', 'Close window'},
         m = {'<C-w>o', 'Maximize window'}
     },
     b = {
@@ -22,15 +22,6 @@ wk.register({
         },
         n = {':BufferLineCycleNext<CR>', 'Next buffer'},
         p = {':BufferLineCyclePrev<CR>', 'Previous buffer'},
-        S = {
-            name = 'Sort BufferLines',
-            e = {':BufferLineSortByExtension<CR>', 'By Extensions'},
-            d = {':BufferLineSortByDirectory<CR>', 'By Directory'},
-            i = {
-                '<cmd>lua require\'bufferline\'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>',
-                'By id'
-            }
-        },
         d = {':bw<CR>', 'Delete buffer'},
         f = {
             '<cmd>lua vim.lsp.buf.formatting_sync(nil, 500)<CR>',
@@ -58,7 +49,7 @@ wk.register({
             }
         },
         w = {'<cmd>Telescope grep_string theme=ivy<CR>', 'Find cursor word'},
-        s = {'<cmd>w<CR>', 'Save current file'},
+        s = {'<cmd>w ! sudo tee > /dev/null %<CR>', 'Force save file'},
         t = {
             '<cmd> lua require(\'telescope.builtin\').treesitter()<CR>',
             'trees of functions/variables'

@@ -55,10 +55,16 @@ return require('packer').startup(function(use)
     use'ryanoasis/vim-devicons' -- 各种图标
     -- writting
     use'junegunn/goyo.vim'
-    use'junegunn/limelight.vim'
-    use'ferdinandyb/bibtexcite.vim'
+    use{'junegunn/limelight.vim', config = [[require('configs.limelight')]]}
+    use{
+        'ferdinandyb/bibtexcite.vim',
+        config = [[require('configs.bibtexcite')]]
+    }
     use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
-    use'preservim/vim-markdown' -- markdown 方程高亮
+    use{
+        'preservim/vim-markdown', -- markdown 方程高亮
+        config = [[require('configs.vim-markdown')]]
+    }
     -- Task Warrior / Vim Wiki
     use{'vimwiki/vimwiki', branch = 'dev'}
     use{
@@ -81,7 +87,6 @@ return require('packer').startup(function(use)
     -- term
     use'skywind3000/asyncrun.vim' -- 异步运行
     -- search
-    use{'ahmedkhalf/project.nvim', config = [[require('configs.project')]]}
     use'easymotion/vim-easymotion' -- 单词搜索
     use'wellle/targets.vim' -- 修改一串字符 da< cin) da{
     use'editorconfig/editorconfig-vim' -- .editorconfig 配置
@@ -109,7 +114,7 @@ return require('packer').startup(function(use)
         'p00f/nvim-ts-rainbow',
         requires = {{'nvim-treesitter/nvim-treesitter'}}
     }
-    use'RRethy/vim-illuminate' -- 单词高亮
+    use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 单词高亮
     use'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮
     -- comment

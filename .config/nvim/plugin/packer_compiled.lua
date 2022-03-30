@@ -81,6 +81,7 @@ _G.packer_plugins = {
     url = "https://github.com/skywind3000/asyncrun.vim"
   },
   ["bibtexcite.vim"] = {
+    config = { "require('configs.bibtexcite')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/bibtexcite.vim",
     url = "https://github.com/ferdinandyb/bibtexcite.vim"
@@ -196,6 +197,7 @@ _G.packer_plugins = {
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["limelight.vim"] = {
+    config = { "require('configs.limelight')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/limelight.vim",
     url = "https://github.com/junegunn/limelight.vim"
@@ -321,12 +323,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["project.nvim"] = {
-    config = { "require('configs.project')" },
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/project.nvim",
-    url = "https://github.com/ahmedkhalf/project.nvim"
-  },
   pywal = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/pywal",
@@ -384,11 +380,13 @@ _G.packer_plugins = {
     url = "https://github.com/justinmk/vim-gtfo"
   },
   ["vim-illuminate"] = {
+    config = { "require('configs.illuminate')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-illuminate",
     url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vim-markdown"] = {
+    config = { "require('configs.vim-markdown')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-markdown",
     url = "https://github.com/preservim/vim-markdown"
@@ -422,14 +420,34 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+require('configs.illuminate')
+time([[Config for vim-illuminate]], false)
+-- Config for: vim-markdown
+time([[Config for vim-markdown]], true)
+require('configs.vim-markdown')
+time([[Config for vim-markdown]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
 -- Config for: nlsp-settings.nvim
 time([[Config for nlsp-settings.nvim]], true)
 require('configs.nlspset')
 time([[Config for nlsp-settings.nvim]], false)
+-- Config for: bibtexcite.vim
+time([[Config for bibtexcite.vim]], true)
+require('configs.bibtexcite')
+time([[Config for bibtexcite.vim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 require('configs.autopairs')
 time([[Config for nvim-autopairs]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+require('configs.bufferline')
+time([[Config for bufferline.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('configs.cmp')
@@ -438,18 +456,18 @@ time([[Config for nvim-cmp]], false)
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
 -- Config for: nvim-lsp-installer
 time([[Config for nvim-lsp-installer]], true)
 require('configs.lspinstaller')
 time([[Config for nvim-lsp-installer]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('configs.tree')
-time([[Config for nvim-tree.lua]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('configs.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 require('configs.indentline')
@@ -458,10 +476,10 @@ time([[Config for indent-blankline.nvim]], false)
 time([[Config for nvim-treesitter]], true)
 require('configs.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: bufferline.nvim
-time([[Config for bufferline.nvim]], true)
-require('configs.bufferline')
-time([[Config for bufferline.nvim]], false)
+-- Config for: limelight.vim
+time([[Config for limelight.vim]], true)
+require('configs.limelight')
+time([[Config for limelight.vim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 require('configs.lspsaga')
@@ -470,30 +488,22 @@ time([[Config for lspsaga.nvim]], false)
 time([[Config for nvim-web-devicons]], true)
 require('configs.webdevicons')
 time([[Config for nvim-web-devicons]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('configs.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: project.nvim
-time([[Config for project.nvim]], true)
-require('configs.project')
-time([[Config for project.nvim]], false)
--- Config for: cmp-tabnine
-time([[Config for cmp-tabnine]], true)
-require('configs.tabnine')
-time([[Config for cmp-tabnine]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('configs.telescope')
-time([[Config for telescope.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('configs.tree')
+time([[Config for nvim-tree.lua]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 require('configs.whichkey')
 time([[Config for which-key.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('configs.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: cmp-tabnine
+time([[Config for cmp-tabnine]], true)
+require('configs.tabnine')
+time([[Config for cmp-tabnine]], false)
 if should_profile then save_profiles() end
 
 end)

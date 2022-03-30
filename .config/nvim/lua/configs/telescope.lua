@@ -2,7 +2,6 @@ local telescope = require('telescope')
 local home = os.getenv('HOME')
 local themes = require('telescope.themes')
 
-telescope.load_extension'projects'
 telescope.load_extension'file_browser'
 telescope.setup{
     defaults = {

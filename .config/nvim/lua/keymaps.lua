@@ -39,7 +39,7 @@ set_keymap('i', '<C-c>', '<C-r>=KillLine()<CR>', {})
 set_keymap('i', '<C-n>', '<Plug>(fzf-complete-wordnet)', {}) -- dicitonal
 
 -- normal mode
-set_keymap('n', '<C-l>', ':bnext<CR>', {}) -- quickfixlist 跳转
+set_keymap('n', '<C-l>', ':bnext<CR>', {}) -- buffer 跳转
 set_keymap('n', '<C-h>', ':bprev<CR>', {})
 set_keymap('n', '<C-s>', ':w<CR>', {}) -- save file
 set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', {}) -- file tree
@@ -78,14 +78,9 @@ tmap('<ESC>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>') -- 关闭终端
 set_keymap('n', '<leader>;;', 'gcc', {})
 set_keymap('v', '<leader>;', 'gcc<esc>', {})
 
--- force save
-vim.cmd[[
-cmap w!! w ! sudo tee > /dev/null %
-]]
-
 -- bibcite 快捷键
 vim.cmd[[
-autocmd FileType markdown  inoremap <buffer> <silent> @@ <Esc>:BibtexciteInsert<CR>
+autocmd FileType markdown inoremap <buffer> <silent> @@ <Esc>:BibtexciteInsert<CR>
 ]]
 
 vim.cmd[[

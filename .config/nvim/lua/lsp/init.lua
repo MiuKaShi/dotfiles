@@ -167,6 +167,7 @@ table.insert(runtime_path, 'lua/?/init.lua')
 
 lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {version = 'LuaJIT', path = runtime_path},
@@ -174,8 +175,7 @@ lspconfig.sumneko_lua.setup({
             workspace = {library = vim.api.nvim_get_runtime_file('', true)},
             telemetry = {enable = false}
         }
-    },
-    capabilities = capabilities
+    }
 })
 
 -- Linters and formatters (efm-lang-server)
