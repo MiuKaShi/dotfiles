@@ -41,6 +41,7 @@ map f
 map v
 
 # Basic Functions
+map <esc> :quit
 map v :toggle; down
 map . set hidden!
 map DD delete
