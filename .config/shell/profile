@@ -15,6 +15,9 @@ export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="$GOPATH/bin"
 
+# add matalab lib to fix editor problems
+export LD_PRELOAD=/lib64/libfreetype.so 
+
 # Adds to $PATH
 export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$GEM_HOME/bin"

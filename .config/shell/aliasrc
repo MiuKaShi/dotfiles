@@ -47,6 +47,7 @@ alias \
     ccat="highlight --out-format=ansi"
 
 alias matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop"
+
 alias mbt="matlab -nodesktop -nosplash"
 
 # These common commands are just too long! Abbreviate them.
