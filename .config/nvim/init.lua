@@ -7,9 +7,7 @@ require('lsp')
 -- %%%%%%%%%%%%%%%%%
 -- 自定义字段
 -- %%%%%%%%%%%%%%%%%
-
--- 主题
-vim.cmd[[
-autocmd vimenter * ++nested colorscheme gruvbox
-autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE
-]]
+vim.opt.termguicolors = true
+vim.g.gruvbox_transparent_bg = true
+vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[hi Normal ctermbg=NONE guibg=NONE]])

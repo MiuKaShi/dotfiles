@@ -57,10 +57,6 @@ return require('packer').startup(function(use)
         config = [[require('configs.bibtexcite')]]
     }
     use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
-    use{
-        'preservim/vim-markdown', -- markdown 方程高亮
-        config = [[require('configs.vim-markdown')]]
-    }
     -- Task Warrior / Vim Wiki
     use{
         'nvim-neorg/neorg',
@@ -107,6 +103,20 @@ return require('packer').startup(function(use)
         before = 'neorg',
         config = [[require('configs.treesitter')]]
     }
+    use{
+        'vim-pandoc/vim-pandoc-syntax',
+        config = function()
+            vim.cmd[[
+        augroup pandoc_syntax
+          au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+        augroup END
+      ]]
+        end
+    }
+    -- use{
+    --     'preservim/vim-markdown', -- markdown 方程高亮
+    --     config = [[require('configs.vim-markdown')]]
+    -- }
     use{'nvim-treesitter/playground'}
     use{'p00f/nvim-ts-rainbow'}
     use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 高亮选中单词

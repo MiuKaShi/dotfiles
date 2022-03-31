@@ -25,7 +25,6 @@ vim.g.loaded_python3_provider = 0
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 
-
 -- search
 opt.hlsearch = true -- 保持匹配项目高亮
 opt.smartcase = true
@@ -88,7 +87,7 @@ g.swoopAutoInsertMode = 1
 -- g.rust_clip_command = 'pbcopy'
 -- g.python3_host_prog = '~/.pyenv/versions/nvim-py3/bin/python'
 g.user_emmet_install_global = 0
- -- gf 自定义
+-- gf 自定义
 g.GfList_map_n_gf = 'gf'
 g.GfList_map_v_gf = 'gf'
 
@@ -131,7 +130,6 @@ let g:fzf_wordnet_preview_arg = ''
 -- 文件格式设置
 vim.cmd[[
 autocmd BufRead,BufNewFile *.tex set filetype=tex
-autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.tp set filetype=type
 autocmd BufRead,BufNewFile *.m set filetype=matlab
 ]]

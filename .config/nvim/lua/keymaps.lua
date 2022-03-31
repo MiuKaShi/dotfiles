@@ -44,6 +44,8 @@ set_keymap('n', '<C-h>', ':bprev<CR>', {})
 set_keymap('n', '<C-s>', ':w<CR>', {}) -- save file
 set_keymap('n', '<C-e>', ':Lf<CR>', {}) -- file tree
 set_keymap('n', '<C-w>', ':bdelete<CR>', {}) -- file tree
+set_keymap('n', 'j', 'gj', {}) -- gj
+set_keymap('n', 'k', 'gk', {}) -- gk
 
 -- command line mode
 set_keymap('c', '<C-a>', '<Home>', {})
