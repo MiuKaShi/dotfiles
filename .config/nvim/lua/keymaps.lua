@@ -42,7 +42,7 @@ set_keymap('i', '<C-n>', '<Plug>(fzf-complete-wordnet)', {}) -- dicitonal
 set_keymap('n', '<C-l>', ':bnext<CR>', {}) -- buffer 跳转
 set_keymap('n', '<C-h>', ':bprev<CR>', {})
 set_keymap('n', '<C-s>', ':w<CR>', {}) -- save file
-set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', {}) -- file tree
+set_keymap('n', '<C-e>', ':Lf<CR>', {}) -- file tree
 set_keymap('n', '<C-w>', ':bdelete<CR>', {}) -- file tree
 
 -- command line mode

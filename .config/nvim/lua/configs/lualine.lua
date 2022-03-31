@@ -1,5 +1,6 @@
-local lualine = require('lualine')
-local config = {
+local gps = require('nvim-gps')
+
+require('lualine').setup({
     options = {
         icons_enabled = true,
         theme = 'pywal-nvim',
@@ -9,7 +10,7 @@ local config = {
     sections = {
         lualine_a = {{'mode', separator = {left = ''}, right_padding = 2}},
         lualine_b = {'branch', 'diff', 'diagnostics', 'filename'},
-        lualine_c = {},
+        lualine_c = {{gps.get_location, cond = gps.is_available}},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {
@@ -26,6 +27,4 @@ local config = {
     },
     tabline = {},
     extensions = {}
-}
-
-lualine.setup(config)
+})

@@ -35,24 +35,20 @@ return require('packer').startup(function(use)
     use'wbthomason/packer.nvim'
     -- LSP
     use'neovim/nvim-lspconfig'
+    use'onsails/lspkind-nvim' -- vscode-like lsp
     use{
         'williamboman/nvim-lsp-installer',
         config = [[require('configs.lspinstaller')]]
     }
-    use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]}
-    use{'tamago324/nlsp-settings.nvim', config = [[require('configs.nlspset')]]} -- 用json配置LSP，像coc.nvim一样
+    use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
     use{'AlphaTechnolog/pywal.nvim', as = 'pywal'}
-
     use{
-        'norcalli/nvim-colorizer.lua', -- 颜色
+        'norcalli/nvim-colorizer.lua', -- 颜色显示
         config = [[require('configs.colorizer')]]
     }
 
-    -- icon
-    use'coreyja/fzf.devicon.vim'
-    use'ryanoasis/vim-devicons' -- 各种图标
     -- writting
     use'junegunn/goyo.vim'
     use{'junegunn/limelight.vim', config = [[require('configs.limelight')]]}
@@ -72,7 +68,7 @@ return require('packer').startup(function(use)
         requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
         config = [[require('configs.neorg')]]
     }
-    -- 效率
+    -- keymaps
     use{
         'folke/which-key.nvim', -- 助记快捷键
         config = [[require('configs.whichkey')]]
@@ -92,6 +88,13 @@ return require('packer').startup(function(use)
     use{'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()'} -- fuzzy 查找
     use'junegunn/fzf.vim'
     use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
+    use{
+        'nvim-telescope/telescope.nvim',
+        requires = 'nvim-lua/plenary.nvim', -- 搜索 需要搭配ripgrep(live_grep grep_string功能)
+        config = [[require('configs.telescope')]]
+    }
+    use'nvim-telescope/telescope-file-browser.nvim'
+    use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
     -- Indent
     use{
         'lukas-reineke/indent-blankline.nvim',
@@ -104,49 +107,32 @@ return require('packer').startup(function(use)
         before = 'neorg',
         config = [[require('configs.treesitter')]]
     }
-
-    use{
-        'nvim-treesitter/playground',
-        requires = {{'nvim-treesitter/nvim-treesitter'}}
-    }
-    use{
-        'p00f/nvim-ts-rainbow',
-        requires = {{'nvim-treesitter/nvim-treesitter'}}
-    }
-    use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 单词高亮
+    use{'nvim-treesitter/playground'}
+    use{'p00f/nvim-ts-rainbow'}
+    use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 高亮选中单词
     use'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮
     -- comment
-    use'tpope/vim-commentary' -- 注释代码
     use{
-        'JoosepAlviste/nvim-ts-context-commentstring',
-        requires = {{'nvim-treesitter/nvim-treesitter'}}
+        'numToStr/Comment.nvim',
+        config = [[require('Comment').setup({ padding = function () return vim.bo.filetype ~= 'norg' end })]]
     }
-
-    -- buffer
-    use'nvim-lua/plenary.nvim' -- vim的lua接口封装
+    -- line buffer
     use{
         'nvim-lualine/lualine.nvim', -- 底部状态栏
         config = [[require('configs.lualine')]]
     }
     use{
-        'kyazdani42/nvim-web-devicons',
-        config = [[require('configs.webdevicons')]]
+        'SmiteshP/nvim-gps', -- 底部提示
+        requires = 'nvim-treesitter/nvim-treesitter',
+        config = [[require('nvim-gps').setup()]]
     }
-    use{
-        'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = [[require('configs.bufferline')]]
-    }
-    use{
-        'nvim-telescope/telescope.nvim',
-        requires = 'nvim-lua/plenary.nvim', -- 搜索 需要搭配ripgrep(live_grep grep_string功能)
-        config = [[require('configs.telescope')]]
-    }
-    use'nvim-telescope/telescope-file-browser.nvim'
-    use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
+    -- use{
+    --     'kyazdani42/nvim-web-devicons',
+    --     config = [[require('configs.webdevicons')]]
+    -- }
     -- Completion
-    use{'windwp/nvim-autopairs', config = [[require('configs.autopairs')]]}
+    use{'ZhiyuanLck/smart-pairs', config = [[require('configs.pairs')]]}
     use{'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]]}
     use{
         'hrsh7th/nvim-cmp',
@@ -163,7 +149,7 @@ return require('packer').startup(function(use)
         },
         config = [[require('configs.cmp')]]
     }
-
+    -- AI Completion
     use{
         'tzachar/cmp-tabnine',
         run = './install.sh',
@@ -175,19 +161,10 @@ return require('packer').startup(function(use)
         opt = true,
         config = [[require('configs.copilot')]]
     }
-    use'onsails/lspkind-nvim' -- vscode-like lsp
 
     -- git graph
-    use'tpope/vim-fugitive'
     -- File manager
-    use{
-        'kyazdani42/nvim-tree.lua', -- 文件树 <C-]>进入cursor目录 H 切换.文件隐藏
-        requires = {
-            'kyazdani42/nvim-web-devicons' -- optional, for file icon
-        },
-        config = [[require('configs.tree')]],
-        commit = 'd8bf1adcdcc6a8a66c3dce5c29a4ef06e21dc844' -- 指定版本 最新版本C-e有问题
-    }
+    use{'is0n/fm-nvim', config = [[require('configs.fm')]]}
     if packer_bootstrap then require('packer').sync() end
 
 end)
