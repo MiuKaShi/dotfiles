@@ -32,6 +32,23 @@ local on_attach = function(client, bufnr)
     end
 end
 
+require('lspconfig').ltex.setup({
+    cmd = {'/usr/bin/ltex-ls'},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        'bib',
+        'gitcommit',
+        'markdown',
+        'org',
+        'plaintex',
+        'rst',
+        'rnoweb',
+        'tex'
+    },
+    settings = {ltex = {language = {'en'}}}
+})
+
 -- go lsp
 lspconfig.gopls.setup{
     capabilities = capabilities,
