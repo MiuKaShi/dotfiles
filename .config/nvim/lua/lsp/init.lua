@@ -46,7 +46,26 @@ require('lspconfig').ltex.setup({
         'rnoweb',
         'tex'
     },
-    settings = {ltex = {language = {'en'}}}
+    settings = {
+        ltex = {
+            dictionary = {
+                -- Couldn't make this work, unfortunately, so added `MORFOLOGIK_RULE_EN_US`.
+                ['en-US'] = {[[:~/.config/nvim/spell/en.utf-8.add]]}
+            },
+            additionalRules = {motherTongue = 'it'},
+            disabledRules = {
+                ['en-US'] = {'WHITESPACE_RULE', 'MORFOLOGIK_RULE_EN_US'}
+            },
+            markdown = {
+                nodes = {
+                    CodeBlock = 'ignore',
+                    FencedCodeBlock = 'ignore',
+                    AutoLink = 'dummy',
+                    Code = 'dummy'
+                }
+            }
+        }
+    }
 })
 
 -- go lsp

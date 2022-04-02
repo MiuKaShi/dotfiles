@@ -14,7 +14,6 @@ local ts_install = {
     'toml',
     'vim',
     'yaml',
-    'matlab',
     'norg_meta',
     'norg_table'
 }
@@ -34,15 +33,6 @@ treesitter.setup{
 }
 
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_configs.matlab = {
-    install_info = {
-        url = 'https://github.com/mstanciu552/tree-sitter-matlab',
-        files = {'src/parser.c'},
-        branch = 'main'
-    },
-    filetype = 'matlab' -- if filetype does not agrees with parser name
-}
 
 parser_configs.norg_meta = {
     install_info = {
