@@ -49,44 +49,6 @@ return require('packer').startup(function(use)
         config = [[require('configs.colorizer')]]
     }
     use'sbdchd/neoformat' -- 格式化插件
-    -- writting
-    use{
-        'junegunn/limelight.vim',
-        requires = {'junegunn/goyo.vim'},
-        config = [[require('configs.limelight')]]
-    } -- another zen mode
-    use{
-        'ferdinandyb/bibtexcite.vim', -- bib 引用
-        config = [[require('configs.bibtexcite')]]
-    }
-    use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'} -- markdown preview
-    -- Task Warrior / Vim Wiki
-    use{
-        'nvim-neorg/neorg', -- org 模式
-        tag = '0.0.11',
-        requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
-        config = [[require('configs.neorg')]]
-    }
-    use'tpope/vim-surround' -- 修改包围符合
-    use'wellle/targets.vim' -- 修改包围内内容
-    -- search
-    use'easymotion/vim-easymotion' -- 单词搜索
-    use'editorconfig/editorconfig-vim' -- .editorconfig 配置
-    use{'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()'} -- fuzzy 查找
-    use'junegunn/fzf.vim'
-    use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
-    use{
-        'nvim-telescope/telescope.nvim',
-        requires = 'nvim-lua/plenary.nvim', -- 搜索 需要搭配ripgrep(live_grep grep_string功能)
-        config = [[require('configs.telescope')]]
-    }
-    use'nvim-telescope/telescope-file-browser.nvim'
-    use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
-    -- Indent
-    use{
-        'lukas-reineke/indent-blankline.nvim',
-        config = [[require('configs.indentline')]]
-    }
     -- Highlight
     use{
         'nvim-treesitter/nvim-treesitter',
@@ -94,6 +56,7 @@ return require('packer').startup(function(use)
         before = 'neorg',
         config = [[require('configs.treesitter')]]
     }
+    use{'nvim-treesitter/playground'}
     use{
         'vim-pandoc/vim-pandoc-syntax',
         config = function()
@@ -104,12 +67,11 @@ return require('packer').startup(function(use)
       ]]
         end
     }
+    use{'luochen1990/rainbow', config = [[require('configs.rainbow')]]} -- 嵌套括号高亮
     -- use{
     --     'preservim/vim-markdown', -- markdown 方程高亮
     --     config = [[require('configs.vim-markdown')]]
     -- }
-    use{'nvim-treesitter/playground'}
-    use{'p00f/nvim-ts-rainbow'}
     use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 高亮选中单词
     use'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮
@@ -162,6 +124,44 @@ return require('packer').startup(function(use)
         opt = true,
         config = [[require('configs.copilot')]]
     }
+    -- Indent
+    use{
+        'lukas-reineke/indent-blankline.nvim',
+        config = [[require('configs.indentline')]]
+    }
+    -- writting
+    use{
+        'junegunn/limelight.vim',
+        requires = {'junegunn/goyo.vim'},
+        config = [[require('configs.limelight')]]
+    } -- another zen mode
+    use{
+        'ferdinandyb/bibtexcite.vim', -- bib 引用
+        config = [[require('configs.bibtexcite')]]
+    }
+    use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'} -- markdown preview
+    -- Task Warrior / Vim Wiki
+    use{
+        'nvim-neorg/neorg', -- org 模式
+        tag = '0.0.11',
+        requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
+        config = [[require('configs.neorg')]]
+    }
+    use'tpope/vim-surround' -- 修改包围符合
+    use'wellle/targets.vim' -- 修改包围内内容
+    -- search
+    use'easymotion/vim-easymotion' -- 单词搜索
+    -- use'editorconfig/editorconfig-vim' -- .editorconfig 配置
+    use{'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()'} -- fuzzy 查找
+    use'junegunn/fzf.vim' -- needed for previews
+    use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
+    use{
+        'nvim-telescope/telescope.nvim', -- 搜索
+        requires = 'nvim-lua/plenary.nvim',
+        config = [[require('configs.telescope')]]
+    }
+    use'nvim-telescope/telescope-file-browser.nvim'
+    use{'nvim-telescope/telescope-ui-select.nvim'} -- 选择框 vim.ui.select
     -- File manager
     use{'is0n/fm-nvim', config = [[require('configs.fm')]]}
     -- Others
