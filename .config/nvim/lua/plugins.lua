@@ -34,52 +34,43 @@ return require('packer').startup(function(use)
     -- }}}
     use'wbthomason/packer.nvim'
     -- LSP
-    use'neovim/nvim-lspconfig'
-    use'onsails/lspkind-nvim' -- vscode-like lsp
+    use'neovim/nvim-lspconfig' -- lsp 配置插件
+    use'onsails/lspkind-nvim' -- vscode-like lsp 提示
     use{
-        'williamboman/nvim-lsp-installer',
+        'williamboman/nvim-lsp-installer', -- lsp 自动安装器
         config = [[require('configs.lspinstaller')]]
     }
     use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
-    use{'AlphaTechnolog/pywal.nvim', as = 'pywal'}
+    use{'AlphaTechnolog/pywal.nvim', as = 'pywal'} -- pywal 主题
     use{
-        'norcalli/nvim-colorizer.lua', -- 颜色显示
+        'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]]
     }
-
+    use'sbdchd/neoformat' -- 格式化插件
     -- writting
-    use'junegunn/goyo.vim'
-    use{'junegunn/limelight.vim', config = [[require('configs.limelight')]]}
     use{
-        'ferdinandyb/bibtexcite.vim',
+        'junegunn/limelight.vim',
+        requires = {'junegunn/goyo.vim'},
+        config = [[require('configs.limelight')]]
+    } -- another zen mode
+    use{
+        'ferdinandyb/bibtexcite.vim', -- bib 引用
         config = [[require('configs.bibtexcite')]]
     }
-    use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
+    use{'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'} -- markdown preview
     -- Task Warrior / Vim Wiki
     use{
-        'nvim-neorg/neorg',
+        'nvim-neorg/neorg', -- org 模式
         tag = '0.0.11',
         requires = {'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope'},
         config = [[require('configs.neorg')]]
     }
-    -- keymaps
-    use{
-        'folke/which-key.nvim', -- 助记快捷键
-        config = [[require('configs.whichkey')]]
-    }
-    use'tpope/vim-surround'
-    use'sbdchd/neoformat'
-    use'h-hg/fcitx.nvim'
-    use'wakatime/vim-wakatime'
-    use'numEricL/vim-gf-list' -- gf 自定义
-    use'justinmk/vim-gtfo' -- gf打开文件
-    -- term
-    use'skywind3000/asyncrun.vim' -- 异步运行
+    use'tpope/vim-surround' -- 修改包围符合
+    use'wellle/targets.vim' -- 修改包围内内容
     -- search
     use'easymotion/vim-easymotion' -- 单词搜索
-    use'wellle/targets.vim' -- 修改一串字符 da< cin) da{
     use'editorconfig/editorconfig-vim' -- .editorconfig 配置
     use{'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()'} -- fuzzy 查找
     use'junegunn/fzf.vim'
@@ -171,10 +162,18 @@ return require('packer').startup(function(use)
         opt = true,
         config = [[require('configs.copilot')]]
     }
-
-    -- git graph
     -- File manager
     use{'is0n/fm-nvim', config = [[require('configs.fm')]]}
+    -- Others
+    use{
+        'folke/which-key.nvim', -- 快捷键 maps
+        config = [[require('configs.whichkey')]]
+    }
+    use'h-hg/fcitx.nvim' -- fcitx5 自动切换
+    use'wakatime/vim-wakatime'
+    use'numEricL/vim-gf-list' -- gf 自定义
+    use'justinmk/vim-gtfo' -- gf打开文件
+    use'skywind3000/asyncrun.vim' -- 异步运行
     if packer_bootstrap then require('packer').sync() end
 
 end)
