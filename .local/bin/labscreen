@@ -1,6 +1,6 @@
 #! /bin/sh
 
-xrandr --dpi 108 --fb 4000x2560 --output DP1 --mode 2560x1440 --pos 0x0 --rotate left --output DP2 --primary --mode 2560x1440 --pos 1440x670 --rotate normal --panning 1440x2560+2560+0 --output HDMI1 --off --output VIRTUAL1 --off
+xrandr --dpi 108 --fb 4000x2560 --output DP1 --mode 2560x1440 --pos 2560x0 --rotate left --output DP2 --primary --mode 2560x1440 --pos 0x540 --rotate normal --panning 1440x2560+2560+0 --output HDMI1 --off --output VIRTUAL1 --off
 
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/labxresources & xrdbpid=$!
 
