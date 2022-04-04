@@ -57,10 +57,8 @@ wk.register({
     },
     p = {
         name = '+Projects',
-        p = {'<cmd>Telescope projects theme=ivy<CR>', 'List projects'},
         f = {'<cmd>Telescope find_files<CR>', 'Find file by name(<CTRL-P>)'},
-        F = {':Telescope live_grep<CR>', 'Find file by content(SPC /)'},
-        t = {':NvimTreeToggle<CR>', 'Toggle directory tree'}
+        t = {':Lf<CR>', 'Toggle directory tree'}
     },
     j = {
         name = '+Jump',
@@ -124,7 +122,7 @@ wk.register({
         name = 'Comment',
         [';'] = {'gcc<Esc>', 'Comment line', noremap = false, mode = 'v'}
     },
-    ['T'] = {':Lspsaga open_floaterm<CR>', 'Open Terminal(exit with <ESC>)'}, -- 打开终端
+    ['t'] = {':Lspsaga open_floaterm<CR>', 'Open Terminal(exit with <ESC>)'}, -- 打开终端
     ['*'] = {
         '<cmd>lua require(\'telescope.builtin\').lsp_references()<cr>',
         'Search reference in current project'
@@ -135,7 +133,7 @@ wk.register({
         'Help commands by fuzzy search'
     }, -- vim帮助查找
     ['<Tab>'] = {':b#<CR>', 'Last buffer'},
-    ['t'] = {
+    ['T'] = {
         '<cmd> lua require(\'telescope.builtin\').builtin()<CR>',
         'Telescope current working directory'
     },

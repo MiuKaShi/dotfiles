@@ -46,6 +46,9 @@ set_keymap('n', '<C-e>', ':Lf<CR>', {}) -- file tree
 set_keymap('n', '<C-w>', ':bdelete<CR>', {}) -- file tree
 set_keymap('n', 'j', 'gj', {}) -- gj
 set_keymap('n', 'k', 'gk', {}) -- gk
+-- set_keymap('n', 's', '<Plug>(easymotion-overwin-f)', {})
+set_keymap('n', '<leader>;;', 'gcc', {})
+set_keymap('v', '<leader>;', 'gcc<esc>', {})
 
 -- command line mode
 set_keymap('c', '<C-a>', '<Home>', {})
@@ -71,14 +74,11 @@ nmap('gS', '<cmd>lua require\'lspsaga.diagnostic\'.show_line_diagnostics()<CR>')
 nmap('gi', '<cmd>lua vim.lsp.buf.implementation()<CR>'); -- 跳转实现
 nmap('gn', ':BufferLineCycleNext<CR>'); -- 下一个文件
 nmap('gp', ':BufferLineCyclePrev<CR>'); -- 上一个文件
-nmap('gr', '<cmd>lua require(\'lspsaga.rename\').rename()<CR>') -- 重命名
+nmap('gr', '<cmd>lua require(\'lspsaga.rename\').rename()<CR>') -- 重命名变量
 nmap('ca', '<cmd>lua require(\'lspsaga.codeaction\').code_action()<CR>') -- 代码操作
 vmap('ca', ':<C-U>lua require(\'lspsaga.codeaction\').range_code_action()<CR>') -- 选中的代码操作
 nmap('gh', '<cmd>lua require\'lspsaga.provider\'.lsp_finder()<CR>') -- 异步查找单词定义、引用
 tmap('<ESC>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>') -- 关闭终端
--- set_keymap('n', 's', '<Plug>(easymotion-overwin-f)', {})
-set_keymap('n', '<leader>;;', 'gcc', {})
-set_keymap('v', '<leader>;', 'gcc<esc>', {})
 
 -- bibcite 快捷键
 vim.cmd[[

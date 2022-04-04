@@ -380,46 +380,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: bibtexcite.vim
-time([[Config for bibtexcite.vim]], true)
-require('configs.bibtexcite')
-time([[Config for bibtexcite.vim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('configs.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-require('configs.lspsaga')
-time([[Config for lspsaga.nvim]], false)
--- Config for: fm-nvim
-time([[Config for fm-nvim]], true)
-require('configs.fm')
-time([[Config for fm-nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('configs.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('configs.whichkey')
-time([[Config for which-key.nvim]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
--- Config for: rainbow
-time([[Config for rainbow]], true)
-require('configs.rainbow')
-time([[Config for rainbow]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('configs.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('configs.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+require('configs.illuminate')
+time([[Config for vim-illuminate]], false)
+-- Config for: vim-pandoc-syntax
+time([[Config for vim-pandoc-syntax]], true)
+try_loadstring("\27LJ\2\n«\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0‹\1        augroup pandoc_syntax\n          au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc\n        augroup END\n      \bcmd\bvim\0", "config", "vim-pandoc-syntax")
+time([[Config for vim-pandoc-syntax]], false)
+-- Config for: rainbow
+time([[Config for rainbow]], true)
+require('configs.rainbow')
+time([[Config for rainbow]], false)
+-- Config for: fm-nvim
+time([[Config for fm-nvim]], true)
+require('configs.fm')
+time([[Config for fm-nvim]], false)
 -- Config for: smart-pairs
 time([[Config for smart-pairs]], true)
 require('configs.pairs')
@@ -440,14 +424,14 @@ time([[Config for cmp-tabnine]], false)
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('configs.indentline')
-time([[Config for indent-blankline.nvim]], false)
--- Config for: vim-illuminate
-time([[Config for vim-illuminate]], true)
-require('configs.illuminate')
-time([[Config for vim-illuminate]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('configs.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-gps
 time([[Config for nvim-gps]], true)
 require('nvim-gps').setup()
@@ -456,14 +440,30 @@ time([[Config for nvim-gps]], false)
 time([[Config for limelight.vim]], true)
 require('configs.limelight')
 time([[Config for limelight.vim]], false)
--- Config for: vim-pandoc-syntax
-time([[Config for vim-pandoc-syntax]], true)
-try_loadstring("\27LJ\2\n«\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0‹\1        augroup pandoc_syntax\n          au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc\n        augroup END\n      \bcmd\bvim\0", "config", "vim-pandoc-syntax")
-time([[Config for vim-pandoc-syntax]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('configs.indentline')
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: nvim-lsp-installer
 time([[Config for nvim-lsp-installer]], true)
 require('configs.lspinstaller')
 time([[Config for nvim-lsp-installer]], false)
+-- Config for: bibtexcite.vim
+time([[Config for bibtexcite.vim]], true)
+require('configs.bibtexcite')
+time([[Config for bibtexcite.vim]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('configs.whichkey')
+time([[Config for which-key.nvim]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require('configs.lspsaga')
+time([[Config for lspsaga.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

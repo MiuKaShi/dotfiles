@@ -1,6 +1,7 @@
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 local packer_bootstrap = nil
 
+-- Automatically install packer
 if not packer_exists then
     if vim.fn.input('Download Packer? (y for yes) ') ~= 'y' then
         print('Please install Packer first!')
@@ -27,6 +28,7 @@ if not packer_exists then
     vim.cmd[[packadd packer.nvim]]
 end
 
+-- plugin lists
 return require('packer').startup(function(use)
     -- -_-_-_-_- META -_-_-_-_-
     -- IMPATIENT: faster startup time {{{
@@ -157,7 +159,7 @@ return require('packer').startup(function(use)
     use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
     use{
         'nvim-telescope/telescope.nvim', -- 搜索
-        requires = 'nvim-lua/plenary.nvim',
+        requires = 'nvim-lua/plenary.nvim', -- Useful lua function used by lots of plugins
         config = [[require('configs.telescope')]]
     }
     use'nvim-telescope/telescope-file-browser.nvim'
