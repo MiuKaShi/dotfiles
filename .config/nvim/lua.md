@@ -7,7 +7,6 @@
 ```lua
 -- pcall() 返回 true false
 -- if ... then ... else ... end 分支语法
-
 -- luaeval() 把字符串转换到Vimscript的类型，第二个参数可选，替换_A可以访问全局变量
 let dict = luaeval('{foo = "bar", baz = "qux"}')
 echo luaeval('_A[1] + _A[2]', [1,2]) -- 2

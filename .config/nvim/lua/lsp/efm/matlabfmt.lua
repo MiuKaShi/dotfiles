@@ -1,6 +1,4 @@
 return {
-    -- formatCommand = 'matlab_formatter.py',
-    -- formatStdin = true,
     lintCommand = '/usr/bin/mlint -severity',
     lintStdin = false,
     lintStderr = true,

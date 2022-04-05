@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]]
     }
-    use'sbdchd/neoformat' -- 格式化插件
+    use{'sbdchd/neoformat', config = [[require('configs.neoformat')]]}
     -- Highlight
     use{
         'nvim-treesitter/nvim-treesitter',

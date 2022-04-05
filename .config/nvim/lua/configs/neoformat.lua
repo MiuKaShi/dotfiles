@@ -1,0 +1,22 @@
+vim.g.neoformat_enabled_markdown = {'prettier'}
+vim.g.neoformat_enabled_json = {'prettier'}
+-- vim.g.neoformat_enabled_yaml = {'yamlfmt'}
+vim.g.neoformat_enabled_yaml = {'prettier'}
+-- sh
+vim.g.neoformat_enabled_sh = {'shfmt'}
+vim.g.shfmt_opt = '-ci'
+-- lua
+vim.g.neoformat_enabled_lua = {'luaformat'}
+-- python
+vim.g.neoformat_enabled_python = {'yapf'}
+
+vim.cmd[[
+augroup fmt
+autocmd!
+autocmd BufWritePre *.sh Neoformat
+autocmd BufWritePre *.py Neoformat
+autocmd BufWritePre *.lua Neoformat
+autocmd BufWritePre *.m Neoformat
+autocmd BufWritePre *.json, yaml,*.yml Neoformat
+augroup END
+]]

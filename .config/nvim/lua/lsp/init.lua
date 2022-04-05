@@ -204,25 +204,12 @@ local luadev = require('lua-dev').setup{
 }
 lspconfig.sumneko_lua.setup(luadev)
 
--- Linters and formatters (efm-lang-server)
-local prettier = require'lsp.efm.prettier'
-local yamlfmt = require'lsp.efm.yamlfmt'
+-- Linters (efm-lang-server)
 local shfmt = require'lsp.efm.shfmt'
-local luafmt = require'lsp.efm.luafmt'
-local yapf = require'lsp.efm.yapf'
 local markdownfmt = require'lsp.efm.markdownfmt'
 local matlabfmt = require'lsp.efm.matlabfmt'
 
-local languages = {
-    java = {prettier},
-    json = {prettier},
-    yaml = {yamlfmt},
-    sh = {shfmt},
-    matlab = {matlabfmt},
-    markdown = {markdownfmt},
-    lua = {luafmt},
-    python = {yapf}
-}
+local languages = {sh = {shfmt}, matlab = {matlabfmt}, markdown = {markdownfmt}}
 
 lspconfig.efm.setup{
     on_attach = on_attach,
