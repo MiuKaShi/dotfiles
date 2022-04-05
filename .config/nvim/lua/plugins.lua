@@ -64,7 +64,8 @@ return require('packer').startup(function(use)
         config = function()
             vim.cmd[[
         augroup pandoc_syntax
-          au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+        autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+        autocmd BufNewFile,BufFilePre,BufRead *.md set syntax=markdown.pandoc
         augroup END
       ]]
         end
