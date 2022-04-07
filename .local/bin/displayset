@@ -1,10 +1,12 @@
 #! /bin/sh
 
-labdp="EV2795" # set display model
-homedp="T278Q"
-modeldp=$(sudo ddcutil detect | grep Model | awk '{print $2}')
+ldp="EV2795" # set display model
+hdp1="PHL"
+hdp2="HKC"
+modeldp=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
+
 
 case $modeldp in
-  *"$homedp"*) homescreen ;;
-  *"$labdp"*) labscreen ;;
+  *"$hdp1"*) homescreen ;;
+  *"$ldp"*) labscreen ;;
 esac
