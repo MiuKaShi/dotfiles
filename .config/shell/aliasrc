@@ -111,7 +111,6 @@ alias grep='grep --colour=auto'
 
 alias ducks='du -chsh * | sort -rn | head -11'
 alias wea='curl wttr.in' #check weather
-alias vtop="vtop --theme=wal" #vhop system
 
 alias vi='nvim'
 alias nv="$(which nvim)"
