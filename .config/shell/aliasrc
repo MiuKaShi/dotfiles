@@ -28,8 +28,8 @@ alias \
     mkd="mkdir -pv" \
     lf="lfrun" \
     df="df -h" \
-    yt="youtube-dl --add-metadata -i" \
-    yta="yt -x -f bestaudio/best" \
+	yt="yt-dlp --embed-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner" \
     ns="newsboat" \
     nsb="vim ~/.newsboat/bookmarks.txt" \
