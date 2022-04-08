@@ -12,7 +12,7 @@ configuration {
         icon-theme: "Papirus";
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.config/rofi/themes/gruvbox/gruvbox-dark.rasi"
 
 
 listview {
