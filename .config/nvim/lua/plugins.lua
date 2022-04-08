@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
     use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
-    use{'AlphaTechnolog/pywal.nvim', as = 'pywal'} -- pywal 主题
+    -- use{'AlphaTechnolog/pywal.nvim', as = 'pywal'} -- pywal 主题
     use{
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]]
@@ -71,10 +71,6 @@ return require('packer').startup(function(use)
         end
     }
     use{'luochen1990/rainbow', config = [[require('configs.rainbow')]]} -- 嵌套括号高亮
-    -- use{
-    --     'preservim/vim-markdown', -- markdown 方程高亮
-    --     config = [[require('configs.vim-markdown')]]
-    -- }
     use{'RRethy/vim-illuminate', config = [[require('configs.illuminate')]]} -- 高亮选中单词
     use'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use'tridactyl/vim-tridactyl' -- tridactyl 高亮

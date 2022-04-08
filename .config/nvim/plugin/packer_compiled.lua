@@ -292,11 +292,6 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  pywal = {
-    loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/pywal",
-    url = "https://github.com/AlphaTechnolog/pywal.nvim"
-  },
   rainbow = {
     config = { "require('configs.rainbow')" },
     loaded = true,
@@ -381,14 +376,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
--- Config for: vim-illuminate
-time([[Config for vim-illuminate]], true)
-require('configs.illuminate')
-time([[Config for vim-illuminate]], false)
 -- Config for: neoformat
 time([[Config for neoformat]], true)
 require('configs.neoformat')
@@ -405,10 +392,10 @@ time([[Config for rainbow]], false)
 time([[Config for smart-pairs]], true)
 require('configs.pairs')
 time([[Config for smart-pairs]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('configs.cmp')
-time([[Config for nvim-cmp]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require('Comment').setup({ padding = function () return vim.bo.filetype ~= 'norg' end })
+time([[Config for Comment.nvim]], false)
 -- Config for: cmp-tabnine
 time([[Config for cmp-tabnine]], true)
 require('configs.tabnine')
@@ -417,10 +404,10 @@ time([[Config for cmp-tabnine]], false)
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require('Comment').setup({ padding = function () return vim.bo.filetype ~= 'norg' end })
-time([[Config for Comment.nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('configs.indentline')
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: nvim-gps
 time([[Config for nvim-gps]], true)
 require('nvim-gps').setup()
@@ -429,6 +416,10 @@ time([[Config for nvim-gps]], false)
 time([[Config for limelight.vim]], true)
 require('configs.limelight')
 time([[Config for limelight.vim]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require('configs.whichkey')
+time([[Config for which-key.nvim]], false)
 -- Config for: nvim-lsp-installer
 time([[Config for nvim-lsp-installer]], true)
 require('configs.lspinstaller')
@@ -441,34 +432,38 @@ time([[Config for bibtexcite.vim]], false)
 time([[Config for telescope.nvim]], true)
 require('configs.telescope')
 time([[Config for telescope.nvim]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require('configs.whichkey')
-time([[Config for which-key.nvim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 require('configs.lspsaga')
 time([[Config for lspsaga.nvim]], false)
--- Config for: fm-nvim
-time([[Config for fm-nvim]], true)
-require('configs.fm')
-time([[Config for fm-nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('configs.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('configs.indentline')
-time([[Config for indent-blankline.nvim]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('configs.lualine')
 time([[Config for lualine.nvim]], false)
+-- Config for: fm-nvim
+time([[Config for fm-nvim]], true)
+require('configs.fm')
+time([[Config for fm-nvim]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('configs.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+require('configs.illuminate')
+time([[Config for vim-illuminate]], false)
 if should_profile then save_profiles() end
 
 end)
