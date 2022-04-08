@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
     --     config = [[require('configs.webdevicons')]]
     -- }
     -- Completion
-    use{'ZhiyuanLck/smart-pairs', config = [[require('configs.pairs')]]}
+    use{'windwp/nvim-autopairs', config = [[require('configs.pairs')]]}
     use{'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]]}
     use{
         'hrsh7th/nvim-cmp',

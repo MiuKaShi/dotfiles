@@ -20,11 +20,7 @@ local ts_install = {
 
 treesitter.setup{
     ensure_installed = ts_install,
-    highlight = {
-        enable = true,
-        disable = {'markdown'}, -- list of language that will be disabled
-        additional_vim_regex_highlighting = false
-    },
+    highlight = {enable = true, additional_vim_regex_highlighting = {'latex'}},
     incremental_selection = {enable = true},
     indent = {enable = true},
     playground = {enable = true},

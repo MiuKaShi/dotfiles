@@ -6,7 +6,15 @@ telescope.load_extension'file_browser'
 telescope.setup{
     defaults = {
         sorting_strategy = 'ascending',
-        prompt_prefix = '   ', -- ' ',
+        layout_config = {
+            horizontal = {
+                height = 0.9,
+                preview_cutoff = 120,
+                prompt_position = 'top',
+                width = 0.8
+            }
+        },
+        prompt_prefix = '   ',
         selection_caret = ' ',
         path_display = {'absolute'},
         set_env = {['COLORTERM'] = 'truecolor'},
