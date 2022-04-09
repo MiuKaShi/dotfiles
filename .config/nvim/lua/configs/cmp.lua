@@ -109,11 +109,14 @@ cmp.setup({
     },
     matching = {disallow_prefix_unmatching = true},
     sources = {
-        {name = 'buffer', keyword_length = 4}, -- for buffer word completion
+        {name = 'nvim_lsp'},
+        {name = 'luasnip'},
         {name = 'path'},
+        {name = 'neorg'},
+        {name = 'buffer', keyword_length = 4},
+        {name = 'rg', keyword_length = 5},
         {name = 'cmp_matlab'},
-        {name = 'cmp_tabnine'},
-        {name = 'nvim_lua'}
+        {name = 'cmp_tabnine'}
         -- {name = 'cmp_octave'}
     }
 })

@@ -1,26 +1,27 @@
 local g = vim.g
 local opt = vim.opt
+local o = vim.o
+local wo = vim.wo
 
 -- vim.cmd('silent! colorscheme neon')
 vim.cmd('syntax on') -- 打开语法高亮
 vim.cmd('filetype plugin indent on') -- 根据检测到文件类型加载插件
 
--- Stop loading built in plugins
+-- TURN OFF SOME BUILTIN PLUGINS
+vim.g.loaded_2html_plugin = 1
 vim.g.loaded_gzip = 1
-vim.g.loaded_man = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
-vim.g.loaded_2html_plugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
-vim.g.loaded_remote_plugins = 1
-vim.g.loaded_shada_plugin = 1
-
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_python3_provider = 0
 
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
@@ -32,17 +33,16 @@ opt.ignorecase = true
 opt.incsearch = true -- 搜索时高亮
 opt.autoindent = true -- 根据前一行进行缩进
 opt.copyindent = true
+opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
 -- indention & tab
 opt.shiftwidth = 4
 opt.softtabstop = 4 -- Tab键替换空格数
 opt.tabstop = 4
-opt.expandtab = true -- 使用空格键替换tabs
 opt.smartindent = true
-opt.smarttab = true
-
-opt.list = true -- 显示不可打印的字符
-opt.listchars = 'tab:»·,trail:·,nbsp:·'
+opt.laststatus = 3
+opt.pumheight = 10
 
 -- backups
 opt.undofile = true
@@ -66,26 +66,25 @@ opt.lazyredraw = true -- Speeds up scrolling
 opt.redrawtime = 10000
 opt.regexpengine = 1
 opt.showbreak = '↳ '
+wo.signcolumn = 'yes'
 opt.relativenumber = true
-opt.scrolloff = 2 -- Always show at least one line above/below the cursor.
-opt.sidescrolloff = 5 -- Always show at least one line left/right of the cursor.
+opt.scrolloff = 8 -- Always show at least one line above/below the cursor.
 opt.linebreak = true
 opt.showmatch = true
 opt.visualbell = true
 opt.cursorline = true -- 快速找到当前行
+opt.whichwrap = 'b,s,<,>,[,]'
 
 g.user_emmet_settings = {
     javascript = {extends = 'jsx'},
     typescript = {extends = 'tsx'}
 }
-opt.complete = ''
+o.completeopt = 'menu,menuone,noselect'
 g.rainbow_active = 1
 g.neon_style = 'doom'
 g.EasyMotion_do_mapping = 0
 g.EasyMotion_smartcase = 1
 g.swoopAutoInsertMode = 1
--- g.rust_clip_command = 'pbcopy'
--- g.python3_host_prog = '~/.pyenv/versions/nvim-py3/bin/python'
 g.user_emmet_install_global = 0
 -- gf 自定义
 g.GfList_map_n_gf = 'gf'
@@ -134,12 +133,3 @@ autocmd BufRead,BufNewFile *.tp set filetype=type
 autocmd BufRead,BufNewFile *.m set filetype=matlab
 ]]
 
--- 保存前格式化
-
-vim.cmd[[
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-]]

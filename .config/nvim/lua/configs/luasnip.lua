@@ -2,8 +2,6 @@ local ls = require('luasnip')
 local types = require('luasnip.util.types')
 
 ls.config.setup{
-    -- Allow resuming snippets
-    history = true,
     -- Update dynamic ssnippets as you type
     updateevents = 'TextChanged,TextChangedI',
     enable_autosnippets = true,
@@ -19,4 +17,6 @@ ls.config.setup{
     }
 }
 
-require('luasnip.loaders.from_lua').lazy_load()
+require('luasnip.loaders.from_lua').lazy_load({
+    paths = {'~/.config/nvim/luasnippets'}
+})

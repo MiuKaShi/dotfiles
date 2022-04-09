@@ -38,10 +38,6 @@ return require('packer').startup(function(use)
     -- LSP
     use'neovim/nvim-lspconfig' -- lsp 配置插件
     use'onsails/lspkind-nvim' -- vscode-like lsp 提示
-    use{
-        'williamboman/nvim-lsp-installer', -- lsp 自动安装器
-        config = [[require('configs.lspinstaller')]]
-    }
     use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
@@ -89,10 +85,6 @@ return require('packer').startup(function(use)
         requires = 'nvim-treesitter/nvim-treesitter',
         config = [[require('nvim-gps').setup()]]
     }
-    -- use{
-    --     'kyazdani42/nvim-web-devicons',
-    --     config = [[require('configs.webdevicons')]]
-    -- }
     -- Completion
     use{'windwp/nvim-autopairs', config = [[require('configs.pairs')]]}
     use{'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]]}
