@@ -1,7 +1,8 @@
 vim.g.neoformat_enabled_markdown = {'prettier'}
+vim.g.neoformat_enabled_html = {'prettier'}
 vim.g.neoformat_enabled_json = {'prettier'}
--- vim.g.neoformat_enabled_yaml = {'yamlfmt'}
 vim.g.neoformat_enabled_yaml = {'prettier'}
+-- vim.g.neoformat_enabled_yaml = {'yamlfmt'}
 -- sh
 vim.g.neoformat_enabled_sh = {'shfmt'}
 vim.g.shfmt_opt = '-ci'

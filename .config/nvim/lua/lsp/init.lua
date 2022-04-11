@@ -50,9 +50,9 @@ for _, server in ipairs{
     'bashls',
     'vimls',
     'sumneko_lua'
-} do require('lsp.' .. server).setup(on_attach, capabilities) end
+} do require('lsp.languages.' .. server).setup(on_attach, capabilities) end
 
--- Linters (efm-lang-server)
+-- Linters
 local shfmt = require'lsp.efm.shfmt'
 local markdownfmt = require'lsp.efm.markdownfmt'
 local matlabfmt = require'lsp.efm.matlabfmt'

@@ -39,14 +39,13 @@ return require('packer').startup(function(use)
     use'neovim/nvim-lspconfig' -- lsp 配置插件
     use'onsails/lspkind-nvim' -- vscode-like lsp 提示
     use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
+    use{'sbdchd/neoformat', config = [[require('configs.neoformat')]]}
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
-    -- use{'AlphaTechnolog/pywal.nvim', as = 'pywal'} -- pywal 主题
     use{
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]]
     }
-    use{'sbdchd/neoformat', config = [[require('configs.neoformat')]]}
     -- Highlight
     use{
         'nvim-treesitter/nvim-treesitter',
@@ -55,6 +54,7 @@ return require('packer').startup(function(use)
         config = [[require('configs.treesitter')]]
     }
     use{'nvim-treesitter/playground'}
+    use{'lambdalisue/vim-cython-syntax'}
     use{
         'vim-pandoc/vim-pandoc-syntax',
         config = function()
