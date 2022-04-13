@@ -39,6 +39,9 @@ alias \
     bibup="betterbib up -i" \
     powerstat="powerstat -d 5 2" \
 
+# -- Permissions aliases --
+alias 664='chmod 664'
+alias 775='chmod 775'
 
 # Colorize commands when possible.
 alias \
@@ -88,7 +91,6 @@ alias tmuxattach='tmux attach -t $(tmux ls | fzf)'
 
 alias frm="fzf | xargs rm -v"
 alias ff='fzf --print0 -e | xargs -0 -r code'
-alias fe='fzf_find_edit'
 
 alias chmod755='find . -type d -exec chmod 0755 {} \;'
 alias chmod644='find . -type f -exec chmod 0644 {} \;'
