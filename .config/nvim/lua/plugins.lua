@@ -40,6 +40,8 @@ return require('packer').startup(function(use)
     use'onsails/lspkind-nvim' -- vscode-like lsp 提示
     use{'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]]} -- LSP UI
     use{'sbdchd/neoformat', config = [[require('configs.neoformat')]]}
+    -- Julia
+    use{'JuliaEditorSupport/julia-vim', config = [[require('configs.julia')]]}
     -- theme
     use'morhetz/gruvbox' -- gruvbox 主题
     use{

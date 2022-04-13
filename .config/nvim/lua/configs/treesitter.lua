@@ -14,6 +14,7 @@ local ts_install = {
     'toml',
     'vim',
     'yaml',
+    'julia',
     'norg_meta',
     'norg_table'
 }

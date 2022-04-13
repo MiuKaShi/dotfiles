@@ -49,6 +49,7 @@ for _, server in ipairs{
     'yamlls',
     'bashls',
     'vimls',
+    'julials',
     'sumneko_lua'
 } do require('lsp.languages.' .. server).setup(on_attach, capabilities) end
 
