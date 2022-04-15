@@ -104,8 +104,10 @@ cmp.setup({
         end
     },
     experimental = {ghost_text = true},
-    documentation = {
-        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'}
+    window = {
+        documentation = {
+            border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'}
+        }
     },
     matching = {disallow_prefix_unmatching = true},
     sources = {

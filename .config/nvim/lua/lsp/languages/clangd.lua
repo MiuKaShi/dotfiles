@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function(on_attach, capabilities)
-    require('lspconfig').bashls.setup{
+    require('lspconfig').clangd.setup{
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = {'c', 'cpp', 'cc'},

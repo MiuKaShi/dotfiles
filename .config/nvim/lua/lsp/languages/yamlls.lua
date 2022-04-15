@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function(on_attach, capabilities)
-    require('lspconfig').bashls.setup{
+    require('lspconfig').yamlls.setup{
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {

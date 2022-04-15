@@ -1,27 +1,20 @@
 local M = {}
 
 M.setup = function(on_attach, capabilities)
-    require('lspconfig').bashls.setup({
+    require('lspconfig').ltex.setup({
         cmd = {'/usr/bin/ltex-ls'},
         on_attach = on_attach,
         capabilities = capabilities,
-        filetypes = {
-            'bib',
-            'gitcommit',
-            'markdown',
-            'org',
-            'plaintex',
-            'rst',
-            'rnoweb',
-            'tex'
-        },
+        filetypes = {'bib', 'markdown', 'org', 'pandoc', 'tex'},
         settings = {
             ltex = {
+                language = 'en-US',
+                sentenceCacheSize = 2000,
                 dictionary = {
                     -- Couldn't make this work, unfortunately, so added `MORFOLOGIK_RULE_EN_US`.
                     ['en-US'] = {[[:~/.config/nvim/spell/en.utf-8.add]]}
                 },
-                additionalRules = {motherTongue = 'it'},
+                additionalRules = {motherTongue = 'en'},
                 disabledRules = {
                     ['en-US'] = {'WHITESPACE_RULE', 'MORFOLOGIK_RULE_EN_US'}
                 },
