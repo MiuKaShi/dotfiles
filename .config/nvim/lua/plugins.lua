@@ -150,7 +150,9 @@ return require('packer').startup(function(use)
     use'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
     use{
         'nvim-telescope/telescope.nvim', -- 搜索
-        requires = 'nvim-lua/plenary.nvim', -- Useful lua function used by lots of plugins
+        requires = {
+            'nvim-lua/plenary.nvim' -- Useful lua function used by lots of plugins
+        },
         config = [[require('configs.telescope')]]
     }
     use'nvim-telescope/telescope-file-browser.nvim'

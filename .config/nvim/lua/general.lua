@@ -23,6 +23,12 @@ vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
 
+-- DISABLE REMOTE PLUGINS
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 
@@ -72,7 +78,7 @@ opt.scrolloff = 8 -- Always show at least one line above/below the cursor.
 opt.linebreak = true
 opt.showmatch = true
 opt.visualbell = true
-opt.cursorline = true -- 快速找到当前行
+-- opt.cursorline = true -- 高亮当前行
 opt.whichwrap = 'b,s,<,>,[,]'
 
 g.user_emmet_settings = {

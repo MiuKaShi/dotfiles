@@ -138,7 +138,6 @@ wk.register({
 		'Telescope current working directory'
 	},
 	['<Space>'] = {
-		'<cmd>lua require(\'functions\').commands(require(\'telescope.themes\').get_ivy({}))<CR>',
-		'Commands'
+		':Lf<CR>', 'Toggle directory tree'
 	} -- 查找命令
 }, { prefix = '<leader>' })
