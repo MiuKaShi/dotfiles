@@ -65,7 +65,7 @@ hyper + r
     st -e lfrun
 
 hyper + slash
-    rofi-zotero
+    colorpicker
 
 hyper + s
      ~/.config/script/rofi-file-selector/rofi-file-selector.sh
