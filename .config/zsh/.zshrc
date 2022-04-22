@@ -30,6 +30,11 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
+# see https://github.com/TheLocehiliosan/yadm/issues/355
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+
 # Automatically start tmux
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_ITERM2=true
