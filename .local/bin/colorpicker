@@ -1,0 +1,8 @@
+#!/bin/sh
+
+! [ $(which xcolor) ] && notify-send -a 'dwm' -u critical '`xcolor` is not installed!'
+! [ $(which xclip) ] && notify-send -a 'dwm' -u critical '`xclip` is not installed!'
+
+COLOR="$(xcolor | tr -d '\n')"
+echo -n "$COLOR" | xclip -sel clip
+notify-send -a colorpicker -h "string:bgcolor:$COLOR" "Color copied: $COLOR"
