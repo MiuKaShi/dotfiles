@@ -9,33 +9,6 @@ hyper + q
 hyper + space
     dwmc zoom
 
-hyper + 1
-    dwmc view 0
-
-hyper + 2
-    dwmc view 1
-
-hyper + 3
-    dwmc view 2
-
-hyper + 4
-    dwmc view 3
-
-hyper + 5
-    dwmc view 4
-
-hyper + 6
-    dwmc view 5
-
-hyper + 7
-    dwmc view 6
-
-hyper + 8
-    dwmc view 7
-
-hyper + 9
-    dwmc view 8
-
 hyper + f
     dwmc togglefullscr
 
