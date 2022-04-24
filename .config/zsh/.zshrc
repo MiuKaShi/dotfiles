@@ -155,5 +155,13 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh 2>/dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-(cat ~/.cache/wal/sequences &)
+function chpwd {
+  pwd > ~/.last_dir
+}
+
+# restore last saved path on launch
+if [[ -f ~/.last_dir ]]; then
+  cd $(cat ~/.last_dir)
+fi
+
 eval "$(starship init zsh)"
