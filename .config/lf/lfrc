@@ -352,13 +352,13 @@ map st :{{ set sortby time; set info time; set preview; }}
 
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Movement <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-map gr cd /
-map gy. cd ~/videos/youtube
-map gc cd ~/code
-map g. cd ~/.config
-map gD  cd ~/Downloads
-map gd cd ~/Documents
-map gv cd /Volumes
+# map gr cd /
+# map gy. cd ~/videos/youtube
+# map gc cd ~/code
+# map g. cd ~/.config
+# map gD  cd ~/Downloads
+# map gd cd ~/Documents
+# map gv cd /Volumes
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
@@ -543,3 +543,5 @@ cmd broot_jump ${{
 map F  $lf -remote "send $id select $(broot)"
 # }}}} >>>>>>>>>>>>>>>>>>>>>>>> Disk Usage >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+# Source Bookmarks
+source "~/.config/lf/shortcutrc"
