@@ -1,79 +1,75 @@
 #!/bin/sh
 
 # Use neovim for vim if present.
-[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vi='nvim' vimdiff="nvim -d"
 
 # Use $XINITRC variable if file exists.
-[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
 
 # sudo not required for some system commands
-for command in mount umount sv pacman nmtui updatedb su shutdown poweroff reboot ; do
+for command in mount umount sv pacman nmtui updatedb su shutdown poweroff reboot; do
 	alias $command="sudo $command"
-done; unset command
+done
+unset command
 
 alias \
-    ls="lsd" \
-    l="ls -l" \
-    la="ls -a" \
-    lla="ls -la" \
-    lt="ls --tree"
+	ls="lsd" \
+	l="ls -l" \
+	la="ls -a" \
+	lla="ls -la" \
+	lt="ls --tree"
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
-    q="exit" \
-    cp="cp -iv" \
-    mv="mv -iv" \
-    rm="rm -vI" \
-    bc="bc -ql" \
-    mkd="mkdir -pv" \
-    lf="lfrun" \
-    df="df -h" \
+	q="exit" \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	mkd="mkdir -pv" \
+	lf="lfrun" \
+	df="df -h" \
 	yt="yt-dlp --embed-metadata -i" \
 	yta="yt -x -f bestaudio/best" \
-    ffmpeg="ffmpeg -hide_banner" \
-    ns="newsboat" \
-    nsb="vim ~/.newsboat/bookmarks.txt" \
-    sci="scidownl -o ~/Downloads -D" \
-    cite="cite --style elsevier-vancouver" \
-    citebib="cite --bibtex" \
-    bibup="betterbib up -i" \
-    powerstat="powerstat -d 5 2" \
+	ffmpeg="ffmpeg -hide_banner" \
+	ns="newsboat" \
+	nsb="vim ~/.newsboat/bookmarks.txt" \
+	sci="scidownl -o ~/Downloads -D" \
+	cite="cite --style elsevier-vancouver" \
+	citebib="cite --bibtex" \
+	bibup="betterbib up -i" \
+	powerstat="powerstat -d 5 2"
 
 # -- Permissions aliases --
-alias 664='chmod 664'
-alias 775='chmod 775'
+alias \
+	664='chmod 664' \
+	775='chmod 775'
 
 # Colorize commands when possible.
 alias \
-    grep="grep --color=auto" \
-    diff="diff --color=auto" \
-    ccat="highlight --out-format=ansi"
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
 
-alias matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop"
-
-alias mbt="matlab -nodesktop -nosplash"
+# Language.
+alias \
+	matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop" \
+	mbt="matlab -nodesktop -nosplash" \
+	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
+	jl="julia --banner no"
 
 # These common commands are just too long! Abbreviate them.
 alias \
-    ka="killall" \
-    g="git" \
-    trem="transmission-remote" \
-    YT="youtube-viewer" \
-    sdn="shutdown -h now" \
-    e="$EDITOR" \
-    v="$EDITOR" \
-    p="pacman" \
-    clc="clear" \
-    s="neofetch" 
-
-# Some Doc Path
-alias \
-    home="cd $HOME" \
-    jnot="cd $HOME/notes/" \
-    jdow="cd $HOME/Downloads/" \
-    jdoc="cd $HOME/Documents/" \
-    jdat="cd $HOME/data/" \
-    jbib="cd $HOME/Paperbib/"
+	ka="killall" \
+	g="git" \
+	trem="transmission-remote" \
+	YT="youtube-viewer" \
+	sdn="shutdown -h now" \
+	e='$EDITOR' \
+	v='$EDITOR' \
+	p="pacman" \
+	clc="clear" \
+	s="neofetch"
 
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
@@ -83,7 +79,7 @@ alias yda="ydv -x -f bestaudio/best"
 #bym open
 alias bym-open="bym -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0|sed 's/ /\\ /g')\""
 
-alias -g G='| grep -i'  # for use ls -l G do
+alias -g G='| grep -i' # for use ls -l G do
 
 alias cdls="cd && ls"
 alias rep=project_wide_replace
@@ -107,23 +103,16 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias npmlist="npm list -g --depth 0"
-alias refresh="cd $(pwd)"  # for refresh DIR , because if I opened DIR and then I will move the DIR then I see old files in DIR
-alias ref="cd $(pwd)"  # reload current DIR, because if I open DIR and will move the DIR -> I see old files in DIR
 alias grep='grep --colour=auto'
 
 alias ducks='du -chsh * | sort -rn | head -11'
 alias wea='curl wttr.in' #check weather
 
-alias vi='nvim'
-alias nv="$(which nvim)"
-alias vi="$(which nvim)"
-alias vim="nvim"
-alias vfm="vicd"
 #alias nvimb="tabbed -c vimb -e"
 alias nvimb="proxychains4 vimb"
 
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
-alias zshreload="source $HOME/.config/zsh/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
 alias tmuxreload='tmux source-file ~/.tmux.conf'
 # The command alias to start the browser-sync server access the server inside my private network and test the webpage on several devices.
 
@@ -146,6 +135,6 @@ alias got='git '
 alias get='git '
 
 alias \
-    magit="nvim -c MagitOnly" \
-    ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" \
-    weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+	magit="nvim -c MagitOnly" \
+	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
+	weath='less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport'
