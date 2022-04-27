@@ -56,7 +56,7 @@ alias \
 	matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop" \
 	mbt="matlab -nodesktop -nosplash" \
 	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
-	jl="julia --banner no"
+	jl="julia --banner no --sysimage=/home/miuka/.julia/config/revise-omr_sysimage.so"
 
 # These common commands are just too long! Abbreviate them.
 alias \
