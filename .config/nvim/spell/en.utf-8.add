@@ -10,3 +10,5 @@ Ss/!
 InitCond/!
 Couette
 Poiseuille
+advection/!
+nonadvection/!
