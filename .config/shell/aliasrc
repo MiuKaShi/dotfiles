@@ -69,6 +69,7 @@ alias \
 	v='$EDITOR' \
 	p="pacman" \
 	clc="clear" \
+	yd="ydict -c -q" \
 	s="neofetch"
 
 # Download

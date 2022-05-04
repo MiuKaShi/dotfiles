@@ -6,7 +6,6 @@
 # to clean up.
 
 export PIPEWIRE_LATENCY="256/48000"
-export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
 # Adds `~/.local/bin` to $PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
@@ -16,6 +15,11 @@ export JULIA_NUM_THREADS=8
 # set go $PATH
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="$GOPATH/bin"
+
+
+# set better Java font
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+export JAVA_FONTS=/usr/share/fonts/TTF
 
 # add matalab lib to fix editor problems
 export LD_PRELOAD=/lib64/libfreetype.so 
@@ -34,15 +38,15 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH=$HOME/.local/bin:$PATH
 
 unsetopt PROMPT_SP
+unset LD_PRELOAD
 
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
-export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json
-
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
-
+# vulkan
+export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
