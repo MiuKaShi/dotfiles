@@ -7,6 +7,11 @@
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray        = 1;     /* 0 means no systray */
 static unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
@@ -51,6 +56,7 @@ static const Rule rules[] = {
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ "Gimp",     NULL,       NULL,       	    1 << 8,       0,           0,         0,        -1 },
 	{ "flameshot",     NULL,  NULL,       	    0,            1,           0,         1,        -1 },
+	{ "panel",     NULL,  NULL,       	    0,            1,           1,         1,        -1 },
 	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ NULL,      "spterm",    NULL,       	    SPTAG(0),     1,           1,         0,        -1 },
@@ -189,7 +195,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_a,		togglegaps,	{0} },
 	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
-	/* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") }, */
+	{ MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("systray") },
 	{ MODKEY,			XK_d,		spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ShiftMask,		XK_d,		spawn,		SHCMD("passmenu") },
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
@@ -309,6 +315,8 @@ static Key keys[] = {
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 #ifndef __OpenBSD__
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
