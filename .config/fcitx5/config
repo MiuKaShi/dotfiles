@@ -24,6 +24,7 @@ EnumerateSkipFirst=False
 [Hotkey/ActivateKeys]
 0=Hyper+1
 1=Hyper+2
+2=Hyper+3
 
 [Hotkey/DeactivateKeys]
 0=Hangul_Romaja
