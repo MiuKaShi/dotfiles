@@ -34,8 +34,8 @@ return a -- 返回模块
 
 - `vim.inspect`: 把 Lua 对象以更易读的方式打印（在打印 Lua table 时会很有用）
 - `vim.regex`: 在 Lua 中使用 Vim 寄存器
-- `vim.api`: 暴露 vim 的 API(:h API) 的模块（别的远程调用也是调用同样的 API)
-- `vim.loop`: Neovim 的 event lopp 模块（使用 LibUV)
+- `vim.api`: 暴露 vim 的 API(:h API) 的模块(别的远程调用也是调用同样的 API)
+- `vim.loop`: Neovim 的 event lopp 模块(使用 LibUV)
 - `vim.lsp`: 控制内置 LSP 客户端的模块
 - `vim.treesitter`: 暴露 tree-sitter 库中一些实用函数的模块
 - `vim.ui.select`: 选择框
@@ -67,9 +67,6 @@ function _G.statusline()
     )
 end
 EOF
-
-
-
 
 set statusline=%!v:lua.statusline()
 ```

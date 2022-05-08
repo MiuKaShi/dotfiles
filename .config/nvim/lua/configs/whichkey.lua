@@ -23,7 +23,7 @@ wk.register({
         n = {':BufferLineCycleNext<CR>', 'Next buffer'},
         p = {':BufferLineCyclePrev<CR>', 'Previous buffer'},
         d = {':bw<CR>', 'Delete buffer'},
-        f = {'<cmd>lua vim.lsp.buf.format()<CR>', 'Format current buffer'},
+        f = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format current buffer'},
         c = {'<cmd>BibtexciteInsert<CR>', 'Bib citation insert'},
         v = {'<cmd>BibtexciteShowcite<CR>', 'Bib citation view'}
     },
