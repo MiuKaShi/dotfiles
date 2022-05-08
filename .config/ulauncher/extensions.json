@@ -1,0 +1,51 @@
+{
+    "com.github.dankni95.ulauncher-playerctl": {
+        "id": "com.github.dankni95.ulauncher-playerctl",
+        "url": "https://github.com/Dankni95/ulauncher-playerctl",
+        "updated_at": "2022-05-08T01:18:11.208942",
+        "last_commit": "c2efafd66c3d60445a545f9f202b82202f93cd70",
+        "last_commit_time": "2022-03-23T21:18:25"
+    },
+    "com.github.hillaryychan.ulauncher-fzf": {
+        "id": "com.github.hillaryychan.ulauncher-fzf",
+        "url": "https://github.com/hillaryychan/ulauncher-fzf",
+        "updated_at": "2022-05-08T01:29:58.472528",
+        "last_commit": "e3729d3b67bb038222ea9fcba074fdd50b9dd815",
+        "last_commit_time": "2022-04-29T11:55:36"
+    },
+    "com.github.ulauncher.ulauncher-kill": {
+        "id": "com.github.ulauncher.ulauncher-kill",
+        "url": "https://github.com/Ulauncher/ulauncher-kill",
+        "updated_at": "2022-05-08T01:58:20.065857",
+        "last_commit": "7ba3f9fb273c4cbbecd26352c88a3156205417db",
+        "last_commit_time": "2020-01-05T13:02:00"
+    },
+    "com.github.mikebarkmin.ulauncher-obsidian": {
+        "id": "com.github.mikebarkmin.ulauncher-obsidian",
+        "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
+        "updated_at": "2022-05-08T02:01:48.939165",
+        "last_commit": "85c869eda769eb7cd70b341451281038b5473b92",
+        "last_commit_time": "2021-07-18T21:10:03"
+    },
+    "com.github.pwnyprod.ulauncher-ipcopy": {
+        "id": "com.github.pwnyprod.ulauncher-ipcopy",
+        "url": "https://github.com/pwnyprod/ulauncher-ipcopy.git",
+        "updated_at": "2022-05-08T02:25:53.168915",
+        "last_commit": "7d5b328cad58dfda8ea613803f66bffa3c62b57f",
+        "last_commit_time": "2021-12-07T08:51:15"
+    },
+    "com.github.tchar.ulauncher-albert-calculate-anything": {
+        "id": "com.github.tchar.ulauncher-albert-calculate-anything",
+        "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
+        "updated_at": "2022-05-08T03:12:38.408505",
+        "last_commit": "ee0903174c8b87cd1f7c3b6c1acef10702547507",
+        "last_commit_time": "2021-08-12T06:39:56"
+    },
+    "com.github.kwaadpepper.zealdoc": {
+        "id": "com.github.kwaadpepper.zealdoc",
+        "url": "https://github.com/Kwaadpepper/zealdoc",
+        "updated_at": "2022-05-08T04:14:27.197656",
+        "last_commit": "e56fc14464783e3c1ad7f4f219e1efaab6143328",
+        "last_commit_time": "2021-09-04T07:35:18"
+    }
+}
