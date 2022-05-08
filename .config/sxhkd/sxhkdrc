@@ -22,8 +22,8 @@ hyper + w
 hyper + Return
     $TERMINAL
 
-alt + @space
-    rofi -show drun
+# alt + @space
+#     rofi -show drun
 
 hyper + z
     zotero
