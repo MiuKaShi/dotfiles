@@ -101,10 +101,7 @@ return require('packer').startup(function(use)
     }
 
     -- comment
-    use{
-        'numToStr/Comment.nvim',
-        config = [[require('Comment').setup({ padding = function () return vim.bo.filetype ~= 'norg' end })]]
-    }
+    use{'numToStr/Comment.nvim', config = [[require('configs.comment')]]}
     -- line buffer
     use{
         'nvim-lualine/lualine.nvim', -- 底部状态栏
