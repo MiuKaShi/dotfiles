@@ -29,7 +29,5 @@ sudo cp $t_path/resources/app.asar $t_path/resources/app.asar.bak
 sudo cp $c_path/build/app.asar $t_path/resources/app.asar
 echo -e "\n\e[32mActivated Successfully!\e[0m"
 
-
 echo -e "\nYour activation code：\c"
 node $c_path/example/keygen.js
-
