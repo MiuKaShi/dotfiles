@@ -40,6 +40,9 @@ alias \
 	bibup="betterbib up -i" \
 	powerstat="powerstat -d 5 2"
 
+# Download
+alias wget="wget --continue --progress=bar --timestamping"
+
 # -- Permissions aliases --
 alias \
 	664='chmod 664' \
@@ -50,6 +53,19 @@ alias \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
+
+#which graphical card is working
+alias whichvga="/usr/local/bin/arcolinux-which-vga"
+
+# taskwarrior
+alias \
+	t="task list" \
+	tt="vit" \
+	ta="task add" \
+	te="task edit" \
+	to="taskopen" \
+	ti='task add due:tomorrow tag:inbox'
+
 
 # Language.
 alias \
@@ -72,10 +88,6 @@ alias \
 	yd="ydict -c -q" \
 	s="neofetch"
 
-# Download
-alias wget="wget --continue --progress=bar --timestamping"
-alias ydv="youtube-dl --add-metadata --restrict-filenames -i"
-alias yda="ydv -x -f bestaudio/best"
 
 #bym open
 alias bym-open="bym -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0|sed 's/ /\\ /g')\""

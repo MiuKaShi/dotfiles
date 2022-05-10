@@ -5,7 +5,12 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
-export PIPEWIRE_LATENCY="256/48000"
+# export fcitx5 environment variables
+export INPUT_METHOD="fcitx5"
+export XMODIFIERS="@im=fcitx5"
+export GTK_IM_MODULE="fcitx5"
+export QT_IM_MODULE="fcitx5"
+
 # Adds `~/.local/bin` to $PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
@@ -15,7 +20,6 @@ export JULIA_NUM_THREADS=8
 # set go $PATH
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="$GOPATH/bin"
-
 
 # set better Java font
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
