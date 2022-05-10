@@ -7,6 +7,7 @@ require('neorg').setup{
                 neorg_leader = ',',
                 hook = function(keybinds)
                     keybinds.unmap('norg', 'i', '<C-l>')
+                    keybinds.unmap('norg', 'n', '<C-s>')
                 end
             }
         },

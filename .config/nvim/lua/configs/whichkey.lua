@@ -115,6 +115,11 @@ wk.register({
         },
         f = {':Lspsaga code_action<CR>', 'Fix error'}
     },
+    c = {
+        name = '+Compiler',
+        c = {':!compiler "<c-r>%"<CR>', 'Compiler files'},
+        p = {':!opout <c-r>%<CR><CR>', 'Preview files'}
+    },
     [';'] = {
         name = 'Comment',
         [';'] = {'gcc<Esc>', 'Comment line', noremap = false, mode = 'v'}
