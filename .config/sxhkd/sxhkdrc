@@ -10,38 +10,25 @@ hyper + space
     dwmc zoom
 
 hyper + f
-    dwmc togglefullscr
+    rofi -no-lazy-grab -show file-browser-extended -modi file-browser-extended
 
 hyper + b
     dwmc togglebar
 
-#application launch
-hyper + w
-    proxychains4 vimb
-
 hyper + Return
     $TERMINAL
 
-# alt + @space
-#     rofi -show drun
+hyper + d
+	rofi -show drun
 
 hyper + z
     zotero
 
-hyper + shift + c
-    clipmenu
-
 hyper + m
     env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop
 
-hyper + r
-    st -e lfrun
-
-hyper + slash
+hyper + c
     colorpicker
-
-hyper + s
-     ~/.config/script/rofi-file-selector/rofi-file-selector.sh
 
 hyper + shift + BackSpace
     killall screenkey || screenkey --bg-color "#222d32" -s small -f "Apercu Mono" -t 1 --font-color "#BABABA" --mods-mode tux
