@@ -45,6 +45,7 @@ for _, server in ipairs{
     'cssls',
     'gopls',
     'jsonls',
+    'htmls',
     'ltex',
     'yamlls',
     'bashls',

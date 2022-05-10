@@ -85,11 +85,6 @@ vim.cmd[[
 autocmd FileType markdown inoremap <buffer> <silent> @@ <Esc>:BibtexciteInsert<CR>
 ]]
 
-vim.cmd[[
-au FileType html,typescriptreact,javascriptreact EmmetInstall
-au FileType html,gohtmltmpl,typescriptreact,javascriptreact imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-]]
-
 -- 保存前格式化
 
 -- vim.cmd [[
