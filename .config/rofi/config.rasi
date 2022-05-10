@@ -1,15 +1,21 @@
 configuration {
-    	display-drun: "Applications:";
-        display-window: "Windows:";
-        drun-display-format: "{name}";
-	font: "MonoLisa 18";
+    display-drun: "Applications:";
+    display-window: "Windows:";
+    drun-display-format: "{name}";
+	font: "MonoLisa 24";
 	location: 0;
 	yoffset: -150;
 	matching: "fuzzy";
 	sort: true;
-        modi: "window,run,drun";
-        show-icons: true;
-        icon-theme: "Papirus";
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Papirus";
+    display-drun: 					"";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
 }
 
 @import "~/.config/rofi/themes/gruvbox-dark.rasi"
