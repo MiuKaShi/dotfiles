@@ -3,38 +3,38 @@ super + ctrl + space
 	touchpadtoggle
 
 #dwm
-hyper + q
+mod3 + q
    dwmc killclient
 
-hyper + space
+mod3 + space
     dwmc zoom
 
-hyper + f
+mod3 + f
     rofi -no-lazy-grab -show file-browser-extended -modi file-browser-extended
 
-hyper + b
+mod3 + b
     dwmc togglebar
 
-hyper + Return
+mod3 + Return
     $TERMINAL
 
-hyper + d
+mod3 + d
 	rofi -show drun
 
-hyper + z
+mod3 + z
     zotero
 
-hyper + m
+mod3 + m
     env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop
 
-hyper + c
+mod3 + c
     colorpicker
 
-hyper + shift + BackSpace
+mod3 + shift + BackSpace
     killall screenkey || screenkey --bg-color "#222d32" -s small -f "Apercu Mono" -t 1 --font-color "#BABABA" --mods-mode tux
 
-hyper + BackSpace
-    find-cursor -l 4 -c "#66aabb" -s 150
+mod3 + BackSpace
+    find-cursor -l 4 -c "#82a497" -s 150
 
-hyper + Escape
+mod3 + Escape
     pkill -USR1 -x sxhkd && notify-send -- "SXHKD" "Reloaded key bindings"
