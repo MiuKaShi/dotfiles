@@ -40,6 +40,7 @@ alias \
 	bibup="betterbib up -i" \
 	powerstat="powerstat -d 5 2"
 
+alias caj2pdf='_(){ caj2pdf convert "$1" -o "$2"; }; _'
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
