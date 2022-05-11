@@ -196,6 +196,7 @@ static Key keys[] = {
 	{ MODKEY,		      XK_bracketright,    spawn,      SHCMD("sptf n") },
 	{ MODKEY | ShiftMask,	      XK_bracketright,    spawn,      SHCMD("sptf dislike") },
 	{ MODKEY,		      XK_backslash,       view,{ 0 } },
+	{ MODKEY | ShiftMask,	      XK_backslash,    spawn,      SHCMD("remaps & notify-send \\\"Keyboard remapping...\\\"") },
 	{ MODKEY,		      XK_slash,           spawn,      SHCMD("rofi-zotero") },
 	/* { MODKEY|ShiftMask,      XK_backslash,       spawn,      SHCMD("") }, */
 
@@ -224,7 +225,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,      XK_z,       spawn,      SHCMD("") }, */
 	{ MODKEY,		      XK_x,       incrgaps,{ .i	 = -3	       } },
 	/* { MODKEY|ShiftMask,      XK_x,       spawn,      SHCMD("") }, */
-	/* { MODKEY,            XK_c,       spawn,      SHCMD("") }, */
+	{ MODKEY,            XK_c,       spawn,      SHCMD("keym") }, 
 	{ MODKEY | ShiftMask,	      XK_c,       spawn,      SHCMD("clipmenu") },
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,		      XK_b,       togglebar,{ 0 } },
