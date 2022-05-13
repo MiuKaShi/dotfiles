@@ -56,7 +56,7 @@ alias \
 	ccat="highlight --out-format=ansi"
 
 #which graphical card is working
-alias whichvga="/usr/local/bin/arcolinux-which-vga"
+alias whichvga="/home/miuka/.local/bin/arcolinux-which-vga"
 
 # taskwarrior
 alias \
