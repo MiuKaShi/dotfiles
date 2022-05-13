@@ -8,6 +8,7 @@ xset r rate 300 50
 #xmodmap -e "keycode 23 = Hyper_R"
 #xmodmap -e "remove Mod4 = Hyper_L Hyper_R" -e "add Mod3 = Hyper_L Hyper_R"
 
+xmodmap -e "keycode 94 = Hyper_R"
 setxkbmap -layout hyper
 
 # One press function
