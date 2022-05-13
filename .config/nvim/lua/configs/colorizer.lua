@@ -1,3 +1,3 @@
-local color = require('colorizer')
+local color = require 'colorizer'
 
 color.setup()

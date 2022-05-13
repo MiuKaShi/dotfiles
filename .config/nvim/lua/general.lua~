@@ -113,11 +113,11 @@ autocmd WinLeave * setlocal nocursorline
 
 vim.cmd [[
 if has("nvim")
-    set undodir=$HOME/.cache/nvim/undo
-    set backupdir=$HOME/.cache/nvim/backup
+    set undodir= $HOME/.cache/nvim/undo
+    set backupdir= $HOME/.cache/nvim/backup
 else
-    set undodir=$HOME/.cache/vim/undo
-    set backupdir=$HOME/.cache/vim/backup
+    set undodir= $HOME/.cache/vim/undo
+    set backupdir= $HOME/.cache/vim/backup
 endif
 ]]
 

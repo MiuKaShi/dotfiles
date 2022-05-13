@@ -1,9 +1,9 @@
 local M = {}
 
 M.setup = function(on_attach, capabilities)
-    require('lspconfig').bashls.setup{
+    require('lspconfig').bashls.setup {
         on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
     }
 end
 

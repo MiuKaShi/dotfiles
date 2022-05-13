@@ -1,4 +1,3 @@
-local treesitter = require('nvim-treesitter.configs')
 local ts_install = {
     'bibtex',
     'comment',
@@ -15,14 +14,14 @@ local ts_install = {
     'vim',
     'yaml',
     'julia',
-    'norg'
+    'norg',
 }
 
-treesitter.setup{
+require('nvim-treesitter.configs').setup {
     ensure_installed = ts_install,
-    highlight = {enable = true, additional_vim_regex_highlighting = {'latex'}},
-    incremental_selection = {enable = true},
-    indent = {enable = true},
-    playground = {enable = true},
-    query_linter = {enable = true}
+    highlight = { enable = true, additional_vim_regex_highlighting = { 'latex' } },
+    incremental_selection = { enable = true },
+    indent = { enable = true },
+    playground = { enable = true },
+    query_linter = { enable = true },
 }

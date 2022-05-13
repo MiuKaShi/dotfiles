@@ -1,6 +1,6 @@
 vim.g['rainbow_active'] = 1
 
-vim.cmd[[
+vim.cmd [[
 let g:rainbow_conf = {
 \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
 \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
@@ -52,6 +52,6 @@ let g:rainbow_conf = {
 ]]
 -- fixup nvim-treesitter cause luochen1990/rainbow not working problem
 
-require'nvim-treesitter.highlight'
+require 'nvim-treesitter.highlight'
 local hlmap = vim.treesitter.highlighter.hl_map
 hlmap['punctuation.bracket'] = nil

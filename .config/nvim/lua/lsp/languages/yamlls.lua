@@ -1,16 +1,16 @@
 local M = {}
 
 M.setup = function(on_attach, capabilities)
-    require('lspconfig').yamlls.setup{
+    require('lspconfig').yamlls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
             yaml = {
                 schemas = {
                     ['https://cfn-schema.y13i.com/schema?region=eu-west-2&version=20.0.0'] = 'cloudformation/*',
-                    ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*'
+                    ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
                 },
-                format = {enable = false},
+                format = { enable = false },
                 completion = true,
                 hover = true,
                 customTags = {
@@ -67,10 +67,10 @@ M.setup = function(on_attach, capabilities)
                     '!Split sequence',
                     '!Join scalar',
                     '!Join mapping',
-                    '!Join sequence'
-                }
-            }
-        }
+                    '!Join sequence',
+                },
+            },
+        },
     }
 end
 
