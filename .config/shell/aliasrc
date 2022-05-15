@@ -38,6 +38,7 @@ alias \
 	cite="cite --style elsevier-vancouver" \
 	citebib="cite --bibtex" \
 	bibup="betterbib up -i" \
+	cman='man -M /usr/share/man/zh_CN' \
 	powerstat="powerstat -d 5 2"
 
 alias caj2pdf='_(){ caj2pdf convert "$1" -o "$2"; }; _'
@@ -89,14 +90,9 @@ alias \
 	yd="ydict -c -q" \
 	s="neofetch"
 
-
-#bym open
-alias bym-open="bym -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0|sed 's/ /\\ /g')\""
-
 alias -g G='| grep -i' # for use ls -l G do
 
 alias cdls="cd && ls"
-alias rep=project_wide_replace
 alias tmuxattach='tmux attach -t $(tmux ls | fzf)'
 
 alias frm="fzf | xargs rm -v"
@@ -123,7 +119,11 @@ alias ducks='du -chsh * | sort -rn | head -11'
 alias wea='curl wttr.in' #check weather
 
 #alias nvimb="tabbed -c vimb -e"
-alias nvimb="proxychains4 vimb"
+
+# chopin
+# chopin open
+#alias chopin-open="chopin -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
+alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
 
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
 alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
