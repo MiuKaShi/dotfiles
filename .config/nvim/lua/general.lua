@@ -71,22 +71,22 @@ opt.backspace  = 'indent,eol,start' -- 使 backspace 按您预期的方式工作
 opt.clipboard  = 'unnamedplus'
 opt.shell      = 'zsh'
 
-opt.timeoutlen    = 500
-opt.mouse         = 'a'
-opt.encoding      = 'UTF-8'
-opt.fileencoding  = 'UTF-8'
-opt.fileencodings = 'UTF-8'
-opt.termguicolors = true
-opt.lazyredraw    = true -- Speeds up scrolling
-opt.redrawtime    = 10000
-opt.regexpengine  = 1
-wo.signcolumn     = 'yes'
-opt.scrolloff     = 8 -- Always show at least one line above/below the cursor.
-opt.showmatch     = true
-opt.visualbell    = true
+opt.timeoutlen              = 500
+opt.mouse                   = 'a'
+opt.encoding                = 'UTF-8'
+opt.fileencoding            = 'UTF-8'
+opt.fileencodings           = 'UTF-8'
+opt.termguicolors           = true
+opt.lazyredraw              = true -- Speeds up scrolling
+opt.redrawtime              = 10000
+opt.regexpengine            = 1
+wo.signcolumn               = 'yes'
+opt.scrolloff               = 8 -- Always show at least one line above/below the cursor.
+opt.showmatch               = true
+opt.visualbell              = true
 -- opt.cursorline = true -- 高亮当前行
-opt.whichwrap = 'b,s,<,>,[,]'
-g.user_emmet_settings = {
+opt.whichwrap               = 'b,s,<,>,[,]'
+g.user_emmet_settings       = {
     javascript = { extends = 'jsx' },
     typescript = { extends = 'tsx' },
 }
@@ -99,8 +99,8 @@ g.EasyMotion_smartcase      = 1
 g.swoopAutoInsertMode       = 1
 g.user_emmet_install_global = 0
 -- gf 自定义
-g.GfList_map_n_gf = 'gf'
-g.GfList_map_v_gf = 'gf'
+g.GfList_map_n_gf           = 'gf'
+g.GfList_map_v_gf           = 'gf'
 
 vim.cmd [[
 let g:gtfo#terminals = { 'unix': 'st -e nvim' }

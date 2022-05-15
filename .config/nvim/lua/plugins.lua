@@ -126,7 +126,10 @@ return require('packer').startup(function(use)
         'ferdinandyb/bibtexcite.vim', -- bib 引用
         config = [[require('configs.bibtexcite')]],
     }
-    use { 'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()' } -- markdown preview
+    use { 'iamcco/markdown-preview.nvim', -- markdown preview
+        run = ':call mkdp#util#install()',
+        config = [[require('configs.mkdp')]],
+    }
     -- Task Warrior / Vim Wiki
     use {
         'nvim-neorg/neorg', -- org 模式
@@ -154,10 +157,7 @@ return require('packer').startup(function(use)
     -- File manager
     use { 'is0n/fm-nvim', config = [[require('configs.fm')]] }
     -- Others
-    use {
-        'folke/which-key.nvim', -- 快捷键 maps
-        config = [[require('configs.whichkey')]],
-    }
+    use {'folke/which-key.nvim'} -- 快捷键 maps
     use 'h-hg/fcitx.nvim' -- fcitx5 自动切换
     use 'wakatime/vim-wakatime'
     use 'numEricL/vim-gf-list' -- gf 自定义
