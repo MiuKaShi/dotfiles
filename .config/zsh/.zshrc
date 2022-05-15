@@ -134,7 +134,8 @@ lfcd () {
 
 bindkey -s '^l' '^ulfcd\n'
 
-bindkey -s '^o' '^ubym-open\n'
+#bindkey -s '^o' '^ubym-open\n'
+bindkey -s '^o' 'chopin-open\n'
 
 bindkey -s '^a' '^ubc -lq\n'
 
