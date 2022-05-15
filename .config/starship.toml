@@ -12,13 +12,17 @@ error_symbol = "[✗](bold red) "
 #[└─>](bold green) """
 
 [battery]
-full_symbol = "🔋"
-charging_symbol = "🔌"
-discharging_symbol = "⚡"
+full_symbol = ' '
+charging_symbol = ' '
+discharging_symbol = ' '
+unknown_symbol = ' '
+empty_symbol = ' '
+disabled = false
+format = '[$symbol$percentage]($style) '
 
 [[battery.display]]
-threshold = 30
-style = "bold red"
+threshold = 10
+style = 'red bold'
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -87,6 +91,38 @@ deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
+[sudo]
+format = '[as $symbol]($style)'
+symbol = 'sudo '
+style = 'bold blue'
+allow_windows = false
+disabled = true
+
+[java]
+disabled = false
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+style = 'red dimmed'
+symbol = 'java '
+detect_extensions = [
+    'java',
+    'class',
+    'jar',
+    'gradle',
+    'clj',
+    'cljc',
+]
+detect_files = [
+    'pom.xml',
+    'build.gradle.kts',
+    'build.sbt',
+    '.java-version',
+    'deps.edn',
+    'project.clj',
+    'build.boot',
+]
+detect_folders = []
+
 [ruby]
 symbol = " "
 
@@ -95,3 +131,27 @@ symbol = " "
 
 [python]
 symbol = " "
+
+[julia]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'julia '
+style = 'bold purple'
+disabled = false
+detect_extensions = ['jl']
+detect_files = [
+    'Project.toml',
+    'Manifest.toml',
+]
+detect_folders = []
+
+[lua]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'lua '
+style = 'bold blue'
+lua_binary = 'lua'
+disabled = false
+detect_extensions = ['lua']
+detect_files = ['.lua-version']
+detect_folders = ['lua']
