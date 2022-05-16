@@ -1,7 +1,6 @@
 #!/bin/sh
+# if can not work, it may be need run: cd /usr/include; sudo h2ph -r -l .
 readonly BASH_BINARY="$(which bash)"
-readonly REDRAW_COMMAND="toggle-preview+toggle-preview"
-readonly REDRAW_KEY="µ"
 declare -r -x DEFAULT_PREVIEW_POSITION="right"
 declare -r -x UEBERZUG_FIFO="$(mktemp --dry-run --suffix "fzf-$$-ueberzug")"
 declare -r -x PREVIEW_ID="preview"
@@ -99,7 +98,10 @@ function draw_preview {
 		calculate_position
 
 		case "$(file -Lb --mime-type -- "${@}")" in
-			text/*) 
+	        text/html) 
+				clear_preview
+	            lynx -display_charset=utf-8 -dump "${@}" ;;
+			text/* | */xml | application/json) 
 				clear_preview
 				bat --color=always ${@} 
 				;;
@@ -110,6 +112,9 @@ function draw_preview {
 				ffmpegthumbnailer -i "${@}" -o "$cache" -s 0
 				draw "$cache"
 				;;
+	        audio/* | application/octet-stream) 
+				clear_preview
+	            mediainfo "${@}" || exit 1 ;;
 		esac
 
 		case "${@}" in
@@ -125,23 +130,19 @@ function draw_preview {
 			*.pdf)
 				cache="$(hash_file "${@}")"
 				cache "$cache.jpg"
-
 				pdftoppm -f 1 -l 1 \
 					-scale-to-x "$default_x" \
 					-scale-to-y -1 \
 					-singlefile \
 					-jpeg \
 					-- "${@}" "$cache"
-
 				draw "$cache.jpg"
 				;;
 			*.docx|*.odt|*.epub) pandoc -s -t plain -- "${@}" ;;
 			*.svg)
 				cache="$(hash_file "${@}").jpg"
 				cache "$cache"
-
 				convert -- "${@}" "$cache"
-
 				draw "$cache"
 				;;
 		esac
@@ -165,13 +166,11 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     trap finalise EXIT
     parse_options "${@}"
 
-    print_on_winch "${REDRAW_KEY}${REDRAW_KEY}"
     start_ueberzug
 
     export -f draw_preview calculate_position
     SHELL="${BASH_BINARY}" \
         fzf -i --preview "draw_preview {}" \
             --preview-window "${DEFAULT_PREVIEW_POSITION}" \
-            --bind "${REDRAW_KEY}:${REDRAW_COMMAND}" \
             "${@}"
 fi

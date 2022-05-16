@@ -123,7 +123,9 @@ alias wea='curl wttr.in' #check weather
 # chopin
 # chopin open
 #alias chopin-open="chopin -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
-alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
+#alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
+
+alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\""
 
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
 alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
