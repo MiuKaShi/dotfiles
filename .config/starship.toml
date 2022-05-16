@@ -103,7 +103,7 @@ disabled = false
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 style = 'red dimmed'
-symbol = 'java '
+symbol = " "
 detect_extensions = [
     'java',
     'class',
@@ -123,32 +123,43 @@ detect_files = [
 ]
 detect_folders = []
 
-[ruby]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[python]
-symbol = " "
+[golang]
+symbol = " "
 
 [julia]
-format = '[$symbol($version )]($style)'
-version_format = 'v${raw}'
-symbol = 'julia '
-style = 'bold purple'
-disabled = false
-detect_extensions = ['jl']
-detect_files = [
-    'Project.toml',
-    'Manifest.toml',
-]
-detect_folders = []
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
 
 [lua]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = 'lua '
+symbol = ' '
 style = 'bold blue'
 lua_binary = 'lua'
 disabled = false

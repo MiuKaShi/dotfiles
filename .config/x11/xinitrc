@@ -14,5 +14,4 @@ else
 	. "$HOME/.xprofile"
 fi
 
-remaps & # run the remaps script, switching caps/esc and more; check it for more info
 ssh-agent dwm
