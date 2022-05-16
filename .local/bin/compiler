@@ -36,9 +36,11 @@ case "$ext" in
 	h) sudo make install ;;
 	java) javac -d classes "$file" && java -cp classes "${1%.*}" ;;
 	m) octave "$file" ;;
-	norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
+	# norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
+	norg) md2pdf -c ~/.pandoc/templates/mdpdf.css "$file" ;;
 	md)	if  [ -x "$(command -v pandoc)" ]; then
-			pandoc -f markdown -t pdf -o "$base".pdf "$file"
+			# pandoc --pdf-engine=xelatex --template notes -f markdown -t pdf -o "$base".pdf "$file"
+            md2pdf -c ~/.pandoc/templates/mdpdf.css "$file"
 		elif [ -x "$(command -v groffdown)" ]; then
 			groffdown -i "$file" | groff > "$base.pdf"
 		else
