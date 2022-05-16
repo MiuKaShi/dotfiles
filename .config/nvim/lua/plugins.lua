@@ -137,7 +137,10 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
         config = [[require('configs.neorg')]],
     }
-    use 'tpope/vim-surround' -- 修改包围符合
+	use {
+		'kylechui/nvim-surround', -- 修改包围符合
+		config = [[require('configs.surround')]]
+	}
     use 'wellle/targets.vim' -- 修改包围内内容
     -- search
     -- use 'easymotion/vim-easymotion' -- 单词搜索
