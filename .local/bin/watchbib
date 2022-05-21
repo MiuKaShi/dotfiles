@@ -1,4 +1,5 @@
 #! /bin/sh
-
-fswatch -o $HOME/paperbib/mybib.bib | xargs -n1 -I{} updatebib &
+# If already running, end this and running new instance
+pkill -f "updatebib" && exit
+echo $BIB | entr -p -n updatebib 
 
