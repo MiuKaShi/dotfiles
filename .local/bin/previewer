@@ -1,0 +1,33 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+name=$(basename "$file")
+fname="${name%.*}"
+base="/tmp/$fname"
+ext="${file##*.}"
+
+cd "$dir" || exit 1
+
+textype() { \
+	command="pdflatex"
+	( head -n5 "$file" | grep -qi 'xelatex' ) && command="xelatex"
+	$command --output-directory="$dir" "$base" &&
+	grep -qi addbibresource "$file" &&
+	biber --input-directory "$dir" "$base" &&
+	$command --output-directory="$dir" "$base" &&
+	$command --output-directory="$dir" "$base"
+}
+
+notify-send "Preview Update"
+
+case "$ext" in
+	norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
+	md) md2pdf -c ~/.pandoc/templates/mdpdf.css "$file" -o "$base".pdf ;;
+	mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf > "$base".pdf ;;
+	ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf > "$base".pdf ;;
+	org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
+	[rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
+	tex) textype "$file" ;;
+	*) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
+esac
