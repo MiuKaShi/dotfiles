@@ -8,15 +8,15 @@
  */
 
 configuration {
-	font:							"Hack NF Bold 10";
-    show-icons:                     true;
-	icon-theme: 					"Papirus";
-    display-drun: 					"";
-    drun-display-format:            "{name}";
-    disable-history:                false;
-    fullscreen:                     false;
-	hide-scrollbar: 				true;
-	sidebar-mode: 					false;
+	font:                "MonoLisa 12";
+    show-icons:          true;
+	icon-theme:          "Papirus";
+    display-drun:        "";
+    drun-display-format: "{name}";
+    disable-history:     false;
+    fullscreen:          false;
+	hide-scrollbar:      true;
+	sidebar-mode:        false;
 }
 
 @import "~/.config/rofi/themes/gruvbox-dark.rasi"
@@ -35,11 +35,11 @@ window {
 }
 
 prompt {
-    enabled: 						true;
-	padding: 						10px 15px 10px 15px;
-	background-color: 				@bg1;
-	text-color: 					#FFFFFF;
-	font:							"Iosevka Nerd Font 10";
+    enabled:          true;
+	padding:          10px 15px 10px 15px;
+	background-color: @bg1;
+	text-color:       #FFFFFF;
+	font:             "MonoLisa 12";
 }
 
 entry {
