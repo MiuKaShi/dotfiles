@@ -147,9 +147,9 @@ wk.register({
     },
     ['c']       = {
         name = '+Compiler',
-        c = { ':!compiler "<c-r>%"<CR>', 'Compiler files' },
+        c = { ':!compiler <c-r>%<CR><CR>', 'Compiler files' },
         o = { ':!opout <c-r>%<CR><CR>', 'Open compile files' },
-        p = { '<cmd>MarkdownPreviewToggle<CR>', 'Markdown Preview' },
+        p = { ':silent !st setsid autocomp % &<CR>', 'Preivew files' },
     },
     [';']       = {
         name = 'comment',
