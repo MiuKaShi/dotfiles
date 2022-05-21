@@ -35,17 +35,28 @@ case "$ext" in
 	go) go run "$file" ;;
 	h) sudo make install ;;
 	java) javac -d classes "$file" && java -cp classes "${1%.*}" ;;
-	m) octave "$file" ;;
+	m) matlab -nodesktop -nosplash -r "$file" ;;
 	# norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
 	norg) md2pdf -c ~/.pandoc/templates/mdpdf.css "$file" ;;
 	md)	if  [ -x "$(command -v pandoc)" ]; then
-			# pandoc --pdf-engine=xelatex --template notes -f markdown -t pdf -o "$base".pdf "$file"
-            md2pdf -c ~/.pandoc/templates/mdpdf.css "$file"
+            # md2pdf -c ~/.pandoc/templates/mdpdf.css "$file"
+            pandoc "$file" \
+			  -f markdown \
+			  --pdf-engine=xelatex \
+			  --template=notes \
+			  --metadata-file="/home/miuka/.pandoc/style/notes.yaml" \
+			  --include-in-header="/home/miuka/.pandoc/style/notes.tex" \
+			  --mathjax \
+			  --lua-filter=infobox.lua \
+			  --filter=pandoc-crossref \
+			  --citeproc \
+			  --bibliography="/home/miuka/paperbib/mybib_abb.bib" \
+			  --csl="/home/miuka/paperbib/tribology-international.csl" \
+			  -t pdf -o "$base".pdf
 		elif [ -x "$(command -v groffdown)" ]; then
 			groffdown -i "$file" | groff > "$base.pdf"
 		else
 			lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf
-			# pandoc -t ms --highlight-style=kate -s -o "$base".pdf "$file"
 		fi ; ;;
 	mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf > "$base".pdf ;;
 	ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf > "$base".pdf ;;

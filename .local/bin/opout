@@ -6,6 +6,8 @@
 
 basename="${1%.*}"
 
+[ ! -f "$basename".pdf ] && basename="/tmp/$(basename "$basename")"
+
 case "${*}" in
 	*.tex|*.m[dse]|*.[rR]md|*.mom|*.norg|*.[0-9]) setsid -f xdg-open "$basename".pdf >/dev/null 2>&1 ;;
 	*.html) setsid -f "$BROWSER" "$basename".html >/dev/null 2>&1 ;;

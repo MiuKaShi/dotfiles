@@ -1,4 +1,4 @@
 #! /bin/sh
 
-pkill -f "entr compiler" && exit
-echo "$1" | entr compiler "$1"
+pkill -f "entr -n previewer"
+echo "$1" | entr -n previewer "$1"
