@@ -6,6 +6,7 @@
 # dependencies:
 #  - https://github.com/dusty-phillips/opterator
 #  - poppler (pdftotext command)
+#  - pacman -S perl-image-exiftool
 #
 # usage:
 #  requires one or multiple pdfs file to operate on and prints a
