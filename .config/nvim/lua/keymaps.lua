@@ -148,8 +148,7 @@ wk.register({
     ['c']       = {
         name = '+Compiler',
         c = { ':!compiler <c-r>%<CR><CR>', 'Compiler files' },
-        o = { ':!opout <c-r>%<CR><CR>', 'Open compile files' },
-        p = { ':silent !st setsid autocomp % &<CR>', 'Preivew files' },
+        p = { ':silent !st autoprev <c-r>%<CR><CR>', 'Preivew files' },
     },
     [';']       = {
         name = 'comment',
