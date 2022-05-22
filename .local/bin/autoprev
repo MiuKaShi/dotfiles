@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# opout: "open output": A general handler for opening a file's intended output,
+# usually the pdf of a compiled document.  I find this useful especially
+# running from vim.
+
+file=$(readlink -f "$1")
+base="${file%.*}"
+ext="${file##*.}"
+name=$(basename "$file")
+fname="${name%.*}"
+
+open(){ \
+    case "$ext" in
+	    tex|m[dse]|[rR]md|mom|norg|[0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
+	    html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
+    esac
+}
+
+if [ -f "$base".pdf ]
+then
+    open "$base" && notify-send "Compile view"
+ else
+    base="/tmp/$fname"
+    pkill -f "entr -n previewer"
+    echo "$1" | setsid -f entr -n previewer "$1" 
+fi 

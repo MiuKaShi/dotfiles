@@ -1,4 +1,0 @@
-#! /bin/sh
-
-pkill -f "entr -n previewer"
-echo "$1" | entr -n previewer "$1"
