@@ -176,10 +176,10 @@ _G.packer_plugins = {
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/goyo.vim",
     url = "https://github.com/junegunn/goyo.vim"
   },
-  gruvbox = {
+  ["gruvbox.nvim"] = {
     loaded = true,
-    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/gruvbox",
-    url = "https://github.com/morhetz/gruvbox"
+    path = "/home/miuka/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
+    url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -397,42 +397,42 @@ time([[Config for vim-easy-align]], false)
 time([[Config for nvim-treesitter]], true)
 require('configs.treesitter')
 time([[Config for nvim-treesitter]], false)
+-- Config for: vim-pandoc-syntax
+time([[Config for vim-pandoc-syntax]], true)
+try_loadstring("\27LJ\2\nô\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Ô\1        augroup pandoc_syntax\n        autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown\n        autocmd BufNewFile,BufFilePre,BufRead *.md set syntax=markdown.pandoc\n        augroup END\n      \bcmd\bvim\0", "config", "vim-pandoc-syntax")
+time([[Config for vim-pandoc-syntax]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('configs.lualine')
 time([[Config for lualine.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require('configs.comment')
-time([[Config for Comment.nvim]], false)
--- Config for: vim-illuminate
-time([[Config for vim-illuminate]], true)
-require('configs.illuminate')
-time([[Config for vim-illuminate]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
--- Config for: rainbow
-time([[Config for rainbow]], true)
-require('configs.rainbow')
-time([[Config for rainbow]], false)
--- Config for: cmp-tabnine
-time([[Config for cmp-tabnine]], true)
-require('configs.tabnine')
-time([[Config for cmp-tabnine]], false)
 -- Config for: markdown-preview.nvim
 time([[Config for markdown-preview.nvim]], true)
 require('configs.mkdp')
 time([[Config for markdown-preview.nvim]], false)
+-- Config for: neoformat
+time([[Config for neoformat]], true)
+require('configs.neoformat')
+time([[Config for neoformat]], false)
+-- Config for: rainbow
+time([[Config for rainbow]], true)
+require('configs.rainbow')
+time([[Config for rainbow]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require('configs.comment')
+time([[Config for Comment.nvim]], false)
+-- Config for: cmp-tabnine
+time([[Config for cmp-tabnine]], true)
+require('configs.tabnine')
+time([[Config for cmp-tabnine]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 require('configs.indentline')
 time([[Config for indent-blankline.nvim]], false)
--- Config for: bibtexcite.vim
-time([[Config for bibtexcite.vim]], true)
-require('configs.bibtexcite')
-time([[Config for bibtexcite.vim]], false)
+-- Config for: vim-illuminate
+time([[Config for vim-illuminate]], true)
+require('configs.illuminate')
+time([[Config for vim-illuminate]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 require('configs.autopairs')
@@ -441,22 +441,22 @@ time([[Config for nvim-autopairs]], false)
 time([[Config for julia-vim]], true)
 require('configs.julia')
 time([[Config for julia-vim]], false)
--- Config for: neoformat
-time([[Config for neoformat]], true)
-require('configs.neoformat')
-time([[Config for neoformat]], false)
+-- Config for: stylua-nvim
+time([[Config for stylua-nvim]], true)
+require('configs.stylua')
+time([[Config for stylua-nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('configs.cmp')
 time([[Config for nvim-cmp]], false)
+-- Config for: bibtexcite.vim
+time([[Config for bibtexcite.vim]], true)
+require('configs.bibtexcite')
+time([[Config for bibtexcite.vim]], false)
 -- Config for: leap.nvim
 time([[Config for leap.nvim]], true)
 require('leap').set_default_keymaps()
 time([[Config for leap.nvim]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
@@ -473,14 +473,14 @@ time([[Config for telescope.nvim]], false)
 time([[Config for fm-nvim]], true)
 require('configs.fm')
 time([[Config for fm-nvim]], false)
--- Config for: vim-pandoc-syntax
-time([[Config for vim-pandoc-syntax]], true)
-try_loadstring("\27LJ\2\nô\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Ô\1        augroup pandoc_syntax\n        autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown\n        autocmd BufNewFile,BufFilePre,BufRead *.md set syntax=markdown.pandoc\n        augroup END\n      \bcmd\bvim\0", "config", "vim-pandoc-syntax")
-time([[Config for vim-pandoc-syntax]], false)
--- Config for: stylua-nvim
-time([[Config for stylua-nvim]], true)
-require('configs.stylua')
-time([[Config for stylua-nvim]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
 -- Config for: nvim-surround
 time([[Config for nvim-surround]], true)
 require('configs.surround')

@@ -34,8 +34,8 @@ return require('packer').startup(function(use)
     use { 'lewis6991/impatient.nvim', rocks = 'mpack' }
     -- }}}
     use 'wbthomason/packer.nvim'
-    -- theme
-    use 'morhetz/gruvbox' -- gruvbox 主题
+    -- theme 
+    use 'ellisonleao/gruvbox.nvim'
     use {
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]],
@@ -110,6 +110,7 @@ return require('packer').startup(function(use)
         config = [[require('configs.lualine')]],
     }
     -- Indent
+
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = [[require('configs.indentline')]],

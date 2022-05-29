@@ -78,7 +78,6 @@ vmap('ca',         ":<C-U>lua require('lspsaga.codeaction').range_code_action()<
 nmap('gh',         "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>") -- 异步查找单词定义、引用
 tmap('<ESC>',      '<C-\\><C-n>:Lspsaga close_floaterm<CR>') -- 关闭终端
 
-
 local wk = require 'which-key'
 wk.register({
     ['w']       = {
@@ -156,6 +155,7 @@ wk.register({
         f = { '<cmd>lua vim.lsp.buf.range_formatting()<cr>', "format", noremap = false, mode = "v" },
     },
     t           = { ':Lspsaga open_floaterm<CR>', 'Open Terminal(exit with <ESC>)' }, -- 打开终端
+    h           = { ':call ToggleHiddenAll()<CR>]', 'Toggle Statusbar/LSP' }, -- 项目内查找
     ['*']       = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", 'Search reference in current project' }, -- lsp 查找引用
     ['/']       = { ':Telescope live_grep<CR>', 'Fuzzy search in project' }, -- 项目内查找
     ['!']       = { ':Telescope help_tags theme=ivy<CR>', 'Help commands by fuzzy search' }, -- vim帮助查找

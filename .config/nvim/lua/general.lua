@@ -1,6 +1,5 @@
 local g   = vim.g
 local opt = vim.opt
-local o   = vim.o
 local wo  = vim.wo
 
 -- vim.cmd('silent! colorscheme neon')
@@ -38,6 +37,7 @@ opt.number         = true
 opt.textwidth      = 120 -- Line wrap (number of cols)
 opt.linebreak      = true
 opt.showbreak      = '↳ '
+opt.title          = true
 
 -- search
 opt.hlsearch   = true -- 保持匹配项目高亮
@@ -57,21 +57,26 @@ opt.smarttab    = true -- Enable smart-tabs (<Tab> will always use sw)
 
 opt.autoindent  = true -- Auto-indent new lines
 opt.smartindent = false -- Disable smart-indent
-opt.laststatus  = 3
 opt.pumheight   = 10
+
+-- Hide bottom status
+opt.laststatus = 0
+opt.ruler      = false
+opt.showmode   = false
+opt.showcmd    = false
 
 -- backups
 opt.undofile   = true
 opt.backup     = true
 opt.swapfile   = false
-opt.ruler      = true
 opt.undolevels = 1000
 opt.updatetime = 100 -- default updatetime 4000ms is not good for async update (vim/signify)
 opt.backspace  = 'indent,eol,start' -- 使 backspace 按您预期的方式工作
 opt.clipboard  = 'unnamedplus'
 opt.shell      = 'zsh'
-
+--
 opt.timeoutlen              = 500
+opt.go                      = 'a'
 opt.mouse                   = 'a'
 opt.encoding                = 'UTF-8'
 opt.fileencoding            = 'UTF-8'
@@ -80,11 +85,10 @@ opt.termguicolors           = true
 opt.lazyredraw              = true -- Speeds up scrolling
 opt.redrawtime              = 10000
 opt.regexpengine            = 1
-wo.signcolumn               = 'yes'
 opt.scrolloff               = 8 -- Always show at least one line above/below the cursor.
 opt.showmatch               = true
 opt.visualbell              = true
--- opt.cursorline = true -- 高亮当前行
+-- opt.cursorline              = true -- 高亮当前行
 opt.whichwrap               = 'b,s,<,>,[,]'
 g.user_emmet_settings       = {
     javascript = { extends = 'jsx' },
