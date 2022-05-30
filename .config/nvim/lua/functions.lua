@@ -13,7 +13,7 @@ R = function(name)
     return require(name)
 end
 
-
+-- LSP toggle
 vim.cmd [[
 let s:hidden_all = 1
 lua vim.diagnostic.disable()
