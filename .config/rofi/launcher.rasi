@@ -8,7 +8,7 @@
  */
 
 configuration {
-	font:                "MonoLisa 12";
+	font:                "MonoLisa 16";
     show-icons:          true;
 	icon-theme:          "Papirus";
     display-drun:        "";
@@ -39,7 +39,7 @@ prompt {
 	padding:          10px 15px 10px 15px;
 	background-color: @bg1;
 	text-color:       #FFFFFF;
-	font:             "MonoLisa 12";
+	font:             "MonoLisa 16";
 }
 
 entry {

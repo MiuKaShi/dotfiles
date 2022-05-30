@@ -2,7 +2,7 @@ configuration {
     display-drun: "Applications:";
     display-window: "Windows:";
     drun-display-format: "{name}";
-	font: "MonoLisa 12";
+	font: "MonoLisa 16";
 	location: 0;
 	yoffset: -150;
 	matching: "fuzzy";
