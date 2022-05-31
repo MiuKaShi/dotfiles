@@ -34,21 +34,24 @@ return require('packer').startup(function(use)
     use { 'lewis6991/impatient.nvim', rocks = 'mpack' }
     -- }}}
     use 'wbthomason/packer.nvim'
-    -- theme 
+    -- theme
     use 'ellisonleao/gruvbox.nvim'
     use {
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]],
     }
+
     -- LSP
     use 'neovim/nvim-lspconfig' -- lsp 配置插件
     use 'onsails/lspkind-nvim' -- vscode-like lsp 提示
     use { 'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]] } -- LSP UI
+
     -- Format
     use { 'sbdchd/neoformat', config = [[require('configs.neoformat')]] }
     use { 'junegunn/vim-easy-align', config = [[require('configs.easyalign')]] }
     use { 'ckipp01/stylua-nvim', config = [[require('configs.stylua')]] }
-    -- Highlight
+
+    -- Syntax
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -72,6 +75,7 @@ return require('packer').startup(function(use)
     use { 'RRethy/vim-illuminate', config = [[require('configs.illuminate')]] } -- 高亮选中单词
     use 'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use 'tridactyl/vim-tridactyl' -- tridactyl 高亮
+
     -- Completion
     use {
         'hrsh7th/nvim-cmp',
@@ -102,27 +106,34 @@ return require('packer').startup(function(use)
         config = [[require('configs.copilot')]],
     }
 
-    -- comment
+    -- Comment
     use { 'numToStr/Comment.nvim', config = [[require('configs.comment')]] }
-    -- line buffer
+
+    -- GUI
     use {
         'nvim-lualine/lualine.nvim', -- 底部状态栏
         config = [[require('configs.lualine')]],
     }
-    -- Indent
+    use {
+        'declancm/cinnamon.nvim',
+        config = [[require('configs.cinnamon')]], -- smooth scroll
+    }
 
+    -- Writting
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = [[require('configs.indentline')]],
-    }
-    -- Julia
-    use { 'JuliaEditorSupport/julia-vim', config = [[require('configs.julia')]] }
-    -- writting
+    } -- Indent
     use {
         'junegunn/limelight.vim',
         requires = { 'junegunn/goyo.vim' },
         config = [[require('configs.limelight')]],
     } -- another zen mode
+    use {
+        'kylechui/nvim-surround', -- 修改包围符合
+        config = [[require('configs.surround')]]
+    }
+    use 'wellle/targets.vim' -- 修改包围内内容
     use {
         'ferdinandyb/bibtexcite.vim', -- bib 引用
         config = [[require('configs.bibtexcite')]],
@@ -131,19 +142,14 @@ return require('packer').startup(function(use)
         run = ':call mkdp#util#install()',
         config = [[require('configs.mkdp')]],
     }
-    -- Task Warrior / Vim Wiki
     use {
         'nvim-neorg/neorg', -- org 模式
         tag = '0.0.11',
         requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
         config = [[require('configs.neorg')]],
     }
-	use {
-		'kylechui/nvim-surround', -- 修改包围符合
-		config = [[require('configs.surround')]]
-	}
-    use 'wellle/targets.vim' -- 修改包围内内容
-    -- search
+
+    -- Search
     -- use 'easymotion/vim-easymotion' -- 单词搜索
     use { 'ggandor/leap.nvim', config = [[require('leap').set_default_keymaps()]] }
     use { 'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()' } -- fuzzy 查找
@@ -158,10 +164,15 @@ return require('packer').startup(function(use)
     }
     use 'nvim-telescope/telescope-file-browser.nvim'
     use { 'nvim-telescope/telescope-ui-select.nvim' } -- 选择框 vim.ui.select
+
     -- File manager
     use { 'is0n/fm-nvim', config = [[require('configs.fm')]] }
+
+    -- Language
+    use { 'JuliaEditorSupport/julia-vim', config = [[require('configs.julia')]] } --Julia
+
     -- Others
-    use {'folke/which-key.nvim'} -- 快捷键 maps
+    use { 'folke/which-key.nvim' } -- 快捷键 maps
     use 'h-hg/fcitx.nvim' -- fcitx5 自动切换
     use 'wakatime/vim-wakatime'
     use 'numEricL/vim-gf-list' -- gf 自定义
