@@ -88,7 +88,8 @@ alias \
 	p="pacman" \
 	clc="clear" \
 	yd="ydict -c -q" \
-	s="neofetch"
+	s="neofetch" \
+	clashweb="xdg-open http://clash.razord.top/#/proxies"
 
 alias -g G='| grep -i' # for use ls -l G do
 
