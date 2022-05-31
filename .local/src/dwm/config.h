@@ -56,16 +56,16 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class    instance      title          tags mask    isfloating   isterminal  noswallow  monitor */
-    { "flameshot", NULL,          NULL,         0,           1,        0,       1,         -1         },
-    { "Ulauncher", NULL,          NULL,         0,           1,        0,       1,         -1         },
-    { "ulauncher", NULL,          "",           0,           1,        0,       1,         -1         },
-    { "Zoom",      NULL,          NULL,         0,           1,        0,       1,         -1         },
-    { "Gimp",      NULL,          NULL,         1 << 8,      0,        0,       0,         -1         },
-    { TERMCLASS,   NULL,          NULL,         0,           0,        1,       0,         -1         },
-    { TERMCLASS,   "bg",          NULL,         1 << 7,      0,        1,       0,         -1         },
-    { TERMCLASS,   "spterm",      NULL,         SPTAG(0),        1,        1,       0,         -1     },
-    { TERMCLASS,   "spcalc",      NULL,         SPTAG(1),        1,        1,       0,         -1     },
-    { NULL,        NULL,          "Event Tester",       0,           0,        0,       1,         -1 },
+    {"flameshot", NULL,          NULL,         0,           1,        0,       1,         -1         },
+    {"Ulauncher", NULL,          NULL,         0,           1,        0,       1,         -1         },
+    {"ulauncher", NULL,          "",           0,           1,        0,       1,         -1         },
+    {"Zoom",      NULL,          NULL,         0,           1,        0,       1,         -1         },
+    {"Gimp",      NULL,          NULL,         1 << 8,      0,        0,       0,         -1         },
+    {TERMCLASS,   NULL,          NULL,         0,           0,        1,       0,         -1         },
+    {TERMCLASS,   "bg",          NULL,         1 << 7,      0,        1,       0,         -1         },
+    {TERMCLASS,   "spterm",      NULL,         SPTAG(0),        1,        1,       0,         -1     },
+    {TERMCLASS,   "spcalc",      NULL,         SPTAG(1),        1,        1,       0,         -1     },
+    {NULL,        NULL,          "Event Tester",       0,           0,        0,       1,         -1 },
 };
 
 /* layout(s) */
@@ -176,7 +176,7 @@ static Key keys[] = {
     { MODKEY | ShiftMask, XK_w,       spawn,      SHCMD(TERMINAL " -e sudo nmtui") },
     { MODKEY,             XK_e,       spawn,      SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") },
     { MODKEY | ShiftMask, XK_e,       spawn,      SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },
-    { MODKEY,             XK_r,       spawn,      SHCMD(TERMINAL " -e lfub") },
+    { MODKEY,             XK_r,       spawn,      SHCMD(TERMINAL " -e lfrun") },
     { MODKEY | ShiftMask, XK_r,       spawn,      SHCMD(TERMINAL " -e htop") },
     { MODKEY,             XK_t,       setlayout, { .v  = &layouts[0] } }, /* tile */
     { MODKEY | ShiftMask, XK_t,       setlayout, { .v  = &layouts[1] } }, /* bstack */
