@@ -41,6 +41,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 for _, server in ipairs {
     'pyright',
     'clangd',
+    'fortls',
     'cssls',
     'gopls',
     'jsonls',
