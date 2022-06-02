@@ -12,6 +12,9 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+map <C-Z> feedkeys ":! zotadd % <Return>"
+map <C-O> feedkeys ":! zathura $FILE <Return>"
+map <C-R> feedkeys ":! st -e lf $FILE <Return>"
 
 set notification-error-bg       "#af5f5f" # Red
 set notification-error-fg       "#ddd0c0" # Foreground
