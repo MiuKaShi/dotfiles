@@ -36,7 +36,7 @@ opt.relativenumber = true -- Show relative line numbers
 opt.number         = true
 opt.textwidth      = 120 -- Line wrap (number of cols)
 opt.linebreak      = true
-opt.showbreak      = '↳ '
+opt.showbreak      = '> '
 opt.title          = true
 
 -- search
@@ -45,8 +45,6 @@ opt.smartcase  = true
 opt.ignorecase = true
 opt.incsearch  = true -- 搜索时高亮
 opt.copyindent = true
-opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-opt.grepprg    = 'rg --vimgrep --no-heading --smart-case'
 
 -- indention & tab
 opt.tabstop     = 4 -- Ensure files with tabs look the same
