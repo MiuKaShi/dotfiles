@@ -13,6 +13,7 @@ map J zoom out
 map i recolor
 map p print
 map <C-Z> feedkeys ":! zotadd % <Return>"
+map <C-D> feedkeys ":! trash $FILE <Return>"
 map O feedkeys ":! zathura $FILE <Return>"
 map L feedkeys ":! st -e lf $FILE <Return>"
 map C feedkeys ":! pdftools $FILE -c <Return>"
