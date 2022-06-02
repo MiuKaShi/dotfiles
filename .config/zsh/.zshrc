@@ -134,12 +134,11 @@ lfcd () {
 
 bindkey -s '^l' '^ulfcd\n'
 
-#bindkey -s '^o' '^ubym-open\n'
-bindkey -s '^o' 'chopin-open\n'
+bindkey -s '^t' '^umyyt\n'
+
+bindkey -s '^o' '^uchopin-open\n'
 
 bindkey -s '^a' '^ubc -lq\n'
-
-bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
 
 bindkey '^[[P' delete-char
 
