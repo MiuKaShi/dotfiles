@@ -50,6 +50,13 @@ alias \
 	664='chmod 664' \
 	775='chmod 775'
 
+#handlr aliases
+alias \
+    hg='handlr get' \
+    hl='handlr list' \
+    ho='handlr open' \
+    hs='handlr set'
+
 # Colorize commands when possible.
 alias \
 	grep="grep --color=auto" \
