@@ -57,8 +57,7 @@ map J bottom
 map R reload
 #map C clear
 map U unselect
-map o &mimeopen $f
-map O $mimeopen --ask $f
+map O &handlr open $f
 map =      chmod+x
 map -      chmod-x
 
