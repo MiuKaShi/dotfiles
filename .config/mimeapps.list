@@ -1,27 +1,32 @@
-[Default Applications]
-text/x-shellscript=text.desktop;
-x-scheme-handler/magnet=torrent.desktop;
-application/x-bittorrent=torrent.desktop;
-x-scheme-handler/mailto=firefox.desktop
-text/plain=text.desktop;
-application/postscript=pdf.desktop;
-application/pdf=pdf.desktop;
-image/png=img.desktop;
-image/jpeg=img.desktop;
-image/gif=img.desktop;
-application/rss+xml=rss.desktop
-video/x-matroska=video.desktop
-x-scheme-handler/lbry=lbry.desktop
-inode/directory=file.desktop
-x-scheme-handler/rdp=org.remmina.Remmina.desktop
-x-scheme-handler/spice=org.remmina.Remmina.desktop
-x-scheme-handler/vnc=org.remmina.Remmina.desktop
-x-scheme-handler/remmina=org.remmina.Remmina.desktop
-application/x-remmina=org.remmina.Remmina.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-UZ25D1.desktop
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=wps-office-wps.desktop
-x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
-application/lrf=calibre-lrfviewer.desktop
-
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-UZ25D1.desktop;
+
+[Default Applications]
+application/lrf=calibre-lrfviewer.desktop;
+application/pdf=pdf.desktop;wps-office-pdf.desktop;mcomix.desktop;
+application/postscript=pdf.desktop;
+application/rss+xml=rss.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=gnumeric.desktop;wps-office-et.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=wps-office-wps.desktop;
+application/x-bittorrent=torrent.desktop;
+application/x-md=visual-studio-code.desktop;
+application/x-remmina=org.remmina.Remmina.desktop;
+image/gif=img.desktop;
+image/jpeg=img.desktop;
+image/png=img.desktop;
+inode/directory=file.desktop;
+text/markdown=typora.desktop;obsidian.desktop;
+text/plain=text.desktop;typora.desktop;visual-studio-code.desktop;atom.desktop;spyder.desktop;
+text/x-markdown=typora.desktop;
+text/x-python3=spyder.desktop;
+text/x-script.python=spyder.desktop;
+text/x-shellscript=text.desktop;
+x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop;
+x-scheme-handler/magnet=torrent.desktop;
+x-scheme-handler/mailto=firefox.desktop;
+x-scheme-handler/rdp=org.remmina.Remmina.desktop;
+x-scheme-handler/remmina=org.remmina.Remmina.desktop;
+x-scheme-handler/spice=org.remmina.Remmina.desktop;
+x-scheme-handler/terminal=st.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-UZ25D1.desktop;
+x-scheme-handler/vnc=org.remmina.Remmina.desktop;
