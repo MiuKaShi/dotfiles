@@ -39,9 +39,9 @@ open(){ \
 #check if file is opening
 
 if lsof -t "$base".pdf >/dev/null 2>&1; then
-    notify-send "Update Preview"
+    notify-send -t 1000 "Update Preview"
 else
-    open "$base" && notify-send "Open Preview"
+    open "$base" && notify-send -t 1000 "Open Preview"
 fi
 
 
