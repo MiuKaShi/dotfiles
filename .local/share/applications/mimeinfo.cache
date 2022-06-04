@@ -1,9 +1,3 @@
 [MIME Cache]
-application/x-md=nutstore-lightapp.desktop;
-application/x-nbmx=nutstore-lightapp.desktop;
-application/x-ngm=nutstore-lightapp.desktop;
-application/x-nol=nutstore-lightapp.desktop;
-application/x-wine-extension-qgi=wine-extension-qgi.desktop;
-image/*=ImageJ2.desktop;
-text/markdown=nutstore-lightapp.desktop;
-text/x-markdown=nutstore-lightapp.desktop;
+text/markdown=typora.desktop;
+text/x-markdown=typora.desktop;

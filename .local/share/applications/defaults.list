@@ -1,5 +1,2 @@
 [Default Applications]
-application/x-ngm=nutstore-lightapp.desktop
-application/x-nol=nutstore-lightapp.desktop
-application/x-md=nutstore-lightapp.desktop
-application/x-nbmx=nutstore-lightapp.desktop
+application/x-md=typora.desktop
