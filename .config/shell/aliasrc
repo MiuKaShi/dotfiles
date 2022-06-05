@@ -54,6 +54,7 @@ alias \
 alias \
     hg='handlr get' \
     hl='handlr list' \
+    ha='handlr add' \
     ho='handlr open' \
     hs='handlr set'
 
