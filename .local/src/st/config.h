@@ -29,6 +29,9 @@ char *vtiden = "\033[?6c";
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
 static float chscale = 1.0;
+/* Character rendering offsets in pixels */
+static short cxoffset = 0;
+static short cyoffset = 0;
 
 /*
  * word delimiter string
@@ -244,26 +247,26 @@ static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NUL
 
 static Shortcut shortcuts[] = {
     /* mask                 keysym          function        argument */
-    { XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-    { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-    { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-    { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-    { MODKEY,               XK_c,           clipcopy,       {.i =  0} },
-    { MODKEY,               XK_v,           clippaste,      {.i =  0} },
-    { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-    { TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-    { MODKEY,               XK_k,           zoom,           {.f = +1} },
-    { MODKEY,               XK_j,           zoom,           {.f = -1} },
-    { TERMMOD,              XK_minus,       zoomreset,      {.f =  0} },
-    { MODKEY,               XK_comma,       kscrollup,      {.i = 1} },
-    { MODKEY,               XK_period,      kscrolldown,    {.i = 1} },
-    { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-    { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
-    { MODKEY,       XK_minus,   changealpha,    {.f = -0.05} },
-    { MODKEY,       XK_equal,   changealpha,    {.f = +0.05} },
-    { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
-    { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-    { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+    { XK_ANY_MOD,           XK_Break,    sendbreak,     {.i =  0} },
+    { ControlMask,          XK_Print,    toggleprinter, {.i =  0} },
+    { ShiftMask,            XK_Print,    printscreen,   {.i =  0} },
+    { XK_ANY_MOD,           XK_Print,    printsel,      {.i =  0} },
+    { MODKEY,               XK_c,        clipcopy,      {.i =  0} },
+    { MODKEY,               XK_v,        clippaste,     {.i =  0} },
+    { ShiftMask,            XK_Insert,   selpaste,      {.i =  0} },
+    { TERMMOD,              XK_Num_Lock, numlock,       {.i =  0} },
+    { MODKEY,               XK_k,        zoom,          {.f = +1} },
+    { MODKEY,               XK_j,        zoom,          {.f = -1} },
+    { TERMMOD,              XK_minus,    zoomreset,     {.f =  0} },
+    { MODKEY,               XK_comma,    kscrollup,     {.i = 1} },
+    { MODKEY,               XK_period,   kscrolldown,   {.i = 1} },
+    { MODKEY,               XK_u,        kscrollup,     {.i = -1} },
+    { MODKEY,               XK_d,        kscrolldown,   {.i = -1} },
+    { MODKEY,               XK_minus,    changealpha,   {.f = -0.05} },
+    { MODKEY,               XK_equal,    changealpha,   {.f = +0.05} },
+    { MODKEY,               XK_l,        externalpipe,  {.v = openurlcmd } },
+    { MODKEY,               XK_y,        externalpipe,  {.v = copyurlcmd } },
+    { MODKEY,               XK_o,        externalpipe,  {.v = copyoutput } },
 };
 
 /*
