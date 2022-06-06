@@ -1,4 +1,5 @@
 # 【注意】 :后要有空格
+# copy this file to lpic.yml
 # 选择使用的云存储
 # aliyun/tencent/qiniu
 use: aliyun
