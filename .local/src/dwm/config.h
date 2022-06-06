@@ -251,7 +251,7 @@ static Key keys[] = {
     { MODKEY,             XK_Insert,    spawn,     SHCMD("xdotool type $(grep -v '^#' ~/.local/share/larbs/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 
     { MODKEY,             XK_F1,      spawn,      {.v = (const char*[]) { "flameshot", "gui", NULL }} },
-    { MODKEY,             XK_F2,      spawn,      {.v = (const char*[]) { "tutorialvids", NULL } } },
+    { MODKEY,             XK_F2,      spawn,      {.v = (const char*[]) { "lpic", "-c", NULL }} },
     { MODKEY,             XK_F3,      spawn,      {.v = (const char*[]) { "displayselect", NULL } } },
     { MODKEY,             XK_F4,      spawn,      SHCMD(TERMINAL " -e pulsemixer; kill -44 $(pidof dwmblocks)") },
     /* { MODKEY,            XK_F5,      xrdb,       {.v = NULL } }, */
