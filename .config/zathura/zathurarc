@@ -12,13 +12,13 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
-map <C-Z> feedkeys ":! zotadd % <Return>"
-map <C-D> feedkeys ":! trash $FILE <Return>"
-map O feedkeys ":! zathura $FILE <Return>"
-map L feedkeys ":! st -e lf $FILE <Return>"
-map C feedkeys ":! pdftools $FILE -c <Return>"
-map X feedkeys ":! pdftools $FILE -r "
-map N feedkeys ":! pdftools $FILE <Return>"
+map <C-z> feedkeys ":! zotadd % <Return>" # Add to zotero
+map <C-l> feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
+map <C-x> feedkeys ":! trash $FILE <Return>" # Delete pdf
+map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
+map X feedkeys ":! pdftools $FILE -r " # Remove pdf page
+map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
+map N feedkeys ":! pdftools $FILE <Return>" # Show pdf page
 
 set notification-error-bg       "#af5f5f" # Red
 set notification-error-fg       "#ddd0c0" # Foreground
