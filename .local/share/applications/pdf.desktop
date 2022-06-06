@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=PDF reader
+Name=zathura
 Exec=/usr/bin/zathura %u
 Icon=/home/miuka/.config/icons/pdf.png
