@@ -135,7 +135,7 @@ return require('packer').startup(function(use)
     }
     use 'wellle/targets.vim' -- 修改包围内内容
     use {
-        'ferdinandyb/bibtexcite.vim', -- bib 引用
+        'MiuKaShi/bibtexcite.vim', -- bib 引用
         config = [[require('configs.bibtexcite')]],
     }
     use { 'iamcco/markdown-preview.nvim', -- markdown preview
@@ -175,7 +175,7 @@ return require('packer').startup(function(use)
     use { 'folke/which-key.nvim' } -- 快捷键 maps
     use 'h-hg/fcitx.nvim' -- fcitx5 自动切换
     use 'wakatime/vim-wakatime'
-    use 'numEricL/vim-gf-list' -- gf 自定义
+    use 'MiuKaShi/vim-gf-list' -- gf 自定义
     use 'justinmk/vim-gtfo' -- gf打开文件
     use 'skywind3000/asyncrun.vim' -- 异步运行
     if packer_bootstrap then

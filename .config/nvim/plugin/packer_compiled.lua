@@ -90,7 +90,7 @@ _G.packer_plugins = {
     config = { "require('configs.bibtexcite')" },
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/bibtexcite.vim",
-    url = "https://github.com/ferdinandyb/bibtexcite.vim"
+    url = "https://github.com/MiuKaShi/bibtexcite.vim"
   },
   ["cinnamon.nvim"] = {
     config = { "require('configs.cinnamon')" },
@@ -351,7 +351,7 @@ _G.packer_plugins = {
   ["vim-gf-list"] = {
     loaded = true,
     path = "/home/miuka/.local/share/nvim/site/pack/packer/start/vim-gf-list",
-    url = "https://github.com/numEricL/vim-gf-list"
+    url = "https://github.com/MiuKaShi/vim-gf-list"
   },
   ["vim-gtfo"] = {
     loaded = true,
@@ -388,10 +388,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: bibtexcite.vim
+time([[Config for bibtexcite.vim]], true)
+require('configs.bibtexcite')
+time([[Config for bibtexcite.vim]], false)
+-- Config for: rainbow
+time([[Config for rainbow]], true)
+require('configs.rainbow')
+time([[Config for rainbow]], false)
+-- Config for: cinnamon.nvim
+time([[Config for cinnamon.nvim]], true)
+require('configs.cinnamon')
+time([[Config for cinnamon.nvim]], false)
+-- Config for: fm-nvim
+time([[Config for fm-nvim]], true)
+require('configs.fm')
+time([[Config for fm-nvim]], false)
 -- Config for: stylua-nvim
 time([[Config for stylua-nvim]], true)
 require('configs.stylua')
 time([[Config for stylua-nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require('configs.autopairs')
+time([[Config for nvim-autopairs]], false)
 -- Config for: julia-vim
 time([[Config for julia-vim]], true)
 require('configs.julia')
@@ -400,10 +420,10 @@ time([[Config for julia-vim]], false)
 time([[Config for nvim-cmp]], true)
 require('configs.cmp')
 time([[Config for nvim-cmp]], false)
--- Config for: leap.nvim
-time([[Config for leap.nvim]], true)
-require('leap').set_default_keymaps()
-time([[Config for leap.nvim]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+require('configs.neorg')
+time([[Config for neorg]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('configs.colorizer')
@@ -416,10 +436,10 @@ time([[Config for limelight.vim]], false)
 time([[Config for telescope.nvim]], true)
 require('configs.telescope')
 time([[Config for telescope.nvim]], false)
--- Config for: fm-nvim
-time([[Config for fm-nvim]], true)
-require('configs.fm')
-time([[Config for fm-nvim]], false)
+-- Config for: indent-blankline.nvim
+time([[Config for indent-blankline.nvim]], true)
+require('configs.indentline')
+time([[Config for indent-blankline.nvim]], false)
 -- Config for: nvim-surround
 time([[Config for nvim-surround]], true)
 require('configs.surround')
@@ -440,6 +460,10 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for Comment.nvim]], true)
 require('configs.comment')
 time([[Config for Comment.nvim]], false)
+-- Config for: leap.nvim
+time([[Config for leap.nvim]], true)
+require('leap').set_default_keymaps()
+time([[Config for leap.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('configs.lualine')
@@ -468,30 +492,6 @@ time([[Config for vim-illuminate]], false)
 time([[Config for neoformat]], true)
 require('configs.neoformat')
 time([[Config for neoformat]], false)
--- Config for: bibtexcite.vim
-time([[Config for bibtexcite.vim]], true)
-require('configs.bibtexcite')
-time([[Config for bibtexcite.vim]], false)
--- Config for: rainbow
-time([[Config for rainbow]], true)
-require('configs.rainbow')
-time([[Config for rainbow]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-require('configs.neorg')
-time([[Config for neorg]], false)
--- Config for: cinnamon.nvim
-time([[Config for cinnamon.nvim]], true)
-require('configs.cinnamon')
-time([[Config for cinnamon.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require('configs.autopairs')
-time([[Config for nvim-autopairs]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require('configs.indentline')
-time([[Config for indent-blankline.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
