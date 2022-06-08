@@ -41,7 +41,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 for _, server in ipairs {
     'pyright',
     'clangd',
-    'fortls',
     'cssls',
     'gopls',
     'jsonls',
@@ -52,6 +51,7 @@ for _, server in ipairs {
     'vimls',
     'julials',
     'sumneko_lua',
+    'fortls',
 } do
     require('lsp.languages.' .. server).setup(on_attach, capabilities)
 end
