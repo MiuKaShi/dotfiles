@@ -107,6 +107,10 @@ export CM_SELECTIONS="clipboard"
 export CM_OUTPUT_CLIP=1
 export CM_MAX_CLIPS=10
 
+# pfetch
+export PF_INFO="ascii title os kernel wm editor shell uptime pkgs memory palette"
+export PF_SEP=":"
+export PF_COLOR=1
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
