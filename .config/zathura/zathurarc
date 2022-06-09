@@ -18,7 +18,6 @@ map <C-x> feedkeys ":! trash $FILE <Return>" # Delete pdf
 map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
 map X feedkeys ":! pdftools $FILE -r " # Remove pdf page
 map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
-map N feedkeys ":! pdftools $FILE <Return>" # Show pdf page
 
 set notification-error-bg       "#af5f5f" # Red
 set notification-error-fg       "#ddd0c0" # Foreground
