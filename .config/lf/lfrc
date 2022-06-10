@@ -58,8 +58,8 @@ map R reload
 #map C clear
 map U unselect
 map O &handlr open $f
-map =      chmod+x
-map -      chmod-x
+map = chmod+x 
+map - chmod-x
 
 # show documentation
 map g? $lf -doc | less
@@ -400,9 +400,9 @@ map zc ${{
 }}
 
 
-cmd rename-reference $paper -r "$f"
+cmd renamepaper $pdfrenamer "$f"
 
-map rx rename-reference
+map rp renamepaper
 
 # Edit filename before the extension
 map re ${{
