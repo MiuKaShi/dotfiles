@@ -1,0 +1,19 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+dir=${file%/*}
+
+cd $dir
+
+function getbib {
+    anystyle -f bib find --no-layout $file > $fname.bib
+    notify-send -t 3000 "Bibtex" "Bibtex file created"
+}
+
+if [[ ! -f $fname.bib ]]; then
+    getbib 
+fi
+
+nvim $fname.bib 

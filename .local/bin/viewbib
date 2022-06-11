@@ -1,0 +1,15 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+dir=${file%/*}
+
+cd $dir
+
+if [[ ! -f $fname.bib ]]; then
+    anystyle -f bib find --no-layout $file > $fname.bib
+fi
+
+bib2html $dir/$fname.bib
+
