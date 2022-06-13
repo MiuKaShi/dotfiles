@@ -8,7 +8,8 @@ dir=${file%/*}
 cd $dir
 
 function getbib {
-    anystyle -f bib find --no-layout $file > $fname.bib
+    curl -v -H "Accept: application/x-bibtex" --form input=@$file 104.237.11.64:8070/api/processReferences > $fname.bib
+    # anystyle -f bib find --no-layout $file > $fname.bib
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 }
 

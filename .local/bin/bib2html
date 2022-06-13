@@ -10,9 +10,9 @@ cd $dir
 function gethtml {
     mv $file tmp1.bib  
     betterbib up tmp1.bib > tmp2.bib
-    betterbib f --drop url --drop source --drop note --drop issn --drop citation-number tmp2.bib > $file
+    betterbib f --drop url --drop source --drop note --drop issn --drop date --drop publisher --drop citation-number tmp2.bib > $file
     bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css $file
-    notify-send -t 3000 "BibtoHtml" "Bib Html created"
+    notify-send -t 3000 "ViewBib" "Bib Html created"
     rm -rf tmp1.bib tmp2.bib betterbib_*
 }
 
@@ -20,7 +20,7 @@ if [[ ! -f $fname.html ]]; then
     gethtml
 else
     bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css $file
-    notify-send -t 3000 "BibtoHtml" "Bib Html updated"
+    notify-send -t 3000 "ViewBib" "Bib Html updated"
 fi
 
 handlr open $fname.html
