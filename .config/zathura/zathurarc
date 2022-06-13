@@ -12,12 +12,14 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+map B feedkeys ":! viewbib $FILE <Return>" # view pdf bib
+map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
 map Z feedkeys ":! zotadd % <Return>" # Add to zotero
 map L feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
 map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
 map X feedkeys ":! pdftools $FILE -r " # Remove pdf page
-map D feedkeys ":! pdftools $FILE -d <Return>" # Delete pdf
+map D feedkeys ":! pdftools $FILE -d " # Delete pdf
 
 set notification-error-bg       "#af5f5f" # Red
 set notification-error-fg       "#ddd0c0" # Foreground
