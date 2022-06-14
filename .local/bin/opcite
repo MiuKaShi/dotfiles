@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# open pdf based on citekey
+
+pdfpath=$(bibtool -r biblatex -X "$1$" "$BIB" | xargs | tr -d '{}' | grep -o '/home.*' | sed 's/[[:blank:]]*$//' | grep -o '^[^;]*')
+
+st -e xdg-open "$pdfpath" 
+
+
