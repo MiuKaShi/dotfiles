@@ -222,7 +222,7 @@ static Key keys[] = {
     { MODKEY | ShiftMask, XK_Return,     togglescratch,   { .ui = 0 } },
 
     { MODKEY,             XK_z,          incrgaps,        { .i  = +3 } },
-    /* { MODKEY|ShiftMask,      XK_z,       spawn,      SHCMD("") }, */
+    { MODKEY | ShiftMask, XK_z,          spawn,           { .v = (const char*[]) { "dmenu_cite", NULL } } },
     { MODKEY,             XK_x,          incrgaps,        { .i  = -3 } },
     /* { MODKEY|ShiftMask,      XK_x,       spawn,      SHCMD("") }, */
     { MODKEY,             XK_c,          spawn,           { .v = (const char*[]) { "keym", NULL } } },
