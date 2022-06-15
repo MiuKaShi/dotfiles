@@ -14,7 +14,7 @@ map i recolor
 map p print
 map B feedkeys ":! viewbib $FILE <Return>" # view pdf bib
 map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
-map Z feedkeys ":! zotadd % <Return>" # Add to zotero
+map Z feedkeys ":! zotadd $FILE <Return>" # Add to zotero
 map L feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
 map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
