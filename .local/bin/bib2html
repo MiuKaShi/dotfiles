@@ -4,22 +4,23 @@ file=$(readlink -f "$1")
 name=$(basename "$file")
 fname="${name%.*}"
 dir=${file%/*}
-format_citekey=/home/miuka/.config/script/format_citekey.py
+formater=/home/miuka/.config/script/format_citekey.py
 
 cd $dir
 
 function gethtml {
     mv $file tmp1.bib  
     betterbib up tmp1.bib > tmp2.bib
-    betterbib f --drop url --drop source --drop note --drop issn --drop date --drop date tmp2.bib > tmp3.bib 
-    python $format_citekey tmp3.bib > $file
+    betterbib f --drop url --drop source --drop note --drop issn --drop date --drop date tmp2.bib > $file
     bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css $file
     notify-send -t 3000 "ViewBib" "Bib Html created"
-    rm -rf tmp1.bib tmp2.bib betterbib_*
 }
 
 if [[ ! -f $fname.html ]]; then
     gethtml
+    mv $file tmp3.bib
+    python $formater tmp3.bib > $file
+    rm -rf tmp1.bib tmp2.bib tmp3.bib betterbib_*
 else
     bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css $file
     notify-send -t 3000 "ViewBib" "Bib Html updated"
