@@ -13,6 +13,8 @@ file=$(readlink -f "$1")
 dir=${file%/*}
 base="${file%.*}"
 ext="${file##*.}"
+bib=${BIB%/*}/mybib_abb.bib
+
 
 cd "$dir" || exit 1
 
@@ -50,8 +52,8 @@ case "$ext" in
 			  --lua-filter=infobox.lua \
 			  --filter=pandoc-crossref \
 			  --citeproc \
-			  --bibliography="/home/miuka/paperbib/mybib_abb.bib" \
-			  --csl="/home/miuka/paperbib/tribology-international.csl" \
+			  --bibliography="$bib" \
+			  --csl="$CSL" \
 			  -t pdf -o "$base".pdf
 		elif [ -x "$(command -v groffdown)" ]; then
 			groffdown -i "$file" | groff > "$base.pdf"
