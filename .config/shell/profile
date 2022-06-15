@@ -49,12 +49,16 @@ export PATH=$HOME/.local/bin:$PATH
 unsetopt PROMPT_SP
 unset LD_PRELOAD
 
+
+# My Citation:
+export BIB="$HOME/papers/bib/mybib.bib"
+export CSL="$HOME/papers/bib/tribology-international.csl"
+
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
-export BIB="$HOME/papers/bib/mybib.bib"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 # vulkan
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"

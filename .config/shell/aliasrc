@@ -36,7 +36,6 @@ alias \
 	nsb="vim ~/.newsboat/bookmarks.txt" \
 	sci="scidownl -o ~/Downloads -D" \
 	cite="cite --style elsevier-vancouver" \
-	citebib="cite --bibtex" \
 	bibup="betterbib up -i" \
 	cman='man -M /usr/share/man/zh_CN' \
 	powerstat="powerstat -d 5 2"
