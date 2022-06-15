@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# open pdf based on citekey
+
+citekye=$(cat $BIB | grep @ | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open citations:")
+
+if [[ $citekye ]]; then
+    pdfpath=$(bibtool -r biblatex -X "$citekye$" "$BIB" | xargs | tr -d '{}' | grep -o '/home.*' | sed 's/[[:blank:]]*$//' | grep -o '^[^;]*')
+    xdg-open "$pdfpath" &
+fi
+
+
