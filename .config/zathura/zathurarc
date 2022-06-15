@@ -15,8 +15,9 @@ map p print
 map B feedkeys ":! viewbib $FILE <Return>" # view pdf bib
 map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
 map Z feedkeys ":! zotadd $FILE <Return>" # Add to zotero
-map L feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
+map <C-l> feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
+map V feedkeys ":! icite $FILE <Return>" # View citation
 map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
 map X feedkeys ":! pdftools $FILE -r " # Remove pdf page
 map D feedkeys ":! pdftools $FILE -d " # Delete pdf

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+base="${file%.*}"
+
+filebib=$base.bib
+[[ ! -f $filebib ]] && notify-send -t 3000 "BIB" "Create bib file first!" && exit
+
+citelist=$(cat $filebib | grep '@' | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "Caitaion List:")
+citekey=$(echo $citelist | grep -oP '(?<=:).*')
+pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | xargs | tr -d '{}' | grep -o '/home.*' | sed 's/[[:blank:]]*$//' | grep -o '^[^;]*')
+doi=$(bibtool -r biblatex -X "$citekey$" "$filebib" | tr -d '{}' | grep DOI | xargs | grep -oP '(?<==[[:space:]]).*' | tr -d ',')
+
+if [[ $pdfpath ]]; then
+    xdg-open "$pdfpath" &
+elif [[ $doi ]]; then
+    handlr open http://dx.doi.org/$doi
+else
+    notify-send -t 3000 "Citations" "Not found!"
+fi
+
+
