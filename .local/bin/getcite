@@ -1,0 +1,15 @@
+#!/bin/sh
+
+citekey=$1
+
+# update citekey
+case $citekey in
+    *"doi:"*)
+        citekey=$(echo "$citekey" | grep -oP '(?<=doi:).*') ;;  
+    *"org/"*)
+        citekey=$(echo "$citekey" | grep -oP '(?<=org/).*') ;;
+esac
+
+manubot cite --format plain --csl $CSL --bibliography $BIB --log-level ERROR $citekey
+
+
