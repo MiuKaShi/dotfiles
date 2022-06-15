@@ -14,9 +14,6 @@ ZOTERO_SQLITE_FILE  = "zotero.sqlite"
 
 rofi_theme = ""
 
-
-
-
 # Query for getting the Authors
 q_authors = """
 select 
@@ -32,7 +29,7 @@ from
 
 # Query for getting the titles
 q_titles = """ 
-    SELECT parentInfo.itemID, attachmentInfo.key,  
+    SELECT parentInfo.itemID, itemAttachments.path,
            parentItemDataValues.value 
     FROM itemAttachments 
     INNER JOIN items AS attachmentInfo 
@@ -150,7 +147,6 @@ for i in a_authors:
     author_list.append(i[2])
 authors[id] = author_list
 
-
 for i in authors:
     l = authors[i]
     if len(l) == 1:
@@ -167,6 +163,7 @@ for i in a_dates:
 
 titles = {}
 keys = {}
+
 for i in a_titles:
     if i[0] not in titles:
         titles[i[0]] = i[2]
@@ -195,9 +192,6 @@ else:
     re_result = re.match(r"\((?P<index>\w+)\)", selected_pdf)
     if re_result is not None:
       index = re_result.group("index")
-      key = pdf_list[int(index)][1]
-      storage_dir = os.path.join(args.zotero, ZOTERO_STORAGE_DIR, key)
-      file_to_open = pick_file(os.listdir(storage_dir))
-      file_to_open_path = os.path.join(storage_dir, file_to_open)
-      subprocess.Popen(["xdg-open", file_to_open_path])
+      path_pdf = pdf_list[int(index)][1]
+      subprocess.Popen(["xdg-open", path_pdf])
 
