@@ -9,15 +9,19 @@ filebib=$base.bib
 citelist=$(cat $filebib | grep '@' | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "Caitaion List:")
 [[ ! $citelist ]] && exit
 citekey=$(echo $citelist | grep -oP '(?<=:).*')
-pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | xargs | tr -d '{}' | grep -o '/home.*' | sed 's/[[:blank:]]*$//' | grep -o '^[^;]*')
-doi=$(bibtool -r biblatex -X "$citekey$" "$filebib" | tr -d '{}' | grep DOI | xargs | grep -oP '(?<==[[:space:]]).*' | tr -d ',')
+
+pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | grep -oP '(?<==[[:space:]]).*' | tr -d '{}' | grep -o '/home.*')
+
+bibinfo=$(bibtool -r biblatex -X "$citekey$" "$filebib" | xargs | tr -d '{}')
+doi=$(echo $bibinfo | tr , '\n' | grep DOI | grep -oP '(?<==[[:space:]]).*')
+title=$(echo $bibinfo | tr , '\n' | grep Title | grep -oP '(?<==[[:space:]]).*')
 
 if [[ $pdfpath ]]; then
     xdg-open "$pdfpath" &
 elif [[ $doi ]]; then
-    handlr open http://dx.doi.org/$doi
+    handlr open http://dx.doi.org/"$doi"
 else
-    notify-send -t 3000 "Citations" "Not found!"
+    handlr open https://www.google.com/search?q="$title"
 fi
 
 

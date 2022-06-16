@@ -2,10 +2,12 @@
 
 # open pdf based on citekey
 
-citekye=$(cat $BIB | grep '@' | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open citations:")
+citekey=$(cat $BIB | grep '@' | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open citations:")
 
-if [[ $citekye ]]; then
-    pdfpath=$(bibtool -r biblatex -X "$citekye$" "$BIB" | xargs | tr -d '{}' | grep -o '/home.*' | sed 's/[[:blank:]]*$//' | grep -o '^[^;]*')
+echo $citekey
+
+if [[ $citekey ]]; then
+    pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | grep -oP '(?<==[[:space:]]).*' | tr -d '{}' | grep -o '/home.*')
     xdg-open "$pdfpath" &
 fi
 
