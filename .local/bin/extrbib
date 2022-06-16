@@ -10,7 +10,7 @@ cd $dir
 
 function getbib {
     curl -v -H "Accept: application/x-bibtex" --form input=@$file --form consolidateCitations=1 104.237.11.64:8070/api/processReferences > $fname.bib
-    bibtex-tidy --omit=date --curly --numeric --align=13 $fname.bib
+    bibtex-tidy --omit=date,day --curly --numeric --align=13 $fname.bib
     # anystyle -f bib find --no-layout $file > $fname.bib
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 }
@@ -21,5 +21,5 @@ fi
 
 python $formater -k $fname.bib 
 rm -rf $fname.bib.bak
-bibtex-tidy --omit=date --curly --numeric --align=13 $fname.bib
+bibtex-tidy --omit=date,day --curly --numeric --align=13 $fname.bib
 nvim $fname.bib 
