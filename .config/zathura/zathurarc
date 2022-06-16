@@ -12,12 +12,13 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
-map B feedkeys ":! viewbib $FILE <Return>" # view pdf bib
+map b feedkeys ":! getbib $FILE <Return>" # copy pdf bib
 map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
+map v feedkeys ":! icite $FILE <Return>" # View citation
+map V feedkeys ":! viewbib $FILE <Return>" # citation list
 map Z feedkeys ":! zotadd $FILE <Return>" # Add to zotero
 map <C-l> feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
-map V feedkeys ":! icite $FILE <Return>" # View citation
 map C feedkeys ":! pdftools $FILE -c <Return>" # Compress pdf
 map X feedkeys ":! pdftools $FILE -r " # Remove pdf page
 map D feedkeys ":! pdftools $FILE -d " # Delete pdf
