@@ -62,6 +62,7 @@ static const Rule rules[] = {
     {"ulauncher", NULL,     "",             0,        1, 0, 1, -1 },
     {"Zoom",      NULL,     NULL,           0,        1, 0, 1, -1 },
     {"Gimp",      NULL,     NULL,           1 << 8,   0, 0, 0, -1 },
+    {"MATLAB*",    NULL,     NULL,           0,        1, 0, 1, -1 },
     {TERMCLASS,   NULL,     NULL,           0,        0, 1, 0, -1 },
     {TERMCLASS,   "bg",     NULL,           1 << 7,   0, 1, 0, -1 },
     {TERMCLASS,   "spterm", NULL,           SPTAG(0), 1, 1, 0, -1 },
