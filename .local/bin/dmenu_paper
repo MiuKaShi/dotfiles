@@ -2,13 +2,11 @@
 
 # open pdf based on citekey
 
-citekey=$(cat $BIB | grep '@' | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open Papers:")
-
-echo $citekey
-
-if [[ $citekey ]]; then
-    pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | grep -oP '(?<==[[:space:]]).*' | tr -d '{}' | grep -o '/home.*')
-    xdg-open "$pdfpath" &
+if [ -z "$1" ]; then
+    citekey=$(cat $BIB | grep '@' | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open Papers:")
+else
+    citekey="$1"
 fi
 
-
+pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | grep -oP '(?<==[[:space:]]).*' | tr -d '{}' | grep -o '/home.*')
+xdg-open "$pdfpath" &
