@@ -78,7 +78,8 @@ alias \
 
 # Language.
 alias \
-	matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop" \
+	matlab="env LD_PRELOAD=/lib64/libfreetype.so matlab -desktop" \
+	# matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 LD_PRELOAD=/lib64/libfreetype.so matlab -desktop" \
 	mbt="matlab -nodesktop -nosplash" \
 	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
 	jl="julia --banner no --sysimage=/home/miuka/.julia/config/revise-omr_sysimage.so"
