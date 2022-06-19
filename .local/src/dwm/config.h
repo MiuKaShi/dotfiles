@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 #define BROWSER "firefox"
 
 /* appearance */
@@ -113,7 +113,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { TERMINAL, NULL };
+static const char *termcmd[] = { "at", NULL };
+// static const char *termcmd[] = { TERMINAL, NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -219,6 +220,7 @@ static Key keys[] = {
     /* { MODKEY|ShiftMask,      XK_apostrophe,  spawn,      SHCMD("") }, */
     { MODKEY | ShiftMask, XK_apostrophe, togglesmartgaps, { 0 } },
     { MODKEY,             XK_Return,     spawn,           { .v  = termcmd } },
+    // { MODKEY,             XK_Return,     spawn,           { .v = (const char*[]) { "alacritty", "msg", "create-windows", NULL }} },
     { MODKEY | ShiftMask, XK_Return,     togglescratch,   { .ui = 0 } },
 
     { MODKEY,             XK_z,          incrgaps,        { .i  = +3 } },
