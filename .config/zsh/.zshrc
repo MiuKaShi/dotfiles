@@ -58,14 +58,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#ccc'
 # Enhanced form of menu completion called `menu selection'
 zmodload -i zsh/complist
 
-# Open new tabs in same directory
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
-  function chpwd {
-    printf '\e]7;%s\a' "file://$HOSTNAME${PWD// /%20}"
-  }
-  chpwd
-fi
-
 # Enable colors and change prompt:
 setopt auto_cd # cd by typing directory name if it's not a command
 setopt auto_list # automatically list choices on ambiguous completion
@@ -121,7 +113,7 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Use lf to switch directories and bind it to ctrl-o
+# Use lf to switch directories and bind it to ctrl-l
 lfcd () {
     tmp="$(mktemp -uq)"
     trap 'rm -f $tmp >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
@@ -137,6 +129,7 @@ bindkey -s '^l' '^ulfcd\n'
 bindkey -s '^t' '^umyyt\n'
 
 bindkey -s '^o' '^uchopin-open\n'
+bindkey -s '^h' '^upapers\n'
 
 bindkey -s '^a' '^ubc -lq\n'
 

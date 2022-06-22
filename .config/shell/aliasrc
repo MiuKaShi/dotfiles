@@ -131,11 +131,9 @@ alias wea='curl wttr.in' #check weather
 #alias nvimb="tabbed -c vimb -e"
 
 # chopin
-# chopin open
-#alias chopin-open="chopin -o \"\$(fd --type f --hidden --exclude .git . './'|fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
-#alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzf --prompt='open>' --preview 'bat --color=always {}' --select-1 --exit-0)\""
-
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\""
+
+alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=25 av://v4l2:/dev/video0 --profile=low-latency"
 
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
 alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
