@@ -129,7 +129,8 @@ bindkey -s '^l' '^ulfcd\n'
 bindkey -s '^t' '^umyyt\n'
 
 bindkey -s '^o' '^uchopin-open\n'
-bindkey -s '^h' '^upapers\n'
+bindkey -s '^h' '^uchopin-paper\n'
+bindkey -s '^g' '^uchopin-book\n'
 
 bindkey -s '^a' '^ubc -lq\n'
 
