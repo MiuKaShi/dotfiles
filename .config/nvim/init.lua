@@ -9,6 +9,7 @@ require('lsp')
 -- %%%%%%%%%%%%%%%%%
 vim.opt.termguicolors = true
 vim.g.gruvbox_transparent_bg = true
+vim.opt.background = "dark"
 vim.cmd [[colorscheme gruvbox]]
 vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
