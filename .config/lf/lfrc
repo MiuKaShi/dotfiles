@@ -8,7 +8,7 @@ set ifs "\n"
 set icons
 set drawbox
 set incsearch
-set scrolloff 4
+set scrolloff 10
 set tabstop 2
 set smartcase
 #set hidden
@@ -19,11 +19,10 @@ set ratios '1:2:3'
 set timefmt '2006-01-02 15:04:05 -0700'
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set preview true
 
 set promptfmt "
-\033[38;5;8m\033[48;5;236m %u@%h \033[38;5;236m\033[48;5;234m
-\033[38;5;8m\033[48;5;234m %w/%f \033[0m\033[38;5;234m\033[0m
+\033[38;5;8m\033[48;5;236m %u@%h \033[38;5;236m\033[48;5;234m
+\033[38;5;8m\033[48;5;234m %w/%f \033[0m\033[38;5;234m\033[0m
 "
 
 # Bindings
