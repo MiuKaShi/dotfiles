@@ -1,28 +1,28 @@
 local cmp_kinds = {
-    Text          = '',
-    Method        = '',
-    Function      = '',
-    Constructor   = '',
-    Field         = '',
-    Variable      = '',
-    Class         = 'ﴯ',
-    Interface     = '',
-    Module        = '',
-    Property      = 'ﰠ',
-    Unit          = '',
-    Value         = '',
-    Enum          = '',
-    Keyword       = '',
-    Snippet       = '',
-    Color         = '',
-    File          = '',
-    Reference     = '',
-    Folder        = '',
-    EnumMember    = '',
-    Constant      = '',
-    Struct        = '',
-    Event         = '',
-    Operator      = '',
+    Text = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = '',
+    Variable = '',
+    Class = 'ﴯ',
+    Interface = '',
+    Module = '',
+    Property = 'ﰠ',
+    Unit = '',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = '',
+    Event = '',
+    Operator = '',
     TypeParameter = '',
 }
 
@@ -53,19 +53,19 @@ end
 
 cmp.setup {
     mapping = {
-        ['<C-j>']     = cmp.mapping.select_next_item(),
-        ['<C-k>']     = cmp.mapping.select_prev_item(),
-        ['<C-b>']     = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>']     = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<Tab>']     = tab_complete,
-        ['<S-Tab>']   = s_tab_complete,
-        ['<C-y>']     = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ['<C-e>']     = cmp.mapping {
+        ['<Tab>'] = tab_complete,
+        ['<S-Tab>'] = s_tab_complete,
+        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ['<C-e>'] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
-        ['<CR>']      = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -81,15 +81,15 @@ cmp.setup {
         format = function(entry, vim_item)
             vim_item.kind = cmp_kinds[vim_item.kind]
             vim_item.menu = ({
-                buffer      = '[Buf]',
-                cmdline     = '[Cmd]',
-                luasnip     = '[Snip]',
-                nvim_lsp    = '[LSP]',
-                neorg       = '[Norg]',
-                path        = '[Path]',
+                buffer = '[Buf]',
+                cmdline = '[Cmd]',
+                luasnip = '[Snip]',
+                nvim_lsp = '[LSP]',
+                neorg = '[Norg]',
+                path = '[Path]',
                 cmp_tabnine = '[Tabnine]',
-                cmp_matlab  = '[MATLAB]',
-                rg          = '[RG]',
+                cmp_matlab = '[MATLAB]',
+                rg = '[RG]',
             })[entry.source.name]
             -- if entry.source.name == 'cmp_tabnine' then
             --     if entry.completion_item.data ~= nil and
@@ -104,7 +104,11 @@ cmp.setup {
     experimental = { ghost_text = true },
     window = {
         documentation = {
+            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
+        completion = {
             border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+            winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
         },
     },
     matching = { disallow_prefix_unmatching = true },
@@ -130,6 +134,10 @@ cmp.setup {
         -- {name = 'cmp_octave'}
     },
 }
+
+vim.cmd [[
+highlight Pmenu guibg=NONE
+]]
 
 cmp.setup.filetype('norg', {
     sources = {

@@ -53,8 +53,8 @@ opt.expandtab   = true -- Use spaces instead of tabs
 opt.softtabstop = -1 -- Number of spaces per <Tab> (use value of sw)
 opt.smarttab    = true -- Enable smart-tabs (<Tab> will always use sw)
 
-opt.autoindent  = true -- Auto-indent new lines
-opt.smartindent = false -- Disable smart-indent
+opt.autoindent  = false -- Disabel Auto-indent new lines
+opt.smartindent = true -- Enable smart-indent
 opt.pumheight   = 10
 
 -- Hide bottom status
@@ -93,7 +93,7 @@ g.user_emmet_settings       = {
     typescript = { extends = 'tsx' },
 }
 -- Set completeopt to have a better completion experience
-opt.completeopt             = 'menuone,noinsert,noselect'
+opt.completeopt             = 'menu,menuone,noselect'
 g.rainbow_active            = 1
 g.neon_style                = 'doom'
 g.EasyMotion_do_mapping     = 0
