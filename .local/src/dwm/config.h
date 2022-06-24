@@ -204,7 +204,7 @@ static Key keys[] = {
     { MODKEY,             XK_a,            togglegaps,      { 0 } },
     { MODKEY | ShiftMask, XK_a,            defaultgaps,     { 0 } },
     { MODKEY,             XK_s,            togglesticky,    { 0 } },
-    { MODKEY | ShiftMask, XK_s,            spawn,         { .v = (const char*[]) { "systray", NULL } } },
+    { MODKEY | ShiftMask, XK_s,            spawn,         { .v = (const char*[]) { "mathpix", NULL } } },
     { MODKEY,             XK_d,            spawn,         { .v = (const char*[]) { "dmenu_run", NULL } } },
     // { MODKEY | ShiftMask, XK_d,       spawn,      SHCMD("passmenu") },
     { MODKEY | ShiftMask, XK_d,            spawn,         { .v = (const char*[]) { "rofi-1password", NULL } } },
@@ -227,13 +227,11 @@ static Key keys[] = {
     { MODKEY,             XK_z,          incrgaps,        { .i  = +3 } },
     { MODKEY | ShiftMask, XK_z,          spawn,           { .v = (const char*[]) { "dmenu_paper", NULL } } },
     { MODKEY,             XK_x,          incrgaps,        { .i  = -3 } },
-    /* { MODKEY|ShiftMask,      XK_x,       spawn,      SHCMD("") }, */
     { MODKEY,             XK_c,          spawn,           { .v = (const char*[]) { "keym", NULL } } },
     { MODKEY | ShiftMask, XK_c,          spawn,           { .v = (const char*[]) { "clipmenu", NULL } } },
     /* V is automatically bound above in STACKKEYS */
     { MODKEY,             XK_b,          togglebar,       { 0 } },
     /* { MODKEY|ShiftMask,      XK_b,       spawn,      SHCMD("") }, */
-    // { MODKEY,            XK_n,       spawn,      SHCMD(TERMINAL " -e nvim -c VimwikiIndex") },
     { MODKEY,             XK_n,          spawn,     {.v = (const char*[]) { "obsidian", NULL } } },
     { MODKEY | ShiftMask, XK_n,          spawn,     SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") },
     { MODKEY,             XK_m,          spawn,     {.v = (const char*[]) { TERMINAL, "-e", "ncmpcpp", NULL } } },
