@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Need https://github.com/thiagoeliasr/pdftools
-
 file=$(readlink -f "$1")
 name=$(basename "$file")
 

@@ -10,7 +10,7 @@ citelist=$(cat $filebib | grep '@' | grep -oP '(?<={).*' | tr -d ',' | grep -n '
 [[ ! $citelist ]] && exit
 citekey=$(echo $citelist | grep -oP '(?<=:).*')
 
-pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | grep -oP '(?<==[[:space:]]).*' | tr -d '{}' | grep -o '/home.*')
+pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/File/ {print $3}' | tr -d '{}')
 
 bibinfo=$(bibtool -r biblatex -X "$citekey$" "$filebib" | xargs | tr -d '{}')
 doi=$(echo $bibinfo | tr , '\n' | grep DOI | grep -oP '(?<==[[:space:]]).*')
