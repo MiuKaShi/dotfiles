@@ -1,7 +1,50 @@
+local colors = {
+    darkgray = "#282828",
+    gray = "#a89984",
+    innerbg = nil,
+    outerbg = "#282828",
+    normal = "#458588",
+    insert = "#689d6a",
+    visual = "#d79921",
+    replace = "#cc241d",
+    command = "#ebdbb2",
+}
+local gruvboxline = {
+    inactive = {
+        a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+    visual = {
+        a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+    replace = {
+        a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+    normal = {
+        a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+    insert = {
+        a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+    command = {
+        a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
+        b = { fg = colors.gray, bg = colors.outerbg },
+        c = { fg = colors.gray, bg = colors.innerbg },
+    },
+}
 require('lualine').setup {
     options = {
+        theme = gruvboxline,
         icons_enabled = true,
-        theme = 'gruvbox_dark',
         component_separators = '|',
         section_separators = { left = '' },
     },

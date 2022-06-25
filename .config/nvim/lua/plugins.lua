@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- theme
     use 'ellisonleao/gruvbox.nvim'
+    -- use 'sainnhe/gruvbox-material'
     use {
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]],
@@ -60,17 +61,17 @@ return require('packer').startup(function(use)
     }
     use { 'nvim-treesitter/playground' }
     use { 'lambdalisue/vim-cython-syntax' }
-    use {
-        'vim-pandoc/vim-pandoc-syntax',
-        config = function()
-            vim.cmd [[
-        augroup pandoc_syntax
-        autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-        autocmd BufNewFile,BufFilePre,BufRead *.md set syntax=markdown.pandoc
-        augroup END
-      ]]
-        end,
-    }
+    -- use {
+    --     'vim-pandoc/vim-pandoc-syntax',
+    --     config = function()
+    --         vim.cmd [[
+    --     augroup pandoc_syntax
+    --     autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+    --     autocmd BufNewFile,BufFilePre,BufRead *.md set syntax=markdown.pandoc
+    --     augroup END
+    --   ]]
+    --     end,
+    -- }
     use { 'luochen1990/rainbow', config = [[require('configs.rainbow')]] } -- 嵌套括号高亮
     use { 'RRethy/vim-illuminate', config = [[require('configs.illuminate')]] } -- 高亮选中单词
     use 'folke/lua-dev.nvim' -- lua 语法提示 for lsp

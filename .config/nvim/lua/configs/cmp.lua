@@ -135,10 +135,6 @@ cmp.setup {
     },
 }
 
-vim.cmd [[
-highlight Pmenu guibg=NONE
-]]
-
 cmp.setup.filetype('norg', {
     sources = {
         { name = 'luasnip' },

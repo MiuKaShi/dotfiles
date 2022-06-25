@@ -133,10 +133,6 @@ endif
 ]]
 
 vim.cmd [[
-hi Pmenu ctermfg=white ctermbg=238
-]]
-
-vim.cmd [[
 let g:fzf_wordnet_preview_arg = ''
 ]]
 
@@ -145,5 +141,6 @@ vim.cmd [[
 autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd BufRead,BufNewFile *.tp set filetype=type
 autocmd BufRead,BufNewFile *.m set filetype=matlab
+autocmd BufRead,BufNewFile *.md set filetype=markdown.pandoc
 autocmd BufRead,BufNewFile sxhkdrc,*.sxhkdrc set filetype=sxhkdrc
 ]]
