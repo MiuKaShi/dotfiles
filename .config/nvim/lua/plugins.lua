@@ -36,7 +36,6 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- theme
     use 'ellisonleao/gruvbox.nvim'
-    -- use 'sainnhe/gruvbox-material'
     use {
         'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
         config = [[require('configs.colorizer')]],

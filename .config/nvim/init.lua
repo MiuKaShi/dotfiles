@@ -9,8 +9,13 @@ require('lsp')
 -- %%%%%%%%%%%%%%%%%
 vim.g.gruvbox_contrast_dark = "hard"
 vim.cmd 'colorscheme gruvbox'
-vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
-vim.cmd [[hi NonText guibg=NONE ctermbg=NONE]]
-vim.cmd [[hi EndOfBuffer guibg=NONE ctermbg=NONE]]
-vim.cmd [[hi SignColumn guibg=NONE ctermbg=NONE]]
-vim.cmd [[hi Pmenu guibg=NONE ctermbg=NONE]]
+vim.cmd [[
+hi Normal ctermbg=NONE guibg=NONE
+hi NonText ctermbg=NONE guibg=NONE
+hi LineNR guibg=NONE ctermbg=NONE
+hi CursorLineNR guibg=NONE ctermbg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+hi MsgArea ctermbg=NONE guibg=NONE
+hi Pmenu guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
+]]
