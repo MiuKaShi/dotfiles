@@ -207,7 +207,7 @@ static Key keys[] = {
     { MODKEY | ShiftMask, XK_s,            spawn,         { .v = (const char*[]) { "mathpix", NULL } } },
     { MODKEY,             XK_d,            spawn,         { .v = (const char*[]) { "dmenu_run", NULL } } },
     // { MODKEY | ShiftMask, XK_d,       spawn,      SHCMD("passmenu") },
-    { MODKEY | ShiftMask, XK_d,            spawn,         { .v = (const char*[]) { "rofi-1password", NULL } } },
+    { MODKEY | ShiftMask, XK_d,            spawn,         { .v = (const char*[]) { "dmenu1pass", NULL } } },
     { MODKEY,             XK_f,            togglefullscr, { 0 } },
     { MODKEY | ShiftMask, XK_f,            setlayout,     { .v  = &layouts[8] } },
     { MODKEY,             XK_g,            shiftview,     { .i  = -1 } },
