@@ -5,14 +5,14 @@ name=$(basename "$file")
 fname="${name%.*}"
 dir=${file%/*}
 
-cd $dir
+cd "$dir" || exit 1
 
-if [[ ! -f $fname.html ]]; then
+if [ ! -f "$fname.html" ]; then
     notify-send -t 3000 "ViewBib" "Bib Html created"
 else
     notify-send -t 3000 "ViewBib" "Bib Html updated"
 fi
 
-bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css $file
-handlr open $fname.html
+bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css "$file"
+handlr open "$fname.html"
 
