@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #maim -s | xclip -selection clipboard -t image/png
-res=`picgo upload | grep "https://tri-1251426408.cos.ap-tokyo.myqcloud.com/"`
-if [ $res != "" ]; then
+res=$(picgo upload | grep "https://tri-1251426408.cos.ap-tokyo.myqcloud.com/")
+if [ -n "$res" ]; then
 	echo "![]($res)" | xclip -sel clip
 	notify-send "Img Uploaded"
 else

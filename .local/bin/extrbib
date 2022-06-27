@@ -6,20 +6,20 @@ fname="${name%.*}"
 dir=${file%/*}
 formater=/home/miuka/.config/script/upcitekey.py
 
-cd $dir
+cd "$dir" || exit 1
 
-function getbib {
-    curl -v -H "Accept: application/x-bibtex" --form input=@$file --form consolidateCitations=1 104.237.11.64:8070/api/processReferences > $fname.bib
-    bibtex-tidy --omit=date,day,number --curly --numeric --align=13 $fname.bib
+getbib () {
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 104.237.11.64:8070/api/processReferences > "$fname.bib"
+    bibtex-tidy --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
     # anystyle -f bib find --no-layout $file > $fname.bib
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 }
 
-if [[ ! -f $fname.bib ]]; then
+if [ ! -f "$fname.bib" ]; then
     getbib 
 fi
 
-python $formater -k $fname.bib 
-rm -rf $fname.bib.bak
-bibtex-tidy --omit=date,day,number --curly --numeric --align=13 $fname.bib
-nvim $fname.bib 
+python "$formater" -k "$fname.bib" 
+rm -rf "$fname.bib.bak"
+bibtex-tidy --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
+nvim "$fname.bib" 

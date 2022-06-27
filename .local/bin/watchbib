@@ -4,5 +4,5 @@
 # This bash is to watch my bib change and update with journal_abbrev
 # If already running, end this and running new instance
 pkill -f "updatebib" && exit
-echo $BIB | entr -p -n updatebib 
+echo "$BIB" | entr -p -n updatebib 
 

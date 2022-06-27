@@ -1,24 +1,26 @@
 #!/bin/sh
 
+#Need to set environment variable $BIB first !
+
 file=$(readlink -f "$1")
 base="${file%.*}"
 
 filebib=$base.bib
-[[ ! -f $filebib ]] && notify-send -t 3000 "BIB" "Create bib file first!" && exit
+[ ! -f "$filebib" ] && notify-send -t 3000 "BIB" "Create bib file first!" && exit 1
 
-citelist=$(cat $filebib | grep '@' | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "View Caitaion:")
-[[ ! $citelist ]] && exit 1
-citekey=$(echo $citelist | grep -oP '(?<=:).*')
+citelist=$(grep '@' "$filebib" | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "View Caitaion:")
+[ -z "$citelist" ] && exit 1
+citekey=$(echo "$citelist" | grep -oP '(?<=:).*')
 
-pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/File/ {print $3}' | tr -d '{}')
+pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}')
 
-bibinfo=$(bibtool -r biblatex -X "$citekey$" "$filebib" | xargs | tr -d '{}')
-doi=$(echo $bibinfo | tr , '\n' | grep DOI | grep -oP '(?<==[[:space:]]).*')
-title=$(echo $bibinfo | tr , '\n' | grep Title | grep -oP '(?<==[[:space:]]).*')
+bibinfo=$(bibtool -r biblatex -X "$citekey$" "$filebib" | xargs | tr -d '{}' | tr , '\n')
+doi=$(echo "$bibinfo" | grep DOI | grep -oP '(?<==[[:space:]]).*')
+title=$(echo "$bibinfo" | grep Title | grep -oP '(?<==[[:space:]]).*')
 
-if [[ $pdfpath ]]; then
+if [ -n "$pdfpath" ]; then
     xdg-open "$pdfpath" &
-elif [[ $doi ]]; then
+elif [ -n "$doi" ]; then
     handlr open http://dx.doi.org/"$doi"
 else
     handlr open https://www.google.com/search?q="$title"
