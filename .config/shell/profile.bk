@@ -1,88 +1,88 @@
 #!/bin/zsh
 
-# profile file. Runs on login. Environmental variables are set here.
+# profile file. runs on login. environmental variables are set here.
 
-# If you don't plan on reverting to bash, you can remove the link in ~/.profile
+# if you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
 # export fcitx5 environment variables
-export INPUT_METHOD="fcitx5"
-export XMODIFIERS="@im=fcitx5"
-export GTK_IM_MODULE="fcitx5"
-export QT_IM_MODULE="fcitx5"
+export input_method="fcitx5"
+export xmodifiers="@im=fcitx5"
+export gtk_im_module="fcitx5"
+export qt_im_module="fcitx5"
 
-# Adds `~/.local/bin` to $PATH
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+# adds `~/.local/bin` to $path
+export gem_home="$(ruby -e 'puts gem.user_dir')"
 
-# Configuring VA-API
-export LIBVA_DRIVER_NAME="nvidia"
-export MOZ_DISABLE_RDD_SANDBOX="1"
+# configuring va-api
+export libva_driver_name="nvidia"
+export moz_disable_rdd_sandbox="1"
 
 # set julia 
-export JULIA_NUM_THREADS=8
+export julia_num_threads=8
 
-# set go $PATH
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export GOBIN="$GOPATH/bin"
+# set go $path
+export gopath="${xdg_data_home:-$home/.local/share}/go"
+export gobin="$gopath/bin"
 
-# set better Java font
- export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
- export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
- export JAVA_FONTS="/usr/share/fonts/TTF"
+# set better java font
+ export _java_options=-djava.util.prefs.userroot="${xdg_config_home:-$home/.config}/java"
+ export _java_options="-dawt.usesystemaafontsettings=on -dswing.aatext=true"
+ export java_fonts="/usr/share/fonts/ttf"
 
 # add matalab lib to fix editor problems
-export LD_PRELOAD=/lib64/libfreetype.so 
+export ld_preload=/lib64/libfreetype.so 
 
-# Adds to $PATH
-export PATH="$PATH:$GOBIN"
-export PATH="$PATH:$GEM_HOME/bin"
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$HOME/.jenv/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH=/usr/local/opt/python/libexec/bin:$PATH PATHS
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export PATH=$HOME/.local/bin:$PATH
+# adds to $path
+export path="$path:$gobin"
+export path="$path:$gem_home/bin"
+export path="$path:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export path="$home/.jenv/bin:$path"
+export path="/usr/local/sbin:$path"
+export path=/usr/local/opt/python/libexec/bin:$path paths
+export path=$home/bin:/usr/local/bin:$path
+export path="/usr/local/opt/node@12/bin:$path"
+export path="/usr/local/opt/icu4c/bin:$path"
+export path="/usr/local/opt/icu4c/sbin:$path"
+export path=$home/.local/bin:$path
 
-unsetopt PROMPT_SP
-unset LD_PRELOAD
+unsetopt prompt_sp
+unset ld_preload
 
-# Adds to Perl5
-export PATH="/home/miuka/perl5/bin:$PATH"
-PERL5LIB="/home/miuka/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/miuka/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/miuka/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/miuka/perl5"; export PERL_MM_OPT;
+# adds to perl5
+export path="/home/miuka/perl5/bin:$path"
+perl5lib="/home/miuka/perl5/lib/perl5${perl5lib:+:${perl5lib}}"; export perl5lib;
+perl_local_lib_root="/home/miuka/perl5${perl_local_lib_root:+:${perl_local_lib_root}}"; export perl_local_lib_root;
+perl_mb_opt="--install_base \"/home/miuka/perl5\""; export perl_mb_opt;
+perl_mm_opt="install_base=/home/miuka/perl5"; export perl_mm_opt;
 
-# My Citation:
-export BIB="$HOME/papers/bib/mybib.bib"
-export CSL="$HOME/papers/bib/tribology-international.csl"
+# my citation:
+export bib="$home/papers/bib/mybib.bib"
+export csl="$home/papers/bib/tribology-international.csl"
 
-# Default programs:
-export EDITOR="nvim"
-export TERMINAL="st"
-export BROWSER="firefox"
-export READER="zathura"
-export ZOTOOLS="/home/miuka/.config/zotools/config.json"
+# default programs:
+export editor="nvim"
+export terminal="st"
+export browser="firefox"
+export reader="zathura"
+export zotools="/home/miuka/.config/zotools/config.json"
 # vulkan
-export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
-# ~/ Clean-up:
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
-#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
-export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-export LESSHISTFILE="-"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-#export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
-#export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export vk_icd_filenames="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
+# ~/ clean-up:
+export xdg_config_home="$home/.config"
+export xdg_data_home="$home/.local/share"
+export xdg_state_home="$home/.local/state"
+export xdg_cache_home="$home/.cache"
+export xinitrc="${xdg_config_home:-$home/.config}/x11/xinitrc"
+#export xauthority="$xdg_runtime_dir/xauthority" # this line will break some dms.
+export notmuch_config="${xdg_config_home:-$home/.config}/notmuch-config"
+export gtk2_rc_files="${xdg_config_home:-$home/.config}/gtk-2.0/gtkrc-2.0"
+export lesshistfile="-"
+export wgetrc="${xdg_config_home:-$home/.config}/wget/wgetrc"
+export inputrc="${xdg_config_home:-$home/.config}/shell/inputrc"
+export zdotdir="${xdg_config_home:-$home/.config}/zsh"
+#export alsa_config_path="$xdg_config_home/alsa/asoundrc"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
@@ -100,6 +100,7 @@ export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/jupyter"
 export MAXIMA_USERDIR="${XDG_CONFIG_HOME:-$HOME/.config}/maxima"
 export CUDA_CACHE_PATH="${XDG_CACHE_HOME:-$HOME/.cache}/nv"
 export WAKATIME_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/wakatime"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
 export IPYTHONDIR="${XDG_CONFIG_HOME:-$HOME/.config}/ipython"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
 

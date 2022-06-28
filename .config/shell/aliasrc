@@ -130,6 +130,8 @@ alias wea='curl wttr.in' #check weather
 
 #alias nvimb="tabbed -c vimb -e"
 
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+
 # chopin
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\""
 alias chopin-paper="cd '$HOME/papers/pdf/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix |fzfpreview --prompt='papers>' --select-1 --exit-0)\";exit"
