@@ -55,10 +55,13 @@ return require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        before = 'neorg',
         config = [[require('configs.treesitter')]],
     }
-    use { 'nvim-treesitter/playground' }
+    use {
+        'nvim-treesitter/playground',
+        opt = true,
+    }
+	use 'nvim-treesitter/nvim-treesitter-context'
     use { 'lambdalisue/vim-cython-syntax' }
     -- use {
     --     'vim-pandoc/vim-pandoc-syntax',
@@ -142,6 +145,10 @@ return require('packer').startup(function(use)
         run = ':call mkdp#util#install()',
         config = [[require('configs.mkdp')]],
     }
+	use {
+		'stevearc/aerial.nvim',
+		config = [[require('configs.outline')]]
+	} --outline
     use {
         'nvim-neorg/neorg', -- org 模式
         tag = '0.0.11',
