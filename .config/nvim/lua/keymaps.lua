@@ -103,7 +103,7 @@ wk.register({
         f = { '<cmd>lua vim.lsp.buf.formatting_sync(nil, 200)<cr>', 'Format' },
         c = { '<cmd>BibtexciteInsert<CR>', 'Bib citation insert' },
         v = { '<cmd>BibtexciteShowcite<CR>', 'Bib citation view' },
-        o = { '<cmd>BibtexciteOpencite<CR>', 'Bib Open pdf' },
+        o = { '<cmd>BibtexciteOpenfile<CR>', 'Bib Open pdf' },
     },
     ['f']       = {
         name = '+Files',
