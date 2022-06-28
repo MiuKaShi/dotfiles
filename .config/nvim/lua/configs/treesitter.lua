@@ -25,6 +25,8 @@ local ts_install = {
     'yaml',
     'julia',
     'norg',
+    'markdown',
+    'markdown_inline',
 }
 
 require('nvim-treesitter.configs').setup {
@@ -53,11 +55,11 @@ parser_config.puml = {
     },
     filetype = "puml",
 }
-parser_config.md = {
-    install_info = {
-        url = "https://github.com/ikatyang/tree-sitter-markdown",
-        revision = "master",
-        files = { "src/parser.c", "src/scanner.cc" },
-    },
-    filetype = "markdown",
-}
+-- parser_config.md = {
+--     install_info = {
+--         url = "https://github.com/ikatyang/tree-sitter-markdown",
+--         revision = "master",
+--         files = { "src/parser.c", "src/scanner.cc" },
+--     },
+--     filetype = "markdown",
+-- }
