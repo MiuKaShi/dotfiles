@@ -173,7 +173,8 @@ for i in a_titles:
 pdf_list = []
 for itemID in titles:
     if itemID in authors and itemID in years:
-        string = authors[itemID] + " " + years[itemID] + " - " + titles[itemID]
+        # string = authors[itemID] + " " + years[itemID] + " - " + titles[itemID]
+        string = years[itemID] + " - " + titles[itemID]
         pdf_list.append((string, keys[itemID]))
 
 labels = list(range(len(pdf_list)))
