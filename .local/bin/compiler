@@ -46,8 +46,8 @@ case "$ext" in
 			  -f markdown \
 			  --pdf-engine=xelatex \
 			  --template=notes \
-			  --metadata-file="/home/miuka/.pandoc/style/notes.yaml" \
-			  --include-in-header="/home/miuka/.pandoc/style/notes.tex" \
+			  --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
+			  --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
 			  --mathjax \
 			  --lua-filter=infobox.lua \
 			  --filter=pandoc-crossref \
