@@ -85,9 +85,9 @@ cmp.setup {
                 cmdline = '[Cmd]',
                 luasnip = '[Snip]',
                 nvim_lsp = '[LSP]',
-                neorg = '[Norg]',
+                -- neorg = '[Norg]',
                 path = '[Path]',
-                cmp_tabnine = '[Tabnine]',
+                -- cmp_tabnine = '[Tabnine]',
                 cmp_matlab = '[MATLAB]',
                 rg = '[RG]',
             })[entry.source.name]
@@ -116,7 +116,7 @@ cmp.setup {
         { name = 'nvim_lsp', priority = 80 },
         { name = 'luasnip', priority = 80 },
         { name = 'path', priority = 40, max_item_count = 4 },
-        { name = 'neorg' },
+        -- { name = 'neorg' },
         {
             name = 'buffer',
             priority = 5,
@@ -130,7 +130,7 @@ cmp.setup {
         },
         { name = 'rg', keyword_length = 3, max_item_count = 10, priority = 1 },
         { name = 'cmp_matlab' },
-        { name = 'cmp_tabnine' },
+        -- { name = 'cmp_tabnine' },
         -- {name = 'cmp_octave'}
     },
 }

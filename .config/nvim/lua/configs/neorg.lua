@@ -1,7 +1,6 @@
 require('neorg').setup {
     load = {
         ['core.defaults'] = {},
-        ['core.integrations.telescope'] = {},
         ['core.keybinds'] = {
             config = {
                 neorg_leader = ',',
@@ -12,15 +11,14 @@ require('neorg').setup {
             },
         },
         ['core.norg.concealer'] = {},
-        ['core.norg.completion'] = { config = { engine = 'nvim-cmp' } },
         ['core.norg.dirman'] = {
             config = {
                 workspaces = { notes = '~/neorg/notes', tasks = '~/neorg/tasks' },
-                autodetect = true,
-                autochdir = true,
             },
         },
-        ['core.gtd.base'] = { config = { workspace = 'tasks' } },
+        ['core.gtd.base'] = { config = { workspace = 'gtd' } },
+        ['core.norg.completion'] = { config = { engine = 'nvim-cmp' } },
         ['core.norg.qol.toc'] = {},
+        ['core.integrations.telescope'] = {},
     },
 }
