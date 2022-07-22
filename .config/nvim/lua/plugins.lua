@@ -29,11 +29,10 @@ end
 
 -- plugin lists
 return require('packer').startup(function(use)
-    -- -_-_-_-_- META -_-_-_-_-
-    -- IMPATIENT: faster startup time {{{
-    use { 'lewis6991/impatient.nvim', rocks = 'mpack' }
-    -- }}}
     use 'wbthomason/packer.nvim'
+    -- IMPATIENT: faster startup time {{{
+    use 'lewis6991/impatient.nvim'
+    -- }}}
     -- theme
     use 'ellisonleao/gruvbox.nvim'
     use {

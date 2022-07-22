@@ -1,6 +1,6 @@
-local set_keymap = vim.api.nvim_set_keymap
-
 vim.g.mapleader = ' '
+
+local set_keymap = vim.api.nvim_set_keymap
 
 local function _map(mode, shortcut, command)
     set_keymap(mode, shortcut, command, { noremap = true, silent = true })
