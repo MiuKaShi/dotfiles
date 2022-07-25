@@ -135,7 +135,7 @@ alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 # chopin
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\""
 alias chopin-paper="cd '$HOME/papers/pdf/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix |fzfpreview --prompt='papers>' --select-1 --exit-0)\";exit"
-alias chopin-book="cd '$HOME/books' && chopin -o \"\$(fd -e pdf -e mobi --strip-cwd-prefix |fzfpreview --prompt='books>' --select-1 --exit-0)\";exit"
+alias chopin-book="cd '$HOME/books/tribology' && chopin -o \"\$(fd -e pdf -e mobi --strip-cwd-prefix |fzfpreview --prompt='books>' --select-1 --exit-0)\";exit"
 
 alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=25 av://v4l2:/dev/video0 --profile=low-latency"
 
