@@ -21,9 +21,9 @@ title=$(echo "$bibinfo" | grep Title | grep -oP '(?<==[[:space:]]).*')
 if [ -n "$pdfpath" ]; then
     xdg-open "$pdfpath" &
 elif [ -n "$doi" ]; then
-    handlr open http://dx.doi.org/"$doi"
+    handlr open http://dx.doi.org/"$doi" && xsel -b <<< "$doi"
 else
-    handlr open https://www.google.com/search?q="$title"
+    handlr open https://www.google.com/search?q="$title" && xsel -b <<< "$title"
 fi
 
 
