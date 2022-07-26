@@ -7,7 +7,7 @@ die() {
 	exit 1
 }
 
-SCIHUB_URL="https://sci-hub.se"
+SCIHUB_URL="https://sci-hub.st"
 DOI="$1"
 PDF_URL="$(curl -Ls "${SCIHUB_URL}/${DOI}" | hxnormalize -x | hxselect -i -c "embed::attr(src)")"
 
