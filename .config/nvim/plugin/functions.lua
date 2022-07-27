@@ -15,7 +15,7 @@ end
 
 -- LSP toggle
 vim.cmd [[
-let s:hidden_all = 1
+let s:hidden_all = 0
 lua vim.diagnostic.disable()
 function! ToggleHiddenAll()
     if s:hidden_all  == 0

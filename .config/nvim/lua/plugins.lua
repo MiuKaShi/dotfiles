@@ -27,41 +27,38 @@ if not packer_exists then
     vim.cmd [[packadd packer.nvim]]
 end
 
+vim.api.nvim_create_augroup('packer_user_config', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+	command = 'source <afile> | PackerCompile',
+	pattern = 'plugins.lua',
+	group   = 'packer_user_config',
+	desc    = 'Compile whenever plugins.lua is updated',
+})
+
 -- plugin lists
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    -- IMPATIENT: faster startup time {{{
     use 'lewis6991/impatient.nvim'
-    -- }}}
+
     -- theme
     use 'ellisonleao/gruvbox.nvim'
-    use {
-        'norcalli/nvim-colorizer.lua', -- editor 内颜色显示
-        config = [[require('configs.colorizer')]],
-    }
+    use 'norcalli/nvim-colorizer.lua' -- editor 内颜色显示
 
     -- LSP
     use 'neovim/nvim-lspconfig' -- lsp 配置插件
     use 'onsails/lspkind-nvim' -- vscode-like lsp 提示
-    use { 'tami5/lspsaga.nvim', config = [[require('configs.lspsaga')]] } -- LSP UI
+    use 'tami5/lspsaga.nvim' -- LSP UI
 
     -- Format
-    use { 'sbdchd/neoformat', config = [[require('configs.neoformat')]] }
-    use { 'junegunn/vim-easy-align', config = [[require('configs.easyalign')]] }
-    use { 'ckipp01/stylua-nvim', config = [[require('configs.stylua')]] }
+    use 'sbdchd/neoformat'
+    use 'junegunn/vim-easy-align'
+    use 'ckipp01/stylua-nvim'
 
     -- Syntax
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = [[require('configs.treesitter')]],
-    }
-    use {
-        'nvim-treesitter/playground',
-        opt = true,
-    }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-treesitter/playground', opt = true }
 	use 'nvim-treesitter/nvim-treesitter-context'
-    use { 'lambdalisue/vim-cython-syntax' }
+    use 'lambdalisue/vim-cython-syntax' 
     -- use {
     --     'vim-pandoc/vim-pandoc-syntax',
     --     config = function()
@@ -73,8 +70,8 @@ return require('packer').startup(function(use)
     --   ]]
     --     end,
     -- }
-    use { 'luochen1990/rainbow', config = [[require('configs.rainbow')]] } -- 嵌套括号高亮
-    use { 'RRethy/vim-illuminate', config = [[require('configs.illuminate')]] } -- 高亮选中单词
+    use 'luochen1990/rainbow' -- 嵌套括号高亮
+    use 'RRethy/vim-illuminate' -- 高亮选中单词
     use 'folke/lua-dev.nvim' -- lua 语法提示 for lsp
     use 'tridactyl/vim-tridactyl' -- tridactyl 高亮
 
@@ -92,10 +89,9 @@ return require('packer').startup(function(use)
             -- 'mstanciu552/cmp-octave', -- octave 自动补偿
             'mstanciu552/cmp-matlab', -- matlab 自动补偿
         },
-        config = [[require('configs.cmp')]],
     }
-    use { 'L3MON4D3/LuaSnip', config = [[require('configs.luasnip')]] }
-    use { 'windwp/nvim-autopairs', config = [[require('configs.autopairs')]] }
+    use 'L3MON4D3/LuaSnip'
+    use 'windwp/nvim-autopairs'
     -- AI Completion
     -- use {
     --     'tzachar/cmp-tabnine',
@@ -103,57 +99,31 @@ return require('packer').startup(function(use)
     --     requires = 'hrsh7th/nvim-cmp',
     --     config = [[require('configs.tabnine')]],
     -- }
-    use {
-        'github/copilot.vim',
-        config = [[require('configs.copilot')]],
-    }
+    use { 'github/copilot.vim', opt = true }
 
     -- Comment
-    use { 'numToStr/Comment.nvim', config = [[require('configs.comment')]] }
+    use 'numToStr/Comment.nvim'
 
     -- GUI
-    use {
-        'nvim-lualine/lualine.nvim', -- 底部状态栏
-        config = [[require('configs.lualine')]],
-    }
-    use {
-        'declancm/cinnamon.nvim',
-        config = [[require('configs.cinnamon')]], -- smooth scroll
-    }
+    use 'nvim-lualine/lualine.nvim' -- 底部状态栏
+    use 'declancm/cinnamon.nvim' -- smooth scroll
+    
 
     -- Writting
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        config = [[require('configs.indentline')]],
-    } -- Indent
-    use {
-        'junegunn/limelight.vim',
-        requires = { 'junegunn/goyo.vim' },
-        config = [[require('configs.limelight')]],
-    } -- another zen mode
-    use {
-        'kylechui/nvim-surround', -- 修改包围符合
-        config = [[require('configs.surround')]]
-    }
+    use 'lukas-reineke/indent-blankline.nvim' -- Indent
+    use { 'junegunn/limelight.vim', requires = 'junegunn/goyo.vim' } -- another zen mode
+    use 'kylechui/nvim-surround' -- 修改包围符合
     use 'wellle/targets.vim' -- 修改包围内内容
-    use {
-        'MiuKaShi/bibtexcite.vim', -- bib 引用
-        config = [[require('configs.bibtexcite')]],
-    }
-    use { 'iamcco/markdown-preview.nvim', -- markdown preview
-        run = ':call mkdp#util#install()',
-        config = [[require('configs.mkdp')]],
-    }
-	use {
-		'stevearc/aerial.nvim',
-		config = [[require('configs.outline')]]
-	} --outline
-    use {
-        'nvim-neorg/neorg', -- org 模式
-        tag = '0.0.11',
-        requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
-        config = [[require('configs.neorg')]],
-    }
+    use 'MiuKaShi/bibtexcite.vim' -- bib 引用
+    
+    use { 'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()' }
+	use 'stevearc/aerial.nvim' --outline
+    -- use {
+    --     'nvim-neorg/neorg', -- org 模式
+    --     tag = '0.0.11',
+    --     requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
+    --     config = [[require('configs.neorg')]],
+    -- }
 
     -- Search
     -- use 'easymotion/vim-easymotion' -- 单词搜索
@@ -161,30 +131,21 @@ return require('packer').startup(function(use)
     use { 'junegunn/fzf', dir = '~/.fzf', run = ':call fzf#install()' } -- fuzzy 查找
     use 'junegunn/fzf.vim' -- needed for previews
     use 'Avi-D-coder/fzf-wordnet.vim' -- 英文词典
-    use {
-        'nvim-telescope/telescope.nvim', -- 搜索
-        requires = {
-            'nvim-lua/plenary.nvim', -- Useful lua function used by lots of plugins
-        },
-        config = [[require('configs.telescope')]],
-    }
+    use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
     use 'nvim-telescope/telescope-file-browser.nvim'
-    use { 'nvim-telescope/telescope-ui-select.nvim' } -- 选择框 vim.ui.select
+    use 'nvim-telescope/telescope-ui-select.nvim' -- 选择框 vim.ui.select
 
     -- File manager
-    use { 'is0n/fm-nvim', config = [[require('configs.fm')]] }
+    use 'is0n/fm-nvim'
 
     -- Language
-    use { 'JuliaEditorSupport/julia-vim', config = [[require('configs.julia')]] } --Julia
+    use 'JuliaEditorSupport/julia-vim' --Julia
 
     -- Others
-    use { 'folke/which-key.nvim' } -- 快捷键 maps
+    use 'folke/which-key.nvim' -- 快捷键 maps
     use 'h-hg/fcitx.nvim' -- fcitx5 自动切换
     use 'wakatime/vim-wakatime'
     use 'MiuKaShi/vim-gf-list' -- gf 自定义
     use 'justinmk/vim-gtfo' -- gf打开文件
     use 'skywind3000/asyncrun.vim' -- 异步运行
-    if packer_bootstrap then
-        require('packer').sync()
-    end
 end)
