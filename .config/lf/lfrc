@@ -210,6 +210,12 @@ cmd copyto ${{
 
 map C copyto
 
+cmd z-jump ${{
+  z_exe="/usr/share/zsh/plugins/z.lua/z.lua"
+  lf -remote "send ${id} cd '$($z_exe -I -e $1)'"
+}}
+map zl push :z-jump<space>
+
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Dragon >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 cmd dragon %dragon-drop -a -x $fx
 cmd dragon-stay %dragon-drop -a $fx
