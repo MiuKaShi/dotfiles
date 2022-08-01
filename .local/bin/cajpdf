@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+dir=${file%/*}
+
+cd "$dir" || exit 1
+
+caj2pdf convert "$name" -o "$fname.pdf"
