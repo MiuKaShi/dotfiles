@@ -4,7 +4,6 @@ cf  ${XDG_CONFIG_HOME:-$HOME/.config}
 dl   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 dm   ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
 dt  ${XDG_DATA_HOME:-$HOME/.local/share}
-rr  $HOME/.local/src
 h   $HOME
 nn   $HOME/notes
 ww   $HOME/work
