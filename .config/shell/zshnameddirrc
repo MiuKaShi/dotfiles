@@ -12,6 +12,7 @@ hash -d mn=/mnt
 hash -d pp=/home/miuka/papers
 hash -d sc=/home/miuka/.local/bin 
 hash -d src=/home/miuka/.local/src 
+hash -d ppt=/home/miuka/Doctors/Presentation_PPT
 hash -d vv=/home/miuka/Videos 
 hash -d bf=/home/miuka/.config/shell/bm-files 
 hash -d bd=/home/miuka/.config/shell/bm-dirs 

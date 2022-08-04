@@ -11,6 +11,7 @@ bb="cd /home/miuka/papers/bib" \
 mm="cd /home/miuka/Music" \
 mn="cd /mnt" \
 pp="cd /home/miuka/papers" \
+ppt="cd /home/miuka/Doctors/Presentation_PPT" \
 sc="cd /home/miuka/.local/bin" \
 src="cd /home/miuka/.local/src" \
 vv="cd /home/miuka/Videos" \
