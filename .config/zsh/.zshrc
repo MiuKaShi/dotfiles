@@ -133,15 +133,11 @@ lfcd () {
 }
 
 bindkey -s '^l' '^ulfcd\n'
-
 bindkey -s '^t' '^umyyt\n'
-
 bindkey -s '^o' '^uchopin-open\n'
-bindkey -s '^h' '^uchopin-paper\n'
-bindkey -s '^g' '^uchopin-book\n'
-
+bindkey -s '^p' '^uchopin-paper\n'
+bindkey -s '^b' '^uchopin-book\n'
 bindkey -s '^a' '^ubc -lq\n'
-
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:
