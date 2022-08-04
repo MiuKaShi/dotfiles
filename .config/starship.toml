@@ -54,6 +54,7 @@ format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
+read_only = " "
 
 [username]
 style_user = "bold dimmed blue"
@@ -128,6 +129,12 @@ symbol = " "
 
 [julia]
 symbol = " "
+
+[haskell]
+symbol = " "
+
+[memory_usage]
+symbol = " "
 
 [nim]
 symbol = " "
