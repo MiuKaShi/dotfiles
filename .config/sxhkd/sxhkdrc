@@ -4,7 +4,7 @@ super + ctrl + space
 
 #dwm
 mod3 + q
-   dwmc killclient
+    dwmc killclient
 
 mod3 + space
     dwmc zoom
