@@ -10,7 +10,7 @@ c() { clear ; }                                    # c:            Clear termina
 path() { echo -e ${PATH//:/\\n} ; }                # path:         Echo all executable Paths
 
 ### Functions (network) ###
-myip() { curl ip-api.com ; }                   # myip:         Public facing IP Address
+myip() { curl https://ipapi.co/json/ ; }                   # myip:         Public facing IP Address
 netCons() { lsof -i ; }                            # netCons:      Show all open TCP/IP sockets
 lsock() { sudo /usr/sbin/lsof -i -P ; }            # lsock:        Display open sockets
 lsockU() { sudo /usr/sbin/lsof -nP | grep UDP ; }  # lsockU:       Display only open UDP sockets
