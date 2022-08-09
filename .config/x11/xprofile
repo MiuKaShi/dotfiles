@@ -12,9 +12,9 @@ setbg & # set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 remaps & # run the remaps script, switching caps/esc and more; check it for more info
 
-# ulauncher --hide-window --no-window-shadow & # run app launch
+# ulauncher --hide-window --no-window-shadow & # run app launch nutstore 
 
-autostart="mpd picom dunst unclutter fcitx5 flameshot watchbib mathpix-snipping-tool nutstore clipmenud sxhkd nm-applet"
+autostart="mpd picom dunst unclutter fcitx5 flameshot watchbib mathpix-snipping-tool clipmenud sxhkd nm-applet"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &
