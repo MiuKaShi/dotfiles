@@ -3,15 +3,12 @@
 # This script is called on startup to remap keys.
 # Decrease key repeat delay to 300ms and increase key repeat rate to 50 per second.
 
-setxkbmap -layout hyper
-
 xset r rate 300 50
-xmodmap -e "keycode 94 = Hyper_R"
 
-#xmodmap -e "keycode 23 = Hyper_R"
-#xmodmap -e "remove Mod4 = Hyper_L Hyper_R" -e "add Mod3 = Hyper_L Hyper_R"
+xmodmap -e "keysym Menu = Hyper_R"
+xmodmap -e "remove Mod4 = Hyper_L" -e "add Mod3 = Hyper_R"
 
 # One press function
-#killall xcape 2>/dev/null ; xcape -e 'Hyper_R=Tab'
+# killall xcape 2>/dev/null ; xcape -e 'Menu=Hyper_R'
 
 xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
