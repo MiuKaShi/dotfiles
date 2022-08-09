@@ -96,7 +96,7 @@ alias \
 	clc="clear" \
 	yd="ydict -c -q" \
 	s="pfetch" \
-	clashweb="xdg-open http://clash.razord.top/#/proxies" \
+	clashweb="xdg-open http://127.0.0.1:9090/ui/" \
 	bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
 
 alias -g G='| grep -i' # for use ls -l G do
