@@ -48,7 +48,6 @@ map x cut
 map yy copy
 map <enter> open
 map bg $setbg $f
-#map o open_config
 map br $vimv $fx
 map rr rename
 map K top
@@ -103,16 +102,16 @@ map ` push :open-with<space>
 # cmds/functions
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-	image/vnd.djvu|application/pdf|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        image/vnd.djvu|application/pdf|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
         application/json|application/octet-stream) $EDITOR $fx;;
         text/*) $EDITOR $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|bmp\|webp\|tif\|ico\)\(_large\)*$" | setsid -f nsxiv -aio 2>/dev/null | lf-select & ;;
-	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-	application/pgp-encrypted) $EDITOR $fx ;;
+        image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+        image/svg+xml) display -- $f ;;
+        image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|bmp\|webp\|tif\|ico\)\(_large\)*$" | setsid -f nsxiv -aio 2>/dev/null | lf-select & ;;
+        audio/*) mpv --audio-display=no $f ;;
+        video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+        application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        application/pgp-encrypted) $EDITOR $fx ;;
         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
 }}
@@ -171,9 +170,6 @@ map mr sudomkfile
 map ms $mkscript
 # }}} === Make files, dirs
 
-cmd open_config  ${{
-  $EDITOR $(bookmenu -b ~/.config/bookmenu/configs -f fzf -o)
-}}
 # File Openers
 map ee $$EDITOR "$f"
 map es $sudo $EDITOR "$f"
@@ -181,6 +177,14 @@ map es $sudo $EDITOR "$f"
 map cz $$EDITOR ~/.zshrc
 map cn $$EDITOR ~/.config/nvim/init.vim
 map cl $$EDITOR ~/.config/lf/lfrc
+
+map cj caj
+
+cmd caj ${{
+    cajpdf $fx 
+}}
+
+cmd dragon %dragon-drop -a -x $fx
 
 #map u $view "$f"
 
