@@ -5,6 +5,7 @@
 
 xset r rate 300 50
 
+xmodmap -e "keycode 94 = Hyper_R"
 xmodmap -e "keysym Menu = Hyper_R"
 xmodmap -e "remove Mod4 = Hyper_L" -e "add Mod3 = Hyper_R"
 
