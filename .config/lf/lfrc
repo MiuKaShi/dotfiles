@@ -261,7 +261,7 @@ cmd extract ${{
         *.tar.xz|*.txz) tar xJvf $f;;
         *.zip) unar $f;;
         *.rar) unar x $f;;
-        *.7z) 7z x $f;;
+        *.7z) 7z X $f;;
       *) echo "Unsupported format" ;;
     esac
 }}
