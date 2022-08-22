@@ -14,8 +14,7 @@ export QT_IM_MODULE="fcitx5"
 # Adds `~/.local/bin` to $PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
-# Configuring VA-API
-export LIBVA_DRIVER_NAME="nvidia"
+# fix firefox VA-API
 export MOZ_DISABLE_RDD_SANDBOX="1"
 
 # set julia 

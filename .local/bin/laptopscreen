@@ -1,8 +1,0 @@
-#! /bin/sh
-
-xrandr --dpi 96 --output eDP-1 --set TearFree on
-
-#xrandr |grep ' connected'|cut -f 1 -d ' '|while read display;do xrandr --output $display --set TearFree on;done
-
-xcalib -d :0 /usr/share/color/icc/N156HCE-20220109.icc
-
