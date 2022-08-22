@@ -1,7 +1,11 @@
 #! /bin/sh
 
+unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
+
 xrandr --dpi 138 --fb 6000x3840 --output DP1 --scale 1.5x1.5 --pos 0x0 --rotate left --output DP2 --primary --mode 3840x2160 --pos 2160x345 --rotate normal --panning 2160x3840+3840+0 --output HDMI1 --off --output VIRTUAL1 --off
 
-xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources & xrdbpid=$!
+export LIBVA_DRIVER_NAME=iHD
+export VDPAU_DRIVER=va_gl
 
-
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
+xrdbpid=$!
