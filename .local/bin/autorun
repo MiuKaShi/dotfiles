@@ -1,0 +1,15 @@
+#! /bin/bash
+# 命令调用脚本
+
+case $1 in
+    picom) picom --experimental-backends >> /dev/null 2>&1 & ;;
+    easyeffects) easyeffects --gapplication-service >> /dev/null 2>&1 & ;;
+    aria2c) aria2c >> /dev/null 2>&1 & ;;
+    sxhkd) sxhkd >> /dev/null 2>&1 & ;;
+    nutstore) nutstore >> /dev/null 2>&1 & ;;
+    vmwave)
+        sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
+        sudo modprobe -a vmw_vmci vmmon
+        sudo vmware >> /dev/null 2>&1 & 
+        ;;
+esac
