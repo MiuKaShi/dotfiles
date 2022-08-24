@@ -90,7 +90,7 @@ def main():
     args = parser.parse_args()
 
     print("Reading bibfile:\t\t  {}".format(os.path.basename(args.in_file)))
-    copy(args.in_file, "{}.bak".format(args.in_file))
+    # copy(args.in_file, "{}.bak".format(args.in_file))
     with open(args.in_file, "r") as bibtex_file:
         bibDatabase = bibtexparser.load(bibtex_file)
 
