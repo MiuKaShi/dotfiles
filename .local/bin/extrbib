@@ -20,6 +20,5 @@ if [ ! -f "$fname.bib" ]; then
 fi
 
 python "$formater" -k "$fname.bib" 
-rm -rf "$fname.bib.bak"
 bibtex-tidy --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
 nvim "$fname.bib" 
