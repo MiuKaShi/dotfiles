@@ -1,0 +1,17 @@
+enable_selector = true
+selector = "dmenu -p 'Open With: '"
+
+[[handlers]]
+exec = "mpv --hwdec=auto %U" # Uses desktop entry field codes
+terminal = false # Set to true for terminal apps, false for GUI apps (optional; defaults to false)
+regexes = [
+    '(https://)?(www\.)?youtu(be\.com|\.be)/watch\?.*v='
+] # Use single-quote literal strings
+
+[[handlers]]
+exec = "mpv --hwdec=auto %U" # Uses desktop entry field codes
+terminal = false # Set to true for terminal apps, false for GUI apps (optional; defaults to false)
+regexes = [
+    '(https://)?(www\.)?bilibili.com/video/*.'
+] # Use single-quote literal strings
+
