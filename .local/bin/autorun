@@ -2,12 +2,24 @@
 # 命令调用脚本
 
 case $1 in
-    picom) picom --experimental-backends >> /dev/null 2>&1 & ;;
-    easyeffects) easyeffects --gapplication-service >> /dev/null 2>&1 & ;;
-    aria2c) aria2c >> /dev/null 2>&1 & ;;
-    sxhkd) sxhkd >> /dev/null 2>&1 & ;;
-    remaps) remaps >> /dev/null 2>&1 & ;;
-    nutstore) nutstore >> /dev/null 2>&1 & ;;
+    picom)
+        picom --experimental-backends >> /dev/null 2>&1 & 
+        notify-send -t 1000 "picom Start" ;;
+    easyeffects)
+        easyeffects --gapplication-service >> /dev/null 2>&1 &
+        notify-send -t 1000 "easyeffects Start" ;;
+    aria2c)
+        aria2c >> /dev/null 2>&1 &
+        notify-send -t 1000 "aria2c Start" ;;
+    sxhkd)
+        sxhkd >> /dev/null 2>&1 &
+        notify-send -t 1000 "sxhkd Start" ;;
+    remaps)
+        remaps >> /dev/null 2>&1 &
+        notify-send -t 1000 "remaps Start" ;;
+    nutstore)
+        nutstore >> /dev/null 2>&1 &
+        notify-send -t 1000 "nutstore Start" ;;
     vmwave)
         sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
         sudo modprobe -a vmw_vmci vmmon
