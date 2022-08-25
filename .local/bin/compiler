@@ -28,6 +28,14 @@ textype() { \
 	$command --output-directory="$dir" "$base"
 }
 
+open(){ \
+    case "$ext" in
+	    tex|m[dse]|[rR]md|mom|norg|[0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
+	    html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
+    esac
+
+}
+
 case "$ext" in
 	# Try to keep these cases in alphabetical order.
 	[0-9]) preconv "$file" | refer -PS -e | groff -mandoc -T pdf > "$base".pdf ;;
@@ -55,6 +63,7 @@ case "$ext" in
 			  --bibliography="$bib" \
 			  --csl="$CSL" \
 			  -t pdf -o "$base".pdf
+            open "$base"
 		elif [ -x "$(command -v groffdown)" ]; then
 			groffdown -i "$file" | groff > "$base.pdf"
 		else
