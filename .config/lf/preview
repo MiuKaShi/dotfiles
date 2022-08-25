@@ -12,12 +12,17 @@ image() {
 batorcat() {
 	file="$1"
 	shift
-	if command -v bat > /dev/null 2>&1
-	then
-		bat --color=always --style=plain --pager=never "$file" "$@"
-	else
-		cat "$file"
-	fi
+    bat --theme=gruvbox-dark --color=always --paging=never --tabs=2 --wrap=auto --style=full --decorations=always "$file" "$@" || \
+    pygmentize -P tabsize=2 -O style=monokai -f console256 -g "$file" || \
+    highlight -t 2 -s rdark -O xterm256 --force "$file" || \
+	cat "$file"
+}
+
+view_sqlite() {
+	echo -e "\e[33m# \e[34m$(basename "$1")\e[0m"
+	echo -e "\n\e[35m## \e[34mTABLES\e[0m\n"
+	sqlite3 "$1" ".tables"
+	return $?
 }
 
 CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
@@ -31,6 +36,8 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.rar) unrar l "$1" ;;
     *.md) glow -s dark "$1" ;;
 	*.7z) 7z l "$1" ;;
+	*.gz|*.bzip|*.bzip2|*.bp|*.bz2) als "$1" ;;
+	*.deb) ar -tv "$1" ;;
 	*.[1-8]) man "$1" | col -b ;;
 	*.o) nm "$1";;
 	*.torrent) transmission-show "$1" ;;
@@ -76,6 +83,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.ino)
 		batorcat --language=cpp "$1"
 		;;
+	*.sqlite) view_sqlite "$1" ;;
 	*)
 		batorcat "$1"
 		;;
