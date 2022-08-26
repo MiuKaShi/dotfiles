@@ -2,7 +2,7 @@ configuration {
     display-drun: "Applications:";
     display-window: "Windows:";
     drun-display-format: "{name}";
-	font: "MonoLisa 16";
+	font: "MonoLisa 26";
 	location: 0;
 	yoffset: -150;
 	matching: "fuzzy";
@@ -19,7 +19,7 @@ configuration {
 }
 
 @import "~/.config/rofi/themes/gruvbox-dark.rasi"
-
+/* @import "~/.config/rofi/themes/type-2/style-2.rasi" */
 
 listview {
 	scrollbar: false;
