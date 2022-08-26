@@ -1,0 +1,19 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+name=$(basename "$file")
+
+port="25851"
+pidnum=$(lsof -t -i:$port)
+
+cd "$dir" || exit 1
+
+open() {
+    python3 -m http.server $port >>/dev/null 2>&1 &
+    xdg-open http://localhost:$port/"$name" &
+}
+
+open
+sleep 1
+kill "$(lsof -t -i:"$port")"
