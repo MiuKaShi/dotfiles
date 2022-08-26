@@ -20,9 +20,12 @@ case $1 in
     nutstore)
         nutstore >> /dev/null 2>&1 &
         notify-send -t 1000 "nutstore Start" ;;
+    translator)
+        export GDK_DPI_SCALE=1 && export GDK_SCALE=2 && ldr >> /dev/null 2>&1 &
+        notify-send -t 1000 "ldr Start" ;;
     vmwave)
         sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
         sudo modprobe -a vmw_vmci vmmon
-        sudo vmware >> /dev/null 2>&1 & 
+        vmware >> /dev/null 2>&1 & 
         ;;
 esac
