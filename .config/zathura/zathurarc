@@ -16,6 +16,7 @@ map b feedkeys ":! getbib $FILE <Return>" # copy pdf bib
 map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
 map <C-l> feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map <C-z> feedkeys ":! zotadd $FILE <Return>" # Add to zotero
+map <C-t> feedkeys ":! webpdf $FILE <Return>" # open with browser(for translate)
 map <C-s> feedkeys ":! cp $FILE /home/miuka/SynData <Return>" # Synic pdf
 map v feedkeys ":! icite $FILE <Return>" # View citation
 map V feedkeys ":! viewbib $FILE <Return>" # citation list
