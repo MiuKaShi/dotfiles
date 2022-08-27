@@ -2,12 +2,10 @@
 x-scheme-handler/tg=userapp-Telegram Desktop-UZ25D1.desktop;
 
 [Default Applications]
-application/lrf=calibre-lrfviewer.desktop;
-application/pdf=pdf.desktop;wps-office-pdf.desktop;mcomix.desktop;
+application/pdf=pdf.desktop;mcomix.desktop;sioyek.desktop;
 application/postscript=pdf.desktop;
 application/rss+xml=rss.desktop;
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=gnumeric.desktop;wps-office-et.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=wps-office-wps.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=gnumeric.desktop;
 application/x-bittorrent=torrent.desktop;
 application/x-md=visual-studio-code.desktop;
 application/x-remmina=org.remmina.Remmina.desktop;
@@ -17,7 +15,7 @@ image/jpeg=img.desktop;gimp.desktop;
 image/png=img.desktop;
 inode/directory=file.desktop;
 text/markdown=typora.desktop;obsidian.desktop;
-text/plain=text.desktop;typora.desktop;visual-studio-code.desktop;atom.desktop;spyder.desktop;
+text/plain=text.desktop;typora.desktop;visual-studio-code.desktop;spyder.desktop;
 text/x-log=text.desktop;
 text/x-markdown=typora.desktop;
 text/x-python3=spyder.desktop;text.desktop;
