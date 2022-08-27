@@ -21,7 +21,7 @@ case $1 in
         nutstore >> /dev/null 2>&1 &
         notify-send -t 1000 "nutstore Start" ;;
     translator)
-        export GDK_DPI_SCALE=1 && export GDK_SCALE=2 && ldr >> /dev/null 2>&1 &
+        ldr >> /dev/null 2>&1 &
         notify-send -t 1000 "ldr Start" ;;
     vmwave)
         sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
