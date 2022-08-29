@@ -22,7 +22,7 @@ end
 --- Запрос на API ---
 ---------------------
 function get_weather(key, type, params)
-    local url = "curl -H 'X-Gismeteo-Token: "..token.."' 'https://api.gismeteo.net/v2/weather/"..type.."/5947/"..params.."'"
+    local url = "curl -H 'X-Gismeteo-Token: "..token.."' 'https://api.gismeteo.net/v2/weather/"..type.."/"..cityid.."/"..params.."'"
     local f = io.popen(url)
     weather_data[key] = f:read("*a")
     f:close()
