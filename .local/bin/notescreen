@@ -10,6 +10,7 @@ case $modeldp in
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
+        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/labxresources &
         xrdbpid=$!
         ;;
@@ -18,7 +19,7 @@ case $modeldp in
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90}"
+        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
         xrdbpid=$!
         ;;
