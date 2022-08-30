@@ -5,8 +5,20 @@
 
 xset r rate 300 50
 
-xmodmap -e "keycode 94 = Hyper_R"
-xmodmap -e "keysym Menu = Hyper_R"
+input=$(xinput list --name-only | grep Keyboard)
+
+case $input in
+    *"Vortexgear"*)
+        xmodmap -e "keycode 108 = Hyper_R"
+        ;;
+    *"HHKB-Hybrid"*)
+        xmodmap -e "keysym Menu = Hyper_R"
+        ;;
+    *)
+        xmodmap -e "keycode 94 = Hyper_R"
+        ;;
+esac
+
 xmodmap -e "remove Mod4 = Hyper_L" -e "add Mod3 = Hyper_R"
 
 # One press function
