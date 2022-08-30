@@ -7,7 +7,7 @@
 static const struct OpenRule open_rules[] = {
     {"inode/x-empty",        "nvim",    0},
     {"text/plain",           "nvim",    0},
-    {"application/pdf",      "zathura", 0},
+    {"application/pdf",      "sioyek", 0},
     {"application/epub+zip", "foliate", 0},
     {"application/json",     "nvim",    0},
     {"text/x-shellscript",   "nvim",    0},
