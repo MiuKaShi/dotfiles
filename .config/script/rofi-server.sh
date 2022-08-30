@@ -18,8 +18,10 @@ server_menu_item[6]="remaps"
 server_cmd[6]='killall remaps || autorun remaps'
 server_menu_item[7]="translator"
 server_cmd[7]='killall ldr || autorun translator'
-server_menu_item[8]="virsual arch"
-server_cmd[8]='[ "$(docker ps | grep minearch)" ] && docker stop minearch >> /dev/null || docker restart minearch >> /dev/null && docker exec -u root -itd arch bash -c "/usr/sbin/vncserver :1" ;'
+server_menu_item[8]="conky"
+server_cmd[8]='killall conky || autorun conky'
+server_menu_item[9]="virsual arch"
+server_cmd[9]='[ "$(docker ps | grep minearch)" ] && docker stop minearch >> /dev/null || docker restart minearch >> /dev/null && docker exec -u root -itd arch bash -c "/usr/sbin/vncserver :1" ;'
 
 server_menu() {
     echo -e "\0prompt\x1fserver"

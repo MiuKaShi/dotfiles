@@ -13,6 +13,7 @@ remaps & # run the remaps script, switching caps/esc and more; check it for more
 
 picom --experimental-backends >> /dev/null 2>&1 &
 easyeffects --gapplication-service >> /dev/null 2>&1 &
+autorun conky 
 
 autostart="mpd dunst unclutter fcitx5 flameshot watchbib mathpix-snipping-tool clipmenud sxhkd nm-applet"
 
