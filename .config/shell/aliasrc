@@ -147,6 +147,11 @@ alias tmuxreload='tmux source-file ~/.tmux.conf'
 
 alias history='fc -il 1'
 
+
+#live Command
+alias tvcn='mpv --hwdec=auto --playlist=/home/miuka/.config/livetv/cctv.m3u --force-seekable=yes'
+alias tvjp='mpv --hwdec=auto --playlist=/home/miuka/.config/livetv/jp.m3u --force-seekable=yes'
+
 # Git Command
 alias g='git'
 alias gl='git clone'
