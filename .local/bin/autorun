@@ -1,6 +1,21 @@
 #! /bin/bash
 # 命令调用脚本
 
+autoconky(){ \
+    modeldp=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
+    case $modeldp in
+        *"ENC"*)
+            conky -c ~/.config/conky/lab/.conkyrc >> /dev/null 2>&1 &
+            ;;
+        *"PHL"* | *"HKC"*)
+            conky -c ~/.config/conky/home/.conkyrc >> /dev/null 2>&1 &
+            ;;
+        *)
+            conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
+            ;;
+    esac
+}
+
 case $1 in
     picom)
         picom --experimental-backends >> /dev/null 2>&1 & 
@@ -23,6 +38,9 @@ case $1 in
     translator)
         ldr >> /dev/null 2>&1 &
         notify-send -t 1000 "ldr Start" ;;
+    conky)
+        autoconky
+        notify-send -t 1000 "conky Start" ;;
     vmwave)
         sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
         sudo modprobe -a vmw_vmci vmmon
