@@ -142,11 +142,11 @@ params = {
         value = 'cpu cpu8',
         colors = {
             {
-                color = '0x75c8cc',
+                color = '0xFECD70',
                 alpha = 1
             },
             {
-                color = '0x75c8cc',
+                color = '0xFECD70',
                 alpha = .3
             },
         }
@@ -161,11 +161,11 @@ params = {
         value = 'cpu cpu9',
         colors = {
             {
-                color = '0x75c8cc',
+                color = '0x96E5D1',
                 alpha = 1
             },
             {
-                color = '0x75c8cc',
+                color = '0x96E5D1',
                 alpha = .3
             },
         }
@@ -180,11 +180,11 @@ params = {
         value = 'cpu cpu10',
         colors = {
             {
-                color = '0x75c8cc',
+                color = '0xD2D79F',
                 alpha = 1
             },
             {
-                color = '0x75c8cc',
+                color = '0xD2D79F',
                 alpha = .3
             },
         }

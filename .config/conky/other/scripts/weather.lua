@@ -63,8 +63,8 @@ function weather_by_hours(now_date)
         local date = os.date("*t", response[i]['date']['unix'])
         if counter <= need_count and (date.hour > now_date.hour or date.day > now_date.day or date.month > now_date.month or date.year > now_date.year) then
             local temp = response[i]['temperature']['air']['C']
-            text_by_center({x=xs[counter], y=ys[1]}, date.hour..':00')
-            text_by_center({x=xs[counter], y=ys[3]}, temp..'°', { color=temp_color(temp) })
+            text_by_center({x=xs[counter], y=ys[1]}, date.hour..':00', {size='18'})
+            text_by_center({x=xs[counter], y=ys[3]}, temp..'°', {size='16'}, { color=temp_color(temp) })
             display_image ({ img = min_img_path..response[i]['icon']..'.png', coord = { x = xs[counter]-35/2, y = ys[2] }} )
             -- display_wind(response[i].wind.direction.scale_8, {x=xs[counter], y=ys[3]})
             counter = counter+1
@@ -82,15 +82,15 @@ function weather_by_days(now_date)
     end
     local response = json.decode(weather_data[3]).response
     local counter  = 1
-    local ys = { 798, 815, 860, 874 } -- положение каждого жлемента по вертикали
+    local ys = { 810, 825, 870, 885 } -- положение каждого жлемента по вертикали
     for i in pairs(response) do
         local date = os.date("*t", response[i]['date']['unix'])
         if counter <= need_count and (date.day > now_date.day or date.month > now_date.month or date.year > now_date.year) then
             local temp_max = response[i]['temperature']['air']['max']['C']
             local temp_min = response[i]['temperature']['air']['min']['C']
-            text_by_center({x=xs[counter],   y=ys[1]}, date.day..'.'..get_weekday(date.wday))
-            text_by_center({x=xs[counter]-5, y=ys[3]}, temp_max..'°', { color=temp_color(temp_max) })
-            text_by_center({x=xs[counter]+5, y=ys[4]}, temp_min..'°', { color=temp_color(temp_min) })
+            text_by_center({x=xs[counter],   y=ys[1]}, date.day..'.'..get_weekday(date.wday), {size='18'})
+            text_by_center({x=xs[counter]-5, y=ys[3]}, temp_max..'°', {size='16'}, { color=temp_color(temp_max) })
+            text_by_center({x=xs[counter]+5, y=ys[4]}, temp_min..'°', {size='16'}, { color=temp_color(temp_min) })
             display_image ( { img = min_img_path..response[i]['icon']..'.png', coord = { x = xs[counter]-35/2, y = ys[2] }} )
             -- display_wind(response[i].wind.direction.max.scale_8, {x=xs[counter], y=ys[3]})
             counter = counter+1

@@ -199,7 +199,7 @@ end
 --- День недели по номеру ---
 -----------------------------
 function get_weekday(day)
-    local days = {'Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'}
+    local days = {'Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'}
 
     return days[day]
 end
