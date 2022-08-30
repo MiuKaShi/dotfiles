@@ -102,7 +102,7 @@ map ` push :open-with<space>
 # cmds/functions
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-        image/vnd.djvu|application/pdf|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        image/vnd.djvu|application/pdf|application/postscript) setsid -f sioyek $fx >/dev/null 2>&1 ;;
         application/json|application/octet-stream) $EDITOR $fx;;
         text/*) $EDITOR $fx;;
         image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
@@ -110,7 +110,7 @@ cmd open ${{
         image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|bmp\|webp\|tif\|ico\)\(_large\)*$" | setsid -f nsxiv -aio 2>/dev/null | lf-select & ;;
         audio/*) mpv --audio-display=no $f ;;
         video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-        application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
         application/pgp-encrypted) $EDITOR $fx ;;
         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
