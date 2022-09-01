@@ -2,7 +2,7 @@
 
 unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
 
-modeldp=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
+modeldp=$(monitor-switch -l | awk '{print $3}')
 
 case $modeldp in
     *"ENC"*)
@@ -14,7 +14,7 @@ case $modeldp in
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/labxresources &
         xrdbpid=$!
         ;;
-    *"PHL"* | *"HKC"*)
+    *"PHL"* | *"T278Q"*)
         xrandr --dpi 138 --fb 6000x3840 --output HDMI-0 --scale 1.5x1.5 --pos 0x0 --rotate left --output DP-0 --primary --mode 3840x2160 --pos 2160x345 --rotate normal --panning 2160x3840+3840+0 --output DP-1 --off --output eDP-1-1 --off
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
