@@ -11,4 +11,4 @@ url="$1"
 title="$2"
 #description="$3"
 
-grep -Pq "${url}\t${title}" ~/.newsboat/bookmarks.txt || echo -e "${url}\t${title}" >> ~/.newsboat/bookmarks.txt
+grep -Pq "${url}\t${title}" ~/.config/newsboat/bookmarks.txt || echo -e "${url}\t${title}" >>~/.config/newsboat/bookmarks.txt

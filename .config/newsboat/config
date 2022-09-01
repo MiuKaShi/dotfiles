@@ -1,7 +1,6 @@
 # -- feeds ---------------------------------------------------------------------
 
 auto-reload yes
-reload-time 15
 reload-threads 100
 download-retries 4
 download-timeout 10
@@ -9,9 +8,7 @@ prepopulate-query-feeds yes
 
 # -- display -------------------------------------------------------------------
 
-show-read-feeds no
 feed-sort-order unreadarticlecount-asc
-
 text-width 120
 
 # Related to the title formats of the dialog boxes
@@ -19,22 +16,27 @@ articlelist-title-format "—[%T]——(%u unread, %t total)——%>——(%U)�
 datetime-format "%b %d %H:%M"
 feedlist-title-format "—[%u feeds with new articles]——%>——(%N %V)—"
 
-color info default default reverse
-color listnormal_unread yellow default
-color listfocus blue default reverse bold
-color listfocus_unread blue default reverse bold
+color article                              color223 default
+color background                           color100 default
+color info                                 color142 default
+color listfocus                            color214 color239
+color listfocus_unread                     color214 color239
+color listnormal                           color246 default
+color listnormal_unread                    color175 default
 
-# Related to the highlighted text
-highlight article "^(Feed|Title|Author|Link|Date|Linux):.*" color5 default
-highlight article "^Links:" color74 default underline
-highlight article "\\[[0-9][0-9]*\\]" color72 default bold
-highlight article "\\[image [0-9][0-9]*\\]" color72 default bold
-highlight article "\\[embedded flash: [0-9][0-9]*\\]" color72 default bold
-highlight article ":.*\\(link\\)$" color74 default
-highlight article ":.*\\(image\\)$" color74 default
-highlight article ":.*\\(embedded flash\\)$" color74 default
-highlight articlelist "^ *[0-9]+ *N " color156 default
-highlight feedlist "^ *[0-9]+ *N " color156 default
+highlight article "^Feed:.*"               color175 default
+highlight article "^Title:.*"              color214 default bold
+highlight article "^Author:.*"             color167 default
+highlight article "^Link:.*"               color109 default
+highlight article "^Date:.*"               color142 default
+highlight article "\\[[0-9]\\+\\]"         color208 default bold
+highlight article "\\[[^0-9].*[0-9]\\+\\]" color167 default bold
+highlight article "https?://[^ ]+"         color109 default underline
+highlight article "\\[image\\ [0-9]+\\]"   color109 default bold
+
+highlight feedlist "Youtube: .*" color109 default
+highlight feedlist "Paper: .*" color109 default
+highlight feedlist "Bilibili: .*" color109 default
 
 # -- navigation ----------------------------------------------------------------
 
@@ -62,7 +64,7 @@ bind-key x pb-delete
 browser linkhandler
 macro , open-in-browser
 macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
-macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
+macro a set browser "tsp yt-dlp --embed-metadata -xic -f bestaudio/best" ; open-in-browser ; set browser linkhandler
 macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
 macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
 macro d set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
@@ -73,7 +75,7 @@ macro P set browser "peertubetorrent %u 1080" ; open-in-browser ; set browser li
 
 # -- bookmarks -----------------------------------------------------------------
 
-bookmark-cmd ~/.newsboat/bookmark.sh
+bookmark-cmd ~/.config/newsboat/bookmark.sh
 bookmark-autopilot yes
 bookmark-interactive no
 
@@ -81,5 +83,4 @@ bookmark-interactive no
 
 #unbind-key C feedlist
 confirm-exit no
-cleanup-on-quit no
-notify-beep yes
+cleanup-on-quit yes

@@ -1,20 +1,18 @@
-https://rss.sciencedirect.com/publication/science/0301679X "~Tribology International" "Journals"
-https://link.springer.com/search.rss?facet-content-type=Article&amp;facet-journal-id=11249&amp;channel-name=Tribology+Letters "~Triboloy Letters" "Journals"
-https://www.tandfonline.com/feed/rss/utrb20 "~Triboloy Transactions" "Journals"
-https://rsshub.app/stork/keyword/824777/braetIhDqE "~Hydrodynamic Lubrication" "Journals"
-https://rsshub.app/stork/keyword/968448/9vsmXLaBo7 "~Starved Lubrication" "Journals"
-https://rsshub.app/stork/keyword/824776/bZ4FwSRXxE "~Reynolds Equation" "Journals"
-https://rsshub.app/stork/keyword/824778/xzJKTPN1gU "~Lubrication" "Journals"
-https://rsshub.app/cnki/journals/MCXX "~摩擦学学报" "Journals"
+"query:A Starred Articles:flags # \"s\"" meta
 
-# youtube
-"query:unread articles:unread = \"yes\""
-https://www.youtube.com/feeds/videos.xml?channel_id=UC27M3BS9uxhJfPjYYys7y8w Youtube "~ColorBee Photography Life Channel"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA Youtube "~Luke Smith"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCc02kINrQTlStRu9ZoFSWBw Youtube "~香你个鬼 Official"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCAQmUESq4GxO1b_iBCrYlTA Youtube "~Dio Chan"
+# Paper
+https://rss.sciencedirect.com/publication/science/0301679X "~Paper: Tribology International"
+https://link.springer.com/search.rss?facet-content-type=Article&amp;facet-journal-id=11249&amp;channel-name=Tribology+Letters "~Paper: Triboloy Letters"
+https://www.tandfonline.com/feed/rss/utrb20 "~Paper: Triboloy Transactions"
+https://rsshub.app/cnki/journals/MCXX "~Paper: 摩擦学学报"
+
+# Youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC27M3BS9uxhJfPjYYys7y8w "~Youtube: ColorBee Photography Life Channel"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "~Youtube: Luke Smith"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCc02kINrQTlStRu9ZoFSWBw "~Youtube: 香你个鬼 Official"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCAQmUESq4GxO1b_iBCrYlTA "~Youtube: Dio Chan"
 
 
-# bilibili
-https://rsshub.app/bilibili/user/video/11455098 Bilibili "~橙猫涉影"
+# Bilibili
+https://rsshub.app/bilibili/user/video/11455098 "~Bilibili: 橙猫涉影"
 
