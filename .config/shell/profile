@@ -29,8 +29,10 @@ export GOBIN="$GOPATH/bin"
  export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
  export JAVA_FONTS="/usr/share/fonts/TTF"
 
-# add matalab lib to fix editor problems
+# matalab  setting
+export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 export LD_PRELOAD=/lib64/libfreetype.so 
+export MATLAB_LOG_DIR="/tmp"
 
 # Adds to $PATH
 export PATH="$PATH:$GOBIN"
