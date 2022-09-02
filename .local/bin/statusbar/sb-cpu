@@ -9,4 +9,7 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-sensors | awk '/Core 0/ {print "🌡" $3}'
+CPU_TEMP=($(sensors | awk '/Core 0/ {print $3 }' | sed "s/\+//" | cut -f1 -d"."))
+GPU_TEMP=($(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader))
+
+echo "CPU:🌡$CPU_TEMP°C|GPU:🌡$GPU_TEMP°C"
