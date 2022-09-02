@@ -2,34 +2,102 @@
 
 unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
 
-modeldp=$(monitor-switch -l | awk '{print $3}')
+print_monitors() {
+	while read -r output conn hex; do
+		echo "$output	$conn	$(xxd -r -p <<< "${hex:-2d}")"
+	done < <(LC_ALL=C xrandr --prop | tr -d '\r' | awk '
+	h && /[^ \ta-f0-9]/ {
+		n = split(hex, names, "000000fc00")
+		hex = ""
+		for (i = 2; i <= n; i++) {
+			name = substr(names[i], 0, 26) "0a"
+			sub(/0a.*/, "", name)
+			if (name) {
+				if (hex) name = "20" (name "")
+				hex = hex (name "")
+			}
+		}
+		h = 0
+	}
+	!/^[ \t]/ {
+		if (ok) print output, conn, hex
+		output = $1
+		conn = output; sub(/-.*$/, "", conn)
+		ok = (output && (substr($2, 0, 1) == "c"))  # Connected output
+		hex = ""
+		h = 0
+	}
+	h {sub(/[ \t]+/, ""); hex = hex ($0 "")}
+	/EDID.*:/ {h=1; ok=(output && 1)}
+	/ConnectorType:/ {conn = $2}
+	END {if (ok) print output, conn, hex}
+	' | sort)
+}
 
-case $modeldp in
+monitor_name=$(print_monitors | awk '{print $3}')
+
+case $monitor_name in
     *"ENC"*)
-        xrandr --dpi 108 --fb 4000x2560 --output HDMI-0 --pos 2560x0 --rotate left --output DP-0 --primary --mode 2560x1440 --pos 0x540 --rotate normal --panning 1440x2560+2560+0 --output DP-1 --off --output eDP-1-1 --off
+        xrandr \
+            --dpi 108 \
+            --fb 4000x2560 \
+            --output HDMI-0 \
+            --pos 2560x0 \
+            --rotate left \
+            --output DP-0 --primary \
+            --mode 2560x1440 \
+            --pos 0x540 \
+            --rotate normal \
+            --panning 1440x2560+2560+0 \
+            --output DP-1 --off \
+            --output eDP-1-1 --off
+        # 硬件加速
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
+        # 显卡设置
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/labxresources &
         xrdbpid=$!
         ;;
     *"PHL"* | *"T278Q"*)
-        xrandr --dpi 138 --fb 6000x3840 --output HDMI-0 --scale 1.5x1.5 --pos 0x0 --rotate left --output DP-0 --primary --mode 3840x2160 --pos 2160x345 --rotate normal --panning 2160x3840+3840+0 --output DP-1 --off --output eDP-1-1 --off
+        xrandr \
+            --dpi 138 \
+            --fb 6000x3840 \
+            --output HDMI-0 \
+            --scale 1.5x1.5 \
+            --pos 0x0 \
+            --rotate left \
+            --output DP-0 --primary \
+            --mode 3840x2160 \
+            --pos 2160x345 \
+            --rotate normal \
+            --panning 2160x3840+3840+0 \
+            --output DP-1 --off \
+            --output eDP-1-1 --off
+        # 硬件加速
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
+        # 缩放
+        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
+        export GDK_SCALE=2 #for GDK3
+        export GDK_DPI_SCALE=0.5 #for GDK3
+        export WINIT_HIDPI_FACTOR=1 #for Alacritty
+        export WINIT_X11_SCALE_FACTOR=1 #for Alacritty
+        # 显卡设置
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
         xrdbpid=$!
         ;;
     *)
-        xrandr --dpi 96 --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1-1 --off --output HDMI-1-1 --off
+        xrandr \
+            --dpi 96 \
+            --output eDP-1-1 \
+            --mode 1920x1080 
         export LIBVA_DRIVER_NAME=iHD
         export VDPAU_DRIVER=va_gl
         xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/xresources &
         xrdbpid=$!
         ;;
 esac
-
-# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources & xrdbpid=$!
