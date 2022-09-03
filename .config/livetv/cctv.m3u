@@ -1,6 +1,6 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="1" tvg-name="CCTV1" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV1.png" group-title="央视",CCTV-1 综合
-https://epg.pm/stream/396cc63b395ac7b6873c2fc4f8a4469e518ff1720667f06ba06b0938c4be8d02.m3u8
+http://39.135.137.205/PLTV/88888888/224/3221225816/1.m3u8
 #EXTINF:-1 tvg-id="2" tvg-name="CCTV2" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV2.png" group-title="央视",CCTV-2 财金
 https://epg.pm/stream/ec658e4ec456fc0e3822cfb5686a12ece654ea555d565f2209fd4e43ac90ee9e.m3u8
 #EXTINF:-1 tvg-id="3" tvg-name="CCTV3" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV3.png" group-title="央视",CCTV-3 综艺
@@ -26,7 +26,7 @@ https://epg.pm/stream/c87bf77a748474f5f1a2b7b1271a53ceb5d41192209ef11c70e56e38a3
 #EXTINF:-1 tvg-id="14" tvg-name="CCTV13" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV13.png" group-title="央视",CCTV-13 新闻
 https://epg.pm/stream/92a871b1d6fef89540ecd0743f6c599de03567b234962930b5024a7cfbd54c79.m3u8
 #EXTINF:-1 tvg-id="16" tvg-name="CCTV15" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV15.png" group-title="央视",CCTV-15 音乐
-https://epg.pm/stream/10a4c12d6345165a2f2500c8f9a28fecad6d842e1259e3540bc9518fc41c313e.m3u8
+http://39.135.137.205/PLTV/88888888/224/3221225513/1.m3u8
 #EXTINF:-1 tvg-id="7249" tvg-name="CCTV16" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV16.png" group-title="央视",CCTV-16 奥林匹克
 https://epg.pm/stream/080d0226250edcdea3386c9f90dff19840e57e3965780ba3f94bdb209e7853e8.m3u8
 #EXTINF:-1 tvg-id="17" tvg-name="CCTV17" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV17.png" group-title="央视",CCTV-17 农业农村
