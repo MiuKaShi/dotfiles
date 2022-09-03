@@ -409,7 +409,7 @@ map zc ${{
 }}
 
 
-cmd renamepaper $pdfrenamer "$f"
+cmd renamepaper $pdfrenamer "$f" >> /dev/null 2>&1
 
 map rp renamepaper
 
