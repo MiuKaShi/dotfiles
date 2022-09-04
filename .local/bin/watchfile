@@ -1,0 +1,10 @@
+#! /bin/sh
+
+# my citation formart: [authors1+.:replace=.etal,:lower][shortyear]
+# This bash is to watch my bib change and update with journal_abbrev
+
+SCRIPT="/home/miuka/.config/script/"
+USB="/home/miuka/.log/usb_log"
+
+echo "$BIB" | entr -p $SCRIPT/updatebib.sh
+echo "$USB" | entr  -p $SCRIPT/monitorusb.sh
