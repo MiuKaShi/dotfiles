@@ -3,7 +3,7 @@
     origin = top-right
     offset = 0x45
     monitor = 0
-    follow = mouse
+    follow = keyboard
     indicate_hidden = yes
     shrink = no
     transparency = 20
