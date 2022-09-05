@@ -12,6 +12,7 @@ unmountusb() {
     if ! sudo -A umount "$chosen"; then
         killall lf && sudo -A umount "$chosen" 
     fi
+    rmdir "$chosen"
     notify-send "💻 USB unmounting" "$chosen unmounted."
 	}
 
@@ -21,6 +22,7 @@ unmountandroid() { \
     if ! sudo -A umount "$chosen"; then
         killall lf && sudo -A umount "$chosen" 
     fi
+    rmdir "$chosen"
     notify-send "🤖 Android unmounting" "$chosen unmounted."
 	}
 
