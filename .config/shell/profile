@@ -5,70 +5,62 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
+# set go $PATH
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export GOBIN="$GOPATH/bin"
+
+# Adds `~/.local/bin` to $PATH
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+
+# Adds to $PATH
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:$GOBIN"
+export PATH="$PATH:$GEM_HOME/bin"
+
+unsetopt PROMPT_SP
+
+# Default programs:
+export WM='dwm'
+export EDITOR="nvim"
+export TERMINAL="st"
+export BROWSER="firefox"
+export READER="zathura"
+export ZOTOOLS="/home/miuka/.config/zotools/config.json"
+
 # export fcitx5 environment variables
 export INPUT_METHOD="fcitx5"
 export XMODIFIERS="@im=fcitx5"
 export GTK_IM_MODULE="fcitx5"
 export QT_IM_MODULE="fcitx5"
 
-# Adds `~/.local/bin` to $PATH
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-
 # fix firefox VA-API
 export MOZ_DISABLE_RDD_SANDBOX="1"
 
-# set julia 
+# julia 
 export JULIA_NUM_THREADS=8
 
-# set go $PATH
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export GOBIN="$GOPATH/bin"
+# better Java font
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
+export JAVA_FONTS="/usr/share/fonts/TTF"
 
-# set better Java font
- export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
- export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
- export JAVA_FONTS="/usr/share/fonts/TTF"
-
-# matalab  setting
-export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
-export LD_PRELOAD=/lib64/libfreetype.so 
+# matalab setting
+export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
 export MATLAB_LOG_DIR="/tmp"
 
-# Adds to $PATH
-export PATH="$PATH:$GOBIN"
-export PATH="$PATH:$GEM_HOME/bin"
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$HOME/.jenv/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH=/usr/local/opt/python/libexec/bin:$PATH PATHS
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/usr/local/opt/node@12/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export PATH=$HOME/.local/bin:$PATH
-export PATH="$HOME/.local/share/perl/bin:$PATH"
-
-unsetopt PROMPT_SP
-unset LD_PRELOAD
-
 # Adds to Perl5
-export PERL5LIB="$HOME/.local/share/perl/lib/perl5"
-export PERL_LOCAL_LIB_ROOT="$HOME/.local/share/perl"
-export PERL_MB_OPT="--install_base '$HOME/.local/share/perl'"
-export PERL_MM_OPT="INSTALL_BASE=$HOME/.local/share/perl"
+export PERL5LIB="$HOME/.local/share/perl5/lib/perl5"
+export PERL_LOCAL_LIB_ROOT="$HOME/.local/share/perl5"
+export PERL_MB_OPT="--install_base '$HOME/.local/share/perl5'"
+export PERL_MM_OPT="INSTALL_BASE=$HOME/.local/share/perl5"
 
 # My Citation:
 export BIB="$HOME/papers/bib/mybib.bib"
 export CSL="$HOME/papers/bib/tribology-international.csl"
 
-# Default programs:
-export EDITOR="nvim"
-export TERMINAL="st"
-export BROWSER="firefox"
-export READER="zathura"
-export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 # vulkan
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
+
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
