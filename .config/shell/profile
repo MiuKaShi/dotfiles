@@ -44,10 +44,6 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.confi
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export JAVA_FONTS="/usr/share/fonts/TTF"
 
-# matalab setting
-export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
-export MATLAB_LOG_DIR="/tmp"
-
 # Adds to Perl5
 export PERL5LIB="$HOME/.local/share/perl5/lib/perl5"
 export PERL_LOCAL_LIB_ROOT="$HOME/.local/share/perl5"

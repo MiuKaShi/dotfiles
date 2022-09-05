@@ -77,7 +77,7 @@ alias \
 
 # Language.
 alias \
-	matlab=" matlab -desktop" \
+	mat=" matlab -desktop" \
 	mbt="matlab -nodesktop -nosplash -r clc" \
 	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
 	jl="julia --banner no --sysimage=/home/miuka/.julia/config/revise-omr_sysimage.so"
