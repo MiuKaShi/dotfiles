@@ -76,9 +76,8 @@ alias \
 
 
 # Language.
-# matlab="env MESA_LOADER_DRIVER_OVERRIDE=i965 LD_PRELOAD=/lib64/libfreetype.so matlab -desktop" \
 alias \
-	matlab="env LD_PRELOAD=/lib64/libfreetype.so matlab -desktop" \
+	matlab=" matlab -desktop" \
 	mbt="matlab -nodesktop -nosplash -r clc" \
 	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
 	jl="julia --banner no --sysimage=/home/miuka/.julia/config/revise-omr_sysimage.so"
