@@ -1,0 +1,59 @@
+% Science
+\usepackage{amsthm}
+\usepackage{backref}   
+\usepackage{xfrac}  % For nice small sized fractions, typically text mode, \sfrac{}.
+\usepackage{empheq}        
+\usepackage{siunitx}               % Consistent numbers and units, ranges, decimals etc.
+\sisetup{
+  range-phrase = --, % Unit ranges use "--" instead of "to"
+  per-mode=symbol, % Default is reciprocal
+  fraction-function=\tfrac % Default is frac, tfrac is slightly smaller
+}
+\usepackage{mhchem}     % Typesetting chemical molecular formulae and equations
+
+% add subfig support
+\usepackage{caption}
+\usepackage{subfig}
+
+% Fix Fig&Table
+\captionsetup[figure]{labelsep=period, name=Fig.}
+\captionsetup[table]{labelsep=period}
+
+% add todo note
+\usepackage{tcolorbox}
+\defaultfontfeatures{Extension = .otf}
+\usepackage{fontawesome}
+\definecolor{lwarn}{HTML}{ff7272}
+\definecolor{ltips}{HTML}{fff591}
+\definecolor{linfo}{HTML}{c2f0fc}
+\definecolor{lques}{HTML}{ffb385}
+\newenvironment{warn}
+    {\begin{tcolorbox}[colbacktitle=lwarn!50!white,
+                       title=\faExclamationTriangle \quad Warning,coltitle=black,
+                       fonttitle=\bfseries]}
+    {\end{tcolorbox}}
+\newenvironment{tips}
+    {\begin{tcolorbox}[colbacktitle=ltips!50!white,
+                       title=\faHandORight \quad Tips,coltitle=black,
+                       fonttitle=\bfseries]}
+    {\end{tcolorbox}}	
+\newenvironment{info}
+    {\begin{tcolorbox}[colbacktitle=linfo!50!white,
+                       title=\faInfoCircle \quad Info,coltitle=black,
+                       fonttitle=\bfseries]}
+    {\end{tcolorbox}}
+\newenvironment{ques}
+    {\begin{tcolorbox}[colbacktitle=lques!50!white,
+                       title=\faQuestionCircle \quad Question,coltitle=black,
+                       fonttitle=\bfseries]}
+    {\end{tcolorbox}}	
+	
+
+% inline code
+\definecolor{Light}{HTML}{DADADA}
+
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{
+  \colorbox{Light}{\oldtexttt{#1}}
+}
+
