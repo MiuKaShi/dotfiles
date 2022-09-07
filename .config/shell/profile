@@ -9,12 +9,17 @@
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="$GOPATH/bin"
 
-# Adds `~/.local/bin` to $PATH
+# set ruby $PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+
+
+# set Julia $PATH
+export JLBIN="$HOME/.julia/bin"
 
 # Adds to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$GOBIN"
+export PATH="$PATH:$JLBIN"
 export PATH="$PATH:$GEM_HOME/bin"
 
 unsetopt PROMPT_SP
