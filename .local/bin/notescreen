@@ -37,7 +37,7 @@ print_monitors() {
 monitor_name=$(print_monitors | awk '{print $3}')
 
 case $monitor_name in
-    *"ENC"*)
+    *"EV2795"*)
         xrandr \
             --dpi 108 \
             --fb 4000x2560 \
