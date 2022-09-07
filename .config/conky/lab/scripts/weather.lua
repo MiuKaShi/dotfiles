@@ -33,19 +33,19 @@ end
 -------------------------
 function weather_now()
     if weather_data[1] == '' or os.date("%M:%S") == '00:01' then
-        get_weather(1, 'current', '')
+        get_weather(1, 'current', '?lang=en')
     end
     local response = json.decode(weather_data[1]).response
     local temp = string.gsub(response.temperature.air.C, ",", ".")
     local comf = string.gsub(response.temperature.comfort.C, ",", ".")
     text_by_left ({x=20,  y=770}, temp, { color='0x02c3fa', font='LED', size='68' })
-    text_by_left ({x=10,   y=787}, comf, { font='LED', size='48'})
-    text_by_right({x=303, y=755}, format_wind(response.wind.direction.scale_8), { font='Arrows', size=40 })
-    text_by_right({x=323, y=750}, response.wind.speed.m_s, { font='LED', size='28' })
-    text_by_right({x=353, y=750}, 'm/s', { font='LED' })
-    text_by_right({x=293, y=770}, response.pressure.mm_hg_atm, { font='LED', size='28' })
-    text_by_right({x=353, y=770}, 'мм.рт.ст.')
-    text_by_right({x=353, y=787}, response.description.full)
+    text_by_left ({x=10,  y=790}, comf, { font='LED', size='48'})
+    text_by_right({x=285, y=750}, format_wind(response.wind.direction.scale_8), { font='Arrows', size=40 })
+    text_by_right({x=300, y=750}, response.wind.speed.m_s, { font='LED', size='28' })
+    text_by_right({x=353, y=750}, 'm/s', { font='LED', size='20' })
+    text_by_right({x=270, y=775}, response.pressure.mm_hg_atm, { font='LED', size='28' })
+    text_by_right({x=353, y=775}, 'мм.рт.ст.', {size='20' })
+    text_by_right({x=353, y=790}, response.description.full)
     display_image( { img = img_path..response.icon..'.png', coord = { x = 163, y = 730 } } )
 end
 
