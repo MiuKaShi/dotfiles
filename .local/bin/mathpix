@@ -1,36 +1,21 @@
 #!/usr/bin/env bash
 # vim: set ft=sh:
-HELP="Mathpix Crop and Convert API Tool Help and Usage
-
-First Argument should be 'text' for text conversion, 'latex' or empty for 
-equation conversion.
-
-Select the range of the screen you wish to use as your source, after conversion
-you'll recieve on STDERR the actuall 'Mathpix' Json Response to the request and 
-if successfull it will try to access and put to STDOUT the corresponding property
-deppending on the selected mode of conversion.
-
-Enviroment Variables Required
-    MATHPIX_ID
-    MATHPIX_KEY
-"
 MATHPIX_GROUP="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==1')"
 MATHPIX_ID="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==2')"
 MATHPIX_KEY="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==3')"
 SCREENSHOT_PROG="maim -s"
 BASE64_PROG="base64 -w 0"
-mode=${1:-latex}
-[[ "$mode" = 'latex' ]] || [[ "$mode" = "text" ]] || (echo "$HELP" >&2 && exit 1)
 image_file=/tmp/screenshot
 rm -f "$image_file"
 ${SCREENSHOT_PROG} "${image_file}"
 [[ ! -f "$image_file" ]] && exit 1
 image=$(${BASE64_PROG} "${image_file}")
+mode="text"
 curl -q \
     https://api.mathpix.com/v3/"${mode}" \
     -X POST \
     -H "app_id: ${MATHPIX_ID}" \
     -H "app_key: ${MATHPIX_KEY}" \
     -H "Content-Type: application/json" \
-    --data "{\"src\":\"data:image/jpeg;base64,'$image'\"}" \
+    --data "{\"math_inline_delimiters\": [\"$\$\", \"$\$\"],\"rm_spaces\": true,\"src\":\"data:image/jpeg;base64,'$image'\"}" \
     2> /dev/null | jq -r ."$mode" | xsel -b 
