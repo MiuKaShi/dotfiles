@@ -11,11 +11,10 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
 # ZSH History:
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000000
+SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+[[ ! -d ${HISTFILE:h} ]] && mkdir -pm700 ${HISTFILE:h}
 HISTORY_IGNORE="(ls|cd|history|lf|exit|reboot)"
 
 # Load aliases and shortcuts if existent.
