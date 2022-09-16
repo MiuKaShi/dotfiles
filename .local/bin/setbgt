@@ -2,8 +2,8 @@
 # This script allows controll monitor 34WN650-W
 # DDC/CI monitor control on Linux https://blog.tcharles.fr/ddc-ci-screen-control-on-linux/
 
-monitor_info=$(ddcutil detect | grep "I2C bus\|Model" | sed '/^$/d;s/[[:blank:]]//g')
-id=$(echo "$monitor_info" | grep -oP '(?<=i2c-)\w+' | sed '1d')
+monitor_info=$(sudo ddcutil detect | grep "I2C bus\|Model" | sed '/^$/d;s/[[:blank:]]//g')
+id=$(echo "$monitor_info" | grep -oP '(?<=i2c-)\w+')
 
 if [ -f ~/.cache/brightness ]; then
     bgt=$(cat ~/.cache/brightness)
