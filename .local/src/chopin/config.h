@@ -41,10 +41,10 @@ static const struct OpenRule open_rules[] = {
     {"application/x-latex",                                                       "nvim", 0},
     {"application/xml",                                                           "nvim", 0},
     {"application/xhtml+xml",                                                     "nvim", 0},
-    {"image/jpg",                                                                 "nsxiv", 0},                             // jpg    // nsxiv, feh, img2txt --gamma=0.5
-    {"image/jpeg",                                                                "nsxiv", 0},                            // jpeg   // nsxiv, feh, img2txt --gamma=0.5
-    {"image/png",                                                                 "nsxiv", 0},                             // png    // nsxiv, feh, img2txt --gamma=0.5
-    {"image/gif",                                                                 "nsxiv -a", 0},                          // gif    // nsxiv, feh, img2txt --gamma=0.5
+    {"image/jpg",                                                                 "sxiv", 0},                             // jpg    // nsxiv, feh, img2txt --gamma=0.5
+    {"image/jpeg",                                                                "sxiv", 0},                            // jpeg   // nsxiv, feh, img2txt --gamma=0.5
+    {"image/png",                                                                 "sxiv", 0},                             // png    // nsxiv, feh, img2txt --gamma=0.5
+    {"image/gif",                                                                 "sxiv -a", 0},                          // gif    // nsxiv, feh, img2txt --gamma=0.5
     {"audio/acc",                                                                 "mpv", 0},                              // acc
     {"audio/mpeg",                                                                "mpv", 0},                             // mp2, mp3, mpeg
     {"audio/wav",                                                                 "mpv", 0},                              // wav
