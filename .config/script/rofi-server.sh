@@ -5,21 +5,21 @@
 #   4: 当没有输出时 整个过程结束
 
 server_menu_item[1]="picom"
-server_cmd[1]='killall picom || autorun picom'
+server_cmd[1]='autorun picom'
 server_menu_item[2]="easyeffects"
-server_cmd[2]='killall easyeffects || autorun easyeffects'
+server_cmd[2]='autorun easyeffects'
 server_menu_item[3]="aria2c"
-server_cmd[3]='killall aria2c || autorun aria2c'
+server_cmd[3]='autorun aria2c'
 server_menu_item[4]="nutstore"
-server_cmd[4]='killall nutstore || autorun nutstore'
+server_cmd[4]='autorun nutstore'
 server_menu_item[5]="sxhkd"
-server_cmd[5]='killall sxhkd || autorun sxhkd'
+server_cmd[5]='autorun sxhkd'
 server_menu_item[6]="remaps"
-server_cmd[6]='killall remaps || autorun remaps'
+server_cmd[6]='autorun remaps'
 server_menu_item[7]="translator"
-server_cmd[7]='killall ldr || autorun translator'
+server_cmd[7]='autorun translator'
 server_menu_item[8]="conky"
-server_cmd[8]='killall conky || autorun conky'
+server_cmd[8]='autorun conky'
 server_menu_item[9]="virsual arch"
 server_cmd[9]='[ "$(docker ps | grep minearch)" ] && docker stop minearch >> /dev/null || docker restart minearch >> /dev/null && docker exec -u root -itd arch bash -c "/usr/sbin/vncserver :1" ;'
 
