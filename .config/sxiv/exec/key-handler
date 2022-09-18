@@ -9,7 +9,7 @@ main()
 
     case $1 in
         h) help ;;
-        w) feh --bg-fill -- "$first" ;;
+        w) x setbg ;;
         g) x setsid -f gimp -- ;;
         p) x dprint ;;
         D) x dragon-drop -a -x ;;
