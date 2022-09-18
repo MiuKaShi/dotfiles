@@ -25,10 +25,13 @@ export PATH="$PATH:$GEM_HOME/bin"
 unsetopt PROMPT_SP
 
 # Default programs:
-export WM='dwm'
-export EDITOR="nvim"
 export TERMINAL="st"
+export WM="dwm"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="firefox"
+export OPENER=xdg-open
+export TFM=lf
 export READER="zathura"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
@@ -45,7 +48,6 @@ export MOZ_DISABLE_RDD_SANDBOX="1"
 export JULIA_NUM_THREADS=8
 
 # better Java font
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true"
 export JAVA_FONTS="/usr/share/fonts/TTF"
 
@@ -62,11 +64,15 @@ export CSL="$HOME/papers/bib/tribology-international.csl"
 # vulkan
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
 
-# ~/ Clean-up:
+# xdg dirs
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DESKTOP_DIR=~
+
+# Home Cleanup
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
