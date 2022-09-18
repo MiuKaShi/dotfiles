@@ -15,7 +15,7 @@ picom --experimental-backends >> /dev/null 2>&1 &
 easyeffects --gapplication-service >> /dev/null 2>&1 &
 autorun conky 
 
-autostart="mpd dunst unclutter fcitx5 flameshot watchfile clipmenud sxhkd nm-applet"
+autostart="mpd dunst unclutter fcitx5 flameshot watchfile clipmenud sxhkd"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &
