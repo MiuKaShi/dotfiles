@@ -18,20 +18,48 @@ autoconky(){ \
 
 case $1 in
     picom)
-        picom --experimental-backends >> /dev/null 2>&1 & 
-        notify-send -t 1000 "picom Start" ;;
+        if pgrep -x picom >/dev/null
+        then
+            killall picom
+            notify-send -t 1000 "Picom" "Picom killed!"
+        else
+            picom --experimental-backends >> /dev/null 2>&1 & 
+            notify-send -t 1000 "Picom" "Picom started!"
+        fi 
+        ;;
     easyeffects)
-        easyeffects --gapplication-service >> /dev/null 2>&1 &
-        notify-send -t 1000 "easyeffects Start" ;;
+        if pgrep -x easyeffects >/dev/null
+        then
+            killall easyeffects
+            notify-send -t 1000 "Easyeffects" "Easyeffects killed!"
+        else
+            easyeffects --gapplication-service >> /dev/null 2>&1 &
+            notify-send -t 1000 "Easyeffects" "Easyeffects started!"
+        fi 
+        ;;
     aria2c)
-        aria2c >> /dev/null 2>&1 &
-        notify-send -t 1000 "aria2c Start" ;;
+        if pgrep -x aria2c >/dev/null
+        then
+            killall aria2c
+            notify-send -t 1000 "Aria2c" "aria2c killed!"
+        else
+            aria2c >> /dev/null 2>&1 &
+            notify-send -t 1000 "Aria2c" "aria2c started!"
+        fi 
+        ;;
     sxhkd)
-        sxhkd >> /dev/null 2>&1 &
-        notify-send -t 1000 "sxhkd Start" ;;
+        if pgrep -x sxhkd >/dev/null
+        then
+            killall sxhkd
+            notify-send -t 1000 "sxhkd" "sxhkd killed!"
+        else
+            sxhkd >> /dev/null 2>&1 &
+            notify-send -t 1000 "sxhkd" "sxhkd started!"
+        fi 
+        ;;
     remaps)
         remaps >> /dev/null 2>&1 &
-        notify-send -t 1000 "remaps Start" ;;
+        notify-send -t 1000 "remap keyboards" ;;
     nutstore)
         nutstore >> /dev/null 2>&1 &
         notify-send -t 1000 "nutstore Start" ;;
@@ -39,8 +67,15 @@ case $1 in
         ldr >> /dev/null 2>&1 &
         notify-send -t 1000 "ldr Start" ;;
     conky)
-        autoconky
-        notify-send -t 1000 "conky Start" ;;
+        if pgrep -x conky >/dev/null
+        then
+            killall conky
+            notify-send -t 1000 "Conky" "Conky killed!"
+        else
+            autoconky
+            notify-send -t 1000 "Conky" "Conky started!"
+        fi 
+        ;;
     vmwave)
         sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
         sudo modprobe -a vmw_vmci vmmon
