@@ -114,9 +114,9 @@ biliass "/tmp/${BVID}/seg.so" -f protobuf -s "$RESOLUTION" -o "/tmp/${BVID}/danm
 
 echo -e "\033[1;34m::\033[1;0m Playing streamed video...\033[0m"
 if [ "$VERBOSE" = "true" ]; then
-    CMD="yt-dlp ${YTDLP_ARGS} --no-playlist -f ${FORMAT_FILTER} --verbose -o - ${URL} | mpv - --audio-file=/tmp/${BVID}/audio.m4s --sub-file=/tmp/${BVID}/danmaku.ass --hwdec=auto ${MPV_ARGS}"
+    CMD="yt-dlp ${YTDLP_ARGS} --no-playlist -f ${FORMAT_FILTER} --verbose -o - ${URL} | mpv - --audio-file=/tmp/${BVID}/audio.m4s --sub-file=/tmp/${BVID}/danmaku.ass ${MPV_ARGS}"
 else
-    CMD="yt-dlp ${YTDLP_ARGS} --no-playlist -f ${FORMAT_FILTER} --quiet -o - ${URL} | mpv - --audio-file=/tmp/${BVID}/audio.m4s --sub-file=/tmp/${BVID}/danmaku.ass --hwdec=auto ${MPV_ARGS} 1>/dev/null"
+    CMD="yt-dlp ${YTDLP_ARGS} --no-playlist -f ${FORMAT_FILTER} --quiet -o - ${URL} | mpv - --audio-file=/tmp/${BVID}/audio.m4s --sub-file=/tmp/${BVID}/danmaku.ass ${MPV_ARGS} 1>/dev/null"
 fi
 eval "${CMD}"
 
