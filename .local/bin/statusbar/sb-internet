@@ -15,7 +15,7 @@ case $BLOCK_BUTTON in
 esac
 
 if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
-	neticon="$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "% " }' /proc/net/wireless)"
+	neticon="$(awk '/^\s*w/ {print "📶", int($3 * 100 / 70) "%"}' /proc/net/wireless)"
 elif grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null ; then
 	neticon="🌎"
 else
