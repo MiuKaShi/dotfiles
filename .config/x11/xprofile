@@ -11,11 +11,11 @@ setbg & # set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 remaps & # run the remaps script, switching caps/esc and more; check it for more info
 
-picom --experimental-backends >> /dev/null 2>&1 &
+# picom --experimental-backends >> /dev/null 2>&1 &
 easyeffects --gapplication-service >> /dev/null 2>&1 &
 autorun conky 
 
-autostart="mpd dunst unclutter fcitx5 flameshot watchfile clipmenud sxhkd"
+autostart="mpd dunst xcompmgr unclutter fcitx5 flameshot watchfile clipmenud sxhkd"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &
