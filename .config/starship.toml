@@ -2,6 +2,15 @@
 add_newline = false
 command_timeout = 10000
 
+[username]
+style_user = "bold dimmed blue"
+show_always = false
+
+[hostname]
+disabled = true
+ssh_only = false
+format =  "[$hostname](bold green) ❯ "
+
 [character]
 success_symbol = "[➜](bold green) "
 error_symbol = "[✗](bold red) "
@@ -22,8 +31,16 @@ disabled = false
 format = '[$symbol$percentage]($style) '
 
 [[battery.display]]
-threshold = 10
+threshold = 15
 style = 'red bold'
+
+[[battery.display]]
+threshold = 50
+style = 'yellow bold'
+
+[[battery.display]]
+threshold = 80
+style = 'green bold'
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -56,15 +73,6 @@ truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
 read_only = " "
-
-[username]
-style_user = "bold dimmed blue"
-show_always = false
-
-[hostname]
-disabled = true
-ssh_only = false
-format =  "[$hostname](bold green) ❯ "
 
 # Workaround for slow prompt with git status
 [git_branch]
