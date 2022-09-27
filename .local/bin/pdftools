@@ -3,16 +3,11 @@
 # Need https://github.com/thiagoeliasr/pdftools
 
 file=$(readlink -f "$1")
-num=$(("$3" - 1))
 pdftools=$XDG_CONFIG_HOME/script/PDFTools.jar
 
-case "$2" in
-	# Try to keep these cases in alphabetical order.
-	"-r") java -jar "$pdftools" remove-pages "$file" "$file" "$num" && notify-send -t 3000 "Remove Page $3" ;;
-	"-c") java -jar "$pdftools" compress "$file" "$file" && notify-send -t 3000 "Compress PDF" ;;
-	"-d") trash "$file" && notify-send -t 3000 "zathura" "Delete PDF\!" ;;
-	*) java -jar "$pdftools" page-number "$file" | while read OUTPUT; do notify-send -t 3000 "$OUTPUT"; done ;;
+case "$(printf "remove pages\ncompress pdf\ndelete pdf" | dmenu -l 6 -i -p "Pdf tools:")" in
+	"remove pages") num=$(echo | dmenu -p "Pages:") && java -jar "$pdftools" remove-pages "$file" "$file" "$(($num - 1))" && notify-send -t 3000 "Remove Page $num" ;;
+	"compress pdf") java -jar "$pdftools" compress "$file" "$file" && notify-send -t 3000 "Compress PDF" ;;
+	"delete pdf") trash "$file" && notify-send -t 3000 "Delete PDF\!" ;;
 esac
-
-
 
