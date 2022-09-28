@@ -11,7 +11,7 @@ main()
         h) help ;;
         w) x setbg ;;
         g) x setsid -f gimp -- ;;
-        p) x dprint ;;
+        p) x dmenuprint ;;
         D) x dragon-drop -a -x ;;
         t) ask Trash &&
             x trash-put -- &&
