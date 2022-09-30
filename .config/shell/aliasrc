@@ -80,7 +80,7 @@ alias \
 	mat=" matlab -desktop" \
 	mbt="matlab -nodesktop -nosplash -r clc" \
 	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
-	jl="julia --banner no --sysimage=/home/miuka/.julia/config/revise-omr_sysimage.so"
+	jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
 
 # These common commands are just too long! Abbreviate them.
 alias \
