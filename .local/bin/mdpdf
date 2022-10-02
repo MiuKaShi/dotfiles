@@ -39,9 +39,9 @@ compile() {
     [ -r "$in" ] || die file "$in" doesn\'t exist or is unreadable.
 
     base="$(basename "$in")"
-    out="${base%.*}.pdf"
+    fname="${base%.*}.pdf"
     dir="$(dirname "$in")"
-    out="$dir/$out"
+    out="$dir/$fname"
 
     if [ "$stdout" = true ]; then
         md_to_pdf "$in"
@@ -56,13 +56,12 @@ open() {
     command -v $pdf_reader >/dev/null || pdf_reader=xdg-open
     command -v xdg-open >/dev/null || die "no pdf reader was found."
 
-    p="${XDG_RUNTIME_DIR:-$HOME/.cache}/mdpdf/"
-    mkdir -p "$(dirname "$p$out")" || die "couldn't make temporary directory."
+    p="/tmp/"
 
-    md_to_pdf "$in" > "$p$out"
-    $pdf_reader "$p$out" >/dev/null 2>&1
+    md_to_pdf "$in" > "$p$fname"
+    $pdf_reader "$p$fname" >/dev/null 2>&1
 
-    [ "$pdf_reader" = zathura ] && rm "$p$out"
+    [ "$pdf_reader" = zathura ] && rm "$p$fname"
 }
 
 save() {
