@@ -1,0 +1,135 @@
+#!/bin/sh
+# compile markdown to pdf using lowdown,
+# and open it with a pdf reader or save it to file.
+
+# config
+pdf_reader="${MDPDF:-zathura}"
+
+main() {
+    # initial values
+    inherit=true # inherit document title from first heading
+    overwrite=false # overwrite existing files while saving
+    stdout=false # print to stdout instead of saving
+    printgroff=false # print groff to stdout
+    open=false
+
+    while getopts soOpgnt: opt; do
+        case $opt in
+            s) open=false ;;
+            o) open=false; overwrite=true ;;
+            O) open=true ;;
+            p) stdout=true ;;
+            g) stdout=true; printgroff=true ;;
+            n) inherit=false ;;
+            t) title="$OPTARG" ;;
+            ?) print_usage_exit ;;
+        esac
+    done
+    shift $((OPTIND-1))
+
+    [ -z "$*" ] && print_usage_exit
+
+    for doc; do
+        compile "$doc"
+    done
+}
+
+compile() {
+    in="$1"
+    [ -r "$in" ] || die file "$in" doesn\'t exist or is unreadable.
+
+    base="$(basename "$in")"
+    out="${base%.*}.pdf"
+    dir="$(dirname "$in")"
+    out="$dir/$out"
+
+    if [ "$stdout" = true ]; then
+        md_to_pdf "$in"
+    elif [ "$open" = true ]; then
+        open
+    else
+        save
+    fi
+}
+
+open() {
+    command -v $pdf_reader >/dev/null || pdf_reader=xdg-open
+    command -v xdg-open >/dev/null || die "no pdf reader was found."
+
+    p="${XDG_RUNTIME_DIR:-$HOME/.cache}/mdpdf/"
+    mkdir -p "$(dirname "$p$out")" || die "couldn't make temporary directory."
+
+    md_to_pdf "$in" > "$p$out"
+    $pdf_reader "$p$out" >/dev/null 2>&1
+
+    [ "$pdf_reader" = zathura ] && rm "$p$out"
+}
+
+save() {
+    if [ "$overwrite" != true ] && [ -e "$out" ]; then
+        printf %s "file $out exists. overwrite? [y/n] "
+        read ans
+        case "$ans" in
+            Y|y) ;;
+            *) return 1 ;;
+        esac
+    fi
+    md_to_pdf "$in" > "$out"
+}
+
+md_to_pdf() {
+    groff="$(lowdown -sTms "$1")" # convert markdown to groff
+    # if title isn't already set, get it from the markdown's first heading
+    if [ -z "$title" ] && [ "$inherit" = true ]; then
+        first_top_heading="$(echo "$groff" | grep -m1 -A1 '^.NH 1' | tail -n1 | cut -d' ' -f2-)"
+        top_heading_nr="$(echo "$groff" | grep -c '^.NH 1')" # number of top headings in document
+        # proceed if first heading exists
+        if [ -n "$first_top_heading" ]; then
+            title="$first_top_heading"
+            # if markdown is standard (only has one top heading),
+            # then remove it and decrement all other headings
+            if [ "$top_heading_nr" -eq 1 ]; then
+                groff="$(echo "$groff" | sed '/^.NH 1/,+1 d')"
+                groff="$(echo "$groff" | awk '/^.NH [2-9]/{$2-=1}1')"
+            fi
+        fi
+    fi
+    # set the title and convert groff to pdf
+    groff="$(echo "$groff" | sed "s/^Untitled.*/$title/")"
+
+    if [ "$printgroff" = true ]; then
+        echo "$groff"
+    else
+        echo "$groff" | pdfroff -itk -mspdf 2>/dev/null
+    fi
+}
+
+print_usage_exit() {
+cat << 'eof'
+Compile markdown to pdf and open/save it.
+Usage: md [OPTION...] [--] FILE...
+Options:
+  -s          save pdf to file instead of opening it (default behaviour).
+  -o          overwrite; don't ask if file already exists. implies -s.
+  -O          save pdf to temporary storage and open it.
+  -p          print pdf to stdout; don't save or open.
+  -g          print groff to stdout.
+  -n          don't inherit documen's title from the
+                first top-level markdown heading.
+  -t <title>  set the title manually.
+
+If you specify the -O option, mdpdf compiles the pdf to a temporary
+directory, then opens it with a PDF reader. The PDF reader used
+by mdpdf is zathura. If zathura is not installed, it uses xdg-open.
+You can specify your own PDF reader via the "MDPDF" environment variable.
+eof
+exit
+}
+
+die() {
+    printf '%s\n' "mdpdf: $*"
+    exit 1
+}
+
+main "$@"
+exit
