@@ -47,9 +47,9 @@ case "$ext" in
 	java) javac -d classes "$file" && java -cp classes "${1%.*}" ;;
 	m) matlab -nodesktop -nosplash -r "$file" ;;
 	# norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
-	norg) md2pdf -c ~/.pandoc/templates/mdpdf.css "$file" ;;
+	norg) mdpdf -o "$file" ;;
 	md)	if  [ -x "$(command -v pandoc)" ]; then
-            # md2pdf -c ~/.pandoc/templates/mdpdf.css "$file"
+            # mdpdf -o "$file"
             pandoc "$file" \
 			  -f markdown \
 			  --pdf-engine=xelatex \

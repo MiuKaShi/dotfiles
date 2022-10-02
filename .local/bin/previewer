@@ -21,7 +21,7 @@ textype() { \
 
 case "$ext" in
 	norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
-	md) md2pdf -c ~/.local/share/pandoc/templates/mdpdf.css "$file" -o "$base".pdf ;;
+	md) mdpdf -O "$file" ;;
 	mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf > "$base".pdf ;;
 	ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf > "$base".pdf ;;
 	org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
