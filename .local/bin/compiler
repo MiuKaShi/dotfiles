@@ -28,6 +28,26 @@ textype() { \
 	$command --output-directory="$dir" "$base"
 }
 
+mdpdf() {
+    groff="$(lowdown -sTms "$file")" # convert markdown to groff
+    # if title isn't already set, get it from the markdown's first heading
+    first_top_heading="$(echo "$groff" | grep -m1 -A1 '^.NH 1' | tail -n1 | cut -d' ' -f2-)"
+    top_heading_nr="$(echo "$groff" | grep -c '^.NH 1')" # number of top headings in document
+    # proceed if first heading exists
+    if [ -n "$first_top_heading" ]; then
+        title="$first_top_heading"
+        # if markdown is standard (only has one top heading),
+        # then remove it and decrement all other headings
+        if [ "$top_heading_nr" -eq 1 ]; then
+            groff="$(echo "$groff" | sed '/^.NH 1/,+1 d')"
+            groff="$(echo "$groff" | awk '/^.NH [2-9]/{$2-=1}1')"
+        fi
+    fi
+    # set the title and convert groff to pdf
+    groff="$(echo "$groff" | sed "s/^Untitled.*/$title/")"
+    echo "$groff" | pdfroff -itk -mspdf 2>/dev/null
+}
+
 open(){ \
     case "$ext" in
 	    tex|m[dse]|[rR]md|mom|norg|[0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
@@ -49,7 +69,7 @@ case "$ext" in
 	# norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf ;;
 	norg) mdpdf -o "$file" ;;
 	md)	if  [ -x "$(command -v pandoc)" ]; then
-            # mdpdf -o "$file"
+            # mdpdf "$file" > "$base".pdf
             pandoc "$file" \
 			  -f markdown \
 			  --pdf-engine=xelatex \
