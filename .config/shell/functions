@@ -30,6 +30,11 @@ if [[ -f ~/.last_dir ]]; then
   cd $(cat ~/.last_dir)
 fi
 
+### terminal histroy ###
+history() {
+    fc -il 1 | sort -u | fzf +m -e | awk '{$1=$2=$3=""; print substr($0,4)}' | xclip -selection c
+}
+
 ### Functions (filemanagement) ###
 dush() { du -sm * | sort -n | tail ; }
 

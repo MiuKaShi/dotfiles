@@ -8,100 +8,97 @@
 
 # sudo not required for some system commands
 for command in mount umount sv pacman nmtui updatedb su shutdown poweroff reboot; do
-	alias $command="sudo $command"
+    alias $command="sudo $command"
 done
 unset command
 
 alias \
-	ls="lsd" \
-	l="ls -l" \
-	la="ls -a" \
-	lla="ls -la" \
-	lt="ls --tree"
+    ls="lsd" \
+    l="ls -l" \
+    la="ls -a" \
+    lla="ls -la" \
+    lt="ls --tree"
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
-	q="exit" \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
-	bc="bc -ql" \
-	mkd="mkdir -pv" \
-	lf="lfrun" \
-	df="df -h" \
-	yt="yt-dlp --embed-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ffmpeg="ffmpeg -hide_banner" \
-	ns="newsboat" \
-	nsb="vim ~/.newsboat/bookmarks.txt" \
-	sci="scidownl -o ~/Downloads -D" \
-	cite="cite --style elsevier-vancouver" \
-	bibup="betterbib up -i" \
-	cman='man -M /usr/share/man/zh_CN' \
-	powerstat="powerstat -d 5 2"
+    q="exit" \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    bc="bc -ql" \
+    mkd="mkdir -pv" \
+    lf="lfrun" \
+    df="df -h" \
+    yt="yt-dlp --embed-metadata -i" \
+    yta="yt -x -f bestaudio/best" \
+    ffmpeg="ffmpeg -hide_banner" \
+    ns="newsboat" \
+    nsb="vim ~/.newsboat/bookmarks.txt" \
+    sci="scidownl -o ~/Downloads -D" \
+    cite="cite --style elsevier-vancouver" \
+    bibup="betterbib up -i" \
+    cman='man -M /usr/share/man/zh_CN' \
+    powerstat="powerstat -d 5 2"
 
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
 # -- Permissions aliases --
 alias \
-	664='chmod 664' \
-	775='chmod 775'
+    664='chmod 664' \
+    775='chmod 775'
 
 #handlr aliases
 alias \
     hg='handlr get' \
     hl='handlr list' \
     ha='handlr add' \
-    ho='handlr open' \
-    hs='handlr set'
+    ho='handlr open'
 
 # Colorize commands when possible.
 alias \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    ccat="highlight --out-format=ansi"
 
 #which graphical card is working
 alias whichvga="/home/miuka/.local/bin/arcolinux-which-vga"
 
 # taskwarrior
 alias \
-	t="task list" \
-	tt="vit" \
-	ta="task add" \
-	te="task edit" \
-	to="taskopen" \
-	ti='task add due:tomorrow tag:inbox'
-
+    t="task list" \
+    tt="vit" \
+    ta="task add" \
+    te="task edit" \
+    to="taskopen" \
+    ti='task add due:tomorrow tag:inbox'
 
 # Language.
 alias \
-	mat=" matlab -desktop" \
-	mbt="matlab -nodesktop -nosplash -r clc" \
-	ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
-	jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
+    mat=" matlab -desktop" \
+    mbt="matlab -nodesktop -nosplash -r clc" \
+    ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
+    jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
 
 # These common commands are just too long! Abbreviate them.
 alias \
-	ka="killall" \
-	g="git" \
-	trem="transmission-remote" \
-	YT="youtube-viewer" \
-	sdn="shutdown -h now" \
-	e='$EDITOR' \
-	v='$EDITOR' \
-	p="pacman" \
-	clc="clear" \
-	yd="ydict -c -q" \
-	s="pfetch" \
-	clashweb="xdg-open http://127.0.0.1:9090/ui/" \
-	bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
+    ka="killall" \
+    g="git" \
+    trem="transmission-remote" \
+    YT="youtube-viewer" \
+    sdn="shutdown -h now" \
+    e='$EDITOR' \
+    v='$EDITOR' \
+    p="pacman" \
+    clc="clear" \
+    yd="ydict -c -q" \
+    s="pfetch" \
+    clashweb="xdg-open http://127.0.0.1:9090/ui/" \
+    bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
 
 alias -g G='| grep -i' # for use ls -l G do
 
 alias cdls="cd && ls"
-alias tmuxattach='tmux attach -t $(tmux ls | fzf)'
 
 alias frm="fzf | xargs rm -v"
 alias ff='fzf --print0 -e | xargs -0 -r code'
@@ -141,11 +138,8 @@ alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,fram
 
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
 alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
-alias tmuxreload='tmux source-file ~/.tmux.conf'
-# The command alias to start the browser-sync server access the server inside my private network and test the webpage on several devices.
 
-alias history='fc -il 1'
-
+alias hs='history'
 
 #live Command
 alias tvcn='mpv --hwdec=auto --playlist=/home/miuka/.config/livetv/cctv.m3u --force-seekable=yes'
@@ -168,6 +162,6 @@ alias got='git '
 alias get='git '
 
 alias \
-	magit="nvim -c MagitOnly" \
-	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
-	weath='less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport'
+    magit="nvim -c MagitOnly" \
+    ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
+    weath='less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport'
