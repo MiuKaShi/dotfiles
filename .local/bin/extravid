@@ -6,3 +6,4 @@ title=$(echo "$vidlist" |  sed 's/https:.*//' | dmenu -i -p "Watch video (ESC to
 url=$(echo "$vidlist" | grep "$title" | awk '{print $NF}')
 
 linkhandler "$url"
+
