@@ -1,6 +1,7 @@
 map gcac cd "/home/miuka/.cache" 
 map gcf cd "/home/miuka/.config" 
 map gdl cd "/home/miuka/Downloads" 
+map gpj cd "/home/miuka/Projects" 
 map gdm cd "/home/miuka/Documents" 
 map gdt cd "/home/miuka/.local/share" 
 map grr cd "/home/miuka/.local/src" 

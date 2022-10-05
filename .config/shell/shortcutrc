@@ -2,6 +2,7 @@
 alias cac="cd /home/miuka/.cache" \
 cf="cd /home/miuka/.config" \
 dl="cd /home/miuka/Downloads" \
+pj="cd /home/miuka/Projects" \
 dm="cd /home/miuka/Documents" \
 dt="cd /home/miuka/.local/share" \
 h="cd /home/miuka" \

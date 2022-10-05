@@ -1,6 +1,7 @@
 hash -d cac=/home/miuka/.cache 
 hash -d cf=/home/miuka/.config 
 hash -d dl=/home/miuka/Downloads 
+hash -d pj=/home/miuka/Projects
 hash -d dm=/home/miuka/Documents 
 hash -d dt=/home/miuka/.local/share 
 hash -d h=/home/miuka 
