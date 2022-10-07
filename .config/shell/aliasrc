@@ -166,6 +166,7 @@ alias y='yadm'
 alias ys='yadm status'
 alias ya='yadm add'
 alias yc='yadm commit'
+alias yp='yadm push'
 
 alias \
     ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
