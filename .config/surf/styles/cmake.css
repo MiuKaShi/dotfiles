@@ -1,0 +1,27 @@
+/* code highlight */
+.highlight .nf, /* call */
+.highlight .nt /* variable */
+{
+   color: #00ffff !important;
+}
+.highlight .no /* variable */
+{
+	font-weight: bold;
+}
+.highlight .c /* comment */
+{
+   color: #00ff00 !important;
+}
+.highlight .s, /* string */
+.highlight .mi /* number */
+{
+   color: #ff0000 !important;
+}
+.highlight .o
+{
+   color: #cdffcd !important;
+}
+.highlight .cp /* preprocessor */
+{
+   color: #ff00ff !important;
+}

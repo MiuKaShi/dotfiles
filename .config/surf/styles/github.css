@@ -1,0 +1,42 @@
+.blob-num
+{
+   color: #00eeee !important;
+}
+a,
+body .breadcrumb strong.final-path
+{
+    color: #00ffff !important;
+}
+body .text-gray-dark, body body .text-gray-dark
+{
+    color: #ff0000 !important;
+}
+
+/* CODE HIGHLIGHTING */
+.pl-c, .pl-c span, .pl-pdc /* comments */
+{
+   color: #00ff00 !important;
+}
+.blob-code-inner, /* macros */
+.pl-e, .pl-en
+{
+   color: #f020dd !important;
+}
+.pl-pds, .pl-s, .pl-s .pl-pse .pl-s1, .pl-sr, .pl-sr .pl-cce, .pl-sr .pl-sra, .pl-sr .pl-sre /* paths */
+{
+   color: #00dd00 !important;
+}
+.pl-c1, .pl-s .pl-v, /* members */
+.pl-s .pl-s1, .pl-smi
+{
+   color: #00eeee !important;
+}
+.markdown-body kbd /* inline code */
+{
+   color: #00eeee !important;
+   font-weight: bold !important;
+}
+.markdown-body code, .markdown-body tt
+{
+   color: #ff0000 !important;
+}

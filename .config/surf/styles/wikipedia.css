@@ -1,0 +1,8 @@
+.vectorTabs li a
+{
+    color: #ff0000 !important;
+}
+.mwe-math-mathml-inline, .mwe-math-mathml-a11y, .mwe-math-fallback-image-inline
+{
+	filter: invert(100%) !important;
+}

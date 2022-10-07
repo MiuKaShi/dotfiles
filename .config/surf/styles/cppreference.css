@@ -1,0 +1,20 @@
+pre /* names */
+{
+    color: #ffffff !important;
+}
+.cpp.source-cpp .kw1  /* keywords */
+{
+    color: #00ffff !important;
+}
+.cpp.source-cpp .nu0  /* numbers */
+{
+    color: #00ff00 !important;
+}
+.cpp.source-cpp .sy1  /* <>= */
+{
+    color: #ff00ff !important;
+}
+.cpp.source-cpp .sy2  /* +-* */
+{
+    color: #ff0000 !important;
+}

@@ -1,0 +1,12 @@
+paper-button, paper-button span, yt-formatted-string
+{
+    color: #00ffff !important;
+}
+.vectorTabs li a
+{
+    color: #ff0000 !important;
+}
+#search, html:not(.style-scope)
+{
+   color: #ff0000 !important;
+}
