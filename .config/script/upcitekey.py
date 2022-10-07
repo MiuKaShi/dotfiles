@@ -3,7 +3,6 @@ import bibtexparser
 import sys
 import os
 import re
-from shutil import copy
 from collections import OrderedDict
 
 
@@ -23,6 +22,7 @@ def splitNames(name_str):
     ret = bibtexparser.customization.getnames(
         [i.strip() for i in name_str.lower().replace("\n", " ").split(" and ")]
     )
+    print(ret)
     return ret
 
 
@@ -90,7 +90,6 @@ def main():
     args = parser.parse_args()
 
     print("Reading bibfile:\t\t  {}".format(os.path.basename(args.in_file)))
-    # copy(args.in_file, "{}.bak".format(args.in_file))
     with open(args.in_file, "r") as bibtex_file:
         bibDatabase = bibtexparser.load(bibtex_file)
 

@@ -14,7 +14,7 @@ format =  "[$hostname](bold green) ❯ "
 [character]
 success_symbol = "[➜](bold green) "
 error_symbol = "[✗](bold red) "
-
+vicmd_symbol   = "[V](bold green)"
 # Use custom format
 # format = """
 #[┌───────────────────>](bold green)
@@ -45,6 +45,16 @@ style = 'green bold'
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[cmake]
+format            = "via [$symbol($version )]($style)"
+version_format    = "v${raw}"
+symbol            = "△ "
+detect_extensions = []
+detect_files      = ["CMakeLists.txt", "CMakeCache.txt"]
+detect_folders    = []
+style             = "bold blue"
+disabled          = false
 
 # Disable the AWS module.
 [aws]

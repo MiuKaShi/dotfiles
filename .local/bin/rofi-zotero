@@ -194,5 +194,5 @@ else:
     if re_result is not None:
       index = re_result.group("index")
       path_pdf = pdf_list[int(index)][1]
-      subprocess.Popen(["xdg-open", path_pdf])
+      subprocess.Popen(["sioyek", path_pdf])
 
