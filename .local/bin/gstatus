@@ -1,0 +1,47 @@
+#!/bin/bash
+
+dirs="$1"
+
+current_branch () {
+    git rev-parse --abbrev-ref HEAD
+}
+
+commits_to_pull_no () {
+    git log HEAD..$1/$2 --oneline | wc -l | tr -d '[[:space:]]'
+}
+
+for dir in $dirs/*
+do
+    if [[ -d "${dir}/.git" ]] || continue
+    then
+        (
+            cd ${dir}
+            git remote update  >/dev/null 2>/dev/null &
+        )
+    fi
+done
+wait
+
+for dir in $dirs/*
+do
+    if [[ -d "${dir}/.git" ]] || continue
+    then
+        cd ${dir}
+        rp=$(basename $dir) 
+        result="${rp}\t"
+        result="${result}`tput setaf 3`$(current_branch)`tput op`\t"
+        cb="$(current_branch)"
+        res="pull:"
+        for r in `git remote`
+        do
+            num=$(commits_to_pull_no $r $cb)
+            res="$res`tput setaf 2`$num`tput op` "
+        done
+        if [ "$num" -gt 0 ]; then
+            echo -e "${result}${res}"
+        fi
+        cd ..
+    fi
+done | column -ts $'\t'
+tput op;
+exit 0
