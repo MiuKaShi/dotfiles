@@ -6,13 +6,15 @@ autoconky(){ \
     case $modeldp in
         *"ENC"*)
             conky -c ~/.config/conky/lab/.conkyrc >> /dev/null 2>&1 &
+            notify-send -t 1000 "Conky" "Conky started!"
             ;;
         *"PHL"* | *"HKC"*)
             conky -c ~/.config/conky/home/.conkyrc >> /dev/null 2>&1 &
+            notify-send -t 1000 "Conky" "Conky started!"
             ;;
-        *)
-            conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
-            ;;
+        # *)
+        #     conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
+        #     ;;
     esac
 }
 
@@ -73,7 +75,6 @@ case $1 in
             notify-send -t 1000 "Conky" "Conky killed!"
         else
             autoconky
-            notify-send -t 1000 "Conky" "Conky started!"
         fi 
         ;;
     vmwave)
