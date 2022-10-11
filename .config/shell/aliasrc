@@ -96,8 +96,11 @@ alias \
     clashweb="xdg-open http://127.0.0.1:9090/ui/" \
     bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
 
-alias -g G='| grep -i' # for use ls -l G do
+# install list
+alias yli="yay -Qq | fzf --multi --preview 'yay -Qi {1}'"
+alias yin="yay -Slq | fzf --multi --preview 'yay -Si {1}'"
 
+alias -g G='| grep -i' # for use ls -l G do
 alias cdls="cd && ls"
 
 alias frm="fzf | xargs rm -v"
