@@ -1,0 +1,10 @@
+#!/bin/sh
+
+formater=/home/miuka/.config/script/upcitekey.py
+
+cd /tmp/
+curl -sLH "Accept: application/x-bibtex;q=1" http://dx.doi.org/$1 >tmp.bib
+python "$formater" -k tmp.bib
+bibtex-tidy --quiet --omit=date,day,number,publisher --curly --numeric --align=13 tmp.bib
+cat tmp.bib && cat tmp.bib | xclip -sel clip
+
