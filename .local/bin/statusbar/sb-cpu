@@ -2,14 +2,26 @@
 
 case $BLOCK_BUTTON in
 	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
-	2) setsid -f "$TERMINAL" -e htop ;;
+	2) dmenugpu ;;
 	3) notify-send "🖥 CPU module " "\- Shows CPU temperature.
 - Click to show intensive processes.
-- Middle click to open htop." ;;
+- Middle click to select GPU mode." ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 CPU_TEMP=($(sensors | awk '/Core 0/ {print $3 }' | sed "s/\+//" | cut -f1 -d"."))
-GPU_TEMP=($(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader))
+case $(envycontrol -q | awk '{ print $NF }') in
+	integrated) GPU_MODE="💻Intel" ;;
+	hybrid) GPU_MODE="✨Hybrid" ;;
+	nvidia) GPU_MODE="🚀Nvidia" ;;
+esac
 
-echo "CPU:🌡$CPU_TEMP°C|GPU:🌡$GPU_TEMP°C"
+# GPU_TEMP=($(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader))
+# if [[ $GPU_TEMP == *"NVIDIA-SMI"* ]]; then
+#   RES="CPU:🌡$CPU_TEMP°C"
+# else
+#   RES="CPU:🌡$CPU_TEMP°C|GPU:🌡$GPU_TEMP°C"
+# fi
+
+RES="CPU:🌡$CPU_TEMP°C|GPU:$GPU_MODE"
+echo "$RES"
