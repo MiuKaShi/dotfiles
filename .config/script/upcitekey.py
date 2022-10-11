@@ -22,7 +22,6 @@ def splitNames(name_str):
     ret = bibtexparser.customization.getnames(
         [i.strip() for i in name_str.lower().replace("\n", " ").split(" and ")]
     )
-    print(ret)
     return ret
 
 
@@ -89,7 +88,6 @@ def main():
 
     args = parser.parse_args()
 
-    print("Reading bibfile:\t\t  {}".format(os.path.basename(args.in_file)))
     with open(args.in_file, "r") as bibtex_file:
         bibDatabase = bibtexparser.load(bibtex_file)
 
@@ -131,7 +129,6 @@ def main():
     db.entries = list(new_bib.values())
 
     # write new db
-    print("Writing fixed bibfile to: {}".format(os.path.basename(ofname)))
     writer = bibtexparser.bwriter.BibTexWriter()
     if not args.alphabetize:
         writer.order_entries_by = None
