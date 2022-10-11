@@ -22,8 +22,8 @@ bkrm() {
     fi
 }
 
-case "$(printf "add\nremove" | dmenu -i -p 'Bookmark: ')" in
-	add) bkadd ;;
-	remove) bkrm ;;
+case "$(printf "🔖 add\n🚮 remove" | dmenu -i -p '📑 Bookmark: ')" in
+	'🔖 add') bkadd ;;
+	'🚮 remove') bkrm ;;
 esac
 
