@@ -87,7 +87,8 @@ bindkey -s '^o' '^uchopin-open\n'
 bindkey -s '^p' '^uchopin-paper\n'
 bindkey -s '^b' '^uchopin-book\n'
 bindkey -s '^n' '^uchopin-note\n'
-bindkey -s '^a' '^ubc -lq\n'
+bindkey -s '^a' '^uchopin-bookmark\n'
+#bindkey -s '^a' '^ubc -lq\n'
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:

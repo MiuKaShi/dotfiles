@@ -12,8 +12,10 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
-map b feedkeys ":! getbib $FILE <Return>" # copy pdf bib
+
+map <C-a> feedkeys ":! bookmark $FILE <Return>" # add to bookmakr
 map <C-b> feedkeys ":! st -e extrbib $FILE <Return>" # edit pdf bib
+map <C-i> feedkeys ":! getbib $FILE <Return>" # copy pdf bib
 map <C-l> feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
 map <C-z> feedkeys ":! zotadd $FILE <Return>" # Add to zotero
 map <C-w> feedkeys ":! webpdf $FILE <Return>" # open with browser(for translate)
