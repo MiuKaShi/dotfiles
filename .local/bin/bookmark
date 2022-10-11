@@ -1,0 +1,29 @@
+#!/bin/sh
+
+bkdir="/home/miuka/Documents/bookmark"
+file=$(readlink -f "$1")
+name=$(basename "$file")
+
+bkadd() {
+    if [ -f "$bkdir/$name" ]; then
+        notify-send -t 2000 "already add"
+    else 
+        cp -r "$file" "$bkdir"
+        notify-send -t 2000 "add to bookmark"
+    fi
+}
+
+bkrm() {
+    if [ -f "$bkdir/$name" ]; then
+        trash "$bkdir/$name"
+        notify-send -t 2000 "remove from bookmark"
+    else 
+        notify-send -t 2000 "not add"
+    fi
+}
+
+case "$(printf "add\nremove" | dmenu -i -p 'Bookmark: ')" in
+	add) bkadd ;;
+	remove) bkrm ;;
+esac
+
