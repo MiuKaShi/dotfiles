@@ -14,10 +14,8 @@ for dir in $dirs/*
 do
     if [[ -d "${dir}/.git" ]] || continue
     then
-        (
             cd ${dir}
             git remote update  >/dev/null 2>/dev/null &
-        )
     fi
 done
 wait
