@@ -5,5 +5,4 @@ vidlist=$(bt list | awk '{$1=""; print $0}' | grep -E "bilibili.com/video|youtub
 title=$(echo "$vidlist" |  sed 's/https:.*//' | dmenu -i -p "Watch video (ESC to cancel)" -l 20)
 url=$(echo "$vidlist" | grep "$title" | awk '{print $NF}')
 
-linkhandler "$url"
-
+[ ! -z "$url" ] && linkhandler "$url" || exit 0

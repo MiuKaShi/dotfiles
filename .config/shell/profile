@@ -36,7 +36,7 @@ export READER="zathura"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
 # rust
-export RUST_BACKTRACE=1
+export RUST_BACKTRACE="full"
 
 # export fcitx5 environment variables
 export INPUT_METHOD="fcitx5"
