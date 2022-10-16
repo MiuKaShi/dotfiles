@@ -2,11 +2,10 @@
 
 # Check if gedit is running
 # -x flag only match processes whose name (or command line if -f is
-# specified) exactly match the pattern. 
+# specified) exactly match the pattern.
 
-if pgrep -x "alacritty" > /dev/null
-then
-    alacritty msg create-window 
+if pgrep -x "alacritty" >/dev/null; then
+  alacritty msg create-window
 else
-    alacritty
+  alacritty
 fi

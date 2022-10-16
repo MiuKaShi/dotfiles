@@ -10,18 +10,17 @@ ext="${file##*.}"
 name=$(basename "$file")
 fname="${name%.*}"
 
-open(){ \
+open() {
     case "$ext" in
-	    tex|m[dse]|[rR]md|mom|norg|[0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
-	    html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
+        tex | m[dse] | [rR]md | mom | norg | [0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
+        html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
     esac
 }
 
-if [ -f "$base".pdf ]
-then
+if [ -f "$base".pdf ]; then
     open "$base" && notify-send "Compile view"
- else
+else
     base="/tmp/$fname"
     pkill -f "entr -n previewer"
-    echo "$1" | setsid -f entr -n previewer "$1" 
-fi 
+    echo "$1" | setsid -f entr -n previewer "$1"
+fi

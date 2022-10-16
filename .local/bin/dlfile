@@ -6,7 +6,7 @@ url=$(dragon-drag-and-drop -t -x)
 if [ -n "$url" ]; then
   printf "File Name: "
   name=""
-  while [ -z $name ] || [ -e $name ]
+  while [ -z "$name" ] || [ -e "$name" ]
   do
     read -r name
     if [ -e "$name" ]; then

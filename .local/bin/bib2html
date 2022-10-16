@@ -15,4 +15,3 @@ fi
 
 bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css "$file"
 handlr open "$fname.html"
-
