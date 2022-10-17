@@ -14,6 +14,7 @@ remaps & # run the remaps script, switching caps/esc and more; check it for more
 # picom --experimental-backends >> /dev/null 2>&1 &
 easyeffects --gapplication-service >> /dev/null 2>&1 &
 autorun conky 
+autorun clipsync
 
 autostart="mpd dunst xcompmgr unclutter fcitx5 flameshot watchfile clipmenud sxhkd"
 

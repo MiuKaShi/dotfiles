@@ -173,6 +173,11 @@ alias ya='yadm add'
 alias yc='yadm commit'
 alias yp='yadm push'
 
+# vps alias
+alias lab='ssh -R 2489:127.0.0.1:2489 lab'
+alias jp='ssh jp'
+alias us='ssh us'
+
 alias \
     ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
     weath='less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport'
