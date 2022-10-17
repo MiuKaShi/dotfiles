@@ -12,7 +12,7 @@ DOI="$1"
 PDF_URL="$(curl -Ls "${SCIHUB_URL}/${DOI}" | hxnormalize -x | hxselect -i -c "embed::attr(src)")"
 
 if [[ $PDF_URL != *"https"* ]];then
-    PDF_URL="$(echo $PDF_URL | ts https: | tr -d ' ')"
+    PDF_URL="$(echo "$PDF_URL" | ts https: | tr -d ' ')"
 fi
 
 key="$(curl -Ls -H "Accept: application/x-bibtex" "doi.org/$1" |

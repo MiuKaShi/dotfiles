@@ -7,11 +7,11 @@ lpicmain=$XDG_CONFIG_HOME/script/lpic/main.py
 
 case "$1" in
 	# Try to keep these cases in alphabetical order.
-	"-w") python $lpicmain web && notify-send -t 3000 "picture" "Web manage" ;;
-	"-d") python $lpicmain del ;;
-	"-p") python $lpicmain put $file -y && notify-send -t 3000 "picture" "upload successfully" ;;
+	"-w") python "$lpicmain" web && notify-send -t 3000 "picture" "Web manage" ;;
+	"-d") python "$lpicmain" del ;;
+	"-p") python "$lpicmain" put "$file" -y && notify-send -t 3000 "picture" "upload successfully" ;;
 	"-c") xclip -selection clipboard -t image/png -o > /tmp/src.png ;
-	      python $lpicmain put /tmp/src.png -y ;
+	      python "$lpicmain" put /tmp/src.png -y ;
 	      notify-send -t 3000 "Picture" "Upload successfully" ;
 	      rm -rf /tmp/src.png ;;
 esac

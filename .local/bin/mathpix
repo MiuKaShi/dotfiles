@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # vim: set ft=sh:
-MATHPIX_GROUP="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==1')"
-MATHPIX_ID="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==2')"
-MATHPIX_KEY="$(cat "${HOME}"/.api_keys/MATHPIX | awk 'NR==3')"
+MATHPIX_ID="$(awk 'NR==2' < "${HOME}"/.api_keys/MATHPIX)"
+MATHPIX_KEY="$(awk 'NR==3' < "${HOME}"/.api_keys/MATHPIX)"
 SCREENSHOT_PROG="maim -s"
 BASE64_PROG="base64 -w 0"
 image_file=/tmp/screenshot

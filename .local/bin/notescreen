@@ -57,7 +57,7 @@ case $monitor_name in
         export DRI_PRIME=1
         # 显卡设置
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-        xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/labxresources &
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources &
         xrdbpid=$!
         ;;
     *"PHL"* | *"T278Q"*)
@@ -87,7 +87,7 @@ case $monitor_name in
         export WINIT_X11_SCALE_FACTOR=1 #for Alacritty
         # 显卡设置
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-        xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources &
         xrdbpid=$!
         ;;
     *)
@@ -97,7 +97,7 @@ case $monitor_name in
             --mode 1920x1080 
         export LIBVA_DRIVER_NAME=iHD
         export VDPAU_DRIVER=va_gl
-        xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/xresources &
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/xresources &
         xrdbpid=$!
         ;;
 esac

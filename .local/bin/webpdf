@@ -5,7 +5,7 @@ dir=${file%/*}
 name=$(basename "$file")
 
 port="25851"
-pidnum=$(lsof -t -i:$"port")
+pidnum=$(lsof -t -i:$port)
 
 cd "$dir" || exit 1
 

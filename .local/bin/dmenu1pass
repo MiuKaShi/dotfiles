@@ -13,7 +13,7 @@ password=$(cat ~/.1p) # read 1password information
 login () {
     # asks the user for their 1pass keyphrase and signs them in. Additionally, stores the session token in the users keyring
     # and returns it.
-    local token=$(echo $password | xargs | op signin my --raw)
+    local token="$(echo "$password" | xargs | op signin my --raw)"
     echo "$token" > /tmp/.1p_token
     echo "$token"
 }
