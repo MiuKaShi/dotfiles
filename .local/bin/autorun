@@ -68,6 +68,16 @@ case $1 in
     translator)
         ldr >> /dev/null 2>&1 &
         notify-send -t 1000 "ldr Start" ;;
+    clipsync)
+        if pgrep -x lemonade >/dev/null
+        then
+            killall lemonade
+            notify-send -t 1000 "Lemonade" "Lemonade killed!"
+        else
+            lemonade server >> /dev/null 2>&1 &
+            notify-send -t 1000 "Lemonade" "Lemonade started!"
+        fi 
+        ;;
     conky)
         if pgrep -x conky >/dev/null
         then
