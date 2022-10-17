@@ -33,6 +33,7 @@ set autoquit on
 # ========
 
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Remove >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+map t
 map m
 map n
 map "'"
@@ -101,6 +102,7 @@ map tz zip
 map tt tar
 map tg tgz
 map tu extract
+map tl sendf
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Quick Preview <<<<<<<<<<<<<<<<<<<<<<<<<<
 map i $LESS='-iWQMXR~' bat --paging=always --theme=TwoDark "$f"
 map I $$PAGER "$f"
@@ -245,7 +247,7 @@ cmd zip ${{
     set -f
     mkdir $f-zip
     cp -r $fx $f-zip
-    (cd $f-zip/ && zip -r $f.zip .)
+    (cd $f-zip/ && zip -9 -y -r -q $f.zip .)
     rm -rf $f-zip/
 }}
 
@@ -260,6 +262,10 @@ cmd tar ${{
 cmd tgz ${{
     set -f
     tar -cvf - $fx | pigz -k > $f.gz
+}}
+
+cmd sendf ${{
+    sendfile $fx 
 }}
 
 # Edit filename before the extension
