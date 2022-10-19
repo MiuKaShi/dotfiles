@@ -14,5 +14,17 @@ else
 	. "$HOME/.xprofile"
 fi
 
-# exec dbus-launch --sh-syntax --exit-with-session dwm
-ssh-agent dwm
+eval $(ssh-agent)
+
+session=${1:-dwm}
+
+case $session in
+    dwm) exec dwm ;;
+    gnome)
+        export XDG_SESSION_TYPE=x11
+        export GDK_BACKEND=x11
+        exec gnome-session
+        ;;
+    cinnamon) exec gnome-session-cinnamon ;;
+    *) exec $1 ;;
+esac
