@@ -177,6 +177,8 @@ alias yp='yadm push'
 alias lab='ssh -R 2489:127.0.0.1:2489 lab'
 alias jp='ssh jp'
 alias us='ssh us'
+alias air='ssh air'
+alias nuc='ssh nuc'
 alias frpweb='xdg-open http://45.14.107.211:50002/static/'
 
 alias \
