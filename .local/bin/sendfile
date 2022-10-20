@@ -1,8 +1,8 @@
 #!/bin/sh
 
 file=$(readlink -f "$1")
-destiny=$(dirname "$file")
+dest=$(dirname "$file")
 server="$(printf "lab\\njp\\nus" | dmenu -i -p "Chose servers?")"
 
-ssh "$server" "mkdir -p $destiny" && notify-send -t 2000 "🗄️ Files to Server " "send files to $server" 
-scp -r "$file" "$server:$destiny"
+ssh "$server" "mkdir -p $dest" && notify-send "🚚 File(s) send." "File(s) send to $server:$dest." 
+scp -r "$file" "$server:$dest"

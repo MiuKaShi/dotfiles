@@ -181,4 +181,4 @@ alias frpweb='xdg-open http://45.14.107.211:50002/static/'
 
 alias \
     ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
-    weath='less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport'
+	weath="less -S ${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport"
