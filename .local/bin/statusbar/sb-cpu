@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
 	1) notify-send "🖥 CPU hogs" "$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n(100% per core)" ;;
-	2) dmenugpu ;;
+	2) sudo dmenugpu;;
 	3) notify-send "🖥 CPU module " "\- Shows CPU temperature.
 - Click to show intensive processes.
 - Middle click to select GPU mode." ;;
@@ -10,7 +10,7 @@ case $BLOCK_BUTTON in
 esac
 
 CPU_TEMP=($(sensors | awk '/Core 0/ {print $3 }' | sed "s/\+//" | cut -f1 -d"."))
-case $(envycontrol -q | awk '{ print $NF }') in
+case $(dmenugpu -q) in
 	integrated) GPU_MODE="💻Intel" ;;
 	hybrid) GPU_MODE="✨Hybrid" ;;
 	nvidia) GPU_MODE="🚀Nvidia" ;;
