@@ -132,6 +132,9 @@ export PF_INFO="ascii title os kernel wm editor shell uptime pkgs memory palette
 export PF_SEP=":"
 export PF_COLOR=1
 
+# GPU env
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/gpu" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/gpu"
+
 # Start graphical server on user's current tty if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
 
