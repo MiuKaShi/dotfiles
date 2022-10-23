@@ -171,6 +171,7 @@ alias y='yadm'
 alias ys='yadm status'
 alias ya='yadm add'
 alias yc='yadm commit'
+alias yr='yadm rm'
 alias yp='yadm push'
 
 # vps alias
