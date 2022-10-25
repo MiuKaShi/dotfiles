@@ -22,8 +22,8 @@ server_menu_item[8]="clipsync"
 server_cmd[8]='autorun clipsync'
 server_menu_item[9]="conky"
 server_cmd[9]='autorun conky'
-server_menu_item[10]="virsual arch"
-server_cmd[10]='[ "$(docker ps | grep minearch)" ] && docker stop minearch >> /dev/null || docker restart minearch >> /dev/null && docker exec -u root -itd arch bash -c "/usr/sbin/vncserver :1" ;'
+server_menu_item[10]="vmwave"
+server_cmd[9]='autorun vmwave'
 
 server_menu() {
     echo -e "\0prompt\x1fserver"
