@@ -5,38 +5,28 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
-# set go $PATH
+# Default programs:
+export TERMINAL="st"
+export WM="dwm"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BROWSER="qutebrowser"
+export OPENER="xdg-open"
+export TFM="lf"
+export READER="zathura"
+export ZOTOOLS="/home/miuka/.config/zotools/config.json"
+
+# PATH
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="$GOPATH/bin"
-
-# set ruby $PATH
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-
-
-# set Julia $PATH
 export JLBIN="$HOME/.julia/bin"
-
-# Adds to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$JLBIN"
 export PATH="$PATH:$GEM_HOME/bin"
 
 unsetopt PROMPT_SP
-
-# Default programs:
-export TERMINAL="st"
-export WM="dwm"
-export EDITOR="nvim"
-export VISUAL="nvim"
-export BROWSER="firefox"
-export OPENER=xdg-open
-export TFM=lf
-export READER="zathura"
-export ZOTOOLS="/home/miuka/.config/zotools/config.json"
-
-# rust
-export RUST_BACKTRACE="full"
 
 # export fcitx5 environment variables
 export INPUT_METHOD="fcitx5"
@@ -68,7 +58,7 @@ export CSL="$HOME/papers/bib/tribology-international.csl"
 # vulkan
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
 
-# xdg dirs
+# XDG dirs
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
