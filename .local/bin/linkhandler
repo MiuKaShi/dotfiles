@@ -6,11 +6,13 @@
 # if a music file or pdf, it will download,
 # otherwise it opens link in browser.
 
+# set browser
+BROWSER=firefox 
 # If no url given. Opens browser. For using script as $BROWSER.
 [ -z "$1" ] && { "$BROWSER"; exit; }
 
 case "$1" in
-	*mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*hooktube.com*|*bitchute.com*|*videos.lukesmith.xyz*|*odysee.com*)
+	*mkv|*webm|*mp4|*youtube.com/watch*|*yewtu.be/watch*|*youtube.com/playlist*|*youtu.be*|*hooktube.com*|*bitchute.com*|*videos.lukesmith.xyz*|*odysee.com*)
 		notify-send "📀 mpv " "Wait to play..."
         setsid -f mpv -quiet "$1" >/dev/null 2>&1 ;;
 	*bilibili.com/video*)
