@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.blocking.method:
-    global: both
+  colors.webpage.bg:
+    global: '#1d2021'

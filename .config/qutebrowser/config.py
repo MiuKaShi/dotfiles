@@ -27,6 +27,8 @@ c.fileselect.single_file.command = ["st", "sh", "-c", "lf > {}"]
 c.fileselect.multiple_files.command = ["st", "sh", "-c", "lf > {}"]
 c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
+c.confirm_quit = ['downloads']
+c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.tabs.show = "multiple"
@@ -36,6 +38,24 @@ c.tabs.mousewheel_switching = False
 config.set("content.autoplay", False)
 # Don't automatically leave insert mode. qutebrowser will leave insert mode automatically
 config.set("input.insert_mode.auto_leave", False)
+c.hints.next_regexes = [
+    '\\bnext\\b',
+    '\\bmore\\b',
+    '\\bnewer\\b',
+    '\\b[>→≫]\\b',
+    '\\b(>>|»)\\b',
+    '\\bcontinue\\b',
+    '\\b下一?页\\b'
+]
+# Comma-separated list of regular expressions to use for 'prev' links.
+c.hints.prev_regexes = [
+    '\\bprev(ious)?\\b',
+    '\\bback\\b',
+    '\\bolder\\b',
+    '\\b[<←≪]\\b',
+    '\\b(<<|«)\\b',
+    '\\b上一?页\\b'
+]
 
 # privacy
 c.content.cookies.accept = "no-3rdparty"
@@ -71,48 +91,91 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.url.default_page = 'https://searx.be/'
 c.url.start_pages = 'https://searx.be/'
 c.tabs.last_close = "startpage"
-c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}',
+c.url.searchengines = {
+        'DEFAULT': 'https://searx.be/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
-        'lite': 'https://lite.duckduckgo.com/lite/?q={}',
+        'google': 'https://google.com/search?q={}',
         'arch': 'https://wiki.archlinux.org/?search={}',
-        'wiki': 'https://wikiless.org/wiki/{}',
-        'ody': 'https://odysee.com/$/search?q={}',
+        'github': 'https://github.com/search?q={}',
+        'baidu': 'https://baidu.com/s?wd={}',
+        'zhihu': 'https://zhihu.com/search?q={}',
         'yt': 'https://youtube.com/results?search_query={}',
-        'ddg': 'https://duckduckgo.com/?q={}'}
+}
 
 # Keys
-config.bind('e', 'spawn linkhandler {url}')
-config.bind('E', 'hint links spawn linkhandler {hint-url}')
+config.bind('e', 'hint links spawn linkhandler {hint-url}')
+config.bind('E', 'spawn linkhandler {url}')
 config.bind('I', 'hint images download')
+
+config.bind('d', 'scroll-page 0 0.5')
+config.bind('u', 'scroll-page 0 -0.5')
+config.bind('j', 'scroll-page 0 0.1')
+config.bind('k', 'scroll-page 0 -0.1')
+config.bind('H', 'back')
+config.bind('L', 'forward')
+
+config.bind('J', 'zoom-out')
+config.bind('K', 'zoom-in')
+
+config.unbind('gJ')
+config.unbind('gK')
+config.bind('gj', 'tab-move -')
+config.bind('gk', 'tab-move +')
+config.bind('<', 'tab-move -')
+config.bind('>', 'tab-move +')
+config.bind('<Ctrl+H>', 'tab-prev')
+config.bind('<Ctrl+L>', 'tab-next')
+config.bind('x', 'tab-close')
+config.bind('X', 'undo')
+
 config.bind('yf', 'hint links yank')
+config.bind('yt', 'tab-clone')
 
-config.bind('d', 'run-with-count 10 scroll down', mode = 'normal')
-config.bind('u', 'run-with-count 10 scroll up', mode = 'normal')
-config.bind('j', 'scroll down', mode = 'normal')
-config.bind('k', 'scroll up', mode = 'normal')
-config.bind('J', 'zoom-out', mode = 'normal')
-config.bind('K', 'zoom-in', mode = 'normal')
+config.bind('p', 'open -- {clipboard}')
+config.bind('P', 'open --bg {clipboard}')
 
-config.bind('H', 'back', mode = 'normal')
-config.bind('L', 'forward', mode = 'normal')
-config.bind('<Ctrl+H>', 'tab-prev', mode = 'normal')
-config.bind('<Ctrl+L>', 'tab-next', mode = 'normal')
+config.bind('b', 'set-cmd-text -s :bookmark-load')
+config.bind('B', 'set-cmd-text -s :bookmark-load -t')
+config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
 
-config.bind('x', 'tab-close', mode = 'normal')
-config.bind('yt', 'tab-clone', mode = 'normal')
-config.bind('<Space>', 'set-cmd-text /', mode = 'normal')
-config.bind('p', 'open -- {clipboard}', mode = 'normal')
-config.bind('P', 'open --bg {clipboard}', mode = 'normal')
-config.bind('b', 'set-cmd-text -s :bookmark-load', mode = 'normal')
-config.bind('B', 'set-cmd-text -s :bookmark-load -t', mode = 'normal')
-config.bind('<Ctrl+b>', 'bookmark-list', mode = 'normal')
-config.bind('<<', 'tab-move -', mode = 'normal')
-config.bind('>>', 'tab-move +', mode = 'normal')
-config.bind('o', 'set-cmd-text -s :open -s', mode = 'normal')
-config.bind('O', 'set-cmd-text -s :open -t -s', mode = 'normal')
+config.bind('t,p', 'config-cycle content.proxy system http://localhost:7890/')
+
+config.bind('o', 'set-cmd-text -s :open -s')
+config.bind('O', 'set-cmd-text -s :open -t -s')
 config.bind("<Ctrl-p>", "set-cmd-text -s :tab-select")
 
-config.bind(',o', 'set-cmd-text -s :open -w', mode = 'normal')
+# Bindings for insert mode
+config.bind('<Alt-Backspace>', 'fake-key <Ctrl-Backspace>', mode='insert')
+config.bind('<Ctrl-a>', 'fake-key <Home>', mode='insert')
+config.bind('<Ctrl-e>', 'fake-key <End>', mode='insert')
+config.bind('<Ctrl-d>', 'fake-key <Delete>', mode='insert')
+config.bind('<Ctrl-h>', 'fake-key <Backspace>', mode='insert')
+config.bind('<Ctrl-k>', 'fake-key <Shift-End> ;; fake-key <Delete>', mode='insert')
+config.bind('<Ctrl-u>', 'fake-key <Shift+Home> ;; fake-key <BackSpace>', mode='insert')
+config.bind('<Ctrl-f>', 'fake-key <Right>', mode='insert')
+config.bind('<Ctrl-b>', 'fake-key <Left>', mode='insert')
+config.bind('<Ctrl-n>', 'fake-key <Down>', mode='insert')
+config.bind('<Ctrl-p>', 'fake-key <Up>', mode='insert')
+# config.bind('<Escape>', 'spawn fcitx5-remote -t ;; mode-leave ;; fake-key <Escape>', mode='insert')
+config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
+# config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
+config.bind('<Ctrl-[>', 'mode-leave', mode='insert')
+
+# Leader key: `,`
+config.bind(',o', 'set-cmd-text -s :open -w')
 config.bind(',t', 'spawn --userscript translate')
-config.bind(',b', "hint links tab", mode = 'normal')
-config.bind(',c', "config-cycle colors.webpage.bg '#1d2021' 'white'", mode = 'normal')
+config.bind(',b', 'hint links tab')
+config.bind(',c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
+config.bind(',g', 'open -t https://github.com')
+config.bind(',m', 'open -t https://mail.google.com')
+config.bind(',r', 'open -t https://reddit.com')
+config.bind(',v', 'open -t https://v2ex.com')
+config.bind(',z', 'open -t https://zhihu.com')
+
+# Bindings for cmd
+# Leader key: `\`
+config.bind('\\d', 'help')
+config.bind('\\h', 'history')
+config.bind('\\m', 'messages')
+config.bind('\\r', 'config-source')
+config.bind('\\u', 'adblock-update')
