@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	2) sudo dmenugpu;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+# GPU_TEMP=($(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader))
+# if [[ $GPU_TEMP == *"NVIDIA-SMI"* ]]; then
+#   RES="CPU:🌡$CPU_TEMP°C"
+# else
+#   RES="CPU:🌡$CPU_TEMP°C|GPU:🌡$GPU_TEMP°C"
+# fi
+
+case $(dmenugpu -q) in
+	integrated) GPU_MODE="💻GPU:Intel" ;;
+	hybrid) GPU_MODE="✨GPU:Hybrid" ;;
+	nvidia) GPU_MODE="🚀GPU:Nvidia" ;;
+esac
+
+RES="$GPU_MODE"
+echo "$RES"
