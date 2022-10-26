@@ -51,6 +51,11 @@ case $monitor_name in
             --panning 1440x2560+2560+0 \
             --output DP-1 --off \
             --output eDP-1-1 --off
+        # 缩放
+        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
+        export QT_SCALE_FACTOR=2 #for QT5
+        export GDK_SCALE=2 #for GDK3
+        export GDK_DPI_SCALE=0.5 #for GDK3
         # 硬件加速
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
@@ -75,17 +80,15 @@ case $monitor_name in
             --panning 2160x3840+3840+0 \
             --output DP-1 --off \
             --output eDP-1-1 --off
+        # 缩放
+        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
+        export QT_SCALE_FACTOR=2 #for QT5
+        export GDK_SCALE=2 #for GDK3
+        export GDK_DPI_SCALE=0.5 #for GDK3
         # 硬件加速
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
-        # 缩放
-        export QT_SCALE_FACTOR=1.5 #for QT5
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
-        export GDK_SCALE=2 #for GDK3
-        export GDK_DPI_SCALE=0.5 #for GDK3
-        export WINIT_HIDPI_FACTOR=1 #for Alacritty
-        export WINIT_X11_SCALE_FACTOR=1 #for Alacritty
         # 显卡设置
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources &
@@ -102,3 +105,5 @@ case $monitor_name in
         xrdbpid=$!
         ;;
 esac
+
+
