@@ -23,5 +23,8 @@ esac
 #   RES="CPU:🌡$CPU_TEMP°C|GPU:🌡$GPU_TEMP°C"
 # fi
 
-RES="CPU:🌡$CPU_TEMP°C|GPU:$GPU_MODE"
+LIST_STAT=('🈶On' '🈚Off')
+cstat=${LIST_STAT[$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)]}
+
+RES="CPU:🌡$CPU_TEMP°C|Boost:$cstat|GPU:$GPU_MODE"
 echo "$RES"
