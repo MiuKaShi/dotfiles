@@ -1,0 +1,57 @@
+#!/bin/bash
+
+pacman_packages=(
+    git
+    clash
+    zsh
+    tmux
+    lsd
+    ripgrep
+    skim
+    bat
+    diskus
+    htop
+    bashtop
+    cmake
+    libvterm
+    qutebrowser
+    # nvidia
+    # nvidia-utils
+    xorg
+    xorg-server
+    xorg-xinit
+    xclip
+    wqy-microhei
+    ttf-dejavu
+    fcitx5-rime
+    fcitx5-configtool
+    fcitx5-qt
+    rime-double-pinyin
+    tree
+    zip
+    unzip
+    mu
+    wget
+    rsync
+    dnsutils
+    gnutls
+    inetutils
+    net-tools
+    openssl
+)
+
+install_linux_packages() {
+    if  [[ -f /etc/arch-release ]]; then
+        sudo pacman -Sy
+        sudo pacman-key --populate
+        for apps in "${pacman_packages[@]}"; do
+            sudo pacman -S --noconfirm --needed "$apps"
+        done
+    fi
+}
+
+main() {
+    install_linux_packages
+}
+
+main
