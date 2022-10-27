@@ -4,6 +4,17 @@
 
 LIST_STAT=('Enabled' 'Disabled')
 cstat=${LIST_STAT[$(cat /sys/devices/system/cpu/intel_pstate/no_turbo)]}
+min=$(lscpu | grep "MHz" | grep min | awk '{ print $4 }' | tr -d '.')
+max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.')
+
+power=$(tlp-stat -s | grep -oP 'Mode           = \K.*')
+if [ "$power" = "battery" ]; then
+    CPU_MIN=CPU_SCALING_MIN_FREQ_ON_BAT
+    CPU_MAX=CPU_SCALING_MAX_FREQ_ON_BAT
+else
+    CPU_MIN=CPU_SCALING_MIN_FREQ_ON_AC
+    CPU_MAX=CPU_SCALING_MAX_FREQ_ON_AC
+fi
 
 boost_notify(){
 speed="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq)"
@@ -25,7 +36,7 @@ if [ "$mode" = "💻 Disabled" ]; then
 elif [ "$mode" = "🚀 Enabled" ]; then
     stat="Enabled"
     if [ "$cstat" != "$stat" ]; then
-        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 "$CPU_MIN"="$min" "$CPU_MAX"="$max"
         boost_notify
     fi
 else
