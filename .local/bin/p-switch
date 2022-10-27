@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# change /usr/bin/tlp /usr/bin/tlp-stat to run with NOPASSWD
+
+#set default Min/Max frequency
+min=$(lscpu | grep "MHz" | grep min | awk '{ print $4 }' | tr -d '.')
+max=2600000 
+
+power=$(tlp-stat -s | grep -oP 'Mode           = \K.*')
+
+if [ "$power" = "battery" ]; then
+    SMODE=bat
+else
+    SMODE=ac
+fi
+
+switch_notify(){
+speed="$(echo "${max}" | awk '{ OFMT="%.2fGhz"; print $1 / 1000000 }')"
+TITLE="Switch to ${mode} Performance"
+MSG="Current max frequency: ${speed}"
+notify-send -i device_cpu -t 5000 \
+        "${TITLE}" \
+        "${MSG}"
+}
+
+mode=$(printf "Low\nMedium\nHigh" | dmenu -i -p "Performance switch:")
+case "$mode" in
+    'Low')
+        max=1200000
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=0 CPU_BOOST_ON_AC=0 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
+        switch_notify
+        ;;
+    'Medium')
+        sudo -n tlp $SMODE
+        switch_notify
+        ;;
+    'High')
+        max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.')
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
+        switch_notify
+        ;;
+esac
+

@@ -1,0 +1,36 @@
+#!/bin/sh
+
+cd ~/papers/pdf || exit 1
+
+find -- *.pdf | cut -d'.' -f1 | sort >.flist
+find -- *.bib | cut -d'.' -f1 | sort >.blist
+mv .ignore .ignore.old && sort .ignore.old >.ignore
+join -v 1 .flist .blist >.tlist
+list=$(join -v 1 .tlist .ignore)
+ALL=$(echo "$list" | wc -l)
+rm -rf .flist .blist .tlist .false .ignore.old
+
+create_bib() {
+    echo "################Creating $bibfile...($COUNT/$ALL)#####################"
+    curl -sS -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 104.237.11.64:8070/api/processReferences >"$bibfile"
+    bibtex-tidy --quiet --omit=date,day,number --curly --numeric --align=13 "$bibfile"
+}
+
+check_bib() {
+    if [ -z "$(grep '[^[:space:]]' "$bibfile")" ]; then
+        echo "$val" >>.false
+    fi
+}
+
+COUNT=0
+for val in $list; do
+    file=$(readlink -f "$val".pdf)
+    bibfile="$val".bib
+    pages=$(pdfinfo "$file" 2>/dev/null | awk '/^Pages:/ {print $2}')
+    COUNT=$((COUNT + 1))
+    if [ "$pages" -le 20 ]; then
+        create_bib
+        check_bib
+    fi
+
+done
