@@ -139,8 +139,8 @@ c.url.searchengines = {
 }
 
 # Keys
-config.bind('e', 'spawn --userscript url-handler')
-config.bind('E', 'spawn linkhandler {url}')
+config.bind('e', 'hint links spawn linkhandler {hint-url}')
+config.bind('E', 'spawn --userscript url-handler')
 config.bind('I', 'hint images download')
 
 config.bind('d', 'scroll-page 0 0.5')
