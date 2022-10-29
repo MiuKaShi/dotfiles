@@ -18,6 +18,7 @@ export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
 # PATH
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export NODE_PATH="$HOME/.local/share/npm/lib/node_modules"
 export GOBIN="$GOPATH/bin"
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export JLBIN="$HOME/.julia/bin"
@@ -35,8 +36,9 @@ export GTK_IM_MODULE="fcitx5"
 export QT_IM_MODULE="fcitx5"
 export SDL_IM_MODULE="fcitx5"
 
+
 # proxy
-[ -x "$(which clash)" ] && export http_proxy="http://127.0.0.1:7890" && export https_proxy="http://127.0.0.1:7890"
+#[ -x "$(which clash)" ] && export http_proxy="http://127.0.0.1:7890" && export https_proxy="http://127.0.0.1:7890"
 
 # fix firefox VA-API
 export MOZ_DISABLE_RDD_SANDBOX="1"
