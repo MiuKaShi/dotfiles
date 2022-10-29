@@ -4,7 +4,6 @@ config.load_autoconfig(False)
 
 # ui
 config.source("gruvbox.py")
-c.colors.webpage.preferred_color_scheme = "dark"
 c.fonts.default_size = "12pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
@@ -14,6 +13,12 @@ c.statusbar.widgets = ["progress", "keypress", "url", "history"]
 c.tabs.show = 'multiple'
 c.tabs.title.format = "{index}: {audio}{current_title}"
 c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
+
+###darkmode
+# https://old.reddit.com/r/qutebrowser/comments/jdnqbp/yet_another_dark_mode_post/
+c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = "smart"
+c.colors.webpage.bg = '#1d2021'
 
 # general
 # HDPI(not support WAYLAND)
@@ -31,6 +36,8 @@ c.confirm_quit = ['downloads']
 c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
+c.editor.command = ["st", "-e", "nvim", "{}"]
+c.completion.height = "30%"
 c.tabs.show = "multiple"
 c.tabs.last_close = "close"
 c.tabs.mousewheel_switching = False
@@ -56,6 +63,32 @@ c.hints.prev_regexes = [
     '\\b(<<|«)\\b',
     '\\b上一?页\\b'
 ]
+c.content.blocking.method = "adblock"
+c.content.blocking.adblock.lists = [
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+    "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
+    "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+    "https://www.i-dont-care-about-cookies.eu/abp/",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+]
+
+# getting rid of annoying cookie bars
+# see https://www.reddit.com/r/qutebrowser/comments/mnptey/getting_rid_of_cookie_consent_barspopups/
+config.bind(
+    "e",
+    "jseval (function () { "
+    + '  var i, elements = document.querySelectorAll("body *");'
+    + ""
+    + "  for (i = 0; i < elements.length; i++) {"
+    + "    var pos = getComputedStyle(elements[i]).position;"
+    + '    if (pos === "fixed" || pos == "sticky") {'
+    + "      elements[i].parentNode.removeChild(elements[i]);"
+    + "    }"
+    + "  }"
+    + "})();",
+)
 
 # privacy
 c.content.cookies.accept = "no-3rdparty"
@@ -63,14 +96,17 @@ c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.site_specific_quirks.enabled = False
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36"
 
+# youtube ad blocking
 def filter_yt(info: interceptor.Request):
+    """Block the given request if necessary."""
     url = info.request_url
     if (
-            url.host() == "www.youtube.com"
-            and url.path() == "/get_video_info"
-            and "&adformat=" in url.query()
-        ):
-            info.block()
+        url.host() == "www.youtube.com"
+        and url.path() == "/get_video_info"
+        and "&adformat=" in url.query()
+    ):
+        info.block()
+
 
 interceptor.register(filter_yt)
 
@@ -103,7 +139,7 @@ c.url.searchengines = {
 }
 
 # Keys
-config.bind('e', 'hint links spawn linkhandler {hint-url}')
+config.bind('e', 'spawn --userscript url-handler')
 config.bind('E', 'spawn linkhandler {url}')
 config.bind('I', 'hint images download')
 
@@ -162,15 +198,21 @@ config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
 config.bind('<Ctrl-[>', 'mode-leave', mode='insert')
 
 # Leader key: `,`
-config.bind(',o', 'set-cmd-text -s :open -w')
+c.hints.selectors["code"] = [
+    # Selects all code tags whose direct parent is not a pre tag
+    ":not(pre) > code",
+    "pre"
+]
+config.bind(',c', 'hint code userscript code_select')
+#config.bind(',c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
 config.bind(',t', 'spawn --userscript translate')
+config.bind(',r',  'spawn --userscript readability-js')
 config.bind(',f', 'hint links tab')
-config.bind(',c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
+config.bind(',o', 'set-cmd-text -s :open -w')
 config.bind(',b', 'open -t https://bilibili.com')
 config.bind(',n', 'open -t https://www.nivod.tv')
 config.bind(',g', 'open -t https://github.com')
 config.bind(',m', 'open -t https://mail.google.com')
-config.bind(',r', 'open -t https://reddit.com')
 config.bind(',v', 'open -t https://v2ex.com')
 config.bind(',z', 'open -t https://zhihu.com')
 
