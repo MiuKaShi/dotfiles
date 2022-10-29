@@ -73,7 +73,7 @@ case $monitor_name in
             --scale 1.5x1.5 \
             --pos 0x0 \
             --rotate left \
-            --output DP-0 --primary \
+            --output DP-0 --auto \
             --mode 3840x2160 \
             --pos 2160x345 \
             --rotate normal \

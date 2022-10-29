@@ -25,11 +25,13 @@ if __name__ == "__main__":
         sys.exit(1)
 
     rv = 0
+    print(fname)
     # TODO: replace this hacky approach
-    with TemporaryDirectory() as temp_wdir:
+    with TemporaryDirectory() as tmp_dir:
+        print(tmp_dir) 
         # serve file
-        copyfile(fname, temp_wdir + "/" + os.path.basename(fname))
-        os.chdir(temp_wdir)
+        copyfile(fname, tmp_dir + "/" + os.path.basename(fname))
+        os.chdir(tmp_dir)
         zserv_process = subprocess.Popen(
             ["python3", "-m", "http.server", "{}".format(zserv_port)]
         )
