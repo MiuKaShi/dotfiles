@@ -75,7 +75,7 @@ macro P set browser "peertubetorrent %u 1080" ; open-in-browser ; set browser li
 
 # -- bookmarks -----------------------------------------------------------------
 
-bookmark-cmd ~/.config/newsboat/bookmark.sh
+bookmark-cmd ~/.config/newsboat/bookmark-buku.sh
 bookmark-autopilot yes
 bookmark-interactive no
 
