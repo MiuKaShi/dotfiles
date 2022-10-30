@@ -63,16 +63,18 @@ c.hints.prev_regexes = [
     '\\b(<<|«)\\b',
     '\\b上一?页\\b'
 ]
-c.content.blocking.method = "adblock"
-c.content.blocking.adblock.lists = [
-    "https://easylist.to/easylist/easylist.txt",
-    "https://easylist.to/easylist/easyprivacy.txt",
-    "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
-    "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
-    "https://easylist-downloads.adblockplus.org/easylistchina.txt",
-    "https://www.i-dont-care-about-cookies.eu/abp/",
-    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
-]
+
+# Here I disable it because I use the personalDNSfilter to block ad
+# c.content.blocking.method = "adblock"
+# c.content.blocking.adblock.lists = [
+#     "https://easylist.to/easylist/easylist.txt",
+#     "https://easylist.to/easylist/easyprivacy.txt",
+#     "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+#     "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
+#     "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+#     "https://www.i-dont-care-about-cookies.eu/abp/",
+#     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+# ]
 
 # getting rid of annoying cookie bars
 # see https://www.reddit.com/r/qutebrowser/comments/mnptey/getting_rid_of_cookie_consent_barspopups/
