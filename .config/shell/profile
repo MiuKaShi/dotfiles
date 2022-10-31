@@ -17,6 +17,8 @@ export READER="zathura"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
 # PATH
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export NODE_PATH="$HOME/.local/share/npm/lib/node_modules"
 export GOBIN="$GOPATH/bin"
@@ -24,6 +26,7 @@ export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export JLBIN="$HOME/.julia/bin"
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 export PATH="$PATH:$GOBIN"
+export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="$PATH:$JLBIN"
 export PATH="$PATH:$GEM_HOME/bin"
 
