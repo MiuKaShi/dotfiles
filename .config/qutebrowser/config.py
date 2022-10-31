@@ -216,7 +216,8 @@ config.bind(',n', 'open -t https://www.nivod.tv')
 config.bind(',g', 'open -t https://github.com')
 config.bind(',m', 'open -t https://mail.google.com')
 config.bind(',v', 'open -t https://v2ex.com')
-config.bind(',z', 'open -t https://zhihu.com')
+config.bind(',z', 'spawn --userscript zotero')
+config.bind(',Z', 'hint links userscript zotero')
 
 # Bindings for cmd
 # Leader key: `\`
