@@ -1,6 +1,7 @@
 # Configuration file for ipython.
 
 config = get_config()
+# check https://github.com/reillysiemens/ipython-style-gruvbox
 config.TerminalInteractiveShell.highlighting_style = "gruvbox"
 c.InteractiveShellApp.exec_lines = [
     "import numpy as np",
