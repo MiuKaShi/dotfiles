@@ -140,6 +140,15 @@ c.url.searchengines = {
         'yt': 'https://youtube.com/results?search_query={}',
 }
 
+# bookmarks
+c.aliases = {
+    "ba": "spawn --userscript qb-rbuku -a",
+    "br": "spawn --userscript qb-rbuku -r",
+}
+config.bind('b', 'spawn --userscript qb-rbuku -s')
+config.bind('B', 'spawn --userscript qb-rbuku')
+config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
+
 # Keys
 config.bind('e', 'hint links spawn linkhandler {hint-url}')
 config.bind('E', 'spawn --userscript url-handler')
@@ -172,10 +181,6 @@ config.bind('yt', 'tab-clone')
 config.bind('p', 'open -- {clipboard}')
 config.bind('P', 'open --bg {clipboard}')
 
-config.bind('b', 'set-cmd-text -s :bookmark-load')
-config.bind('B', 'set-cmd-text -s :bookmark-load -t')
-config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
-
 config.bind('t,p', 'config-cycle content.proxy system http://localhost:7890/')
 
 config.bind('o', 'set-cmd-text -s :open -s')
@@ -194,8 +199,8 @@ config.bind('<Ctrl-f>', 'fake-key <Right>', mode='insert')
 config.bind('<Ctrl-b>', 'fake-key <Left>', mode='insert')
 config.bind('<Ctrl-n>', 'fake-key <Down>', mode='insert')
 config.bind('<Ctrl-p>', 'fake-key <Up>', mode='insert')
-# config.bind('<Escape>', 'spawn fcitx5-remote -t ;; mode-leave ;; fake-key <Escape>', mode='insert')
-config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
+config.bind('<Escape>', 'spawn fcitx5-remote -c Default ;; mode-leave ;; fake-key <Escape>', mode='insert')
+#config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
 # config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
 config.bind('<Ctrl-[>', 'mode-leave', mode='insert')
 
@@ -221,6 +226,7 @@ config.bind(',Z', 'hint links userscript zotero')
 
 # Bindings for cmd
 # Leader key: `\`
+
 config.bind('\\d', 'help')
 config.bind('\\h', 'history')
 config.bind('\\m', 'messages')

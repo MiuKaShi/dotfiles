@@ -1,0 +1,54 @@
+#!/bin/sh
+NHEADER="🔖 rbuku";
+
+rbkadd() {
+	url=$1;
+	etags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',');
+	notify-send "$NHEADER" "selected tags: $etags";
+	tags=$(rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "add custom tags for $url (comma separated)");
+	notify-send "$NHEADER" "custom tags: $tags";
+	comment=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add comment for $url");
+	#title=$(rofi -dmenu -i -lines 0 -p "$NHEADER" -mesg "add title for $url");
+	buku --np --tacit --add "$url" --tag "$etags$ctags" --comment "$comment";
+	notify-send "$NHEADER" "added $url bookmark: $etags $ctags $comment";
+}
+
+rbkselect() {
+	FMT=40;  # Buku format codes - 10: URL, 20: URL TAGS, 30: TITLE, 40: URL TITLE TAGS, 50: TITLE TAGS
+	sel=$(buku --nostdin --np -p --format="$FMT" | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg 'select bookmarks' -multi-select);
+	if [ -n "$sel" ] ; then
+		echo "$sel" | awk -F '\t' "{print \$1}";
+	fi;
+}
+
+rbkopen() {
+	FMT=40;
+	sel=$(buku --nostdin --np -p --format="$FMT" | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg 'open bookmarks (shift+enter to multi-open)' -multi-select);
+	if [ -n "$sel" ] ; then
+        url_list=$(echo "$sel" | awk -F '\t' "{print \$1}");
+        IFS=$'\n'       # make newlines the only separator
+        for url in $url_list    
+        do
+            xdg-open "$url"
+        done
+	fi;
+}
+
+rbkremove() {
+	FMT=40;  # 10: URL, 20: URL TAGS, 30: TITLE, 40: URL TITLE TAGS, 50: TITLE TAGS
+	RFMT='d'; # Integer row of selected items
+	sel_idx_list=$(buku --np -p --format="$FMT" | rofi -dmenu -format "$RFMT" -l 7 -i -p "$NHEADER" -mesg 'remove bookmarks (shift+enter to multi-select)' -no-custom -multi-select | tac);
+	for i in $sel_idx_list; do
+		sel=$(buku --np -p --format=10 | head -n "$i" | tail -n 1);
+		buku --np --tacit -d "$i";
+		notify-send "$NHEADER" "removed $sel";
+	done;
+}
+
+case "$1" in
+    -a) rbkadd "$2";;
+    -r) rbkremove;;
+    -s) rbkselect;;
+    *) rbkopen;;
+esac;
+
