@@ -32,5 +32,6 @@ for val in $list; do
         create_bib
         check_bib
     fi
-
 done
+
+notify-send "BIB sync" "Autosync finished!"

@@ -140,7 +140,7 @@ alias chopin-bookmark="cd '$HOME/Documents/bookmark/' && chopin -o \"\$(fd -e pd
 
 alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=25 av://v4l2:/dev/video0 --profile=low-latency"
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'
-alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from ~/.zshrc"'
+alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded from .zshrc"'
 
 alias hs='history'
 
