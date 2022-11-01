@@ -23,7 +23,7 @@ c.colors.webpage.bg = '#1d2021'
 # general
 # HDPI(not support WAYLAND)
 c.qt.highdpi = True
-c.zoom.default = "175%"
+c.zoom.default = "150%"
 c.auto_save.session = True
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
@@ -132,11 +132,11 @@ c.tabs.last_close = "startpage"
 c.url.searchengines = {
         'DEFAULT': 'https://searx.be/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
-        'google': 'https://google.com/search?q={}',
-        'arch': 'https://wiki.archlinux.org/?search={}',
-        'github': 'https://github.com/search?q={}',
-        'baidu': 'https://baidu.com/s?wd={}',
-        'zhihu': 'https://zhihu.com/search?q={}',
+        'gg': 'https://google.com/search?q={}',
+        'ar': 'https://wiki.archlinux.org/?search={}',
+        'gh': 'https://github.com/search?q={}',
+        'bd': 'https://baidu.com/s?wd={}',
+        'zh': 'https://zhihu.com/search?q={}',
         'yt': 'https://youtube.com/results?search_query={}',
 }
 
