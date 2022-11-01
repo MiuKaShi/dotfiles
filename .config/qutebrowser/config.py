@@ -23,8 +23,9 @@ c.colors.webpage.bg = '#1d2021'
 # general
 # HDPI(not support WAYLAND)
 c.qt.highdpi = True
-c.zoom.default = "150%"
+c.content.autoplay = False
 c.auto_save.session = True
+c.zoom.default = "175%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"
@@ -41,8 +42,7 @@ c.completion.height = "30%"
 c.tabs.show = "multiple"
 c.tabs.last_close = "close"
 c.tabs.mousewheel_switching = False
-# Autoplay off.
-config.set("content.autoplay", False)
+
 # Don't automatically leave insert mode. qutebrowser will leave insert mode automatically
 config.set("input.insert_mode.auto_leave", False)
 c.hints.next_regexes = [
@@ -64,17 +64,16 @@ c.hints.prev_regexes = [
     '\\b上一?页\\b'
 ]
 
-# Here I disable it because I use the personalDNSfilter to block ad
-# c.content.blocking.method = "adblock"
-# c.content.blocking.adblock.lists = [
-#     "https://easylist.to/easylist/easylist.txt",
-#     "https://easylist.to/easylist/easyprivacy.txt",
-#     "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
-#     "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
-#     "https://easylist-downloads.adblockplus.org/easylistchina.txt",
-#     "https://www.i-dont-care-about-cookies.eu/abp/",
-#     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
-# ]
+c.content.blocking.method = "both"
+c.content.blocking.adblock.lists =[
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+    "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
+    "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+     "https://www.i-dont-care-about-cookies.eu/abp/",
+     "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+]
 
 # getting rid of annoying cookie bars
 # see https://www.reddit.com/r/qutebrowser/comments/mnptey/getting_rid_of_cookie_consent_barspopups/
@@ -94,23 +93,15 @@ config.bind(
 
 # privacy
 c.content.cookies.accept = "no-3rdparty"
+c.content.media.audio_capture = 'ask'
+c.content.media.video_capture = 'ask'
+c.content.tls.certificate_errors = 'ask'
+c.content.desktop_capture = 'ask'
+c.content.mouse_lock = 'ask'
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.site_specific_quirks.enabled = False
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36"
 
-# youtube ad blocking
-def filter_yt(info: interceptor.Request):
-    """Block the given request if necessary."""
-    url = info.request_url
-    if (
-        url.host() == "www.youtube.com"
-        and url.path() == "/get_video_info"
-        and "&adformat=" in url.query()
-    ):
-        info.block()
-
-
-interceptor.register(filter_yt)
 
 # per-domain settings
 config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
@@ -181,7 +172,6 @@ config.bind('yt', 'tab-clone')
 config.bind('p', 'open -- {clipboard}')
 config.bind('P', 'open --bg {clipboard}')
 
-config.bind('t,p', 'config-cycle content.proxy system http://localhost:7890/')
 
 config.bind('o', 'set-cmd-text -s :open -s')
 config.bind('O', 'set-cmd-text -s :open -t -s')
@@ -204,6 +194,11 @@ config.bind('<Escape>', 'spawn fcitx5-remote -c Default ;; mode-leave ;; fake-ke
 # config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
 config.bind('<Ctrl-[>', 'mode-leave', mode='insert')
 
+# Leader key: `;`
+config.bind(';x', 'config-cycle statusbar.show always never;;config-cycle tabs.show always never')
+config.bind(';c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
+config.bind(';p', 'config-cycle content.proxy system http://localhost:7890/')
+
 # Leader key: `,`
 c.hints.selectors["code"] = [
     # Selects all code tags whose direct parent is not a pre tag
@@ -211,7 +206,6 @@ c.hints.selectors["code"] = [
     "pre"
 ]
 config.bind(',c', 'hint code userscript code_select')
-#config.bind(',c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
 config.bind(',t', 'spawn --userscript translate')
 config.bind(',r',  'spawn --userscript readability-js')
 config.bind(',f', 'hint links tab')
