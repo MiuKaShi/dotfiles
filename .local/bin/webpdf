@@ -3,6 +3,7 @@
 file=$(readlink -f "$1")
 dir=${file%/*}
 name=$(basename "$file")
+BROWSER=firefox 
 
 port="25851"
 pidnum=$(lsof -t -i:$port)
@@ -11,7 +12,7 @@ cd "$dir" || exit 1
 
 open() {
     python3 -m http.server $port >>/dev/null 2>&1 &
-    xdg-open http://localhost:$port/"$name" &
+    setsid -f "$BROWSER" http://localhost:$port/"$name" >/dev/null 2>&1 && notify-send "Open with $BROWSER..."
 }
 
 if [ -z "$pidnum" ]; then
