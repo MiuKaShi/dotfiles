@@ -4,6 +4,7 @@ cf="cd /home/miuka/.config" \
 dl="cd /home/miuka/Downloads" \
 dm="cd /home/miuka/Documents" \
 pj="cd /home/miuka/Projects" \
+pc="cd /home/miuka/Pictures" \
 dt="cd /home/miuka/.local/share" \
 h="cd /home/miuka" \
 nn="cd /home/miuka/notes" \
