@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# This script allows controll monitor 34WN650-W
+# DDC/CI monitor control on Linux https://blog.tcharles.fr/ddc-ci-screen-control-on-linux/
+
+monitor_info=$(sudo ddcutil detect | grep "I2C bus\|Model" | sed '/^$/d;s/[[:blank:]]//g')
+id=$(echo "$monitor_info" | grep -oP '(?<=i2c-)\w+')
+
+if [ -f ~/.cache/brightness ]; then
+    bgt=$(cat ~/.cache/brightness)
+else
+    currentbgt=$(sudo ddcutil --noverify getvcp 10 | grep "current value" | awk '{print $9}' | sed 's/,*$//g')
+    echo "$currentbgt" >~/.cache/brightness
+fi
+
+send_notification() {
+    dunstify -a "changebrightness" -u low -r 9991 -h int:value:"$numberbgt" -i "numberbgt-$1" "Brightness: $numberbgt%" -t 2000
+}
+
+# Modify this function as needed to handle setting your monitor brightness
+bgtset() {
+    while read -r line; do
+        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 10 "$numberbgt" >/dev/null 2>&1
+    done <<<"$id"
+}
+
+tepset() {
+    while read -r line; do
+        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 14 "$numbertep" >/dev/null 2>&1
+    done <<<"$id"
+}
+
+case "$1" in
+    up)
+        numberbgt=$(expr "$bgt" + 10)
+        if [ "$numberbgt" -gt 100 ]; then
+            numberbgt=100
+        fi
+        echo $numberbgt >~/.cache/brightness
+        send_notification "$numberbgt"
+        bgtset "$numberbgt"
+        ;;
+    down)
+        numberbgt=$(expr "$bgt" - 10)
+        if [ "$numberbgt" -lt 0 ]; then
+            numberbgt=0
+        fi
+        echo $numberbgt >~/.cache/brightness
+        send_notification "$numberbgt"
+        bgtset "$numberbgt"
+        ;;
+    dark)
+        numberbgt=0
+        numbertep=0x04
+        bgtset "$numberbgt"
+        tepset "$numbertep"
+        ;;
+    light)
+        numberbgt=100
+        numbertep=0x06
+        bgtset "$numberbgt"
+        tepset "$numbertep"
+        ;;
+    day)
+        numberbgt=30
+        numbertep=0x05
+        bgtset "$numberbgt"
+        tepset "$numbertep"
+        ;;
+esac

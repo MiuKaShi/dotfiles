@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# open pdf based on citekey
+
+if [ -z "$1" ]; then
+    citekey=$(grep '@' <"$BIB" | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open papers with citekey:")
+else
+    citekey="$1"
+fi
+
+pathlist=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}' | sed 's/;/\n/g')
+
+if [ "$(echo "$pathlist" | wc -l)" -ge 2 ]; then
+    pdfselected=$(echo "$pathlist" | dmenu -i -p "Select items:")
+else
+    pdfselected="$pathlist"
+fi
+
+xdg-open "$pdfselected" &

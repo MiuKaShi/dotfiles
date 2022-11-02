@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# -crf : image quality (lower is better )
+# -pix_fmt: mp4 type, not video resolution
+#
+fps=$(printf "24\\n25\\n60" | dmenu -p "FPS choose :")
+type=$(printf "jpg\\npng\\nbmp" | dmenu -p "File type choose :")
+sta=$(echo | dmenu -p "Start number :")
+end=$(echo | dmenu -p "End number :")
+
+ffmpeg -r $fps -f image2 -start_number $sta -i %d.$type -vframes $end -vcodec libx264 -crf 25 -pix_fmt yuv420p vid-"$sta"_"$end".mp4
