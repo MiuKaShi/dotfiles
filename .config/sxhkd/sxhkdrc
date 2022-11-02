@@ -13,7 +13,7 @@ mod3 + f
     rofi -no-lazy-grab -show file-browser-extended -modi file-browser-extended
 
 mod3 + b
-    dwmc togglebar
+    rbuku 
 
 mod3 + Return
     $TERMINAL
