@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=zathura
+Name=sioyek
 Exec=/usr/bin/sioyek %u
 Icon=/home/miuka/.config/icons/pdf.png
