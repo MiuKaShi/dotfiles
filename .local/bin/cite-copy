@@ -1,0 +1,14 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+
+citekey="${name%.*}"
+
+if [[ $(grep "$citekey" "$BIB") ]]; then
+    bibtool -r biblatex -X "$citekey$" "$BIB" | xsel -b
+else
+    pdf2bib "$file" | awk '(NR>1)' | xsel -b
+fi
+
+notify-send "Bibtex" "Copy to Clipboard"

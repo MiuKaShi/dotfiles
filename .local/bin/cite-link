@@ -19,11 +19,9 @@ doi=$(echo "$bibinfo" | grep DOI | grep -oP '(?<==[[:space:]]).*')
 title=$(echo "$bibinfo" | grep Title | grep -oP '(?<==[[:space:]]).*')
 
 if [ -n "$pdfpath" ]; then
-    xdg-open "$pdfpath" &
+    setsid -f xdg-open "$pdfpath" >/dev/null 2>&1
 elif [ -n "$doi" ]; then
-    handlr open http://dx.doi.org/"$doi" && xsel -b <<< "$doi"
+    setsid -f xdg-open http://dx.doi.org/"$doi" >/dev/null 2>&1 && xsel -b <<< "$doi"
 else
-    handlr open https://www.google.com/search?q="$title" && xsel -b <<< "$title"
+    setsid -f xdg-open https://www.google.com/search?q="$title" >/dev/null 2>&1 && xsel -b <<< "$title"
 fi
-
-

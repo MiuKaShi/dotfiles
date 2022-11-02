@@ -4,7 +4,7 @@ x-scheme-handler/tg=userapp-Telegram Desktop-ZNQTS1.desktop;
 [Default Applications]
 application/gzip=file.desktop;
 application/json=text.desktop;
-application/pdf=org.pwmt.zathura-pdf-poppler.desktop;pdf.desktop;mcomix.desktop;
+application/pdf=pdf.desktop;
 application/postscript=pdf.desktop;
 application/rss+xml=rss.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=gnumeric.desktop;

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+dir=${file%/*}
+
+cd "$dir" || exit 1
+
+if [ ! -f "$fname.bib" ]; then
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" 104.237.11.64:8070/api/processReferences > "$fname.bib"
+    notify-send -t 3000 "Bibtex" "Bibtex file created"
+fi
+
+bib2html "$dir/$fname.bib"
