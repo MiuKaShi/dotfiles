@@ -34,7 +34,6 @@ alias \
     ffmpeg="ffmpeg -hide_banner" \
     ns="newsboat" \
     nsb="vim ~/.newsboat/bookmarks.txt" \
-    sci="scidownl -o ~/Downloads -D" \
     cite="cite --style elsevier-vancouver" \
     bibup="betterbib up -i" \
     cman='man -M /usr/share/man/zh_CN' \
