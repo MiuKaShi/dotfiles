@@ -122,13 +122,14 @@ alias 9='cd -9'
 alias npmlist="npm list -g --depth 0"
 alias grep='grep --colour=auto'
 
+alias tldrf='tldr --list | fzf  --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias ducks='du -chsh * | sort -rn | head -11'
 alias wea='curl wttr.in' #check weather
 alias bookdl="clibgen search"
 
 #alias nvimb="tabbed -c vimb -e"
 
-alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 
 # chopin
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\";exit"
@@ -184,4 +185,4 @@ alias frpweb='xdg-open http://45.14.107.211:50002/static/'
 
 alias \
     ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
-	weath="less -S ${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport"
+    weath='less -S "$XDG_CACHE_HOME"/weatherreport'
