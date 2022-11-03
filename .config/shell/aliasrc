@@ -82,6 +82,7 @@ alias \
 # These common commands are just too long! Abbreviate them.
 alias \
     ka="killall" \
+    killf=fzf_kill \
     g="git" \
     trem="transmission-remote" \
     YT="youtube-viewer" \
