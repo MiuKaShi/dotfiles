@@ -23,19 +23,19 @@ notify-send -i device_cpu -t 5000 \
         "${MSG}"
 }
 
-mode=$(printf "Low\nMedium\nHigh" | dmenu -i -p "Performance switch:")
+mode=$(printf "🚌Low\n🚗Medium\n🚈High" | dmenu -i -p "Performance switch:")
 case "$mode" in
-    'Low')
+    '🚌Low')
         max=1200000
         sudo -n tlp start -- CPU_BOOST_ON_BAT=0 CPU_BOOST_ON_AC=0 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
         switch_notify
         ;;
-    'Medium')
+    '🚗Medium')
         sudo -n tlp $SMODE
         switch_notify
         ;;
-    'High')
-        max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.')
+    '🚈High')
+        max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.'| sed 's/.$//')
         sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
         switch_notify
         ;;
