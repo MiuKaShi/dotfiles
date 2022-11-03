@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -r ./conf ] && . ./conf
+
+exec aria2c ${OPTS:-} 2>&1

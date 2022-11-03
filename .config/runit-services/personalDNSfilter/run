@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -r ./conf ] && . ./conf
+
+exec /usr/bin/java -cp /usr/local/lib/personalDNSfilter/personalDNSfilter.jar dnsfilter.DNSFilterProxy ${OPTS:-} 2>&1
