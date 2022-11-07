@@ -3,6 +3,12 @@
 # This script is called on startup to remap keys.
 # Decrease key repeat delay to 300ms and increase key repeat rate to 50 per second.
 
+# if ! pgrep -x "keyd" > /dev/null
+# then
+#     sudo keyd >/dev/null 2>&1
+#     sleep 1
+# fi
+
 xset r rate 300 50
 
 input=$(xinput list --name-only | grep Keyboard)

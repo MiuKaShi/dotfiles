@@ -1,5 +1,5 @@
 #! /bin/bash
-# blurlock
+#install i3lock-color-git
 
 i3lock \
     --blur 5 \

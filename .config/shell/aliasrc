@@ -7,7 +7,7 @@
 [ -f "$XINITRC" ] && alias startx='startx $XINITRC'
 
 # sudo not required for some system commands
-for command in mount umount sv pacman dmenugpu nmtui updatedb tlp ps_mem su shutdown poweroff reboot; do
+for command in mount umount sv isw pacman dmenugpu nmtui updatedb tlp ps_mem su shutdown poweroff reboot; do
     alias $command="sudo $command"
 done
 unset command
@@ -74,8 +74,7 @@ alias \
 
 # Language.
 alias \
-    mat=" matlab -desktop" \
-    mbt="matlab -nodesktop -nosplash -r clc" \
+    mbt="/usr/local/MATLAB/R2022b/bin/matlab -nodesktop -nosplash -r clc" \
     ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
     jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
 

@@ -6,17 +6,27 @@ eval "$(lua /usr/share/zsh/plugins/z.lua/z.lua --init zsh enhanced once)"
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
-unsetopt nomatch    # Fix url quote
-setopt interactive_comments
+
+# zsh misc
+setopt auto_cd               # simply type dir name to cd
+setopt auto_pushd            # make cd behave like pushd
+setopt pushd_ignore_dups     # don't pushd duplicates
+setopt pushd_minus           # exchange the meanings of `+` and `-` in pushd
+setopt interactive_comments  # comments in interactive shells
+unsetopt nomatch             # Fix url quote
+stty stop undef		         # Disable ctrl-s to freeze terminal.
 
 # ZSH History:
-HISTSIZE=10000000
-SAVEHIST=10000000
+setopt hist_ignore_all_dups  # no duplicates
+setopt hist_save_no_dups     # don't save duplicates
+setopt hist_ignore_space     # no commands starting with space
+setopt hist_reduce_blanks    # remove all unneccesary spaces
+setopt share_history         # share history between sessions
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 [[ ! -d ${HISTFILE:h} ]] && mkdir -pm700 ${HISTFILE:h}
 HISTORY_IGNORE="(ls|cd|history|lf|exit|reboot)"
+HISTSIZE=10000000
+SAVEHIST=10000000
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
@@ -103,6 +113,12 @@ bindkey -M visual '^[[P' vi-delete
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # source /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh 2>/dev/null
+
+# fast-syntax-highlighting
+unset 'FAST_HIGHLIGHT[chroma-man]'  # chroma-man will stuck history browsing
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_MANUAL_REBIND='1'
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

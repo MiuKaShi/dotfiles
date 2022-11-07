@@ -4,8 +4,8 @@
 # This bash is to watch my bib change and update with journal_abbrev
 
 SCRIPT="/home/miuka/.config/script"
-USB="/home/miuka/.log/usb_log"
+#USB="/home/miuka/.log/usb_log"
 
 echo "$BIB" | entr -p -n $SCRIPT/updatebib.sh >> /dev/null 2>&1 &
-echo "$USB" | entr -p -n $SCRIPT/monitorusb.sh >> /dev/null 2>&1 &
+#echo "$USB" | entr -p -n $SCRIPT/monitorusb.sh >> /dev/null 2>&1 &
 

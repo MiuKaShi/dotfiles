@@ -7,11 +7,7 @@ chmod 755 ./*.sh
 
 cp ./usb-mount /usr/local/bin/
 
-# Systemd unit file for USB automount/unmount
-cp ./usb-mount@.service /etc/systemd/system/usb-mount@.service
-
 # Create udev rule to start/stop usb-mount@.service on hotplug/unplug
 cat ./99-local.rules.usb-mount >>/etc/udev/rules.d/99-local.rules
 
-systemctl daemon-reload
 udevadm control --reload-rules
