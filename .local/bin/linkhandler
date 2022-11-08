@@ -30,9 +30,11 @@ case "$1" in
 		notify-send "📀 mpv " "Wait to play..."
         setsid -f mpv -quiet "$URL" --referrer=https://www.bilibili.com --sub-file=/tmp/"$BVID"/danmaku.ass  >/dev/null 2>&1 ;;
 	sioyek://*)
-        eval "$(echo "$1" | grep -oP '(?<=sioyek://).*' | tr \& '\n')"
-		notify-send "Open with Sioyek " "Go to page $page..."
-        fd -g "$file" $HOME | awk '{print $1}' | $READER --page "$page" >/dev/null 2>&1 & ;;
+        pdfname=$(echo "$1" | tr \& '\n' | grep -oP '(?<=file=).*')
+        page=$(echo "$1" | tr \& '\n' | grep -oP '(?<=page=).*')
+        pdfpath=$(fd -g "$pdfname" "$HOME" | head -1)
+        notify-send "Open $pdfname" "Go to page $page..."
+        setsid -f $READER "$pdfpath" --page "$(($page+1))" ;;
 	*png|*jpg|*jpe|*jpeg|*gif)
 		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
 	*pdf|*cbz|*cbr)
