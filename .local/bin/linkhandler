@@ -9,6 +9,7 @@
 # set browser
 
 BROWSER=firefox 
+READER="sioyek"
 # If no url given. Opens browser. For using script as $BROWSER.
 [ -z "$1" ] && { "$BROWSER"; exit; }
 
@@ -28,6 +29,10 @@ case "$1" in
         curl -s "$DANMAKU_POOL" -o "/tmp/${BVID}/seg.so" && biliass "/tmp/${BVID}/seg.so" -f protobuf -s "$RESOLUTION" -o "/tmp/${BVID}/danmaku.ass"
 		notify-send "📀 mpv " "Wait to play..."
         setsid -f mpv -quiet "$URL" --referrer=https://www.bilibili.com --sub-file=/tmp/"$BVID"/danmaku.ass  >/dev/null 2>&1 ;;
+	sioyek://*)
+        eval "$(echo "$1" | grep -oP '(?<=sioyek://).*' | tr \& '\n')"
+		notify-send "Open with Sioyek " "Go to page $page..."
+        fd -g "$file" $HOME | awk '{print $1}' | $READER --page "$page" >/dev/null 2>&1 & ;;
 	*png|*jpg|*jpe|*jpeg|*gif)
 		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
 	*pdf|*cbz|*cbr)
