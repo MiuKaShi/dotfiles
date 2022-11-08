@@ -28,7 +28,7 @@ rbkopen() {
         url_list=$(echo "$all_list" | grep "$sel" | awk -F '\t' "{print \$1}")
         IFS=$'\n' # make newlines the only separator
         for url in $url_list; do
-            xdg-open "$url"
+            linkhandler "$url"
         done
     fi
 }
