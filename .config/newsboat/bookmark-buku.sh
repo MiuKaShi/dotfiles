@@ -14,10 +14,8 @@ title="$2" #you can comment this out and rely on buku to get the title if you pr
 #desc="$3" # not used by buku, buku will get this information for you.
 #feed_title="$4" don't think this is of any use to us either?
 
-buku=$(command -v buku)
-
 tags="newsboat"
 
-if [ "$buku" ]; then
+if [ "$(command -v buku)" ]; then
   buku --nostdin -a "$url" "$tags" --title "$title" >/dev/null
 fi
