@@ -38,6 +38,18 @@ monitor_name=$(print_monitors | awk '{print $3}')
 
 case $monitor_name in
     *"EV2795"*)
+        # 显卡设置(nvidia setting first: to enable forcecomposition)
+        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+        # 缩放
+        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
+        export QT_SCALE_FACTOR=2 #for QT5
+        export GDK_SCALE=2 #for GDK3
+        export GDK_DPI_SCALE=0.5 #for GDK3
+        # 硬件加速
+        export LIBVA_DRIVER_NAME=nvidia
+        export VDPAU_DRIVER=nvidia
+        export DRI_PRIME=1
+        # 显卡设置(xrandr setting later: to ensure position and DPI is correct)
         xrandr \
             --dpi 108 \
             --fb 4000x2560 \
@@ -51,35 +63,12 @@ case $monitor_name in
             --panning 1440x2560+2560+0 \
             --output DP-1 --off \
             --output eDP-1-1 --off
-        # 缩放
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
-        export QT_SCALE_FACTOR=2 #for QT5
-        export GDK_SCALE=2 #for GDK3
-        export GDK_DPI_SCALE=0.5 #for GDK3
-        # 硬件加速
-        export LIBVA_DRIVER_NAME=nvidia
-        export VDPAU_DRIVER=nvidia
-        export DRI_PRIME=1
-        # 显卡设置
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources &
         xrdbpid=$!
         ;;
     *"PHL"* | *"T278Q"*)
-        xrandr \
-            --dpi 138 \
-            --fb 6000x3840 \
-            --output HDMI-0 \
-            --scale 1.5x1.5 \
-            --pos 0x0 \
-            --rotate left \
-            --output DP-0 --auto \
-            --mode 3840x2160 \
-            --pos 2160x345 \
-            --rotate normal \
-            --panning 2160x3840+3840+0 \
-            --output DP-1 --off \
-            --output eDP-1-1 --off
+        # 显卡设置(nvidia setting first: to enable forcecomposition)
+        nvidia-settings --assign "CurrentMetaMode=DPY-1: {AllowGSYNCCompatible=On,  ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         # 缩放
         export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
         export QT_SCALE_FACTOR=2 #for QT5
@@ -89,8 +78,22 @@ case $monitor_name in
         export LIBVA_DRIVER_NAME=nvidia
         export VDPAU_DRIVER=nvidia
         export DRI_PRIME=1
-        # 显卡设置
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +2160+253 {AllowGSYNCCompatible=On, ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +0+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+        # 显卡设置(xrandr setting later: to ensure position and DPI is correct)
+        xrandr --dpi 138 \
+            --fb 6000x3840 \
+            --output HDMI-0 \
+            --scale 1.5x1.5 \
+            --mode 2560x1440 \
+            --pos 3840x0 \
+            --rotate right \
+            --output DP-0 --primary \
+            --mode 3840x2160 \
+            --pos 0x340 \
+            --rotate normal \
+            --output DP-1 --off \
+            --output eDP-1-1 --off \
+            --output DP-1-1 --off \
+            --output HDMI-1-1 --off
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources &
         xrdbpid=$!
         ;;
