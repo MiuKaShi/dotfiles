@@ -5,7 +5,7 @@
 # specified) exactly match the pattern.
 
 if pgrep -x "alacritty" >/dev/null; then
-  alacritty msg create-window
+    alacritty msg create-window
 else
-  alacritty
+    alacritty
 fi
