@@ -2,4 +2,3 @@
 Type=Application
 Name=Image viewer
 Exec=sxivdir  %f
-Icon=/home/miuka/.config/icons/photo.png

@@ -2,4 +2,3 @@
 Type=Application
 Name=Torrent
 Exec=/usr/bin/env transadd %U
-Icon=/home/miuka/.config/icons/torrent.png

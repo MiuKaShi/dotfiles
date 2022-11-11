@@ -2,4 +2,3 @@
 Type=Application
 Name=sioyek
 Exec=/usr/bin/sioyek %u
-Icon=/home/miuka/.config/icons/pdf.png

@@ -2,4 +2,3 @@
 Type=Application
 Name=Mail
 Exec=/usr/local/bin/st -e neomutt %u
-Icon=/home/miuka/.config/icons/email.png
