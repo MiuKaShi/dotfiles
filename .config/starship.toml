@@ -74,7 +74,7 @@ format = '[\[$symbol($output)\]](bold black)'
 time_format = "%T"
 format = "🕙 $time($style) "
 style = "bright-white"
-disabled = false
+disabled = true
 
 # Directory setttings
 [directory]

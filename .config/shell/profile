@@ -13,7 +13,7 @@ export VISUAL="nvim"
 export BROWSER="qutebrowser"
 export OPENER="xdg-open"
 export TFM="lf"
-export READER="zathura"
+export READER="sioyek"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
 # Adds `~/.local/bin` to $PATH
