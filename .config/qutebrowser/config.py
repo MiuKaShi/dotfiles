@@ -117,11 +117,11 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # urls
-c.url.default_page = 'https://searx.be/'
-c.url.start_pages = 'https://searx.be/'
+c.url.default_page = 'https://searx.tiekoetter.com/'
+c.url.start_pages = 'https://searx.tiekoetter.com/'
 c.tabs.last_close = "startpage"
 c.url.searchengines = {
-        'DEFAULT': 'https://searx.be/search?q={}',
+        'DEFAULT': 'https://searx.tiekoetter.com/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
         'gg': 'https://google.com/search?q={}',
         'ar': 'https://wiki.archlinux.org/?search={}',
