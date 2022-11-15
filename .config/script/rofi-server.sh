@@ -18,11 +18,9 @@ server_menu_item[6]="remaps"
 server_cmd[6]='autorun remaps'
 server_menu_item[7]="translator"
 server_cmd[7]='autorun translator'
-server_menu_item[8]="clipsync"
-server_cmd[8]='autorun clipsync'
-server_menu_item[9]="conky"
-server_cmd[9]='autorun conky'
-server_menu_item[10]="vmwave"
+server_menu_item[8]="conky"
+server_cmd[8]='autorun conky'
+server_menu_item[9]="vmwave"
 server_cmd[9]='autorun vmwave'
 
 server_menu() {
