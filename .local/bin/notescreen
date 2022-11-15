@@ -38,17 +38,6 @@ monitor_name=$(print_monitors | awk '{print $3}')
 
 case $monitor_name in
     *"EV2795"*)
-        # 显卡设置(nvidia setting first: to enable forcecomposition)
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+560 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-        # 缩放
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
-        export QT_SCALE_FACTOR=2 #for QT5
-        export GDK_SCALE=2 #for GDK3
-        export GDK_DPI_SCALE=0.5 #for GDK3
-        # 硬件加速
-        export LIBVA_DRIVER_NAME=nvidia
-        export VDPAU_DRIVER=nvidia
-        export DRI_PRIME=1
         # 显卡设置(xrandr setting later: to ensure position and DPI is correct)
         xrandr \
             --dpi 108 \
@@ -63,6 +52,17 @@ case $monitor_name in
             --panning 1440x2560+2560+0 \
             --output DP-1 --off \
             --output eDP-1-1 --off
+        # 缩放
+        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
+        export QT_SCALE_FACTOR=2 #for QT5
+        export GDK_SCALE=2 #for GDK3
+        export GDK_DPI_SCALE=0.5 #for GDK3
+        # 硬件加速
+        export LIBVA_DRIVER_NAME=nvidia
+        export VDPAU_DRIVER=nvidia
+        export DRI_PRIME=1
+        # 显卡设置(nvidia setting first: to enable forcecomposition)
+        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources &
         xrdbpid=$!
         ;;
@@ -99,9 +99,9 @@ case $monitor_name in
         ;;
     *)
         xrandr \
-            --dpi 96 \
-            --output eDP-1-1 \
-            --mode 1920x1080 
+          --dpi 96 \
+          --output eDP-1-1 \
+          --mode 1920x1080 
         export LIBVA_DRIVER_NAME=iHD
         export VDPAU_DRIVER=va_gl
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/xresources &
@@ -109,4 +109,6 @@ case $monitor_name in
         ;;
 esac
 
+# disable dispaly DPMS 
+sleep 1; xset dpms 0 0 0
 
