@@ -1,0 +1,29 @@
+#! /bin/bash
+
+refre_path=/home/miuka/notes/Study_Notes/reference
+title=${1%.*}
+id=$(date '+%Y%m%d%H%M%S')
+file=$refre_path/$id.md
+
+create-md() {
+    cat >"$file" <<EOF
+---
+id: "$id"
+aliases:
+  - "$title"
+tags: []
+---
+
+# $title
+EOF
+
+    st -e nvim "$file"
+}
+
+file_id=$(grep "\"$title"\" $refre_path/*.md | cut -d':' -f1 | xargs basename | cut -d'.' -f1)
+
+if [ -z "$file_id" ]; then
+    create-md
+else
+    st -e nvim "$refre_path/$file_id.md"
+fi
