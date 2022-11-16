@@ -12,4 +12,5 @@ MD041: false                  #first-line-heading/first-line-h1 - First line in 
 MD052: false                  # reference-links-images - Reference links and images should use a label that is defined
 MD011: false                  #no-reversed-links - Reversed link syntax
 MD045: false                  #Images should have alternate text (alt text)
+MD049: false                  #emphasis-style - Emphasis style should be consistent
 blank_lines: false 
