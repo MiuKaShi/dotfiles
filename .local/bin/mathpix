@@ -10,11 +10,39 @@ ${SCREENSHOT_PROG} "${image_file}"
 [[ ! -f "$image_file" ]] && exit 1
 image=$(${BASE64_PROG} "${image_file}")
 mode="text"
-curl -q \
+eq=$(curl -q \
     https://api.mathpix.com/v3/"${mode}" \
     -X POST \
     -H "app_id: ${MATHPIX_ID}" \
     -H "app_key: ${MATHPIX_KEY}" \
     -H "Content-Type: application/json" \
-    --data "{\"math_inline_delimiters\": [\"$\$\", \"$\$\"],\"rm_spaces\": true,\"src\":\"data:image/jpeg;base64,'$image'\"}" \
-    2> /dev/null | jq -r ."$mode" | xsel -b 
+    --data "{\"math_inline_delimiters\": [\"\", \"\"],\"rm_spaces\": true,\"src\":\"data:image/jpeg;base64,'$image'\"}" \
+    2> /dev/null | jq -r ."$mode" )
+echo "\$\$
+"$eq"
+\$\$" | xsel -b
+
+# curl -f -X POST https://api.mathpix.com/v3/latex \
+#  -H "app_id: ${MATHPIX_ID}" \
+#     -H "app_key: ${MATHPIX_KEY}" \
+#     -H 'Content-Type: application/json' \
+#     -o "${json_file}" --data @- <<Config
+# {
+# "src": "data:image/jpeg;base64,'$image'",
+# "ocr": ["math", "text"],
+# "skip_recrop": true,
+# "formats": [
+# "latex_styled",
+# "text",
+# "text_display"
+# ],
+# "format_options": {
+# "latex_styled": {"transforms": ["rm_spaces"],"displaymath_delims": ["\$\$", "\$\$"]},
+# "text": {"transforms": ["rm_spaces"]},
+# "text_display": {"transforms": ["rm_spaces"],"displaymath_delims": ["\$\$", "\$\$"]}
+# }
+# }
+# Config
+#
+# jq '.text_display' "${json_file}" -r | xsel -b
+# jq '.' /tmp/mathpix.json
