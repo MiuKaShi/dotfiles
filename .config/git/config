@@ -1,3 +1,6 @@
+[user]
+	name = miuka
+	email = d.lolimiuku@gmail.com
 [alias]
     s = status
     l = log --oneline
