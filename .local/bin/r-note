@@ -1,11 +1,12 @@
 #! /bin/bash
 
-refre_path=/home/miuka/notes/Study_Notes/reference
+paper_notes=~/notes/paper_notes
+day_notes=~/notes/day_notes
 title=${1%.*}
-id=$(date '+%Y%m%d%H%M%S')
-file=$refre_path/$id.md
-
+[[ -z "$title" ]] && title="$(echo | dmenu -p "notes title:")"
 create-md() {
+    id=$(date '+%Y%m%d%H%M%S')
+    file=$day_notes/$id.md
     cat >"$file" <<EOF
 ---
 id: "$id"
@@ -16,14 +17,8 @@ tags: []
 
 # $title
 EOF
-
-    st -e nvim "$file"
 }
 
-file_id=$(grep "\"$title"\" $refre_path/*.md | cut -d':' -f1 | xargs basename | cut -d'.' -f1)
-
-if [ -z "$file_id" ]; then
-    create-md
-else
-    st -e nvim "$refre_path/$file_id.md"
-fi
+file=$(grep "\"$title"\" $paper_notes/*.md | cut -d':' -f1)
+[[ -z "$file" ]] && create-md
+st -e nvim "$file"
