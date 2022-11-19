@@ -2,8 +2,10 @@
 
 paper_notes=~/notes/paper_notes
 day_notes=~/notes/day_notes
+
 title=${1%.*}
-[[ -z "$title" ]] && title="$(echo | dmenu -p "notes title:")"
+title=${title:-"$(echo | dmenu -p "notes title:")"}
+[[ -z "$title" ]] && exit 1
 create-md() {
     id=$(date '+%Y%m%d%H%M%S')
     file=$day_notes/$id.md
