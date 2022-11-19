@@ -117,11 +117,11 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # urls
-c.url.default_page = 'https://searx.tiekoetter.com/'
-c.url.start_pages = 'https://searx.tiekoetter.com/'
+c.url.default_page = 'https://search.miukashi.xyz/'
+c.url.start_pages = 'https://search.miukashi.xyz/'
 c.tabs.last_close = "startpage"
 c.url.searchengines = {
-        'DEFAULT': 'https://searx.tiekoetter.com/search?q={}',
+        'DEFAULT': 'https://search.miukashi.xyz/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
         'gg': 'https://google.com/search?q={}',
         'ar': 'https://wiki.archlinux.org/?search={}',
@@ -138,7 +138,8 @@ c.aliases = {
 }
 config.bind('b', 'spawn --userscript qb-rbuku -s')
 config.bind('B', 'spawn --userscript qb-rbuku')
-config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
+# config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
+config.bind('<Ctrl+b>', 'spawn --userscript qb-rbuku -a')
 
 # Keys
 config.bind('e', 'hint links spawn linkhandler {hint-url}')

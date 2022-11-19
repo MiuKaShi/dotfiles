@@ -8,8 +8,7 @@
 
 # set browser
 
-BROWSER=firefox 
-READER="sioyek"
+READER=sioyek
 # If no url given. Opens browser. For using script as $BROWSER.
 [ -z "$1" ] && { "$BROWSER"; exit; }
 
