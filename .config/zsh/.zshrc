@@ -34,6 +34,7 @@ SAVEHIST=10000000
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/fzf-notes" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/fzf-notes"
 
 # export LS_COLORS="$(vivid generate gruvbox-dark)"
 
