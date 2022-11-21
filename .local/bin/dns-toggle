@@ -1,0 +1,18 @@
+#!/bin/sh
+
+DNS1="fallbackDNS = 203.76.245.200::853::DoT::2d3579.dns.nextdns.io; 45.90.30.43::443::DoH::https://dns.nextdns.io/2d3579" # my nextdns
+DNS2="fallbackDNS = 127.0.0.1::5380::UDP" # my smartdns
+CONF="/home/miuka/.runit/sv/personalDNSfilter/dnsfilter.conf"
+
+rm -rf /home/miuka/.runit/sv/smartdns/log/smartdns.log
+
+if grep -q "$DNS2" $CONF
+then 
+  sed -i "/^fallbackDNS =.*/ c$DNS1" $CONF
+  notify-send "Dns Manager" "set to NextDNS"
+else
+  sed -i "/^fallbackDNS =.*/ c$DNS2" $CONF
+  notify-send "Dns Manager" "set to SmartDNS"
+fi
+
+vsv-user restart personalDNSfilter >/dev/null
