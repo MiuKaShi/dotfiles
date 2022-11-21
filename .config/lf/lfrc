@@ -1,5 +1,6 @@
 # lf settings
 # github.com/rafi/.config
+# https://github.com/cirala/lfimg.git
 
 set shell bash
 set shellopts '-eu'
