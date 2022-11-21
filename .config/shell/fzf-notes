@@ -1,0 +1,59 @@
+# Copyright (c) 2022 Elijah Danko
+
+FZF_NOTES_DIR="/home/miuka/notes"
+FZF_COLLECTION_BIN="fzfnotes"
+
+command -v fzf >/dev/null 2>&1 || return
+[ -z "${FZF_PREVIEW_LINES-}"] && FZF_PREVIEW_LINES="12"
+[ -z "${FZF_NOTES_PROMPT-}" ] && FZF_NOTES_PROMPT='Notes> '
+[ -z "${FZF_NOTES_RG_COMMAND-}" ] && FZF_NOTES_RG_COMMAND="rg \
+    --no-column \
+    --line-number \
+    --no-heading \
+    --color=always \
+    --colors='match:none' \
+    --smart-case \
+    -- '\S'"
+
+# Ensure precmds are run after cd.
+function fzf_notes_redraw_prompt {
+    local precmd
+    for precmd in $precmd_functions; do
+        $precmd
+    done
+    zle reset-prompt
+}
+zle -N fzf_notes_redraw_prompt
+
+function fzf_notes {
+    local lines=$(eval ${FZF_NOTES_RG_COMMAND} ${FZF_NOTES_DIR} | \
+        ${FZF_COLLECTION_BIN} -ns ${FZF_NOTES_DIR} | fzf \
+        --prompt "${FZF_NOTES_PROMPT}" \
+        --print-query \
+        --ansi \
+        --delimiter=":" \
+        --multi \
+        --exact \
+        --query="$*" \
+        --preview="${FZF_COLLECTION_BIN} -np ${FZF_NOTES_DIR} {1} {2} ${FZF_PREVIEW_LINES}" \
+    )
+    if [[ -z "$lines" ]]; then
+        zle && zle fzf_notes_redraw_prompt
+        return 1
+    fi
+
+    local key="$(head -n2 <<< "$lines" | tail -n1)"
+    fzf_notes_jump "$(tail -n1 <<< "${lines}")"
+    zle && zle fzf_notes_redraw_prompt || true
+}
+
+function fzf_notes_jump {
+    file=$(cut -d':' -f1 <<< "$1")
+    column=$(cut -d':' -f2 <<< "$1")
+    # vim compatible editor.
+    $EDITOR +$column ${FZF_NOTES_DIR}/$file
+}
+
+zle -N fzf_notes
+
+bindkey ${FZF_NOTES_TRIGGER_KEYMAP:-'^s'} fzf_notes
