@@ -1,0 +1,18 @@
+#!/bin/bash
+# find files using fzf and bfs. bfs does breadth-first search,
+# which on average can find files much faster than find's depth-first search.
+# usage: finder [starting-point...]
+
+# paths to not search
+ignore=(
+    '*/.git/*'
+    '*/Trash/*'
+    '*/.Trash-*/*'
+    '*/*vim/undo*/*'
+    '*/dosdevices/*'
+)
+
+ignore=("${ignore[@]/%/"'"}")
+ignore=("${ignore[@]/#/"-not -path '"}")
+[[ $# -gt 0  ]] && paths=$(printf '%q ' "$@") || paths=''
+FZF_DEFAULT_COMMAND="bfs -L ${ignore[@]} $paths" fzf --scheme=path --prompt=' Finder '
