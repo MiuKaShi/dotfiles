@@ -1,2 +1,2 @@
 #!/bin/sh
-yt-dlp --cookies-from-browser brave $@
+yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser $@
