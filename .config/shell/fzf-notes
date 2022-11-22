@@ -56,4 +56,4 @@ function fzf_notes_jump {
 
 zle -N fzf_notes
 
-bindkey ${FZF_NOTES_TRIGGER_KEYMAP:-'^s'} fzf_notes
+bindkey ${FZF_NOTES_TRIGGER_KEYMAP:-'^n'} fzf_notes
