@@ -135,7 +135,6 @@ alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix |fzfpreview --prompt='open>' --select-1 --exit-0)\";exit"
 alias chopin-paper="cd '$HOME/papers/pdf/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix |fzfpreview --prompt='papers>' --select-1 --exit-0)\";exit"
 alias chopin-book="cd '$HOME/books/tribology' && chopin -o \"\$(fd -e pdf -e mobi --strip-cwd-prefix |fzfpreview --prompt='books>' --select-1 --exit-0)\";exit"
-alias chopin-note="cd '$HOME/notes' && chopin -o \"\$(fd -e md --strip-cwd-prefix |fzfpreview --prompt='notes>' --select-1 --exit-0)\";exit"
 alias chopin-bookmark="cd '$HOME/Documents/bookmark/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix |fzfpreview --prompt='bookmark>' --select-1 --exit-0)\";exit"
 
 alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=25 av://v4l2:/dev/video0 --profile=low-latency"
@@ -166,6 +165,7 @@ alias get='git '
 alias gh="xdg-open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 
 alias gg='gstatus /home/miuka/github'
+alias gls="\\ls -A --group-directories-first -1 | while IFS= read -r line; do git log --color --format=\"\$(\\ls -d -F --color \"\$line\") =} %C(bold black)▏%Creset%Cred%h %Cgreen(%cr)%Creset =} %C(bold black)▏%Creset%s %C(bold blue)<%an>%Creset\" --abbrev-commit --max-count 1 HEAD -- \"\$line\"; done | awk -F'=}' '{ nf[NR]=NF; for (i = 1; i <= NF; i++) { cell[NR,i] = \$i; gsub(/\\033\\[([[:digit:]]+(;[[:digit:]]+)*)?[mK]/, \"\", \$i); len[NR,i] = l = length(\$i); if (l > max[i]) max[i] = l; } } END { for (row = 1; row <= NR; row++) { for (col = 1; col < nf[row]; col++) printf \"%s%*s%s\", cell[row,col], max[col]-len[row,col], \"\", OFS; print cell[row,nf[row]]; } }'"
 
 # yadm Command
 alias y='yadm'
