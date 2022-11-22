@@ -3,7 +3,7 @@ from qutebrowser.api import interceptor
 config.load_autoconfig(False)
 
 # ui
-config.source("gruvbox.py")
+config.source("mgruvbox.py")
 c.fonts.default_size = "12pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
@@ -18,7 +18,7 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 # https://old.reddit.com/r/qutebrowser/comments/jdnqbp/yet_another_dark_mode_post/
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = "smart"
-c.colors.webpage.bg = '#1d2021'
+c.colors.webpage.bg = '#32302f'
 
 # general
 # HDPI(not support WAYLAND)
