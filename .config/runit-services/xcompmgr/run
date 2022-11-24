@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ -r ./conf ] && . ./conf
-
-exec xcompmgr ${OPTS:-} 2>&1

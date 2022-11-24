@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ -r ./conf ] && . ./conf
-
-/usr/bin/btpd ${OPTS:-} --no-daemon 2>&1

@@ -1,4 +1,0 @@
-#!/bin/sh
-
-exec /usr/lib/clash/setup-cgroup.sh 2>&1
-exec /usr/bin/bypass-proxy /usr/bin/clash -d /home/miuka/.config/clash 2>&1
