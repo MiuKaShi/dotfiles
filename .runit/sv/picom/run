@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec picom --dbus --experimental-backends 2>&1

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec lemonade server 2>&1

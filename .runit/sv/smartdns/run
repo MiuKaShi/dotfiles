@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# clean smartdns cache
+rm -rf $HOME/.runit/sv/smartdns/log/smartdns.cache
+
+exec smartdns -p - -c ~/.config/smartdns/smartdns.conf -f 2>&1
