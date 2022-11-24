@@ -16,9 +16,9 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 
 ###darkmode
 # https://old.reddit.com/r/qutebrowser/comments/jdnqbp/yet_another_dark_mode_post/
-c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.policy.images = "smart"
-c.colors.webpage.bg = '#32302f'
+# c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.policy.images = "smart"
+# c.colors.webpage.bg = '#32302f'
 
 # general
 # HDPI(not support WAYLAND)
