@@ -20,6 +20,9 @@ case $input in
     *"HHKB-Hybrid"*)
         xmodmap -e "keysym Menu = Hyper_R"
         ;;
+    *"ErgoDox"*)
+        xmodmap -e "keysym Menu = Hyper_R"
+        ;;
     *)
         xmodmap -e "keycode 94 = Hyper_R"
         ;;
