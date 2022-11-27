@@ -2,10 +2,10 @@
 
 FZF_NOTES_DIR="/home/miuka/notes"
 FZF_COLLECTION_BIN="fzfnotes"
+FZF_NOTES_PROMPT="Notes> "
+FZF_PREVIEW_LINES="12"
 
 command -v fzf >/dev/null 2>&1 || return
-[ -z "${FZF_PREVIEW_LINES-}"] && FZF_PREVIEW_LINES="12"
-[ -z "${FZF_NOTES_PROMPT-}" ] && FZF_NOTES_PROMPT='Notes> '
 [ -z "${FZF_NOTES_RG_COMMAND-}" ] && FZF_NOTES_RG_COMMAND="rg \
     --no-column \
     --line-number \
