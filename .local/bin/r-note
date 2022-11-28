@@ -21,6 +21,7 @@ tags: []
 EOF
 }
 
-file=$(grep "\"$title"\" $paper_notes/*.md | cut -d':' -f1)
+file=$(grep "\- \"$title"\" $paper_notes/*.md | cut -d':' -f1)
+[[ -z "$file" ]] && file=$(grep "\- \"$title"\" $day_notes/*.md | cut -d':' -f1)
 [[ -z "$file" ]] && create-md
 st -e nvim "$file"
