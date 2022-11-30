@@ -3,7 +3,7 @@ from qutebrowser.api import interceptor
 config.load_autoconfig(False)
 
 # ui
-config.source("mgruvbox.py")
+config.source("gruvbox.py")
 c.fonts.default_size = "12pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
@@ -13,12 +13,6 @@ c.statusbar.widgets = ["progress", "keypress", "url", "history"]
 c.tabs.show = 'multiple'
 c.tabs.title.format = "{index}: {audio}{current_title}"
 c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
-
-###darkmode
-# https://old.reddit.com/r/qutebrowser/comments/jdnqbp/yet_another_dark_mode_post/
-# c.colors.webpage.darkmode.enabled = True
-# c.colors.webpage.darkmode.policy.images = "smart"
-# c.colors.webpage.bg = '#32302f'
 
 # general
 # HDPI(not support WAYLAND)
@@ -207,6 +201,9 @@ c.hints.selectors["code"] = [
     "pre"
 ]
 config.bind(',c', 'hint code userscript code_select')
+config.bind(',d', 'set content.user_stylesheets ~/.config/qutebrowser/stylesheets/dark.css')
+config.bind(',l', 'set content.user_stylesheets ~/.config/qutebrowser/stylesheets/sepia.css')
+config.bind(',,', 'set content.user_stylesheets ""')
 config.bind(',t', 'spawn --userscript translate')
 config.bind(',r',  'spawn --userscript readability-js')
 config.bind(',f', 'hint links tab')
