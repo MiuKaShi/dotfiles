@@ -74,7 +74,7 @@ alias \
 
 # Language.
 alias \
-    mbt="/usr/local/MATLAB/R2022b/bin/matlab -nodesktop -nosplash -r clc" \
+    mbt="mat cmd" \
     ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
     jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
 
