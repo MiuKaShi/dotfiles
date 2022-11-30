@@ -1,4 +1,4 @@
-# config for the Zoomer Shell
+# config for the ZSH Shell
 
 # Z-jump:
 eval "$(lua /usr/share/zsh/plugins/z.lua/z.lua --init zsh enhanced once)"
@@ -120,14 +120,5 @@ unset 'FAST_HIGHLIGHT[chroma-man]'  # chroma-man will stuck history browsing
 ZSH_AUTOSUGGEST_MANUAL_REBIND='1'
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function chpwd {
-  pwd > ~/.last_dir
-}
-
-# restore last saved path on launch
-if [[ -f ~/.last_dir ]]; then
-  cd $(cat ~/.last_dir)
-fi
 
 #eval "$(starship init zsh)"
