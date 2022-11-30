@@ -28,6 +28,7 @@ c.fileselect.multiple_files.command = ["st", "sh", "-c", "lf > {}"]
 c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
 c.confirm_quit = ['downloads']
+# pacman -S pdfjs-legacy 
 c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
