@@ -14,7 +14,7 @@ format =  "[$hostname](bold green) ❯ "
 [character]
 success_symbol = "[➜](bold green) "
 error_symbol = "[✗](bold red) "
-vicmd_symbol   = "[V](bold green)"
+vicmd_symbol   = "[V](bold blue)"
 # Use custom format
 # format = """
 #[┌───────────────────>](bold green)
