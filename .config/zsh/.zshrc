@@ -119,6 +119,4 @@ unset 'FAST_HIGHLIGHT[chroma-man]'  # chroma-man will stuck history browsing
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND='1'
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
