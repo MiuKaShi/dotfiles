@@ -193,8 +193,6 @@ rules:
   # DNS
   - IP-CIDR,8.8.8.8/32,DNS,no-resolve
   - IP-CIDR,1.1.1.1/32,DNS,no-resolve
-  - IP-CIDR,114.114.115.115/32,DNS,no-resolve
-  - IP-CIDR,223.5.5.5/32,DNS,no-resolve
   - DOMAIN-SUFFIX,nextdns.io,DNS
   - DOMAIN-SUFFIX,quad9.net,DNS
   # Scihub
@@ -217,7 +215,10 @@ rules:
   - DOMAIN-SUFFIX,sagepub.com,Journal
   # (Video)
   # 国内二级域名
-  # - DOMAIN-SUFFIX,edu.cn,CN
+  - IP-CIDR,114.114.115.115/32,CN,no-resolve
+  - IP-CIDR,223.5.5.5/32,CN,no-resolve
+  - IP-CIDR,1.12.12.12/32,CN,no-resolve
+  - DOMAIN-SUFFIX,edu.cn,CN
   - DOMAIN-SUFFIX,gov.cn,CN
   # AcFun
   # USER-AGENT,AcFun*,CN
