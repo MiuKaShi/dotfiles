@@ -1,13 +1,13 @@
 # Configuration file for ipython.
 
-config = get_config()
-# check https://github.com/reillysiemens/ipython-style-gruvbox
-config.TerminalInteractiveShell.highlighting_style = "gruvbox"
+# check https://github.com/reillysiemens/ipython-style-gruvbox 
+# enable the color conflig with sage
+# config = get_config()
+# config.TerminalInteractiveShell.highlighting_style = "gruvbox"
 c.InteractiveShellApp.exec_lines = [
     "import numpy as np",
     "import matplotlib.pyplot as plt",
 ]
-
 # ------------------------------------------------------------------------------
 # InteractiveShellApp(Configurable) configuration
 # ------------------------------------------------------------------------------
