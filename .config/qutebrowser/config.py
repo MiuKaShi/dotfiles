@@ -23,8 +23,9 @@ c.zoom.default = "175%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"
-c.fileselect.single_file.command = ["st", "sh", "-c", "lf > {}"]
-c.fileselect.multiple_files.command = ["st", "sh", "-c", "lf > {}"]
+c.fileselect.folder.command = ["st", "-e", "lfrun", "-last-dir-path={}"]
+c.fileselect.single_file.command = ["st", "-e", "lfrun", "-selection-path={}"]
+c.fileselect.multiple_files.command = ["st", "-e", "lfrun", "-selection-path={}"]
 c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
 c.confirm_quit = ['downloads']
@@ -37,6 +38,17 @@ c.completion.height = "30%"
 c.tabs.show = "multiple"
 c.tabs.last_close = "close"
 c.tabs.mousewheel_switching = False
+
+# enable GPU acceleration
+# see https://github.com/qutebrowser/qutebrowser/discussions/6573
+# see https://github.com/qutebrowser/qutebrowser/issues/5378]
+c.qt.args += [
+    "ignore-gpu-blocklist",
+    "enable-gpu-rasterization",
+    "enable-native-gpu-memory-buffers",
+    "num-raster-threads=4",
+    "enable-accelerated-video-decode",
+]
 
 # Don't automatically leave insert mode. qutebrowser will leave insert mode automatically
 config.set("input.insert_mode.auto_leave", False)
@@ -69,22 +81,6 @@ c.content.blocking.adblock.lists =[
      "https://www.i-dont-care-about-cookies.eu/abp/",
      "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
 ]
-
-# getting rid of annoying cookie bars
-# see https://www.reddit.com/r/qutebrowser/comments/mnptey/getting_rid_of_cookie_consent_barspopups/
-config.bind(
-    "e",
-    "jseval (function () { "
-    + '  var i, elements = document.querySelectorAll("body *");'
-    + ""
-    + "  for (i = 0; i < elements.length; i++) {"
-    + "    var pos = getComputedStyle(elements[i]).position;"
-    + '    if (pos === "fixed" || pos == "sticky") {'
-    + "      elements[i].parentNode.removeChild(elements[i]);"
-    + "    }"
-    + "  }"
-    + "})();",
-)
 
 # privacy
 c.content.cookies.accept = "no-3rdparty"
