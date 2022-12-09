@@ -35,33 +35,39 @@ proxies:
   - {name: "日本", type: ss, server: 45.14.107.211, port: 47451, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123", udp: true}
   - {name: "学校", type: ss, server: 45.14.107.211, port: 47456, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123" }
   - {name: "美国", type: ss, server: 45.42.200.240, port: 47457, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123", udp: true}
-  - {name: "四川1", type: vmess, server: 112.18.159.68, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: www.youku.com } }, ws-path: /, ws-headers: { Host: www.youku.com } }
-  - {name: "四川2", type: vmess, server: 36.170.49.135, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "四川3", type: vmess, server: 36.170.50.179, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: www.youku.com } }, ws-path: /, ws-headers: { Host: www.youku.com } }
-  - {name: "四川4", type: vmess, server: 183.223.139.192, port: '8090', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: tms.dingtalk.com } }, ws-path: /, ws-headers: { Host: tms.dingtalk.com } }
-  - {name: "江苏", type: vmess, server: 43.248.79.12, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "海南", type: vmess, server: 124.225.140.46, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } } }
-  - {name: "辽宁", type: vmess, server: 42.203.52.87, port: '8091', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } } }
-  - {name: "校园网1", type: vmess, server: 1aa446879971445766cdf92fae0fa673.sc40.ningmengshui.top, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: mkcp }
+  - {name: "辽宁", type: vmess, server: 42.203.52.87, port: '8091', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } }}
+  - {name: "海南", type: vmess, server: 124.225.140.46, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } }}
+  - {name: "江苏", type: vmess, server: 43.248.79.12, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } }}
+  - {name: "四川", type: vmess, server: 112.18.159.114, port: '443', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } }}
+  - {name: "校园网1", type: vmess, server: 112.18.159.114, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: mkcp }
   - {name: "校园网2", type: vmess, server: 20.205.5.236, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "校园网3", type: vmess, server: 20.205.5.236, port: '67', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "校园网4", type: vmess, server: 20.205.5.236, port: '68', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "香港1", type: vmess, server: hk7.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/], headers: { Host: [shoutingtoutiao3.10010.com] } } }
-  - {name: "香港2", type: vmess, server: hk8.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [short.weixin.qq.com] } } }
-  - {name: "香港3", type: vmess, server: hk15.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "香港4", type: trojan, server: hkt.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hkt.iamnotagoodman.com }
-  - {name: "香港5", type: vmess, server: 210.0.159.89, port: '6616', uuid: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, alterId: 0, cipher: auto, udp: true, network: ws }
+  - {name: "香港2", type: vmess, server: 20.24.83.152, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [short.weixin.qq.com] } } }
+  - {name: "香港3", type: vmess, server: 20.2.81.214, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
+  - {name: "香港4", type: trojan, server: 20.222.225.22, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hkt.iamnotagoodman.com }
+  - { name: 香港5, type: trojan, server: 20.89.93.49, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hkt.mjt001.com }
   - {name: "美国1", type: trojan, server: usla.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true }
-  - {name: "韩国1", type: trojan, server: kr.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true }
-  - {name: "台湾1", type: vmess, server: tw.1368998.xyz, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [tms.dingtalk.com] } } }
-  - {name: "台湾2", type: vmess, server: tw2.1368998.xyz, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: a.189.cn } }, ws-path: /, ws-headers: { Host: a.189.cn } }
-  - {name: "台湾3", type: trojan, server: tw.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true }
-  - {name: "新加坡1", type: vmess, server: do1.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
-  - {name: "新加坡2", type: vmess, server: do2.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
-  - {name: "新加坡3", type: trojan, server: sg.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: sg.iamnotagoodman.com }
-  - {name: "日本1", type: vmess, server: lin1.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
-  - {name: "日本2", type: vmess, server: lin2.ningmengshui.top, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
-  - {name: "日本3", type: trojan, server: jp.iamnotagoodman.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: jp.iamnotagoodman.com }
+  - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国4", type: trojan, server: dl-us3.efyunpan.com, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-us.efyunpan.com }
+  - { name: "美国5", type: trojan, server: dl-us4.efyunpan.com, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-us.efyunpan.com }
+  - {name: "台湾1", type: vmess, server: 36.227.229.207, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [tms.dingtalk.com] } } }
+  - {name: "台湾2", type: vmess, server: 36.228.208.26, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: a.189.cn } }, ws-path: /, ws-headers: { Host: a.189.cn } }
+  - {name: "台湾3", type: trojan, server: 20.222.225.22, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true }
+  - {name: "台湾4", type: trojan, server: 20.24.193.78, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-tw.efyunpan.com }
+  - {name: "台湾5", type: trojan, server: (20.239.58.24, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-tw.efyunpan.com }
+  - {name: "新加坡1", type: vmess, server: 172.105.237.128, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
+  - {name: "新加坡2", type: vmess, server: 139.162.103.158, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
+  - {name: "新加坡3", type: trojan, server: 20.212.209.150, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-sg.efyunpan.com }
+  - {name: "新加坡4", type: trojan, server: 20.212.209.100, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-sg.efyunpan.com }
+  - {name: "新加坡5", type: trojan, server: 20.212.197.63, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-sg.efyunpan.com }
+  - {name: "日本1", type: vmess, server: 172.104.83.172, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
+  - {name: "日本2", type: vmess, server: 139.162.104.143, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
+  - {name: "日本3", type: trojan, server: 20.89.93.49, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: jp.mjt001.com }
+  - {name: "日本4", type: trojan, server: 20.89.88.134, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-jp.efyunpan.com }
+  - {name: "日本5", type: trojan, server: 20.222.104.183, port: 443, password: 4d06ea27-3760-42c8-aecb-12807221082f, udp: true, sni: data-jp.efyunpan.com }
 proxy-groups:
   - name: Auto - UrlTest
     type: url-test
@@ -69,10 +75,7 @@ proxy-groups:
       - "日本"
       - "学校"
       - "美国"
-      - "四川1"
-      - "四川2"
-      - "四川3"
-      - "四川4"
+      - "四川"
       - "江苏"
       - "海南"
       - "辽宁"
@@ -86,63 +89,140 @@ proxy-groups:
       - "香港4"
       - "香港5"
       - "美国1"
-      - "韩国1"
+      - "美国2"
+      - "美国3"
+      - "美国4"
+      - "美国5"
       - "台湾1"
       - "台湾2"
       - "台湾3"
+      - "台湾4"
+      - "台湾5"
       - "新加坡1"
       - "新加坡2"
       - "新加坡3"
+      - "新加坡4"
+      - "新加坡5"
       - "日本1"
       - "日本2"
       - "日本3"
+      - "日本4"
+      - "日本5"
+      - "均衡日本"
+      - "均衡台湾"
+      - "均衡中国"
+      - "均衡香港"
+      - "均衡新加坡"
+      - "均衡美国"
     url: http://www.msftconnecttest.com/connecttest.txt
     interval: "600"
     tolerance: "150"
-  - name: CN
-    type: select
+  - name: 均衡日本
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 300
+    strategy: consistent-hashing
     proxies:
-      - DIRECT
       - "日本"
-      - "四川1"
-      - "四川2"
-      - "四川3"
-      - "四川4"
+      - "日本1"
+      - "日本2"
+      - "日本3"
+      - "日本4"
+      - "日本5"
+  - name: 均衡台湾
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 300
+    strategy: round-robin
+    proxies:
+      - "台湾1"
+      - "台湾2"
+      - "台湾3"
+      - "台湾4"
+      - "台湾5"
+  - name: 均衡中国
+    type: load-balance
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    strategy: round-robin
+    proxies:
+      - "四川"
       - "江苏"
       - "海南"
       - "辽宁"
-      - "香港1"
-      - "香港2"
-  - name: HK
-    type: select
+  - name: 均衡香港
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 300
+    strategy: round-robin
     proxies:
       - "香港1"
       - "香港2"
       - "香港3"
       - "香港4"
       - "香港5"
-      - DIRECT
+  - name: 均衡新加坡
+    type: load-balance
+    url: http://www.google.com/generate_204
+    interval: 300
+    strategy: round-robin
+    proxies:
+      - "新加坡1"
+      - "新加坡2"
+      - "新加坡3"
+      - "新加坡4"
+      - "新加坡5"
+  - name: 均衡美国
+    type: load-balance
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    strategy: round-robin
+    proxies:
+      - "美国"
+      - "美国1"
+      - "美国2"
+      - "美国3"
+      - "美国4"
+      - "美国5"
+  - name: CN
+    type: select
+    proxies:
+      - "均衡中国"
       - "日本"
+      - "四川"
+      - "江苏"
+      - "海南"
+      - "辽宁"
+      - DIRECT
+  - name: HK
+    type: select
+    proxies:
+      - "均衡香港"
+      - "香港1"
+      - "香港2"
+      - "香港3"
+      - "香港4"
+      - "香港5"
+      - DIRECT
   - name: TW
     type: select
     proxies:
+      - "均衡台湾"
       - "台湾1"
-      - "台湾2"
-      - "日本"
       - DIRECT
   - name: USA
     type: select
     proxies:
+      - "均衡美国"
       - "美国"
-      - "美国1"
-      - "日本"
+      - DIRECT
   - name: Scihub
     type: select
     proxies:
-      - "日本1"
-      - "美国1"
       - "日本"
       - "美国"
+      - "日本1"
+      - "美国1"
   - name: Journal
     type: select
     proxies:
@@ -157,13 +237,9 @@ proxy-groups:
     type: select
     proxies:
       - "日本"
-      - "四川1"
-      - "四川2"
-      - "四川3"
-      - "四川4"
-      - "江苏"
-      - "香港1"
-      - "香港2"
+      - "均衡日本"
+      - "均衡中国"
+      - "均衡香港"
   - name: DNS
     type: select
     proxies:
@@ -173,23 +249,14 @@ proxy-groups:
     type: select
     proxies:
       - "日本"
-      - DIRECT
-      - "四川1"
-      - "四川2"
-      - "四川3"
-      - "四川4"
-      - "江苏"
-      - "美国"
-      - "韩国1"
+      - "均衡日本"
+      - "均衡中国"
+      - "均衡香港"
+      - "均衡台湾"
+      - "均衡美国"
       - "新加坡1"
-      - "台湾1"
-      - "香港1"
-      - "香港2"
-      - "日本1"
+      - DIRECT
 rules:
-  ##Others:Others
-  ##Proxy:Proxy
-  ##source:ConnersHua_return
   # DNS
   - IP-CIDR,8.8.8.8/32,DNS,no-resolve
   - IP-CIDR,1.1.1.1/32,DNS,no-resolve
@@ -1047,5 +1114,5 @@ rules:
   - DOMAIN-SUFFIX,spotxchange.com,USA
   - DOMAIN-SUFFIX,tremorhub.com,USA
   - DOMAIN-SUFFIX,videoamp.com,USA
-  #- MATCH,Others
+  # Others
   - MATCH,Others
