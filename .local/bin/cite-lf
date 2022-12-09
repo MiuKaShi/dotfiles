@@ -1,0 +1,4 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+st -e lf $file
