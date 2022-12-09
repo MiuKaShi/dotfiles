@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # This script allows controll monitor brightness
-
-monitor_info=$(sudo ddcutil detect | grep "I2C bus\|Model" | sed '/^$/d;s/[[:blank:]]//g')
-id=$(echo "$monitor_info" | grep -oP '(?<=i2c-)\w+')
+monitor_info=$(sudo ddcutil detect)
+echo "$monitor_info" | grep -q "DDC communication failed" &&  dunstify "DDC Not Support" && exit 1
+model_info=$(echo "$monitor_info" | grep "I2C bus\|Model" | sed '/^$/d;s/[[:blank:]]//g')
+id=$(echo "$model_info" | grep -oP '(?<=i2c-)\w+')
 
 if [ ! -f ~/.cache/brightness ]; then
     currentbgt=$(sudo ddcutil --noverify getvcp 10 | grep "current value" | awk '{print $9}' | sed 's/,*$//g')
