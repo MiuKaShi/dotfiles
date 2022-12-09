@@ -1,5 +1,6 @@
-#!/bin/sh
-# if can not work, it may be need run: cd /usr/include; sudo h2ph -r -l .
+#!/bin/bash
+# if can not work, it may be need run: cd /usr/include && sudo h2ph -r -l .
+# dependence: lynx atool pandoc lib32-glibc
 readonly BASH_BINARY="$(which bash)"
 declare -r -x DEFAULT_PREVIEW_POSITION="right"
 declare -r -x UEBERZUG_FIFO="$(mktemp --dry-run --suffix "fzf-$$-ueberzug")"
