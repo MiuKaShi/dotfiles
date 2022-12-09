@@ -3,7 +3,7 @@
 file=$(readlink -f "$1")
 dir=${file%/*}
 name=$(basename "$file")
-BROWSER=firefox 
+BROWSER=librewolf
 
 port="25851"
 pidnum=$(lsof -t -i:$port)
