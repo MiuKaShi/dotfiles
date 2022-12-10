@@ -7,7 +7,7 @@
 static const struct OpenRule open_rules[] = {
     {"inode/x-empty"                                                             ,"nvim"                      ,0},
     {"text/plain"                                                                ,"nvim"                      ,0},
-    {"application/pdf"                                                           ,"sioyek"                   ,0}, // pdf
+    {"application/pdf"                                                           ,"sioyek"                    ,0}, // pdf
     {"application/epub+zip"                                                      ,"foliate"                   ,0}, // epub
     {"image/vnd.djvu"                                                            ,"okular"                    ,0}, // djvu
     {"application/json"                                                          ,"nvim"                      ,0},
@@ -42,29 +42,29 @@ static const struct OpenRule open_rules[] = {
     {"application/x-latex"                                                       ,"nvim"                      ,0},
     {"application/xml"                                                           ,"nvim"                      ,0},
     {"application/xhtml+xml"                                                     ,"nvim"                      ,0},
-    {"image/jpg"                                                                 ,"sxiv"                     ,0}, // jpg    // sxiv, feh, img2txt --gamma=0.5
-    {"image/jpeg"                                                                ,"sxiv"                     ,0}, // jpeg   // sxiv, feh, img2txt --gamma=0.5
-    {"image/png"                                                                 ,"sxiv"                     ,0}, // png    // sxiv, feh, img2txt --gamma=0.5
-    {"image/gif"                                                                 ,"sxiv -a"                  ,0}, // gif    // sxiv, feh, img2txt --gamma=0.5
-    {"audio/flac"                                                                ,"mpv"                      ,0}, // flac
-    {"audio/acc"                                                                 ,"mpv"                      ,0}, // acc
-    {"audio/mpeg"                                                                ,"mpv"                      ,0}, // mp2, mp3, mpeg
-    {"audio/wav"                                                                 ,"mpv"                      ,0}, // wav
-    {"video/mp4"                                                                 ,"mpv --geometry=100%x100%" ,0}, // mp4
-    {"video/x-flv"                                                               ,"mpv --geometry=100%x100%" ,0}, // flv
-    {"video/x-msvideo"                                                           ,"mpv --geometry=100%x100%" ,0}, // avi
-    {"video/x-matroska"                                                          ,"mpv --geometry=100%x100%" ,0}, // mkv
-    {"application/x-tar"                                                         ,"atool --list --"          ,0}, // tar
-    {"application/zip"                                                           ,"atool --list --"          ,0}, // zip
-    {"application/x-gzip"                                                        ,"atool --list --"          ,0}, // gz
-    {"application/rar"                                                           ,"atool --list --"          ,0}, // rar
-    {"application/x-7z-compressed"                                               ,"atool --list --"          ,0}, // 7z
-    {"application/x-bz"                                                          ,"atool --list --"          ,0}, // bz
-    {"application/x-bz2"                                                         ,"atool --list --"          ,0}, // bz2
-    {"application/x-rar"                                                         ,"atool --list --"          ,0}, // rar
-    {"application/x-rar-compressed"                                              ,"atool --list --"          ,0}, // rar
-    {"application/x-cpio"                                                        ,"atool --list --"          ,0}, // cpio
-    {"application/java-archive"                                                  ,"atool --list --"          ,0}, // java-archive
+    {"image/jpg"                                                                 ,"sxiv"                      ,0}, // jpg    // sxiv, feh, img2txt --gamma=0.5
+    {"image/jpeg"                                                                ,"sxiv"                      ,0}, // jpeg   // sxiv, feh, img2txt --gamma=0.5
+    {"image/png"                                                                 ,"sxiv"                      ,0}, // png    // sxiv, feh, img2txt --gamma=0.5
+    {"image/gif"                                                                 ,"sxiv -a"                   ,0}, // gif    // sxiv, feh, img2txt --gamma=0.5
+    {"audio/flac"                                                                ,"mpv"                       ,0}, // flac
+    {"audio/acc"                                                                 ,"mpv"                       ,0}, // acc
+    {"audio/mpeg"                                                                ,"mpv"                       ,0}, // mp2, mp3, mpeg
+    {"audio/wav"                                                                 ,"mpv"                       ,0}, // wav
+    {"video/mp4"                                                                 ,"mpv --geometry=100%x100%"  ,0}, // mp4
+    {"video/x-flv"                                                               ,"mpv --geometry=100%x100%"  ,0}, // flv
+    {"video/x-msvideo"                                                           ,"mpv --geometry=100%x100%"  ,0}, // avi
+    {"video/x-matroska"                                                          ,"mpv --geometry=100%x100%"  ,0}, // mkv
+    {"application/x-tar"                                                         ,"atool --list --"           ,0}, // tar
+    {"application/zip"                                                           ,"atool --list --"           ,0}, // zip
+    {"application/x-gzip"                                                        ,"atool --list --"           ,0}, // gz
+    {"application/rar"                                                           ,"atool --list --"           ,0}, // rar
+    {"application/x-7z-compressed"                                               ,"atool --list --"           ,0}, // 7z
+    {"application/x-bz"                                                          ,"atool --list --"           ,0}, // bz
+    {"application/x-bz2"                                                         ,"atool --list --"           ,0}, // bz2
+    {"application/x-rar"                                                         ,"atool --list --"           ,0}, // rar
+    {"application/x-rar-compressed"                                              ,"atool --list --"           ,0}, // rar
+    {"application/x-cpio"                                                        ,"atool --list --"           ,0}, // cpio
+    {"application/java-archive"                                                  ,"atool --list --"           ,0}, // java-archive
 };
 
 static const struct ExecRule exec_rules[] = {
