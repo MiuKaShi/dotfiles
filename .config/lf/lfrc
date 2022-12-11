@@ -171,7 +171,7 @@ cmd paste_link %{{
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f $f)" -b) in
-        image/vnd.djvu|application/pdf|application/postscript) setsid -f sioyek $fx >/dev/null 2>&1 ;;
+        image/vnd.djvu|application/pdf|application/postscript) setsid -f sioyek $f >/dev/null 2>&1 ;;
         application/json|application/octet-stream) $EDITOR $fx;;
         text/*) $EDITOR $fx;;
         image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
