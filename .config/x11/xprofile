@@ -8,7 +8,6 @@
 notescreen # laptop
 setbg & # set the background
 msi-isw #msi ec setting
-#xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 #remaps & # run the remaps script, switching caps/esc and more; check it for more info
 watchfile &
 #autorun conky 

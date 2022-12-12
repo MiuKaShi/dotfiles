@@ -1,12 +1,13 @@
 #!/bin/sh
 
-# xinitrc runs automatically when you run startx.
+# merge in defaults
 
-# There are some small but important commands that need to be run when we start
-# the graphical environment. There is a link to this file in ~/.xprofile
-# because that file is run automatically if someone uses a display manager
-# (login screen) and so they are needed there. To prevent doubling up commands,
-# I source them here with the line below.
+# userresources=$HOME/.config/x11/xresources
+# if [ -f "$userresources" ]; then
+#     xrdb -merge "$userresources"
+# fi
+
+# start some nice programs
 
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
@@ -18,6 +19,8 @@ eval $(ssh-agent)
 
 session=${1:-dwm}
 
+# dwm) exec dwm ;;
+# dwm) dbus-launch --sh-syntax --exit-with-session dwm ;;
 case $session in
     dwm) exec dwm ;;
     gnome)

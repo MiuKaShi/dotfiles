@@ -3,7 +3,7 @@ from qutebrowser.api import interceptor
 config.load_autoconfig(False)
 
 # ui
-config.source("gruvbox.py")
+config.source("themes/gruvbox/gruvbox.py")
 c.fonts.default_size = "12pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
@@ -133,7 +133,9 @@ config.bind('B', 'spawn --userscript qb-rbuku')
 config.bind('<Ctrl+b>', 'spawn --userscript qb-rbuku -a')
 
 # Keys
-config.bind('e', 'hint links spawn linkhandler {hint-url}')
+config.bind('ee', 'hint links spawn linkhandler {hint-url}')
+config.bind('el', "spawn librewolf {url}")
+config.bind('eL', "hint links spawn librewolf {hint-url}")
 config.bind('E', 'spawn --userscript url-handler')
 config.bind('I', 'hint images download')
 
@@ -164,10 +166,19 @@ config.bind('yt', 'tab-clone')
 config.bind('p', 'open -- {clipboard}')
 config.bind('P', 'open --bg {clipboard}')
 
-
 config.bind('o', 'set-cmd-text -s :open -s')
 config.bind('O', 'set-cmd-text -s :open -t -s')
 config.bind("<Ctrl-p>", "set-cmd-text -s :tab-select")
+
+# general
+config.bind('za', 'jseval -qf ~/.config/qutebrowser/js/general-alert.js')
+config.bind('zl', 'jseval -qf ~/.config/qutebrowser/js/general-save.js') 
+config.bind('zu', 'jseval -qf ~/.config/qutebrowser/js/general-unsave.js') 
+config.bind('zc', 'jseval -qf ~/.config/qutebrowser/js/general-copy.js') 
+config.bind('zs', 'jseval -qf ~/.config/qutebrowser/js/general-sort.js') 
+config.bind('zh', 'jseval -qf ~/.config/qutebrowser/js/general-home.js')
+config.bind('zf', 'jseval -qf ~/.config/qutebrowser/js/general-filter.js')
+config.bind('zx', 'jseval -qf ~/.config/qutebrowser/js/close-popup.js')
 
 # Bindings for insert mode
 config.bind('<Alt-Backspace>', 'fake-key <Ctrl-Backspace>', mode='insert')
@@ -202,7 +213,8 @@ config.bind(',d', 'set content.user_stylesheets ~/.config/qutebrowser/stylesheet
 config.bind(',l', 'set content.user_stylesheets ~/.config/qutebrowser/stylesheets/sepia.css')
 config.bind(',,', 'set content.user_stylesheets ""')
 config.bind(',t', 'tab-give')
-config.bind(',r',  'spawn --userscript readability-js')
+config.bind(',r', 'spawn --userscript readability-js')
+config.bind(',s', 'hint links userscript doi.py')
 config.bind(',f', 'hint links tab')
 config.bind(',o', 'set-cmd-text -s :open -w')
 config.bind(',b', 'open -t https://bilibili.com')
