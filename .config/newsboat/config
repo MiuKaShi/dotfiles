@@ -37,6 +37,8 @@ highlight article "\\[image\\ [0-9]+\\]"   color109 default bold
 highlight feedlist "Youtube: .*" color109 default
 highlight feedlist "Paper: .*" color109 default
 highlight feedlist "Bilibili: .*" color109 default
+highlight feedlist "Linux: .*" color109 default
+highlight feedlist "Others: .*" color109 default
 
 # -- navigation ----------------------------------------------------------------
 
