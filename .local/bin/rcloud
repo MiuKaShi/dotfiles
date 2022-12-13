@@ -1,0 +1,17 @@
+#!/bin/sh
+
+remote="tera:/sync"
+rclone_dir="$HOME/dav/tera"
+
+case "$1" in
+    push)
+        echo "$rclone_dir -> $remote"
+        rclone sync -l -P $rclone_dir $remote
+        rclone sync $remote $rclone_dir
+        ;;
+    pull)
+        echo "$remote -> $rclone_dir"
+        rclone sync -l -P $remote $rclone_dir
+        rclone sync $rclone_dir $remote
+        ;;
+esac
