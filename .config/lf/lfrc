@@ -1,33 +1,25 @@
 # lf settings
-# github.com/rafi/.config
-# https://github.com/cirala/lfimg.git
 
-set shell bash
+# set shell bash
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 set tabstop 2
-set smartcase
 set icons
-set drawbox
-
-set incsearch
-#set hidden
-set dircounts
-set info size
+set period 1
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+# set drawbox
 set sortby natural
 set ratios '1:2:3'
 set timefmt '2006-01-02 15:04:05 -0700'
 set errorfmt  "\033[31m%s\033[0m"
-set hiddenfiles ".*:$RECYCLE.BIN:System Volume Information"
-set promptfmt "
-\033[38;5;8m\033[48;5;236m %u@%h \033[38;5;236m\033[48;5;234m
-\033[38;5;8m\033[48;5;234m %w/%f \033[0m\033[38;5;234m\033[0m
-"
-
-set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/cleaner
+# set info size
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/preview'
 set autoquit on
+# set smartcase
+# set incsearch
+# set dircounts
 
 # ========
 # = maps
