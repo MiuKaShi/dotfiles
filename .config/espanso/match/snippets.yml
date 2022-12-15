@@ -1,0 +1,14 @@
+# espanso match file
+matches:
+  - trigger: '!web'
+    replace: https://chris-grieser.de/
+  - trigger: '!twitter'
+    replace: https://twitter.com/pseudo_meta
+  - trigger: '!github'
+    replace: https://github.com/chrisgrieser
+  - trigger: '!blog'
+    replace: https://nanotipsforvim.prose.sh
+  - trigger: '!paypal'
+    replace: https://www.paypal.me/ChrisGrieser
+  - trigger: "!name"
+    replace: "Christopher Grieser"
