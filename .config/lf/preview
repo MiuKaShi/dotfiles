@@ -35,7 +35,6 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.tar) tar tf "$1" ;;
 	*.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$1" ;;
 	*.rar) unrar l "$1" ;;
-  *.md) glow -s dark "$1" ;;
 	*.7z) 7z l "$1" ;;
 	*.gz|*.bzip|*.bzip2|*.bp|*.bz2) als "$1" ;;
 	*.deb) ar -tv "$1" ;;
@@ -75,6 +74,10 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		[ ! -f "$CACHE.jpg" ] && gnome-epub-thumbnailer "$1" "$CACHE.jpg"
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
 		;;
+  *.excalidraw.md) 
+    bat --theme=gruvbox-dark --paging=never --tabs=2 --wrap=auto --style=full --terminal-width "$(($4-2))" -f "$1" ;;
+  *.md) 
+    glow -s dark "$1" ;;
 	*.ino)
     bat --language=cpp --theme=gruvbox-dark --paging=never --tabs=2 --wrap=auto --style=full --terminal-width "$(($4-2))" -f "$1" ;;
 	*.sqlite) view_sqlite "$1" ;;

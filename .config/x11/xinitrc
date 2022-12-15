@@ -28,6 +28,8 @@ case $session in
         export GDK_BACKEND=x11
         exec gnome-session
         ;;
+    xfce) 
+        exec startxfce4;;
     cinnamon) exec gnome-session-cinnamon ;;
     *) exec $1 ;;
 esac

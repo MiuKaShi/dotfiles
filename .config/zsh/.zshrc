@@ -37,11 +37,14 @@ SAVEHIST=10000000
 # export LS_COLORS="$(vivid generate gruvbox-dark)"
 
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
+_comp_options+=(globdots)		# Include hidden files.
+for dump in ~/.config/zsh/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
 
 # see https://github.com/TheLocehiliosan/yadm/issues/355
 __git_files () { 
