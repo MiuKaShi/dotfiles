@@ -1,0 +1,18 @@
+#!/bin/sh
+
+tmp_pkg=$(mktemp)
+tmp_date=$(mktemp)
+tmp_name=$(mktemp)
+trap "rm -f $tmp_pkg $tmp_date $tmp_name" EXIT
+
+sudo pacman -Qi >> "$tmp_pkg"
+sed -n '/^Name/s/.* : //p' "$tmp_pkg"  >> "$tmp_name"
+
+while IFS= read -r line; do
+  fdate=$(date -d "$line" +"%Y-%m-%d %T") 
+  echo $fdate >> "$tmp_date"
+done < <(sed -n '/^Install Date/s/.* : //p' "$tmp_pkg") 
+
+paste "$tmp_date" "$tmp_name" -d "," | fzf --exact
+
+
