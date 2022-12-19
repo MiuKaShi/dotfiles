@@ -1,8 +1,0 @@
-#content a:not(.new), #mw-navigation li:not(.new) a:not(.new), #mw-panel li:not(.new) a:not(.new), #column-one li:not(.new) a:not(.new), #footer a:not(.new)
-{
-   color: #00ffff !important;
-}
-#footer li
-{
-   color: #ffffff !important;
-}

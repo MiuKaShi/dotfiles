@@ -1,9 +1,0 @@
-.page-title-holder .page-title,
-body.ui-indigo .navbar-gitlab .navbar-sub-nav > li.active > a, body.ui-indigo .navbar-gitlab .navbar-sub-nav > li.active > button, body.ui-indigo .navbar-gitlab .navbar-sub-nav > li.dropdown.show > a, body.ui-indigo .navbar-gitlab .navbar-sub-nav > li.dropdown.show > button, body.ui-indigo .navbar-gitlab .navbar-nav > li.active > a, body.ui-indigo .navbar-gitlab .navbar-nav > li.active > button, body.ui-indigo .navbar-gitlab .navbar-nav > li.dropdown.show > a, body.ui-indigo .navbar-gitlab .navbar-nav > li.dropdown.show > button
-{
-    color: #00ffff !important;
-}
-.project-stats .nav .stat-link .project-stat-value, .project-buttons .nav .stat-link .project-stat-value
-{
-	color: #ffffff !important;
-}
