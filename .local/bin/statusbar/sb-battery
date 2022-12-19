@@ -35,13 +35,17 @@ for battery in /sys/class/power_supply/BAT?*; do
 	[ "$status" = "🔋" ] && [ "$capacity" -le 10 ] && warn="❗" && cvlc --play-and-exit ~/.local/bin/statusbar/battery.wav
 	
     freq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq)
-    defaults=2600000
-    if [ "$freq" -eq "$defaults" ]; then
-        performance=MP
-    elif [ "$freq" -lt "$defaults" ]; then
+    low=1200000
+    medium=2600000
+    high=3200000
+    if [ "$freq" -eq "$low" ]; then
         performance=LP
-    else
+    elif [ "$freq" -eq "$medium" ]; then
+        performance=MP
+    elif [ "$freq" -eq "$high" ]; then
         performance=HP
+    else
+        performance=FP
     fi
     # Prints the info
     printf "%s%s%d%%%s" "$status" "$warn" "$capacity" "($performance)"; unset warn
