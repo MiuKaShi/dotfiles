@@ -43,10 +43,10 @@ proxies:
   - {name: "校园网3", type: vmess, server: 20.205.5.236, port: '67', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "校园网4", type: vmess, server: 20.205.5.236, port: '68', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "香港1", type: vmess, server: hk9.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: dm.toutiao.com } }, ws-path: /, ws-headers: { Host: dm.toutiao.com } }
-  - {name: "香港2", type: vmess, server: hk5.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [dm.toutiao.com] } } }
+  - {name: "香港2", type: trojan, server: dl-hk2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "香港3", type: vmess, server: 20.2.81.214, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "香港4", type: vmess, server: hk4.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: a.189.cn } }, ws-path: /, ws-headers: { Host: a.189.cn } }
-  - {name: "香港5", type: trojan, server: dl-hk2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
+  - {name: "香港4", type: trojan, server: dl-hk6.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
+  - {name: "香港5", type: trojan, server: dl-hk5.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "美国1", type: vmess, server: opc.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
   - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
   - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
@@ -277,6 +277,7 @@ rules:
   - DOMAIN-SUFFIX,iop.org,Journal
   - DOMAIN-SUFFIX,cambridge.org,Journal
   - DOMAIN-SUFFIX,sagepub.com,Journal
+  - DOMAIN-SUFFIX,wiley.com,Journal
   # (Video)
   # 国内二级域名
   - IP-CIDR,114.114.115.115/32,CN,no-resolve
