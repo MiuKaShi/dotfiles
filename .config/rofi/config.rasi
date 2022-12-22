@@ -18,8 +18,8 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "~/.config/rofi/themes/gruvbox-dark.rasi"
-/* @import "~/.config/rofi/themes/type-2/style-2.rasi" */
+/* @import "~/.config/rofi/themes/gruvbox-dark.rasi" */
+@import "~/.cache/wal/custom-rofi.rasi"
 
 listview {
 	scrollbar: false;
