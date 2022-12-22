@@ -2,6 +2,8 @@
 
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+cavaconfig="${XDG_CONFIG_HOME:-$HOME/.config}/cava/config"
+flameshotconf="${XDG_CONFIG_HOME:-$HOME/.config}/flameshot/flameshot.ini"
 
 source "${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors.sh"
 
@@ -9,9 +11,13 @@ mkdir -p "${dunstconf%/*}" "${zathuraconf%/*}"
 
 mv -n "$dunstconf" "$dunstconf.bak"
 mv -n "$zathuraconf" "$zathuraconf.bak"
+mv -n "$cavaconfig" "$cavaconfig.bak"
+mv -n "$flameshotconf" "$flameshotconf.bak"
 
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/dunstrc" "$dunstconf"
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/zathurarc" "$zathuraconf"
+ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/cavaconfig" "$cavaconfig"
+ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/flameshot" "$flameshotconf"
 
 fix_sequences() {
         e=$'\e'

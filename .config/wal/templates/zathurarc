@@ -5,7 +5,7 @@ set page-padding 1
 set selection-clipboard clipboard
 map u scroll half-up
 map d scroll half-down
-map D toggle_page_mode
+map P toggle_page_mode
 map r reload
 map R rotate
 map K zoom in
@@ -13,23 +13,55 @@ map J zoom out
 map i recolor
 map p print
 
-set default-bg                     "{background}"
-set default-fg                     "{foreground}"
-set statusbar-bg                   "{background}"
-set statusbar-fg                   "{foreground}"
-set inputbar-bg                    "{background}"
-set inputbar-fg                    "{foreground}"
-set notification-bg                "{background}"
-set notification-fg                "{foreground}"
-set notification-error-bg          "{background}"
-set notification-error-fg          "{foreground}"
-set notification-warning-bg        "{background}"
-set notification-warning-fg        "{foreground}"
-set highlight-color                "{color3}"
-set highlight-active-color         "{color4}"
-set completion-bg                  "{color3}"
-set completion-fg                  "{color4}"
-set completion-highlight-bg        "{color3}"
-set completion-highlight-fg        "{color4}"
-set recolor-lightcolor             "{background}"
-set recolor-darkcolor              "{foreground}"
+map <C-a> feedkeys ":! cp $FILE /home/miuka/SynData <Return>" # Synic pdf
+map <C-b> feedkeys ":! bookmark $FILE <Return>" # add to bookmakr
+map <C-e> feedkeys ":! st -e cite-ext $FILE <Return>" # edit pdf bib
+map <C-c> feedkeys ":! cite-copy $FILE <Return>" # copy pdf bib
+map <C-l> feedkeys ":! cite-link $FILE <Return>" # View citation
+map <C-v> feedkeys ":! cite-view $FILE <Return>" # View citation html
+map <C-x> feedkeys ":! pdftools $FILE " # pdf tools
+map <C-w> feedkeys ":! webpdf $FILE <Return>" # open with browser(for translate)
+map <C-o> feedkeys ":! sioyek $FILE <Return>" # open with sioyek
+map <C-z> feedkeys ":! zotadd $FILE <Return>" # Add to zotero
+map <C-n> feedkeys ":! r-note $FILE <Return>" # Add to notes
+map L feedkeys ":! st -e lf $FILE <Return>" # Locate to folder
+
+map V feedkeys ":! cite-view $FILE <Return>" # citation list
+map O feedkeys ":! zathura $FILE <Return>" # Reopen pdf
+
+set notification-error-bg       "#af5f5f" # Red
+set notification-error-fg       "#ddd0c0" # Foreground
+set notification-warning-bg     "#e1ab98" # Orange
+set notification-warning-fg     "#262220" # Selection
+set notification-bg             "#262220" # Background
+set notification-fg             "#ddd0c0" # Foreground
+
+set completion-bg               "#262220" # Background
+set completion-fg               "#666c7f" # Comment
+set completion-group-bg         "#262220" # Background
+set completion-group-fg         "#666c7f" # Comment
+set completion-highlight-bg     "#494e4e" # Selection
+set completion-highlight-fg     "#ddd0c0" # Foreground
+
+set index-bg                    "#262220" # Background
+set index-fg                    "#ddd0c0" # Foreground
+set index-active-bg             "#494e4e" # Current Line
+set index-active-fg             "#ddd0c0" # Foreground
+
+set inputbar-bg                 "#262220" # Background
+set inputbar-fg                 "#ddd0c0" # Foreground
+set statusbar-bg                "#262220" # Background
+set statusbar-fg                "#ddd0c0" # Foreground
+
+set highlight-color             "#e1ab98" # Orange
+set highlight-active-color      "#c987a0" # Pink
+
+set default-bg                  "#262220" # Background
+set default-fg                  "#ddd0c0" # Foreground
+
+set render-loading              true
+set render-loading-fg           "#262220" # Background
+set render-loading-bg           "#ddd0c0" # Foreground
+
+set recolor-lightcolor          "#262220" # Background
+set recolor-darkcolor           "#ddd0c0" # Foreground

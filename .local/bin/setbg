@@ -12,6 +12,8 @@ bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
 # Configuration files of applications that have their themes changed by pywal.
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+cavaconfig="${XDG_CONFIG_HOME:-$HOME/.config}/cava/config"
+flameshotconf="${XDG_CONFIG_HOME:-$HOME/.config}/flameshot/flameshot.ini"
 
 trueloc="$(readlink -f "$1")" &&
 case "$(file --mime-type -b "$trueloc")" in
@@ -27,6 +29,8 @@ if command -v wal >/dev/null 2>&1 ; then
 else
 	[ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
 	[ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
+	[ -f "$cavaconfig.bak" ] && unlink "$cavaconfig" && mv "$cavaconfig.bak" "$cavaconfig"
+	[ -f "$flameshotconf.bak" ] && unlink "$flameshotconf" && mv "$flameshotconf.bak" "$flameshotconf"
 fi
 
 xwallpaper --zoom "$bgloc"
