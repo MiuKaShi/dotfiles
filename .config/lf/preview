@@ -40,7 +40,6 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.deb) ar -tv "$1" ;;
 	*.[1-8]) man "$1" | col -b ;;
 	*.o) nm "$1";;
-  *.json) jq -C . "$1" ;;
 	*.torrent) transmission-show "$1" ;;
 	*.iso) iso-info --no-header -l "$1" ;;
 	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
@@ -77,7 +76,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
   *.excalidraw.md) 
     bat --theme=gruvbox-dark --paging=never --tabs=2 --wrap=auto --style=full --terminal-width "$(($4-2))" -f "$1" ;;
   *.md) 
-    glow -s dark "$1" ;;
+    glow -s ~/.cache/wal/glow.json "$1" ;;
 	*.ino)
     bat --language=cpp --theme=gruvbox-dark --paging=never --tabs=2 --wrap=auto --style=full --terminal-width "$(($4-2))" -f "$1" ;;
 	*.sqlite) view_sqlite "$1" ;;
