@@ -2,8 +2,10 @@ from qutebrowser.api import interceptor
 
 config.load_autoconfig(False)
 
+# themes
+config.source("themes/pyqute/draw.py")
+
 # ui
-config.source("themes/gruvbox/gruvbox.py")
 c.fonts.default_size = "12pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
