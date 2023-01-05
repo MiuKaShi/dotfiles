@@ -54,7 +54,7 @@ def refEqual(rhs, lhs):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Replace BibTex keys with author last name and year."
+        description="Replace BibTex keys with [author][year][title]."
     )
 
     parser.add_argument(

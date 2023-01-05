@@ -9,7 +9,6 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 
-
 ! Transparency (0-1):
 *.alpha: 0.8
 
