@@ -7,7 +7,7 @@ rbkadd() {
     url=$1
     tags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',')
     if [ -z "$tags" ]; then
-      exit 1
+      exit 0
     fi
     notify-send "$NHEADER" "selected tags: $tags"
     comment=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add comment for $url")
