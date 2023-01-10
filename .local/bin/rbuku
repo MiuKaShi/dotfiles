@@ -5,14 +5,14 @@ all_list=$(buku --nostdin --np -p --format="$FMT")
 
 rbkadd() {
     url=$1
-    etags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',')
-    notify-send "$NHEADER" "selected tags: $etags"
-    tags=$(rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "add custom tags for $url (comma separated)")
-    notify-send "$NHEADER" "custom tags: $tags"
+    tags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',')
+    if [ -z "$tags" ]; then
+      exit 1
+    fi
+    notify-send "$NHEADER" "selected tags: $tags"
     comment=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add comment for $url")
-    #title=$(rofi -dmenu -i -lines 0 -p "$NHEADER" -mesg "add title for $url");
-    buku --np --tacit --add "$url" --tag "$etags$ctags" --comment "$comment"
-    notify-send "$NHEADER" "added $url bookmark: $etags $ctags $comment"
+    buku --np --tacit --add "$url" --tag "$tags" --comment "$comment"
+    notify-send "$NHEADER" "added $url bookmark: $tags $comment"
 }
 
 rbkselect() {
