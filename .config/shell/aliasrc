@@ -42,10 +42,13 @@ alias \
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
-# -- Permissions aliases --
+# Permissions aliases
 alias \
     664='chmod 664' \
     775='chmod 775'
+
+# buku
+alias b='buku --suggest'
 
 #handlr aliases
 alias \

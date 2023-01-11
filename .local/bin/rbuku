@@ -10,9 +10,13 @@ rbkadd() {
       exit 0
     fi
     notify-send "$NHEADER" "selected tags: $tags"
-    comment=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add comment for $url")
-    buku --np --tacit --add "$url" --tag "$tags" --comment "$comment"
-    notify-send "$NHEADER" "added $url bookmark: $tags $comment"
+    title=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add custom title for $url (empty for default)")
+    if [ -z "$title" ]; then
+      buku --np --tacit --add "$url" --tag "$tags"
+    else
+      buku --np --tacit --add "$url" --tag "$tags" --title "$title" --immutable 1
+    fi
+    notify-send "$NHEADER" "added $url bookmark: $tags"
 }
 
 rbkselect() {
@@ -35,7 +39,7 @@ rbkopen() {
 
 rbkremove() {
     RFMT='d' # Integer row of selected items
-    sel_idx_list=$(echo "$all_list" | rofi -dmenu -format "$RFMT" -l 7 -i -p "$NHEADER" -mesg 'remove bookmarks (shift+enter to multi-select)' -no-custom -multi-select | tac)
+    sel_idx_list=$(echo "$all_list" | cut -f2- | rofi -dmenu -format "$RFMT" -l 7 -i -p "$NHEADER" -mesg 'remove bookmarks (shift+enter to multi-select)' -no-custom -multi-select | tac)
     for i in $sel_idx_list; do
         sel=$(buku --np -p --format=10 | head -n "$i" | tail -n 1)
         buku --np --tacit -d "$i"
