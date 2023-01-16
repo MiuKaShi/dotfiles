@@ -99,8 +99,8 @@ alias \
     bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
 
 # install list
-alias yli="yay -Qq | fzf --multi --preview 'yay -Qi {1}'"
-alias yin="yay -Slq | fzf --multi --preview 'yay -Si {1}'"
+alias yli="yay -Qq | fzf --exact --multi --preview 'yay -Qi {1}'"
+alias yin="yay -Slq | fzf --exact --multi --preview 'yay -Si {1}'"
 
 alias -g G='| grep -i' # for use ls -l G do
 alias cdls="cd && ls"
