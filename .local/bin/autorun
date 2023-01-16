@@ -66,6 +66,7 @@ case $1 in
         nutstore >> /dev/null 2>&1 &
         notify-send -t 1000 "nutstore Start" ;;
     translator)
+				export GDK_DPI_SCALE=1.5
         ldr >> /dev/null 2>&1 &
         notify-send -t 1000 "ldr Start" ;;
     conky)
