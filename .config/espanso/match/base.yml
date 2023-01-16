@@ -3,6 +3,10 @@ matches:
     replace: "zhang.ke.867@s.kyushu-u.ac.jp"
   - trigger: ";gmail"
     replace: "d.lolimiuku@gmail.com"
+  - trigger: ";addr"
+    replace: "福岡市西区拾六町3-8-13レイナ拾六町 204室"
+  - trigger: ";name"
+    replace: "チョウ　カ"
 
   # Print the current date
   - trigger: ";date"
