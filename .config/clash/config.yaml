@@ -48,15 +48,15 @@ proxies:
   - {name: "香港4", type: trojan, server: dl-hk3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "香港5", type: trojan, server: dl-hk4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "美国1", type: vmess, server: opc.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国4", type: trojan, server: dl-us3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国5", type: trojan, server: dl-us4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
+  - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
+  - {name: "美国4", type: trojan, server: dl-us3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
+  - {name: "美国5", type: trojan, server: dl-us4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
   - {name: "台湾1", type: trojan, server: hinet.mjt001.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hinet.mjt001.com }
-  - {name: "台湾2", type: trojan, server: dl-tw1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
-  - {name: "台湾3", type: trojan, server: dl-tw2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
-  - {name: "台湾4", type: vmess, server: 165.154.237.230, port: '999', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true }
-  - {name: "台湾5", type: trojan, server: dl-tw4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
+  - { name: "台湾2", type: trojan, server: dl-tw1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
+  - { name: "台湾3", type: trojan, server: dl-tw2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
+  - { name: "台湾4", type: trojan, server: dl-tw3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
+  - { name: "台湾5", type: trojan, server: dl-tw4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
   - {name: "日本1", type: vmess, server: 172.104.83.172, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
   - {name: "日本2", type: vmess, server: 139.162.104.143, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [open.4g.play.cn] } } }
   - {name: "日本3", type: trojan, server: dl-jp1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.efyunpan.com }
@@ -233,6 +233,9 @@ rules:
   # DNS
   - IP-CIDR,8.8.8.8/32,DNS,no-resolve
   - IP-CIDR,1.1.1.1/32,DNS,no-resolve
+  - IP-CIDR,114.114.115.115/32,CN,no-resolve
+  - IP-CIDR,223.5.5.5/32,CN,no-resolve
+  - IP-CIDR,1.12.12.12/32,CN,no-resolve
   - DOMAIN-SUFFIX,nextdns.io,DNS
   - DOMAIN-SUFFIX,quad9.net,DNS
   # Scihub
@@ -256,30 +259,22 @@ rules:
   - DOMAIN-SUFFIX,cambridge.org,Journal
   - DOMAIN-SUFFIX,sagepub.com,Journal
   - DOMAIN-SUFFIX,wiley.com,Journal
-  # (Video)
-  # 国内二级域名
-  - IP-CIDR,114.114.115.115/32,CN,no-resolve
-  - IP-CIDR,223.5.5.5/32,CN,no-resolve
-  - IP-CIDR,1.12.12.12/32,CN,no-resolve
+  # CN二级域名
   - DOMAIN-SUFFIX,edu.cn,CN
   - DOMAIN-SUFFIX,gov.cn,CN
   # AcFun
-  # USER-AGENT,AcFun*,CN
   - DOMAIN-SUFFIX,acfun.cn,CN
   - DOMAIN-SUFFIX,acfun.com,CN
+  - DOMAIN-SUFFIX,acfun.tv,CN
   - DOMAIN-SUFFIX,aixifan.com,CN
-  - DOMAIN-SUFFIX,diliktv.xyz,CN
   # XiGua
   - DOMAIN-SUFFIX,ixigua.com,CN
   - DOMAIN-SUFFIX,snssdk.com,CN
   # > HunanTV
-  # USER-AGENT,MGTV*,CN
   - DOMAIN-SUFFIX,hitv.com,CN
   - DOMAIN-SUFFIX,hunantv.com,CN
   - DOMAIN-SUFFIX,mgtv.com,CN
   # > Migu
-  # USER-AGENT,MiguVideo*,CN
-  # USER-AGENT,%E5%92%AA%E5%92%95%E8%A7%86%E9%A2%91,CN
   - DOMAIN-SUFFIX,cmvideo.cn,CN
   - DOMAIN-SUFFIX,migu.cn,CN
   - DOMAIN-SUFFIX,miguvideo.com,CN
@@ -314,9 +309,30 @@ rules:
   - DOMAIN-SUFFIX,somama.com,CN
   - DOMAIN-SUFFIX,v-56.com,CN
   - DOMAIN-SUFFIX,vicovico.com,CN
-  ## > 优酷
+  ## > Youku
+  - DOMAIN-SUFFIX,0co3geye.cn,CN
+  - DOMAIN-SUFFIX,2isbbess.cn,CN
+  - DOMAIN-SUFFIX,33lwhaoinc.cn,CN
+  - DOMAIN-SUFFIX,52mtkvideo.cn,CN
+  - DOMAIN-SUFFIX,9xsecndns.cn,CN
+  - DOMAIN-SUFFIX,b82yxres.cn,CN
+  - DOMAIN-SUFFIX,e8h2ty.tdum.alibaba.com,CN
+  - DOMAIN-SUFFIX,gamenow.club,CN
+  - DOMAIN-SUFFIX,kumiao.com,CN
+  - DOMAIN-SUFFIX,kumiao.tv,CN
+  - DOMAIN-SUFFIX,kuxiaomiao.cn,CN
+  - DOMAIN-SUFFIX,kuxiaomiao.com,CN
+  - DOMAIN-SUFFIX,kuxiaomiao.com.cn,CN
+  - DOMAIN-SUFFIX,kuxiaomiao.net,CN
+  - DOMAIN-SUFFIX,ns6mitkxo.cn,CN
+  - DOMAIN-SUFFIX,sk2cdsnw.cn,CN
+  - DOMAIN-SUFFIX,sogoodtech1.cn,CN
   - DOMAIN-SUFFIX,soku.com,CN
+  - DOMAIN-SUFFIX,tudou.com,CN
   - DOMAIN-SUFFIX,ukoo.com.cn,CN
+  - DOMAIN-SUFFIX,wenyupages.com,CN
+  - DOMAIN-SUFFIX,wingsmobiletek.cn,CN
+  - DOMAIN-SUFFIX,wwc.alicdn.com,CN
   - DOMAIN-SUFFIX,ykimg.com,CN
   - DOMAIN-SUFFIX,yodou.com,CN
   - DOMAIN-SUFFIX,yoku.net.cn,CN
@@ -328,10 +344,6 @@ rules:
   - DOMAIN-SUFFIX,youku.com.cn,CN
   - DOMAIN-SUFFIX,youku.org,CN
   - DOMAIN-SUFFIX,youqoo.net,CN
-  - DOMAIN-SUFFIX,wwc.alicdn.com,CN
-  - DOMAIN-SUFFIX,e8h2ty.tdum.alibaba.com,CN
-  - DOMAIN-SUFFIX,gamenow.club,CN
-  - DOMAIN-SUFFIX,wenyupages.com,CN
   - IP-CIDR,106.11.0.0/16,CN,no-resolve
   ## >> 酷喵
   - DOMAIN-SUFFIX,kumiao.com,CN
@@ -340,18 +352,6 @@ rules:
   - DOMAIN-SUFFIX,kuxiaomiao.com,CN
   - DOMAIN-SUFFIX,kuxiaomiao.com.cn,CN
   - DOMAIN-SUFFIX,kuxiaomiao.net,CN
-  ## >> 土豆
-  - DOMAIN-SUFFIX,tudou.com,CN
-  - DOMAIN-SUFFIX,wingsmobiletek.cn,CN
-  - DOMAIN-SUFFIX,0co3geye.cn,CN
-  - DOMAIN-SUFFIX,2isbbess.cn,CN
-  - DOMAIN-SUFFIX,sogoodtech1.cn,CN
-  - DOMAIN-SUFFIX,33lwhaoinc.cn,CN
-  - DOMAIN-SUFFIX,9xsecndns.cn,CN
-  - DOMAIN-SUFFIX,b82yxres.cn,CN
-  - DOMAIN-SUFFIX,ns6mitkxo.cn,CN
-  - DOMAIN-SUFFIX,52mtkvideo.cn,CN
-  - DOMAIN-SUFFIX,sk2cdsnw.cn,CN
   ## >> 国广东方
   - DOMAIN-SUFFIX,cibntv.net,CN
   - DOMAIN-SUFFIX,cibn.cc,CN
@@ -374,9 +374,14 @@ rules:
   - DOMAIN-SUFFIX,sanguowudi.com,CN
   - DOMAIN-SUFFIX,videougc.com,CN
   ## > PPTV
+  - DOMAIN-SUFFIX,bkrent.cn,CN
   - DOMAIN-SUFFIX,g1d.net,CN
   - DOMAIN-SUFFIX,iptv.com.cn,CN
   - DOMAIN-SUFFIX,jiwunote.com.cn,CN
+  - DOMAIN-SUFFIX,kidkk.cn,CN
+  - DOMAIN-SUFFIX,kidpp.cn,CN
+  - DOMAIN-SUFFIX,kidsn.cn,CN
+  - DOMAIN-SUFFIX,kidyy.cn,CN
   - DOMAIN-SUFFIX,pplive.cn,CN
   - DOMAIN-SUFFIX,pplive.com,CN
   - DOMAIN-SUFFIX,pplive.com.cn,CN
@@ -386,20 +391,15 @@ rules:
   - DOMAIN-SUFFIX,pptvimg.com,CN
   - DOMAIN-SUFFIX,pptvnet.com,CN
   - DOMAIN-SUFFIX,pptvyun.com,CN
-  - DOMAIN-SUFFIX,synacast.com,CN
-  ## >> 饺子听书
-  - DOMAIN-SUFFIX,bkrent.cn,CN
-  - DOMAIN-SUFFIX,kidkk.cn,CN
-  - DOMAIN-SUFFIX,kidpp.cn,CN
-  - DOMAIN-SUFFIX,kidsn.cn,CN
-  - DOMAIN-SUFFIX,kidyy.cn,CN
   - DOMAIN-SUFFIX,snrent.cn,CN
+  - DOMAIN-SUFFIX,synacast.com,CN
   ## >> 喜马拉雅
-  - DOMAIN-SUFFIX,ximalaya.com,CN
-  - DOMAIN-SUFFIX,xmcdn.com,CN
-  - DOMAIN-SUFFIX,himalaya.com,CN
   - DOMAIN-SUFFIX,9nali.com,CN
+  - DOMAIN-SUFFIX,conchdate.com,CN
+  - DOMAIN-SUFFIX,himalaya.com,CN
   - DOMAIN-SUFFIX,himalaya.cool,CN
+  - DOMAIN-SUFFIX,qingxuetang.com,CN
+  - DOMAIN-SUFFIX,soundconch.com,CN
   - DOMAIN-SUFFIX,tableauxmly.com,CN
   - DOMAIN-SUFFIX,xima.tv,CN
   - DOMAIN-SUFFIX,ximalaya.com,CN
@@ -407,18 +407,20 @@ rules:
   - DOMAIN-SUFFIX,ximalaya.tv,CN
   - DOMAIN-SUFFIX,ximalayadata.com,CN
   - DOMAIN-SUFFIX,xmcdn.com,CN
-  - DOMAIN-SUFFIX,conchdate.com,CN
-  - DOMAIN-SUFFIX,qingxuetang.com,CN
-  - DOMAIN-SUFFIX,soundconch.com,CN
   - DOMAIN-SUFFIX,zhishif.com,CN
   - DOMAIN-SUFFIX,zhishinn.com,CN
   - DOMAIN-SUFFIX,zhishiu.com,CN
   - DOMAIN-SUFFIX,zhishiv.com,CN
-  ## > QQ
+  - DOMAIN-KEYWORD,himalaya,CN
+  ## > QQ video
   - DOMAIN-SUFFIX,video.qq.com,CN
   - DOMAIN-SUFFIX,i.qq.com,CN
   - DOMAIN-SUFFIX,v.qq.com,CN
   - DOMAIN-SUFFIX,l.qq.com,CN
+  - DOMAIN-SUFFIX,mfm.video.qq.com,CN
+  - DOMAIN-SUFFIX,v.smtcdns.com,CN
+  - DOMAIN-SUFFIX,vv.video.qq.com,CN
+  - DOMAIN-KEYWORD,TencentMidasConnect,CN
   ## > QQ TV
   - DOMAIN-SUFFIX,atianqi.com,CN
   - IP-CIDR,129.226.106.128/32,CN,no-resolve
@@ -447,24 +449,112 @@ rules:
   - DOMAIN-SUFFIX,aiqiyicloud-mgmt.com,CN
   - DOMAIN-SUFFIX,aiqiyicloud.com,CN
   - DOMAIN-SUFFIX,aiqiyicloud.net,CN
+  - DOMAIN-SUFFIX,baiying.com,CN
+  - DOMAIN-SUFFIX,gitv.cn,CN
+  - DOMAIN-SUFFIX,gitv.tv,CN
   - DOMAIN-SUFFIX,ibkstore.com,CN
+  - DOMAIN-SUFFIX,iq.com,CN
   - DOMAIN-SUFFIX,iqiyi.com,CN
   - DOMAIN-SUFFIX,iqiyi.demo.uwp,CN
   - DOMAIN-SUFFIX,iqiyiedge.com,CN
   - DOMAIN-SUFFIX,iqiyiedge.net,CN
   - DOMAIN-SUFFIX,iqiyipic.com,CN
+  - DOMAIN-SUFFIX,jiangbing.cn,CN
+  - DOMAIN-SUFFIX,pps.tv,CN
+  - DOMAIN-SUFFIX,ppsimg.com,CN
+  - DOMAIN-SUFFIX,ppstream.cn,CN
+  - DOMAIN-SUFFIX,ppstream.com,CN
+  - DOMAIN-SUFFIX,ppstream.com.cn,CN
+  - DOMAIN-SUFFIX,ppstream.net,CN
+  - DOMAIN-SUFFIX,ppstream.net.cn,CN
+  - DOMAIN-SUFFIX,ppsurl.com,CN
   - DOMAIN-SUFFIX,qiyi.cn,CN
   - DOMAIN-SUFFIX,qiyi.com,CN
   - DOMAIN-SUFFIX,qiyipic.com,CN
   - DOMAIN-SUFFIX,qy.com,CN
   - DOMAIN-SUFFIX,qy.net,CN
-  - DOMAIN-SUFFIX,jiangbing.cn,CN
+  - DOMAIN-SUFFIX,suike.cn,CN
+  - DOMAIN-KEYWORD,qiyi,CN
   - IP-CIDR,101.224.0.0/13,CN,no-resolve
-  - IP-CIDR,101.227.0.0/16,CN,no-resolve
+  - IP-CIDR,103.44.56.0/22,CN,no-resolve
+  - IP-CIDR,103.5.34.153/32,CN,no-resolve
+  - IP-CIDR,104.109.129.153/32,CN,no-resolve
+  - IP-CIDR,110.238.107.47/32,CN,no-resolve
+  - IP-CIDR,118.26.120.0/24,CN,no-resolve
+  - IP-CIDR,118.26.32.0/23,CN,no-resolve
   - IP-CIDR,119.176.0.0/12,CN,no-resolve
+  - IP-CIDR,203.211.4.169/32,CN,no-resolve
+  - IP-CIDR,203.211.4.193/32,CN,no-resolve
+  - IP-CIDR,203.74.95.131/32,CN,no-resolve
+  - IP-CIDR,203.74.95.139/32,CN,no-resolve
+  - IP-CIDR,203.74.95.153/32,CN,no-resolve
+  - IP-CIDR,210.201.32.11/32,CN,no-resolve
+  - IP-CIDR,210.201.32.8/32,CN,no-resolve
+  - IP-CIDR,210.71.227.200/32,CN,no-resolve
+  - IP-CIDR,210.71.227.202/32,CN,no-resolve
+  - IP-CIDR,23.211.15.99/32,CN,no-resolve
+  - IP-CIDR,23.40.241.251/32,CN,no-resolve
+  - IP-CIDR,23.40.242.10/32,CN,no-resolve
+  - IP-CIDR,23.53.32.88/32,CN,no-resolve
   # > bilibili
+  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3z.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctt.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctu.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc31.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc3t.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpba.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpbz.ourdvsss.com,CN
+  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpjt.ourdvsss.com,CN
+  - DOMAIN,112-81-125-43.dhost.00cdn.com,CN
+  - DOMAIN,113-219-145-1.ksyungslb.com,CN
+  - DOMAIN,114-236-92-129.ksyungslb.com,CN
+  - DOMAIN,180-101-74-1.ksyungslb.com,CN
+  - DOMAIN,1geadrmttge3nhcjwgazdope.ourdvsss.com,CN
+  - DOMAIN,1geadrmttge3nhcjwgwzdqqe.ourdvsss.com,CN
+  - DOMAIN,1gr3uomttgr31hcjo8yzdnco.ourdvsss.com,CN
+  - DOMAIN,1gr3uomttgr31hcjo8yzdnpy.ourdvsss.com,CN
+  - DOMAIN,1gr3uomttgr31hcjtgezdkcy.ourdvsss.com,CN
+  - DOMAIN,1gr4uqmtt8y41hcjigazdqca.ourdvsss.com,CN
+  - DOMAIN,1gr4uqmtt8y41hcjigazdqce.ourdvsss.com,CN
+  - DOMAIN,1gr4uqmtt8y41hcjigazdqco.ourdvsss.com,CN
+  - DOMAIN,1gr4uqmtt8y41hcjigazdqpo.ourdvsss.com,CN
+  - DOMAIN,1gr4uqmtt8y41hcjzgwzdkqe.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdcca.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdcco.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdkca.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdkco.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdkpe.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdkpy.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj38yzdkqy.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj3gczdcpa.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj3gczdcpe.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj3gczdcpo.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcj3gczdcqy.ourdvsss.com,CN
+  - DOMAIN,1gr5dgmttgha1hcttgrzdnpo.ourdvsss.com,CN
+  - DOMAIN,1graukmttga4nhcjtgozdgce.ourdvsss.com,CN
+  - DOMAIN,218-91-225-1.ksyungslb.com,CN
+  - DOMAIN,219-155-150-1.ksyungslb.com,CN
+  - DOMAIN,222-188-6-1.ksyungslb.com,CN
+  - DOMAIN,36-104-134-1.ksyungslb.com,CN
+  - DOMAIN,36-25-252-1.ksyungslb.com,CN
+  - DOMAIN,3ge3drmttga5nhcbqge3ur.ourdvsss.com,CN
+  - DOMAIN,3geauymtsgrzdnqbofa5do.ourdvsss.com,CN
+  - DOMAIN,3geauymtsgrzdnqbofa5dy.ourdvsss.com,CN
+  - DOMAIN,3geauymtsgrzdrcbzfahue.ourdvsss.com,CN
+  - DOMAIN,3geauymtsgrzdrcbzfahuk.ourdvsss.com,CN
+  - DOMAIN,4go41hcjtgazdoctqge4o.ourdvsss.com,CN
+  - DOMAIN,p-bstarstatic.akamaized.net,CN
+  - DOMAIN,p.bstarstatic.com,CN
+  - DOMAIN,upos-bstar-mirrorakam.akamaized.net,CN
+  - DOMAIN,upos-bstar1-mirrorakam.akamaized.net,CN
   - DOMAIN-SUFFIX,acg.tv,CN
   - DOMAIN-SUFFIX,acgvideo.com,CN
+  - DOMAIN-SUFFIX,animetamashi.cn,CN
+  - DOMAIN-SUFFIX,animetamashi.com,CN
+  - DOMAIN-SUFFIX,anitama.cn,CN
+  - DOMAIN-SUFFIX,anitama.net,CN
   - DOMAIN-SUFFIX,b23.tv,CN
   - DOMAIN-SUFFIX,baka.im,CN
   - DOMAIN-SUFFIX,bigfun.cn,CN
@@ -479,14 +569,25 @@ rules:
   - DOMAIN-SUFFIX,bilibili.cn,CN
   - DOMAIN-SUFFIX,bilibili.co,CN
   - DOMAIN-SUFFIX,bilibili.com,CN
+  - DOMAIN-SUFFIX,bilibili.net,CN
   - DOMAIN-SUFFIX,bilibili.tv,CN
   - DOMAIN-SUFFIX,bilibiligame.cn,CN
+  - DOMAIN-SUFFIX,bilibiligame.co,CN
   - DOMAIN-SUFFIX,bilibiligame.net,CN
   - DOMAIN-SUFFIX,bilibilipay.cn,CN
   - DOMAIN-SUFFIX,bilibilipay.com,CN
+  - DOMAIN-SUFFIX,bilicdn1.com,CN
+  - DOMAIN-SUFFIX,bilicdn2.com,CN
+  - DOMAIN-SUFFIX,bilicdn3.com,CN
+  - DOMAIN-SUFFIX,bilicdn4.com,CN
+  - DOMAIN-SUFFIX,bilicdn5.com,CN
   - DOMAIN-SUFFIX,biligame.cn,CN
+  - DOMAIN-SUFFIX,biligame.co,CN
   - DOMAIN-SUFFIX,biligame.com,CN
   - DOMAIN-SUFFIX,biligame.net,CN
+  - DOMAIN-SUFFIX,biligo.com,CN
+  - DOMAIN-SUFFIX,biliimg.com,CN
+  - DOMAIN-SUFFIX,biliintl.com,CN
   - DOMAIN-SUFFIX,biliplus.com,CN
   - DOMAIN-SUFFIX,bilivideo.cn,CN
   - DOMAIN-SUFFIX,bilivideo.com,CN
@@ -499,45 +600,24 @@ rules:
   - DOMAIN-SUFFIX,hdslb.net,CN
   - DOMAIN-SUFFIX,hdslb.org,CN
   - DOMAIN-SUFFIX,im9.com,CN
+  - DOMAIN-SUFFIX,maoercdn.com,CN
   - DOMAIN-SUFFIX,mcbbs.net,CN
   - DOMAIN-SUFFIX,mincdn.com,CN
   - DOMAIN-SUFFIX,sharejoytech.com,CN
+  - DOMAIN-SUFFIX,smtcdns.net,CN
   - DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,CN
+  - DOMAIN-SUFFIX,uposdash-302-bilivideo.yfcdn.net,CN
   - DOMAIN-SUFFIX,yo9.com,CN
-  - DOMAIN,218-91-225-1.ksyungslb.com,CN
-  - DOMAIN,36-104-134-1.ksyungslb.com,CN
-  - DOMAIN,114-236-92-129.ksyungslb.com,CN
-  - DOMAIN,36-25-252-1.ksyungslb.com,CN
-  - DOMAIN,113-219-145-1.ksyungslb.com,CN
-  - DOMAIN,180-101-74-1.ksyungslb.com,CN
-  - DOMAIN,222-188-6-1.ksyungslb.com,CN
-  - DOMAIN,219-155-150-1.ksyungslb.com,CN
-  - DOMAIN,112-81-125-43.dhost.00cdn.com,CN
-  - DOMAIN-SUFFIX,geetest.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3z.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctt.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctu.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpba.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpbz.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpjt.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqca.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqce.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqco.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqpo.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjzgwzdkqe.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkpe.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkpy.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkqy.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcpa.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcpo.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcqy.ourdvsss.com,CN
-  - DOMAIN,3ge3drmttga5nhcbqge3ur.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdnqbofa5do.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdnqbofa5dy.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdrcbzfahue.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdrcbzfahuk.ourdvsss.com,CN
+  - DOMAIN-KEYWORD,bili,CN
+  - DOMAIN-KEYWORD,bili-inter,CN
+  - IP-CIDR,106.75.74.76/32,CN,no-resolve
+  - IP-CIDR,111.206.25.147/32,CN,no-resolve
+  - IP-CIDR,119.3.238.64/32,CN,no-resolve
+  - IP-CIDR,120.92.108.182/32,CN,no-resolve
+  - IP-CIDR,120.92.113.99/32,CN,no-resolve
+  - IP-CIDR,120.92.153.217/32,CN,no-resolve
+  - IP-CIDR,134.175.207.130/32,CN,no-resolve
+  - IP-CIDR,203.107.1.0/24,CN,no-resolve
   ## >> PPS
   - DOMAIN-SUFFIX,baiying.com,CN
   - DOMAIN-SUFFIX,pps.tv,CN
@@ -553,18 +633,257 @@ rules:
   - DOMAIN-SUFFIX,gitv.cn,CN
   - DOMAIN-SUFFIX,gitv.tv,CN
   # Baidu
+  - DOMAIN-SUFFIX,17swan.com,CN
+  - DOMAIN-SUFFIX,37swan.com,CN
+  - DOMAIN-SUFFIX,91.com,CN
+  - DOMAIN-SUFFIX,911dns.cn,CN
+  - DOMAIN-SUFFIX,911dns.com.cn,CN
+  - DOMAIN-SUFFIX,aicdn.work,CN
+  - DOMAIN-SUFFIX,aipage.com,CN
+  - DOMAIN-SUFFIX,aiqicha.cn,CN
+  - DOMAIN-SUFFIX,aiqicha.com,CN
+  - DOMAIN-SUFFIX,apollo-platform.com,CN
+  - DOMAIN-SUFFIX,apollo-share.com,CN
+  - DOMAIN-SUFFIX,apollo.auto,CN
+  - DOMAIN-SUFFIX,baeapps.com,CN
+  - DOMAIN-SUFFIX,baetyl.tech,CN
+  - DOMAIN-SUFFIX,baidu-1img.cn,CN
+  - DOMAIN-SUFFIX,baidu-2img.cn,CN
+  - DOMAIN-SUFFIX,baidu-3img.cn,CN
+  - DOMAIN-SUFFIX,baidu-bank.cn,CN
+  - DOMAIN-SUFFIX,baidu-bank.com,CN
+  - DOMAIN-SUFFIX,baidu-cdn.cn,CN
+  - DOMAIN-SUFFIX,baidu-cdn.com,CN
+  - DOMAIN-SUFFIX,baidu-cdn.net,CN
+  - DOMAIN-SUFFIX,baidu-img.cn,CN
+  - DOMAIN-SUFFIX,baidu-int.com,CN
+  - DOMAIN-SUFFIX,baidu-itm.com,CN
+  - DOMAIN-SUFFIX,baidu-tech.com,CN
+  - DOMAIN-SUFFIX,baidu.cn,CN
   - DOMAIN-SUFFIX,baidu.com,CN
+  - DOMAIN-SUFFIX,baidu.com.cn,CN
+  - DOMAIN-SUFFIX,baidu.com.hk,CN
+  - DOMAIN-SUFFIX,baidu.hk,CN
+  - DOMAIN-SUFFIX,baidu.mobi,CN
+  - DOMAIN-SUFFIX,baiduads.com,CN
+  - DOMAIN-SUFFIX,baiduapp.com,CN
+  - DOMAIN-SUFFIX,baidubce.cn,CN
+  - DOMAIN-SUFFIX,baidubce.com,CN
+  - DOMAIN-SUFFIX,baidubce.com.cn,CN
+  - DOMAIN-SUFFIX,baidubce.net.cn,CN
   - DOMAIN-SUFFIX,baidubcr.com,CN
+  - DOMAIN-SUFFIX,baidubos.com,CN
+  - DOMAIN-SUFFIX,baiducloudapi.com,CN
+  - DOMAIN-SUFFIX,baiducontent.com,CN
+  - DOMAIN-SUFFIX,baiduhui.com,CN
+  - DOMAIN-SUFFIX,baidupcs.cn,CN
   - DOMAIN-SUFFIX,baidupcs.com,CN
+  - DOMAIN-SUFFIX,baidupcs.com.cn,CN
+  - DOMAIN-SUFFIX,baidupcs.net,CN
   - DOMAIN-SUFFIX,baidustatic.com,CN
+  - DOMAIN-SUFFIX,baiduux.com,CN
+  - DOMAIN-SUFFIX,baiduwaf.com,CN
+  - DOMAIN-SUFFIX,baiduwebgame.com,CN
+  - DOMAIN-SUFFIX,baiduxiaodai.cn,CN
+  - DOMAIN-SUFFIX,baiduxiaodai.com,CN
+  - DOMAIN-SUFFIX,baiduyangguang.org,CN
+  - DOMAIN-SUFFIX,baiduyuncdn.cn,CN
+  - DOMAIN-SUFFIX,baiduyuncdn.com,CN
+  - DOMAIN-SUFFIX,baiduyuncdn.net,CN
+  - DOMAIN-SUFFIX,baiduyundns.cn,CN
+  - DOMAIN-SUFFIX,baiduyundns.com,CN
+  - DOMAIN-SUFFIX,baiduyundns.net,CN
+  - DOMAIN-SUFFIX,baiduyunwaf.com,CN
+  - DOMAIN-SUFFIX,baifae.com,CN
+  - DOMAIN-SUFFIX,baifubao.com,CN
+  - DOMAIN-SUFFIX,baihangbao.cn,CN
+  - DOMAIN-SUFFIX,baihangbao.com,CN
+  - DOMAIN-SUFFIX,baihangdai.cn,CN
+  - DOMAIN-SUFFIX,baihangdai.com,CN
+  - DOMAIN-SUFFIX,baijincdn.cn,CN
+  - DOMAIN-SUFFIX,baijincdn.com,CN
+  - DOMAIN-SUFFIX,bakshifen.com,CN
+  - DOMAIN-SUFFIX,bce-cdn.cn,CN
+  - DOMAIN-SUFFIX,bce-cdn.com,CN
+  - DOMAIN-SUFFIX,bce-cdn.net,CN
+  - DOMAIN-SUFFIX,bceapp.com,CN
   - DOMAIN-SUFFIX,bcebos.com,CN
+  - DOMAIN-SUFFIX,bcedns.cn,CN
+  - DOMAIN-SUFFIX,bcedns.com,CN
+  - DOMAIN-SUFFIX,bcedns.net,CN
+  - DOMAIN-SUFFIX,bcedocument.com,CN
+  - DOMAIN-SUFFIX,bcehost.com,CN
+  - DOMAIN-SUFFIX,bcehosts.com,CN
+  - DOMAIN-SUFFIX,bceidaas.com,CN
+  - DOMAIN-SUFFIX,bceimg.cn,CN
+  - DOMAIN-SUFFIX,bceimg.com,CN
+  - DOMAIN-SUFFIX,bcelive.com,CN
+  - DOMAIN-SUFFIX,bcevod.com,CN
+  - DOMAIN-SUFFIX,bcewaf.com,CN
+  - DOMAIN-SUFFIX,bchdemo.site,CN
+  - DOMAIN-SUFFIX,bdbae.com,CN
+  - DOMAIN-SUFFIX,bdcloudapi.com,CN
+  - DOMAIN-SUFFIX,bddns.cn,CN
+  - DOMAIN-SUFFIX,bdeceimg.com,CN
   - DOMAIN-SUFFIX,bdimg.com,CN
+  - DOMAIN-SUFFIX,bdstatic.cn,CN
   - DOMAIN-SUFFIX,bdstatic.com,CN
+  - DOMAIN-SUFFIX,bdtjrcv.com,CN
+  - DOMAIN-SUFFIX,bduapp.com,CN
   - DOMAIN-SUFFIX,bdurl.net,CN
+  - DOMAIN-SUFFIX,bdycdn.cn,CN
+  - DOMAIN-SUFFIX,bdycdn.com,CN
+  - DOMAIN-SUFFIX,bdycdn.net,CN
+  - DOMAIN-SUFFIX,bdydns.cn,CN
+  - DOMAIN-SUFFIX,bdydns.com,CN
+  - DOMAIN-SUFFIX,bdydns.net,CN
+  - DOMAIN-SUFFIX,bdymkt.com,CN
+  - DOMAIN-SUFFIX,bdysite.com,CN
+  - DOMAIN-SUFFIX,bdysites.com,CN
+  - DOMAIN-SUFFIX,bfe-networks.com,CN
+  - DOMAIN-SUFFIX,bfe-networks.net,CN
+  - DOMAIN-SUFFIX,chuanke.com,CN
+  - DOMAIN-SUFFIX,cloud-control.top,CN
+  - DOMAIN-SUFFIX,clouda.com,CN
+  - DOMAIN-SUFFIX,cloudajs.org,CN
+  - DOMAIN-SUFFIX,content4ads.com,CN
+  - DOMAIN-SUFFIX,daoru.in,CN
+  - DOMAIN-SUFFIX,data-schema.org.cn,CN
+  - DOMAIN-SUFFIX,dlnel.com,CN
+  - DOMAIN-SUFFIX,dlnel.org,CN
+  - DOMAIN-SUFFIX,dmhmusic.com,CN
+  - DOMAIN-SUFFIX,dnsproxy.cn,CN
+  - DOMAIN-SUFFIX,dnsproxy.com.cn,CN
+  - DOMAIN-SUFFIX,du-xiaomai.com,CN
+  - DOMAIN-SUFFIX,duapp-preview.com,CN
+  - DOMAIN-SUFFIX,duapp.com,CN
+  - DOMAIN-SUFFIX,duapp.net,CN
+  - DOMAIN-SUFFIX,duapps.com,CN
+  - DOMAIN-SUFFIX,dulife.com,CN
+  - DOMAIN-SUFFIX,dulightapp.com,CN
+  - DOMAIN-SUFFIX,dumall.com,CN
+  - DOMAIN-SUFFIX,dusdn.cn,CN
+  - DOMAIN-SUFFIX,dusdn.com,CN
+  - DOMAIN-SUFFIX,dusdn.net,CN
+  - DOMAIN-SUFFIX,dushifen.com,CN
+  - DOMAIN-SUFFIX,duurl.cn,CN
+  - DOMAIN-SUFFIX,duxiaomai.net,CN
+  - DOMAIN-SUFFIX,duxuetang.cn,CN
+  - DOMAIN-SUFFIX,duxuetang.com,CN
+  - DOMAIN-SUFFIX,dwz.cn,CN
+  - DOMAIN-SUFFIX,estrongs.com,CN
+  - DOMAIN-SUFFIX,eyoubaidu.com,CN
+  - DOMAIN-SUFFIX,fhldns.cn,CN
+  - DOMAIN-SUFFIX,fhldns.com,CN
+  - DOMAIN-SUFFIX,fhldns.com.cn,CN
+  - DOMAIN-SUFFIX,fhldns.net,CN
+  - DOMAIN-SUFFIX,game-client.com,CN
+  - DOMAIN-SUFFIX,haluan2u.com,CN
   - DOMAIN-SUFFIX,hao123.com,CN
+  - DOMAIN-SUFFIX,hao123.net,CN
   - DOMAIN-SUFFIX,hao123img.com,CN
+  - DOMAIN-SUFFIX,hao222.com,CN
+  - DOMAIN-SUFFIX,hao222.net,CN
+  - DOMAIN-SUFFIX,haokan.com,CN
+  - DOMAIN-SUFFIX,hiapk.com,CN
+  - DOMAIN-SUFFIX,hongmeiti.cn,CN
+  - DOMAIN-SUFFIX,hongmeiti.com,CN
+  - DOMAIN-SUFFIX,hongmeiti.com.cn,CN
+  - DOMAIN-SUFFIX,hongmeiti.net,CN
+  - DOMAIN-SUFFIX,huoyanyunying.com,CN
+  - DOMAIN-SUFFIX,ja-cloud.com,CN
+  - DOMAIN-SUFFIX,jingling.cn,CN
+  - DOMAIN-SUFFIX,jomocdn.cn,CN
+  - DOMAIN-SUFFIX,jomocdn.net,CN
+  - DOMAIN-SUFFIX,jomodns.cn,CN
   - DOMAIN-SUFFIX,jomodns.com,CN
+  - DOMAIN-SUFFIX,jomodns.net,CN
+  - DOMAIN-SUFFIX,jpaas.cn,CN
+  - DOMAIN-SUFFIX,kanduoduo.com.cn,CN
+  - DOMAIN-SUFFIX,lasmasas.com,CN
+  - DOMAIN-SUFFIX,micro-game-client.com,CN
+  - DOMAIN-SUFFIX,mipcdn.com,CN
+  - DOMAIN-SUFFIX,mipengine.com,CN
+  - DOMAIN-SUFFIX,mipengine.org,CN
+  - DOMAIN-SUFFIX,mipplan.com,CN
+  - DOMAIN-SUFFIX,mipplan.org,CN
+  - DOMAIN-SUFFIX,nhmuni.com,CN
+  - DOMAIN-SUFFIX,nuomi.com,CN
+  - DOMAIN-SUFFIX,oasesalliance.com,CN
+  - DOMAIN-SUFFIX,oortos.tech,CN
+  - DOMAIN-SUFFIX,openintelliedge.tech,CN
+  - DOMAIN-SUFFIX,openrasp.cn,CN
+  - DOMAIN-SUFFIX,openrasp.com,CN
+  - DOMAIN-SUFFIX,openrasp.com.cn,CN
+  - DOMAIN-SUFFIX,openrasp.info,CN
+  - DOMAIN-SUFFIX,openrasp.net,CN
+  - DOMAIN-SUFFIX,openrasp.net.cn,CN
+  - DOMAIN-SUFFIX,openrasp.org,CN
+  - DOMAIN-SUFFIX,openrasp.org.cn,CN
+  - DOMAIN-SUFFIX,paddlepaddle.org.cn,CN
+  - DOMAIN-SUFFIX,popincdn.com,CN
+  - DOMAIN-SUFFIX,pubbcsapp.com,CN
+  - DOMAIN-SUFFIX,qianqian.com,CN
+  - DOMAIN-SUFFIX,qxllq.com,CN
+  - DOMAIN-SUFFIX,sanguows.com,CN
+  - DOMAIN-SUFFIX,searchcraft.cn,CN
+  - DOMAIN-SUFFIX,sg.work,CN
+  - DOMAIN-SUFFIX,shifen.com,CN
+  - DOMAIN-SUFFIX,siteapp-static.com,CN
+  - DOMAIN-SUFFIX,smartapps.cn,CN
+  - DOMAIN-SUFFIX,submusic.cn,CN
+  - DOMAIN-SUFFIX,swan366.com,CN
+  - DOMAIN-SUFFIX,taihe.com,CN
+  - DOMAIN-SUFFIX,tieba.com,CN
+  - DOMAIN-SUFFIX,tiebaimg.com,CN
+  - DOMAIN-SUFFIX,tradaquan.com,CN
+  - DOMAIN-SUFFIX,ttplayer.com,CN
+  - DOMAIN-SUFFIX,umaz.cn,CN
+  - DOMAIN-SUFFIX,videomind.cloud,CN
+  - DOMAIN-SUFFIX,videomind.cn,CN
+  - DOMAIN-SUFFIX,videomind.net,CN
+  - DOMAIN-SUFFIX,vplay8.com,CN
+  - DOMAIN-SUFFIX,webgamehome.com,CN
+  - DOMAIN-SUFFIX,wenku.in,CN
+  - DOMAIN-SUFFIX,wshifen.com,CN
+  - DOMAIN-SUFFIX,wssanguo.com,CN
+  - DOMAIN-SUFFIX,xianfae.com,CN
+  - DOMAIN-SUFFIX,xiaodutv.cn,CN
+  - DOMAIN-SUFFIX,xiaodutv.com,CN
+  - DOMAIN-SUFFIX,xiaoduzaijia.cn,CN
+  - DOMAIN-SUFFIX,xiaoduzaijia.com.cn,CN
+  - DOMAIN-SUFFIX,xinzhi.com,CN
+  - DOMAIN-SUFFIX,yeyingkf.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn1.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn10.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn2.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn3.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn4.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn5.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn6.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn7.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn8.com,CN
+  - DOMAIN-SUFFIX,yjs-cdn9.com,CN
+  - DOMAIN-SUFFIX,yjsops.com,CN
+  - DOMAIN-SUFFIX,youyou.com,CN
+  - DOMAIN-SUFFIX,youyou001.com,CN
+  - DOMAIN-SUFFIX,yunjiasu-cdn-dnssec.net,CN
+  - DOMAIN-SUFFIX,yunjiasu-cdn.com,CN
   - DOMAIN-SUFFIX,yunjiasu-cdn.net,CN
+  - DOMAIN-SUFFIX,yunjiasu-dns.com,CN
+  - DOMAIN-SUFFIX,yunjiasu-dns.net,CN
+  - DOMAIN-SUFFIX,yunjiasu-test.com,CN
+  - DOMAIN-SUFFIX,yunjiasu.com,CN
+  - DOMAIN-SUFFIX,yunjiasucdn.info,CN
+  - DOMAIN-SUFFIX,yunjiasucdn.net,CN
+  - DOMAIN-SUFFIX,yunjiasudns.com,CN
+  - DOMAIN-SUFFIX,yunjiasudns.net,CN
+  - DOMAIN-SUFFIX,yunjiasupreview.com,CN
+  - DOMAIN-SUFFIX,yunjiasussl.com,CN
+  - DOMAIN-SUFFIX,zuoyebang.cc,CN
+  - DOMAIN-SUFFIX,zuoyebang.com,CN
+  - DOMAIN-SUFFIX,zybang.com,CN
   # JD
   - DOMAIN-SUFFIX,360buy.com,CN
   - DOMAIN-SUFFIX,360buyimg.com,CN
@@ -575,9 +894,43 @@ rules:
   - DOMAIN-SUFFIX,jdpay.com,CN
   - DOMAIN-SUFFIX,paipai.com,CN
   # CCTV
+  - DOMAIN-SUFFIX,cctv.cn,CN
   - DOMAIN-SUFFIX,cctv.com,CN
+  - DOMAIN-SUFFIX,cctvlib.cn,CN
+  - DOMAIN-SUFFIX,cctvlib.com.cn,CN
+  - DOMAIN-SUFFIX,cctvlibrary.cn,CN
+  - DOMAIN-SUFFIX,cctvlibrary.com.cn,CN
   - DOMAIN-SUFFIX,cctvpic.com,CN
+  - DOMAIN-SUFFIX,cctvpro.cn,CN
+  - DOMAIN-SUFFIX,cctvpro.com.cn,CN
+  - DOMAIN-SUFFIX,chinaepg.cn,CN
+  - DOMAIN-SUFFIX,chinalive.com,CN
+  - DOMAIN-SUFFIX,citv.net.cn,CN
+  - DOMAIN-SUFFIX,cnms.net.cn,CN
+  - DOMAIN-SUFFIX,cntv.cn,CN
+  - DOMAIN-SUFFIX,cntv.com.cn,CN
+  - DOMAIN-SUFFIX,cntvwb.cn,CN
+  - DOMAIN-SUFFIX,gjgbdszt.cn,CN
+  - DOMAIN-SUFFIX,gjgbdszt.com.cn,CN
+  - DOMAIN-SUFFIX,gjgbdszt.net.cn,CN
+  - DOMAIN-SUFFIX,ipanda.cn,CN
+  - DOMAIN-SUFFIX,ipanda.com,CN
+  - DOMAIN-SUFFIX,ipanda.com.cn,CN
+  - DOMAIN-SUFFIX,ipanda.net,CN
+  - DOMAIN-SUFFIX,livechina.cn,CN
   - DOMAIN-SUFFIX,livechina.com,CN
+  - DOMAIN-SUFFIX,olympicchannelchina.cn,CN
+  - DOMAIN-SUFFIX,tvcc.cn,CN
+  - DOMAIN-SUFFIX,tvcc.com.cn,CN
+  - DOMAIN-SUFFIX,xn--fiq53l6wcx3kp9bc7joo6apn8a.cn,CN
+  - DOMAIN-SUFFIX,xn--fiq53l6wcx3kp9bc7joo6apn8a.xn--fiqs8s,CN
+  - DOMAIN-SUFFIX,xn--fiq53l90et9fpncc7joo6apn8a.cn,CN
+  - DOMAIN-SUFFIX,xn--kprv4ewxfr9cpxcc7joo6apn8a.cn,CN
+  - DOMAIN-SUFFIX,xn--kprv4ewxfr9cpxcc7joo6apn8a.xn--fiqs8s,CN
+  - DOMAIN-SUFFIX,zggbdszt.cn,CN
+  - DOMAIN-SUFFIX,zggbdszt.com.cn,CN
+  - DOMAIN-SUFFIX,zggbdszt.net.cn,CN
+  - DOMAIN-SUFFIX,zygbdszt.net.cn,CN
   # Douyu
   - DOMAIN-SUFFIX,douyu.com,CN
   - DOMAIN-SUFFIX,douyu.tv,CN
@@ -598,49 +951,38 @@ rules:
   - DOMAIN-SUFFIX,ai.xiaomi.com,CN
   - DOMAIN-SUFFIX,CN.xiaomi.com,CN
   - DOMAIN-SUFFIX,dmhmusic.com,CN
-  # > Netease
-  - DOMAIN-SUFFIX,music.126.net,MUSIC
-  # - DOMAIN-SUFFIX,vod.126.net,MUSIC //mv视频
+  # > Netease Music
+  - DOMAIN,iadmat.nosdn.127.net,MUSIC
+  - DOMAIN,netease.ugcvideoss.ourdvs.com,MUSIC
+  - DOMAIN-SUFFIX,163yun.com,MUSIC
+  - DOMAIN-SUFFIX,api.iplay.163.com,MUSIC
+  - DOMAIN-SUFFIX,hz.netease.com,MUSIC
+  - DOMAIN-SUFFIX,mam.netease.com,MUSIC
   - DOMAIN-SUFFIX,music.126.com,MUSIC
-  - DOMAIN,api.iplay.163.com,MUSIC
-  - DOMAIN,apm3.music.163.com,MUSIC
-  - DOMAIN,apm.music.163.com,MUSIC
-  - DOMAIN,interface3.music.163.com,MUSIC
-  - DOMAIN,interface3.music.163.com.163jiasu.com,MUSIC
-  - DOMAIN,interface.music.163.com,MUSIC
-  - DOMAIN,sentry.music.163.com,MUSIC
-  - DOMAIN,music.163.com,MUSIC
-  - DOMAIN,push.services.mozilla.com,MUSIC
-  - DOMAIN,admusicpic.music.126.net,REJECT
-  - DOMAIN,iadmat.nosdn.127.net,REJECT
-  - DOMAIN,iadmusicmat.music.126.net,REJECT
-  - DOMAIN,iadmusicmatvideo.music.126.net,REJECT
-  - IP-CIDR,39.105.63.80/32,MUSIC,no-resolve
-  - IP-CIDR,39.105.175.128/32,MUSIC,no-resolve
-  - IP-CIDR,45.254.48.1/32,MUSIC,no-resolve
-  - IP-CIDR,47.100.127.239/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.160.195/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.160.197/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.181.35/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.181.38/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.181.60/32,MUSIC,no-resolve
+  - DOMAIN-SUFFIX,music.126.net,MUSIC
+  - DOMAIN-SUFFIX,music.163.com,MUSIC
+  - DOMAIN-SUFFIX,music.163.com.163jiasu.com,MUSIC
   - IP-CIDR,101.71.154.241/32,MUSIC,no-resolve
-  - IP-CIDR,103.126.92.132/32,MUSIC,no-resolve
-  - IP-CIDR,103.126.92.133/32,MUSIC,no-resolve
+  - IP-CIDR,103.126.92.13/32,MUSIC,no-resolve
+  - IP-CIDR,103.126.92.132/31,MUSIC,no-resolve
   - IP-CIDR,112.13.119.17/32,MUSIC,no-resolve
   - IP-CIDR,112.13.119.18/32,MUSIC,no-resolve
   - IP-CIDR,112.13.122.1/32,MUSIC,no-resolve
   - IP-CIDR,112.13.122.4/32,MUSIC,no-resolve
-  - IP-CIDR,115.236.118.33/32,MUSIC,no-resolve
-  - IP-CIDR,115.236.121.1/32,MUSIC,no-resolve
+  - IP-CIDR,115.236.112.0/20,MUSIC,no-resolve
   - IP-CIDR,118.24.63.156/32,MUSIC,no-resolve
   - IP-CIDR,182.92.170.253/32,MUSIC,no-resolve
   - IP-CIDR,193.112.159.225/32,MUSIC,no-resolve
-  - IP-CIDR,223.252.199.66/32,MUSIC,no-resolve
-  - IP-CIDR,223.252.199.67/32,MUSIC,no-resolve
+  - IP-CIDR,223.252.192.0/19,MUSIC,no-resolve
+  - IP-CIDR,39.105.175.128/32,MUSIC,no-resolve
+  - IP-CIDR,39.105.63.80/32,MUSIC,no-resolve
+  - IP-CIDR,45.254.48.1/32,MUSIC,no-resolve
+  - IP-CIDR,47.100.127.239/32,MUSIC,no-resolve
+  - IP-CIDR,59.111.128.0/17,MUSIC,no-resolve
+  - IP-CIDR,59.111.19.33/32,MUSIC,no-resolve
+  - IP-CIDR,59.111.21.14/31,MUSIC,no-resolve
   # Kugou and Kuwo
   - DOMAIN-SUFFIX,kugou.com,CN
-  # USER-AGENT,%E9%85%B7%E6%88%91%E9%9F%B3%E4%B9%90*,CN
   - DOMAIN-SUFFIX,kuwo.cn,CN
   - DOMAIN-SUFFIX,koowo.com,CN
   # Kingsoft
@@ -720,11 +1062,17 @@ rules:
   # LeTV
   - DOMAIN-SUFFIX,le.com,CN
   - DOMAIN-SUFFIX,lecloud.com,CN
+  - DOMAIN-SUFFIX,lelecdn.com,CN
+  - DOMAIN-SUFFIX,lemall.com,CN
   - DOMAIN-SUFFIX,letv.com,CN
+  - DOMAIN-SUFFIX,letv8.com,CN
+  - DOMAIN-SUFFIX,letvcdn.com,CN
   - DOMAIN-SUFFIX,letvcloud.com,CN
   - DOMAIN-SUFFIX,letvimg.com,CN
   - DOMAIN-SUFFIX,letvlive.com,CN
   - DOMAIN-SUFFIX,letvstore.com,CN
+  - DOMAIN-SUFFIX,sanguowudi.com,CN
+  - DOMAIN-SUFFIX,videougc.com,CN
   # MGTV
   - DOMAIN-SUFFIX,hitv.com,CN
   - DOMAIN-SUFFIX,hunantv.com,CN
@@ -766,22 +1114,6 @@ rules:
   - DOMAIN-SUFFIX,sandai.net,CN
   - DOMAIN-SUFFIX,thundercdn.com,CN
   - DOMAIN-SUFFIX,xunlei.com,CN
-  # YYeTs
-  - DOMAIN-SUFFIX,got001.com,CN
-  - DOMAIN-SUFFIX,jstucdn.com,CN
-  - DOMAIN-SUFFIX,rrys.tv,CN
-  - DOMAIN-SUFFIX,rrys2020.com,CN
-  - DOMAIN-SUFFIX,yyets.com,CN
-  - DOMAIN-SUFFIX,zimuzu.io,CN
-  - DOMAIN-SUFFIX,zimuzu.tv,CN
-  - DOMAIN-SUFFIX,zmz001.com,CN
-  - DOMAIN-SUFFIX,zmz002.com,CN
-  - DOMAIN-SUFFIX,zmz003.com,CN
-  - DOMAIN-SUFFIX,zmz004.com,CN
-  - DOMAIN-SUFFIX,zmz2019.com,CN
-  - DOMAIN-SUFFIX,zmzapi.com,CN
-  - DOMAIN-SUFFIX,zmzapi.net,CN
-  - DOMAIN-SUFFIX,zmzfile.com,CN
   # AccelerateDirectSites,CN
   - DOMAIN-SUFFIX,10010.com,CN
   - DOMAIN-SUFFIX,115.com,CN
@@ -1034,22 +1366,36 @@ rules:
   - DOMAIN-SUFFIX,52e.cc,CN
   - DOMAIN-SUFFIX,mgtv.com,CN
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
-  ## EncoreTVB
-  - DOMAIN-SUFFIX,encoretvb.com,HK
+  ## TVB
+  - DOMAIN,bcbolt446c5271-a.akamaihd.net,HK
+  - DOMAIN,edge.api.brightcove.com,HK
+  - DOMAIN,tvbtracking.azurewebsites.net,HK
+  - DOMAIN-SUFFIX,bigbigchannel.com.hk,HK
+  - DOMAIN-SUFFIX,bigbigshop.com,HK
   - DOMAIN-SUFFIX,content.jwplatform.com,HK
-  - DOMAIN-SUFFIX,videos-f.jwpsrv.com,HK
-  - DOMAIN-SUFFIX,edge.api.brightcove.com,HK
-  - DOMAIN-SUFFIX,bcbolt446c5271-a.akamaihd.net,HK
-  ## > MyTV SUPER
+  - DOMAIN-SUFFIX,encoretvb.com,HK
   - DOMAIN-SUFFIX,mytvsuper.com,HK
+  - DOMAIN-SUFFIX,mytvsuperlimited.hb.omtrdc.net,HK
+  - DOMAIN-SUFFIX,mytvsuperlimited.sc.omtrdc.net,HK
   - DOMAIN-SUFFIX,tvb.com,HK
+  - DOMAIN-SUFFIX,tvb.com.au,HK
+  - DOMAIN-SUFFIX,tvbanywhere.com,HK
+  - DOMAIN-SUFFIX,tvbanywhere.com.sg,HK
+  - DOMAIN-SUFFIX,tvbc.com.cn,HK
+  - DOMAIN-SUFFIX,tvbeventpower.com.hk,HK
+  - DOMAIN-SUFFIX,tvbusa.com,HK
+  - DOMAIN-SUFFIX,tvbweekly.com,HK
+  - DOMAIN-SUFFIX,tvmedia.net.au,HK
+  - DOMAIN-SUFFIX,videos-f.jwpsrv.com,HK
+  - DOMAIN-SUFFIX,youboranqs01.com,HK
   # 巴哈姆特動畫瘋
-  - DOMAIN-SUFFIX,gamer.com.tw,TW
+  - DOMAIN,bahamut.akamaized.net,TW
   - DOMAIN-SUFFIX,bahamut.com.tw,TW
-  - DOMAIN-SUFFIX,hinet.net,TW
-  - DOMAIN-SUFFIX,fbcdn.net,TW
-  - DOMAIN-SUFFIX,gvt1.com,TW
   - DOMAIN-SUFFIX,digicert.com,TW
+  - DOMAIN-SUFFIX,fbcdn.net,TW
+  - DOMAIN-SUFFIX,gamer.com.tw,TW
+  - DOMAIN-SUFFIX,gvt1.com,TW
+  - DOMAIN-SUFFIX,hinet.net,TW
   - DOMAIN-SUFFIX,viblast.com,TW
   # LiveTV
   - DOMAIN-SUFFIX,ustvgo.la,USA
@@ -1060,6 +1406,8 @@ rules:
   - DOMAIN-SUFFIX,hbo.com,USA
   - DOMAIN-SUFFIX,hbogo.com,USA
   - DOMAIN-SUFFIX,hbonow.com,USA
+  # benchmark
+  - DOMAIN-SUFFIX,nluug.nl,USA
   # Showtime
   - DOMAIN-SUFFIX,sho.com,USA
   - DOMAIN-SUFFIX,showtime.com,USA
