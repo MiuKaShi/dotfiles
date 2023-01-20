@@ -259,16 +259,76 @@ rules:
   - DOMAIN-SUFFIX,libgen.me,Scihub
   - DOMAIN,bib.miukashi.xyz,Scihub
   # Journal
-  - DOMAIN-SUFFIX,tandfonline.com,Journal
-  - DOMAIN-SUFFIX,springer.com,Journal
-  - DOMAIN-SUFFIX,sciencedirect.com,Journal
-  - DOMAIN-SUFFIX,scitation.org,Journal
-  - DOMAIN-SUFFIX,nature.com,Journal
+  - DOMAIN-SUFFIX,acm.org,Journal
+  - DOMAIN-SUFFIX,acs.org,Journal
+  - DOMAIN-SUFFIX,aip.org,Journal
+  - DOMAIN-SUFFIX,ams.org,Journal
+  - DOMAIN-SUFFIX,annualreviews.org,Journal
+  - DOMAIN-SUFFIX,aps.org,Journal
+  - DOMAIN-SUFFIX,ascelibrary.org,Journal
+  - DOMAIN-SUFFIX,asm.org,Journal
   - DOMAIN-SUFFIX,asme.org,Journal
-  - DOMAIN-SUFFIX,iop.org,Journal
+  - DOMAIN-SUFFIX,astm.org,Journal
+  - DOMAIN-SUFFIX,blackwell-synergy.com,Journal
+  - DOMAIN-SUFFIX,bmj.com,Journal
+  - DOMAIN-SUFFIX,cabdirect.org,Journal
   - DOMAIN-SUFFIX,cambridge.org,Journal
+  - DOMAIN-SUFFIX,cas.org,Journal
+  - DOMAIN-SUFFIX,cell.com,Journal
+  - DOMAIN-SUFFIX,clarivate.com,Journal
+  - DOMAIN-SUFFIX,csiro.au,Journal
+  - DOMAIN-SUFFIX,deepdyve.com,Journal
+  - DOMAIN-SUFFIX,ebscohost.com,Journal
+  - DOMAIN-SUFFIX,els-cdn.com,Journal
+  - DOMAIN-SUFFIX,elsevier.com,Journal
+  - DOMAIN-SUFFIX,emerald.com,Journal
+  - DOMAIN-SUFFIX,endnote.com,Journal
+  - DOMAIN-SUFFIX,engineeringvillage.com,Journal
+  - DOMAIN-SUFFIX,icevirtuallibrary.com,Journal
+  - DOMAIN-SUFFIX,ieee.org,Journal
+  - DOMAIN-SUFFIX,imf.org,Journal
+  - DOMAIN-SUFFIX,iop.org,Journal
+  - DOMAIN-SUFFIX,jamanetwork.com,Journal
+  - DOMAIN-SUFFIX,jbc.org,Journal
+  - DOMAIN-SUFFIX,jhu.edu,Journal
+  - DOMAIN-SUFFIX,jstor.org,Journal
+  - DOMAIN-SUFFIX,karger.com,Journal
+  - DOMAIN-SUFFIX,madsrevolution.net,Journal
+  - DOMAIN-SUFFIX,mdpi.com,Journal
+  - DOMAIN-SUFFIX,mpg.de,Journal
+  - DOMAIN-SUFFIX,myilibrary.com,Journal
+  - DOMAIN-SUFFIX,nature.com,Journal
+  - DOMAIN-SUFFIX,ncbi.nlm.nih.gov,Journal
+  - DOMAIN-SUFFIX,oecd-ilibrary.org,Journal
+  - DOMAIN-SUFFIX,osapublishing.org,Journal
+  - DOMAIN-SUFFIX,oup.com,Journal
+  - DOMAIN-SUFFIX,ovid.com,Journal
+  - DOMAIN-SUFFIX,oxfordartonline.com,Journal
+  - DOMAIN-SUFFIX,oxfordbibliographies.com,Journal
+  - DOMAIN-SUFFIX,oxfordmusiconline.com,Journal
+  - DOMAIN-SUFFIX,pnas.org,Journal
+  - DOMAIN-SUFFIX,proquest.com,Journal
+  - DOMAIN-SUFFIX,readcube.com,Journal
+  - DOMAIN-SUFFIX,researchgate.net,Journal
+  - DOMAIN-SUFFIX,rsc.org,Journal
   - DOMAIN-SUFFIX,sagepub.com,Journal
+  - DOMAIN-SUFFIX,sciencedirect.com,Journal
+  - DOMAIN-SUFFIX,sciencemag.org,Journal
+  - DOMAIN-SUFFIX,scitation.org,Journal
+  - DOMAIN-SUFFIX,scopus.com,Journal
+  - DOMAIN-SUFFIX,semanticscholar.org,Journal
+  - DOMAIN-SUFFIX,siam.org,Journal
+  - DOMAIN-SUFFIX,spiedigitallibrary.org,Journal
+  - DOMAIN-SUFFIX,springer.com,Journal
+  - DOMAIN-SUFFIX,springerlink.com,Journal
+  - DOMAIN-SUFFIX,tandfonline.com,Journal
+  - DOMAIN-SUFFIX,un.org,Journal
+  - DOMAIN-SUFFIX,uni-bielefeld.de,Journal
+  - DOMAIN-SUFFIX,webofknowledge.com,Journal
+  - DOMAIN-SUFFIX,westlaw.com,Journal
   - DOMAIN-SUFFIX,wiley.com,Journal
+  - DOMAIN-SUFFIX,worldbank.org,Journal
+  - DOMAIN-SUFFIX,worldscientific.com,Journal
   # CN二级域名
   - DOMAIN-SUFFIX,edu.cn,CN
   - DOMAIN-SUFFIX,gov.cn,CN
@@ -1360,6 +1420,33 @@ rules:
   - DOMAIN-SUFFIX,tvmedia.net.au,HK
   - DOMAIN-SUFFIX,videos-f.jwpsrv.com,HK
   - DOMAIN-SUFFIX,youboranqs01.com,HK
+  # HBO Asia
+  - PROCESS-NAME,hk.hbo.hbogo,HK
+  - DOMAIN-SUFFIX,hbogoasia.com,HK
+  - DOMAIN-SUFFIX,hbogoasia.hk,HK
+  - DOMAIN-KEYWORD,.hbogoasia.,HK
+  - DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com,HK
+  - DOMAIN,bcbolthboa-a.akamaihd.net,HK
+  - DOMAIN,cf-images.ap-southeast-1.prod.boltdns.net,HK
+  - DOMAIN,dai3fd1oh325y.cloudfront.net,HK
+  - DOMAIN,hboasia1-i.akamaihd.net,HK
+  - DOMAIN,hboasia2-i.akamaihd.net,HK
+  - DOMAIN,hboasia3-i.akamaihd.net,HK
+  - DOMAIN,hboasia4-i.akamaihd.net,HK
+  - DOMAIN,hboasia5-i.akamaihd.net,HK
+  - DOMAIN,hboasialive.akamaized.net,HK
+  - DOMAIN,hbogoprod-vod.akamaized.net,HK
+  - DOMAIN,hbolb.onwardsmg.com,HK
+  - DOMAIN,hbounify-prod.evergent.com,HK
+  - DOMAIN,players.brightcove.net,HK
+  - DOMAIN,s3-ap-southeast-1.amazonaws.com,HK
+  # Now E
+  - PROCESS-NAME,com.pccw.nowemobile,HK
+  - DOMAIN-SUFFIX,nowe.com,HK
+  - DOMAIN-SUFFIX,nowestatic.com,HK
+  # 华文电视
+  - DOMAIN-SUFFIX,5itv.tv,HK
+  - DOMAIN-SUFFIX,ocnttv.com,HK
   # 巴哈姆特動畫瘋
   - DOMAIN,bahamut.akamaized.net,TW
   - DOMAIN-SUFFIX,bahamut.com.tw,TW
@@ -1369,20 +1456,30 @@ rules:
   - DOMAIN-SUFFIX,gvt1.com,TW
   - DOMAIN-SUFFIX,hinet.net,TW
   - DOMAIN-SUFFIX,viblast.com,TW
+  # 台湾好
+  - PROCESS-NAME,com.twgood.android,TW
+  - DOMAIN-SUFFIX,skyking.com.tw,TW
+  - DOMAIN,hamifans.emome.net,TW
   # LiveTV
   - DOMAIN-SUFFIX,ustvgo.la,USA
   - DOMAIN-SUFFIX,ustvgo.tv,USA
-  # HBONOW
-  - DOMAIN-SUFFIX,conviva.com,USA
-  - DOMAIN-SUFFIX,go.com,USA
+  # HBO NOW & Max
+  - PROCESS-NAME,com.hbo.hbonow,USA
   - DOMAIN-SUFFIX,hbo.com,USA
   - DOMAIN-SUFFIX,hbogo.com,USA
   - DOMAIN-SUFFIX,hbonow.com,USA
+  - DOMAIN-SUFFIX,hbomax.com,USA
+  - DOMAIN-SUFFIX,hbomaxcdn.com,USA
   # benchmark
   - DOMAIN-SUFFIX,nluug.nl,USA
   # Showtime
   - DOMAIN-SUFFIX,sho.com,USA
   - DOMAIN-SUFFIX,showtime.com,USA
+  # Hulu
+  - PROCESS-NAME,com.hulu.plus,USA
+  - DOMAIN-SUFFIX,hulu.com,USA
+  - DOMAIN-SUFFIX,huluim.com,USA
+  - DOMAIN-SUFFIX,hulustream.com,USA
   # DirecTV NOW
   - DOMAIN-SUFFIX,att.com,USA
   - DOMAIN-SUFFIX,codec-cluster.org,USA
