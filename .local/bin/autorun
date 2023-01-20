@@ -1,86 +1,83 @@
 #! /bin/bash
 # 命令调用脚本
 
-autoconky(){ \
+autoconky() {
     modeldp=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
     case $modeldp in
         *"ENC"*)
-            conky -c ~/.config/conky/lab/.conkyrc >> /dev/null 2>&1 &
+            conky -c ~/.config/conky/lab/.conkyrc >>/dev/null 2>&1 &
             notify-send -t 1000 "Conky" "Conky started!"
             ;;
         *"PHL"* | *"HKC"*)
-            conky -c ~/.config/conky/home/.conkyrc >> /dev/null 2>&1 &
+            conky -c ~/.config/conky/home/.conkyrc >>/dev/null 2>&1 &
             notify-send -t 1000 "Conky" "Conky started!"
             ;;
-        # *)
-        #     conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
-        #     ;;
+            # *)
+            #     conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
+            #     ;;
     esac
 }
 
 case $1 in
     picom)
-        if pgrep -x picom >/dev/null
-        then
+        if pgrep -x picom >/dev/null; then
             killall picom
             notify-send -t 1000 "Picom" "Picom killed!"
         else
-            picom --experimental-backends >> /dev/null 2>&1 & 
+            picom --experimental-backends >>/dev/null 2>&1 &
             notify-send -t 1000 "Picom" "Picom started!"
-        fi 
+        fi
         ;;
     easyeffects)
-        if pgrep -x easyeffects >/dev/null
-        then
+        if pgrep -x easyeffects >/dev/null; then
             killall easyeffects
             notify-send -t 1000 "Easyeffects" "Easyeffects killed!"
         else
-            easyeffects --gapplication-service >> /dev/null 2>&1 &
+            easyeffects --gapplication-service >>/dev/null 2>&1 &
             notify-send -t 1000 "Easyeffects" "Easyeffects started!"
-        fi 
+        fi
         ;;
     aria2c)
-        if pgrep -x aria2c >/dev/null
-        then
+        if pgrep -x aria2c >/dev/null; then
             killall aria2c
             notify-send -t 1000 "Aria2c" "aria2c killed!"
         else
-            aria2c >> /dev/null 2>&1 &
+            aria2c >>/dev/null 2>&1 &
             notify-send -t 1000 "Aria2c" "aria2c started!"
-        fi 
+        fi
         ;;
     sxhkd)
-        if pgrep -x sxhkd >/dev/null
-        then
+        if pgrep -x sxhkd >/dev/null; then
             killall sxhkd
             notify-send -t 1000 "sxhkd" "sxhkd killed!"
         else
-            sxhkd >> /dev/null 2>&1 &
+            sxhkd >>/dev/null 2>&1 &
             notify-send -t 1000 "sxhkd" "sxhkd started!"
-        fi 
+        fi
         ;;
     remaps)
-        remaps >> /dev/null 2>&1 &
-        notify-send -t 1000 "remap keyboards" ;;
+        remaps >>/dev/null 2>&1 &
+        notify-send -t 1000 "remap keyboards"
+        ;;
     nutstore)
-        nutstore >> /dev/null 2>&1 &
-        notify-send -t 1000 "nutstore Start" ;;
+        nutstore >>/dev/null 2>&1 &
+        notify-send -t 1000 "nutstore Start"
+        ;;
     translator)
-				export GDK_DPI_SCALE=1.5
-        ldr >> /dev/null 2>&1 &
-        notify-send -t 1000 "ldr Start" ;;
+        export GDK_DPI_SCALE=1.5
+        ldr >>/dev/null 2>&1 &
+        notify-send -t 1000 "ldr Start"
+        ;;
     conky)
-        if pgrep -x conky >/dev/null
-        then
+        if pgrep -x conky >/dev/null; then
             killall conky
             notify-send -t 1000 "Conky" "Conky killed!"
         else
             autoconky
-        fi 
+        fi
         ;;
     vmwave)
-        sudo systemctl start vmware-networks.service vmware-usbarbitrator.service
         sudo modprobe -a vmw_vmci vmmon
-        vmware >> /dev/null 2>&1 & 
+        vmware >>/dev/null 2>&1 &
         ;;
 esac
