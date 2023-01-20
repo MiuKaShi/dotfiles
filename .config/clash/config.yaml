@@ -48,10 +48,10 @@ proxies:
   - {name: "香港4", type: trojan, server: dl-hk3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "香港5", type: trojan, server: dl-hk4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
   - {name: "美国1", type: vmess, server: opc.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
-  - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
-  - {name: "美国4", type: trojan, server: dl-us3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
-  - {name: "美国5", type: trojan, server: dl-us4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc }
+  - {name: "美国2", type: trojan, server: dl-us1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国3", type: trojan, server: dl-us2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国4", type: trojan, server: dl-us3.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国5", type: trojan, server: dl-us4.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
   - {name: "台湾1", type: trojan, server: hinet.mjt001.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hinet.mjt001.com }
   - { name: "台湾2", type: trojan, server: dl-tw1.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
   - { name: "台湾3", type: trojan, server: dl-tw2.efyunpan.com, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
@@ -183,12 +183,21 @@ proxy-groups:
     proxies:
       - "均衡台湾"
       - "台湾1"
+      - "台湾2"
+      - "台湾3"
+      - "台湾4"
+      - "台湾5"
       - DIRECT
   - name: USA
     type: select
     proxies:
       - "均衡美国"
       - "美国"
+      - "美国1"
+      - "美国2"
+      - "美国3"
+      - "美国4"
+      - "美国5"
       - DIRECT
   - name: Scihub
     type: select
@@ -223,6 +232,7 @@ proxy-groups:
     type: select
     proxies:
       - "日本"
+      - "美国"
       - "均衡日本"
       - "均衡中国"
       - "均衡香港"
@@ -316,7 +326,6 @@ rules:
   - DOMAIN-SUFFIX,52mtkvideo.cn,CN
   - DOMAIN-SUFFIX,9xsecndns.cn,CN
   - DOMAIN-SUFFIX,b82yxres.cn,CN
-  - DOMAIN-SUFFIX,e8h2ty.tdum.alibaba.com,CN
   - DOMAIN-SUFFIX,gamenow.club,CN
   - DOMAIN-SUFFIX,kumiao.com,CN
   - DOMAIN-SUFFIX,kumiao.tv,CN
@@ -1004,43 +1013,6 @@ rules:
   - DOMAIN-SUFFIX,img4399.com,CN
   # 58
   - DOMAIN-SUFFIX,58.com,CN
-  # Alibaba
-  - DOMAIN-SUFFIX,1688.com,CN
-  - DOMAIN-SUFFIX,aliapp.org,CN
-  - DOMAIN-SUFFIX,alibaba.com,CN
-  - DOMAIN-SUFFIX,alibabacloud.com,CN
-  - DOMAIN-SUFFIX,alibabausercontent.com,CN
-  - DOMAIN-SUFFIX,alicdn.com,CN
-  - DOMAIN-SUFFIX,aliexpress.com,CN
-  - DOMAIN-SUFFIX,aliimg.com,CN
-  - DOMAIN-SUFFIX,alikunlun.com,CN
-  - DOMAIN-SUFFIX,alipay.com,CN
-  - DOMAIN-SUFFIX,alipayobjects.com,CN
-  - DOMAIN-SUFFIX,alisoft.com,CN
-  - DOMAIN-SUFFIX,aliyun.com,CN
-  - DOMAIN-SUFFIX,aliyuncdn.com,CN
-  - DOMAIN-SUFFIX,aliyuncs.com,CN
-  - DOMAIN-SUFFIX,amap.com,CN
-  - DOMAIN-SUFFIX,autonavi.com,CN
-  - DOMAIN-SUFFIX,dingtalk.com,CN
-  - DOMAIN-SUFFIX,ele.me,CN
-  - DOMAIN-SUFFIX,hichina.com,CN
-  - DOMAIN-SUFFIX,mmstat.com,CN
-  - DOMAIN,log.mmstat.com,CN
-  - DOMAIN,sycm.mmstat.com,CN
-  - DOMAIN-SUFFIX,mxhichina.com,CN
-  - DOMAIN-SUFFIX,soku.com,CN
-  - DOMAIN-SUFFIX,taobao.com,CN
-  - DOMAIN-SUFFIX,taobaocdn.com,CN
-  - DOMAIN-SUFFIX,tbcache.com,CN
-  - DOMAIN-SUFFIX,tbcdn.com,CN
-  - DOMAIN-SUFFIX,tmall.com,CN
-  - DOMAIN-SUFFIX,tmall.hk,CN
-  - DOMAIN-SUFFIX,ucweb.com,CN
-  - DOMAIN-SUFFIX,xiami.com,CN
-  - DOMAIN-SUFFIX,xiami.net,CN
-  - DOMAIN-SUFFIX,ykimg.com,CN
-  - DOMAIN-SUFFIX,youku.com,CN
   # Baidu
   - DOMAIN-SUFFIX,baidu.com,CN
   - DOMAIN-SUFFIX,baidubcr.com,CN
@@ -1438,5 +1410,8 @@ rules:
   - DOMAIN-SUFFIX,spotxchange.com,USA
   - DOMAIN-SUFFIX,tremorhub.com,USA
   - DOMAIN-SUFFIX,videoamp.com,USA
+  # FuboTV
+  - DOMAIN-SUFFIX,fubo.tv,USA
+  - DOMAIN-SUFFIX,fubotv.com,USA
   # Others
   - MATCH,Others
