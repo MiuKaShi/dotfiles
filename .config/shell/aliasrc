@@ -16,7 +16,7 @@ alias \
     ls="lsd" \
     l="ls -l" \
     la="ls -a" \
-    lla="ls -la" \
+    ll="ls -lah" \
     lt="ls --tree"
 
 # Verbosity and settings that you pretty much just always are going to want.
@@ -84,7 +84,6 @@ alias \
 # These common commands are just too long! Abbreviate them.
 alias \
     ka="killall" \
-    g="git" \
     trem="transmission-remote" \
     YT="youtube-viewer" \
     sdn="shutdown -h now" \
