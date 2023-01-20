@@ -5,9 +5,12 @@
 file=$(readlink -f "$1")
 pdftools=$XDG_CONFIG_HOME/script/PDFTools.jar
 
-case "$(printf "remove pages\ncompress pdf\ndelete pdf" | dmenu -l 6 -i -p "Pdf tools:")" in
-	"remove pages") num=$(echo | dmenu -p "Pages:") && java -jar "$pdftools" remove-pages "$file" "$file" "$(($num - 1))" && notify-send -t 3000 "Remove Page $num" ;;
-	"compress pdf") java -jar "$pdftools" compress "$file" "$file" && notify-send -t 3000 "Compress PDF" ;;
-	"delete pdf") trash "$file" && notify-send -t 3000 "Delete PDF\!" ;;
+case "$(printf "remove pages\nextract pages\ncompress pdf\ndelete pdf" | dmenu -l 6 -i -p "Pdf tools:")" in
+    "remove pages") num=$(echo | dmenu -p "Pages:") && java -jar "$pdftools" remove-pages "$file" "$file" "$(($num - 1))" && notify-send -t 3000 "Remove Page $num" ;;
+    "compress pdf") java -jar "$pdftools" compress "$file" "$file" && notify-send -t 3000 "Compress PDF" ;;
+    "delete pdf") trash "$file" && notify-send -t 3000 "Delete PDF\!" ;;
+    "extract pages")
+        start=$(echo | dmenu -p "From page:") && end=$(echo | dmenu -p "To page:")
+        qpdf "$file" --pages . "$start"-"$end" -- $HOME/Downloads/extract-output.pdf && notify-send -t 3000 "Extract successfully"
+        ;;
 esac
-
