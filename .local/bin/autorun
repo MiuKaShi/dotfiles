@@ -30,19 +30,17 @@ case $1 in
         ;;
     easyeffects)
         if pgrep -x easyeffects >/dev/null; then
-            killall easyeffects
-            notify-send -t 1000 "Easyeffects" "Easyeffects killed!"
+            easyeffects
         else
             easyeffects --gapplication-service >>/dev/null 2>&1 &
             notify-send -t 1000 "Easyeffects" "Easyeffects started!"
         fi
         ;;
-    aria2c)
+    aria2)
         if pgrep -x aria2c >/dev/null; then
-            killall aria2c
-            notify-send -t 1000 "Aria2c" "aria2c killed!"
+            st -e aria2p >>/dev/null 2>&1 &
         else
-            aria2c >>/dev/null 2>&1 &
+            aria2c --conf-path $HOME/.config/aria2/server.conf >>/dev/null 2>&1 &
             notify-send -t 1000 "Aria2c" "aria2c started!"
         fi
         ;;
