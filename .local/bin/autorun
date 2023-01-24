@@ -55,9 +55,14 @@ case $1 in
             notify-send -t 1000 "sxhkd" "sxhkd started!"
         fi
         ;;
-    remaps)
-        remaps >>/dev/null 2>&1 &
-        notify-send -t 1000 "remap keyboards"
+    textsearch)
+        if pgrep -x recoll >/dev/null; then
+            killall recoll
+            notify-send -t 1000 "recoll" "recoll killed!"
+        else
+            recoll >>/dev/null 2>&1 &
+            notify-send -t 1000 "recoll" "recoll started!"
+        fi
         ;;
     nutstore)
         nutstore >>/dev/null 2>&1 &
