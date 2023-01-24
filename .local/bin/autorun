@@ -22,10 +22,8 @@ case $1 in
     picom)
         if pgrep -x picom >/dev/null; then
             killall picom
-            notify-send -t 1000 "Picom" "Picom killed!"
         else
             picom --experimental-backends >>/dev/null 2>&1 &
-            notify-send -t 1000 "Picom" "Picom started!"
         fi
         ;;
     easyeffects)
@@ -33,7 +31,6 @@ case $1 in
             easyeffects
         else
             easyeffects --gapplication-service >>/dev/null 2>&1 &
-            notify-send -t 1000 "Easyeffects" "Easyeffects started!"
         fi
         ;;
     aria2)
@@ -41,40 +38,32 @@ case $1 in
             st -e aria2p >>/dev/null 2>&1 &
         else
             aria2c --conf-path $HOME/.config/aria2/server.conf >>/dev/null 2>&1 &
-            notify-send -t 1000 "Aria2c" "aria2c started!"
         fi
         ;;
     sxhkd)
         if pgrep -x sxhkd >/dev/null; then
             killall sxhkd
-            notify-send -t 1000 "sxhkd" "sxhkd killed!"
         else
             sxhkd >>/dev/null 2>&1 &
-            notify-send -t 1000 "sxhkd" "sxhkd started!"
         fi
         ;;
     textsearch)
         if pgrep -x recoll >/dev/null; then
             killall recoll
-            notify-send -t 1000 "recoll" "recoll killed!"
         else
             recoll >>/dev/null 2>&1 &
-            notify-send -t 1000 "recoll" "recoll started!"
         fi
         ;;
     nutstore)
         nutstore >>/dev/null 2>&1 &
-        notify-send -t 1000 "nutstore Start"
         ;;
     translator)
         export GDK_DPI_SCALE=1.5
         ldr >>/dev/null 2>&1 &
-        notify-send -t 1000 "ldr Start"
         ;;
     conky)
         if pgrep -x conky >/dev/null; then
             killall conky
-            notify-send -t 1000 "Conky" "Conky killed!"
         else
             autoconky
         fi
