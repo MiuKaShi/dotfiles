@@ -261,6 +261,12 @@ cmd sendf ${{
     sendfile $fx 
 }}
 
+map rf ${{
+	dir="$(dirname "$fx")" 
+	name="$(basename -a -- $fx | sed -e 's/ /_/g')"
+	mv "$fx" "$dir/$name" 
+}}
+
 # Edit filename before the extension
 map re ${{
 	# get 'basename' of the selection
