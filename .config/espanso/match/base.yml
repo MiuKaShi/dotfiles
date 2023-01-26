@@ -1,15 +1,29 @@
-matches:
-  - trigger: ";smail"
-    replace: "zhang.ke.867@s.kyushu-u.ac.jp"
-  - trigger: ";gmail"
-    replace: "d.lolimiuku@gmail.com"
-  - trigger: ";addr"
-    replace: "福岡市西区拾六町3-8-13レイナ拾六町 204室"
-  - trigger: ";name"
-    replace: "チョウ　カ"
+global_vars:
+  - name: first_name
+    type: echo
+    params:
+      echo: "Ke"
+  - name: last_name
+    type: echo
+    params:
+      echo: "Zhang"
 
-  # Print the current date
-  - trigger: ";date"
+matches:
+  - trigger: "@ky"
+    replace: "zhang.ke.867@s.kyushu-u.ac.jp"
+    label: "Email/school"
+  - trigger: "@gm1"
+    replace: "d.lolimiuku@gmail.com"
+    label: "Email/gmail1"
+  - trigger: ";ad"
+    replace: "福岡市西区拾六町3-8-13レイナ拾六町 204室"
+    label: "Address/home"
+  - trigger: ";na"
+    replace: "チョウ　カ"
+    label: "Name/jp"
+
+# Print the current date
+  - trigger: ";da"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -17,7 +31,7 @@ matches:
         params:
           format: "%m/%d/%Y"
 
-  # Print the output of a shell command
+# Print the output of a shell command
   - trigger: ";shell"
     replace: "{{output}}"
     vars:
@@ -25,3 +39,17 @@ matches:
         type: shell
         params:
           cmd: "echo 'Hello from your shell'"
+
+# Email signature
+  - trigger: ";sig"
+    replace: "{{output}}"
+    label: "Email signature"
+    vars:
+      - name: output
+        type: choice
+        params:
+          values:
+            - "Regards,\n{{first_name}} {{last_name}}"
+            - "Sincerely,\n{{first_name}} {{last_name}}"
+            - "Thank you,\n{{first_name}} {{last_name}}"
+
