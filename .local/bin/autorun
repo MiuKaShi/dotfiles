@@ -69,7 +69,7 @@ case $1 in
         fi
         ;;
     vmwave)
-        sudo modprobe -a vmw_vmci vmmon
+        sudo modprobe -a vmw_vmci vmmon vmxnet3
         vmware >>/dev/null 2>&1 &
         ;;
 esac
