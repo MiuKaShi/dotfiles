@@ -1,0 +1,46 @@
+# Espanso configuration file for greek letters
+name: greek-letters-full
+parent: default
+matches:
+  - trigger: ';;a'
+    replace: α
+  - trigger: ';;b'
+    replace: β
+  - trigger: ';;d'
+    replace: δ
+  - trigger: ';;e'
+    replace: ε
+  - trigger: ';;p'
+    replace: φ
+  - trigger: ';;g'
+    replace: γ
+  - trigger: ';;e'
+    replace: η
+  - trigger: ';;i'
+    replace: ι
+  - trigger: ';;t'
+    replace: θ
+  - trigger: ';;k'
+    replace: κ
+  - trigger: ';;l'
+    replace: λ
+  - trigger: ';;m'
+    replace: μ
+  - trigger: ';;n'
+    replace: ν
+  - trigger: ';pi'
+    replace: π
+  - trigger: ';;r'
+    replace: ρ
+  - trigger: ';;s'
+    replace: σ
+  - trigger: ';tau'
+    replace: τ
+  - trigger: ';;w'
+    replace: ω
+  - trigger: ';;x'
+    replace: ξ
+  - trigger: ';;y'
+    replace: ψ
+  - trigger: ';;z'
+    replace: ζ
