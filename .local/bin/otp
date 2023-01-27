@@ -13,7 +13,7 @@ ifinstalled pass pass-otp
 
 dir="${PASSWORD_STORE_DIR}"
 
-choice="$({ echo "🆕add" ; echo "🕙sync-time" ; ls ${dir}/*-otp.gpg ;} | sed "s/.*\///;s/-otp.gpg//" | dmenu -p "Pick a 2FA:")"
+choice="$({ echo "🆕add" ; echo "🕙sync-time" ; ls "${dir}"/*-otp.gpg ;} | sed "s/.*\///;s/-otp.gpg//" | dmenu -p "Pick a 2FA:")"
 
 case $choice in
 	🆕add )
@@ -49,5 +49,5 @@ case $choice in
 		updatedata="$(sudo ntpdate pool.ntp.org)" &&
 		notify-send -u low "🕙 Synchronizing Time..." "Done. Time changed by ${updatedata#*offset }"
 		;;
-	*) pass otp -c ${choice}-otp ;;
+	*) pass otp -c "${choice}"-otp ;;
 esac
