@@ -13,11 +13,11 @@ create-md() {
 ---
 id: "$id"
 aliases:
-  - "$title"
+  - "@$title"
 tags: []
 ---
 
-# $title
+# @$title
 EOF
 }
 
