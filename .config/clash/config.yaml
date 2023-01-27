@@ -73,6 +73,7 @@ proxy-groups:
       - "四川"
       - "江苏"
       - "辽宁"
+      - "河北"
       - "校园网1"
       - "校园网2"
       - "校园网3"
@@ -137,6 +138,7 @@ proxy-groups:
       - "四川"
       - "江苏"
       - "辽宁"
+      - "河北"
   - name: 均衡香港
     type: load-balance
     url: http://www.google.com/generate_204
@@ -168,6 +170,7 @@ proxy-groups:
       - "四川"
       - "江苏"
       - "辽宁"
+      - "河北"
       - DIRECT
   - name: HK
     type: select
