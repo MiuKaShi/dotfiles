@@ -7,6 +7,7 @@ pj   ${XDG_DOWNLOAD_DIR:-$HOME/Projects}
 pc   ${XDG_DOWNLOAD_DIR:-$HOME/Pictures}
 dt  ${XDG_DATA_HOME:-$HOME/.local/share}
 h   $HOME
+co   $HOME/coding
 nn   $HOME/notes
 ww   $HOME/work
 bb  $HOME/books

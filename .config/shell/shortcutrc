@@ -7,6 +7,7 @@ pj="cd /home/miuka/Projects" \
 pc="cd /home/miuka/Pictures" \
 dt="cd /home/miuka/.local/share" \
 h="cd /home/miuka" \
+co="cd /home/miuka/coding" \
 nn="cd /home/miuka/notes" \
 ww="cd /home/miuka/work" \
 bb="cd /home/miuka/books" \
