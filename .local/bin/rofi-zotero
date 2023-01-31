@@ -186,7 +186,7 @@ if args.list:
   print(pdfs_str)
 
 else:
-  rofi = subprocess.run(["rofi", "-threads", "0", "-dmenu", "-i", "-p", "paper"] + theming, \
+  rofi = subprocess.run(["rofi", "-threads", "0", "-matching", "regex", "-dmenu", "-i", "-p", "paper"] + theming, \
       capture_output=True, text=True, input=pdfs_str)
   selected_pdf = rofi.stdout.strip()
   if len(selected_pdf) > 0:
