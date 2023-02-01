@@ -11,6 +11,8 @@ msi-isw #msi ec setting
 #remaps & # run the remaps script, switching caps/esc and more; check it for more info
 watchfile &
 #autorun conky 
+unclutter -idle 3 & # Hide mouse cursor
+blurlock &
 
 # run user services (run under current user) using runsvdir
 runsvdir -P ~/.runit/runsvdir &
