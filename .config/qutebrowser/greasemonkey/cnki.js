@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         中国知网CNKI硕博论文PDF下载
-// @version      1.0.0
+// @version      1.1.1
 // @namespace    https://greasyfork.org/users/244539
 // @icon         https://www.cnki.net/favicon.ico
 // @description  添加知网文献、硕博论文PDF下载按钮，支持搜索列表、详情页，下载论文章节目录，批量下载文献，一键切换CAJ和PDF格式
@@ -14,13 +14,16 @@
 // @match        http*://*/KCMS/detail/detail.aspx?*dbcode=*
 // @match        http*://*/kns*/defaultresult/index*
 // @match        http*://*/https/*/kns8/defaultresult/index
+// @match        http*://*/https/*/kcms/detail/detail.aspx?
 // @match        http*://*/KNS8/AdvSearch?*
 // @match        http*://*/kns8/AdvSearch?*
 // @match        http*://*/kns/brief/*result*
 // @match        http*://*/kcms/Detail/DownDetail.aspx*
 // @match        http*://*/KNS8/DefaultResult/index*
+// @match        http*://*/kns8/DefaultResult/Index*
+// @match        http*://*/kns8/defaultresult/index*
 // @match        http*://*/https/*/KNS8/DefaultResult/*
-// @match        http*://如果没有匹配到可以尝试在这里填写域名然后保存，刷新重试/*
+// @match        http*://如果没有匹配到可以尝试在这里填写域名,或者按照上面格式填写关键词，然后保存，刷新重试/*
 // @run-at       document-idle
 // @grant        unsafeWindow
 // @license MIT
@@ -169,23 +172,9 @@ var $ = unsafeWindow.jQuery;
     var au = [];
     $(document).ajaxSuccess(function() {
         if (arguments[2].url.indexOf('/Brief/GetGridTableHtml') + 1) {
-
-            var oversea_domain = $("#Ecp_header_english").attr("href");
-            // console.log(oversea_domain);
-            if(oversea_domain=="//oversea.cnki.net"){
                 // console.log(1);
-                $('.downloadlink').attr('href',function(){return this.href.replace(this.href.split("/")[2],oversea_domain);});
-            }else if(oversea_domain.split("/").length == 3){
-                // console.log(2);
-                $('.downloadlink').attr('href',function(){return this.href.replace(this.href.split("/")[2],oversea_domain);});
-            }else{
-                // console.log(3);
-                $('a.fz14').each(function () {
-                    $(this).attr('href', "https://chn.oversea.cnki.net/kcms/detail/detail.aspx" + $(this).attr('href').match(/\?.*/)[0]);
-                });
-                $('.downloadlink').attr('href',function(){return "https://chn.oversea.cnki.net/kns/download" + this.href.match(/\?.*/)[0];});
-            }
-
+                $('.downloadlink').attr('href',function(){return this.href+"&dflag=pdfdown"});
+                // console.log(1);
             // 传值
             localStorage.removeItem("fnlist");
             var dllink = document.getElementsByClassName('cbItem');
