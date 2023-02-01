@@ -336,6 +336,8 @@ rules:
   # CN二级域名
   - DOMAIN-SUFFIX,edu.cn,CN
   - DOMAIN-SUFFIX,gov.cn,CN
+  # sspai
+  - DOMAIN-SUFFIX,sspai.com,CN
   # AcFun
   - DOMAIN-SUFFIX,acfun.cn,CN
   - DOMAIN-SUFFIX,acfun.com,CN
