@@ -29,7 +29,7 @@ alias \
     mkd="mkdir -pv" \
     lf="lfrun" \
     df="df -h" \
-    yt="yt-dlp --embed-metadata -i" \
+    yt="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --embed-metadata -i" \
     yta="yt -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner" \
     ns="newsboat" \
