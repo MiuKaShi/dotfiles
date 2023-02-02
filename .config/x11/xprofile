@@ -12,7 +12,7 @@ msi-isw #msi ec setting
 watchfile &
 #autorun conky 
 unclutter -idle 3 & # Hide mouse cursor
-stlock &
+blurlock &
 
 # run user services (run under current user) using runsvdir
 runsvdir -P ~/.runit/runsvdir &

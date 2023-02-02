@@ -1,32 +1,20 @@
 #! /bin/bash
 #install i3lock-color-git
 
+cachepath=$HOME/.cache/stlock
+fg_color=fefefeff
+wrong_color=f82a11aa
+highlight_color=39393999
+verif_color=fefefe66
+
 i3lock \
-    --blur 5 \
-    --bar-indicator \
-    --bar-pos y+h \
-    --bar-direction 0 \
-    --bar-max-height 50 \
-    --bar-base-width 50 \
-    --bar-color 00000022 \
-    --keyhl-color ffffffcc \
-    --bar-periodic-step 50 \
-    --bar-step 20 \
-    --redraw-thread \
-    --clock \
-    --force-clock \
-    --time-pos x+5:y+h-80 \
-    --time-color ffffffff \
-    --date-pos tx:ty+15 \
-    --date-color ffffffff \
-    --date-align 1 \
-    --time-align 1 \
-    --ringver-color ffffff00 \
-    --ringwrong-color ffffff88 \
-    --status-pos x+5:y+h-16 \
-    --verif-align 1 \
-    --wrong-align 1 \
-    --verif-color ffffffff \
-    --wrong-color ffffffff \
-    --modif-pos -50:-50
+		-n --blur 5 \
+		--radius 200 --ring-width 3 \
+    --time-str="%H:%M" --time-size=80 --date-str="%a, %b %d" --date-size=30 \
+		--verif-text=""  --wrong-text="" --noinput-text="" \
+    --force-clock --clock --date-font="Source Code Pro" --time-font="Source Code Pro" \
+    --insidever-color=$fg_color --insidewrong-color=$wrong_color --inside-color=fefefe00 \
+    --ringver-color=$verif_color --ringwrong-color=$wrong_color --ring-color=$fg_color \
+    --keyhl-color=$highlight_color --bshl-color=$highlight_color --separator-color=00000000 \
+    --date-color=$fg_color --time-color=$fg_color --greeter-color=$fg_color 
 xdotool mousemove_relative 1 1 # 该命令用于解决自动锁屏后未展示锁屏界面的问题(移动一下鼠标)
