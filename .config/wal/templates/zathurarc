@@ -16,7 +16,7 @@ map p print
 map <C-a> feedkeys ":! cp $FILE /home/miuka/SynData <Return>" # Synic pdf
 map <C-b> feedkeys ":! bookmark $FILE <Return>" # add to bookmakr
 map <C-e> feedkeys ":! st -e cite-ext $FILE <Return>" # edit pdf bib
-map <C-c> feedkeys ":! cite-copy $FILE <Return>" # copy pdf bib
+map <C-c> feedkeys ":! cite-copy $FILE key <Return>" # copy citekey
 map <C-l> feedkeys ":! cite-link $FILE <Return>" # View citation
 map <C-v> feedkeys ":! cite-view $FILE <Return>" # View citation html
 map <C-x> feedkeys ":! pdftools $FILE " # pdf tools

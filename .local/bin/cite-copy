@@ -1,14 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 file=$(readlink -f "$1")
 name=$(basename "$file")
-
 citekey="${name%.*}"
+opt=$2
 
-if [[ $(grep "$citekey" "$BIB") ]]; then
-    bibtool -r biblatex -X "$citekey$" "$BIB" | xsel -b
-else
-    pdf2bib "$file" | awk '(NR>1)' | xsel -b
-fi
-
-notify-send "Bibtex" "Copy to Clipboard"
+case "$opt" in
+    key)
+        echo "@$citekey" | xsel -b
+        notify-send "Citekey" "Copy to Clipboard"
+        ;;
+    *)
+        if [[ $(grep "$citekey" "$BIB") ]]; then
+            bibtool -r biblatex -X "$citekey$" "$BIB" | tr -d '{}' | xsel -b
+        else
+            pdf2bib "$file" | awk '(NR>1)' | xsel -b
+        fi
+        notify-send "Bibtex" "Copy to Clipboard"
+        ;;
+esac
