@@ -93,7 +93,7 @@ alias \
     clc="clear" \
     yd="ydict -c -q" \
     s="pfetch" \
-    clashweb="xdg-open http://127.0.0.1:9090/ui" \
+    clashweb="xdg-open http://127.0.0.1:9090/ui >/dev/null 2>&1" \
     printerweb="xdg-open https://localhost:631" \
     bibtex2html="bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css"
 
