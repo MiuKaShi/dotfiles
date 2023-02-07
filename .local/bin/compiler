@@ -13,7 +13,6 @@ file=$(readlink -f "$1")
 dir=${file%/*}
 base="${file%.*}"
 ext="${file##*.}"
-bib=${BIB%/*}/mybib_abb.bib
 
 
 cd "$dir" || exit 1
@@ -80,7 +79,7 @@ case "$ext" in
 			  --lua-filter=infobox.lua \
 			  --filter=pandoc-crossref \
 			  --citeproc \
-			  --bibliography="$bib" \
+			  --bibliography="$BIB" \
 			  --csl="$CSL" \
 			  -t pdf -o "$base".pdf
             open "$base"
