@@ -163,6 +163,8 @@ proxy-groups:
     type: select
     proxies:
       - "均衡中国"
+      - "均衡日本"
+      - "均衡香港"
       - "日本"
       - "四川"
       - "江苏"
@@ -216,13 +218,6 @@ proxy-groups:
       - "校园网4"
       - "美国"
       - DIRECT
-  - name: MUSIC
-    type: select
-    proxies:
-      - "日本"
-      - "均衡日本"
-      - "均衡中国"
-      - "均衡香港"
   - name: DNS
     type: select
     proxies:
@@ -1023,35 +1018,35 @@ rules:
   - DOMAIN-SUFFIX,CN.xiaomi.com,CN
   - DOMAIN-SUFFIX,dmhmusic.com,CN
   # > Netease Music
-  - DOMAIN,iadmat.nosdn.127.net,MUSIC
-  - DOMAIN,netease.ugcvideoss.ourdvs.com,MUSIC
-  - DOMAIN-SUFFIX,163yun.com,MUSIC
-  - DOMAIN-SUFFIX,api.iplay.163.com,MUSIC
-  - DOMAIN-SUFFIX,hz.netease.com,MUSIC
-  - DOMAIN-SUFFIX,mam.netease.com,MUSIC
-  - DOMAIN-SUFFIX,music.126.com,MUSIC
-  - DOMAIN-SUFFIX,music.126.net,MUSIC
-  - DOMAIN-SUFFIX,music.163.com,MUSIC
-  - DOMAIN-SUFFIX,music.163.com.163jiasu.com,MUSIC
-  - IP-CIDR,101.71.154.241/32,MUSIC,no-resolve
-  - IP-CIDR,103.126.92.13/32,MUSIC,no-resolve
-  - IP-CIDR,103.126.92.132/31,MUSIC,no-resolve
-  - IP-CIDR,112.13.119.17/32,MUSIC,no-resolve
-  - IP-CIDR,112.13.119.18/32,MUSIC,no-resolve
-  - IP-CIDR,112.13.122.1/32,MUSIC,no-resolve
-  - IP-CIDR,112.13.122.4/32,MUSIC,no-resolve
-  - IP-CIDR,115.236.112.0/20,MUSIC,no-resolve
-  - IP-CIDR,118.24.63.156/32,MUSIC,no-resolve
-  - IP-CIDR,182.92.170.253/32,MUSIC,no-resolve
-  - IP-CIDR,193.112.159.225/32,MUSIC,no-resolve
-  - IP-CIDR,223.252.192.0/19,MUSIC,no-resolve
-  - IP-CIDR,39.105.175.128/32,MUSIC,no-resolve
-  - IP-CIDR,39.105.63.80/32,MUSIC,no-resolve
-  - IP-CIDR,45.254.48.1/32,MUSIC,no-resolve
-  - IP-CIDR,47.100.127.239/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.128.0/17,MUSIC,no-resolve
-  - IP-CIDR,59.111.19.33/32,MUSIC,no-resolve
-  - IP-CIDR,59.111.21.14/31,MUSIC,no-resolve
+  - DOMAIN,iadmat.nosdn.127.net,CN
+  - DOMAIN,netease.ugcvideoss.ourdvs.com,CN
+  - DOMAIN-SUFFIX,163yun.com,CN
+  - DOMAIN-SUFFIX,api.iplay.163.com,CN
+  - DOMAIN-SUFFIX,hz.netease.com,CN
+  - DOMAIN-SUFFIX,mam.netease.com,CN
+  - DOMAIN-SUFFIX,music.126.com,CN
+  - DOMAIN-SUFFIX,music.126.net,CN
+  - DOMAIN-SUFFIX,music.163.com,CN
+  - DOMAIN-SUFFIX,music.163.com.163jiasu.com,CN
+  - IP-CIDR,101.71.154.241/32,CN,no-resolve
+  - IP-CIDR,103.126.92.13/32,CN,no-resolve
+  - IP-CIDR,103.126.92.132/31,CN,no-resolve
+  - IP-CIDR,112.13.119.17/32,CN,no-resolve
+  - IP-CIDR,112.13.119.18/32,CN,no-resolve
+  - IP-CIDR,112.13.122.1/32,CN,no-resolve
+  - IP-CIDR,112.13.122.4/32,CN,no-resolve
+  - IP-CIDR,115.236.112.0/20,CN,no-resolve
+  - IP-CIDR,118.24.63.156/32,CN,no-resolve
+  - IP-CIDR,182.92.170.253/32,CN,no-resolve
+  - IP-CIDR,193.112.159.225/32,CN,no-resolve
+  - IP-CIDR,223.252.192.0/19,CN,no-resolve
+  - IP-CIDR,39.105.175.128/32,CN,no-resolve
+  - IP-CIDR,39.105.63.80/32,CN,no-resolve
+  - IP-CIDR,45.254.48.1/32,CN,no-resolve
+  - IP-CIDR,47.100.127.239/32,CN,no-resolve
+  - IP-CIDR,59.111.128.0/17,CN,no-resolve
+  - IP-CIDR,59.111.19.33/32,CN,no-resolve
+  - IP-CIDR,59.111.21.14/31,CN,no-resolve
   # Kugou and Kuwo
   - DOMAIN-SUFFIX,kugou.com,CN
   - DOMAIN-SUFFIX,kuwo.cn,CN
