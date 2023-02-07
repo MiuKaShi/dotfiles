@@ -83,7 +83,7 @@ alias \
 
 # These common commands are just too long! Abbreviate them.
 alias \
-    ka="killall" \
+    ka="killall -9" \
     trem="transmission-remote" \
     YT="youtube-viewer" \
     sdn="shutdown -h now" \

@@ -114,7 +114,7 @@ cdl () {
 fk() {
     local pid_name 
     pid_name=$(sudo ps_mem  | head -n -3 | sed '1,2 d' | sed -e 's/([^()]*)//g' | fzf -m | awk '{print $NF}')
-    killall "$pid_name"
+    killall -9 "$pid_name"
     echo "$pid_name killed!" 
 }
 
