@@ -4,5 +4,6 @@
 # This bash is to watch my bib change and update with journal_abbrev
 
 SCRIPT="/home/miuka/.config/script"
+BIB="/home/miuka/papers/bib/mybib.bib"
 
-echo "$BIB" | entr -p -n $SCRIPT/updatebib.sh >> /dev/null 2>&1 &
+echo "$BIB" | entr -p -n $SCRIPT/updatebib.sh >>/dev/null 2>&1 &
