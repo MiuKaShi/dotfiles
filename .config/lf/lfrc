@@ -68,6 +68,8 @@ map mr sudomkfile
 map ms $mkscript
 map M moveto
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Open >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+map E $neovide "$f"
 map ee $$EDITOR "$f"
 map es $sudo $EDITOR "$f"
 map cz $$EDITOR ~/.config/zsh/.zshrc
