@@ -1,6 +1,6 @@
 # Copyright (c) 2022 Elijah Danko
 
-FZF_NOTES_DIR="/home/miuka/notes"
+FZF_NOTES_DIR="/home/miuka/coding/code_snippets"
 FZF_COLLECTION_BIN="fzfnotes"
 FZF_NOTES_PROMPT="Notes> "
 FZF_PREVIEW_LINES="12"
