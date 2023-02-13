@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-matlab="/usr/local/MATLAB/R2022b/bin/matlab"
+matlab="/home/miuka/.local/MATLAB/R2022b/bin/matlab"
 
 export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 #This sets us up for hardware-accelerated opengl rendering
