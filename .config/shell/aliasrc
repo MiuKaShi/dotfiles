@@ -42,6 +42,9 @@ alias \
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
+# translate
+alias rl="rmall -e -L"
+
 # Permissions aliases
 alias \
     664='chmod 664' \
