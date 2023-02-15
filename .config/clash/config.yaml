@@ -36,32 +36,32 @@ proxies:
   - {name: "学校", type: ss, server: 45.14.107.211, port: 47456, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123" }
   - {name: "美国", type: ss, server: 45.42.200.240, port: 47457, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123", udp: true}
   - {name: "江苏", type: vmess, server: 43.248.79.12, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "辽宁", type: vmess, server: 60.18.196.150, port: '443', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
+  - {name: "广西", type: vmess, server: 171.107.184.248, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } } }
   - {name: "四川", type: vmess, server: 112.18.159.114, port: '443', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
   - {name: "校园网1", type: vmess, server: 112.18.159.114, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: mkcp }
   - {name: "校园网2", type: vmess, server: 20.205.5.236, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "校园网3", type: vmess, server: 20.205.5.236, port: '67', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "校园网4", type: vmess, server: 20.205.5.236, port: '68', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "香港1", type: vmess, server: hk1.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: a.189.cn } }, ws-path: /, ws-headers: { Host: a.189.cn } }
-  - {name: "香港2", type: trojan, server: dl-hk2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
-  - {name: "香港3", type: vmess, server: hk3.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "香港4", type: trojan, server: dl-hk4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
-  - {name: "香港5", type: trojan, server: dl-hk5.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.efyunpan.com }
+  - {name: "香港2", type: trojan, server: dl-hk2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "香港3", type: trojan, server: dl-hk3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "香港4", type: trojan, server: dl-hk4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "香港5", type: trojan, server: dl-hk5.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
   - {name: "美国1", type: vmess, server: opc.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "美国2", type: trojan, server: dl-us1.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国3", type: trojan, server: dl-us2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国4", type: trojan, server: dl-us3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
-  - {name: "美国5", type: trojan, server: dl-us4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.efyunpan.com }
+  - {name: "美国2", type: trojan, server: dl-us1.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "美国3", type: trojan, server: dl-us2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "美国4", type: trojan, server: dl-us3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "美国5", type: trojan, server: dl-us4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-us.xn--vur082k.cc, skip-cert-verify: true }
   - {name: "台湾1", type: trojan, server: hinet.mjt001.com, port: 443, password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d, udp: true, sni: hinet.mjt001.com }
-  - {name: "台湾2", type: trojan, server: dl-tw1.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
-  - {name: "台湾3", type: trojan, server: dl-tw2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
-  - {name: "台湾4", type: trojan, server: dl-tw3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
-  - {name: "台湾5", type: trojan, server: dl-tw4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.efyunpan.com }
+  - {name: "台湾2", type: trojan, server: dl-tw1.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "台湾3", type: trojan, server: dl-tw2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "台湾4", type: trojan, server: dl-tw3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "台湾5", type: trojan, server: dl-tw4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-tw.xn--vur082k.cc, skip-cert-verify: true }
   - {name: "日本1", type: vmess, server: opc.jp.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: dm.toutiao.com } }, ws-path: /, ws-headers: { Host: dm.toutiao.com } }
   - {name: "日本2", type: vmess, server: hk11.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [hpd.baidu.com] } } }
-  - {name: "日本3", type: trojan, server: dl-jp3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.efyunpan.com }
-  - {name: "日本4", type: trojan, server: dl-jp4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.efyunpan.com }
-  - {name: "日本5", type: trojan, server: dl-jp5.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.efyunpan.com }
+  - {name: "日本3", type: trojan, server: dl-jp3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "日本4", type: trojan, server: dl-jp4.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.xn--vur082k.cc, skip-cert-verify: true }
+  - {name: "日本5", type: trojan, server: dl-jp5.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-jp.xn--vur082k.cc, skip-cert-verify: true }
 proxy-groups:
   - name: Auto - UrlTest
     type: url-test
@@ -71,7 +71,7 @@ proxy-groups:
       - "美国"
       - "四川"
       - "江苏"
-      - "辽宁"
+      - "广西"
       - "校园网1"
       - "校园网2"
       - "校园网3"
@@ -135,7 +135,7 @@ proxy-groups:
     proxies:
       - "四川"
       - "江苏"
-      - "辽宁"
+      - "广西"
   - name: 均衡香港
     type: load-balance
     url: http://www.google.com/generate_204
@@ -168,7 +168,7 @@ proxy-groups:
       - "日本"
       - "四川"
       - "江苏"
-      - "辽宁"
+      - "广西"
       - DIRECT
   - name: HK
     type: select
