@@ -116,7 +116,9 @@ c.tabs.last_close = "startpage"
 c.url.searchengines = {
         'DEFAULT': 'https://search.miukashi.xyz/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
+        'gs': 'https://scholar.google.com/scholar?q={}',
         'gg': 'https://google.com/search?q={}',
+        'bb': 'https://search.bilibili.com/all?keyword={}',
         'ar': 'https://wiki.archlinux.org/?search={}',
         'gh': 'https://github.com/search?q={}',
         'bd': 'https://baidu.com/s?wd={}',
@@ -220,6 +222,7 @@ config.bind(',r', 'spawn --userscript readability-js')
 config.bind(',s', 'hint links userscript doi')
 config.bind(',f', 'hint links tab')
 config.bind(',o', 'set-cmd-text -s :open -w')
+config.bind(',e', 'open -t https://www.deepl.com/translator')
 config.bind(',b', 'open -t https://bilibili.com')
 config.bind(',n', 'open -t https://www.nivod.tv')
 config.bind(',m', 'open -t https://mail.google.com')
