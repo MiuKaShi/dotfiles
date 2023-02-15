@@ -17,12 +17,12 @@ mode: rule
 routing-mark: 6666
 tun:
   enable: true
-  stack: system
+  stack: gvisor
+  auto-route: true # auto set global route
+  auto-detect-interface: true # conflict with interface-name
   dns-hijack:
     - any:53
     - tcp://any:53
-  auto-route: true # auto set global route
-  auto-detect-interface: true # conflict with interface-name
 dns:
   enable: true
   listen: :53
