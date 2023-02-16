@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置API
-API_KEY="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"
+API_KEY="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"
 
 [[ -z $API_KEY ]] && echo -e "先设置API_KEY" && exit 1
 

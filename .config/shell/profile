@@ -17,7 +17,7 @@ export READER="sioyek"
 export ZOTOOLS="/home/miuka/.config/zotools/config.json"
 
 # ChatGPT API:
-export OPENAI_API_KEY="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"
+export OPENAI_API_KEY="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"
 
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
