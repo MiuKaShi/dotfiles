@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # rofi -show 自定义 -modi "自定义:~/rofi.sh"
 #   1: 上述命令可调用rofi.sh作为自定义脚本
 #   2: 将打印的内容作为rofi的选项

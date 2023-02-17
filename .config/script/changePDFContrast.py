@@ -1,3 +1,5 @@
+#!/bin/python
+
 import os
 
 # img2pdf==0.4.1
