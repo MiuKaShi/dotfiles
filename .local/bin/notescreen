@@ -68,7 +68,8 @@ case $monitor_name in
         ;;
     *"PHL"* | *"T278Q"*)
         # 显卡设置(nvidia setting first: to enable forcecomposition)
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: {AllowGSYNCCompatible=On,  ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+				nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +0+340 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {AllowGSYNCCompatible=On, ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+        # nvidia-settings --assign "CurrentMetaMode=DPY-1: {AllowGSYNCCompatible=On,  ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         # 缩放
         export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
         export QT_SCALE_FACTOR=2 #for QT5
@@ -103,6 +104,7 @@ case $monitor_name in
           --dpi 96 \
           --output eDP1 \
           --mode 1920x1080 
+				sudo brillo -s intel_backlight -S 50
         export LIBVA_DRIVER_NAME=iHD
         export VDPAU_DRIVER=va_gl
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/xresources &
