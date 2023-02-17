@@ -1,3 +1,5 @@
+#!/bin/python
+
 import argparse
 import bibtexparser
 import sys
