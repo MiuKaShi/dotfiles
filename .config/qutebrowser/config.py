@@ -110,11 +110,11 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # urls
-c.url.default_page = 'https://search.miukashi.xyz/'
-c.url.start_pages = 'https://search.miukashi.xyz/'
+c.url.default_page = 'https://google.com/'
+c.url.start_pages = 'https://google.com/'
 c.tabs.last_close = "startpage"
 c.url.searchengines = {
-        'DEFAULT': 'https://search.miukashi.xyz/search?q={}',
+        'DEFAULT': 'https://google.com/search?q={}',
         'wiby': 'https://wiby.me/?q={}',
         'gs': 'https://scholar.google.com/scholar?q={}',
         'gg': 'https://google.com/search?q={}',
