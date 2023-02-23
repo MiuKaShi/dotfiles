@@ -17,7 +17,7 @@ mode: rule
 routing-mark: 6666
 tun:
   enable: true
-  stack: gvisor
+  stack: system
   auto-route: true # auto set global route
   auto-detect-interface: true # conflict with interface-name
   dns-hijack:
@@ -38,10 +38,6 @@ proxies:
   - {name: "江苏", type: vmess, server: 43.248.79.12, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
   - {name: "广西", type: vmess, server: 171.107.184.248, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [a.189.cn] } } }
   - {name: "四川", type: vmess, server: 112.18.159.114, port: '443', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: http, http-opts: { method: GET, path: [/, /TS/recharge/tzUrl.html, /favicon.ico, /i/mobile/greentip.html, /payprod-format/h5/dup_submit], headers: { Host: [data.video.qiyi.com] } } }
-  - {name: "校园网1", type: vmess, server: 112.18.159.114, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: mkcp }
-  - {name: "校园网2", type: vmess, server: 20.205.5.236, port: '53', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
-  - {name: "校园网3", type: vmess, server: 20.205.5.236, port: '67', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
-  - {name: "校园网4", type: vmess, server: 20.205.5.236, port: '68', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: quic, quic-opts: { headers: { type: srtp } } }
   - {name: "香港1", type: vmess, server: hk1.ningmengshui.cyou, port: '80', uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b, alterId: 0, cipher: auto, udp: true, network: ws, ws-opts: { path: /, headers: { Host: a.189.cn } }, ws-path: /, ws-headers: { Host: a.189.cn } }
   - {name: "香港2", type: trojan, server: dl-hk2.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
   - {name: "香港3", type: trojan, server: dl-hk3.steamdownload.top, port: 443, password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45, udp: true, sni: data-hk.xn--vur082k.cc, skip-cert-verify: true }
@@ -72,10 +68,6 @@ proxy-groups:
       - "四川"
       - "江苏"
       - "广西"
-      - "校园网1"
-      - "校园网2"
-      - "校园网3"
-      - "校园网4"
       - "香港1"
       - "香港2"
       - "香港3"
@@ -212,10 +204,6 @@ proxy-groups:
     type: select
     proxies:
       - "学校"
-      - "校园网1"
-      - "校园网2"
-      - "校园网3"
-      - "校园网4"
       - "美国"
       - DIRECT
   - name: DNS
