@@ -93,7 +93,7 @@ c.content.desktop_capture = 'ask'
 c.content.mouse_lock = 'ask'
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.site_specific_quirks.enabled = False
-c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36"
+c.content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.6 Chrome/87.0.4280.144 Safari/537.36"
 
 
 # per-domain settings
@@ -108,6 +108,8 @@ config.set('content.javascript.enabled', True, 'chrome-devtools://*')
 config.set('content.javascript.enabled', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
+
+# c.qt.args = ["disable-reading-from-canvas"]
 
 # urls
 c.url.default_page = 'https://google.com/'
