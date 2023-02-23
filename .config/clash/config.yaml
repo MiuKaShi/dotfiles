@@ -206,7 +206,7 @@ proxy-groups:
       - "学校"
       - "美国"
       - DIRECT
-  - name: DNS
+  - name: Home
     type: select
     proxies:
       - DIRECT
@@ -223,14 +223,16 @@ proxy-groups:
       - "均衡美国"
       - DIRECT
 rules:
-  # DNS
-  - IP-CIDR,8.8.8.8/32,DNS,no-resolve
-  - IP-CIDR,1.1.1.1/32,DNS,no-resolve
+  # Local servers
+  - IP-CIDR,8.8.8.8/32,Home,no-resolve
+  - IP-CIDR,1.1.1.1/32,Home,no-resolve
+  - DOMAIN-SUFFIX,nextdns.io,Home
+  - DOMAIN-SUFFIX,quad9.net,Home
+  - DOMAIN-SUFFIX,openai.com,Home
+  # China DNS
   - IP-CIDR,114.114.115.115/32,CN,no-resolve
   - IP-CIDR,223.5.5.5/32,CN,no-resolve
   - IP-CIDR,1.12.12.12/32,CN,no-resolve
-  - DOMAIN-SUFFIX,nextdns.io,DNS
-  - DOMAIN-SUFFIX,quad9.net,DNS
   # Scihub
   - DOMAIN-SUFFIX,sci-hub.se,Scihub
   - DOMAIN-SUFFIX,sci-hub.st,Scihub
