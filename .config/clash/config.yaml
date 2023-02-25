@@ -27,9 +27,13 @@ dns:
   enable: true
   listen: :53
   ipv6: true
-  enhanced-mode: redir-host # redir-host or fake-ip
+  enhanced-mode: fake-ip # redir-host or fake-ip
+  # enhanced-mode: redir-host # redir-host or fake-ip
   nameserver:
     - 127.0.0.1:5300
+  fake-ip-range: 10.0.0.1/8  # 默认为198.18.0.1/16,  更默认地址冲突
+  fake-ip-filter:  # 以下域名使用真实 IP 地址来回答
+    - '*.lan'
 
 proxies:
   - {name: "日本", type: ss, server: 45.14.107.211, port: 47451, cipher: chacha20-ietf-poly1305, password: "ZKxwmr123", udp: true}
@@ -206,11 +210,6 @@ proxy-groups:
       - "学校"
       - "美国"
       - DIRECT
-  - name: Home
-    type: select
-    proxies:
-      - DIRECT
-      - "日本"
   - name: Others
     type: select
     proxies:
@@ -223,12 +222,13 @@ proxy-groups:
       - "均衡美国"
       - DIRECT
 rules:
-  # Local servers
-  - IP-CIDR,8.8.8.8/32,Home,no-resolve
-  - IP-CIDR,1.1.1.1/32,Home,no-resolve
-  - DOMAIN-SUFFIX,nextdns.io,Home
-  - DOMAIN-SUFFIX,quad9.net,Home
-  - DOMAIN-SUFFIX,openai.com,Home
+  # Local direct servers
+  - IP-CIDR,8.8.8.8/32,DIRECT,no-resolve
+  - IP-CIDR,1.1.1.1/32,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,nextdns.io,DIRECT
+  - DOMAIN-SUFFIX,quad9.net,DIRECT
+  - DOMAIN-SUFFIX,openai.com,DIRECT
+  - DOMAIN-SUFFIX,test-ipv6.com,DIRECT
   # China DNS
   - IP-CIDR,114.114.115.115/32,CN,no-resolve
   - IP-CIDR,223.5.5.5/32,CN,no-resolve
