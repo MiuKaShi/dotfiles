@@ -1,0 +1,39 @@
+#!/bin/sh
+
+myip() {
+	active_net_device=$(ip addr show | awk '/inet.*brd/{print $NF; exit}')
+	local_ip=$(ip -o -4 addr list | grep "$active_net_device" | awk '{print $4}' | cut -d/ -f1)
+	ip4=$(curl -s https://ipv4.ipleak.net/json/ | jq -r '. | "IPV4: \(.ip) *** Country: \(.country_name) ** City: \(.city_name)  ** ISP: \(.isp_name)"')
+	ip6=$(curl -s https://ipv6.ipleak.net/json/ | jq -r '. | "IPV6: \(.ip) *** Country: \(.country_name) ** City: \(.city_name)  ** ISP: \(.isp_name)"')
+	echo "LocalIP: $local_ip"
+	echo "$ip4"
+	if [ -z "$ip6" ]; then
+		echo "IPV6: No IPV6"
+	else
+		echo "$ip6"
+	fi
+}
+
+checkip() {
+	ip4=$(curl -s https://ipv4.ipleak.net/json/"$ip_addr" | jq -r '. | "IPV4: \(.ip) *** Country: \(.country_name) ** City: \(.city_name)  ** ISP: \(.isp_name)"')
+	echo "$ip4"
+}
+
+checkdns() {
+	session=$(echo firefox | sha1sum)
+	for i in $(seq 5000 5003);
+	do
+	 curl -s "https://${session:0:40}-${i}.ipleak.net/dnsdetection/"
+	 sleep 1
+	done
+}
+
+case "$1" in
+dns)
+	checkdns
+	;;
+*)
+	ip_addr="$1"
+	echo "$ip_addr" | grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$' > /dev/null && checkip || myip
+	;;
+esac

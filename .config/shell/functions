@@ -111,13 +111,6 @@ cdl () {
     fi
 }
 
-ipp(){
-    ipv4=$(curl -s https://ipv4.lookup.test-ipv6.com | jq '.ip' | tr -d '"')
-    ipv6=$(curl -s https://ipv6.lookup.test-ipv6.com | jq '.ip' | tr -d '"')
-    echo "$ipv4" 
-    echo "$ipv6" 
-}
-
 fk() {
     local pid_name 
     pid_name=$(sudo ps_mem  | head -n -3 | sed '1,2 d' | sed -e 's/([^()]*)//g' | fzf -m | awk '{print $NF}')
