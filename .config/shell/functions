@@ -121,3 +121,30 @@ fk() {
 colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
+
+cleansys() {
+  bleachbit --clean \
+    chromium.* \
+    deepscan.* \
+    epiphany.* \
+	chromium.* \
+	google_chrome.* \
+    firefox.* \
+    gnome.* \
+    journald.* \
+    libreoffice.* \
+    thumbnails.* \
+    vlc.* \
+    x11.* \
+	libreoffice.* \
+    zoom.* \
+    journald.clean \
+    gimp.tmp \
+    system.cache \
+    system.clipboard \
+    system.recent_documents  \
+    system.rotated_logs \
+    system.tmp \
+    system.trash
+}
+
