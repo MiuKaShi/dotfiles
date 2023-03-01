@@ -56,12 +56,9 @@ open(){ \
 
 }
 
-#check if file is opening
-
-if lsof -t "$base".pdf >/dev/null 2>&1; then
-    notify-send -t 1000 "Update Preview"
-else
-    open "$base" && notify-send -t 1000 "Open Preview"
+#open the file if it's closed
+if ! lsof -t "$base".pdf >/dev/null 2>&1; then
+    open "$base"
 fi
 
 
