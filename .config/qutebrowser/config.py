@@ -40,6 +40,9 @@ c.completion.height = "30%"
 c.tabs.show = "multiple"
 c.tabs.last_close = "close"
 c.tabs.mousewheel_switching = False
+c.scrolling.bar = 'never'
+c.statusbar.show= 'never'
+c.tabs.show = 'switching'
 
 # enable GPU acceleration
 # see https://github.com/qutebrowser/qutebrowser/discussions/6573
@@ -204,7 +207,7 @@ config.bind('<Escape>', 'spawn fcitx5-remote -c Default ;; mode-leave ;; fake-ke
 config.bind('<Ctrl-[>', 'mode-leave', mode='insert')
 
 # Leader key: `;`
-config.bind(';x', 'config-cycle statusbar.show always never;;config-cycle tabs.show always never')
+config.bind(';;', 'config-cycle statusbar.show always never;;config-cycle tabs.show always switching')
 config.bind(';c', "config-cycle colors.webpage.bg '#1d2021' 'white'")
 config.bind(';p', 'config-cycle content.proxy system http://localhost:7890/')
 
