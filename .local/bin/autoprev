@@ -18,7 +18,7 @@ open() {
 }
 
 if [ -f "$base".pdf ]; then
-    open "$base" && notify-send "Compile view"
+    open "$base" && notify-send "Compiled view"
 else
     base="/tmp/$fname"
     pkill -f "entr -n previewer"
