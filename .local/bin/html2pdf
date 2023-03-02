@@ -1,0 +1,13 @@
+#! /bin/bash
+
+## CHECKS
+# exit on any error
+set -e
+
+# Where should files ultimately be moved?
+dest_dir="$HOME/Downloads"
+template_html="$HOME/.config/percollate/template.html"
+template_css="$HOME/.config/percollate/template.css"
+
+# Run percollate
+percollate pdf --no-amp --template "$template_html" --style "$template_css" "$1"
