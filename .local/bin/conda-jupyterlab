@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# shell env setting
+source /etc/profile.d/conda.sh
+# active jupterlab
+conda activate jupyterlab-env
+jupyter-notebook
