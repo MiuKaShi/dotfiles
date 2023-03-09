@@ -49,7 +49,7 @@ header-includes:
   \usepackage[multiple]{footmisc}
   \usepackage{svg}
   \usepackage{svgcolor}
-  \usepackage{algorithms}
+  \usepackage{algorithmicx}
 
 # Enable PDF Links
 link-citations: true
