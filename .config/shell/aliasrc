@@ -42,6 +42,9 @@ alias \
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
+# Conda-install
+alias conda-install="conda install -c conda-forge"
+
 # translate
 alias rl="rmall -e -L"
 
