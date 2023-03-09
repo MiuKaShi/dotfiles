@@ -7,7 +7,6 @@ set scrolloff 10
 set tabstop 2
 set icons
 set period 1
-set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 # set drawbox
 set sortby natural
 set ratios '1:2:3'
