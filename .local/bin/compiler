@@ -71,7 +71,7 @@ case "$ext" in
             # mdpdf "$file" > "$base".pdf
             pandoc "$file" \
 			  -f markdown \
-			  --pdf-engine=xelatex \
+			  --pdf-engine=tectonic \
 			  --template=notes \
 			  --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
 			  --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
@@ -98,6 +98,6 @@ case "$ext" in
 	sass) sassc -a "$file" "$base.css" ;;
 	scad) openscad -o "$base".stl "$file" ;;
 	sent) setsid -f sent "$file" 2>/dev/null ;;
-	tex) textype "$file" ;;
+	tex) tectonic -X compile "$file" --synctex --keep-logs --keep-intermediates ;;
 	*) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
 esac
