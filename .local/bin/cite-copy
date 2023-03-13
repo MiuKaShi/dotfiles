@@ -8,14 +8,18 @@ opt=$2
 case "$opt" in
     key)
         echo "@$citekey" | xsel -b
-        notify-send "Citekey" "Copy to Clipboard"
+        notify-send "Citekey" "Copy citekey to clipboard"
         ;;
-    *)
+    bib)
         if [[ $(grep "$citekey" "$BIB") ]]; then
             bibtool -r biblatex -X "$citekey$" "$BIB" | tr -d '{}' | xsel -b
         else
             pdf2bib "$file" | awk '(NR>1)' | xsel -b
         fi
-        notify-send "Bibtex" "Copy to Clipboard"
+        notify-send "Bibtex" "Copy bib to clipboard"
+        ;;
+    *)
+        xclip-copyfile "$file"
+        notify-send "FileCopy" "Copy file to clipboard"
         ;;
 esac
