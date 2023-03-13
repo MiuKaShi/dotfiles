@@ -53,6 +53,9 @@ map U unselect
 map O &handlr open $f
 map = chmod+x 
 map - chmod-x
+map ch chmod
+map cf chmodf
+map cd chmodd
 map zp nopreview
 map g? $lf -doc | less
 map <c-c> cmd-interrupt
@@ -60,7 +63,6 @@ map pp paste
 map pl paste_link
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Make >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 map af push :touch<space>
-map ch chmod
 map mf mkfile
 map md mkdir
 map mr sudomkfile
@@ -411,6 +413,15 @@ cmd chmod-x %{{
   chmod -x $f
   lf -remote "send reload"
 }}
+
+cmd chmodf %{{
+	find $fx -type f -print0 | xargs -0 chmod 0644
+}}
+
+cmd chmodd %{{
+	find $fx -type d -print0 | xargs -0 chmod 0755
+}}
+
 
 # Select based on glob filter
 cmd filter %{{
