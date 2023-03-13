@@ -60,6 +60,7 @@ map zp nopreview
 map g? $lf -doc | less
 map <c-c> cmd-interrupt
 map pp paste
+map pt $xclip-pastefile
 map pl paste_link
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Make >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 map af push :touch<space>
