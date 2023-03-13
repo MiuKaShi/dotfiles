@@ -232,7 +232,7 @@ cmd extract ${{
         *.pkg.tar|*.tar) tar xvf $f;;
         *.tar.zst|*.zst) unzstd xJvf $f;;
         *.zip) unar $f;;
-        *.rar) unar x $f;;
+        *.rar) unrar x $f;;
         *.7z) 7z X $f;;
       *) echo "Unsupported format" ;;
     esac
