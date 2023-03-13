@@ -96,6 +96,7 @@ alias \
     e='$EDITOR' \
     v='$EDITOR' \
     p="pacman" \
+    pt="xclip-pastefile" \
     clc="clear" \
     yd="ydict -c -q" \
     s="pfetch" \
