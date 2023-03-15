@@ -3,7 +3,7 @@
 paper_notes=~/notes/paper_notes
 day_notes=~/notes/day_notes
 
-title=@${1%.*}
+title=${1%.*}
 
 create-md() {
     id=$(date '+%Y%m%d%H%M%S')
@@ -20,7 +20,7 @@ tags: []
 EOF
 }
 
-file=$(grep "\- \"$title"\" $paper_notes/*.md | cut -d':' -f1)
-[[ -z "$file" ]] && file=$(grep "\- \"$title"\" $day_notes/*.md | cut -d':' -f1)
+file=$(grep "\- \"@$title"\" $paper_notes/*.md | cut -d':' -f1)
+[[ -z "$file" ]] && file=$(grep "\- \"@$title"\" $day_notes/*.md | cut -d':' -f1)
 [[ -z "$file" ]] && create-md
 st -e nvim "$file"
