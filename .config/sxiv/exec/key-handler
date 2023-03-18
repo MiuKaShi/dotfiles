@@ -1,7 +1,6 @@
 #!/bin/sh
 # sxiv's key handler script.
-main()
-{
+main() {
     exec >/dev/null 2>&1
     imgs=$(cat) # get list of images from stdin
     first=$(printf '%s\n' "$imgs" | head -n1)
@@ -13,34 +12,44 @@ main()
         g) x setsid -f gimp -- ;;
         p) x dmenuprint ;;
         D) x dragon-drop -a -x ;;
-        t) ask Trash &&
-            x trash-put -- &&
-            notif Trashed
-        ;;
-        d) ask Permanently Delete &&
-            x rm -- &&
-            notif Deleted
-        ;;
-        a) ask Autorotate &&
-            x jhead -autorot &&
-            notif Autorotated
-        ;;
-        r) ask CW Rotate &&
-            x -I{} convert -rotate 90 {} {} &&
-            notif Rotated
-        ;;
-        R) ask CCW Rotate &&
-            x -i{} convert -rotate -90 {} {} &&
-            notif Rotated
-        ;;
-        f) ask Flop &&
-            x -I{} convert -flop {} {} &&
-            notif Flopped
-        ;;
-        y) xclip -selection clipboard -t \
-            "$(file -bL --mime-type -- "$first")" "$first" &&
-            notif 'Copied to clipboard'
-        ;;
+        t)
+            ask Trash \
+                && x trash-put -- \
+                && notif Trashed
+            ;;
+        d)
+            ask Permanently Delete \
+                && x rm -- \
+                && notif Deleted
+            ;;
+        a)
+            ask Autorotate \
+                && x jhead -autorot \
+                && notif Autorotated
+            ;;
+        r)
+            ask CW Rotate \
+                && x -I{} convert -rotate 90 {} {} \
+                && notif Rotated
+            ;;
+        R)
+            ask CCW Rotate \
+                && x -i{} convert -rotate -90 {} {} \
+                && notif Rotated
+            ;;
+        f)
+            ask Flop \
+                && x -I{} convert -flop {} {} \
+                && notif Flopped
+            ;;
+        y)
+            xclip -selection clipboard -t \
+                "$(file -bL --mime-type -- "$first")" "$first" \
+                && notif 'Copied to clipboard'
+            ;;
+        i)
+            notify-send "File information" "$(mediainfo "$file" | sed "s/[ ]\+:/:/g;s/: /: <b>/;s/$/<\/b>/" | grep "<b>")"
+            ;;
     esac
 }
 
@@ -51,11 +60,12 @@ ask() {
     [ "$ans" = Yes ] && return 0 || return 1
 }
 
-x() { printf '%s\n' "$imgs" | xargs -d'\n' "$@" ;}
-notif() { notify-send sxiv "$* $count image(s)." ;}
+x() { printf '%s\n' "$imgs" | xargs -d'\n' "$@"; }
+notif() { notify-send sxiv "$* $count image(s)."; }
 
 help() {
-notify-send sxiv "$(cat << 'eof'
+    notify-send sxiv "$(
+        cat <<'eof'
 y)   copy image to clipboard
 D)   drag and drop
 a)   auto rotate based on metadata
@@ -68,7 +78,7 @@ t)   trash
 d)   permanently delete
 h)   show this help message
 eof
-)"
+    )"
 }
 
 main "$@"
