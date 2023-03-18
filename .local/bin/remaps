@@ -33,4 +33,4 @@ xmodmap -e "remove Mod4 = Hyper_L" -e "add Mod3 = Hyper_R"
 # One press function
 # killall xcape 2>/dev/null ; xcape -e 'Menu=Hyper_R'
 
-xset -q | grep "Caps Lock:\s*on" && xdotool key Caps_Lock
+xset -q | grep -q "Caps Lock:\s*on" && xdotool key Caps_Lock

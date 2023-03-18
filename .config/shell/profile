@@ -7,6 +7,7 @@
 
 # Default programs:
 export TERMINAL="st"
+export TERMINAL_PROG="st"
 export WM="dwm"
 export EDITOR="nvim"
 export VISUAL="nvim"
