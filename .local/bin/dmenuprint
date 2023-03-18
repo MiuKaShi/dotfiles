@@ -19,7 +19,6 @@ while :; do
         Jobs) system-config-printer --show-jobs "$printer" ;;
         Print)
             lp -d "$printer" -- "$@" 2>&1 | xargs -r0 notify-send dprint
-            system-config-printer --show-jobs "$printer"
             exit 0
         ;;
     esac
