@@ -1,52 +1,53 @@
 body {
-	background: white;
-	font-family: Georgia, serif;
-	padding-bottom: 8px;
-	margin: 0;
-        padding-left: 20px 
+  background: white;
+  font-family: Georgia, serif;
+  padding-bottom: 8px;
+  margin: 0;
+  padding-left: 20px;
 }
 
 table {
-    border: none; /* 2px solid black; bibtex2html */
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  border: none; /* 2px solid black; bibtex2html */
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #layout-menu a {
-	line-height: 1.5em;
-	margin-left: 0.5em;
+  line-height: 1.5em;
+  margin-left: 0.5em;
 }
 
-pre, tt {
-	font-size: 90%;
-	font-family: monaco, monospace;
+pre,
+tt {
+  font-size: 90%;
+  font-family: monaco, monospace;
 }
 
-a, a > tt {
-	color: #224b8d;
-	text-decoration: none;
+a,
+a > tt {
+  color: #224b8d;
+  text-decoration: none;
 }
 
 a:hover {
-	border-bottom: 1px gray dotted;
+  border-bottom: 1px gray dotted;
 }
 
 td {
-    padding: 2px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    text-align: center;
-    border: 1px solid gray;
+  padding: 2px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-align: center;
+  border: 1px solid gray;
 }
 
-td.bibtexitem { 
-  border:none;
-  text-align:left;
- }
+td.bibtexitem {
+  border: none;
+  text-align: left;
+}
 
-td.bibtexnumber { 
-  border:none;
-  text-align:right;
- }
-
+td.bibtexnumber {
+  border: none;
+  text-align: right;
+}
