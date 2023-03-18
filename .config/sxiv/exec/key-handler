@@ -48,7 +48,7 @@ main() {
                 && notif 'Copied to clipboard'
             ;;
         i)
-            notify-send "File information" "$(mediainfo "$file" | sed "s/[ ]\+:/:/g;s/: /: <b>/;s/$/<\/b>/" | grep "<b>")"
+            notify-send "File information" "$(mediainfo "$imgs" | sed "s/[ ]\+:/:/g;s/: /: <b>/;s/$/<\/b>/" | grep "<b>")"
             ;;
     esac
 }
