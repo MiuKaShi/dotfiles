@@ -8,7 +8,7 @@ dir=${file%/*}
 cd "$dir" || exit 1
 
 if [ ! -f "$fname.bib" ]; then
-    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 http://bib.miukashi.xyz/api/processReferences > "$fname.bib"
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences > "$fname.bib"
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 fi
 

@@ -9,7 +9,7 @@ formater=/home/miuka/.config/script/upcitekey.py
 cd "$dir" || exit 1
 
 getbib () {
-    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 http://bib.miukashi.xyz/api/processReferences > "$fname.bib"
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences > "$fname.bib"
     bibtex-tidy --quiet --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
     # anystyle -f bib find --no-layout $file > $fname.bib
     notify-send -t 3000 "Bibtex" "Bibtex file created"
