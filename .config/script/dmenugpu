@@ -11,6 +11,8 @@ esac
 
 gpu_env="/home/miuka/.config/shell/gpu"
 kernel=$(awk '{ print $4 }' </proc/version | tr -d '()' | cut -f1 -d"@")
+initramfs_path="/boot/initramfs-$kernel.img"
+hases_path="/home/miuka/.cache/init_sha"
 
 black_list="/etc/modprobe.d/blacklist-nvidia.conf"
 udev_intel="/lib/udev/rules.d/50-remove-nvidia.rules"
@@ -98,6 +100,7 @@ EOF
 
 options nvidia-drm modeset=1
 options nvidia "NVreg_DynamicPowerManagement=0x02"
+options nvidia NVreg_PreserveVideoMemoryAllocations=1
 EOF
 }
 
@@ -189,7 +192,12 @@ switch_mode() {
             clean_file
             intel_env
             intel_file
-            mkinitcpio -p "$kernel"
+            hases_old=$(cat "$hases_path")
+            hases_new=$(sha256sum "$initramfs_path" | awk '{ print $1 }')
+            if [ "$hases_old" != "$hases_new" ]; then
+                mkinitcpio -p "$kernel"
+                sha256sum $initramfs_path | awk '{ print $1 }' >"$hases_path"
+            fi
             boot_now
             ;;
         '✨ Hybrid')
