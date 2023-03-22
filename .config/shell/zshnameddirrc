@@ -4,7 +4,6 @@ hash -d dl=/home/miuka/Downloads
 hash -d dm=/home/miuka/Documents 
 hash -d pj=/home/miuka/Projects 
 hash -d pc=/home/miuka/Pictures
-hash -d dt=/home/miuka/.local/share 
 hash -d h=/home/miuka 
 hash -d co=/home/miuka/coding
 hash -d nn=/home/miuka/notes 

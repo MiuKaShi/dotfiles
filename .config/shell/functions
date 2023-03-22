@@ -147,4 +147,3 @@ cleansys() {
     system.tmp \
     system.trash
 }
-
