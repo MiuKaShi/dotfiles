@@ -10,11 +10,17 @@ deepl_api() {
 }
 
 case "$1" in
-    '-s')
+    '-x')
         text="$(xsel)"
         [[ -z "$text" ]] && exit 0
         deepl_api
         rofi -e "$result"
+        ;;
+    '-s')
+        usage_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/usage' -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN")
+        count_info=$(echo "$usage_data" | jq '.character_count' | tr -d '"')
+        limit_info=$(echo "$usage_data" | jq '.character_limit' | tr -d '"')
+        echo usage:"$count_info"/"$limit_info"
         ;;
     *)
         text=$(rofi -dmenu -F -mesg 'Enter text to translate')
