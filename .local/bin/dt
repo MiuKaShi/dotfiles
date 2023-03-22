@@ -1,0 +1,25 @@
+#!/bin/bash
+
+deepl_api() {
+    raw_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/translate' \
+        -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN" \
+        -d "text=$text" \
+        -d 'target_lang=ZH')
+    result=$(echo $raw_data | jq '.translations[].text' | tr -d '"')
+    [[ -z "$result" ]] && notify-send Deepl "Translation failed." && exit 1
+}
+
+case "$1" in
+    '-s')
+        text="$(xsel)"
+        [[ -z "$text" ]] && exit 0
+        deepl_api
+        rofi -e "$result"
+        ;;
+    *)
+        text=$(rofi -dmenu -F -mesg 'Enter text to translate')
+        [[ -z "$text" ]] && exit 0
+        deepl_api
+        echo "$result"
+        ;;
+esac
