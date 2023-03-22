@@ -4,6 +4,8 @@ x-scheme-handler/tg=userapp-Telegram Desktop-JWGHV1.desktop;userapp-Telegram Des
 [Default Applications]
 application/gzip=file.desktop;
 application/json=text.desktop;
+video/x-matroska=video.desktop
+video/mp4=video.desktop
 application/pdf=pdf.desktop;zathura.desktop;
 application/postscript=pdf.desktop;
 application/rss+xml=rss.desktop;
