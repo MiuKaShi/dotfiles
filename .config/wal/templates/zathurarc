@@ -25,7 +25,7 @@ map <C-i> feedkeys ":! cite-info $FILE <Return>" # View citation
 map <C-l> feedkeys ":! cite-lf $FILE <Return>" # cite-lf
 map <C-h> feedkeys ":! cite-html $FILE <Return>" # View citation html
 map <C-x> feedkeys ":! pdftools $FILE " # pdf tools
-map <C-w> feedkeys ":! webpdf $FILE <Return>" # open with browser(for translate)
+map <C-w> feedkeys ":! pdfbrowser $FILE <Return>" # open with browser(for translate)
 map <C-o> feedkeys ":! sioyek $FILE <Return>" # open with sioyek
 map <C-z> feedkeys ":! zotadd $FILE <Return>" # Add to zotero
 map <C-n> feedkeys ":! r-note $FILE <Return>" # Add to notes
