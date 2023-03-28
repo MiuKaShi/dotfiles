@@ -11,11 +11,13 @@ output_dir="/home/miuka/.cache/chatpaper"
 [ ! -d "$output_dir" ] && mkdir "$output_dir"
 output_file="$output_dir/$fname.md"
 
-# env setting
-cd ~/.config/script/chatpaper || exit
-source /etc/profile.d/conda.sh
-conda activate jupyterlab-env
+if [ ! -e $output_file ]; then
+    # env setting
+    cd ~/.config/script/chatpaper || exit
+    source /etc/profile.d/conda.sh
+    conda activate jupyterlab-env
+    python chat_paper.py --pdf_path "$file" >"$output_file"
+    prettier --loglevel=silent --write "$output_file"
+fi
 
-python chat_paper.py --pdf_path "$file" >"$output_file"
-prettier --loglevel=silent --write "$output_file"
 st -e "$EDITOR" "$output_file"
