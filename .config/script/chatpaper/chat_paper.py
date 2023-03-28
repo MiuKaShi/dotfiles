@@ -326,8 +326,7 @@ class Reader:
                     - (3):What is the research methodology proposed in this paper?
                     - (4):On what task and what performance is achieved by the methods in this paper? Can the performance support their goals?
                  Follow the format of the output that follows:                  
-                 # Title \n\n
-                    - xxx\n\n
+                 # xxx\n\n
                  ## Summary \n\n
                     - (1):xxx;\n 
                     - (2):xxx;\n 
