@@ -21,6 +21,7 @@ map <C-b> feedkeys ":! bookmark $FILE <Return>" # add to bookmakr
 map <C-r> feedkeys ":! st -e cite-ref $FILE <Return>" # edit pdf bib
 map <C-k> feedkeys ":! cite-copy $FILE key <Return>" # copy citekey
 map <C-c> feedkeys ":! cite-copy $FILE <Return>" # copy pdf
+map <C-s> feedkeys ":! chatpaper $FILE <Return>" # chatpaper pdf
 map <C-i> feedkeys ":! cite-info $FILE <Return>" # View citation
 map <C-l> feedkeys ":! cite-lf $FILE <Return>" # cite-lf
 map <C-h> feedkeys ":! cite-html $FILE <Return>" # View citation html
