@@ -7,7 +7,7 @@
 file=$(readlink -f "$1")
 name=$(basename "$file")
 fname="${name%.*}"
-output_dir="/home/miuka/.cache/chatpaper"
+output_dir="/home/miuka/papers/chatpaper"
 [ ! -d "$output_dir" ] && mkdir "$output_dir"
 output_file="$output_dir/$fname.md"
 
@@ -16,8 +16,9 @@ if [ ! -e $output_file ]; then
     cd ~/.config/script/chatpaper || exit
     source /etc/profile.d/conda.sh
     conda activate jupyterlab-env
+    notify-send -t 6000 "Chatpaper" "waiting for GPT summary"
     python chat_paper.py --pdf_path "$file" >"$output_file"
-    prettier --loglevel=silent --write "$output_file"
+    # prettier --loglevel=silent --write "$output_file"
 fi
 
 st -e "$EDITOR" "$output_file"

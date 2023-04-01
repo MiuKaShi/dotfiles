@@ -1,11 +1,8 @@
 import fitz, io, os
-from PIL import Image
-
 
 class Paper:
-    def __init__(self, path, title="", url="", abs="", authers=[]):
+    def __init__(self, path, title="", abs="", authers=[]):
         # 初始化函数，根据pdf路径初始化Paper对象
-        self.url = url  # 文章链接
         self.path = path  # pdf路径
         self.section_names = []  # 段落标题
         self.section_texts = {}  # 段落内容
@@ -54,72 +51,17 @@ class Paper:
         first_page_text = first_page_text.replace(abstract_text, "")
         return first_page_text
 
-    def get_image_path(self, image_path=""):
-        """
-        将PDF中的第一张图保存到image.png里面，存到本地目录，返回文件名称，供gitee读取
-        :param filename: 图片所在路径，"C:\\Users\\Administrator\\Desktop\\nwd.pdf"
-        :param image_path: 图片提取后的保存路径
-        :return:
-        """
-        # open file
-        max_size = 0
-        image_list = []
-        with fitz.Document(self.path) as my_pdf_file:
-            # 遍历所有页面
-            for page_number in range(1, len(my_pdf_file) + 1):
-                # 查看独立页面
-                page = my_pdf_file[page_number - 1]
-                # 查看当前页所有图片
-                images = page.get_images()
-                # 遍历当前页面所有图片
-                for image_number, image in enumerate(page.get_images(), start=1):
-                    # 访问图片xref
-                    xref_value = image[0]
-                    # 提取图片信息
-                    base_image = my_pdf_file.extract_image(xref_value)
-                    # 访问图片
-                    image_bytes = base_image["image"]
-                    # 获取图片扩展名
-                    ext = base_image["ext"]
-                    # 加载图片
-                    image = Image.open(io.BytesIO(image_bytes))
-                    image_size = image.size[0] * image.size[1]
-                    if image_size > max_size:
-                        max_size = image_size
-                    image_list.append(image)
-        for image in image_list:
-            image_size = image.size[0] * image.size[1]
-            if image_size == max_size:
-                image_name = f"image.{ext}"
-                im_path = os.path.join(image_path, image_name)
-                print("im_path:", im_path)
-
-                max_pix = 480
-                origin_min_pix = min(image.size[0], image.size[1])
-
-                if image.size[0] > image.size[1]:
-                    min_pix = int(image.size[1] * (max_pix / image.size[0]))
-                    newsize = (max_pix, min_pix)
-                else:
-                    min_pix = int(image.size[0] * (max_pix / image.size[1]))
-                    newsize = (min_pix, max_pix)
-                image = image.resize(newsize)
-
-                image.save(open(im_path, "wb"))
-                return im_path, ext
-        return None, None
-
-    # 定义一个函数，根据字体的大小，识别每个章节名称，并返回一个列表
+    # 定义函数，根据字体大小，识别各章节名称，并返回一列表
     def get_chapter_names(
         self,
     ):
-        # # 打开一个pdf文件
+        # # 打开pdf文件
         doc = fitz.open(self.path)  # pdf文档
         text_list = [page.get_text() for page in doc]
         all_text = ""
         for text in text_list:
             all_text += text
-        # # 创建一个空列表，用于存储章节名称
+        # # 创建一空列表，用于存储章节名称
         chapter_names = []
         for line in all_text.split("\n"):
             line_list = line.split(" ")
@@ -140,6 +82,7 @@ class Paper:
 
         return chapter_names
 
+    # 定义函数，根据最大字体，识别title
     def get_title(self):
         doc = self.pdf  # 打开pdf文件
         max_font_size = 0  # 初始化最大字体大小为0
@@ -200,10 +143,8 @@ class Paper:
         section_list = [
             "Abstract",
             "Introduction",
-            "Related Work",
             "Background",
             "Preliminary",
-            "Problem Formulation",
             "Theoretical model",
             "Mathematical model",
             "Numerical method",
@@ -211,17 +152,12 @@ class Paper:
             "Methods",
             "Methodology",
             "Method",
-            "Approach",
-            "Approaches",
             # exp
             "Materials and Methods",
-            "Experiment Settings",
             "Experiment",
             "Experimental Results",
-            "Evaluation",
             "Experiments",
             "Results",
-            "Findings",
             "Discussion",
             "Results and Discussion",
             "Conclusion",
@@ -318,7 +254,7 @@ class Paper:
 
 
 def main():
-    path = r"demo.pdf"
+    path = r"test.pdf"
     paper = Paper(path=path)
     paper.parse_pdf()
     for key, value in paper.section_text_dict.items():

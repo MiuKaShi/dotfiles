@@ -52,12 +52,10 @@ class Reader:
         return new_title
 
     def summary_with_chat(self, paper_list):
-        htmls = []
         for paper_index, paper in enumerate(paper_list):
-            # 第一步先用title，abs，和introduction进行总结。
+            # 第一步根据原文title，abs，和introduction部分进行总结。
             text = ""
             text += "Title:" + paper.title
-            text += "Url:" + paper.url
             text += "Abstrat:" + paper.abs
             text += "Paper_info:" + paper.section_text_dict["paper_info"]
             # intro
@@ -81,11 +79,7 @@ class Reader:
                         text=text, summary_prompt_token=summary_prompt_token
                     )
 
-            htmls.append("## Paper:" + str(paper_index + 1))
-            htmls.append("\n\n\n")
-            htmls.append(chat_summary_text)
-
-            # 第二步总结方法：
+            # 第二步结合第一步结果和原文方法段部分进行总结
             # TODO，由于有些文章的方法章节名是算法名，所以简单的通过关键词来筛选，很难获取，后面需要用其他的方案去优化。
             method_key = ""
             for parse_key in paper.section_text_dict.keys():
@@ -119,12 +113,10 @@ class Reader:
                         chat_method_text = self.chat_method(
                             text=text, method_prompt_token=method_prompt_token
                         )
-                htmls.append(chat_method_text)
             else:
                 chat_method_text = ""
-            htmls.append("\n" * 4)
 
-            # 第三步总结全文，并打分：
+            # 第三步结合第一步,第二步结果和原文结论部分进行总结，并给出评价
             conclusion_key = ""
             for parse_key in paper.section_text_dict.keys():
                 if "conclu" in parse_key.lower():
@@ -164,12 +156,6 @@ class Reader:
                     chat_conclusion_text = self.chat_conclusion(
                         text=text, conclusion_prompt_token=conclusion_prompt_token
                     )
-            htmls.append(chat_conclusion_text)
-            htmls.append("\n" * 4)
-
-            # file_name = os.path.join(export_path, date_str+'-'+self.validateTitle(paper.title)+".md")
-            # self.export_to_markdown("\n".join(htmls), file_name=file_name, mode=mode)
-            htmls = []
 
     @tenacity.retry(
         wait=tenacity.wait_exponential(multiplier=1, min=4, max=10),
@@ -208,9 +194,11 @@ class Reader:
                     - (2):Summarize the strengths and weaknesses of this article in three dimensions: innovation point, performance, and workload.                   
                     .......
                  Follow the format of the output later: 
-                 ## Conclusion \n\n
-                    - (1):xxx;\n                     
-                    - (2):Innovation point: xxx; Performance: xxx; Workload: xxx;\n                      
+                 ## 分析\n
+                    - (1) 重点: xxx;\n                     
+                    - (2) 创新点: xxx;\n 
+                    - (3) 评价: xxx;\n 
+                    - (4) 工作量: xxx;\n                      
                  
                  Be sure to use {} answers (proper nouns need to be marked in English), statements as concise and academic as possible, do not repeat the content of the previous <summary>, the value of the use of the original numbers, be sure to strictly follow the format, the corresponding content output to xxx, in accordance with \n line feed, ....... means fill in according to the actual requirements, if not, you can not write.                 
                  """.format(
@@ -226,7 +214,8 @@ class Reader:
         result = ""
         for choice in response.choices:
             result += choice.message.content
-        print("\n", result)
+        print(result)
+        print("")
         return result
 
     @tenacity.retry(
@@ -261,15 +250,15 @@ class Reader:
                 "role": "user",
                 "content": """                 
                  4. Describe in detail the methodological idea of this article. Be sure to use {} answers (proper nouns need to be marked in English). For example, its steps are.
-                    - (1):...
-                    - (2):...
-                    - (3):...
+                    - (1) ...
+                    - (2) ...
+                    - (3) ...
                     - .......
                  Follow the format of the output that follows: 
-                 ## Methods: \n\n
-                    - (1):xxx;\n 
-                    - (2):xxx;\n 
-                    - (3):xxx;\n  
+                 ## 方法\n
+                    - (1) xxx;\n 
+                    - (2) xxx;\n 
+                    - (3) xxx;\n  
                     ....... \n\n     
                  
                  Be sure to use {} answers (proper nouns need to be marked in English), statements as concise and academic as possible, do not repeat the content of the previous <summary>, the value of the use of the original numbers, be sure to strictly follow the format, the corresponding content output to xxx, in accordance with \n line feed, ....... means fill in according to the actual requirements, if not, you can not write.                 
@@ -285,7 +274,8 @@ class Reader:
         result = ""
         for choice in response.choices:
             result += choice.message.content
-        print("method_result:\n", result)
+        print(result)
+        print("")
         return result
 
     @tenacity.retry(
@@ -321,17 +311,17 @@ class Reader:
                 "content": """                 
                  1. Mark the title of the paper (with Chinese translation)
                  2. summarize according to the following four points.Be sure to use {} answers (proper nouns need to be marked in English)
-                    - (1):What is the research background of this article?
-                    - (2):What are the past methods? What are the problems with them? Is the approach well motivated?
-                    - (3):What is the research methodology proposed in this paper?
-                    - (4):On what task and what performance is achieved by the methods in this paper? Can the performance support their goals?
+                    - (1) What is the research background of this article?
+                    - (2) What are the past methods? What are the problems with them? Is the approach well motivated?
+                    - (3) What is the research methodology proposed in this paper?
+                    - (4) On what task and what performance is achieved by the methods in this paper? Can the performance support their goals?
                  Follow the format of the output that follows:                  
-                 # xxx\n\n
-                 ## Summary \n\n
-                    - (1):xxx;\n 
-                    - (2):xxx;\n 
-                    - (3):xxx;\n  
-                    - (4):xxx.\n\n     
+                 # xxx\n
+                 ## 总结\n
+                    - (1) xxx;\n 
+                    - (2) xxx;\n 
+                    - (3) xxx;\n  
+                    - (4) xxx.\n\n     
                  
                  Be sure to use {} answers (proper nouns need to be marked in English), statements as concise and academic as possible, do not have too much repetitive information, numerical values using the original numbers, be sure to strictly follow the format, the corresponding content output to xxx, in accordance with \n line feed.                 
                  """.format(
@@ -348,15 +338,8 @@ class Reader:
         for choice in response.choices:
             result += choice.message.content
         print(result)
+        print("")
         return result
-
-    def export_to_markdown(self, text, file_name, mode="w"):
-        # 使用markdown模块的convert方法，将文本转换为html格式
-        # html = markdown.markdown(text)
-        # 打开一个文件，以写入模式
-        with open(file_name, mode, encoding="utf-8") as f:
-            # 将html格式的内容写入文件
-            f.write(text)
 
     # 定义一个方法，打印出读者信息
     def show_info(self):
@@ -411,4 +394,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     main(args=args)
-    print("\n", "generated time:", datetime.datetime.now())
+    print("generated time:", datetime.datetime.now())
