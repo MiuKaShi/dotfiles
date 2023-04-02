@@ -155,10 +155,6 @@ alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded fr
 
 alias hs='history'
 
-#live Command
-alias tvcn='mpv --hwdec=auto --playlist=/home/miuka/.config/livetv/cctv.m3u --force-seekable=yes'
-alias tvjp='mpv --hwdec=auto --playlist=/home/miuka/.config/livetv/jp.m3u --force-seekable=yes'
-
 # Git Command
 alias g='git'
 alias gl='git clone'
