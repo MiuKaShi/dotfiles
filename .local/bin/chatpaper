@@ -14,8 +14,8 @@ output_file="$output_dir/$fname.md"
 if [ ! -e $output_file ]; then
     # env setting
     cd ~/.config/script/chatpaper || exit
-    source /etc/profile.d/conda.sh
-    conda activate jupyterlab-env
+    source ~/.config/mamba/mamba_env.sh
+    micromamba activate chatgpt_env
     notify-send -t 6000 "Chatpaper" "waiting for GPT summary"
     python chat_paper.py --pdf_path "$file" >"$output_file"
     # prettier --loglevel=silent --write "$output_file"

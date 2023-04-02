@@ -42,8 +42,12 @@ alias \
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 
-# Conda-install
-alias conda-install="conda install -c conda-forge"
+# mamba
+alias mamba="micromamba"
+alias mamba-create="source ~/.config/mamba/mamba_env.sh && micromamba create -n "$1" "${@:2}" -c conda-forge"
+alias mamba-chatgpt="source ~/.config/mamba/mamba_env.sh && micromamba activate chatgpt_env"
+alias mamba-spyder="source ~/.config/mamba/mamba_env.sh && micromamba activate spyder_env"
+alias mamba-jupyter="source ~/.config/mamba/mamba_env.sh && micromamba activate jupyterlab_env"
 
 # translate
 alias rl="rmall -e -L"

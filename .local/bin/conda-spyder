@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# shell env setting
-source /etc/profile.d/conda.sh
-# active spyder
-conda activate spyder-env
-spyder
