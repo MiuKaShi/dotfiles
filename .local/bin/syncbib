@@ -13,7 +13,7 @@ rm -rf .flist .blist .tlist .false .ignore.old
 create_bib() {
     echo "################Creating $bibfile...($COUNT/$ALL)#####################"
     curl -sS -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 104.237.11.64:8070/api/processReferences >"$bibfile"
-    bibtex-tidy --quiet --omit=date,day,number --curly --numeric --align=13 "$bibfile"
+    bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$bibfile"
 }
 
 check_bib() {
