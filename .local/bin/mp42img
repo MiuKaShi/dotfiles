@@ -1,0 +1,6 @@
+#!/bin/sh
+
+fps=$(printf "24\\n30\\n60" | dmenu -p "Video FPS choose :")
+type=$(printf "png\\njpg\\nbmp" | dmenu -p "Export image type :")
+
+ffmpeg -i $1 -vf "fps=$fps" thumb%04d.$type
