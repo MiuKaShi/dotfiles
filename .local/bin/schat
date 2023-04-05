@@ -4,7 +4,7 @@
 
 # 设置API
 URL="https://api.openai.com/v1/chat/completions"
-API_KEY=$OPENAI_API_KEY
+API_KEY="$(cat "${HOME}"/.api_keys/OPENAI_KEY)"
 ENGINE="gpt-3.5-turbo"
 
 [[ -z $API_KEY ]] && echo -e "Set your API_KEY" && exit 1

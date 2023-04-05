@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vim: set ft=sh:
-MATHPIX_ID="$(awk 'NR==2' < "${HOME}"/.api_keys/MATHPIX)"
-MATHPIX_KEY="$(awk 'NR==3' < "${HOME}"/.api_keys/MATHPIX)"
+MATHPIX_ID="$(awk 'NR==2' < "${HOME}"/.api_keys/MATHPIX_KEY)"
+MATHPIX_KEY="$(awk 'NR==3' < "${HOME}"/.api_keys/MATHPIX_KEY)"
 SCREENSHOT_PROG="maim -s"
 BASE64_PROG="base64 -w 0"
 image_file=/tmp/screenshot

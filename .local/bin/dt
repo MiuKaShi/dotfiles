@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPL_KEY)"
+
 deepl_api() {
     raw_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/translate' \
         -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN" \
