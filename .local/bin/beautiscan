@@ -1,0 +1,11 @@
+#!/bin/sh
+
+input=$(readlink -f "$1")
+name=$(basename "$input")
+fname="${name%.*}"
+
+mkdir tmp_img
+pdftoppm -jpeg -rx 300 -ry 300 $input tmp_img/output
+mogrify -normalize -fuzz 10% -fill white -opaque "#E8E8E8" tmp_img/output-*.jpg
+img2pdf tmp_img/output-*.jpg -o "$fname"_new.pdf
+rm -rf tmp_img
