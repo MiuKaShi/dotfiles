@@ -50,7 +50,7 @@ alias mamba-spyder="source ~/.config/mamba/mamba_env.sh && micromamba activate s
 alias mamba-jupyter="source ~/.config/mamba/mamba_env.sh && micromamba activate jupyterlab_env"
 
 # translate
-alias rl="rmall -e -L"
+alias dic="rmall -e -L"
 
 # Permissions aliases
 alias \
