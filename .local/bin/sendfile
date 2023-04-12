@@ -4,5 +4,5 @@ file=$(readlink -f "$1")
 dest=$(dirname "$file")
 server="$(printf "lab\\nnuc\\njp\\nus" | dmenu -i -p "Chose servers?")"
 
-ssh "$server" "mkdir -p $dest" && notify-send "🚚 File(s) send." "File(s) send to $server:$dest." 
+ssh "$server" "mkdir -p $dest" && notify-send "🚚 File(s) send." "File(s) send to $server:$dest."
 scp -r "$file" "$server:$dest"

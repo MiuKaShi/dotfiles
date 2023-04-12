@@ -2,19 +2,34 @@
 
 # Need https://github.com/straicat/lpic
 
-file=$(readlink -f "$2")
-lpicmain=$XDG_CONFIG_HOME/script/lpic/main.py
+# Set variables
+FILE=$(readlink -f "$2")
+LPIC_MAIN=$XDG_CONFIG_HOME/script/lpic/main.py
 
+# Define functions
+upload_web() {
+    python "$LPIC_MAIN" web && notify-send -t 3000 "picture" "Web manage"
+}
+
+delete_image() {
+    python "$LPIC_MAIN" del
+}
+
+upload_image() {
+    python "$LPIC_MAIN" put "$FILE" -y && notify-send -t 3000 "picture" "upload successfully"
+}
+
+upload_clipboard() {
+    xclip -selection clipboard -t image/png -o >/tmp/src.png
+    python "$LPIC_MAIN" put /tmp/src.png -y
+    notify-send -t 3000 "Picture" "Upload successfully"
+    rm -rf /tmp/src.png
+}
+
+# Main script
 case "$1" in
-	# Try to keep these cases in alphabetical order.
-	"-w") python "$lpicmain" web && notify-send -t 3000 "picture" "Web manage" ;;
-	"-d") python "$lpicmain" del ;;
-	"-p") python "$lpicmain" put "$file" -y && notify-send -t 3000 "picture" "upload successfully" ;;
-	"-c") xclip -selection clipboard -t image/png -o > /tmp/src.png ;
-	      python "$lpicmain" put /tmp/src.png -y ;
-	      notify-send -t 3000 "Picture" "Upload successfully" ;
-	      rm -rf /tmp/src.png ;;
+    "-w") upload_web ;;
+    "-d") delete_image ;;
+    "-p") upload_image ;;
+    "-c") upload_clipboard ;;
 esac
-
-
-

@@ -1,29 +1,36 @@
 #!/bin/sh
 
-bkdir="/home/miuka/Documents/bookmark"
-file=$(readlink -f "$1")
-name=$(basename "$file")
+# Set the bookmark directory
+BOOKMARK_DIR="/home/miuka/Documents/bookmark"
 
-bkadd() {
-    if [ -f "$bkdir/$name" ]; then
-        notify-send -t 2000 "already add"
-    else 
-        cp -r "$file" "$bkdir"
-        notify-send -t 2000 "add to bookmark"
+# Get the absolute path of the file to be bookmarked
+FILE=$(readlink -f "$1")
+
+# Get the name of the file
+NAME=$(basename "$FILE")
+
+# Add a file to the bookmark directory
+add_to_bookmark() {
+    if [ -f "$BOOKMARK_DIR/$NAME" ]; then
+        notify-send -t 2000 "File already bookmarked"
+    else
+        cp -r "$FILE" "$BOOKMARK_DIR"
+        notify-send -t 2000 "File added to bookmarks"
     fi
 }
 
-bkrm() {
-    if [ -f "$bkdir/$name" ]; then
-        trash "$bkdir/$name"
-        notify-send -t 2000 "remove from bookmark"
-    else 
-        notify-send -t 2000 "not add"
+# Remove a file from the bookmark directory
+remove_from_bookmark() {
+    if [ -f "$BOOKMARK_DIR/$NAME" ]; then
+        trash "$BOOKMARK_DIR/$NAME"
+        notify-send -t 2000 "File removed from bookmarks"
+    else
+        notify-send -t 2000 "File not bookmarked"
     fi
 }
 
+# Prompt the user to add or remove a bookmark using dmenu
 case "$(printf "🔖 add\n🚮 remove" | dmenu -i -p '📑 Bookmark: ')" in
-	'🔖 add') bkadd ;;
-	'🚮 remove') bkrm ;;
+    '🔖 add') add_to_bookmark ;;
+    '🚮 remove') remove_from_bookmark ;;
 esac
-

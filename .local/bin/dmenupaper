@@ -1,19 +1,41 @@
 #!/bin/sh
 
-# open pdf based on citekey
+# Open PDF based on citekey
 
-if [ -z "$1" ]; then
-    citekey=$(grep '@' <"$BIB" | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open papers with citekey:")
-else
-    citekey="$1"
-fi
+# Get citekey from user input or command line argument
+get_citekey() {
+    if [ -z "$1" ]; then
+        citekey=$(grep '@' <"$BIB" | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open papers with citekey:")
+    else
+        citekey="$1"
+    fi
+}
 
-pathlist=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}' | sed 's/;/\n/g')
+# Get list of PDF paths associated with the given citekey
+get_pdf_paths() {
+    bibtool -r biblatex -X "$1" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}' | sed 's/;/\n/g'
+}
 
-if [ "$(echo "$pathlist" | wc -l)" -ge 2 ]; then
-    pdfselected=$(echo "$pathlist" | dmenu -i -p "Select items:")
-else
-    pdfselected="$pathlist"
-fi
+# Select a PDF from a list of paths
+select_pdf() {
+    if [ "$(echo "$1" | wc -l)" -ge 2 ]; then
+        pdf_selected=$(echo "$1" | dmenu -i -p "Select items:")
+    else
+        pdf_selected="$1"
+    fi
+}
 
-xdg-open "$pdfselected" &
+# Open the selected PDF in the default viewer
+open_pdf() {
+    xdg-open "$1" &
+}
+
+# Main function to open a PDF based on a citekey
+main() {
+    get_citekey "$1"
+    pdf_paths=$(get_pdf_paths "$citekey")
+    select_pdf "$pdf_paths"
+    open_pdf "$pdf_selected"
+}
+
+main "$@"

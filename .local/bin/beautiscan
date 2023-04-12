@@ -1,11 +1,34 @@
 #!/bin/sh
 
-input=$(readlink -f "$1")
-name=$(basename "$input")
-fname="${name%.*}"
+function beautify_scaned_pdf() {
+    # Get the absolute path of the input file.
+    local input_file=$(readlink -f "$1")
 
-mkdir tmp_img
-pdftoppm -jpeg -rx 300 -ry 300 $input tmp_img/output
-mogrify -normalize -fuzz 10% -fill white -opaque "#E8E8E8" tmp_img/output-*.jpg
-img2pdf tmp_img/output-*.jpg -o "$fname"_new.pdf
-rm -rf tmp_img
+    # Extract the base name and extension of the input file.
+    local base_name=$(basename "$input_file")
+
+    # Remove the extension from the base name to get the output file name.
+    local output_file="${base_name%.*}_new.pdf"
+
+    # Create temporary directory for image files.
+    mkdir tmp_img
+
+    # Convert each page in pdf into jpeg and save it as an image in temp folder
+    pdftoppm -jpeg -rx 300 -ry 300 "$input_file" tmp_img/output
+
+    # Clean up each individual image
+    mogrify \
+        -normalize \
+        -fuzz 10% \
+        -fill white \
+        -opaque "#E8E8E8" \
+        tmp_img/output-*.jpg
+
+    # Combine all cleaned up images into a new pdf document with same filename as original pdf document, but with _new.pdf appended
+    img2pdf tmp_img/output-*.jpg --output "$output_file"
+
+    # Delete temporary directory containing image files
+    rm -rf tmp_img
+}
+
+beautify_scaned_pdf $1

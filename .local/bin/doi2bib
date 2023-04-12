@@ -1,9 +1,19 @@
 #!/bin/sh
 
-formater=/home/miuka/.config/script/upcitekey.py
+# Set the path to the upcitekey.py script
+UPCITEKEY_SCRIPT=/home/miuka/.config/script/upcitekey.py
 
+# Change to the /tmp directory or exit if it fails
 cd /tmp/ || exit
+
+# Download the BibTeX file for the given DOI and save it to tmp.bib
 curl -sLH "Accept: application/x-bibtex;q=1" http://dx.doi.org/"$1" >tmp.bib
-python "$formater" -k tmp.bib
+
+# Format the citation keys in tmp.bib using the upcitekey.py script
+python "$UPCITEKEY_SCRIPT" -k tmp.bib
+
+# Tidy up the BibTeX file using bibtex-tidy
 bibtex-tidy --quiet --modify --omit=date,day,number,publisher --curly --numeric --align=13 tmp.bib
+
+# Print the contents of tmp.bib to the console and copy it to the clipboard
 cat tmp.bib && xclip -sel clip <tmp.bib

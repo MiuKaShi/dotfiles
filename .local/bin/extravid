@@ -1,8 +1,28 @@
 #!/bin/sh
+
+# Get video list from bt command and filter by bilibili.com/video or youtube.com/watch
 # need brotab
 
-vidlist=$(bt list | awk '{$1=""; print $0}' | grep -E "bilibili.com/video|youtube.com/watch")
-title=$(echo "$vidlist" |  sed 's/https:.*//' | dmenu -i -p "Watch video (ESC to cancel)" -l 20)
-url=$(echo "$vidlist" | grep "$title" | awk '{print $NF}')
+get_video_list() {
+    bt list | awk '{$1=""; print $0}' | grep -E "bilibili.com/video|youtube.com/watch"
+}
 
-[ -n "$url" ] && linkhandler "$url" || exit 0
+# Prompt user to select a video from the list
+select_video() {
+    echo "$1" | sed 's/https:.*//' | dmenu -i -p "Watch video (ESC to cancel)" -l 20
+}
+
+# Get the URL of the selected video
+get_video_url() {
+    echo "$1" | grep "$2" | awk '{print $NF}'
+}
+
+# Handle the selected video URL
+handle_video_url() {
+    [ -n "$1" ] && linkhandler "$1" || exit 0
+}
+
+video_list=$(get_video_list)
+selected_video=$(select_video "$video_list")
+selected_video_url=$(get_video_url "$video_list" "$selected_video")
+handle_video_url "$selected_video_url"

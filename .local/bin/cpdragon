@@ -1,8 +1,18 @@
 #!/bin/sh
+
+# This script copies files from a drag-and-drop operation to the current directory.
+
+# Get the list of files from the drag-and-drop operation
 files=$(dragon-drag-and-drop -t -x)
 
+# Loop through each file and copy it to the current directory
 for file in $files; do
+    # Extract the path of the file and remove the "file://" prefix
     path=${file#file://}
+
+    # Get the name of the file without the path
     name=$(basename "$path")
+
+    # Copy the file to the current directory
     cp "$path" "$(pwd)/$name"
 done

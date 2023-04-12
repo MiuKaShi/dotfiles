@@ -1,23 +1,37 @@
 #!/bin/sh
 
-#Need to set environment variable $BIB first !
+# This script opens a PDF file or a webpage based on a citation key.
+# It requires an environment variable $BIB to be set.
 
+# Get the absolute path of the file without the extension.
 file=$(readlink -f "$1")
 base="${file%.*}"
 
+# Check if the corresponding bib file exists.
 filebib=$base.bib
-[ ! -f "$filebib" ] && notify-send -t 3000 "BIB" "Create bib file first!" && exit 1
+if [ ! -f "$filebib" ]; then
+    notify-send -t 3000 "BIB" "Create bib file first!"
+    exit 1
+fi
 
-citelist=$(grep '@' "$filebib" | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "View Caitaion:")
-[ -z "$citelist" ] && exit 1
+# Show a list of citations to choose from.
+citelist=$(grep '@' "$filebib" | grep -oP '(?<={).*' | tr -d ',' | grep -n '^' | dmenu -i -p "View Citation:")
+if [ -z "$citelist" ]; then
+    exit 1
+fi
+
+# Extract the citation key from the selected item.
 citekey=$(echo "$citelist" | grep -oP '(?<=:).*')
 
+# Get the path to the PDF file from the $BIB file.
 pdfpath=$(bibtool -r biblatex -X "$citekey$" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}')
 
+# Get information about the citation from the bib file.
 bibinfo=$(bibtool -r biblatex -X "$citekey$" "$filebib" | xargs | tr -d '{}' | tr , '\n')
 doi=$(echo "$bibinfo" | grep DOI | grep -oP '(?<==[[:space:]]).*')
 title=$(echo "$bibinfo" | grep Title | grep -oP '(?<==[[:space:]]).*')
 
+# Open the PDF file, or the webpage based on DOI, or Google search based on title.
 if [ -n "$pdfpath" ]; then
     setsid -f xdg-open "$pdfpath" >/dev/null 2>&1
 elif [ -n "$doi" ]; then

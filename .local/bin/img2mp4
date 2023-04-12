@@ -1,11 +1,35 @@
 #!/bin/sh
 
-# -crf : image quality (lower is better )
-# -pix_fmt: mp4 type, not video resolution
-#
-fps=$(printf "24\\n25\\n60" | dmenu -p "FPS choose :")
-type=$(printf "jpg\\npng\\nbmp" | dmenu -p "File type choose :")
-sta=$(echo | dmenu -p "Start number :")
-end=$(echo | dmenu -p "End number :")
+# Converts a sequence of images to an MP4 video using FFmpeg.
 
-ffmpeg -r $fps -f image2 -start_number $sta -i %d.$type -vframes $end -vcodec libx264 -crf 25 -pix_fmt yuv420p vid-"$sta"_"$end".mp4
+# Parameters:
+# $1: Frames per second (FPS)
+# $2: Image file type (e.g. jpg, png, bmp)
+# $3: Start number
+# $4: End number
+
+convert_images_to_video() {
+    local fps="$1"
+    local type="$2"
+    local start="$3"
+    local end="$4"
+
+    ffmpeg -r "$fps" \
+        -f image2 \
+        -start_number "$start" \
+        -i "%d.$type" \
+        -vframes "$end" \
+        -vcodec libx264 \
+        -crf 25 \
+        -pix_fmt yuv420p \
+        "vid-$start-$end.mp4"
+}
+
+# Prompt the user for input.
+fps=$(printf "24\n25\n60" | dmenu -p "Choose FPS:")
+type=$(printf "jpg\npng\nbmp" | dmenu -p "Choose file type:")
+start=$(echo | dmenu -p "Enter start number:")
+end=$(echo | dmenu -p "Enter end number:")
+
+# Convert the images to a video.
+convert_images_to_video "$fps" "$type" "$start" "$end"

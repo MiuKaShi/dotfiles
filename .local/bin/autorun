@@ -1,9 +1,9 @@
-#! /bin/bash
-# 命令调用脚本
+#!/bin/bash
 
-autoconky() {
-    modeldp=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
-    case $modeldp in
+# Function for starting conky based on monitor model
+start_conky() {
+    local monitor_model=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
+    case $monitor_model in
         *"ENC"*)
             conky -c ~/.config/conky/lab/.conkyrc >>/dev/null 2>&1 &
             notify-send -t 1000 "Conky" "Conky started!"
@@ -12,12 +12,10 @@ autoconky() {
             conky -c ~/.config/conky/home/.conkyrc >>/dev/null 2>&1 &
             notify-send -t 1000 "Conky" "Conky started!"
             ;;
-            # *)
-            #     conky -c ~/.config/conky/other/.conkyrc >> /dev/null 2>&1 &
-            #     ;;
     esac
 }
 
+# Switch statement for calling different commands
 case $1 in
     picom)
         if pgrep -x picom >/dev/null; then
@@ -65,10 +63,10 @@ case $1 in
         if pgrep -x conky >/dev/null; then
             killall conky
         else
-            autoconky
+            start_conky
         fi
         ;;
-    vmwave)
+    vmware)
         sudo modprobe -a vmw_vmci vmmon vmxnet3
         vmware >>/dev/null 2>&1 &
         ;;

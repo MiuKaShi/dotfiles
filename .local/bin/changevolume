@@ -1,31 +1,47 @@
 #!/bin/bash
 
+# Sends a notification with the current volume level
 function send_notification() {
-    volume=$(pamixer --get-volume)
+    local volume=$(pamixer --get-volume)
     dunstify -a "changevolume" -u low -r "9993" -h int:value:"$volume" -i "volume-$1" "Volume: ${volume}%" -t 2000
 }
 
+# Increases the volume by 5%
+function increase_volume() {
+    pamixer -u
+    pamixer -i 5 --allow-boost
+    kill -44 "$(pidof dwmblocks)"
+    send_notification "up"
+}
+
+# Decreases the volume by 5%
+function decrease_volume() {
+    pamixer -u
+    pamixer -d 5 --allow-boost
+    kill -44 "$(pidof dwmblocks)"
+    send_notification "down"
+}
+
+# Toggles mute on/off
+function toggle_mute() {
+    pamixer -t
+    kill -44 "$(pidof dwmblocks)"
+    if "$(pamixer --get-mute)"; then
+        dunstify -i volume-mute -a "changevolume" -t 2000 -r 9993 -u low "Muted"
+    else
+        send_notification "up"
+    fi
+}
+
+# Main script
 case $1 in
     up)
-        # Set the volume on (if it was muted)
-        pamixer -u
-        pamixer -i 5 --allow-boost
-        kill -44 "$(pidof dwmblocks)"
-        send_notification "$1"
+        increase_volume
         ;;
     down)
-        pamixer -u
-        pamixer -d 5 --allow-boost
-        kill -44 "$(pidof dwmblocks)"
-        send_notification "$1"
+        decrease_volume
         ;;
     mute)
-        pamixer -t
-        kill -44 "$(pidof dwmblocks)"
-        if "$(pamixer --get-mute)"; then
-            dunstify -i volume-mute -a "changevolume" -t 2000 -r 9993 -u low "Muted"
-        else
-            send_notification up
-        fi
+        toggle_mute
         ;;
 esac

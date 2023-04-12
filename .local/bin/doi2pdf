@@ -17,19 +17,16 @@ else
 fi
 
 sci_hub=$(wget "$link" -qO -)
-pdfpath=$(echo "$sci_hub" | grep -Eom1 '//[^ ]+\.pdf')
-pdfurl="https:$pdfpath"
+pdfurl="https:$(echo "$sci_hub" | grep -Eom1 '//[^ ]+\.pdf')"
 pdfname=$(basename "$pdfurl")
 
 echo "$pdfurl"
 wget --no-check-certificate --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" --referer "$host" "$pdfurl" --quiet
 
-if [ -f "$pdfname" ]; 
-then
+if [ -f "$pdfname" ]; then
     echo "Downloaded $pdfname"
 else
     echo "Download failed"
 fi
-
 
 exit 0

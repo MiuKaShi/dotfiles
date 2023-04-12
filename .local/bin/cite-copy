@@ -1,25 +1,46 @@
 #!/bin/bash
 
-file=$(readlink -f "$1")
-name=$(basename "$file")
-citekey="${name%.*}"
+# This script copies a file, its citekey, or its bib to the clipboard.
+
+# Get the absolute path of the file and its name without extension
+file_path=$(readlink -f "$1")
+file_name=$(basename "$file_path")
+citekey="${file_name%.*}"
+
+# Get the second argument passed to the script
 opt=$2
 
+# Copy the citekey to the clipboard
+function copy_citekey {
+    echo "@$citekey" | xsel -b
+    notify-send "Citekey" "Copy citekey to clipboard"
+}
+
+# Copy the bib to the clipboard
+function copy_bib {
+    if [[ $(grep "$citekey" "$BIB") ]]; then
+        bibtool -r biblatex -X "$citekey$" "$BIB" | tr -d '{}' | xsel -b
+    else
+        pdf2bib "$file_path" | awk '(NR>1)' | xsel -b
+    fi
+    notify-send "Bibtex" "Copy bib to clipboard"
+}
+
+# Copy the file to the clipboard
+function copy_file {
+    xclip-copyfile "$file_path"
+    notify-send "FileCopy" "Copy file to clipboard"
+}
+
+# Check which option was passed and call the corresponding function
 case "$opt" in
     key)
-        echo "@$citekey" | xsel -b
-        notify-send "Citekey" "Copy citekey to clipboard"
+        copy_citekey
         ;;
     bib)
-        if [[ $(grep "$citekey" "$BIB") ]]; then
-            bibtool -r biblatex -X "$citekey$" "$BIB" | tr -d '{}' | xsel -b
-        else
-            pdf2bib "$file" | awk '(NR>1)' | xsel -b
-        fi
-        notify-send "Bibtex" "Copy bib to clipboard"
+        copy_bib
         ;;
     *)
-        xclip-copyfile "$file"
-        notify-send "FileCopy" "Copy file to clipboard"
+        copy_file
         ;;
 esac

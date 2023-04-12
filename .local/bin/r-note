@@ -1,26 +1,26 @@
 #! /bin/bash
 
-paper_notes=~/notes/paper_notes
-day_notes=~/notes/day_notes
+PAPER_NOTES=~/notes/paper_notes
+DAY_NOTES=~/notes/day_notes
 
-title=${1%.*}
+TITLE=${1%.*}
 
-create-md() {
-    id=$(date '+%Y%m%d%H%M%S')
-    file=$day_notes/$id.md
-    cat >"$file" <<EOF
+create_md() {
+    local ID=$(date '+%Y%m%d%H%M%S')
+    local FILE=$DAY_NOTES/$ID.md
+    cat >"$FILE" <<EOF
 ---
-id: "$id"
+id: "$ID"
 aliases:
-  - "@$title"
+  - "@$TITLE"
 tags: []
 ---
 
-# @$title
+# @$TITLE
 EOF
 }
 
-file=$(grep "\- \"@$title"\" $paper_notes/*.md | cut -d':' -f1)
-[[ -z "$file" ]] && file=$(grep "\- \"@$title"\" $day_notes/*.md | cut -d':' -f1)
-[[ -z "$file" ]] && create-md
-st -e nvim "$file"
+FILE=$(grep "\- \"@$TITLE"\" $PAPER_NOTES/*.md | cut -d':' -f1)
+[[ -z "$FILE" ]] && FILE=$(grep "\- \"@$TITLE"\" $DAY_NOTES/*.md | cut -d':' -f1)
+[[ -z "$FILE" ]] && create_md
+st -e nvim "$FILE"

@@ -1,4 +1,9 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
-st -e lf $file
+# This script opens a file in the terminal using lf file manager.
+
+# Get the absolute path of the file.
+file_path=$(readlink -f "$1")
+
+# Open the file in the terminal using lf.
+st -e lf "$file_path"

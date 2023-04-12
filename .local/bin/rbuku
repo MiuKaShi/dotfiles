@@ -1,35 +1,42 @@
 #!/bin/sh
-NHEADER="🔖 rbuku"
-FMT=40 # 10: URL, 20: URL TAGS, 30: TITLE, 40: URL TITLE TAGS, 50: TITLE TAGS
-all_list=$(buku --nostdin --np -p --format="$FMT")
 
-rbkadd() {
+# Set variables
+BOOKMARK_HEADER="🔖 rbuku"
+BOOKMARK_FORMAT=40 # 10: URL, 20: URL TAGS, 30: TITLE, 40: URL TITLE TAGS, 50: TITLE TAGS
+
+# Get all bookmarks
+all_bookmarks=$(buku --nostdin --np -p --format="$BOOKMARK_FORMAT")
+
+# Add bookmark function
+add_bookmark() {
     url=$1
-    tags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg "select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',')
+    tags=$(buku --np -t | rofi -dmenu -l 7 -i -p "$BOOKMARK_HEADER" -mesg "Select tags for $url (shift+enter to multi-select)" -multi-select | sed "s/[0-9]*\.//; s/([0-9]*)//; s/^[[:space:]]*//; s/[[:space:]]*$//;" | tr '\n' ',')
     if [ -z "$tags" ]; then
-      exit 0
+        exit 0
     fi
-    notify-send "$NHEADER" "selected tags: $tags"
-    title=$(rofi -dmenu -i -l 0 -p "$NHEADER" -mesg "add custom title for $url (empty for default)")
+    notify-send "$BOOKMARK_HEADER" "Selected tags: $tags"
+    title=$(rofi -dmenu -i -l 0 -p "$BOOKMARK_HEADER" -mesg "Add custom title for $url (empty for default)")
     if [ -z "$title" ]; then
-      buku --np --tacit --add "$url" --tag "$tags"
+        buku --np --tacit --add "$url" --tag "$tags"
     else
-      buku --np --tacit --add "$url" --tag "$tags" --title "$title" --immutable 1
+        buku --np --tacit --add "$url" --tag "$tags" --title "$title" --immutable 1
     fi
-    notify-send "$NHEADER" "added $url bookmark: $tags"
+    notify-send "$BOOKMARK_HEADER" "Added $url bookmark: $tags"
 }
 
-rbkselect() {
-    sel=$(echo "$all_list" | cut -f2- | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg 'select bookmarks')
-    if [ -n "$sel" ]; then
-        echo "$all_list" | grep "$sel" | awk -F '\t' "{print \$1}"
+# Select bookmark function
+select_bookmark() {
+    selection=$(echo "$all_bookmarks" | cut -f2- | rofi -dmenu -l 7 -i -p "$BOOKMARK_HEADER" -mesg 'Select bookmarks')
+    if [ -n "$selection" ]; then
+        echo "$all_bookmarks" | grep "$selection" | awk -F '\t' "{print \$1}"
     fi
 }
 
-rbkopen() {
-    sel=$(echo "$all_list" | cut -f2- | rofi -dmenu -l 7 -i -p "$NHEADER" -mesg 'open bookmarks (shift+enter to multi-open)' -multi-select)
-    if [ -n "$sel" ]; then
-        url_list=$(echo "$all_list" | grep "$sel" | awk -F '\t' "{print \$1}")
+# Open bookmark function
+open_bookmark() {
+    selection=$(echo "$all_bookmarks" | cut -f2- | rofi -dmenu -l 7 -i -p "$BOOKMARK_HEADER" -mesg 'Open bookmarks (shift+enter to multi-open)' -multi-select)
+    if [ -n "$selection" ]; then
+        url_list=$(echo "$all_bookmarks" | grep "$selection" | awk -F '\t' "{print \$1}")
         IFS=$'\n' # make newlines the only separator
         for url in $url_list; do
             linkhandler "$url"
@@ -37,19 +44,21 @@ rbkopen() {
     fi
 }
 
-rbkremove() {
-    RFMT='d' # Integer row of selected items
-    sel_idx_list=$(echo "$all_list" | cut -f2- | rofi -dmenu -format "$RFMT" -l 7 -i -p "$NHEADER" -mesg 'remove bookmarks (shift+enter to multi-select)' -no-custom -multi-select | tac)
-    for i in $sel_idx_list; do
-        sel=$(buku --np -p --format=10 | head -n "$i" | tail -n 1)
+# Remove bookmark function
+remove_bookmark() {
+    ROW_FORMAT='d' # Integer row of selected items
+    selection_index_list=$(echo "$all_bookmarks" | cut -f2- | rofi -dmenu -format "$ROW_FORMAT" -l 7 -i -p "$BOOKMARK_HEADER" -mesg 'Remove bookmarks (shift+enter to multi-select)' -no-custom -multi-select | tac)
+    for i in $selection_index_list; do
+        selection=$(buku --np -p --format=10 | head -n "$i" | tail -n 1)
         buku --np --tacit -d "$i"
-        notify-send "$NHEADER" "removed $sel"
+        notify-send "$BOOKMARK_HEADER" "Removed $selection"
     done
 }
 
+# Main function
 case "$1" in
-    -a) rbkadd "$2" ;;
-    -r) rbkremove ;;
-    -s) rbkselect ;;
-    *) rbkopen ;;
+    -a) add_bookmark "$2" ;;
+    -r) remove_bookmark ;;
+    -s) select_bookmark ;;
+    *) open_bookmark ;;
 esac

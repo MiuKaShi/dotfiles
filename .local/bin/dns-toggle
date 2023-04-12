@@ -1,18 +1,25 @@
 #!/bin/sh
 
-DNS1="fallbackDNS = 203.76.245.200::853::DoT::2d3579.dns.nextdns.io; 45.90.30.43::443::DoH::https://dns.nextdns.io/2d3579" # my nextdns
-DNS2="fallbackDNS = 127.0.0.1::5380::UDP" # my smartdns
+# Set DNS servers
+NEXTDNS="fallbackDNS = 203.76.245.200::853::DoT::2d3579.dns.nextdns.io; 45.90.30.43::443::DoH::https://dns.nextdns.io/2d3579"
+SMARTDNS="fallbackDNS = 127.0.0.1::5380::UDP"
+
+# Path to DNS filter configuration file
 CONF="/home/miuka/.runit/sv/personalDNSfilter/dnsfilter.conf"
 
+# Remove smartdns log file
 rm -rf /home/miuka/.runit/sv/smartdns/log/smartdns.log
 
-if grep -q "$DNS2" $CONF
-then 
-  sed -i "/^fallbackDNS =.*/ c$DNS1" $CONF
-  notify-send "Dns Manager" "set to NextDNS"
+# Check if smartdns is currently set as fallback DNS server
+if grep -q "$SMARTDNS" $CONF; then
+    # Replace smartdns with nextdns in the configuration file
+    sed -i "/^fallbackDNS =.*/ c$NEXTDNS" $CONF
+    notify-send "Dns Manager" "set to NextDNS"
 else
-  sed -i "/^fallbackDNS =.*/ c$DNS2" $CONF
-  notify-send "Dns Manager" "set to SmartDNS"
+    # Replace nextdns with smartdns in the configuration file
+    sed -i "/^fallbackDNS =.*/ c$SMARTDNS" $CONF
+    notify-send "Dns Manager" "set to SmartDNS"
 fi
 
+# Restart personalDNSfilter service
 vsv-user restart personalDNSfilter >/dev/null

@@ -1,10 +1,20 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
-name=$(basename "$file")
-fname="${name%.*}"
-dir=${file%/*}
+# Convert a .caj file to a .pdf file
+# Usage: ./caj2pdf.sh <file.caj>
 
-cd "$dir" || exit 1
+# Get the full path of the input file
+input_file=$(readlink -f "$1")
 
-caj2pdf convert "$name" -o "$fname.pdf"
+# Extract the filename and extension from the input file
+filename=$(basename "$input_file")
+filename_without_extension="${filename%.*}"
+
+# Get the directory of the input file
+directory=$(dirname "$input_file")
+
+# Change to the directory of the input file
+cd "$directory" || exit 1
+
+# Convert the input file to a pdf using caj2pdf
+caj2pdf convert "$filename" -o "$filename_without_extension.pdf"

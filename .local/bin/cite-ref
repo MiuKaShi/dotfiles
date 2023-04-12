@@ -1,24 +1,30 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
-name=$(basename "$file")
-fname="${name%.*}"
-dir=${file%/*}
-formater=/home/miuka/.config/script/upcitekey.py
+# Define variables with more meaningful names
+FILE=$(readlink -f "$1")
+NAME=$(basename "$FILE")
+FILENAME="${NAME%.*}"
+DIRECTORY=${FILE%/*}
+FORMATER=/home/miuka/.config/script/upcitekey.py
 
-cd "$dir" || exit 1
+# Change directory and exit if it fails
+cd "$DIRECTORY" || exit 1
 
-getbib() {
-    curl -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences >"$fname.bib"
-    bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
-    # anystyle -f bib find --no-layout $file > $fname.bib
+# Use consistent indentation and add spaces around operators
+get_bib() {
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$FILE" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences >"$FILENAME.bib"
+    bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$FILENAME.bib"
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 }
 
-if [ ! -f "$fname.bib" ]; then
-    getbib
+# Call get_bib function if the bib file does not exist
+if [ ! -f "$FILENAME.bib" ]; then
+    get_bib
 fi
 
-python "$formater" -k "$fname.bib"
-bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$fname.bib"
-nvim "$fname.bib"
+# Format the bib file using the upcitekey.py script and bibtex-tidy
+python "$FORMATER" -k "$FILENAME.bib"
+bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$FILENAME.bib"
+
+# Open the bib file in nvim
+nvim "$FILENAME.bib"

@@ -4,6 +4,7 @@
 url=$(dragon-drag-and-drop -t -x)
 
 if [ -n "$url" ]; then
+  # Prompt the user for a file name
   printf "File Name: "
   name=""
   while [ -z "$name" ] || [ -e "$name" ]

@@ -6,6 +6,7 @@ m3u_url_file="$HOME/.config/iptv/m3u_url"
 tmp_playlist="/tmp/iptvplaylist"
 player_pid_file="/tmp/iptvplayerpid"
 
+# Display usage information
 usage() {
   cat <<EOF
 usage: iptv [M3U_URL]
@@ -74,6 +75,7 @@ selected_channel_name=$(echo "$selected_channel_line" | sed 's/\(.*\) url:.*/\1/
 
 printf "Playing %s from %s" "$selected_channel_url" "$selected_channel_name"
 
+# Kill previous player process if it exists and start new player process
 if [ -f "$player_pid_file" ]; then
   player_pid=$(cat "$player_pid_file")
 

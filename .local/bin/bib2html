@@ -1,17 +1,25 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
-name=$(basename "$file")
-fname="${name%.*}"
-dir=${file%/*}
+# Get the absolute path of the input file
+input_file=$(readlink -f "$1")
 
-cd "$dir" || exit 1
+# Extract the filename and directory from the input file path
+filename=$(basename "$input_file")
+filename_without_extension="${filename%.*}"
+directory=$(dirname "$input_file")
 
-if [ ! -f "$fname.html" ]; then
-    notify-send -t 3000 "ViewBib" "Bib Html created"
+# Change to the directory of the input file
+cd "$directory" || exit 1
+
+# Check if the HTML file already exists
+if [ ! -f "$filename_without_extension.html" ]; then
+    notify-send -t 3000 "ViewBib" "Bib HTML created"
 else
-    notify-send -t 3000 "ViewBib" "Bib Html updated"
+    notify-send -t 3000 "ViewBib" "Bib HTML updated"
 fi
 
-bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css "$file"
-xdg-open "$fname.html"
+# Convert the BibTeX file to HTML using bibtex2html
+bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css "$input_file"
+
+# Open the resulting HTML file in the default web browser
+xdg-open "$filename_without_extension.html"
