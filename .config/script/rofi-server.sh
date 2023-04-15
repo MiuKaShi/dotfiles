@@ -22,8 +22,8 @@ server_menu_item[7]="translator"
 server_cmd[7]='autorun translator'
 server_menu_item[8]="conky"
 server_cmd[8]='autorun conky'
-server_menu_item[9]="vmwave"
-server_cmd[9]='autorun vmwave'
+server_menu_item[9]="vmware"
+server_cmd[9]='autorun vmware'
 
 server_menu() {
     echo -e "\0prompt\x1fserver"
