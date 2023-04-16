@@ -1,30 +1,41 @@
 #!/bin/bash
 
+# Set the DEEPL_TOKEN variable to the value of the DEEPL_KEY file in the .api_keys directory in the user's home directory
 DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPL_KEY)"
 
+# Translate the given text using the DeepL API and return the result
 deepl_api() {
+    # Send a POST request to the DeepL API with the given text and target language (Chinese)
     raw_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/translate' \
         -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN" \
         -d "text=$text" \
         -d 'target_lang=ZH')
-    result=$(echo $raw_data | jq '.translations[].text' | tr -d '"')
+    
+    # Extract the translated text from the response using jq and remove any quotes
+    result=$(echo "$raw_data" | jq -r '.translations[].text')
+    
+    # If the result is empty, notify the user that the translation failed and exit with an error code
     [[ -z "$result" ]] && notify-send Deepl "Translation failed." && exit 1
 }
 
+# Check the command line arguments and perform the appropriate action
 case "$1" in
     '-x')
+        # Get the currently selected text and translate it using rofi to display the result
         text="$(xsel)"
         [[ -z "$text" ]] && exit 0
         deepl_api
         rofi -e "$result"
         ;;
     '-s')
+        # Get usage information from the DeepL API and display it to the user
         usage_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/usage' -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN")
-        count_info=$(echo "$usage_data" | jq '.character_count' | tr -d '"')
-        limit_info=$(echo "$usage_data" | jq '.character_limit' | tr -d '"')
-        echo usage:"$count_info"/"$limit_info"
+        count_info=$(echo "$usage_data" | jq -r '.character_count')
+        limit_info=$(echo "$usage_data" | jq -r '.character_limit')
+        echo "usage: $count_info/$limit_info"
         ;;
     *)
+        # Prompt the user for text to translate using rofi and display the result
         text=$(rofi -dmenu -F -mesg 'Enter text to translate')
         [[ -z "$text" ]] && exit 0
         deepl_api
