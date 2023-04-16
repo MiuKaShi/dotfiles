@@ -6,6 +6,7 @@
 
 case $BLOCK_BUTTON in
 	1) "$TERMINAL" -e nmtui; pkill -RTMIN+4 dwmblocks ;;
+	2) wifi-toggle;;
 	3) notify-send "🌎 Internet module" "\- Click to connect
 ❌: no network
 📶: wifi connection with quality
