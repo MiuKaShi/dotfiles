@@ -1,0 +1,42 @@
+#!/bin/sh
+
+device=$(printf "🌐 LAN\n📶 WIFI" | dmenu -i -p "choose device:")
+action=$(printf "✅ Enable\n❌ Disable" | dmenu -i -p "toggle:")
+
+[ -z "$device" ] && exit 0
+[ -z "$action" ] && exit 0
+
+lan_toggle() {
+    case $action in
+        '✅ Enable')
+            nmcli connection up "Wired connection 1"
+            notify-send -t 1000 "Network" "lan enabled!"
+            ;;
+        '❌ Disable')
+            nmcli connection down "Wired connection 1"
+            notify-send -t 1000 "Network" "lan disabled!"
+            ;;
+    esac
+}
+
+wifi_toggle() {
+    case $action in
+        '✅ Enable')
+            nmcli radio wifi on
+            notify-send -t 1000 "Network" "wifi enabled!"
+            ;;
+        '❌ Disable')
+            nmcli radio wifi off
+            notify-send -t 1000 "Network" "wifi disabled!"
+            ;;
+    esac
+}
+
+case "$device" in
+    '🌐 LAN')
+        lan_toggle
+        ;;
+    '📶 WIFI')
+        wifi_toggle
+        ;;
+esac

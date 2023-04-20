@@ -6,11 +6,12 @@
 
 case $BLOCK_BUTTON in
 	1) "$TERMINAL" -e nmtui; pkill -RTMIN+4 dwmblocks ;;
-	2) wifi-toggle;;
+	2) net-toggle;;
 	3) notify-send "🌎 Internet module" "\- Click to connect
 ❌: no network
 📶: wifi connection with quality
 🌎: ethernet working
+- Middle click toggle network
 " ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
@@ -18,9 +19,9 @@ esac
 if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
 	neticon="$(awk '/^\s*w/ {print "📶", int($3 * 100 / 70) "%"}' /proc/net/wireless)"
 elif grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null ; then
-	neticon="🌎"
+	neticon="🌎 LAN"
 else
-	neticon="❌"
+	neticon="❌ OFF"
 fi
 
 printf "%s\n" "$neticon" 
