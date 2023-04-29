@@ -147,3 +147,30 @@ cleansys() {
     system.tmp \
     system.trash
 }
+
+mamba-env() {
+    local m_env
+	source ~/.config/mamba/mamba_env.sh
+    m_env=$(micromamba env list | tail -n +3 | fzf | awk '{ print $1 }')
+	micromamba deactivate && micromamba activate "$m_env"
+}
+
+mamba-remove() {
+    local m_env
+	source ~/.config/mamba/mamba_env.sh
+    m_env=$(micromamba env list | tail -n +3 | fzf | awk '{ print $1 }')
+	micromamba deactivate && micromamba remove -n "$m_env" --all && micromamba env remove -n "$m_env"
+}
+
+mamba-create() {
+	source ~/.config/mamba/mamba_env.sh && micromamba create -n "$1"
+	micromamba activate "$1"
+}
+
+mamba-gpu() {
+	CUDNN_PATH=$(python -c "import sys;print(sys.path[2])")/site-packages/nvidia/cudnn
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/TensorRT-7.2.3.4/lib
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDNN_PATH/lib
+}
+

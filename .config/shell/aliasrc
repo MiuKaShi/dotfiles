@@ -37,6 +37,7 @@ alias \
     cite="cite --style elsevier-vancouver" \
     bibup="betterbib up -i" \
     cman='man -M /usr/share/man/zh_CN' \
+    fiji='fiji --system' \
     powerstat="powerstat -d 5 2"
 
 # Download
@@ -44,13 +45,6 @@ alias wget="wget --continue --progress=bar --timestamping"
 
 # mamba
 alias mamba="micromamba"
-alias mamba-create="source ~/.config/mamba/mamba_env.sh && micromamba create -n "$1" "${@:2}" -c conda-forge"
-alias mamba-chatgpt="source ~/.config/mamba/mamba_env.sh && micromamba activate chatgpt_env"
-alias mamba-spyder="source ~/.config/mamba/mamba_env.sh && micromamba activate spyder_env"
-alias mamba-jupyter="source ~/.config/mamba/mamba_env.sh && micromamba activate jupyterlab_env"
-
-# translate
-alias dic="rmall -e -L"
 
 # Permissions aliases
 alias \
@@ -88,6 +82,7 @@ alias \
 # Language.
 alias \
     mbt="mat cmd" \
+    dic="rmall -e -L" \
     ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
     jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
 
@@ -109,7 +104,7 @@ alias \
 
 # install list
 alias yli="yay -Qq | fzf --exact --multi --preview 'yay -Qi {1}'"
-alias yin="yay -Slq | fzf --exact --multi --preview 'yay -Si {1}'"
+alias yin="bkt --ttl=1d --stale=12h -- yay -Slq | fzf --exact --multi --preview 'yay -Si {1}'"
 
 alias -g G='| grep -i' # for use ls -l G do
 alias cdls="cd && ls"
