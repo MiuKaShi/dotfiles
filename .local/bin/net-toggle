@@ -1,9 +1,8 @@
 #!/bin/sh
 
 device=$(printf "🌐 LAN\n📶 WIFI" | dmenu -i -p "choose device:")
-action=$(printf "✅ Enable\n❌ Disable" | dmenu -i -p "toggle:")
-
 [ -z "$device" ] && exit 0
+action=$(printf "✅ Enable\n❌ Disable" | dmenu -i -p "toggle:")
 [ -z "$action" ] && exit 0
 
 lan_toggle() {

@@ -13,36 +13,37 @@ else
     SMODE=ac
 fi
 
-switch_notify(){
-speed="$(echo "${max}" | awk '{ OFMT="%.2fGhz"; print $1 / 1000000 }')"
-TITLE="Switch to ${mode} Performance"
-MSG="Current max frequency: ${speed}"
-notify-send -i device_cpu -t 5000 \
+switch_notify() {
+    speed="$(echo "${max}" | awk '{ OFMT="%.2fGhz"; print $1 / 1000000 }')"
+    TITLE="Switch to ${mode} Performance"
+    MSG="Current max frequency: ${speed}"
+    notify-send -i device_cpu -t 5000 \
         "${TITLE}" \
         "${MSG}"
 }
 
-mode=$(printf "🚌Low\n🚗Medium\n🚈High\n🚒Fire" | dmenu -i -p "Performance switch:")
+mode=$1
+[ -z "$mode" ] && mode=$(printf "🚌Low\n🚗Medium\n🚈High\n🚒Fire" | dmenu -i -p "Performance switch:")
+
 case "$mode" in
-    '🚌Low')
+    *Low)
         max=1200000
-        sudo -n tlp start -- CPU_BOOST_ON_BAT=0 CPU_BOOST_ON_AC=0 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=0 CPU_BOOST_ON_AC=0 CPU_SCALING_MIN_FREQ_ON_BAT="$min" CPU_SCALING_MAX_FREQ_ON_BAT="$max" CPU_SCALING_MIN_FREQ_ON_AC="$min" CPU_SCALING_MAX_FREQ_ON_AC="$max"
         switch_notify
         ;;
-    '🚗Medium')
-        max=2600000 
+    *Medium)
+        max=2600000
         sudo -n tlp $SMODE
         switch_notify
         ;;
-    '🚈High')
-        max=3400000 
-        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
+    *High)
+        max=3400000
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT="$min" CPU_SCALING_MAX_FREQ_ON_BAT="$max" CPU_SCALING_MIN_FREQ_ON_AC="$min" CPU_SCALING_MAX_FREQ_ON_AC="$max"
         switch_notify
         ;;
-    '🚒Fire')
-        max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.'| sed 's/.$//')
-        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT=$min CPU_SCALING_MAX_FREQ_ON_BAT=$max CPU_SCALING_MIN_FREQ_ON_AC=$min CPU_SCALING_MAX_FREQ_ON_AC=$max
+    *Fire)
+        max=$(lscpu | grep "MHz" | grep max | awk '{ print $4 }' | tr -d '.' | sed 's/.$//')
+        sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT="$min" CPU_SCALING_MAX_FREQ_ON_BAT="$max" CPU_SCALING_MIN_FREQ_ON_AC="$min" CPU_SCALING_MAX_FREQ_ON_AC="$max"
         switch_notify
         ;;
 esac
-
