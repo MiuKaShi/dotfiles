@@ -31,8 +31,8 @@ c.fileselect.multiple_files.command = ["st", "-e", "lfrun", "-selection-path={}"
 c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
 c.confirm_quit = ['downloads']
-# pacman -S pdfjs-legacy 
-c.content.pdfjs = True
+# pacman -S pdfjs-legacy
+c.content.pdfjs = False
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.editor.command = ["st", "-e", "nvim", "{}"]
@@ -120,15 +120,15 @@ c.url.start_pages = 'https://google.com/'
 c.tabs.last_close = "startpage"
 c.url.searchengines = {
         'DEFAULT': 'https://google.com/search?q={}',
-        'wiby': 'https://wiby.me/?q={}',
+        'mp': 'https://www.google.com/maps?q={}',
+        'yt': 'https://youtube.com/results?search_query={}',
         'gs': 'https://scholar.google.com/scholar?q={}',
-        'gg': 'https://google.com/search?q={}',
+        'wiby': 'https://wiby.me/?q={}',
         'bb': 'https://search.bilibili.com/all?keyword={}',
-        'ar': 'https://wiki.archlinux.org/?search={}',
-        'gh': 'https://github.com/search?q={}',
+        'aw': 'https://wiki.archlinux.org/?search={}',
+        'wk': 'http://en.wikipedia.org/w/index.php?title=Special:Search&search={}',
         'bd': 'https://baidu.com/s?wd={}',
         'zh': 'https://zhihu.com/search?q={}',
-        'yt': 'https://youtube.com/results?search_query={}',
 }
 
 # bookmarks
@@ -147,6 +147,15 @@ config.bind('el', "spawn librewolf {url}")
 config.bind('eL', "hint links spawn librewolf {hint-url}")
 config.bind('E', 'spawn --userscript url-handler')
 config.bind('I', 'hint images download')
+config.bind('cr', 'config-source')
+
+# Download management
+config.bind('aa', 'download')
+config.bind('au', 'download-open;;download-remove')
+config.bind('ac', 'download-clear')
+config.bind('ad', 'download-delete')
+config.bind('as', 'download-cancel')
+config.bind('ar', 'download-retry')
 
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
