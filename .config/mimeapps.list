@@ -1,5 +1,5 @@
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-JWGHV1.desktop;userapp-Telegram Desktop-8YTFW1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-JWGHV1.desktop;userapp-Telegram Desktop-8YTFW1.desktop;org.telegram.desktop.desktop;
 
 [Default Applications]
 application/gzip=file.desktop;
@@ -35,5 +35,5 @@ x-scheme-handler/reference=reference-link.desktop;
 x-scheme-handler/remmina=org.remmina.Remmina.desktop;
 x-scheme-handler/spice=org.remmina.Remmina.desktop;
 x-scheme-handler/terminal=Alacritty.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-8YTFW1.desktop;
+x-scheme-handler/tg=org.telegram.desktop.desktop
 x-scheme-handler/vnc=org.remmina.Remmina.desktop;
