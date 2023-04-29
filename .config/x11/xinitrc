@@ -1,18 +1,23 @@
 #!/bin/sh
 
-# merge in defaults
+# merge user xresources
 
 # userresources=$HOME/.config/x11/xresources
 # if [ -f "$userresources" ]; then
 #     xrdb -merge "$userresources"
 # fi
 
-# start some nice programs
+# start user login session message bus
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+dbus-daemon --session --fork --address="$DBUS_SESSION_BUS_ADDRESS"
+fi
 
+# Source xprofile
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
-	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
 else
-	. "$HOME/.xprofile"
+    . "$HOME/.xprofile"
 fi
 
 eval $(ssh-agent)
@@ -28,8 +33,9 @@ case $session in
         export GDK_BACKEND=x11
         exec gnome-session
         ;;
-    xfce) 
-        exec startxfce4;;
+    xfce)
+        exec startxfce4
+        ;;
     cinnamon) exec gnome-session-cinnamon ;;
     *) exec $1 ;;
 esac
