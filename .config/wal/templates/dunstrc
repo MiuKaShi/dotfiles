@@ -4,13 +4,14 @@
     font = Monospace 14
     line_height = 3
     # geometry
-    offset = 5x23
+    offset = 15x30
     width = (300, 600)
     origin = top-right
     frame_width = 2
     separator_height = 2
     separator_color = frame
     icon_position = left
+    corner_radius = 0
     # other
     monitor = 0
     follow = keyboard
@@ -25,41 +26,44 @@
     hide_duplicate_count = true
     alignment = left
     vertical_alignment = center
-    word_wrap = yes
     ellipsize = middle
-    ignore_newline = no
     stack_duplicates = true
-    show_indicators = yes
-    max_icon_size = 32
-    icon_path = /usr/share/icons/Gruvbox-Material-Dark/16x16/status/:/usr/share/icons/Gruvbox-Material-Dark/16x16/devices/:/usr/share/icons/Gruvbox-Material-Dark/16x16/apps/
-    always_run_script = true
-    startup_notification = false
-    verbosity = mesg
-    ignore_dbusclose = false
-    force_xinerama = false
+    icon_path = /home/miuka/.local/share/icons/notifications_icons/
     format = "<span><b>%s %p</b></span>\n%b"
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
-    dmenu = "/usr/local/bin/dmenu -p Actions: -l 10"
+    title = Dunst
+    class = Dunst
+    mouse_left_click = do_action, close_current
+    mouse_middle_click =  do_action, close_current
+    mouse_right_click = do_action, close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[play_sound]
+    summary = "*"
+    script = /home/miuka/.local/bin/dunst-alert
+
 
 [urgency_low]
     background = "{color0}" # color0
     foreground = "{color8}" # color8
     frame_color = "#FBF1C7"
     timeout = 8
+    default_icon = /home/miuka/.local/share/icons/notifications_icons/default-low.png
 
 [urgency_normal]
     background = "{color0}" # color0
     foreground = "{color15}" # color15
     frame_color = "#D79921"
     timeout = 8
+    default_icon = /home/miuka/.local/share/icons/notifications_icons/default.png
 
 [urgency_critical]
     background = "{color0}" # color0
     foreground = "{color15}" # color15
     frame_color = "#CC241D"
     timeout = 16
+    default_icon = /home/miuka/.local/share/icons/notifications_icons/default-critical.png
 
 [transient_no_history]
     match_transient = yes
