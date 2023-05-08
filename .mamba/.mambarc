@@ -1,0 +1,9 @@
+## 添加以下内容,并保存
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+show_banner: false
+always_yes: false
+show_channel_urls: true
+auto_activate_base: false
