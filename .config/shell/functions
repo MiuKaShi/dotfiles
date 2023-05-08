@@ -173,4 +173,3 @@ mamba-gpu() {
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/TensorRT-7.2.3.4/lib
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDNN_PATH/lib
 }
-
