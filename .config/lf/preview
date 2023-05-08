@@ -88,4 +88,4 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
         bat --theme=gruvbox-dark --paging=never --tabs=2 --wrap=auto --style=full --terminal-width "$(($4 - 2))" -f "$1"
         ;;
 esac
-exit 1
+exit 0

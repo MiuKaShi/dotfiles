@@ -16,7 +16,7 @@ set errorfmt  "\033[31m%s\033[0m"
 # set info size
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/preview'
-set autoquit on
+set autoquit true
 # set smartcase
 # set incsearch
 # set dircounts
