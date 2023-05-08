@@ -14,6 +14,7 @@ case $1 in
         $matlab -nodesktop -nosplash -r "clc;disp(['Current folder: ' pwd])"
         ;;
     *)
+        pgrep -f MathWorksServiceHost && pkill -f MathWorksServiceHost
         $matlab -desktop >/dev/null 2>&1 &
         ;;
 esac
