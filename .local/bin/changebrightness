@@ -4,15 +4,8 @@
 function send_notification() {
     # Get the current brightness level
     brightness=$(printf "%.0f\n" "$(brillo -G)")
-
     # Send a notification with the current brightness level
-    dunstify -a "changebrightness" \
-        -u low \
-        -r 9991 \
-        -h int:value:"$brightness" \
-        -i "brightness-$1" \
-        "Brightness: $brightness%" \
-        -t 2000
+    notify-send -u low -r 993 -h int:value:"$brightness" -i "brightness-$1" "Brightness: ${brightness}%" -t 2000
 }
 
 # Adjusts the screen brightness based on the input parameter
@@ -20,14 +13,12 @@ case $1 in
     up)
         # Increase the brightness by 5%
         sudo brillo -s intel_backlight -A 5
-
         # Send a notification with the new brightness level
         send_notification "$1"
         ;;
     down)
         # Decrease the brightness by 5%
         sudo brillo -s intel_backlight -U 5
-
         # Send a notification with the new brightness level
         send_notification "$1"
         ;;

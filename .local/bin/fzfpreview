@@ -9,18 +9,16 @@ declare -r -x PREVIEW_ID="preview"
 function is_option_key [[ "${@}" =~ ^(\-.*|\+.*) ]]
 function is_key_value [[ "${@}" == *=* ]]
 
-function map_options {
+map_options() {
     local -n options="${1}"
     local -n options_map="${2}"
 
-    for ((i=0; i < ${#options[@]}; i++)); do
+    for ((i = 0; i < ${#options[@]}; i++)); do
         local key="${options[$i]}" next_key="${options[$((i + 1))]:---}"
         local value=true
-        is_option_key "${key}" || \
-            continue
+        is_option_key "${key}" || continue
         if is_key_value "${key}"; then
-            <<<"${key}" \
-                IFS='=' read key value
+            IFS='=' read <<<"${key}" key value
         elif ! is_option_key "${next_key}"; then
             value="${next_key}"
         fi
@@ -28,37 +26,31 @@ function map_options {
     done
 }
 
-function parse_options {
+parse_options() {
     declare -g -a script_options=("${@}")
     declare -g -A mapped_options
     map_options script_options mapped_options
     declare -g -r -x PREVIEW_POSITION="${mapped_options[--preview-window]%%:[^:]*}"
 }
 
-function start_ueberzug {
+start_ueberzug() {
     mkfifo "${UEBERZUG_FIFO}"
-    <"${UEBERZUG_FIFO}" \
-        ueberzug layer --parser bash --silent &
+    ueberzug <"${UEBERZUG_FIFO}" layer --parser bash --silent &
     # prevent EOF
-    3>"${UEBERZUG_FIFO}" \
-        exec
+    exec 3>"${UEBERZUG_FIFO}"
 }
 
-function finalise {
-    3>&- \
-        exec
-    &>/dev/null \
-        rm "${UEBERZUG_FIFO}"
-    &>/dev/null \
-        kill $(jobs -p)
+finalise() {
+    exec 3>&-
+    rm &>/dev/null "${UEBERZUG_FIFO}"
+    kill &>/dev/null $(jobs -p)
 }
 
-function calculate_position {
-    < <(</dev/tty stty size) \
-        read TERMINAL_LINES TERMINAL_COLUMNS
+calculate_position() {
+    read < <(stty </dev/tty size) TERMINAL_LINES TERMINAL_COLUMNS
 
     case "${PREVIEW_POSITION:-${DEFAULT_PREVIEW_POSITION}}" in
-        left|up|top)
+        left | up | top)
             X=1
             Y=1
             ;;
@@ -66,14 +58,14 @@ function calculate_position {
             X=$((TERMINAL_COLUMNS - COLUMNS - 2))
             Y=1
             ;;
-        down|bottom)
+        down | bottom)
             X=1
             Y=$((TERMINAL_LINES - LINES - 1))
             ;;
     esac
 }
 
-function draw_preview {
+draw_preview() {
 		hash_file() {
 			printf '%s/.cache/fzf/%s' "$HOME" \
 				"$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- \
@@ -99,13 +91,12 @@ function draw_preview {
 		calculate_position
 
 		case "$(file -Lb --mime-type -- "${@}")" in
-	        text/html) 
+	    text/html)
 				clear_preview
-	            lynx -display_charset=utf-8 -dump "${@}" ;;
-			text/* | */xml | application/json) 
+	      lynx -display_charset=utf-8 -dump "${@}" ;;
+			text/* | */xml | application/json)
 				clear_preview
-				bat --color=always ${@} 
-				;;
+				bat --color=always ${@} ;;
 			image/*) draw "${@}";;
 			video/*)
 				cache="$(hash_file "${@}").jpg"
@@ -113,9 +104,9 @@ function draw_preview {
 				ffmpegthumbnailer -i "${@}" -o "$cache" -s 0
 				draw "$cache"
 				;;
-	        audio/* | application/octet-stream) 
+	    audio/* | application/octet-stream)
 				clear_preview
-	            mediainfo "${@}" || exit 1 ;;
+	      mediainfo "${@}" || exit 1 ;;
 		esac
 
 		case "${@}" in
@@ -131,12 +122,7 @@ function draw_preview {
 			*.pdf)
 				cache="$(hash_file "${@}")"
 				cache "$cache.jpg"
-				pdftoppm -f 1 -l 1 \
-					-scale-to-x "$default_x" \
-					-scale-to-y -1 \
-					-singlefile \
-					-jpeg \
-					-- "${@}" "$cache"
+				pdftoppm -f 1 -l 1 -scale-to-x "$default_x" -scale-to-y -1 -singlefile -jpeg -- "${@}" "$cache"
 				draw "$cache.jpg"
 				;;
 			*.docx|*.odt|*.epub) pandoc -s -t plain -- "${@}" ;;
@@ -150,9 +136,8 @@ function draw_preview {
 
 }
 
-function print_on_winch {
-    </dev/tty \
-        exec perl -e '
+print_on_winch() {
+    exec </dev/tty perl -e '
             require "sys/ioctl.ph";
             while (1) {
                 local $SIG{WINCH} = sub {
@@ -160,7 +145,7 @@ function print_on_winch {
                 };
                 sleep;
             }' \
-            "${@}" &
+        "${@}" &
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

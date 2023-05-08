@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function beautify_scaned_pdf() {
+beautify_scaned_pdf() {
     # Get the absolute path of the input file.
     local input_file=$(readlink -f "$1")
 

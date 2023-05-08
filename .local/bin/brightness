@@ -21,13 +21,13 @@ brightness=$(cat ~/.cache/brightness)
 
 # Send notification to user
 send_notification() {
-    dunstify -a "changebrightness" -u low -r 9991 -h int:value:"$number_brightness" -i "number_brightness-$1" "Brightness: $number_brightness%" -t 2000
+    notify-send -u low -r 993 -h int:value:"$brightness" -i "brightness-$1" "Brightness: ${brightness}%" -t 2000
 }
 
 # Modify this function as needed to handle setting your monitor brightness
 set_brightness() {
     while read -r line; do
-        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 10 "$number_brightness" >/dev/null 2>&1
+        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 10 "$brightness" >/dev/null 2>&1
     done <<<"$id"
 }
 
@@ -41,40 +41,39 @@ set_temperature() {
 # Handle command line arguments
 case "$1" in
     up)
-        number_brightness=$(expr "$brightness" + 10)
-        if [ "$number_brightness" -gt 100 ]; then
-            number_brightness=100
+        brightness=$(expr "$brightness" + 10)
+        if [ "$brightness" -gt 100 ]; then
+            brightness=100
         fi
-        echo $number_brightness >~/.cache/brightness
-        send_notification "$number_brightness"
-        set_brightness "$number_brightness"
+        echo $brightness >~/.cache/brightness
+        send_notification "$brightness"
+        set_brightness "$brightness"
         ;;
     down)
-        number_brightness=$(expr "$brightness" - 10)
-        if [ "$number_brightness" -lt 0 ]; then
-            number_brightness=0
+        brightness=$(expr "$brightness" - 10)
+        if [ "$brightness" -lt 0 ]; then
+            brightness=0
         fi
-        echo $number_brightness >~/.cache/brightness
-        send_notification "$number_brightness"
-        set_brightness "$number_brightness"
+        echo $brightness >~/.cache/brightness
+        send_notification "$brightness"
+        set_brightness "$brightness"
         ;;
     dark)
-        number_brightness=0
+        brightness=0
         number_temperature=0x04
-        set_brightness "$number_brightness"
+        set_brightness "$brightness"
         set_temperature "$number_temperature"
         ;;
     light)
-        number_brightness=100
+        brightness=100
         number_temperature=0x06
-        set_brightness "$number_brightness"
+        set_brightness "$brightness"
         set_temperature "$number_temperature"
         ;;
     day)
-        number_brightness=30
+        brightness=30
         number_temperature=0x05
-        set_brightness "$number_brightness"
+        set_brightness "$brightness"
         set_temperature "$number_temperature"
         ;;
 esac
-
