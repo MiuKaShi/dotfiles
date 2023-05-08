@@ -6,18 +6,18 @@ msg() {
     local cmd="$1"
     shift
     local msg="$*"
-    if [ -z "$QUTE_FIFO" ] ; then
+    if [ -z "$QUTE_FIFO" ]; then
         echo "$cmd: $msg" >&2
     else
-        echo "message-$cmd '${msg//\'/\\\'}'" >> "$QUTE_FIFO"
+        echo "message-$cmd '${msg//\'/\\\'}'" >>"$QUTE_FIFO"
     fi
 }
 
 # Warning: spaces in single flags are not supported
-IFS=" " read -r -a video_command <<< linkhandler
+IFS=" " read -r -a video_command <<<linkhandler
 
 js() {
-cat <<EOF
+    cat <<EOF
 
     function descendantOfTagName(child, ancestorTagName) {
         // tells whether child has some (proper) ancestor
@@ -101,7 +101,7 @@ EOF
 printjs() {
     js | sed 's,//.*$,,' | tr '\n' ' '
 }
-echo "jseval -q $(printjs)" >> "$QUTE_FIFO"
+echo "jseval -q $(printjs)" >>"$QUTE_FIFO"
 
 msg info "Opening $QUTE_URL with mpv"
 "${video_command[@]}" "$@" "$QUTE_URL"
