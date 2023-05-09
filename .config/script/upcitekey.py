@@ -9,31 +9,40 @@ from collections import OrderedDict
 
 
 def splitNames(name_str):
-    """
-    Split author field into a list of "Name, Surname".
-
-    :param name_str: the record.
-    :type name_str: str
-    :returns: list -- list of author names
-
-    ..Note::More sensible version of bibtexparser Author function
-    which doesn't take record as a argument.
-
-    """
-
-    ret = bibtexparser.customization.getnames(
-        [i.strip() for i in name_str.lower().replace("\n", " ").split(" and ")]
-    )
+    name_str = name_str.lower().replace(" and ", ", ")
+    ret = name_str.split(", ")
     return ret
+
+
+def remove_special_chars(s):
+    special_chars = [
+        "\\",
+        "'",
+        "<i>",
+        "</i>",
+        " textasciidieresis",
+        "<",
+        ">",
+        "{",
+        "}",
+        "(",
+        ")",
+    ]
+    for char in special_chars:
+        s = s.replace(char, "")
+    return s
 
 
 def fixKey(ent, verbose=False):
     try:
-        names = bibtexparser.customization.splitname(splitNames(ent["author"])[0])
+        cleaned_author = remove_special_chars(ent["author"])
+        print(cleaned_author)
+        names = splitNames(cleaned_author)[0].split(" ")[0]
+        cleaned_title = remove_special_chars(ent["title"])
         title = (
-            ent["title"].split()[0][:1].lower() + ent["title"].split()[-1][:1].lower()
+            cleaned_title.split()[0][:1].lower() + cleaned_title.split()[-1][:1].lower()
         )
-        key = "{}{}{}".format(names["last"][0], ent["year"][2:4], title)
+        key = "{}{}{}".format(names, ent["year"][2:4], title)
     except KeyError:
         if verbose:
             sys.stderr.write("WARN: Could not find author field for entry!")
