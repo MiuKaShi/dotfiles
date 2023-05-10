@@ -67,8 +67,6 @@ case $1 in
         fi
         ;;
     vmware)
-        sudo vsv start vmware-usbarbitrator >>/dev/null 2>&1 &
-        sudo vsv start vmware-networks >>/dev/null 2>&1 &
         sudo modprobe -a vmw_vmci vmmon vmxnet3
         vmware >>/dev/null 2>&1 &
         ;;

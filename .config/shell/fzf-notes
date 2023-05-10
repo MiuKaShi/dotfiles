@@ -1,10 +1,11 @@
-# Copyright (c) 2022 Elijah Danko
+#!/bin/zsh
 
 FZF_NOTES_DIR="/home/miuka/coding/code_snippets"
-FZF_COLLECTION_BIN="fzfnotes"
+FZF_PREVIEW_BIN="fzf-notes"
 FZF_NOTES_PROMPT="Notes> "
 FZF_PREVIEW_LINES="12"
-
+FZF_NOTES_PREVIEW_THRESHOLD="160"
+FZF_NOTES_PREVIEW_WINDOW="nohidden|hidden,down"
 command -v fzf >/dev/null 2>&1 || return
 [ -z "${FZF_NOTES_RG_COMMAND-}" ] && FZF_NOTES_RG_COMMAND="rg \
     --no-column \
@@ -25,17 +26,26 @@ function fzf_notes_redraw_prompt {
 }
 zle -N fzf_notes_redraw_prompt
 
+function fzf_notes_preview {
+    states=("${(s[|])FZF_NOTES_PREVIEW_WINDOW}")
+    [ "${#states[@]}" -eq 1 ] && echo "${FZF_NOTES_PREVIEW_WINDOW}" && return
+    [ "${#states[@]}" -gt 2 ] && echo "${FZF_NOTES_PREVIEW_WINDOW}" && return
+    [ $(tput cols) -lt "${FZF_NOTES_PREVIEW_THRESHOLD}" ] && echo "${states[2]}" && return
+    echo "${states[1]}"
+}
+
 function fzf_notes {
     local lines=$(eval ${FZF_NOTES_RG_COMMAND} ${FZF_NOTES_DIR} | \
-        ${FZF_COLLECTION_BIN} -ns ${FZF_NOTES_DIR} | fzf \
+        ${FZF_PREVIEW_BIN} -ns ${FZF_NOTES_DIR} | fzf \
         --prompt "${FZF_NOTES_PROMPT}" \
+		--exact \
         --print-query \
         --ansi \
         --delimiter=":" \
         --multi \
-        --exact \
         --query="$*" \
-        --preview="${FZF_COLLECTION_BIN} -np ${FZF_NOTES_DIR} {1} {2} ${FZF_PREVIEW_LINES}" \
+        --preview="${FZF_PREVIEW_BIN} -np ${FZF_NOTES_DIR} {1} {2} ${FZF_PREVIEW_LINES}" \
+        --preview-window=$(fzf_notes_preview) \
     )
     if [[ -z "$lines" ]]; then
         zle && zle fzf_notes_redraw_prompt
@@ -43,8 +53,17 @@ function fzf_notes {
     fi
 
     local key="$(head -n2 <<< "$lines" | tail -n1)"
-    fzf_notes_jump "$(tail -n1 <<< "${lines}")"
+    if [[ "$key" == "$new_note_key" ]]; then
+        fzf_notes_new_entry "$(head -n1 <<< "${lines}")"
+    else
+        fzf_notes_jump "$(tail -n1 <<< "${lines}")"
+    fi
     zle && zle fzf_notes_redraw_prompt || true
+}
+
+function fzf_notes_new_entry {
+    mkdir -p $(dirname ${FZF_NOTES_DIR}/$1)
+    $EDITOR ${FZF_NOTES_DIR}/$1
 }
 
 function fzf_notes_jump {
