@@ -12,7 +12,7 @@ rm -rf .flist .blist .tlist .false .ignore.old
 
 create_bib() {
     echo "################Creating $bibfile...($COUNT/$ALL)#####################"
-    curl -sS -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 104.237.11.64:8070/api/processReferences >"$bibfile"
+    curl -sS -v -H "Accept: application/x-bibtex" --form input=@"$file" --form consolidateCitations=1 https://kermitt2-grobid.hf.space/api/processReferences >"$bibfile"
     bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$bibfile"
 }
 

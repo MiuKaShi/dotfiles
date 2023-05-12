@@ -14,7 +14,7 @@ cd "$directory" || exit 1
 # Check if a bibtex file already exists for the input file
 if [ ! -f "$file_name_without_extension.bib" ]; then
     # If not, create one using an API and save it in the same directory as the input file
-    curl -v -H "Accept: application/x-bibtex" --form input=@"$input_file" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences >"$file_name_without_extension.bib"
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$input_file" --form consolidateCitations=1 https://kermitt2-grobid.hf.space/api/processReferences >"$file_name_without_extension.bib"
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 fi
 

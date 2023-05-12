@@ -12,7 +12,7 @@ cd "$DIRECTORY" || exit 1
 
 # Use consistent indentation and add spaces around operators
 get_bib() {
-    curl -v -H "Accept: application/x-bibtex" --form input=@"$FILE" --form consolidateCitations=1 https://bib.miukashi.xyz/api/processReferences >"$FILENAME.bib"
+    curl -v -H "Accept: application/x-bibtex" --form input=@"$FILE" --form consolidateCitations=1 https://kermitt2-grobid.hf.space/api/processReferences >"$FILENAME.bib"
     bibtex-tidy --quiet --modify --omit=date,day,number --curly --numeric --align=13 "$FILENAME.bib"
     notify-send -t 3000 "Bibtex" "Bibtex file created"
 }
