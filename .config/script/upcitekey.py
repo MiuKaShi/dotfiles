@@ -36,7 +36,6 @@ def remove_special_chars(s):
 def fixKey(ent, verbose=False):
     try:
         cleaned_author = remove_special_chars(ent["author"])
-        print(cleaned_author)
         names = splitNames(cleaned_author)[0].split(" ")[0]
         cleaned_title = remove_special_chars(ent["title"])
         title = (
