@@ -25,9 +25,9 @@ c.zoom.default = "175%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"
-c.fileselect.folder.command = ["st", "-e", "lfrun", "-last-dir-path={}"]
-c.fileselect.single_file.command = ["st", "-e", "lfrun", "-selection-path={}"]
-c.fileselect.multiple_files.command = ["st", "-e", "lfrun", "-selection-path={}"]
+c.fileselect.folder.command = ["st", "-e", "lfub", "-last-dir-path={}"]
+c.fileselect.single_file.command = ["st", "-e", "lfub", "-selection-path={}"]
+c.fileselect.multiple_files.command = ["st", "-e", "lfub", "-selection-path={}"]
 c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
 c.confirm_quit = ['downloads']
