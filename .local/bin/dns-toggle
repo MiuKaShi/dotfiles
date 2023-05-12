@@ -13,11 +13,11 @@ rm -rf /home/miuka/.runit/sv/smartdns/log/smartdns.log
 # Check if smartdns is currently set as fallback DNS server
 if grep -q "$SMARTDNS" $CONF; then
     # Replace smartdns with nextdns in the configuration file
-    sed -i "/^fallbackDNS =.*/ c$NEXTDNS" $CONF
+    sed -i "s#^fallbackDNS =.*#$NEXTDNS#" $CONF
     notify-send "Dns Manager" "set to NextDNS"
 else
     # Replace nextdns with smartdns in the configuration file
-    sed -i "/^fallbackDNS =.*/ c$SMARTDNS" $CONF
+    sed -i "s#^fallbackDNS =.*#$SMARTDNS#" $CONF
     notify-send "Dns Manager" "set to SmartDNS"
 fi
 
