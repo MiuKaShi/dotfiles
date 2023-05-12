@@ -51,7 +51,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
     *.wav | *.mp3 | *.flac | *.m4a | *.wma | *.ape | *.ac3 | *.og[agx] | *.spx | *.opus | *.as[fx] | *.mka)
         exiftool "$1" || exit 1
         ;;
-    *.bmp | *.jpg | *.jpeg | *.png | *.xpm | *.webp | *.tif | *.gif | *.jfif)
+    *.bmp | *.jpg | *.jpeg | *.png | *.xpm | *.webp | *.tif | *.gif | *.jfif | *.tiff)
         image "$1" "$2" "$3" "$4" "$5" "$1"
         ;;
     *.svg)
