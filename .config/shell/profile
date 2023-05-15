@@ -40,6 +40,9 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="$PATH:$NPM_HOME/bin"
 export PATH="$PATH:$JLBIN"
 
+#fix retrieving accessibility bus address
+# export NO_AT_BRIDGE=1
+
 # GPU-CUDA
 # export CUDA_HOME="/opt/cuda"
 # export PATH="$PATH:$CUDA_HOME/bin"
