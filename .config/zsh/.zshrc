@@ -99,8 +99,6 @@ bindkey -s '^l' '^ulfcd\n'
 bindkey -s '^t' '^umyyt\n'
 bindkey -s '^o' '^uchopin-open\n'
 bindkey -s '^p' '^uchopin-paper\n'
-bindkey -s '^b' '^uchopin-book\n'
-bindkey -s '^a' '^uchopin-bookmark\n'
 #bindkey -s '^a' '^ubc -lq\n'
 bindkey '^[[P' delete-char
 
