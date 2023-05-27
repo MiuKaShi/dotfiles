@@ -29,6 +29,8 @@ alias \
     mkd="mkdir -pv" \
     lf="lfub" \
     df="df -h" \
+    du="du -h" \
+    info="info --vi-keys" \
     free="free -m" \
     yt="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --embed-metadata -i" \
     yta="yt -x -f bestaudio/best" \
@@ -129,7 +131,6 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias npmlist="npm list -g --depth 0"
-alias grep='grep --colour=auto'
 
 alias tldrf='tldr --list | fzf  --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias ducks='du -chsh * | sort -rn | head -11'
@@ -144,7 +145,6 @@ alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settin
 alias chopin-open="chopin -o \"\$(fd --type f --hidden --strip-cwd-prefix | fzfpreview --prompt='open>' --select-1 --exit-0)\";exit"
 alias chopin-paper="cd '$HOME/papers/pdf/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix | fzfpreview --prompt='papers>' --select-1 --exit-0)\";exit"
 alias chopin-book="cd '$HOME/books/tribology' && chopin -o \"\$(fd -e pdf -e mobi --strip-cwd-prefix | fzfpreview --prompt='books>' --select-1 --exit-0)\";exit"
-alias chopin-bookmark="cd '$HOME/Documents/bookmark/' && chopin -o \"\$(fd -e pdf --strip-cwd-prefix | fzfpreview --prompt='bookmark>' --select-1 --exit-0)\";exit"
 
 alias mcamera="mpv --demuxer-lavf-o=video_size=1920x1080,input_format=mjpeg,framerate=25 av://v4l2:/dev/video0 --profile=low-latency"
 alias zshconfig='nvim $HOME/.config/zsh/.zshrc'

@@ -1,3 +1,4 @@
+# vim: filetype=sh
 hash -d cac=/home/miuka/.cache 
 hash -d cf=/home/miuka/.config 
 hash -d dl=/home/miuka/Downloads 

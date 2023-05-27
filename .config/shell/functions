@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ### Command enhancement functions ###
 .1() { cd ../ ; }                                  # Go back 1 directory level
 .2() { cd ../../ ; }                               # Go back 2 directory levels
@@ -113,7 +115,7 @@ cdl () {
 
 fk() {
     local pid_name 
-    pid_name=$(sudo ps_mem  | head -n -3 | sed '1,2 d' | sed -e 's/([^()]*)//g' | fzf -m | awk '{print $NF}')
+    pid_name=$(sudo ps_mem  | head -n -3 | sed '1,2 d' | sed -e 's/([^()]*)//g' | fzf -m --tac | awk '{print $NF}')
     killall -9 "$pid_name"
     echo "$pid_name killed!" 
 }
@@ -172,4 +174,29 @@ mamba-gpu() {
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/TensorRT-7.2.3.4/lib
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDNN_PATH/lib
+}
+
+ix() {
+    local opts
+    local OPTIND
+    [ -f "$HOME/.netrc" ] && opts='-n'
+    while getopts ":hd:i:n:" x; do
+        case $x in
+            h) echo "ix [-d ID] [-i ID] [-n N] [opts]"; return;;
+            d) $echo curl $opts -X DELETE ix.io/$OPTARG; return;;
+            i) opts="$opts -X PUT"; local id="$OPTARG";;
+            n) opts="$opts -F read:1=$OPTARG";;
+        esac
+    done
+    shift $(($OPTIND - 1))
+    [ -t 0 ] && {
+        local filename="$1"
+        shift
+        [ "$filename" ] && {
+            curl $opts -F f:1=@"$filename" $* ix.io/$id
+            return
+        }
+        echo "^C to cancel, ^D to send."
+    }
+    curl $opts -F f:1='<-' $* ix.io/$id
 }
