@@ -1,3 +1,4 @@
 #!/bin/sh
 
+cd /var/lib/personalDNSfilter || exit 1
 exec /usr/bin/java -cp /usr/local/lib/personalDNSfilter/personalDNSfilter.jar dnsfilter.DNSFilterProxy 2>&1
