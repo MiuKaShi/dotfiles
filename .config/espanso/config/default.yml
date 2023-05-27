@@ -6,6 +6,5 @@ show_notifications: true
 auto_restart: true
 pre_paste_delay: 100
 
-
 key_delay: 0
 inject_delay: 0
