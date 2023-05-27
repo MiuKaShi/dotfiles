@@ -1,5 +1,5 @@
 env:
-  LANG: 'en_US.UTF-8'
+  LANG: "en_US.UTF-8"
   TERM: xterm-256color
 
 window:
@@ -11,33 +11,30 @@ window:
     general: Alacritty
 
 scrolling:
-  history: 10000
+  history: 5000
   multiplier: 6
 
 # Font configuration
 font:
   normal:
-    family: monospace
-    style: Regular
-  bold:
-    style: Bold
-  italic:
-    style: Italic
-  bold_italic:
-    style: Bold Italic
+    family: alamono
   size: 16.0
 
 draw_bold_text_with_bright_colors: true
 
 shell:
   program: /sbin/zsh
+  args:
+    - --login
+    - -c
+    - tmux attach || tmux
 
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
-  text: '0xffffff'
-  background: '#ebdbb2'
-  white:   '0xffffff'
+  text: "0xffffff"
+  background: "#ebdbb2"
+  white: "0xffffff"
 
 cursor:
   style:
@@ -56,13 +53,13 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 key_bindings:
-  - { key: V, mods: Alt,       action: Paste            }
-  - { key: C, mods: Alt,       action: Copy             }
-  - { key: K, mods: Alt,       action: IncreaseFontSize }
-  - { key: J, mods: Alt,       action: DecreaseFontSize }
-  - { key: J, mods: Alt|Shift, action: ResetFontSize    }
-  - { key: U, mods: Alt,       chars: "\x1b[5;2~"       }
-  - { key: D, mods: Alt,       chars: "\x1b[6;2~"       }
+  - { key: V, mods: Alt, action: Paste }
+  - { key: C, mods: Alt, action: Copy }
+  - { key: U, mods: Alt, chars: "\x1b[5;2~" }
+  - { key: D, mods: Alt, chars: "\x1b[6;2~" }
+  - { key: M, mods: Alt|Shift, action: IncreaseFontSize }
+  - { key: N, mods: Alt|Shift, action: DecreaseFontSize }
+  # - { key: J, mods: Alt|Shift, action: ResetFontSize }
 
 # Colors (Gruvbox dark)
 # colors:
