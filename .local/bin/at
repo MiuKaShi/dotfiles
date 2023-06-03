@@ -4,8 +4,8 @@
 # -x flag only match processes whose name (or command line if -f is
 # specified) exactly match the pattern.
 
-if pgrep -x "alacritty" >/dev/null; then
-    alacritty msg create-window
+if ls -U /run/user/$(id -u)/Alacritty-*.sock >/dev/null 2>&1; then
+  exec alacritty msg create-window "$@"
 else
-    alacritty
+  exec alacritty "$@"
 fi
