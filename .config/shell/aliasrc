@@ -30,8 +30,8 @@ alias \
     lf="lfub" \
     df="df -h" \
     du="du -h" \
+    free="free -h" \
     info="info --vi-keys" \
-    free="free -m" \
     yt="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --embed-metadata -i" \
     yta="yt -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner" \
