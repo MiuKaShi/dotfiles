@@ -6,8 +6,8 @@ DAY_NOTES=~/notes/day_notes
 TITLE=${1%.*}
 
 create_md() {
-    local ID=$(date '+%Y%m%d%H%M%S')
-    local FILE=$DAY_NOTES/$ID.md
+    ID=$(date '+%Y%m%d%H%M%S')
+    FILE=$DAY_NOTES/$ID.md
     cat >"$FILE" <<EOF
 ---
 id: "$ID"
