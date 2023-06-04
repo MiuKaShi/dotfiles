@@ -198,5 +198,5 @@ ix() {
         }
         echo "^C to cancel, ^D to send."
     }
-    curl $opts -F f:1='<-' $* ix.io/$id
+    curl --config /dev/null $opts -F f:1='<-' $* ix.io/$id
 }
