@@ -10,8 +10,10 @@ configuration {
     modi: "window,run,drun";
     show-icons: true;
     icon-theme: "Papirus";
-    display-drun: 					"";
-    drun-display-format:            "{name}";
+	display-run: " ";
+	display-drun: "  ";
+	display-window: "  ";
+	drun-display-format: "{icon} {name}";
     disable-history:                false;
     fullscreen:                     false;
 	hide-scrollbar: 				true;
