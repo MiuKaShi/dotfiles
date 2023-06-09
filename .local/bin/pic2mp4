@@ -26,7 +26,7 @@ convert_images_to_video() {
 }
 
 # Prompt the user for input.
-fps=$(printf "24\n25\n60" | dmenu -p "Choose FPS:")
+fps=$(printf "24\n25\n60\n1.8" | dmenu -p "Choose FPS:")
 type=$(printf "jpg\npng\nbmp" | dmenu -p "Choose file type:")
 start=$(echo | dmenu -p "Enter start number:")
 end=$(echo | dmenu -p "Enter end number:")
