@@ -100,6 +100,7 @@ case $monitor_name in
         xrdbpid=$!
         # ICC setting
 				dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
+				dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
         ;;
     *)
         xrandr \
