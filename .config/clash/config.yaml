@@ -775,6 +775,7 @@ rules:
   # Chatgpt
   - DOMAIN-SUFFIX,ai.com,DIRECT
   - DOMAIN-SUFFIX,openai.com,DIRECT
+  - DOMAIN-SUFFIX,sentry.io,DIRECT
   - DOMAIN-SUFFIX,auth0.com,DIRECT
   - DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
   - DOMAIN-SUFFIX,stripe.com,DIRECT
