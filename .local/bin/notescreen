@@ -98,6 +98,8 @@ case $monitor_name in
             --output VIRTUAL1 --off
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources &
         xrdbpid=$!
+        # ICC setting
+				dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
         ;;
     *)
         xrandr \
