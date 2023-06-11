@@ -1,4 +1,5 @@
 #!/bin/sh
 
 sv check NetworkManager >/dev/null || exit 1
-exec /usr/bin/bypass-proxy /usr/bin/clash -d /home/miuka/.config/clash 2>&1
+/usr/bin/setcap "cap_net_bind_service=+ep cap_net_admin=+ep" /usr/bin/clash
+exec /usr/bin/clash -d /home/miuka/.config/clash 2>&1
