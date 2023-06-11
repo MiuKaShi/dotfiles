@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Define variables with more meaningful names
+FILE=$(readlink -f "$1")
+
+BASE="${FILE%.*}"
+BIB_FILE="${BASE}.bib"
+if [ ! -f "$BIB_FILE" ]; then
+    notify-send -t 3000 "Error" "BIB file not found"
+    exit 1
+fi
+
+NAME=$(basename "$FILE")
+FILE_NAME="${NAME%.*}"
+OUTPUT_FILE="${FILE_NAME%.*}_bib.pdf"
+
+# Change directory and exit if it fails
+cd /tmp || exit 1
+
+# 创建临时Markdown文件
+cat >temp.md <<EOL
+---
+nocite: '@*'
+---
+# References
+EOL
+
+notify-send -t 3000 "References" "wait for reference list"
+pandoc --citeproc --bibliography="$BIB_FILE" --csl="$CSL" -o "$OUTPUT_FILE" temp.md
+
+# 删除临时Markdown文件
+rm temp.md
+
+xdg-open "$OUTPUT_FILE"
