@@ -1,0 +1,54 @@
+#!/bin/python
+
+import os
+import re
+import sys
+import bibtexparser
+from bibtexparser.bibdatabase import BibDatabase
+
+# 获取命令行参数，Markdown 文件路径
+md_file_paths = sys.argv[1:]
+
+# 从环境变量读取 BibTeX 文件路径
+bib_file_path = os.environ["BIB"]
+
+# 加载 BibTeX 数据
+with open(bib_file_path) as bibtex_file:
+    bib_database = bibtexparser.load(bibtex_file)
+
+# 创建一个字典，其键是记录的 ID，值是记录本身
+bib_dict = {entry["ID"]: entry for entry in bib_database.entries}
+
+# 初始化一个字符串来存储所有Markdown文件的内容
+text = ""
+
+# 对每个Markdown文件进行操作
+for md_file_path in md_file_paths:
+    # 读取 Markdown 文件内容
+    with open(md_file_path, "r") as file:
+        text += file.read()
+
+# 正则表达式匹配 @ 后面的单词
+matches = re.findall(r"@\w+", text)
+
+# 使用 set 去除重复项，并且转换为无 '@' 的关键词
+unique_matches = {match.replace("@", "") for match in matches}
+
+# 根据输入文件数量设置输出BibTeX文件的路径
+output_bib_file_path = (
+    "all.bib"
+    if len(md_file_paths) > 1
+    else f"{os.path.splitext(os.path.basename(md_file_paths[0]))[0]}.bib"
+)
+
+# Open the output file in write mode
+with open(output_bib_file_path, "w") as output_file:
+    # 按照关键词在原文中的出现顺序，从字典中提取并打印 BibTeX 记录
+    for match in matches:
+        keyword = match.replace("@", "")
+        if keyword in unique_matches and keyword in bib_dict:
+            db = BibDatabase()
+            db.entries = [bib_dict[keyword]]
+            output_file.write(bibtexparser.dumps(db))
+            output_file.write("\n")  # 空行分隔各个记录
+            unique_matches.remove(keyword)  # 避免重复打印

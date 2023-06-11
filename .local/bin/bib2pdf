@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# 获取输入的.bib文件名
+bib_file="$1"
+if [[ -z $bib_file ]]; then
+    echo "请提供输入的.bib文件"
+    exit 1
+fi
+
+# 从输入文件名中提取PDF文件名
+file_name=$(basename "$bib_file")
+output_file="${file_name%.*}_bib.pdf"
+
+# 创建临时Markdown文件
+cat >temp.md <<EOL
+---
+nocite: '@*'
+---
+# References
+EOL
+
+pandoc --citeproc --bibliography="$1" --csl="$CSL" -o "$output_file" temp.md
+
+# 删除临时Markdown文件
+rm temp.md
+
+xdg-open "$output_file"
