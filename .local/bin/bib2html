@@ -19,7 +19,7 @@ else
 fi
 
 # Convert the BibTeX file to HTML using bibtex2html
-bibtex2html -noheader -nofooter -nobibsource -css ~/.config/bibtex2html/style.css "$input_file"
+bibtex2html -s amsplain -noheader -nofooter -nokeywords -nobibsource -css ~/.config/bibtex3html/style.css "$input_file"
 
 # Open the resulting HTML file in the default web browser
 xdg-open "$filename_without_extension.html"
