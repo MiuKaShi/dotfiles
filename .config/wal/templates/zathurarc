@@ -26,9 +26,9 @@ set synctex true
 set synctex-editor-command 'nvim --remote-silent +"%line" "%input"'
 
 map <C-a> feedkeys ":! cp $FILE /home/miuka/SynData <Return>" # Synic pdf
-map <C-b> feedkeys ":! bookmark $FILE <Return>" # add to bookmakr
-map <C-r> feedkeys ":! st -e cite-ref $FILE <Return>" # edit pdf bib
-map <C-k> feedkeys ":! cite-copy $FILE key <Return>" # copy citekey
+map <C-b> feedkeys ":! st -e cite-bib $FILE <Return>" # add to bookmakr
+map <C-r> feedkeys ":! cite-ref $FILE <Return>" # edit pdf bib
+map <C-k> feedkeys ":! cite-copy $FILE -k <Return>" # copy citekey
 map <C-c> feedkeys ":! cite-copy $FILE <Return>" # copy pdf
 map <C-s> feedkeys ":! chatpaper $FILE <Return>" # chatpaper pdf
 map <C-i> feedkeys ":! cite-info $FILE <Return>" # View citation

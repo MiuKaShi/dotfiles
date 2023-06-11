@@ -26,21 +26,12 @@ function copy_bib {
     notify-send "Bibtex" "Copy bib to clipboard"
 }
 
-# Copy the file to the clipboard
-function copy_file {
-    xclip-copyfile "$file_path"
-    notify-send "FileCopy" "Copy file to clipboard"
-}
-
 # Check which option was passed and call the corresponding function
 case "$opt" in
-    key)
+    -k)
         copy_citekey
         ;;
-    bib)
-        copy_bib
-        ;;
     *)
-        copy_file
+        copy_bib
         ;;
 esac
