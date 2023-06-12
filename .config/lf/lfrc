@@ -6,7 +6,6 @@ set ifs "\n"
 set scrolloff 10
 set tabstop 2
 set icons
-set colors
 set period 1
 # set drawbox
 set sortby natural
