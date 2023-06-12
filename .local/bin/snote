@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cmd="st -e nvim"
+# cmd="neovide"
+
+case "$1" in
+    'search')
+        $cmd +ObsidianSearch
+        ;;
+    'new')
+        $cmd +ObsidianNew
+        ;;
+esac
+xdotool key super
