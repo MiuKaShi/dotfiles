@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xclickroot -r ~/.config/xmenu/menu >/dev/null 2>&1 &
