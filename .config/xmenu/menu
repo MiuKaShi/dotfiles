@@ -5,7 +5,8 @@
 
 xmenu <<EOF | sh &
 IMG:$HOME/.config/xmenu/icons/st.svg							Terminal 					st
-IMG:$HOME/.config/xmenu/icons/rofi.svg							Launch 					rofi -show drun
+IMG:$HOME/.config/xmenu/icons/Alacritty.svg							Alacritty 					at
+IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
 
 IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 	Browser
