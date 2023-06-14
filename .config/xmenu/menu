@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Dependency xmenu, xclickroot. Shows a menu on right-click.
+# Use tabs. If expandtab is set true, disable it in vim. Space between line gives separator.
+
+xmenu <<EOF | sh &
+IMG:$HOME/.config/xmenu/icons/st.svg							Terminal 					st
+IMG:$HOME/.config/xmenu/icons/rofi.svg							Launch 					rofi -show drun
+
+IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
+	Browser
+		IMG:$HOME/.config/xmenu/icons/librewolf.svg							Librewolf 					librewolf
+		IMG:$HOME/.config/xmenu/icons/google-chrome.svg							Chrome 						google-chrome-stable
+	Utilities
+		IMG:$HOME/.config/xmenu/icons/obsidian.svg							Obsidian 	obsidian
+		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
+		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
+		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
+	Music
+		IMG:$HOME/.config/xmenu/icons/yesplaymusic.png							Ysmusic						/opt/YesPlayMusic/yesplaymusic
+
+IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
+	IMG:$HOME/.config/xmenu/icons/nvim.svg					nvim config	st -e nvim ~/.config/nvim/lua/plugins.lua
+	IMG:$HOME/.config/xmenu/icons/nvim.svg					dwm config		st -e nvim ~/.local/src/miuka-dwm/config.h
+	IMG:$HOME/.config/xmenu/icons/nvim.svg					xmenu config 	st -e nvim ~/.config/xmenu/menu		 
+IMG:$HOME/.config/xmenu/icons/heart.svg							Misc
+	Youtube 	qutebrowser youtube.com
+	Bilibili 	qutebrowser bilibili.com
+
+IMG:$HOME/.config/xmenu/icons/setting.svg							Power Options
+	Power off 	poweroff
+	Reboot 	 reboot
+	Log out 	loginctl terminate-user "$(whoami)"
+EOF
