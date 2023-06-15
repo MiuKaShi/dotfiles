@@ -6,6 +6,8 @@
 xmenu <<EOF | sh &
 IMG:$HOME/.config/xmenu/icons/st.svg							Terminal 					st
 IMG:$HOME/.config/xmenu/icons/Alacritty.svg							Alacritty 					at
+IMG:$HOME/.config/xmenu/icons/openai.svg							GPT4 					xdg-open https://chat.openai.com/
+IMG:$HOME/.config/xmenu/icons/rss.svg							Rss 					st -e newsboat
 IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
 
 IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
@@ -25,8 +27,8 @@ IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
 	IMG:$HOME/.config/xmenu/icons/nvim.svg					dwm config		st -e nvim ~/.local/src/miuka-dwm/config.h
 	IMG:$HOME/.config/xmenu/icons/nvim.svg					xmenu config 	st -e nvim ~/.config/xmenu/menu		 
 IMG:$HOME/.config/xmenu/icons/heart.svg							Misc
-	Youtube 	qutebrowser youtube.com
-	Bilibili 	qutebrowser bilibili.com
+	IMG:$HOME/.config/xmenu/icons/youtube.svg							Youtube 	xdg-open https://www.youtube.com/
+	IMG:$HOME/.config/xmenu/icons/bilibili.svg							Bilibili 	xdg-open https://www.bilibili.com/
 
 IMG:$HOME/.config/xmenu/icons/setting.svg							Power Options
 	Power off 	poweroff
