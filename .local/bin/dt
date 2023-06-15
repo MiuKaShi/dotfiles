@@ -21,11 +21,12 @@ deepl_api() {
 # Check the command line arguments and perform the appropriate action
 case "$1" in
     '-x')
-        # Get the currently selected text and translate it using rofi to display the result
+        # Get the currently selected text and translate it using rofi to display the result and copy to clipboard
         text="$(xsel)"
         [[ -z "$text" ]] && exit 0
         deepl_api
         rofi -e "$result"
+				echo "$result" | xsel -b
         ;;
     '-s')
         # Get usage information from the DeepL API and display it to the user
