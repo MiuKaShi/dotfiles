@@ -59,11 +59,11 @@ export PATH="$PATH:$JLBIN"
 unsetopt PROMPT_SP
 
 # export fcitx5 environment variables
-export INPUT_METHOD="fcitx5"
-export XMODIFIERS="@im=fcitx5"
-export GTK_IM_MODULE="fcitx5"
-export QT_IM_MODULE="fcitx5"
-export SDL_IM_MODULE="fcitx5"
+export INPUT_METHOD="fcitx"
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export SDL_IM_MODULE="fcitx"
 
 # proxy
 #[ -x "$(which clash)" ] && export http_proxy="http://127.0.0.1:7890" && export https_proxy="http://127.0.0.1:7890"
