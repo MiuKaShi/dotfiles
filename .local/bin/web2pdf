@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ## CHECKS
+## If failed, try npm uninstall -g percollate && npm install -g percollate
 # exit on any error
 set -e
 
