@@ -1,0 +1,47 @@
+#!/bin/sh
+
+FileName=$(date +%Y%m%d%H%M)
+
+cd $HOME/Documents/Algorithm
+
+cat >$FileName.tex <<EOL
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{algorithm, algorithmicx, algpseudocode}
+\usepackage{color}
+\renewcommand{\algorithmicrequire}{\textbf{input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\pagestyle{empty}
+\begin{document}
+% the following is template
+\begin{algorithm}[h]
+	\caption{XXX algorithm}
+	\begin{algorithmic}[1]
+		\Require
+		\$x1\$,
+		\$x2\$
+		\Ensure
+		\$y\$
+		\For{\$k=1:N\$}
+		\State \$y = FUNC1(x1,x2)\$ \Comment{Comment1}
+		\If{\$y<y_2\$}
+		\State do something 1
+		\Else
+		\State do something 2
+		\EndIf
+		\State calculate \$err(k)\$
+		\EndFor
+		\State
+		\Function{FUNC1}{\$x1,x2\$}
+		\State \$y_1=2*x1\$
+		\State \$y_2=x2^2\$
+		\State \$y=y_1+y_2\$
+		\State \Return{\$y\$}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+\end{document}
+EOL
+
+st -e nvim $FileName.tex
