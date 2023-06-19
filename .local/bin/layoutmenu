@@ -4,9 +4,10 @@ cat <<EOF | xmenu
 []= Tiled 	0
 TTT Bstack	1
 [@] Spiral	2
-[ \ ] Dwindle	3
+[\] Dwindle	3
 D Deck	4
 [M] Monocle	5
 |M| Centeredmaster	6
 >M> Centeredfloatingmaster	7
+><> Float	8
 EOF
