@@ -11,19 +11,23 @@ IMG:$HOME/.config/xmenu/icons/rss.svg							Rss 					st -e newsboat
 IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
 
 IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
-	Browser
-		IMG:$HOME/.config/xmenu/icons/librewolf.svg							Librewolf 					librewolf
-		IMG:$HOME/.config/xmenu/icons/google-chrome.svg							Chrome 						google-chrome-stable
-	Utilities
+	Study
+		IMG:$HOME/.config/xmenu/icons/wps-word.svg							Word 	wps
+		IMG:$HOME/.config/xmenu/icons/wps-ppt.svg							PPT 	wpp
+		IMG:$HOME/.config/xmenu/icons/wps-excel.svg							Excel		et
+		IMG:$HOME/.config/xmenu/icons/inkscape.svg							Inkscape 	inkscape
+		IMG:$HOME/.config/xmenu/icons/fiji.svg							Fiji 	fiji --system
 		IMG:$HOME/.config/xmenu/icons/obsidian.svg							Obsidian 	obsidian
-		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
-		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
 		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
+		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
 	Music
-		IMG:$HOME/.config/xmenu/icons/yesplaymusic.png							Ysmusic						/opt/YesPlayMusic/yesplaymusic
+		IMG:$HOME/.config/xmenu/icons/yesplaymusic.svg							Ysmusic						/opt/YesPlayMusic/yesplaymusic
+		IMG:$HOME/.config/xmenu/icons/youtube-music.svg							Youtube-music						youtube-music
+	Game
+		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
 
 IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
-	IMG:$HOME/.config/xmenu/icons/nvim.svg					nvim config	st -e nvim ~/.config/nvim/lua/plugins.lua
+	IMG:$HOME/.config/xmenu/icons/tex.svg					Algorithm tex	algo-temp
 	IMG:$HOME/.config/xmenu/icons/nvim.svg					dwm config		st -e nvim ~/.local/src/miuka-dwm/config.h
 	IMG:$HOME/.config/xmenu/icons/nvim.svg					xmenu config 	st -e nvim ~/.config/xmenu/menu		 
 IMG:$HOME/.config/xmenu/icons/heart.svg							Misc
