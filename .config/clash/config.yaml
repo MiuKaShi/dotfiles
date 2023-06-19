@@ -772,6 +772,8 @@ rules:
   - DOMAIN-SUFFIX,nextdns.io,DIRECT
   - DOMAIN-SUFFIX,quad9.net,DIRECT
   - DOMAIN-SUFFIX,test-ipv6.com,DIRECT
+  # youtube-music
+  - PROCESS-NAME,youtube-music,DIRECT
   # Chatgpt
   - DOMAIN-SUFFIX,ai.com,DIRECT
   - DOMAIN-SUFFIX,openai.com,DIRECT
@@ -1932,6 +1934,8 @@ rules:
   - DOMAIN-SUFFIX,zhimg.com,CN
   - DOMAIN-SUFFIX,zhongsou.com,CN
   - DOMAIN-SUFFIX,zhuihd.com,CN
+  # Airportal
+  - DOMAIN-SUFFIX,airportal.cn,CN
   # Fantuan
   - DOMAIN-SUFFIX,wkfile.com,CN
   - DOMAIN-SUFFIX,qpic.cn,CN
