@@ -68,6 +68,7 @@ help() {
         cat <<'eof'
 y)   copy image to clipboard
 D)   drag and drop
+i)   File information
 a)   auto rotate based on metadata
 r,R) rotate cw/ccw
 f)   flip horizontally
