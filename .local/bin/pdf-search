@@ -1,0 +1,28 @@
+#!/bin/sh
+
+RG_PREFIX="rga --files-with-matches --rga-adapters=pandoc,poppler --glob '*.pdf'"
+
+search_preview() {
+    file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX '${2:-}'" \
+            fzf --sort --preview="[[ ! -z {} ]] && bkt --ttl=15m --stale=15s -- rga --colors 'match:bg:yellow' --ignore-case --pretty --context 5 {q} {}" \
+            --phony -q "$1" \
+            --bind "change:reload:$RG_PREFIX {q}" \
+            --preview-window="70%:wrap"
+    )"
+    [ ! -z "$file" ] && xdg-open "$file"
+}
+
+case $1 in
+    -en)
+        cd $HOME/papers/pdf || exit 1
+        search_preview
+        ;;
+    -cn)
+        cd $HOME/papers/cn_pdf || exit 1
+        search_preview
+        ;;
+    *)
+        echo "choose arg {-en} or {-cn}!"
+        ;;
+esac
