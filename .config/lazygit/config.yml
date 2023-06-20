@@ -1,5 +1,6 @@
 os:
-  editCommand: 'floaterm'
+  Open: "nvim {{filename}}"
+  OS.Edit,EditAtLine: "{{editor}} +{{line}} -- {{filename}}"
 git:
   paging:
     colorArg: never
