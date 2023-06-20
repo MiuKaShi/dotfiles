@@ -9,6 +9,7 @@ IMG:$HOME/.config/xmenu/icons/Alacritty.svg							Alacritty 					at
 IMG:$HOME/.config/xmenu/icons/openai.svg							GPT4 					xdg-open https://chat.openai.com/
 IMG:$HOME/.config/xmenu/icons/rss.svg							Rss 					st -e newsboat
 IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
+IMG:$HOME/.config/xmenu/icons/raindrop.svg							Raindrop 	raindrop
 
 IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 	Study
