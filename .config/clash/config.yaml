@@ -273,7 +273,7 @@ proxies:
   - {
       name: "香港1",
       type: vmess,
-      server: hk1.c.e8bb3fc45ae6.sanfen004.me,
+      server: hk1.c.e8bb3fc45ae9.sanfen004.me,
       port: "443",
       uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
@@ -290,7 +290,7 @@ proxies:
   - {
       name: "香港2",
       type: vmess,
-      server: 236ba16f-7989-71de-e510-1cad33923355.cnnic.rip,
+      server: e8667420-3b0f-32a5-7265-ff126ed97eb5.nachoneko.ltd,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
@@ -300,39 +300,13 @@ proxies:
       ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
       ws-path: /,
       ws-headers: { Host: tms.dingtalk.com },
+      max-early-data: 2048,
+      early-data-header-name: Sec-WebSocket-Protocol,
     }
   - {
       name: "香港3",
       type: vmess,
-      server: 96cfae9d-7c6c-0722-5eb8-a2b8e9d53aee.cnnic.rip,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
-    }
-  - {
-      name: "香港4",
-      type: vmess,
-      server: hk1.quick-connect.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: a.189.cn } },
-      ws-path: /,
-      ws-headers: { Host: a.189.cn },
-    }
-  - {
-      name: "香港5",
-      type: vmess,
-      server: hk3.quick-connect.buzz,
+      server: hk2.quick-connect.buzz,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
@@ -352,6 +326,37 @@ proxies:
             ],
           headers: { Host: [data.video.qiyi.com] },
         },
+    }
+  - {
+      name: "香港4",
+      type: vmess,
+      server: hk1.quick-connect.buzz,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
+      network: ws,
+      ws-opts: { path: /, headers: { Host: a.189.cn } },
+      ws-path: /,
+      ws-headers: { Host: a.189.cn },
+    }
+  - {
+      name: "香港5",
+      type: vmess,
+      server: hk2.c3bfe79372bi.sanfen004.me,
+      port: "443",
+      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
+      tls: true,
+      skip-cert-verify: true,
+      servername: hk1.sanfen004.me,
+      network: ws,
+      ws-opts: { path: /zh-cn, headers: { Host: www.microsoft.com } },
+      ws-path: /zh-cn,
+      ws-headers: { Host: www.microsoft.com },
     }
   - {
       name: "香港ipv6",
@@ -413,12 +418,11 @@ proxies:
       cipher: auto,
       udp: true,
       tls: true,
-      skip-cert-verify: true,
-      servername: us1.sanfencdn.net,
+      servername: us1.sanfencdn1.com,
       network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: us1.sanfencdn.net } },
+      ws-opts: { path: /zh-cn, headers: { Host: us2.sanfencdn1.com } },
       ws-path: /zh-cn,
-      ws-headers: { Host: us1.sanfencdn.net },
+      ws-headers: { Host: us2.sanfencdn1.com },
     }
   - {
       name: "美国5",
@@ -430,12 +434,11 @@ proxies:
       cipher: auto,
       udp: true,
       tls: true,
-      skip-cert-verify: true,
-      servername: us1.sanfencdn.net,
+      servername: us1.sanfencdn1.com,
       network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: us2.sanfencdn.net } },
+      ws-opts: { path: /zh-cn, headers: { Host: us5.sanfencdn1.com } },
       ws-path: /zh-cn,
-      ws-headers: { Host: us2.sanfencdn.net },
+      ws-headers: { Host: us5.sanfencdn1.com },
     }
   - {
       name: "台湾1",
@@ -514,40 +517,29 @@ proxies:
   - {
       name: "日本1",
       type: vmess,
+      server: jp2.d4995a2eb9b4.sanfen004.me,
+      port: "443",
+      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
+      tls: true,
+      skip-cert-verify: true,
+      servername: jp1.sanfen004.me,
+    }
+  - {
+      name: "日本2",
+      type: vmess,
       server: jp1.quick-connect.buzz,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
-        },
-    }
-  - {
-      name: "日本2",
-      type: vmess,
-      server: cfef591a-4e4b-b8da-96c5-ac03d90ee2e6.cnnic.rip,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
+      ws-opts: { path: /, headers: { Host: a.189.cn } },
       ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      ws-headers: { Host: a.189.cn },
     }
   - {
       name: "日本3",
@@ -566,19 +558,18 @@ proxies:
   - {
       name: "日本4",
       type: vmess,
-      server: be6b3392-ef31-a71d-c15a-0f6be789595d.cnnic.rip,
+      server: e068a657-93e3-cef6-904c-e39106c84cc0.nachoneko.ltd,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          path: [/],
-          method: GET,
-          headers: { Connection: [keep-alive], Host: [tms.dingtalk.com] },
-        },
+      network: ws,
+      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
+      ws-path: /,
+      ws-headers: { Host: tms.dingtalk.com },
+      max-early-data: 2048,
+      early-data-header-name: Sec-WebSocket-Protocol,
     }
   - {
       name: "日本5",
