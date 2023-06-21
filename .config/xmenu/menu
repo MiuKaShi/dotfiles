@@ -24,6 +24,7 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 	Music
 		IMG:$HOME/.config/xmenu/icons/yesplaymusic.svg							Ysmusic						/opt/YesPlayMusic/yesplaymusic
 		IMG:$HOME/.config/xmenu/icons/youtube-music.svg							Youtube-music						youtube-music
+		IMG:$HOME/.config/xmenu/icons/cider.svg							Apple-music						cider
 	Game
 		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
 
