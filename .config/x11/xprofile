@@ -5,8 +5,9 @@
 
 #pre-setting
 #homescreen # NUC
-notescreen # laptop
-setbg & # set the background
+notescreen                                             # laptop
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/hidpi" # hidpi
+setbg &                                                # set the background
 xclick &
 
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
@@ -14,7 +15,7 @@ xclick &
 autostart="msi-isw watchfile unclutter blurlock remapd redshift"
 
 for program in $autostart; do
-	pidof -sx "$program" || "$program" &
+    pidof -sx "$program" || "$program" &
 done >/dev/null 2>&1
 
 # run user services (run under current user) using runsvdir

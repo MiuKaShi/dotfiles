@@ -1,11 +1,11 @@
 #! /bin/sh
 
-unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
+dpi_env="$HOME/.config/shell/hidpi"
 
 print_monitors() {
-	while read -r output conn hex; do
-		echo "$output	$conn	$(xxd -r -p <<< "${hex:-2d}")"
-	done < <(LC_ALL=C xrandr --prop | tr -d '\r' | awk '
+    while read -r output conn hex; do
+        echo "$output	$conn	$(xxd -r -p <<<"${hex:-2d}")"
+    done < <(LC_ALL=C xrandr --prop | tr -d '\r' | awk '
 	h && /[^ \ta-f0-9]/ {
 		n = split(hex, names, "000000fc00")
 		hex = ""
@@ -34,6 +34,50 @@ print_monitors() {
 	' | sort)
 }
 
+lab_dpi() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for lab
+export MONITOR_ENV=lab
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=2
+#for QT6
+export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=144
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
+
+home_dpi() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for home
+export MONITOR_ENV=home
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=2
+#for QT6
+export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=144
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
+
+note_dpi() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for notebook
+export MONITOR_ENV=note
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+#for QT6
+export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_FONT_DPI=96
+EOF
+}
+
 monitor_name=$(print_monitors | awk '{print $3}')
 
 case $monitor_name in
@@ -52,15 +96,8 @@ case $monitor_name in
             --panning 1440x2560+2560+0 \
             --output DP1 --off \
             --output eDP1 --off
-        # 缩放
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
-        export QT_SCALE_FACTOR=2 #for QT5
-        export GDK_SCALE=2 #for GDK3
-        export GDK_DPI_SCALE=0.5 #for GDK3
-        # 硬件加速
-        export LIBVA_DRIVER_NAME=nvidia
-        export VDPAU_DRIVER=nvidia
-        export DRI_PRIME=1
+        # dpi_env
+				lab_dpi
         # 显卡设置(nvidia setting first: to enable forcecomposition)
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources &
@@ -70,15 +107,8 @@ case $monitor_name in
         # 显卡设置(nvidia setting first: to enable forcecomposition)
 				nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +0+340 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {AllowGSYNCCompatible=On, ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         # nvidia-settings --assign "CurrentMetaMode=DPY-1: {AllowGSYNCCompatible=On,  ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-        # 缩放
-        export QT_AUTO_SCREEN_SCALE_FACTOR=1 #for QT5
-        export QT_SCALE_FACTOR=2 #for QT5
-        export GDK_SCALE=2 #for GDK3
-        export GDK_DPI_SCALE=0.5 #for GDK3
-        # 硬件加速
-        export LIBVA_DRIVER_NAME=nvidia
-        export VDPAU_DRIVER=nvidia
-        export DRI_PRIME=1
+        # dpi_env
+				home_dpi
         # 显卡设置(xrandr setting later: to ensure position and DPI is correct)
         xrandr --dpi 138 \
             --fb 6000x3840 \
@@ -108,8 +138,8 @@ case $monitor_name in
           --output eDP1 \
           --mode 1920x1080 
 				sudo brillo -s intel_backlight -S 50
-        export LIBVA_DRIVER_NAME=iHD
-        export VDPAU_DRIVER=va_gl
+        # dpi_env
+				note_dpi
         xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/xresources &
         xrdbpid=$!
         ;;
@@ -117,4 +147,3 @@ esac
 
 # disable dispaly DPMS 
 sleep 1; xset dpms 0 0 0
-
