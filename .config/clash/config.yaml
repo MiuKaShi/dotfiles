@@ -290,7 +290,7 @@ proxies:
   - {
       name: "香港2",
       type: vmess,
-      server: e8667420-3b0f-32a5-7265-ff126ed97eb5.nachoneko.ltd,
+      server: fbd1ab76-e69d-9fb3-fa5f-f0d1dc765e3d.nachoneko.ltd,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
@@ -517,15 +517,19 @@ proxies:
   - {
       name: "日本1",
       type: vmess,
-      server: jp2.d4995a2eb9b4.sanfen004.me,
-      port: "443",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
+      server: bcaf3518-aff6-5c5d-d00b-f009eecb3405.nachoneko.ltd,
+      port: 80,
+      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      tls: true,
-      skip-cert-verify: true,
-      servername: jp1.sanfen004.me,
+      network: http,
+      http-opts:
+        {
+          path: [/],
+          method: GET,
+          headers: { Connection: [keep-alive], Host: [tms.dingtalk.com] },
+        },
     }
   - {
       name: "日本2",

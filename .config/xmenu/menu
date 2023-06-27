@@ -9,7 +9,7 @@ IMG:$HOME/.config/xmenu/icons/Alacritty.svg							Alacritty 					at
 IMG:$HOME/.config/xmenu/icons/openai.svg							GPT4 					xdg-open https://chat.openai.com/
 IMG:$HOME/.config/xmenu/icons/rss.svg							Rss 					st -e newsboat
 IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
-IMG:$HOME/.config/xmenu/icons/raindrop.svg							Raindrop 	raindrop
+IMG:$HOME/.config/xmenu/icons/everdo.svg							Todo 	everdo
 
 IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 	Study
@@ -17,15 +17,17 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 		IMG:$HOME/.config/xmenu/icons/wps-ppt.svg							PPT 	wpp
 		IMG:$HOME/.config/xmenu/icons/wps-excel.svg							Excel		et
 		IMG:$HOME/.config/xmenu/icons/inkscape.svg							Inkscape 	inkscape
+		IMG:$HOME/.config/xmenu/icons/ipe.svg							Ipe 	st -e ipe
 		IMG:$HOME/.config/xmenu/icons/fiji.svg							Fiji 	fiji --system
 		IMG:$HOME/.config/xmenu/icons/obsidian.svg							Obsidian 	obsidian
 		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
-		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
+		IMG:$HOME/.config/xmenu/icons/raindrop.svg							Raindrop 	raindrop
 	Music
 		IMG:$HOME/.config/xmenu/icons/yesplaymusic.svg							Ysmusic						/opt/YesPlayMusic/yesplaymusic
 		IMG:$HOME/.config/xmenu/icons/youtube-music.svg							Youtube-music						youtube-music
 		IMG:$HOME/.config/xmenu/icons/cider.svg							Apple-music						cider
-	Game
+	Tools
+		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
 		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
 
 IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
