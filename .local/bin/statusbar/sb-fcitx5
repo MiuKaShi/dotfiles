@@ -1,0 +1,48 @@
+#!/bin/bash
+
+CAPS_SYMBOL="%{F#c0392b}⇧%{F-}"
+IMLIST_FILE="/tmp/fcitx5-imlist"
+
+case $BLOCK_BUTTON in
+    1) qdbus org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.Toggle ;;
+    3) notify-send "🌐 Language module" "\- Click to toggle
+🦅: English
+🐼: Chinese
+🍊: Japanese
+" ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+# Print out identifier of current input method
+current() {
+    qdbus "org.fcitx.Fcitx5" "/controller" "org.fcitx.Fcitx.Controller1.CurrentInputMethod"
+}
+
+# List all input methods added to Fcitx
+imlist() {
+    if [ ! -f "${IMLIST_FILE}" ]; then
+        dbus-send --session --print-reply \
+            --dest=org.fcitx.Fcitx5 \
+            /controller \
+            org.fcitx.Fcitx.Controller1.AvailableInputMethods \
+            | awk 'BEGIN{i=0}{
+          if($0~/struct {/) i=0;
+          else if(i<6){gsub(/"/,"",$2); printf("%s,",$2); i++}
+          else if(i==6){printf("%s\n",$2); i++}
+      }' >${IMLIST_FILE}
+    fi
+
+    cat ${IMLIST_FILE}
+}
+
+# Strip `Keyboard - ` part from IM name then print
+name=$(imlist | grep "^$(current)," | cut -d',' -f5)
+
+case "$name" in
+    "") icon="🦅EN" ;;
+    "en") icon="🦅EN" ;;
+    "ㄓ") icon="🐼CN" ;;
+    "あ") icon="🍊JP" ;;
+esac
+
+echo "$icon"
