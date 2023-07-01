@@ -21,7 +21,7 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 c.qt.highdpi = True
 c.content.autoplay = False
 c.auto_save.session = True
-c.zoom.default = "175%"
+c.zoom.default = "125%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"
@@ -32,7 +32,7 @@ c.downloads.location.directory = '~/Downloads'
 c.downloads.location.prompt = False
 c.confirm_quit = ['downloads']
 # pacman -S pdfjs-legacy
-c.content.pdfjs = False
+c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.editor.command = ["st", "-e", "nvim", "{}"]

@@ -56,7 +56,7 @@
     foreground = "{color15}" # color15
     frame_color = "#D79921"
     timeout = 8
-    default_icon = /home/miuka/.local/share/icons/notifications_icons/default.png
+    # default_icon = /home/miuka/.local/share/icons/notifications_icons/default.png
 
 [urgency_critical]
     background = "{color0}" # color0
