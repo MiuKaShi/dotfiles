@@ -767,6 +767,10 @@ rules:
   - DOMAIN-SUFFIX,nextdns.io,DIRECT
   - DOMAIN-SUFFIX,quad9.net,DIRECT
   - DOMAIN-SUFFIX,test-ipv6.com,DIRECT
+  # yahoo.co.jp
+  - DOMAIN-SUFFIX,yimg.jp,DIRECT
+  - DOMAIN-SUFFIX,yahooapis.jp,DIRECT
+  - DOMAIN-SUFFIX,yahoo.co.jp,DIRECT
   # youtube-music
   - PROCESS-NAME,youtube-music,DIRECT
   # Chatgpt
