@@ -51,7 +51,7 @@ map J bottom
 map R reload
 map U unselect
 map O &handlr open $f
-map = chmod+x 
+map = chmod+rx
 map - chmod-x
 map ch chmod
 map cf chmodf
@@ -405,8 +405,8 @@ cmd delete ${{
 }}
 
 # Run chmod on a file
-cmd chmod+x %{{
-  chmod +x $f
+cmd chmod+rx %{{
+  chmod +rx $f
   lf -remote "send reload"
 }}
 
