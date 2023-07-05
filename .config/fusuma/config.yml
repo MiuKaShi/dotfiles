@@ -1,0 +1,32 @@
+swipe:
+  3:
+    left:
+      command: exec dwmc setmfact -0.1
+    right:
+      command: exec dwmc setmfact +0.1
+    up:
+      command: exec dwmc setcfact -0.3
+    down:
+      command: exec dwmc setcfact +0.3
+  4:
+    left:
+      command: exec dwmc shiftview -1
+    right:
+      command: exec dwmc shiftview +1
+    up:
+      command: exec dwmc togglefullscr
+    down:
+      command: exec dwmc togglefloating
+pinch:
+  in:
+    command: "xdotool key Shift+k"
+  out:
+    command: "xdotool key Shift+j"
+
+threshold:
+  swipe: 0.4
+  pinch: 0.4
+
+interval:
+  swipe: 0.8
+  pinch: 0.1
