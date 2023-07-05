@@ -2,6 +2,8 @@
 " vim: set filetype=tridactyl
 " Plug 'tridactyl/vim-tridactyl'
 
+" curl https://gitlab.com/librewolf-community/browser/common/-/raw/master/helpers/tridactyl-install.sh for librewolf
+
 " clean all previous configurations
 sanitise tridactylsync
 sanitise tridactyllocal
