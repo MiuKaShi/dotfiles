@@ -86,6 +86,7 @@ export PERL_MM_OPT="INSTALL_BASE=$HOME/.local/share/perl5"
 # My Citation:
 export BIB="$HOME/papers/bib/mybib_abb.bib"
 export CSL="$HOME/papers/bib/tribology-international.csl"
+export CSL1="$HOME/papers/bib/tribology-letters.csl"
 
 # vulkan
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json"
