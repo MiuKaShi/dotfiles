@@ -192,7 +192,7 @@ proxies:
   - {
       name: "镇江1",
       type: vmess,
-      server: 120.195.181.134,
+      server: 222.186.48.24,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
@@ -208,7 +208,7 @@ proxies:
   - {
       name: "镇江2",
       type: vmess,
-      server: 120.195.181.103,
+      server: 222.186.48.52,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
