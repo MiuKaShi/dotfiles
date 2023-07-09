@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd $HOME || exit 1
+fd -H  --exclude .git --exclude .cache --exclude .julia --exclude .mamba --exclude .npm | rofi -show file-browser-extended -modes file-browser-extended -file-browser-stdin -file-browser-cmd "xdg-open"

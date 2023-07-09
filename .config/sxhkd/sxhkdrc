@@ -10,7 +10,7 @@ mod3 + space
     dwmc zoom
 
 mod3 + f
-    rofi -no-lazy-grab -show file-browser-extended -modi file-browser-extended
+	fd-search
 
 mod3 + b
     rbuku
@@ -23,9 +23,6 @@ mod3 + d
 
 mod3 + z
     zotero
-
-mod3 + m
-    env MESA_LOADER_DRIVER_OVERRIDE=i965 MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre matlab -desktop
 
 mod3 + c
     colorpicker
