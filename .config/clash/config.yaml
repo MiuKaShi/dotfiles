@@ -868,6 +868,9 @@ rules:
   - DOMAIN-SUFFIX,wiley.com,Journal
   - DOMAIN-SUFFIX,worldbank.org,Journal
   - DOMAIN-SUFFIX,worldscientific.com,Journal
+  # qq
+  - DOMAIN-SUFFIX,gdt.qq.com,CN
+  - DOMAIN-SUFFIX,e.qq.com,CN
   # CN二级域名
   - DOMAIN-SUFFIX,edu.cn,CN
   - DOMAIN-SUFFIX,gov.cn,CN
