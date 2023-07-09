@@ -49,6 +49,9 @@ alias wget="wget --continue --progress=bar --timestamping"
 # mamba
 alias mamba="micromamba"
 
+# kitty
+alias icat="kitty +kitten icat"
+
 # Permissions aliases
 alias \
     664='chmod 664' \
