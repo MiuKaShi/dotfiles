@@ -1,0 +1,112 @@
+#!/bin/sh
+
+test_cmd() { [ -x "$(command -v "$1" 2>/dev/null)" ]; }
+
+for dep in busctl iwctl jq; do
+    test_cmd "$dep" || {
+        printf >&2 "Dependency '%s' not found.\n" "$dep"
+        exit 1
+    }
+done
+
+net_regex='[0-9a-f]+_[a-z0-9]+'
+iw_tree() {
+    busctl --list tree net.connman.iwd
+}
+
+# Usage: get_prop object class property
+get_prop() {
+    # poor man's pipefail
+    # store original stdout going to dmenu (below)
+    {
+        __ret=$(
+            # store stdout going to $ret
+            exec 4>&1
+            (
+                # goes to pipe
+                busctl get-property -j net.connman.iwd "$1" "$2" "$3" 2>/dev/null
+                # redirected to $ret
+                echo $? >&4
+            ) \
+                |
+                # goes to original stdout
+                jq -r .data >&3
+        )
+    } 3>&1 || return
+    return "$__ret"
+}
+
+get_networks() {
+    # Scan networks
+    busctl call net.connman.iwd "$iface_obj" net.connman.iwd.Station Scan 2>/dev/null
+    iw_tree | grep -Ex "$iface_obj/$net_regex"
+}
+
+get_network_object_and_name() {
+    set --
+    for net in $(get_networks); do
+        set -- "$@" "$net $(get_prop "$net" net.connman.iwd.Network Name)"
+    done
+    printf '%s\n' "$@"
+}
+
+# Filter names from get_network_object_and_name
+get_network_names() {
+    get_network_object_and_name | sed -E 's/[^ ]+ //'
+}
+
+while opt=$(printf '%s\n' 'Connect' 'Disconnect' 'Forget' | dmenu -p 'iwd-dmenu' -l 3); do
+    # populate current network
+    curnet_obj=$(get_prop "$iface_obj" net.connman.iwd.Station ConnectedNetwork)
+    curnet=$(get_prop "$curnet_obj" net.connman.iwd.Network Name)
+    # populate interface
+    iface_obj=$(iw_tree | grep -Ex '/net/connman/iwd/[0-9]+/[0-9]+' | head -n1)
+    iface=$(get_prop "$iface_obj" net.connman.iwd.Device Name)
+    case $opt in
+        Connect)
+            net=$(get_network_names | dmenu -p 'Connect' -l 5)
+
+            if [ -z "$net" ]; then
+                continue
+            elif [ "$net" = "$curnet" ]; then
+                notify-send -i wireless "$net" 'Already connected.' && exit 0
+            fi
+
+            net_obj=$(
+                get_network_object_and_name | awk \
+                    -v pat="^$iface_obj/$net_regex$" \
+                    -v name="$net" \
+                    '$1 ~ pat && substr($0, index($0, $2)) == name { print $1 }'
+            )
+
+            if get_prop "$net_obj" net.connman.iwd.Network KnownNetwork >/dev/null; then
+                :
+            elif [ "${net_obj##*_}" != open ]; then
+                password=$(dmenu -x -p 'Password' </dev/null)
+            fi
+
+            if iwctl --passphrase "$password" station "$iface" connect "$net" >/dev/null 2>&1; then
+                notify-send -i wireless "$net" "Now connected." && exit 0
+            else
+                notify-send -i error "$net" "Connection failed" && exit 0
+            fi
+            ;;
+        Disconnect)
+            iwctl station "$iface" disconnect && notify-send "Disconnected from the network." && exit 0
+            ;;
+        Forget)
+            net=$(iw_tree | grep -Ex "/net/connman/iwd/$net_regex" \
+                | xargs -I {} busctl -j get-property net.connman.iwd {} net.connman.iwd.KnownNetwork Name 2>/dev/null \
+                | jq -r .data | dmenu -l 5 -i -p 'Forget')
+            [ "$net" ] || continue
+            if iwctl known-networks "$net" forget >/dev/null 2>&1; then
+                notify-send -i info "$net" "What's that?"
+            else
+                notify-send -i error "$net" "Can't forget"
+            fi
+            ;;
+        '')
+            exit
+            ;;
+    esac
+done

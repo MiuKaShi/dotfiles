@@ -6,22 +6,22 @@
 
 case $BLOCK_BUTTON in
     1)
-        "$TERMINAL" -e nmtui
+        iwd-dmenu
         pkill -RTMIN+4 dwmblocks
         ;;
-    2) net-toggle ;;
     3) notify-send "🌎 Internet module" "\- Click to connect
 ❌: no network
 📶: wifi connection with quality
 🌎: ethernet working
-- Middle click toggle network
 " ;;
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null; then
     sigStr="$(awk '/^\s*w/ {print int($3 * 100 / 70) "%"}' /proc/net/wireless)"
-    ssid="$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)"
+    device="$(iwctl device list | awk 'FNR == 5 {print $2}')"
+    # ssid="$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)" # for networkmanager
+    ssid="$(iwctl station $device show | grep 'Connected network' | awk '{print $3}')"
     neticon="📶$ssid($sigStr)"
 elif grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null; then
     neticon="🌎 LAN"
