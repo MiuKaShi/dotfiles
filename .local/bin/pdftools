@@ -1,21 +1,15 @@
 #!/bin/sh
 
-# Requires https://github.com/thiagoeliasr/pdftools
+# need pdfcpu
 
 # Set variables
 file=$(readlink -f "$1")
-pdftools=$XDG_CONFIG_HOME/script/PDFTools.jar
 
 # Define functions
 remove_pages() {
     num=$(echo | dmenu -p "Pages:")
-    java -jar "$pdftools" remove-pages "$file" "$file" "$(($num - 1))"
+    pdfcpu pages remove -p "$num" "$file"
     notify-send -t 3000 "Remove Page $num"
-}
-
-compress_pdf() {
-    java -jar "$pdftools" compress "$file" "$file"
-    notify-send -t 3000 "Compress PDF"
 }
 
 delete_pdf() {
@@ -24,19 +18,32 @@ delete_pdf() {
 }
 
 extract_pages() {
-    start=$(echo | dmenu -p "From page:")
-    end=$(echo | dmenu -p "To page:")
-    qpdf "$file" --pages . "$start"-"$end" -- $HOME/Downloads/extract-output.pdf
+    pages=$(echo | dmenu -p "pages:")
+    pdfcpu extract -m page -p "$pages" "$file" $HOME/Downloads
     notify-send -t 3000 "Extract successfully"
 }
 
+rotate_pages() {
+    pages=$(echo | dmenu -p "rotae:")
+    angle=$(echo | dmenu -p "angle:")
+    pdfcpu rotate -p "$pages" "$file" "$angle"
+    notify-send -t 3000 "Rotate successfully"
+}
+
+annotation_remove() {
+    pages=$(echo | dmenu -p "annotation(remove page):")
+    pdfcpu annotations remove -p "$pages" "$file"
+    notify-send -t 3000 "Remove successfully"
+}
+
 # Prompt user for action
-action=$(printf "remove pages\nextract pages\ncompress pdf\ndelete pdf" | dmenu -l 6 -i -p "Pdf tools:")
+action=$(printf "remove pages\nextract pages\nrotate pdf\ndelete pdf" | dmenu -l 6 -i -p "Pdf tools:")
 
 # Call appropriate function based on user input
 case "$action" in
     "remove pages") remove_pages ;;
-    "compress pdf") compress_pdf ;;
-    "delete pdf") delete_pdf ;;
     "extract pages") extract_pages ;;
+    "rotate pdf") rotate_pages ;;
+    "annotation remove") annotation_remove ;;
+    "delete pdf") delete_pdf ;;
 esac
