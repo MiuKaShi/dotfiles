@@ -56,33 +56,22 @@ get_network_names() {
 }
 
 while opt=$(printf '%s\n' 'Connect' 'Disconnect' 'Forget' | dmenu -p 'iwd-dmenu' -l 3); do
-    # populate current network
-    curnet_obj=$(get_prop "$iface_obj" net.connman.iwd.Station ConnectedNetwork)
-    curnet=$(get_prop "$curnet_obj" net.connman.iwd.Network Name)
-    # populate interface
+    # interface
     iface_obj=$(iw_tree | grep -Ex '/net/connman/iwd/[0-9]+/[0-9]+' | head -n1)
     iface=$(get_prop "$iface_obj" net.connman.iwd.Device Name)
+    # current network
+    curnet_obj=$(get_prop "$iface_obj" net.connman.iwd.Station ConnectedNetwork)
+    curnet=$(get_prop "$curnet_obj" net.connman.iwd.Network Name)
     case $opt in
         Connect)
             net=$(get_network_names | dmenu -p 'Connect' -l 5)
+            [[ -z "$net" ]] && exit 0
+            [[ "$net" = "$curnet" ]] && notify-send -i wireless "$net" 'Already connected.' && exit 0
+            select_net_obj=$(get_network_object_and_name | grep "$net$")
+            net_obj=$(echo "${select_net_obj#$iface_obj/}" | awk '{print $1}')
 
-            if [ -z "$net" ]; then
-                continue
-            elif [ "$net" = "$curnet" ]; then
-                notify-send -i wireless "$net" 'Already connected.' && exit 0
-            fi
-
-            net_obj=$(
-                get_network_object_and_name | awk \
-                    -v pat="^$iface_obj/$net_regex$" \
-                    -v name="$net" \
-                    '$1 ~ pat && substr($0, index($0, $2)) == name { print $1 }'
-            )
-
-            if get_prop "$net_obj" net.connman.iwd.Network KnownNetwork >/dev/null; then
-                :
-            elif [ "${net_obj##*_}" != open ]; then
-                password=$(dmenu -x -p 'Password' </dev/null)
+            if ! get_prop "$iface_obj/$net_obj" net.connman.iwd.Network KnownNetwork >/dev/null; then
+                [[ "${net_obj##*_}" != open ]] && password=$(echo '' | dmenu -p 'Password: ')
             fi
 
             if iwctl --passphrase "$password" station "$iface" connect "$net" >/dev/null 2>&1; then
@@ -100,9 +89,9 @@ while opt=$(printf '%s\n' 'Connect' 'Disconnect' 'Forget' | dmenu -p 'iwd-dmenu'
                 | jq -r .data | dmenu -l 5 -i -p 'Forget')
             [ "$net" ] || continue
             if iwctl known-networks "$net" forget >/dev/null 2>&1; then
-                notify-send -i info "$net" "What's that?"
+                notify-send -i info "$net" "What's that?" && exit 0
             else
-                notify-send -i error "$net" "Can't forget"
+                notify-send -i error "$net" "Can't forget" && exit 0
             fi
             ;;
         '')
