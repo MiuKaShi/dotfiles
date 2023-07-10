@@ -5,7 +5,10 @@
 pidof -q cupsd || notify-send dprint "cups isn't running."
 
 while :; do
-    printer="$({ echo Configure; lpstat -e ;} | dmenu -p 'Choose Printer:')" || exit 1
+    printer="$({
+        echo Configure
+        lpstat -e
+    } | dmenu -p 'Choose Printer:')" || exit 1
     case "$printer" in
         Configure) system-config-printer >/dev/null 2>&1 ;;
         *) break ;;
@@ -20,6 +23,6 @@ while :; do
         Print)
             lp -d "$printer" -- "$@" 2>&1 | xargs -r0 notify-send dprint
             exit 0
-        ;;
+            ;;
     esac
 done
