@@ -1,0 +1,4 @@
+# Pass all events to our one handler script
+# located at /etc/acpi/
+event=.*
+action=/etc/acpi/handler.sh %e
