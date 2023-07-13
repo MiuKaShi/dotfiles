@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cmd="st -e nvim"
+cmd="$TERMINAL -e $EDITOR"
 # cmd="neovide"
 
 case "$1" in
