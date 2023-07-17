@@ -200,3 +200,16 @@ ix() {
     }
     curl --config /dev/null $opts -F f:1='<-' $* ix.io/$id
 }
+
+
+yi() {
+	pack=$(bkt --ttl=1d --stale=12h -- yay -Slq | fzf --exact --multi --preview 'yay -Si {1}')
+  echo "Pending to install $pack"
+	yay -S $pack
+}
+
+yu() {
+	PACKAGE=$(yay -Qq | fzf --exact --multi --preview 'yay -Qi {1}')
+  echo "Pending to uninstall $PACKAGE"
+	yay -Rns $PACKAGE
+}
