@@ -10,9 +10,9 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/hidpi" # hidpi
 setbg &                                                # set the background
 xclick &
 
-#xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
+# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 
-autostart="msi-isw watchfile unclutter blurlock remapd redshift"
+autostart="msi-isw watchfile unclutter blurlock remapd"
 
 for program in $autostart; do
     pidof -sx "$program" || "$program" &

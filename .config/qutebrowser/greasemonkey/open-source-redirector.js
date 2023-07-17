@@ -7,7 +7,6 @@
 // @include *google.com/*
 // @include *yahoo.com/*
 // @include *bing.com/*
-// @include *reddit.com/*
 // @include *twitter.com/*
 // @include *instagram.com/*
 // @include *wikipedia.org/*
@@ -28,7 +27,6 @@ var url = new URL(location.href),
 invidious = 'yewtu.be',
 //invidious = 'piped.kavin.rocks'
 searx = 'search.mdosch.de',
-libreddit = 'reddit.invak.id',
 nitter = 'nitter.snopyta.org',
 bibliogram = 'bibliogram.pussthecat.org',
 wikiless = 'wikiless.org',
@@ -47,11 +45,6 @@ if(location.host.indexOf('yahoo.com') != -1){
 // Bing | SearX //
 if(location.host.indexOf('bing.com') != -1){
     location.replace('https://' + searx + location.pathname + location.search)
-}
-
-// Reddit | Libreddit //
-if(location.host.indexOf('reddit.com') != -1){
-    location.replace('https://' + libreddit + location.pathname + location.search)
 }
 
 // Twitter | Nitter //

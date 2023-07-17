@@ -28,7 +28,7 @@ case "$1" in
         curl -s "$DANMAKU_POOL" -o "/tmp/${BVID}/seg.so" && biliass "/tmp/${BVID}/seg.so" -f protobuf -s "$RESOLUTION" -o "/tmp/${BVID}/danmaku.ass"
 		notify-send "📀 mpv " "Wait to play..."
         setsid -f mpv -quiet "$URL" --referrer=https://www.bilibili.com --sub-file=/tmp/"$BVID"/danmaku.ass  >/dev/null 2>&1 ;;
-	*nivod.tv*|*iop.org*|*tandfonline.com*)
+	*nivod.tv*|*iop.org*|*tandfonline.com*|*sciencedirect.com*)
       BROWSER=librewolf
 		  setsid -f "$BROWSER" "$1" >/dev/null 2>&1  && notify-send "Browser" "Open with $BROWSER..." ;;
 	reference://*)
