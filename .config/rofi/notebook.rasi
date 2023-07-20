@@ -1,0 +1,36 @@
+configuration {
+    display-drun: "Applications:";
+    display-window: "Windows:";
+    drun-display-format: "{name}";
+	font: "MonoLisa 16";
+	yoffset: -10;
+	location: 0;
+	matching: "fuzzy";
+	sort: true;
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Papirus";
+	display-run: " ";
+	display-drun: "  ";
+	display-window: "  ";
+	drun-display-format: "{icon} {name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+/* @import "~/.config/rofi/themes/gruvbox-dark.rasi" */
+@import "~/.cache/wal/custom-rofi.rasi"
+
+listview {
+	scrollbar: false;
+	lines: 10;
+	border: false;
+}
+
+element {
+	padding: 6px;
+}
+
+

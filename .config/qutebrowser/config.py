@@ -131,15 +131,19 @@ c.url.searchengines = {
         'zh': 'https://zhihu.com/search?q={}',
 }
 
-# bookmarks
+# cmd aliases
 c.aliases = {
     "ba": "spawn --userscript qb-rbuku -a",
     "br": "spawn --userscript qb-rbuku -r",
 }
-config.bind('b', 'spawn --userscript qb-rbuku -s')
-config.bind('B', 'spawn --userscript qb-rbuku')
+
+config.unbind('b')
+config.unbind('B')
+config.bind('bb', 'spawn --userscript qb-rbuku -s')
+config.bind('bn', 'spawn --userscript qb-rbuku')
+config.bind('ba', 'spawn --userscript qb-rbuku -a')
+config.bind('br', 'spawn --userscript qb-rbuku -r')
 # config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
-config.bind('<Ctrl+b>', 'spawn --userscript qb-rbuku -a')
 
 # Keys
 config.bind('ee', 'hint links spawn linkhandler {hint-url}')

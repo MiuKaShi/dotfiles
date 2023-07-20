@@ -23,12 +23,12 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
 		IMG:$HOME/.config/xmenu/icons/raindrop.svg							Raindrop 	raindrop
 	Music
-		IMG:$HOME/.config/xmenu/icons/yesplaymusic.svg							Ysmusic						/opt/YesPlayMusic/yesplaymusic
 		IMG:$HOME/.config/xmenu/icons/youtube-music.svg							Youtube-music						youtube-music
 		IMG:$HOME/.config/xmenu/icons/cider.svg							Apple-music						cider
 	Tools
 		IMG:$HOME/.config/xmenu/icons/telegram.svg							Telegram 	telegram-desktop
 		IMG:$HOME/.config/xmenu/icons/steam.svg							Steam 	steam
+		IMG:$HOME/.config/xmenu/icons/dupeguru.svg							Dupeguru 	QT_SCALE_FACTOR=1.5 dupeguru
 
 IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
 	IMG:$HOME/.config/xmenu/icons/tex.svg					Algorithm tex	algo-temp

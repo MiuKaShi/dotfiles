@@ -13,7 +13,7 @@ opt=$2
 # Copy the citekey to the clipboard
 function copy_citekey {
     echo "@$citekey" | xsel -b
-    notify-send "Citekey" "Copy citekey to clipboard"
+    notify-send "Citekey" "Copy citekey @$citekey"
 }
 
 # Copy the bib to the clipboard
