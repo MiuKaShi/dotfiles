@@ -12,12 +12,12 @@ get_citekey() {
 }
 
 get_pdf_title() {
-    awk -v RS='@' -v key="$1" '$0 ~ key {print}' $BIB | grep -i title | awk -F" = " '{print $2}' | sed 's/[{},]//g'
+    echo "$bib" | grep -i "title =" | awk -F" = " '{print $2}' | sed 's/[{},]//g'
 }
 
 # Get list of PDF paths associated with the given citekey
 get_pdf_path() {
-    bibtool -r biblatex -X "$1" "$BIB" | awk '/\.pdf/ {print $3}' | tr -d '{}' | sed 's/;/\n/g'
+    echo "$bib" | grep -i "file =" | awk -F" = " '{print $2}' | sed 's/[{},]//g'
 }
 
 # Select a PDF from a list of paths
@@ -37,8 +37,9 @@ open_pdf() {
 # Main function to open a PDF based on a citekey
 main() {
     get_citekey "$1"
+    bib=$(awk -v RS='@' -v key="$citekey" '$0 ~ key {print}' "$BIB")
     pdf_path=$(get_pdf_path "$citekey")
-    if [[ -z "$pdf_path" ]]; then
+    if [ -z "$pdf_path" ]; then
         pdf_title=$(get_pdf_title "$citekey")
         query=$(echo "$pdf_title" | tr ' ' '+') # replace spaces with '+' for the URL
         $BROWSER "https://www.google.com/search?q=$query" &
