@@ -9,70 +9,58 @@ ext="${file##*.}"
 
 cd "$dir" || exit 1
 
-textype() { \
-	command="pdflatex"
-	( head -n5 "$file" | grep -qi 'xelatex' ) && command="xelatex"
-	$command --output-directory="$dir" "$base" &&
-	grep -qi addbibresource "$file" &&
-	biber --input-directory "$dir" "$base" &&
-	$command --output-directory="$dir" "$base" &&
-	$command --output-directory="$dir" "$base"
+textype() {
+    command="pdflatex"
+    (head -n5 "$file" | grep -qi 'xelatex') && command="xelatex"
+    $command --output-directory="$dir" "$base" \
+        && grep -qi addbibresource "$file" \
+        && biber --input-directory "$dir" "$base" \
+        && $command --output-directory="$dir" "$base" \
+        && $command --output-directory="$dir" "$base"
 }
 
 mdpdf() {
-	groff="$(lowdown -sTms "$file")" # convert markdown to groff
-	# if title isn't already set, get it from the markdown's first heading
-	first_top_heading="$(echo "$groff" | grep -m1 -A1 '^.NH 1' | tail -n1 | cut -d' ' -f2-)"
-	top_heading_nr="$(echo "$groff" | grep -c '^.NH 1')" # number of top headings in document
-	# proceed if first heading exists
-	if [ -n "$first_top_heading" ]; then
-		title="$first_top_heading"
-		# if markdown is standard (only has one top heading),
-		# then remove it and decrement all other headings
-		if [ "$top_heading_nr" -eq 1 ]; then
-			groff="$(echo "$groff" | sed '/^.NH 1/,+1 d')"
-			groff="$(echo "$groff" | awk '/^.NH [2-9]/{$2-=1}1')"
-		fi
-	fi
-	# set the title and convert groff to pdf
-	groff="$(echo "$groff" | sed "s/^Untitled.*/$title/")"
-	echo "$groff" | pdfroff -itk -mspdf 2>/dev/null
+    groff="$(lowdown -sTms "$file")" # convert markdown to groff
+    # if title isn't already set, get it from the markdown's first heading
+    first_top_heading="$(echo "$groff" | grep -m1 -A1 '^.NH 1' | tail -n1 | cut -d' ' -f2-)"
+    top_heading_nr="$(echo "$groff" | grep -c '^.NH 1')" # number of top headings in document
+    # proceed if first heading exists
+    if [ -n "$first_top_heading" ]; then
+        title="$first_top_heading"
+        # if markdown is standard (only has one top heading),
+        # then remove it and decrement all other headings
+        if [ "$top_heading_nr" -eq 1 ]; then
+            groff="$(echo "$groff" | sed '/^.NH 1/,+1 d')"
+            groff="$(echo "$groff" | awk '/^.NH [2-9]/{$2-=1}1')"
+        fi
+    fi
+    # set the title and convert groff to pdf
+    groff="$(echo "$groff" | sed "s/^Untitled.*/$title/")"
+    echo "$groff" | pdfroff -itk -mspdf 2>/dev/null
 }
 
 pandocpdf() {
-	pandoc "$file" \
-		-f markdown \
-		--pdf-engine=tectonic \
-		--template=notes \
-		--metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
-		--include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
-		--mathjax \
-		--lua-filter=infobox.lua \
-		--filter=pandoc-crossref \
-		--citeproc \
-		--bibliography="$BIB" \
-		--csl="$CSL" \
-		-t pdf -o "$base".pdf
+    pandoc-extra $file -o "$base".pdf
 }
 
 case "$ext" in
-norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf >"$base".pdf ;;
-md) md2pdf "$file" -o "$base".pdf || pandocpdf ;;
-mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf >"$base".pdf ;;
-ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf >"$base".pdf ;;
-org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
-tex) tectonic -X compile "$file" --synctex --keep-logs --keep-intermediates -o /tmp/ ;;
+    norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf >"$base".pdf ;;
+    md) md2pdf "$file" -o "$base".pdf || pandocpdf ;;
+    mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf >"$base".pdf ;;
+    ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf >"$base".pdf ;;
+    org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
+    tex) tectonic -X compile "$file" --synctex --keep-logs --keep-intermediates -o /tmp/ ;;
 esac
 
 open() {
-	case "$ext" in
-	tex | m[dse] | [rR]md | mom | norg | [0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
-	html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
-	esac
+    case "$ext" in
+        tex | m[dse] | [rR]md | mom | norg | [0-9]) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
+        html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
+    esac
 
 }
 
 #open the file if it's closed
 if ! lsof -t "$base".pdf >/dev/null 2>&1; then
-	open "$base"
+    open "$base"
 fi

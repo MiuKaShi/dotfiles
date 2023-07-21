@@ -1,0 +1,20 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+
+pandoc "$file" \
+    -f markdown \
+    --pdf-engine=tectonic \
+    --template=notes \
+    --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
+    --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
+    --mathjax \
+    --lua-filter=infobox.lua \
+    --lua-filter=diagram-generator.lua \
+    --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
+    --metadata=javaPath:/usr/bin/java \
+    --filter=pandoc-crossref \
+    --citeproc \
+    --bibliography="$BIB" \
+    --csl="$CSL" \
+    -t pdf "${@:2}"
