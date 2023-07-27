@@ -1,3 +1,5 @@
+live_config_reload: true
+
 env:
   LANG: "en_US.UTF-8"
   TERM: xterm-256color
@@ -25,12 +27,12 @@ draw_bold_text_with_bright_colors: true
 shell:
   program: /sbin/zsh
   args:
-    - --login
+    - -l
     - -c
     - tmux attach || tmux
 
 selection:
-  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   save_to_clipboard: true
   text: "0xffffff"
   background: "#ebdbb2"
@@ -57,8 +59,9 @@ key_bindings:
   - { key: C, mods: Alt, action: Copy }
   - { key: U, mods: Alt, chars: "\x1b[5;2~" }
   - { key: D, mods: Alt, chars: "\x1b[6;2~" }
-  - { key: M, mods: Alt|Shift, action: IncreaseFontSize }
-  - { key: N, mods: Alt|Shift, action: DecreaseFontSize }
+  - { key: Key0, mods: Alt, action: ResetFontSize }
+  - { key: Equals, mods: Alt, action: IncreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
   # - { key: J, mods: Alt|Shift, action: ResetFontSize }
 
 # Colors (Gruvbox dark)

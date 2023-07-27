@@ -17,4 +17,3 @@ pp  ${XDG_PICTURES_DIR:-$HOME/papers}
 ppt ${XDG_PICTURES_DIR:-$HOME/Doctors/Presentation_PPT}
 sc  $HOME/.local/bin
 src $HOME/.local/src
-vv  ${XDG_VIDEOS_DIR:-$HOME/Videos}

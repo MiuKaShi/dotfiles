@@ -29,7 +29,8 @@ alias \
     mkd="mkdir -pv" \
     lf="lfub" \
     df="df -h" \
-    du="du -h" \
+    du="dust -r -n 999999999" \
+    tree="tree -aC" \
     free="free -h" \
     info="info --vi-keys" \
     yt="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --embed-metadata -i" \
@@ -41,6 +42,7 @@ alias \
     bibup="betterbib up -i" \
     cman='man -M /usr/share/man/zh_CN' \
     fiji='fiji --system' \
+    vv="neovide" \
     powerstat="powerstat -d 5 2"
 
 # Download
@@ -153,20 +155,21 @@ alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded fr
 alias hs='history'
 
 # Git Command
-alias g='git'
-alias gl='git clone'
-alias gs='git status '
-alias gss='git status -s'
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit '
+alias gs='git status'
+alias ga='git add -A'
+alias gc='git commit -v'
+alias gc!='git commit -v --amend --no-edit'
+alias gl='git pull'
+alias gp='git push'
+alias gp!='git push --force'
+alias gcl='git clone --depth 1 --single-branch'
+alias gf='git fetch --all'
+alias gb='git branch'
 alias gd='git diff'
-alias gt='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
+alias gss='git status -s'
+alias gt='git checkout'
+alias gr='git rebase'
 alias lg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias got='git '
-alias get='git '
 alias gh="xdg-open \`git remote -v | grep fetch | awk '{print \$2}' | sed 's/git@/http:\/\//' | sed 's/com:/com\//'\`| head -n1"
 alias gg='gstatus /home/miuka/github'
 alias gls="\\ls -A --group-directories-first -1 | while IFS= read -r line; do git log --color --format=\"\$(\\ls -d -F --color \"\$line\") =} %C(bold black)▏%Creset%Cred%h %Cgreen(%cr)%Creset =} %C(bold black)▏%Creset%s %C(bold blue)<%an>%Creset\" --abbrev-commit --max-count 1 HEAD -- \"\$line\"; done | awk -F'=}' '{ nf[NR]=NF; for (i = 1; i <= NF; i++) { cell[NR,i] = \$i; gsub(/\\033\\[([[:digit:]]+(;[[:digit:]]+)*)?[mK]/, \"\", \$i); len[NR,i] = l = length(\$i); if (l > max[i]) max[i] = l; } } END { for (row = 1; row <= NR; row++) { for (col = 1; col < nf[row]; col++) printf \"%s%*s%s\", cell[row,col], max[col]-len[row,col], \"\", OFS; print cell[row,nf[row]]; } }'"

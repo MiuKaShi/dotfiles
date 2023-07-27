@@ -16,7 +16,6 @@ hash -d pp=/home/miuka/papers
 hash -d ppt=/home/miuka/Doctors/Presentation_PPT 
 hash -d sc=/home/miuka/.local/bin 
 hash -d src=/home/miuka/.local/src 
-hash -d vv=/home/miuka/Videos 
 hash -d bf=/home/miuka/.config/shell/bm-files 
 hash -d bd=/home/miuka/.config/shell/bm-dirs 
 hash -d cfx=/home/miuka/.config/x11/xresources 

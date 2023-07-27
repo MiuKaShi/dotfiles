@@ -16,7 +16,6 @@ pp="cd /home/miuka/papers" \
 ppt="cd /home/miuka/Doctors/Presentation_PPT" \
 sc="cd /home/miuka/.local/bin" \
 src="cd /home/miuka/.local/src" \
-vv="cd /home/miuka/Videos" \
 bf="$EDITOR /home/miuka/.config/shell/bm-files" \
 bd="$EDITOR /home/miuka/.config/shell/bm-dirs" \
 cfx="$EDITOR /home/miuka/.config/x11/xresources" \

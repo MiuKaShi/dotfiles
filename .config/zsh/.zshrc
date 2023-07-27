@@ -1,11 +1,10 @@
-# config for the ZSH Shell
-
 # Z-jump:
 eval "$(lua /usr/share/zsh/plugins/z.lua/z.lua --init zsh enhanced once)"
 
-# Enable colors and change prompt:
+# Change prompt:
 autoload -U colors && colors	# Load colors
 PS1="%B%{$fg[red]%}%{$fg[blue]%} %{$fg[green]%}%~%{$fg[cyan]%}  %b "
+
 # zsh misc
 setopt auto_cd               # simply type dir name to cd
 setopt auto_pushd            # make cd behave like pushd
@@ -24,8 +23,8 @@ setopt share_history         # share history between sessions
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 [[ ! -d ${HISTFILE:h} ]] && mkdir -pm700 ${HISTFILE:h}
 HISTORY_IGNORE="(ls|cd|history|lf|exit|reboot)"
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
