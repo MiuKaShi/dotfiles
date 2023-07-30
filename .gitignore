@@ -9,22 +9,16 @@
 .config/.config/rofi/config.rasi
 
 # mpd
-.config/.config/mpd/mpd.log
 .config/.config/mpd/mpd.state
 .config/.config/mpd/mpd.pid
-
-# sioyek
-.config/.config/sioyek/shared.db
-
-# newsboat
-.config/.config/newsboat/cache.db
 
 # mpv
 **/watch_later/
 
-# make
-**/*.o
-
 # runit
-**/*.log
 **/supervise/
+
+# unimportant files
+**/*.log
+**/*.db
+**/*.o
