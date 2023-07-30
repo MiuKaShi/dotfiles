@@ -1,0 +1,6 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+
+mv $file $file.old
+iconv -f gbk -t utf-8 $file.old -o $file

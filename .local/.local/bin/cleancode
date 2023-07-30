@@ -1,0 +1,37 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+dir=${file%/*}
+
+output_code="$dir"/clean_"$name"
+output_md="$dir"/"$name".md
+
+URL="https://api.openai.com/v1/chat/completions"
+API_KEY="$(cat "${HOME}"/.api_keys/OPENAI_KEY)"
+ENGINE="gpt-3.5-turbo"
+
+[[ -z $API_KEY ]] && echo -e "Set your API_KEY" && exit 1
+
+TEMPERATURE="0"
+TOP_P="1"
+FREQUENCY_PENALTY="0.2"
+PRESENCE_PENALTY="0"
+
+input=$(cat "$file" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
+
+content="{\"role\": \"system\", \"content\": \"You are a senior programmer.\"}, {\"role\": \"assistant\", \"content\": \"Clean my code to make it easier to understand, test, and reuse based on the principles from Clean Code by Robert C. Martin. you can refactor the code into smaller, more focused functions. you can renamed some of the variables and functions to give them more meaningful names. you can add docstrings to the functions to explain what they do, what arguments they take, and what they return. Try to use logical operators instead of if statements to make the code more concise and easier to read. Answer with the code fence. List your major changes in a markdown table.\"}, {\"role\": \"user\", \"content\": $input},"
+
+raw_response=$(
+    curl -s -X POST $URL \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer $API_KEY" \
+        -d "{\"model\": \"$ENGINE\", \"messages\": [${content%?}], \"temperature\": $TEMPERATURE, \"top_p\": $TOP_P, \"frequency_penalty\": $FREQUENCY_PENALTY, \"presence_penalty\": $PRESENCE_PENALTY}"
+)
+
+response=$(echo "$raw_response" | jq -r '.choices[0].message.content')
+
+echo "$response" | grep -Pzo '(?s)```.*?\n(.*?)```' | sed -E '1d;$d' | tr '\0' '\n' >"$output_code"
+
+echo "$response" | perl -0777 -pe 's/```.*?```//sg' | glow -

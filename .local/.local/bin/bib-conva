@@ -1,0 +1,54 @@
+#!/bin/bash
+# Convert most characters to ascii
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Convert most characters to ascii
+
+USAGE: echo text | $(basename $0) [options]
+Options (position sensitive):
+  -h       print this help
+EOF
+    exit $1
+}
+
+# Default options.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+done
+
+
+# Replace umlaute by two letter transliterations.
+REPLACE_UMLAUTE='
+s/\\"{\([AOUaou]\)}/\1e/g
+s/\\H{\([OUou]\)}/\1e/g
+s/\\r{\([Aa]\)}/\1a/g
+s/{\\\([Oo]\)}/\1e/g
+'
+
+
+# Strip single letter macros as {\L} or {\ss} and remove the \& escape.
+STRIP_LETTERS='
+s/{\\\([^} ][^} ]\?\)}/\1/g
+s/\\&/\&/g
+'
+
+
+# Strip (possibly nested) latex macros such as replacing \v{Z} by Z.
+STRIP_MACROS='
+:a;/\\[^{ ]*{/{:s;s/\\[^{ ]*{\([^{}]*\)}/\1/;ta;N;bs}
+'
+
+
+# Function to replace unicode characters by latex code.
+function all_to_ascii() { # echo text | all_to_ascii
+    sed "$REPLACE_UMLAUTE" \
+        | sed "$STRIP_LETTERS" \
+        | sed "$STRIP_MACROS"
+}
+
+
+bib-convl | all_to_ascii

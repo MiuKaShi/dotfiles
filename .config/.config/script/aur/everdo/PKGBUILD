@@ -1,0 +1,44 @@
+# Maintainer: miukashi <d.lolimiuku@gmail.com>
+
+_pkgname=everdo
+pkgname="${_pkgname}"-appimage
+pkgver=1.8.6
+pkgrel=1
+pkgdesc="The Perfect App for GTD / Getting Things Done"
+arch=('x86_64')
+url='https://everdo.net'
+depends=(hicolor-icon-theme zlib)
+options=(!strip) # necessary otherwise the AppImage file in the package is truncated
+_filename=${pkgname}-${pkgver}.AppImage
+source=("${_filename}::https://release.everdo.net/${pkgver}/Everdo-${pkgver}.AppImage")
+sha256sums=('95878cf076088e68391642f5b71c706b8e0e86e7773124dcbd310370f3991db9')
+INSTALL_PATH="/opt/${pkgname}/${_filename}"
+
+prepare() {
+  chmod +x $_filename
+  mkdir -p squashfs-root/usr/share/icons/hicolor
+  ./$_filename --appimage-extract "usr/share/icons/hicolor/*/apps/everdo.png" > /dev/null 2>&1
+  ./$_filename --appimage-extract everdo.desktop > /dev/null 2>&1
+}
+
+build() {
+  sed -i -E "s|Exec=AppRun|Exec=${INSTALL_PATH}|" squashfs-root/everdo.desktop
+  # Fix permissions; .AppImage permissions are 700 for all directories
+  chmod -R a-x+rX squashfs-root/usr
+}
+
+package() {
+  # install icons
+  install -dm755 "${pkgdir}/usr/share/icons"
+  cp -dpr --no-preserve=ownership "squashfs-root/usr/share/icons" "${pkgdir}/usr/share"
+  chmod -R 755 "${pkgdir}/usr/share/icons"
+  find "${pkgdir}/usr/share/icons" -type f -name "everdo.png" -exec chmod 644 {} \;
+
+  # install .desktop file and image file
+  install -Dm644 "squashfs-root/everdo.desktop" "${pkgdir}/usr/share/applications/everdo.desktop"
+  install -Dm755 "${_filename}" "${pkgdir}${INSTALL_PATH}"
+
+  # Symlink executable
+  install -dm755 "${pkgdir}/usr/bin"
+  ln -s "${INSTALL_PATH}" "${pkgdir}/usr/bin/${_pkgname}"
+}

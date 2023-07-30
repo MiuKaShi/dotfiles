@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Define variables with more meaningful names
+FILE=$(readlink -f "$1")
+DIRECTORY=${FILE%/*}
+FILENAME=$(basename "$FILE")
+BROWSER=librewolf
+PORT="25851"
+
+# Get the process ID of the process listening on the specified port
+PIDNUM=$(lsof -t -i:$PORT)
+
+# Change to the directory containing the file
+cd "$DIRECTORY" || exit 1
+
+# Define a function to open the file in a browser
+open_browser() {
+    python3 -m http.server $PORT >>/dev/null 2>&1 &
+    setsid -f "$BROWSER" http://localhost:$PORT/"$FILENAME" >/dev/null 2>&1 && notify-send "Open with $BROWSER..."
+}
+
+# If no process is listening on the specified port, open the file in a browser
+if [ -z "$PIDNUM" ]; then
+    open_browser
+else
+    # Otherwise, kill the process and open the file in a browser
+    kill "$(lsof -t -i:"$PORT")"
+    open_browser
+fi

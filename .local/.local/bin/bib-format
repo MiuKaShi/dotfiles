@@ -1,0 +1,292 @@
+#!/bin/bash
+# Format bibtex files in JabRef like style
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Format bibtex files in JabRef like style
+
+USAGE: $(basename $0) bibfiles
+Options:
+  -h  print this help
+  -n  show changes only
+  -u  do not change field contents
+  -p  print non ascii characters
+EOF
+    exit $1
+}
+if [ $# -lt 1 ]; then usage 1; fi
+
+# Default options.
+INPLACE=1 # Update source file.
+EDITVALUES=1 # Edit selected field values.
+NONASCII=0 # Do not print non ascii characters.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    # With option '-n' only show diff.
+    if [[ "$arg" == "-n" ]]; then INPLACE=0; fi
+    # With option '-u' keep field values unchanged.
+    if [[ "$arg" == "-u" ]]; then EDITVALUES=""; fi
+    # With option '-p' print non ascii characters.
+    if [[ "$arg" == "-p" ]]; then NONASCII=1; fi
+done
+
+
+# Function to replace double quotes by curly brackets.
+function replace_quotes() { # replace_quotes bibfile
+    sed -i -r '
+s/^  ([A-Za-z][A-Za-z_-]*) = "/  \1 = {/ # Replace opening quote by {.
+T                # End here if there was no replacement.
+:a               # Label with name a.
+h                # Keep a copy of the line (hold space).
+s/"[^"]*"//g     # Remove all quote pairs to get the modulo 2.
+tb;:b            # Go to label b to disregard previous substitution.
+s/"//            # In case of odd number of quotes, remove the last.
+g                # Restore the line from copy (hold space).
+Tc               # In case of even number go to label c.
+s/" *(,?)$/}\1/  # Replace closing quote by }.
+:c               # Label with name c to skip previous line.
+t                # End here if replacement was successful.
+N                # Append next line to search closing quote.
+ba               # Go to label a to repeat search.
+' "$1"
+}
+
+# Function to insert brackets around non quoted field contents.
+function insert_brackets() { # insert_brackets bibfile
+    sed -i -r '
+s/^  ([A-Za-z][A-Za-z_-]*) = ([^{].*[^},])(,*)$/  \1 = {\2}\3/
+' "$1"
+}
+
+# Function to merge lines.
+function merge_lines() { # merge_lines bibfilename
+    sed -i ':a # Label with name a.
+/{$/s//& /     # Blank to match opening bracket at line end in the next row.
+/^  [A-Z][a-z]* = {.*\([^},]\|[^}] *,$\)$/N # Append line to incomplete field.
+s/{[\n \t]*/{/       # At left curly bracket remove newline and whitespace.
+s/[ \t]*\n[ \t]*}/}/ # At right curly bracket remove whitespace and newline.
+s/[ \t]*\n[ \t]*/ /g # At other places replace space+newline by single space.
+/[^},]$/{N;ba}       # If bib field is incomplete, append line and jump to :a.
+/^[^@]*[^}],$/{N;ba} # If bib field is incomplete, append line and jump to :a.
+/ *\(},*\)$/s//\1/   # Remove whitespace before trailing curly bracket.
+/}$/{N;s/\n *,/,/}   # Remove newline between trailing curly bracket and comma.
+' "$1"
+}
+
+
+# Iterate bib files.
+for bibfile in "$@"
+do
+    # Skip options.
+    test "$bibfile" != "-n" || continue
+    test "$bibfile" != "-u" || continue
+    test "$bibfile" != "-p" || continue
+
+    # Select pair of pdf and bib file from either filename.
+    option="$bibfile"
+    pdffile="${bibfile%.bib}"
+    bibfile="${pdffile}.bib"
+
+    # Skip if not a regular file.
+    test -f "$bibfile" || {
+        [[ "$bibfile" =~ ^- ]] \
+            && echo "$(basename $0): $option: Unknown option" >/dev/stderr \
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+        continue
+    }
+
+    # Only print non ascii characters with option '-p'.
+    if [[ $NONASCII -eq 1 ]]
+    then
+        grep -P -n -H "[^\x00-\x7F]" "$bibfile" \
+            | grep -v [Aa]bstract \
+            | grep --color='auto' -P -n "[^\x00-\x7F]"
+        continue
+    fi
+
+    # Create a temporary copy.
+    tmpfile="$(mktemp)"
+    cp -a "$bibfile" "$tmpfile"
+
+    # Remove utf8 BOM.
+    sed -i $'1s/^\uFEFF//' "$tmpfile"
+
+    # Remove CR line feeds.
+    sed -i 's/\r//' "$tmpfile"
+
+    # Remove trailing whitespace.
+    sed -i 's/[\t ][\t ]*$//' "$tmpfile"
+
+    # Merge whitespace.
+    sed -i 's/  */ /g' "$tmpfile"
+
+    # Indent with two spaces.
+    sed -i -r 's/^[ \t]*([A-Za-z][^={"]*[^ ={"])[ \t]*=[ \t]*/  \1 = /' "$tmpfile"
+
+    # Title case entry types.
+    sed -i -r 's/^@([A-Za-z]+) *\{/@\L\u\1{/' "$tmpfile"
+    sed -i -r 's/^  ([A-Za-z]+) = /  \L\u\1 = /' "$tmpfile"
+
+    # Use curly brackets {} instead of double quotes "" or no quotes.
+    sed -i 's/"} *$/"\n}/' "$tmpfile" # Closing brace on separate line.
+    replace_quotes "$tmpfile"
+    insert_brackets "$tmpfile"
+
+    # Remove preceding and trailing whitespace in field contents.
+    sed -i 's/  *\(},\?\)$/\1/' "$tmpfile"
+    sed -i -r '/\{ /s/^(  [A-Za-z]+ = \{) +/\1/' "$tmpfile"
+
+    # Remove double curly brackets around fields (but not "{{...} ... {...}}").
+    sed -i -r '/\{\{/{
+      /^  [A-Za-z]+ = *\{\{([^{}]*)(\{[^{}]*\}[^{}]*)*\}\}[^}]*$/{
+        s/^(  [A-Za-z]+ = *\{)\{(.*)\}(\}[^}]*)$/\1\2\3/
+      }
+    }' "$tmpfile"
+
+    # Append single blank line.
+    sed -i '$G' "$tmpfile"
+
+    # Merge blank lines.
+    sed -i '/^$/{:b;N;s/\n$//;tb}' "$tmpfile"
+
+    # Remove preceding blank line.
+    sed -i '1{N;s/^\n//}' "$tmpfile"
+
+    # Merge lines.
+    merge_lines "$tmpfile"
+
+    if [ "$EDITVALUES" ]
+    then
+
+        # Replace some utf8 signs (do not change abstract).
+        sed -i "/^  [Aa]bstract/!{
+                y/׳’“”/''\"\"/
+                s/[   ­   ] / /g
+                y/‐−–   ­   /---       /
+                s/—/---/
+                s/ﬁ/fi/
+                s/ﬂ/fl/
+            }" "$tmpfile"
+
+        # Replace utf8 characters by latex (except in abstract field).
+        bib-convl -i "$tmpfile" -f '/^  [Aa]bstract\|^  [Uu]rl/!'
+
+        # Escape percent signs (TeX comment, also escaped in abstract!).
+        sed -i '/^  [Uu]rl/!{/%/s/\([^\\]\)%/\1\\%/g}' "$tmpfile"
+
+        # Escape ampersands.
+        sed -i '/^  [Aa]bstract\|^  [Uu]rl/!{/&/s/\([^\\]\)&/\1\\\&/g}' "$tmpfile"
+
+        # Remove footnote signs (author and editor list).
+        sed -i '/^  \(Author\|Editor\) = {/s/[*‡]//g' "$tmpfile"
+
+        # Avoid duplicate and or and with comma.
+        sed -i '/^  \(Author\|Editor\) = {/s/\<and and\>/and/g' "$tmpfile"
+        sed -i '/^  \(Author\|Editor\) = {/s/,  *and\>/ and/g' "$tmpfile"
+        sed -i '/^  \(Author\|Editor\) = {/s/\([.,]\)and\>/\1 and/g' "$tmpfile"
+
+        # Single spacing for abbreviated forenames (two times for »A.B.C.«).
+        sed -i '/^  \(Author\|Editor\) = {/s/\([A-Z]\.\)\([A-Z]\.[ }]\)/\1 \2/g' "$tmpfile"
+        sed -i '/^  \(Author\|Editor\) = {/s/\([A-Z]\.\)\([A-Z]\.[ }]\)/\1 \2/g' "$tmpfile"
+
+        # Always put dots after capital letters for forename abbreviation.
+        sed -i '/^  \(Author\|Editor\) = {/s/\(\<[A-Z]\>\)\(}*[, ]\)/\1.\2/g' "$tmpfile"
+        sed -i '/^  \(Author\|Editor\) = {/s/\(\<[A-Z]\>\)\(} *,\) *$/\1.\2/g' "$tmpfile"
+
+        # Single spacing after commas.
+        sed -i '/^  \(Author\|Editor\) = {/s/, */, /g;s/ $//' "$tmpfile"
+        sed -i '/^  \(Author\|Editor\) = {/s/, */, /g;s/ $//' "$tmpfile"
+
+        # Double dash and whitespace in page ranges.
+        sed -i '/^  Pages = {.*[ 0-9]--*[ 0-9]/s/\([0-9]\) *--* *\([0-9]\)/\1--\2/' "$tmpfile"
+        sed -i '/^  Pages = {.*[A-Z][ 0-9]*--*[ A-Z]*[0-9]/s/\([0-9]\) *--* *\([A-Z][0-9]\)/\1--\2/' "$tmpfile"
+
+        # Double dash and whitespace in number ranges.
+        sed -i '/^  Number = {.*[ 0-9]--*[ 0-9]/s/\([0-9]\) *--* *\([0-9]\)/\1--\2/' "$tmpfile"
+        sed -i '/^  Number = {.*[A-Z][ 0-9]*--*[ A-Z]*[0-9]/s/\([0-9]\) *--* *\([A-Z][0-9]\)/\1--\2/' "$tmpfile"
+
+        # Remove prefix »The « from journal names (permits journal abbreviation).
+        sed -i '/^  Journal = {The /s/{The /{/' "$tmpfile"
+
+        # Remove white space around journal names (permits journal abbreviation).
+        sed -i '/^  Journal = {/{s/ = {  */ = {/;s/  *},/},/}' "$tmpfile"
+
+        # Long dash without spaces (permits journal abbreviation).
+        sed -i '/^  Journal = {/s/ - /--/g' "$tmpfile"
+
+        # Remove url and eprint if doi exists.
+        # Otherwise, try to obtain doi from url.
+        { rm "$tmpfile" && awk 'BEGIN {
+            RS = "@"
+            FS = "\n"
+            ORS = RS
+            OFS = FS
+        }
+        {
+            # Check if Doi is present.
+            if ($0 ~ "\n  Doi = {.*\\..*}") {
+                hasdoi = 1
+            } else {
+                hasdoi = 0
+            }
+            # Print record separator.
+            if (NR > 1) { printf("%s", ORS) }
+            # Iterate fields.
+            for (i = 1; i <= NF; i++) {
+                if (!hasdoi && ($i ~ "^  Url = .*doi.org")) {
+                    # Use Url as Doi field.
+                    sub("^  Url", "  Doi", $i)
+                }
+                if (hasdoi && ($i ~ "^  (Eprint|Url) = .*}[, ]*$")) {
+                    # Remove Eprint and Url if Doi is present.
+                } else {
+                    # Print delimiter as required and field.
+                    if (i > 1) { printf("%s", OFS) }
+                    printf("%s", $i)
+                }
+            }
+        }' > "$tmpfile"; } < "$tmpfile"
+
+        # Remove html part or 'doi:', 'DOI ' prefix from doi.
+        sed -i '/^  Doi = .*doi.org/s_[htps:/dx.]*doi.org/__' "$tmpfile"
+        sed -i '/^  Doi = .*doi:/s_doi:__' "$tmpfile"
+        sed -i '/^  Doi = .*DOI /s_DOI __' "$tmpfile"
+
+    fi
+
+    # Remove emptry entries.
+    sed -i '/^  [A-Z][a-z]* = ,$/d' "$tmpfile"
+
+    # Exceptions from title case keys (at last, title case is expected above).
+    sed -i -r 's/^  Issn = /  ISSN = /' "$tmpfile"
+
+    # Format whitespace like JabRef (at last, single spacing is expected above).
+    awktmp="$(mktemp)"
+    awk -F' = ' '/ = /{
+            printf("%-26s", $1)
+            for (i=2; i<=NF; i++) {
+                printf("%s%s", FS, $i)
+            }
+            printf("\n")
+        }
+        !/ = /{print $0}' "$tmpfile" > "$awktmp"
+    mv "$awktmp" "$tmpfile"
+
+    # In case of changes update source file or print diff.
+    if ! diff -q "$bibfile" "$tmpfile" >/dev/null
+    then
+        if [ $INPLACE -eq 1 ]
+        then
+            mv "$tmpfile" "$bibfile"
+        else
+            echo "=== changes for »$bibfile« ==="
+            diff "$bibfile" "$tmpfile"
+        fi
+    fi
+
+    # Remove temporary copy if not moved previously.
+    test ! -e "$tmpfile" || rm "$tmpfile"
+done

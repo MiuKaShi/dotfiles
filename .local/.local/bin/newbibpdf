@@ -1,0 +1,259 @@
+#!/bin/bash
+# Format and rename/move a pair of bib and pdf files
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Format and rename/move a pair of bib and pdf files
+
+USAGE: $(basename $0) [option] [target_dir] [pdffile] [bibfile]
+If unspecified, files that are unique by suffix are chosen. The
+bibliography suffixes '.bib', '.bibtex' and '.ris' are supported.
+With option '-l' the newest of any such file is selected. Files
+are renamed or converted to bibtex files with '.bib' suffix.
+Backups of input RIS and BIBTEX files are kept as '.bak' files.
+The 'target_dir' must be an existing directory.
+Options:
+  -h  print this help
+  -b  do not make backup files with suffix '.bak'
+  -n  show changes only (basic formatting is applied)
+  -f  full instead of abbreviated journal names
+  -u  do not change field contents
+  -l  select newest files in directory
+      (.bibtex file is renamed to .bib)
+EOF
+    exit $1
+}
+# if [ $# -lt 1 ]; then usage 1; fi
+
+# Default target dir to move bib and pdf file.
+TARGETDIR=new_lit
+
+# Default options.
+BACKUP=1 # Make a backup copy with suffix '.bak'.
+DRYRUN="" # No dry run option for bib-* tools.
+ACTION="eval" # Execute commands (no dry run).
+FULLNAME="" # Use long journal names.
+KEEPVALUES="" # Edit selected field values.
+NEWEST=0 # Do not select newest pdf/bib file.
+SKIPJABBR="" # Journal may not be abbreviated.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    # With option '-b' do not make a backup file.
+    if [[ "$arg" == "-b" ]]; then BACKUP=0; fi
+    # With option '-n' only print changes/actions.
+    if [[ "$arg" == "-n" ]]; then
+        DRYRUN="-n"
+        ACTION="echo"
+    fi
+    # With option '-f' use full journal names.
+    if [[ "$arg" == "-f" ]]; then FULLNAME="-f"; fi
+    # With option '-u' keep field values unchanged.
+    if [[ "$arg" == "-u" ]]; then KEEPVALUES="-u"; fi
+    # With option '-l' select newest pdf/bib file.
+    if [[ "$arg" == "-l" ]]; then NEWEST=1; fi
+done
+
+if [ -z "${FULLNAME}" ] && [ -z "${DRYRUN}" ]
+then
+    # Journal will certainly be abbreviated, don't do again.
+    SKIPJABBR="-s"
+fi
+
+
+# Iterate filenames.
+for arg
+do
+    # Skip options.
+    test "$arg" != "-b" || continue
+    test "$arg" != "-n" || continue
+    test "$arg" != "-f" || continue
+    test "$arg" != "-u" || continue
+    test "$arg" != "-l" || continue
+
+    # Optionally select target directory by argument.
+    test -d "$arg" && {
+        TARGETDIR="${arg%/}"
+        continue
+    }
+
+    # Select pdf file by argument.
+    test -z "$PDFFILE" && ! [[ "$arg" =~ .*.bib ]] && {
+        PDFFILE="$arg"
+        continue
+    }
+
+    # Select bibtex file by argument.
+    test -z "$BIBFILE" && {
+        BIBFILE="$arg"
+        continue
+    }
+
+    # Skip if not a regular file.
+    test -f "$arg" || {
+        [[ "$arg" =~ ^- ]] \
+            && echo "$(basename $0): $arg: Unknown option" >/dev/stderr \
+            || echo "$(basename $0): $arg: File not found" >/dev/stderr;
+        exit 1
+    }
+done
+
+# If files are not selected, search the newest by suffix.
+if [ $NEWEST -eq 1 ]
+then
+    # Search newest bibtex file.
+    if [ -z "$BIBFILE" ]
+    then
+        BIBFILE=$(ls -t *.bib *.bibtex *.ris 2>/dev/null | head -n1)
+
+        # Convert RIS to BIB files.
+        if [[ "$BIBFILE" =~ .*\.ris$ ]]
+        then
+            risfile="$BIBFILE"
+            ris2bib "$risfile"
+            BIBFILE="${risfile%.ris}.bib"
+            if [ -f "$BIBFILE" ]
+            then
+                if [ $BACKUP -eq 1 ]
+                then
+                    mv "$risfile" "${risfile}.bak"
+                else
+                    rm "$risfile"
+                fi
+            fi
+        fi
+
+        # Rename 'bibtex' suffix to 'bib'.
+        if [[ "$BIBFILE" =~ .*.bibtex ]]
+        then
+            mv -i "${BIBFILE}" "${BIBFILE%tex}" || exit 1
+            test -f "${BIBFILE}" && exit 1
+            BIBFILE="${BIBFILE%tex}"
+        fi
+
+        # Prefer pairs with identical names (x.pdf, x.pdf.bib).
+        # A replaced pdf file should be unspecified or exist.
+        ( test -z "${PDFFILE}" || test -f "${PDFFILE}" ) \
+            && test -f "${BIBFILE%.bib}" && PDFFILE="${BIBFILE%.bib}"
+    fi
+
+    # Search newest pdf file.
+    if [ -z "$PDFFILE" ]
+    then
+        PDFFILE=$(ls -t *.pdf 2>/dev/null | head -n1)
+
+        # Prefer pairs with identical names (x.pdf, x.pdf.bib).
+        # A replaced bibtex file should be unspecified or exist.
+        ( test -z "${BIBFILE}" || test -f "${BIBFILE}" ) \
+            && test -f "${PDFFILE}.bib" && BIBFILE="${PDFFILE}.bib"
+    fi
+fi
+
+# If no pdf file is selected, try to guess.
+if [ -z "$PDFFILE" ]
+then
+    # Check if pdf file is unique.
+    if [ ! $(ls *.pdf 2>/dev/null | wc -l) -eq 1 ]
+    then
+        if ls *.pdf >/dev/null 2>&1
+        then
+            echo "$(basename $0): Too many pdf files found:"
+            ls *.pdf
+        else
+            echo "$(basename $0): No pdf file found"
+        fi
+        echo "Use option '-h' to see usage."
+        exit 1
+    fi >/dev/stderr
+    # Select unique pdf file.
+    PDFFILE="$(ls *.pdf 2>/dev/null)"
+fi
+
+# Check if pdf file exists.
+if [ ! -f "$PDFFILE" ]
+then
+    test "$1" = "-h" && exit 0
+    echo "$(basename $0): $PDFFILE: File or directory not found"
+    exit 1
+fi >/dev/stderr
+
+# If no bibtex file is selected, try to guess.
+if [ -z "$BIBFILE" ]
+then
+    # Check if bib file is unique.
+    if [ ! `ls *.bib 2>/dev/null | wc -l` -eq 1 ]
+    then
+        if ls *.bib >/dev/null 2>&1
+        then
+            echo "$(basename $0): Too many bib files found:"
+            ls *.bib
+        else
+            echo "$(basename $0): No bib file found"
+        fi
+        echo "Use option '-h' to see usage."
+        exit 1
+    fi >/dev/stderr
+    # Select unique bib file.
+    BIBFILE="$(ls *.bib 2>/dev/null)"
+fi
+
+# Check if bibtex file exists.
+if [ ! -f "$BIBFILE" ]
+then
+    test "$1" = "-h" && exit 0
+    echo "$(basename $0): $BIBFILE: File not found"
+    exit 1
+fi >/dev/stderr
+
+# Create a backup copy with suffix '.bak'.
+if [ $BACKUP -eq 1 ]
+then
+    cp -an "${BIBFILE}" "${BIBFILE}.bak"
+fi
+
+# Apply basic formatting for dry run.
+if [ -n "$DRYRUN" ]
+then
+    bib-format -u "${BIBFILE}"
+fi
+
+# Format bibtex file.
+bib-format ${KEEPVALUES} ${DRYRUN} "${BIBFILE}"
+
+# Sort bibtex fields (skip for dry run).
+if [ -z "$DRYRUN" ]
+then
+    bib-order -i "${BIBFILE}"
+fi
+
+# (Un)abbreviate journal name.
+bib-jabbr ${DRYRUN} ${FULLNAME} "${BIBFILE}"
+
+# Update citation key.
+bib-keyinsert -q ${SKIPJABBR} ${DRYRUN} "${BIBFILE}"
+
+# Create default target directory if required.
+test -d "${TARGETDIR}" || $ACTION "mkdir -p \"${TARGETDIR}\"" || exit 1
+
+# Future bibtex file name.
+NEWBIBFILE="$(bib-name -n ${SKIPJABBR} "${BIBFILE}" \
+    | grep -o "[^ ']*\.pdf\.bib" | tail -n1)"
+NEWPDFFILE="${NEWBIBFILE%.bib}"
+
+# Rename bib and pdf file.
+test "./${BIBFILE}" == "${TARGETDIR}/${NEWBIBFILE}" \
+    || $ACTION "mv -i \"${BIBFILE}\" \"${TARGETDIR}/${NEWBIBFILE}\"" || exit 1
+test "./${PDFFILE}" == "${TARGETDIR}/${NEWPDFFILE}" \
+    || $ACTION "mv -i \"${PDFFILE}\" \"${TARGETDIR}/${NEWPDFFILE}\"" || exit 1
+
+# Print file path and citation key.
+test -z "$DRYRUN" && grep -H @ "${TARGETDIR}/${NEWBIBFILE}"
+
+# Print non ascii characters.
+if bib-format -p "${TARGETDIR}/${NEWBIBFILE}" | grep -q .
+then
+    echo "The following non ascii characters should be replaced."
+    bib-format -p "${TARGETDIR}/${NEWBIBFILE}"
+fi

@@ -1,0 +1,171 @@
+#!/bin/bash
+# Convert special characters from latex to unicode
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Convert special characters from latex to unicode
+
+USAGE: echo text | $(basename $0) [-i file] [-f str] [options]
+Options (position sensitive):
+  -h       print this help
+  -s       short replacement list for journal names
+  -i file  edit file in place (do not read stdin)
+  -f str   filter pattern for sed
+EOF
+    exit $1
+}
+
+# Default options.
+FILE="" # No filename, read from stdin.
+FILTER="" # No filter, edit all contents.
+SHORTLIST="0" # Use all replacement lists.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    if [[ "$arg" == "-s" ]]; then SHORTLIST=1; fi
+done
+
+if [[ "$1" == "-i" ]]
+then
+    [[ "$#" -ge 2 ]] && FILE="$2" \
+        || echo "Missing argument to option '-i'!" >/dev/stderr
+    shift 2 || shift 1
+fi
+
+if [[ "$1" == "-f" ]]
+then
+    [[ "$#" -ge 2 ]] && FILTER="$2" \
+        || echo "Missing argument to option '-f'!" >/dev/stderr
+    shift 2 || shift 1
+fi
+
+
+# Replace '{\"a}' and '\"a' to '\"{a}'.
+FORMAT="
+s/{\\\\\(['\`\"^v]\)\([^ {\\]\)}/\\\\\1{\2}/g
+s/\\\\\(['\`\"^v]\)\([^ {\\]\)/\\\\\1{\2}/g
+"
+
+# Minimum single quote list of replacements.
+MIN_REPLSQ='
+s/\\"{a}/ä/g
+s/\\"{o}/ö/g
+s/\\"{u}/ü/g
+s/\\"{A}/Ä/g
+s/\\"{O}/Ö/g
+s/\\"{U}/Ü/g
+s/\\`{a}/à/g
+s/\\`{e}/è/g
+s/\\`{i}/ì/g
+s/\\`{o}/ò/g
+s/\\`{u}/ù/g
+s/\\^{a}/â/g
+s/\\^{e}/ê/g
+s/\\^{i}/î/g
+s/\\^{o}/ô/g
+s/\\^{u}/û/g
+s/\\^{s}/ŝ/g
+s/\\^{A}/Â/g
+s/\\^{E}/Ê/g
+s/\\^{I}/Î/g
+s/\\^{O}/Ô/g
+s/\\^{U}/Û/g
+s/\\c{c}/ç/g
+/--/s/\([^-]\|^\)--\([^-]\|$\)/\1–\2/g
+/---/s/\([^-]\|^\)---\([^-]\|$\)/\1—\2/g
+s/\\&/\&/g
+'
+
+# Context matching may require two substitutions, e.g. for '-- --'.
+MIN_REPEAT='
+/--/s/\([^-]\|^\)--\([^-]\|$\)/\1–\2/g
+/---/s/\([^-]\|^\)---\([^-]\|$\)/\1—\2/g
+'
+
+# Additional single quote list of replacements.
+ADD_REPLSQ='
+s/\\"{i}/ı̈/g
+s/\\"{n}/n̈/g
+s/\\H{o}/ő/g
+s/\\H{u}/ű/g
+s/\\H{O}/Ő/g
+s/\\H{U}/Ű/g
+s/\\k{a}/ą/g
+s/\\k{e}/ę/g
+s/\\k{A}/Ą/g
+s/\\k{E}/Ę/g
+s/\\r{a}/å/g
+s/\\r{A}/Å/g
+s/\\v{c}/č/g
+s/\\v{r}/ř/g
+s/\\v{s}/š/g
+s/\\v{z}/ž/g
+s/\\v{C}/Č/g
+s/\\v{R}/Ř/g
+s/\\v{S}/Š/g
+s/\\v{Z}/Ž/g
+s/\\~{a}/ã/g
+s/\\~{n}/ñ/g
+s/\\~{A}/Ã/g
+s/\\~{N}/Ñ/g
+s/{\\ae}/æ/g
+s/{\\oe}/œ/g
+s/{\\ss}/ß/g
+s/{\\l}/ł/g
+s/{\\L}/Ł/g
+s/{\\o}/ø/g
+s/{\\O}/Ø/g
+'
+
+# Minimum double quote list of replacements.
+MIN_REPLDQ="
+s/\\\\'{a}/á/g
+s/\\\\'{e}/é/g
+s/\\\\'{i}/í/g
+s/\\\\'{o}/ó/g
+s/\\\\'{u}/ú/g
+s/\\\\'{c}/ć/g
+s/\\\\'{n}/ń/g
+s/\\\\'{y}/ý/g
+s/\\\\'{A}/Á/g
+s/\\\\'{E}/É/g
+"
+
+# Additional double quote list of replacements.
+ADD_REPLDQ="
+s/\\\\'{I}/Í/g
+s/\\\\'{O}/Ó/g
+s/\\\\'{U}/Ú/g
+"
+
+
+# For option '-s' use short list of replacements.
+if [ $SHORTLIST -eq 1 ]
+then
+    # Remove ampersand escaping (for journal names).
+    ADD_REPLSQ='s/\\&/\&/g'
+    ADD_REPLDQ=""
+fi
+
+
+# Function to replace latex code by unicode characters.
+function latex_to_utf() { # echo text | latex_to_utf
+    sed "$FILTER{
+                 $FORMAT
+                 $MIN_REPLSQ
+                 $MIN_REPEAT
+                 $MIN_REPLDQ
+                 $ADD_REPLSQ
+                 $ADD_REPLDQ
+             }" "$@"
+}
+
+
+if [ -z "$FILE" ]
+then
+    cat /dev/stdin | latex_to_utf
+else
+    latex_to_utf -i "$FILE"
+fi

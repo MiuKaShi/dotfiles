@@ -1,0 +1,134 @@
+#!/bin/bash
+# Insert reference to pdf file (JabRef style) into bibtex file
+#
+# Each filename should read Filename.pdf.bib for Filename.pdf.
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Insert reference to pdf file (JabRef style) into bibtex file
+
+USAGE: $(basename $0) bibfiles
+Options:
+  -h  print this help
+  -n  show changes only
+  -r  remove reference
+  -p  print actual references
+EOF
+    exit $1
+}
+if [ $# -lt 1 ]; then usage 1; fi
+
+# Default options.
+INPLACE=1 # Update source file.
+REMOVE=0 # Do not remove reference.
+PRINTREFS=0 # Do not print actual references.
+PRINTFILE=-H # Print filename with actual keys.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    # With option '-n' only show diff.
+    if [[ "$arg" == "-n" ]]; then INPLACE=0; fi
+    # With option '-r' remove reference.
+    if [[ "$arg" == "-r" ]]; then REMOVE=1; fi
+    # With option '-p' print actual references.
+    if [[ "$arg" == "-p" ]]; then PRINTREFS=1; fi
+done
+
+# Do not print filename with '-p' for a single file.
+if [[ $# -eq $((3 - $INPLACE)) ]]; then
+    PRINTFILE=""
+fi
+
+
+# Function to update or insert path to pdf file in a bibtex file.
+function updatepdf() { # updatepdf pdffile bibfile [-i]
+    if grep -q '^ *[Ff]ile  *= {:[^:]*:PDF}' "$bibfile"
+    then
+        if [ $REMOVE -eq 1 ]
+        then
+            # Remove reference.
+            sed $3 "$2" -e '/^ *[Ff]ile  *= {:[^:]*:PDF}/d'
+        else
+            # Update reference.
+            sed $3 "$2" -e '/^ *[Ff]ile  *= {:[^:]*:PDF}/s|{[^}]*}|'"{:"$1":PDF}"'|'
+        fi
+    else
+        if [ $REMOVE -eq 1 ]
+        then
+            sed $3 "$2" -e ''
+        else
+            # Insert new reference.
+            sed $3 "$2" -e '/^@[A-Za-z][A-Za-z]*{/a\
+'"  File                     = {:"$1":PDF},"
+        fi
+    fi
+}
+
+
+# Iterate bib files.
+for bibfile in "$@"
+do
+    # Skip options.
+    test "$bibfile" != "-n" || continue
+    test "$bibfile" != "-r" || continue
+    test "$bibfile" != "-p" || continue
+
+    # Select pair of pdf and bib file from either filename.
+    option="$bibfile"
+    pdffile="${bibfile%.bib}"
+    bibfile="${pdffile}.bib"
+
+    # Skip if not a regular file.
+    test -f "$bibfile" || {
+        [[ "$bibfile" =~ ^- ]] \
+            && echo "$(basename $0): $option: Unknown option" >/dev/stderr \
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+        continue
+    }
+
+    if [ $PRINTREFS -eq 1 ]
+    then
+        # Only print actual reference.
+        grep $PRINTFILE -i "\<File\> *=" "$bibfile" \
+            | sed 's/ *[Ff]ile *= *{[ :]*/ /;s/ *}[, ]*$//;s/:PDF//;s/^ //'
+        continue
+    fi
+
+    # Skip multi record files.
+    nr=`sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | wc -l`
+    if [ $nr -gt 1 ]
+    then
+        echo "WARNING: Do not insert reference to pdf file into multi record file '$bibfile'." >/dev/stderr
+        continue
+    fi
+
+    # In case of changes insert reference to pdf document or print diff.
+    if ! updatepdf "$pdffile" "$bibfile" | diff -q "$bibfile" - >/dev/null 2>&1
+    then
+        if [ $REMOVE -eq 1 ] || {
+            [ -f "$pdffile" ] && $(file "$pdffile" | grep -q "PDF document")
+        }
+        then
+            # Apply or show reference update.
+            if [ $INPLACE -eq 1 ]
+            then
+                # Update reference to pdf file and show result.
+                updatepdf "$pdffile" "$bibfile" -i \
+                    && grep -H -i "\<File\> *=" "$bibfile" \
+                    || if [ $REMOVE -eq 0 ]; then
+                        echo "Inserting reference into '${bibfile}' failed!" \
+                            >/dev/stderr; fi
+            else
+                # Show changes only.
+                echo "=== changes for »$bibfile« ==="
+                updatepdf "$pdffile" "$bibfile" | diff "$bibfile" - \
+                    | grep -E -v '^([0-9]*[dac][0-9]*|---)$'
+            fi
+        else
+            # Print warning.
+            echo "'${pdffile}' is not a PDF document!" >/dev/stderr
+        fi
+    fi
+done

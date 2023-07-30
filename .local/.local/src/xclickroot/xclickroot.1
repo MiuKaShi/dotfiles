@@ -1,0 +1,62 @@
+.Dd May 29, 2023
+.Dt XCLICKROOT 1
+.Os
+.Sh NAME
+.Nm xclickroot
+.Nd run command on button press on root window
+.Sh SYNOPSIS
+.Nm xclickroot
+.Op Fl 12345lmr
+.Ar command
+.Op Ar arg ...
+.Sh DESCRIPTION
+.Nm
+runs a command when a given mouse button is pressed on the root window.
+The arguments
+.Ar command
+and
+.Ar arg ...
+are the command to be run and its arguments.
+.Pp
+By default, the command is run when the right mouse button is pressed on the root window.
+This can be changed by one of the following options.
+.Bl -tag -width Ds
+.It Fl 1 | l
+Use the left mouse button.
+.It Fl 2 | m
+Use the middle mouse button.
+.It Fl 3 | r
+Use the right mouse button.
+.It Fl 4
+Use scroll up.
+.It Fl 5
+Use scroll down.
+.El
+.Sh ENVIRONMENT
+The following environment variables affect the execution of
+.Nm .
+.Bl -tag -width Ds
+.It Ev DISPLAY
+The display to start
+.Nm
+on.
+.El
+.Sh EXAMPLES
+.Nm
+is most commonly invoked at
+.Pa "~/.xinitrc"
+or
+.Pa "~/.xsession"
+(or any other script starting up a
+.Xr X 7
+session)
+in background, before the window manager, as follows:
+.Bd -literal -offset indent
+xclickroot -l xterm &
+.Ed
+.Pp
+That will invoke
+.Xr xterm 1
+whenever the user clicks on the root window with the left mouse button.
+.Sh SEE ALSO
+.Xr X 7

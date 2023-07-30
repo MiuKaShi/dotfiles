@@ -1,0 +1,331 @@
+#!/bin/bash
+# Insert citekeys FirstAuthorYear:journal into bibtex file
+#
+# A letter suffix to the year in the citation key is kept
+# or may be selected with the filename as 'file.bib:a'.
+
+ALLOWED_CHARS="A-Za-z:0-9-"
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Insert citekeys FirstAuthorYear:journal into bibtex file
+
+The automatically created citation key can be overridden by a
+Citationkey field that is manually added to the bibtex entry.
+  Options -u and -d have the same output format 'count<tab>key'.
+Call '$(basename $0) -u | cut -f2' for the list of (unique) keys
+without counts (-d for duplicate keys).
+  Journal names are abbreviated before creating the citation key.
+To gain speed rather than stability, the option -s can be used.
+
+USAGE: $(basename $0) bibfiles[:letter]
+Optional letter suffix for year.
+Options:
+  -h  print this help
+  -n  show changes only
+  -i  ignore case when updating keys
+  -p  print actual keys
+  -d  print duplicate keys
+  -u  print unique keys
+  -q  do not print new key
+  -s  skip journal abbreviation
+EOF
+    exit $1
+}
+if [ $# -lt 1 ]; then usage 1; fi
+
+# Default options.
+INPLACE=1 # Update source file.
+IGNORECASE=0 # Do not ignore case.
+PRINTKEYS=0 # Do not print actual keys.
+QUIET=0 # Do not show newly inserted keys.
+SKIPJ=0 # Skip journal abbreviation (faster).
+PRINTFILE=-H # Print filename with actual keys.
+PRINTDUPS=0 # Do not print duplicate keys.
+PRINTUNIQ=0 # Do not print unique keys.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    # With option '-n' only show diff.
+    if [[ "$arg" == "-n" ]]; then INPLACE=0; fi
+    # With option '-i' do not update keys that differ only in case.
+    if [[ "$arg" == "-i" ]]; then IGNORECASE=1; fi
+    # With option '-p' print actual keys.
+    if [[ "$arg" == "-p" ]]; then PRINTKEYS=1; fi
+    # With option '-d' print duplicate keys.
+    if [[ "$arg" == "-d" ]]; then
+        PRINTKEYS=1
+        PRINTFILE=""
+        PRINTDUPS=1
+        PRINTUNIQ=0
+    fi
+    # With option '-u' print unique keys.
+    if [[ "$arg" == "-u" ]]; then
+        PRINTKEYS=1
+        PRINTFILE=""
+        PRINTUNIQ=1
+        PRINTDUPS=0
+    fi
+    # With option '-q' do not print new keys.
+    if [[ "$arg" == "-q" ]]; then QUIET=1; fi
+    # With option '-s' skip journal abbreviation.
+    if [[ "$arg" == "-s" ]]; then SKIPJ=1; fi
+done
+
+# Do not print filename with '-p' for a single file.
+if [[ $# -eq $((3 - $INPLACE + $IGNORECASE)) ]]; then
+    PRINTFILE=""
+fi
+# Set ignore case option for diff.
+if [[ $IGNORECASE -eq 1 ]]
+then IGNORECASE=-i
+else IGNORECASE=
+fi
+
+
+# Shell string to create citation key letters from journal abbreviation.
+fmtjournal="bib-conva \
+    | sed -r \
+          -e 's/\\\{//' \
+          -e 's/[,:].*//;s/OF //;s/\\\\<[Tt][Hh][Ee]\\\\>//' \
+          -e 's/([A-Za-z]+) */\\\\1/g;s/[a-z. ]//g' \
+          -e 's/ *[[({].*//'"
+
+# Function to update citation keys in a bibtex file.
+function updatekeys() { # updatekeys bibfile skipj bibfile [letter]
+    awk \
+        -v ALLOWED_CHARS="$ALLOWED_CHARS" \
+        -v FMT_JOURNAL="$fmtjournal" \
+        -v SKIPJ="$2" \
+        -v BIBFILE="$3" \
+        -v LETTER="$4" '
+    # Function to escape strings for shell commands.
+    function escape(str) {
+        escaped = str
+        gsub("\\\\", "\\\\", escaped) # replace \ by \\
+        gsub("\\\\r", "\\\\\\\\r", escaped) # replace \r by \\r
+        gsub("\"", "\\\"", escaped)   # replace " by \"
+        gsub("`", "\\`", escaped)     # replace ` by \`
+        return escaped
+    }
+    # Define input and output record and field separators.
+    BEGIN {
+            RS="\n@"
+            FS="\n"
+            ORS=RS
+            OFS=FS
+    }
+    # Apply the following to each bibtex record.
+    {
+        # Clear array.
+        for (key in array) { delete array[key]; }
+
+        # Get field contents.
+        for (i=1;i<=NF;i++) {
+            if ($i ~ "^ *[A-Z][a-z]* *=") {
+                # Get key of the field.
+                key = $i
+                sub("^  ", "", key)
+                sub(" .*", "", key)
+                # Get content of the field.
+                content = $i
+                sub("^ *[A-Z][a-z]* *= *{ *", "", content)
+                sub(" *},* *$", "", content)
+                # Save key and content in array.
+                array[key] = content
+            }
+        }
+
+        if (NF > 0) {
+            # Citation key may be defined in the bitex record.
+            citekey = array["Citationkey"]
+
+            # Bibtex entry type.
+            atEntrytype = $1 # starts with "@" in first record
+            sub(" *{.*", "", atEntrytype)
+            entrytype = atEntrytype
+            sub("^@", "", entrytype)
+
+            # Otherwise, create it from author, year and journal.
+            if (!citekey) {
+                # Old citation key.
+                oldkey = $1
+                sub("^.*{ *", "", oldkey)
+                sub(" *,* *$", "", oldkey)
+
+                # Variables for needed field contents.
+                authors = array["Author"]
+                series = array["Series"]
+                journal = array["Journal"]
+                year = array["Year"]
+
+                # Derived field contents.
+                cmd = sprintf("echo \"%s\" | bib-conva", escape(authors))
+                cmd | getline fauthor
+                close(cmd)
+                sub(" and .*", "", fauthor)
+                sub(" *,.*", "", fauthor)
+                sub(".*[ ~]", "", fauthor)
+
+                # For Incollection record types, use Series instead of Journal.
+                if (entrytype == "Incollection" ) {
+                    journal = series
+                }
+
+                if (!SKIPJ) {
+                    # Stable key creation with journal abbreviation.
+                    cmd = sprintf("bib-jabbr -j \"%s\"", escape(journal))
+                    cmd | getline journal
+                    close (cmd)
+                    sub("\n", "", journal)
+                }
+
+                # Create citation key letters from journal abbreviation.
+                cmd = sprintf("echo \"%s\" | %s", escape(journal), FMT_JOURNAL)
+                cmd | getline journal
+                close (cmd)
+
+                # If not assigned as variable, search letter in filename.
+                if (year && (!LETTER)) {
+                    match(BIBFILE, "_" year "[a-z]*_", tmp1)
+                    match(tmp1[0], "[a-z]+", tmp2)
+                    letter = tmp2[0]
+                } else {
+                    letter = LETTER
+                    sub(":", "", letter) # Remove preceding colon.
+                }
+
+                # If not yet specified, keep letter from old citation key.
+                if (year && !letter) {
+                    match(oldkey, year "[a-z]*:", tmp)
+                    letter = tmp[0]
+                    sub("^" year, "", letter)
+                    sub(":", "", letter)
+                }
+
+                # Drop remaining non ascii characters.
+                gsub("[^" ALLOWED_CHARS "]", "", fauthor)
+                gsub("[^" ALLOWED_CHARS "]", "", journal)
+                gsub("[^" ALLOWED_CHARS "]", "", year)
+
+                # Merge or remove dashes.
+                gsub("---*", "-", fauthor)
+                gsub("-", "", journal)
+
+                # Create citation key (journal: maximum four lower case letters).
+                citekey = fauthor year letter ":" tolower(substr(journal,1,4))
+
+                # Drop trailing dash or colon.
+                sub("[-:]$", "", citekey)
+            }
+
+            # Update citation key.
+            sub(".*", atEntrytype "{" citekey ",", $1)
+        }
+
+        # Print record separator as required.
+        if (NR > 1) { printf("%s", ORS) }
+
+        # Iterate fields.
+        for (i=1;i<=NF;i++) {
+            # Print delimiter as required.
+            if (i > 1) { printf("%s", OFS) }
+
+            # Print field.
+            printf("%s", $i)
+        }
+    }' "$1"
+}
+
+# Function to find and print duplicates.
+function duplicates() { # echo keys | duplicates
+    if [ $PRINTDUPS -eq 1 ]
+    then
+        sort /dev/stdin | uniq -c | grep -v '^ *1 ' \
+            | awk 'BEGIN{OFS="\t"}{print $1, $2}'
+    elif [ $PRINTUNIQ -eq 1 ]
+    then
+        sort /dev/stdin | uniq -c | grep '^ *1 ' \
+            | awk 'BEGIN{OFS="\t"}{print $2}'
+    else
+        cat /dev/stdin
+    fi
+}
+
+
+# Iterate bib files.
+for bibfile in "$@"
+do
+    # Skip options.
+    test "$bibfile" != "-n" || continue
+    test "$bibfile" != "-i" || continue
+    test "$bibfile" != "-p" || continue
+    test "$bibfile" != "-d" || continue
+    test "$bibfile" != "-u" || continue
+    test "$bibfile" != "-q" || continue
+    test "$bibfile" != "-s" || continue
+
+    # Possibly select letter suffix from command line ('filename:letter').
+    letter=$(grep -o ':[a-z]*$' <<< "$bibfile" | head -n1)
+    test -z "$letter" || bibfile=$(sed 's/:[a-z]*$//' <<< "$bibfile")
+
+    # Replace »name.pdf« by »name.pdf.bib«.
+    bibfile=$(sed 's/\.pdf$/&.bib/' <<< "$bibfile")
+    pdffile=$(sed -n '/\.pdf\.bib$/{s//.pdf/;p}' <<< "$bibfile")
+
+    # Skip if not a regular file.
+    test -f "$bibfile" || {
+        [[ "$bibfile" =~ ^- ]] \
+            && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+        continue
+    }
+
+    if [ $PRINTKEYS -eq 1 ]
+    then
+        # Only print actual keys.
+        grep $PRINTFILE '^ *@' "$bibfile" \
+            | sed 's/@[^{]*{ */ /;s/ *, *$//;s/^ //'
+        continue
+    fi
+
+    # Ignore letter suffix in case of multi record files.
+    nr=`sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | head -n2 | wc -l`
+    if [ $nr -gt 1 ]
+    then
+        if [ -n "$letter" ]
+        then
+            echo "WARNING: Do not insert letter '$letter'" \
+               "into multi record file '$bibfile'." >/dev/stderr
+            letter=""
+        fi
+    fi
+
+    # Create temporary file with updated citation keys.
+    tmpfile="$(mktemp)"
+    trap "rm -f $tmpfile" EXIT
+    updatekeys "$bibfile" $SKIPJ "$bibfile" "$letter" > "$tmpfile"
+
+    # In case of changes update source file or print diff.
+    if ! diff -q $IGNORECASE "$bibfile" "$tmpfile" >/dev/null
+    then
+        if [ $INPLACE -eq 1 ]
+        then
+            # Update keys.
+            mv "$tmpfile" "$bibfile"
+
+            if [[ $QUIET -eq 0 ]]
+            then
+                # Show results.
+                grep -H ^@ "$bibfile"
+            fi
+        else
+            echo "=== changes for »$bibfile« ==="
+            diff "$bibfile" "$tmpfile" \
+                | grep -E -v '^([0-9]*[dac][0-9]*|---)$'
+        fi
+    fi
+done \
+    | duplicates

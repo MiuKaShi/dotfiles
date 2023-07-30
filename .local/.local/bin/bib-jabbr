@@ -1,0 +1,192 @@
+#!/bin/bash
+# Abbreviate journal names in bibtex files
+
+FMTSTR='$authors, $journal, $volume$number$pages ($year)'
+
+function usage() {
+    cat 1>&2 <<EOF
+$(basename $0): Abbreviate journal names in bibtex files
+
+USAGE: $(basename $0) [-f str] bibfiles
+Options:
+  -h  print this help
+  -n  show changes only
+  -f  use full name (undo abbreviation)
+  -j  provide journal title instead of 'bibfiles'
+  -k  print list of known journal names
+  -p  print list of journal names in bibfiles
+  -u  print unknown journal names in bibfiles
+EOF
+    exit $1
+}
+if [ $# -lt 1 ]; then usage 1; fi
+
+# Default options.
+INPLACE=1      # Update source file.
+UNABBR=0       # Unabbreviate journal names.
+ARGNAME=0      # Read name from arguments.
+JOURNALLIST=0  # Print list of known journals.
+PRINTNAMES=0   # Print all used journal names.
+PRINTUNKNOWN=0 # Print unknown journal names.
+
+# Parse command line options.
+for arg; do
+    # With option '-h' print usage and exit.
+    if [[ "$arg" == "-h" ]]; then usage 0; fi
+    # With option '-n' only show diff.
+    if [[ "$arg" == "-n" ]]; then INPLACE=0; fi
+    # With option '-f' unabbreviate.
+    if [[ "$arg" == "-f" ]]; then UNABBR=1; fi
+    # With option '-j' read title from arguments.
+    if [[ "$arg" == "-j" ]]; then ARGNAME=1; fi
+    # With option '-k' print list of known names.
+    if [[ "$arg" == "-k" ]]; then JOURNALLIST=1; fi
+    # With option '-p' print list of given names.
+    if [[ "$arg" == "-p" ]]; then PRINTNAMES=1; fi
+    # With option '-u' print unknown names.
+    if [[ "$arg" == "-u" ]]; then PRINTUNKNOWN=1; fi
+done
+
+# Function to print journal names in bibtex files.
+function printuniq() { # formatted sorted unique names
+    if [ $PRINTNAMES -eq 1 ]; then
+        cat /dev/stdin | bib-convu -s | sort -u
+    else
+        cat /dev/stdin
+    fi
+}
+
+# Function to replace journal names by abbreviations.
+function abbreviate() { # abbreviate filename
+    cat "$1" | bib-convu -f '/^  Journal/' -s \
+        | sed \
+            -e "/^  Journal/{
+        /^  Journal *= { *K/{
+            s/{ *KEK Proc. *}/{KEK Proceedings}/i
+            s/{ *KGK, Kautsch. Gummi Kunstst. *}/{KGK, Kautschuk Gummi Kunststoffe}/i
+            s/{ *KORA Ber. *}/{KORA Bericht}/i
+            s/{ *Kagaku (Kyoto) *}/{Kagaku (Kyoto)}/i
+        }
+        /^  Journal *= { *T/{
+            s/{ *Taehan Kumsok Hakhoechi *}/{Taehan Kumsok Hakhoechi}/i
+            s/{ *Taehan Kumsok, Chaeryo Hakhoechi *}/{Taehan Kumsok, Chaeryo Hakhoechi}/i
+            s/{ *Tages-Anz. Mag. *}/{Tages-Anzeiger Magazin}/i
+        }
+        /^  Journal *= { *U/{
+            s/{ *U.S. Dep. Agric. Bull. *}/{United States Department of Agriculture Bulletin}/i
+            s/{ *Uzb. Khim. Zh. *}/{Uzbekskii Khimicheskii Zhurnal}/i
+        }
+        /^  Journal *= { *V/{
+            s/{ *VDI Ber. *}/{VDI Berichte}/i
+            s/{ *Vysokomol. Soedin., Ser. A Ser. B *}/{Vysokomolekulyarnye Soedineniya, Seriya A i Seriya B}/i
+            s/{ *Vysokomol. Soedin., Ser. B *}/{Vysokomolekulyarnye Soedineniya, Seriya B: Kratkie Soobshcheniya}/i
+            s/{ *Vögel Heim. *}/{Vögel der Heimat}/i
+        }
+        /^  Journal *= { *W/{
+            s/{ *Wald *}/{Wald, Der}/i
+            s/{ *Wald Holz *}/{Wald und Holz}/i
+            s/{ *Wald- Holzwirtsch. *}/{Wald- und Holzwirtschaft, Die}/i
+        }
+        /^  Journal *= { *X/{
+            s/{ *X-Ray Spectrom. *}/{X-Ray Spectrometry}/i
+            s/{ *X-Ray Struct. Anal. Online *}/{X-Ray Structure Analysis Online}/i
+            s/{ *Xenobiotica *}/{Xenobiotica}/i
+        }
+        /^  Journal *= { *Y/{
+            s/{ *Yad. Fiz. *}/{Yadernaya Fizika}/i
+            s/{ *Yukagaku *}/{Yukagaku}/i
+            s/{ *Yuki Gosei Kagaku Kyokaishi *}/{Yuki Gosei Kagaku Kyokaishi}/i
+        }
+        /^  Journal *= { *Z/{
+            s/{ *Zür. Geogr. Schr. *}/{Zürcher Geographische Schriften}/i
+            s/{ *Zür.ld *}/{Zürcher Wald}/i
+        }
+        /^  Journal *= { *Ö/{
+            s/{ *Ökol. Landbau *}/{Ökologie und Landbau}/i
+            s/{ *Österr. Forstztg. *}/{Österreichische Forstzeitung}/i
+            s/{ *Österr. bot. Z. *}/{Österreichische botanische Zeitschrift}/i
+        }
+    }" \
+        | bib-convl -f '/^  Journal/' -s
+}
+
+# Read journal name from command line.
+if [ $ARGNAME -eq 1 ]; then
+    unknown=$(grep -E -o -- '(^| )-[a-z]\>' <<<$* | grep -v -- '-[nfjkpu]')
+    if [ -n "$unknown" ]; then
+        echo "$(basename $0): Unknown options: $unknown" >/dev/stderr
+        exit 1
+    fi
+    if [ $UNABBR -eq 0 ]; then
+        echo $* | sed 's/ *-[nfjkpu] *//g;s/.*/  Journal = {&}/' \
+            | abbreviate - | sed 's/  Journal = {\(.*\)}/\1/'
+    else
+        echo $* | sed 's/ *-[nfjkpu] *//g;s/.*/  Journal = {&}/' \
+            | unabbreviate - | sed 's/  Journal = {\(.*\)}/\1/'
+    fi
+    exit
+fi
+
+# Print unknown journal names.
+if [ $PRINTUNKNOWN -eq 1 ] && [ $PRINTNAMES -eq 0 ]; then
+    comm -23 <(bib-jabbr -p "$@") <(bib-jabbr -k)
+    exit
+fi
+
+# Print all known journal names.
+if [ $JOURNALLIST -eq 1 ]; then
+    grep '^  *s/{ \*' "$0" | grep -o '[^ *{}/][^*{}/]*[^ *{}/]' \
+        | bib-convu -s \
+        | sort -u
+    exit
+fi
+
+# Iterate bib files.
+for bibfile in "$@"; do
+    # Skip options.
+    test "$bibfile" != "-n" || continue
+    test "$bibfile" != "-f" || continue
+    test "$bibfile" != "-j" || continue
+    test "$bibfile" != "-k" || continue
+    test "$bibfile" != "-p" || continue
+    test "$bibfile" != "-u" || continue
+
+    # Replace »name.pdf« by »name.pdf.bib«.
+    bibfile=$(sed 's/\.pdf$/&.bib/' <<<"$bibfile")
+
+    # Skip if not a regular file.
+    test -f "$bibfile" || {
+        [[ "$bibfile" =~ ^- ]] \
+            && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
+        continue
+    }
+
+    if [ $PRINTNAMES -eq 1 ]; then
+        grep '^  Journal ' "$bibfile" | sed 's/^[^{]*{//;s/}[^}]*$//'
+        continue
+    fi
+
+    # Create a temporary copy.
+    tmpfile="$(mktemp)"
+
+    # Abbreviate journal names.
+    if [ $UNABBR -eq 0 ]; then
+        abbreviate "$bibfile" >"$tmpfile"
+    else
+        unabbreviate "$bibfile" >"$tmpfile"
+    fi
+
+    # In case of changes update source file or print diff.
+    if ! diff -q "$bibfile" "$tmpfile" >/dev/null; then
+        if [ $INPLACE -eq 1 ]; then
+            mv "$tmpfile" "$bibfile"
+        else
+            echo "=== changes for »$bibfile« ==="
+            diff "$bibfile" "$tmpfile"
+        fi
+    fi
+
+    # Remove temporary copy if not moved previously.
+    test ! -e "$tmpfile" || rm "$tmpfile"
+done | printuniq

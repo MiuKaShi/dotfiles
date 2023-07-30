@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Sioyek Scheme Handler
+Exec=linkhandler %u
+StartupNotify=false
+MimeType=x-scheme-handler/reference;

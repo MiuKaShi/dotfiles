@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# need filename 1.png 2.png xx.png
+
+convert_images_to_gif() {
+    local ext="$1"
+    local start="$2"
+    local end="$3"
+    local delay="$4"
+
+    convert -delay "$delay" -loop 0 $(printf "%d.$ext " $(seq $start $end)) gif-"$start"-"$end".gif
+}
+
+# Prompt the user for input.
+# prefix="words"
+ext=$(printf "jpg\npng\nbmp" | dmenu -p "Choose file type:") || exit 0
+start=$(echo | dmenu -p "Enter start number:") || exit 0
+end=$(echo | dmenu -p "Enter end number:") || exit 0
+delay=$(printf "10\n5\n20" | dmenu -p "Choose frame delay:") || exit 0
+
+# Convert the images to a video.
+convert_images_to_gif "$ext" "$start" "$end" "$delay"
