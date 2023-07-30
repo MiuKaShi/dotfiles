@@ -38,7 +38,7 @@ function fzf_notes {
     local lines=$(eval ${FZF_NOTES_RG_COMMAND} ${FZF_NOTES_DIR} | \
         ${FZF_PREVIEW_BIN} -ns ${FZF_NOTES_DIR} | fzf \
         --prompt "${FZF_NOTES_PROMPT}" \
-		--exact \
+				--exact \
         --print-query \
         --ansi \
         --delimiter=":" \
