@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get the local IP address and external IPv4 and IPv6 addresses
 get_ip_info() {

@@ -9,4 +9,5 @@
 **/*.state
 **/*.log
 **/*.db
+**/*.sqlite
 **/*.o
