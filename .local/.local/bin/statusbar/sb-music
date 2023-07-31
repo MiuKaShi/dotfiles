@@ -1,15 +1,10 @@
 #!/bin/sh
 
-filter() { 
-		INFO=$(mpc)
-		if [[ -n "$INFO" && $(echo "$INFO" | wc -l) -gt 2 ]]; then
-    		PLAYING=$(mpc current | awk -F':' '{print $NF}' | awk '{$1=$1};1')
-    		if [[ "$INFO" == *"[playing]"* ]]; then
-        		echo "🎵 $PLAYING"
-    		else
-        		echo "⏸️ $PLAYING"
-    		fi
-		fi
+filter() {
+    title=$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*/⏸/g;/\\[playing\\].*/d;/^ERROR/Q" | paste -sd ' ' -)
+    if [[ -n $title ]]; then
+        echo "$title" | sed 's/^/🎵 /'
+    fi
 }
 
 pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
