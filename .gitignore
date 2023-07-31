@@ -1,17 +1,3 @@
-# shell
-.config/.config/shell/gpu
-.config/.config/shell/hidpi
-
-# zsh
-.config/.config/zsh/.zcompdump
-
-# rofil
-.config/.config/rofi/config.rasi
-
-# mpd
-.config/.config/mpd/mpd.state
-.config/.config/mpd/mpd.pid
-
 # mpv
 **/watch_later/
 
@@ -19,6 +5,8 @@
 **/supervise/
 
 # unimportant files
+**/*.pid
+**/*.state
 **/*.log
 **/*.db
 **/*.o

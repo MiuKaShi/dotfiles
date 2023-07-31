@@ -25,7 +25,7 @@ chopin: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
-	rm -rf chopin ${OBJ} chopin-${VERSION} chopin-${VERSION}.tar.gz
+	rm -rf chopin ${OBJ} chopin-${VERSION}
 
 dist: clean
 	mkdir -p chopin-${VERSION}
