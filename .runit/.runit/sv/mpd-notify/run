@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Wait for the mpd.
+pgrep "mpd" > /dev/null || exit 1
+exec mpd-notify 2>&1

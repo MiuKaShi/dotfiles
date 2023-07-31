@@ -12,7 +12,7 @@ xclick &
 
 # xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 
-autostart="msi-isw watchfile unclutter blurlock remapd"
+autostart="msi-isw watchfile unclutter blurlock remapd mpd"
 
 for program in $autostart; do
     pidof -sx "$program" || "$program" &

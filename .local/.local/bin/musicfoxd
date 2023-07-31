@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# kill mpd before running
+killall mpd && musicfox

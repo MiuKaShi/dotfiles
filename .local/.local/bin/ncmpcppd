@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# if mpd is not running, run it
-! pgrep -x "mpd" >/dev/null && mpd 
-ncmpcpp
