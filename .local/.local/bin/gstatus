@@ -1,37 +1,32 @@
 #!/bin/bash
 
-dirs="$1"
+dirs="${1:-$PWD}"
 
-current_branch () {
+current_branch() {
     git rev-parse --abbrev-ref HEAD
 }
 
-commits_to_pull_no () {
+commits_to_pull_no() {
     git log HEAD.."$1"/"$2" --oneline | wc -l | tr -d '[:space:]'
 }
 
-for dir in "$dirs"/*
-do
-    if [[ -d "$dir/.git" ]] || continue
-    then
-            cd "$dir" || exit
-            git remote update  >> /dev/null 2>&1 &
+for dir in "$dirs"/*; do
+    if [[ -d "$dir/.git" ]] || continue; then
+        cd "$dir" || exit
+        git remote update >>/dev/null 2>&1 &
     fi
 done
 wait
 
-for dir in "$dirs"/*
-do
-    if [[ -d "$dir/.git" ]]
-    then
+for dir in "$dirs"/*; do
+    if [[ -d "$dir/.git" ]]; then
         cd "$dir" || exit
-        rp=$(basename "$dir") 
+        rp=$(basename "$dir")
         result="$rp\t"
         result="$result$(tput setaf 3)$(current_branch)$(tput op)\t"
         cb="$(current_branch)"
         res="pull:"
-        for r in $(git remote)
-        do
+        for r in $(git remote); do
             num=$(commits_to_pull_no "$r" "$cb")
             res="$res$(tput setaf 2)$num$(tput op)"
         done
@@ -41,5 +36,5 @@ do
         cd ..
     fi
 done | column -ts $'\t'
-tput op;
+tput op
 exit 0

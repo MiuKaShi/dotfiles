@@ -861,6 +861,9 @@ rules:
   - DOMAIN-SUFFIX,siam.org,Journal
   - DOMAIN-SUFFIX,spiedigitallibrary.org,Journal
   - DOMAIN-SUFFIX,springer.com,Journal
+  - DOMAIN-SUFFIX,idp.springer.com,Journal
+  - DOMAIN-SUFFIX,link.springer.com,Journal
+  - DOMAIN-SUFFIX,cart.springer.com,Journal
   - DOMAIN-SUFFIX,springerlink.com,Journal
   - DOMAIN-SUFFIX,tandfonline.com,Journal
   - DOMAIN-SUFFIX,un.org,Journal
