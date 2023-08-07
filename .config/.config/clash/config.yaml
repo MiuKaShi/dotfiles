@@ -24,7 +24,6 @@ profile: #缓存设置(文件位置./cache.db)
   store-fake-ip: true #fake-ip缓存
 tun:
   enable: true
-  device: meta
   stack: system
   dns-hijack:
     - any:53
