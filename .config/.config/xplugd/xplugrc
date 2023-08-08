@@ -1,0 +1,53 @@
+#!/bin/bash
+# link to ~/.config/xplugrc
+
+WM="dwm"
+WMPID=$(pstree -ps $$ | grep -oP "${WM}\(\K\d+(?=\))")
+
+# Enable logging by writing to a file in /tmp
+LOG=/tmp/xplugd.log
+
+TYPE=$1
+DEVICE=$2
+STATUS=$3
+shift 3
+DESC=$*
+
+DISP=$(xplugd -p | grep -w 'Model\s*:' | cut -d ':' -f 2 | head -n -1)
+echo "$DISP" | awk '/T278Q/{a=1} /328P6VU/{b=1} END {exit !(a && b)}' && DESC="home"
+echo "$DISP" | awk '/EV2795/{count++} END {exit !(count == 2)}' && DESC="lab"
+[ -z "$DISP" ] && DESC="notebook"
+
+update_screen() {
+    notescreen
+    # reload
+    setbg
+    kill -HUP "$WMPID"
+    # zshrch reoload
+    source "$HOME/.config/zsh/.zshrc"
+}
+
+case "$TYPE,$STATUS,$DESC" in
+    display,*,home)
+        [ "$MONITOR_ENV" = "home" ] || (sleep 1 && update_screen)
+        ;;
+    display,*,notebook)
+        [ "$MONITOR_ENV" = "note" ] || update_screen
+        ;;
+    display,*,lab)
+        [ "$MONITOR_ENV" = "lab" ] || (sleep 1 && update_screen)
+        ;;
+    keyboard,connected,*)
+        remaps
+        ;;
+esac
+
+log() {
+    if [ ! -f $LOG ]; then
+        touch $LOG && remaps
+    else
+        echo "$*" >>$LOG
+    fi
+}
+
+log "Plug event: $TYPE $DEVICE => $STATUS :: $DESC"
