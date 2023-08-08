@@ -2,7 +2,7 @@
 # link to ~/.config/xplugrc
 
 WM="dwm"
-WMPID=$(pstree -ps $$ | grep -oP "${WM}\(\K\d+(?=\))")
+WMPID="$(pidof $WM)"
 
 # Enable logging by writing to a file in /tmp
 LOG=/tmp/xplugd.log
