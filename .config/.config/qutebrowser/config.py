@@ -6,7 +6,7 @@ config.load_autoconfig(False)
 config.source("themes/pyqute/draw.py")
 
 # ui
-c.fonts.default_size = "12pt"
+c.fonts.default_size = "18pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
 c.downloads.position = "bottom"
@@ -21,7 +21,7 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 c.qt.highdpi = True
 c.content.autoplay = False
 c.auto_save.session = True
-c.zoom.default = "125%"
+c.zoom.default = "175%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"

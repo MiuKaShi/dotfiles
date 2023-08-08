@@ -1,7 +1,7 @@
 #!/bin/bash
 # link to ~/.config/xplugrc
 
-WM="dwm"
+export WM="dwm"
 WMPID="$(pidof $WM)"
 
 # Enable logging by writing to a file in /tmp
