@@ -1,10 +1,11 @@
 # espanso configuration file
 toggle_key: OFF
 search_trigger: OFF
+search_shortcut: META+ALT+CTRL+SHIFT+E # = Hyper+E
+
 show_icon: false
 show_notifications: true
 auto_restart: true
-pre_paste_delay: 100
 
-key_delay: 0
-inject_delay: 0
+undo_backspace: false # backspace undos expansion
+backend: auto

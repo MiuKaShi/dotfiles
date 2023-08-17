@@ -10,10 +10,10 @@ deepl_api() {
         -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN" \
         -d "text=$text" \
         -d 'target_lang=ZH')
-    
+
     # Extract the translated text from the response using jq and remove any quotes
     result=$(echo "$raw_data" | jq -r '.translations[].text')
-    
+
     # If the result is empty, notify the user that the translation failed and exit with an error code
     [[ -z "$result" ]] && notify-send Deepl "Translation failed." && exit 1
 }
@@ -25,8 +25,11 @@ case "$1" in
         text="$(xsel)"
         [[ -z "$text" ]] && exit 0
         deepl_api
-        rofi -e "$result"
-				echo "$result" | xsel -b
+        # Add a newline to the end of the result to prevent the rofi window from being too small
+        message="$result
+				"
+        rofi -e "$message"
+        echo "$result" | xsel -b
         ;;
     '-s')
         # Get usage information from the DeepL API and display it to the user
