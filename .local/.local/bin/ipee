@@ -1,4 +1,21 @@
 #!/bin/bash
 
-export QT_ENABLE_HIGHDPI_SCALING=0
+if [[ -z ${MONITOR_ENV} ]]; then
+    echo "monitor env not set!"
+    exit 1
+fi
+
+case $MONITOR_ENV in
+    "home")
+        export QT_ENABLE_HIGHDPI_SCALING=0
+        export QT_SCALE_FACTOR=2
+        ;;
+    "lab")
+        export QT_ENABLE_HIGHDPI_SCALING=0
+        export QT_SCALE_FACTOR=1.5
+        ;;
+    "note")
+        export QT_SCALE_FACTOR=1.0
+        ;;
+esac
 ipe

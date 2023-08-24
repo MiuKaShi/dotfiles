@@ -17,16 +17,21 @@ case $BLOCK_BUTTON in
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null; then
+# Wifi
+if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
     sigStr="$(awk '/^\s*w/ {print int($3 * 100 / 70) "%"}' /proc/net/wireless)"
     device="$(iwctl device list | awk 'FNR == 5 {print $2}')"
     # ssid="$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)" # for networkmanager
     ssid="$(iwctl station $device show | grep 'Connected network' | awk '{print $3}')"
-    neticon="📶$ssid($sigStr)"
-elif grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null; then
-    neticon="🌎 LAN"
-else
-    neticon="❌ OFF"
+    wifiicon="📶$ssid($sigStr)"
 fi
 
-printf "%s\n" "$neticon"
+# Ethernet
+[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌎 LAN"
+
+# Clash
+[ -n "$(cat /sys/class/net/Meta*/operstate 2>/dev/null)" ] && tunicon="🔒"
+
+[ -z "$wifiicon" ] && [ -z "$ethericon" ] && [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] && { ([ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="📡") || wifiicon="❌"; }
+
+printf "%s%s%s\n" "$tunicon" "$wifiicon" "$ethericon"
