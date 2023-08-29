@@ -1,8 +1,10 @@
 % Science
 \usepackage{amsthm}
-\usepackage{backref}   
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Termes Math} % set equation font
+\usepackage{backref}
 \usepackage{xfrac}  % For nice small sized fractions, typically text mode, \sfrac{}.
-\usepackage{empheq}        
+\usepackage{empheq}
 \usepackage{siunitx}               % Consistent numbers and units, ranges, decimals etc.
 \sisetup{
   range-phrase = --, % Unit ranges use "--" instead of "to"
@@ -36,7 +38,7 @@
     {\begin{tcolorbox}[colbacktitle=ltips!50!white,
                        title=\faHandORight \quad Tips,coltitle=black,
                        fonttitle=\bfseries]}
-    {\end{tcolorbox}}	
+    {\end{tcolorbox}}
 \newenvironment{info}
     {\begin{tcolorbox}[colbacktitle=linfo!50!white,
                        title=\faInfoCircle \quad Info,coltitle=black,
@@ -46,8 +48,8 @@
     {\begin{tcolorbox}[colbacktitle=lques!50!white,
                        title=\faQuestionCircle \quad Question,coltitle=black,
                        fonttitle=\bfseries]}
-    {\end{tcolorbox}}	
-	
+    {\end{tcolorbox}}
+
 
 % inline code
 \definecolor{Light}{HTML}{DADADA}

@@ -37,10 +37,9 @@ caption-justification: centering
 # 设置table颜色
 table-use-row-colors: false
 
-# 设置字体
+# 设置字体(更改为tex中设置)
 mainfont: Times New Roman
 sansfont: Times New Roman
-monofont: Times New Roman
 CJKmainfont: Source Han Serif CN
 
 # LaTeX package includes
@@ -68,7 +67,7 @@ margin-left: 2cm
 margin-right: 2cm
 margin-top: 2cm
 margin-bottom: 2cm
-fontsize: 10pt
+fontsize: 12pt
 
 # 设置引用格式
 figPrefix:

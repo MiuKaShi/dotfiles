@@ -155,7 +155,7 @@ alias zshreload='source $HOME/.config/zsh/.zshrc && echo "ZSH config reloaded fr
 alias hs='history'
 
 # Git Command
-alias gs='git status'
+alias gst='git status'
 alias ga='git add -A'
 alias gc='git commit -v'
 alias gc!='git commit -v --amend --no-edit'

@@ -5,17 +5,20 @@ FileName=$(date +%Y%m%d%H%M)
 cd $HOME/Documents/Algorithm
 
 cat >$FileName.tex <<EOL
-\documentclass{article}
+\documentclass[a4paper]{article}
 \usepackage{amsmath,amsthm,amssymb,amsfonts}
 \usepackage{algorithm, algorithmicx, algpseudocode}
 \usepackage{color}
-\renewcommand{\algorithmicrequire}{\textbf{input:}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{fullwidth}
 
 \pagestyle{empty}
 \begin{document}
 % the following is template
-\begin{algorithm}[h]
+\begin{fullwidth}[width=\linewidth+2cm,leftmargin=-1cm,rightmargin=-1cm]
+\renewcommand{\thealgorithm}{1}
+\begin{algorithm}[H]
 	\caption{XXX algorithm}
 	\begin{algorithmic}[1]
 		\Require
@@ -41,6 +44,7 @@ cat >$FileName.tex <<EOL
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
+\end{fullwidth}
 \end{document}
 EOL
 

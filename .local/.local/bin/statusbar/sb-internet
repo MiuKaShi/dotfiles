@@ -27,7 +27,7 @@ if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
 fi
 
 # Ethernet
-[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌎 LAN"
+[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌎LAN"
 
 # Clash
 [ -n "$(cat /sys/class/net/Meta*/operstate 2>/dev/null)" ] && tunicon="🔒"
