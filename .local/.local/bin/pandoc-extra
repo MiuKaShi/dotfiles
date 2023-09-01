@@ -8,11 +8,10 @@ pandoc "$file" \
     --template=notes \
     --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
     --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
-    --mathjax \
     --lua-filter=infobox.lua \
     --lua-filter=diagram-generator.lua \
-    --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
     --metadata=javaPath:/usr/bin/java \
+    --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
     --filter=pandoc-crossref \
     --citeproc \
     --bibliography="$BIB" \

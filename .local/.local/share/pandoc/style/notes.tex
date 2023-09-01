@@ -1,15 +1,22 @@
+% Style
+\linespread{1.2}\selectfont 	% 行距
+\XeTeXlinebreaklocale "zh" 	% 針對中文自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt % 字與字之間加入0pt至1pt的間距，確保左右對整齊
+\parindent 0em 		% 段落縮進
+\setlength{\parskip}{20pt} 	% 段落之間的距離
 % Science
+\usepackage{algorithmicx}
 \usepackage{amsthm}
 \usepackage{unicode-math}
 \setmathfont{TeX Gyre Termes Math} % set equation font
 \usepackage{backref}
-\usepackage{xfrac}  % For nice small sized fractions, typically text mode, \sfrac{}.
+\usepackage{xfrac}  % For nice small sized fractions, typically text mode.
 \usepackage{empheq}
 \usepackage{siunitx}               % Consistent numbers and units, ranges, decimals etc.
 \sisetup{
-  range-phrase = --, % Unit ranges use "--" instead of "to"
-  per-mode=symbol, % Default is reciprocal
-  fraction-function=\tfrac % Default is frac, tfrac is slightly smaller
+	range-phrase = --, % Unit ranges use "--" instead of "to"
+	per-mode=symbol, % Default is reciprocal
+	fraction-function=\tfrac % Default is frac, tfrac is slightly smaller
 }
 \usepackage{mhchem}     % Typesetting chemical molecular formulae and equations
 
@@ -30,25 +37,25 @@
 \definecolor{linfo}{HTML}{c2f0fc}
 \definecolor{lques}{HTML}{ffb385}
 \newenvironment{warn}
-    {\begin{tcolorbox}[colbacktitle=lwarn!50!white,
-                       title=\faExclamationTriangle \quad Warning,coltitle=black,
-                       fonttitle=\bfseries]}
-    {\end{tcolorbox}}
+{\begin{tcolorbox}[colbacktitle=lwarn!50!white,
+			title=\faExclamationTriangle \quad Warning,coltitle=black,
+			fonttitle=\bfseries]}
+		{\end{tcolorbox}}
 \newenvironment{tips}
-    {\begin{tcolorbox}[colbacktitle=ltips!50!white,
-                       title=\faHandORight \quad Tips,coltitle=black,
-                       fonttitle=\bfseries]}
-    {\end{tcolorbox}}
+{\begin{tcolorbox}[colbacktitle=ltips!50!white,
+			title=\faHandORight \quad Tips,coltitle=black,
+			fonttitle=\bfseries]}
+		{\end{tcolorbox}}
 \newenvironment{info}
-    {\begin{tcolorbox}[colbacktitle=linfo!50!white,
-                       title=\faInfoCircle \quad Info,coltitle=black,
-                       fonttitle=\bfseries]}
-    {\end{tcolorbox}}
+{\begin{tcolorbox}[colbacktitle=linfo!50!white,
+			title=\faInfoCircle \quad Info,coltitle=black,
+			fonttitle=\bfseries]}
+		{\end{tcolorbox}}
 \newenvironment{ques}
-    {\begin{tcolorbox}[colbacktitle=lques!50!white,
-                       title=\faQuestionCircle \quad Question,coltitle=black,
-                       fonttitle=\bfseries]}
-    {\end{tcolorbox}}
+{\begin{tcolorbox}[colbacktitle=lques!50!white,
+			title=\faQuestionCircle \quad Question,coltitle=black,
+			fonttitle=\bfseries]}
+		{\end{tcolorbox}}
 
 
 % inline code
@@ -56,6 +63,5 @@
 
 \let\oldtexttt\texttt
 \renewcommand{\texttt}[1]{
-  \colorbox{Light}{\oldtexttt{#1}}
+	\colorbox{Light}{\oldtexttt{#1}}
 }
-
