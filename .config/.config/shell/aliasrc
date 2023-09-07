@@ -45,6 +45,9 @@ alias \
     vv="neovide" \
     powerstat="powerstat -d 5 2"
 
+# wake home nuc
+alias wake-nuc="wol -p 9 94:c6:91:17:03:f9"
+
 # Download
 alias wget="wget --continue --progress=bar --timestamping"
 

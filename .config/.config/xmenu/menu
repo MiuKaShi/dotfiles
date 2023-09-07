@@ -17,7 +17,7 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 		IMG:$HOME/.config/xmenu/icons/wps-ppt.svg							PPT 	wpp
 		IMG:$HOME/.config/xmenu/icons/wps-excel.svg							Excel		et
 		IMG:$HOME/.config/xmenu/icons/inkscape.svg							Inkscape 	inkscape
-		IMG:$HOME/.config/xmenu/icons/ipe.svg							Ipe 	st -e ipe
+		IMG:$HOME/.config/xmenu/icons/ipe.svg							Ipe		ipee
 		IMG:$HOME/.config/xmenu/icons/fiji.svg							Fiji 	fiji --system
 		IMG:$HOME/.config/xmenu/icons/obsidian.svg							Obsidian 	obsidian
 		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
@@ -33,7 +33,7 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 IMG:$HOME/.config/xmenu/icons/editor.svg							Edit
 	IMG:$HOME/.config/xmenu/icons/tex.svg					Algorithm tex	algo-temp
 	IMG:$HOME/.config/xmenu/icons/nvim.svg					dwm config		st -e nvim ~/.local/src/miuka-dwm/config.h
-	IMG:$HOME/.config/xmenu/icons/nvim.svg					xmenu config 	st -e nvim ~/.config/xmenu/menu		 
+	IMG:$HOME/.config/xmenu/icons/nvim.svg					xmenu config 	st -e nvim ~/.config/xmenu/menu
 IMG:$HOME/.config/xmenu/icons/heart.svg							Misc
 	IMG:$HOME/.config/xmenu/icons/youtube.svg							Youtube 	xdg-open https://www.youtube.com/
 	IMG:$HOME/.config/xmenu/icons/bilibili.svg							Bilibili 	xdg-open https://www.bilibili.com/

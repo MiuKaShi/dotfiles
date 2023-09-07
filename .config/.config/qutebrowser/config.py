@@ -30,7 +30,7 @@ c.fileselect.single_file.command = ["st", "-e", "lfub", "-selection-path={}"]
 c.fileselect.multiple_files.command = ["st", "-e", "lfub", "-selection-path={}"]
 c.downloads.location.directory = "~/Downloads"
 c.downloads.location.prompt = False
-c.confirm_quit = ["downloads"]
+c.confirm_quit = ["multiple-tabs", "downloads"]
 # pacman -S pdfjs-legacy
 c.content.pdfjs = True
 c.input.insert_mode.auto_load = True
