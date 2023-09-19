@@ -4,7 +4,7 @@ x-scheme-handler/tg=userapp-Telegram Desktop-JWGHV1.desktop;userapp-Telegram Des
 [Default Applications]
 application/gzip=file.desktop;
 application/json=text.desktop;
-application/pdf=pdf.desktop;zathura.desktop;org.inkscape.Inkscape.desktop;
+application/pdf=sioyek.desktop;ipe.desktop;org.inkscape.Inkscape.desktop;zathura.desktop;
 application/postscript=pdf.desktop;
 application/rss+xml=rss.desktop;
 application/x-7z-compressed=file.desktop;

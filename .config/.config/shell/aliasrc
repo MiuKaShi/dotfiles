@@ -12,6 +12,9 @@ for command in mount umount sv isw vsv pacman dmenugpu nmtui updatedb tlp ps_mem
 done
 unset command
 
+# vsv-user
+alias vsv-user="vsv -d $HOME/.runit/runsvdir"
+
 alias \
     ls="lsd" \
     l="ls -l" \

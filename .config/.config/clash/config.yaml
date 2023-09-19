@@ -24,6 +24,7 @@ profile: #缓存设置(文件位置./cache.db)
   store-fake-ip: true #fake-ip缓存
 tun:
   enable: true
+  device: Meta
   stack: system
   dns-hijack:
     - any:53
@@ -36,6 +37,9 @@ dns:
   ipv6: true
   # enhanced-mode: redir-host
   enhanced-mode: fake-ip #DNS模式(redir-host/fake-ip),【Meta专属】redir-host传递域名，可远程解析
+  nameserver:
+    - 127.0.0.1:5380 # smartdns
+    # - 8.8.8.8
   fake-ip-range: 198.18.0.1/16 # 默认为198.18.0.1/16
   fake-ip-filter: #Fake-ip过滤，列表中的域名返回真实ip
     - "*.lan"
@@ -166,9 +170,6 @@ dns:
     - "*.passcloud.*"
     - dns.sb
     - "*.dns.sb"
-  nameserver:
-    - 127.0.0.1:5380 # smartdns
-    # - 8.8.8.8
 
 proxies:
   - {
@@ -267,16 +268,16 @@ proxies:
   - {
       name: "香港2",
       type: vmess,
-      server: e8667420-3b0f-32a5-7265-ff126ed97eb5.nachoneko.ltd,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
+      server: cfcdn3.sanfencdn.net,
+      port: "2052",
+      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      ws-opts: { path: /zh-cn, headers: { Host: sg4.sanfencdn2.com } },
+      ws-path: /zh-cn,
+      ws-headers: { Host: sg4.sanfencdn2.com },
     }
   - {
       name: "香港3",
@@ -518,30 +519,25 @@ proxies:
   - {
       name: "日本3",
       type: vmess,
-      server: jp2.quick-connect.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      server: cfcdn5.sanfencdn.net,
+      port: "80",
+      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: dm.toutiao.com } },
-      ws-path: /,
-      ws-headers: { Host: dm.toutiao.com },
+      ws-opts: { path: /zh-cn, headers: { Host: jp3.sanfencdn2.com } },
+      ws-path: /zh-cn,
+      ws-headers: { Host: jp3.sanfencdn2.com },
     }
   - {
       name: "日本4",
-      type: vmess,
-      server: 120.195.181.10,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
+      type: trojan,
+      server: jp.mjt001.com,
+      port: 443,
+      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
       udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      sni: jp.mjt001.com,
     }
   - {
       name: "日本5",

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="Latex">
+<preamble>
+\usepackage{amsmath,amsthm,amssymb,amsfonts,bm}
+\usepackage{algorithm, algorithmicx, algpseudocode}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{unicode-math}
+\usepackage{fullwidth}
+\setmathfont{TeX Gyre Termes Math}
+\setmainfont{Times New Roman}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+
+%
+\renewcommand\normalsize{%
+\fontsize{12bp}{14bp}\selectfont%
+}
+</preamble>
+</ipestyle>
