@@ -5,6 +5,7 @@ file=$(readlink -f "$1")
 pandoc "$file" \
     -f markdown \
     --pdf-engine=tectonic \
+    --mathjax \
     --template=notes \
     --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
     --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \

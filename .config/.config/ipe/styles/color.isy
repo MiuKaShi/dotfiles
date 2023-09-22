@@ -1,29 +1,37 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
 <ipestyle name="Color.gray">
-  <color name="color11" value="0.0 0.0 0.0"/>
-  <color name="color12" value="0.2118 0.2118 0.2118"/>
-  <color name="color13" value="0.4157 0.4157 0.4157"/>
-  <color name="color14" value="0.6431 0.6431 0.6431"/>
-  <color name="color15" value="0.8863 0.8863 0.8863"/>
-  <color name="color21" value="0.4 0.4 0.4"/>
-  <color name="color22" value="0.5137 0.5137 0.5137"/>
-  <color name="color23" value="0.6353 0.6353 0.6353"/>
-  <color name="color24" value="0.7569 0.7569 0.7569"/>
-  <color name="color25" value="0.8863 0.8863 0.8863"/>
-  <color name="color31" value="0.698 0.698 0.698"/>
-  <color name="color32" value="0.7451 0.7451 0.7451"/>
-  <color name="color33" value="0.7922 0.7922 0.7922"/>
-  <color name="color34" value="0.8392 0.8392 0.8392"/>
-  <color name="color35" value="0.8863 0.8863 0.8863"/>
-  <color name="color41" value="0.6 0.6 0.6"/>
-  <color name="color42" value="0.6706 0.6706 0.6706"/>
-  <color name="color43" value="0.7412 0.7412 0.7412"/>
-  <color name="color44" value="0.8118 0.8118 0.8118"/>
-  <color name="color45" value="0.8863 0.8863 0.8863"/>
-  <color name="color51" value="0.502 0.502 0.502"/>
-  <color name="color52" value="0.5961 0.5961 0.5961"/>
-  <color name="color53" value="0.6902 0.6902 0.6902"/>
-  <color name="color54" value="0.7882 0.7882 0.7882"/>
-  <color name="color55" value="0.8863 0.8863 0.8863"/>
+<color name="red"      value="0.967 0.192 0.192"/>
+<color name="blue"     value="0.000 0.400 0.800"/>
+<color name="green"    value="0.518 0.824 0.000"/>
+<color name="orange"   value="1.000 0.604 0.000"/>
+<color name="yellow"   value="1.000 0.867 0.000"/>
+<color name="purple"   value="0.678 0.125 0.678"/>
+<color name="cyan"     value="0.000 0.635 0.871"/>
+<color name="lime"     value="0.808 0.875 0.000"/>
+<color name="aqua"     value="0.000 0.675 0.510"/>
+<color name="marine"   value="0.000 0.573 0.710"/>
+<color name="brown" value="0.694 0.349 0.157"/>
+<color name="light red" value="0.984 0.603 0.6"/>
+<color name="light blue" value="0.651 0.807 0.89"/>
+<color name="light green" value="0.698 0.874 0.541"/>
+<color name="light orange" value="0.992 0.749 0.435"/>
+<color name="light purple" value="0.792 0.698 0.839"/>
+<color name="dark red"  value="0.839 0.000 0.290"/>
+<color name="dark blue" value="0.063 0.063 0.451"/>
+<color name="dark green" value="0.2 0.627 0.172"/>
+<color name="dark orange" value="1 0.498 0"/>
+<color name="dark purple" value="0.415 0.239 0.603"/>
+<color name="dark pink" value="0.839 0.000 0.482"/>
+<color name="Gray 0.0" value="0.0"/>
+<color name="Gray 0.1" value="0.1"/>
+<color name="Gray 0.2" value="0.2"/>
+<color name="Gray 0.3" value="0.3"/>
+<color name="Gray 0.4" value="0.4"/>
+<color name="Gray 0.5" value="0.5"/>
+<color name="Gray 0.6" value="0.6"/>
+<color name="Gray 0.7" value="0.7"/>
+<color name="Gray 0.8" value="0.8"/>
+<color name="Gray 0.9" value="0.9"/>
+<color name="Gray 1.0" value="1"/>
 </ipestyle>

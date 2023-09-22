@@ -2,6 +2,77 @@
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
 <ipestyle name="Symbol">
 
+
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
+</path></symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path></symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group><path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path><path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
+</path></group></symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
+-0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h</path></symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group><path fill="sym-fill">
+-0.5 -0.5 m 0.5 -0.5 l 0.5 0.5 l -0.5 0.5 l h</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
+-0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></group></symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group><path fill="sym-stroke">
+-0.43 -0.57 m 0.57 0.43 l 0.43 0.57 l -0.57 -0.43 l h</path>
+<path fill="sym-stroke">
+-0.43 0.57 m 0.57 -0.43 l 0.43 -0.57 l -0.57 0.43 l h</path>
+</group></symbol>
+<symbol name="arrow/arc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/farc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/ptarc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fptarc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fnormal(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/pointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fpointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/linear(spx)">
+<path pen="sym-pen" stroke="sym-stroke">
+-1.0 0.333 m 0 0 l -1.0 -0.333 l</path></symbol>
+<symbol name="arrow/fdouble(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h
+-1 0 m -2.0 0.333 l -2.0 -0.333 l h
+</path></symbol>
+<symbol name="arrow/double(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h
+-1 0 m -2.0 0.333 l -2.0 -0.333 l h
+</path></symbol>
+<tiling name="falling" angle="-60" width="1" step="4"/>
+<tiling name="rising" angle="30" width="1" step="4"/>
+
 <symbol name="Basic/Capacitor(s)" snap="-16 0 16 0 0 0">
   <group matrix="1 0 0 1 -48 -44">
   <path stroke="sym-stroke" cap="2">
@@ -734,191 +805,6 @@
   </group>
 </symbol>
 
-<symbol name="Arrows/Current(sp)" snap="-8 0 0 8 0 0">
-  <group matrix="1 0 0 1 -192 -64">
-  <path matrix="1 0 0 1 168 48" stroke="sym-stroke">
-  16 16 m
-  32 16 l
-  </path>
-  <path matrix="0.125 0 0 1 191.5 48" stroke="sym-stroke" arrow="normal/normal">
-  20 16 m
-  28 16 l
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/Current no line(sp)">
-  <path layer="alpha" matrix="0.666667 0 0 1 -42.7333 -640" stroke="sym-stroke" arrow="normal/normal">
-  62 640 m
-  68 640 l
-  </path>
-</symbol>
-
-
-<symbol name="Arrows/Arrow in small(sfp)">
-  <group>
-  <path stroke="sym-stroke" fill="sym-fill">
-  2 0 0 2 0 0 e
-  </path>
-  <path stroke="sym-stroke">
-  -1.41421 1.41421 m
-  1.41421 -1.41421 l
-  </path>
-  <path stroke="sym-stroke">
-  1.41421 1.41421 m
-  -1.41421 -1.41421 l
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/Arrow in normal(sfp)">
-  <group>
-  <path stroke="sym-stroke" fill="sym-fill">
-  3 0 0 3 0 0 e
-  </path>
-  <path stroke="sym-stroke">
-  -2.12132 2.12132 m
-  2.12132 -2.12132 l
-  </path>
-  <path stroke="sym-stroke">
-  2.12132 2.12132 m
-  -2.12132 -2.12132 l
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/Arrow out small(sfp)">
-  <group>
-  <path matrix="1 0 0 1 -64 -666" stroke="sym-stroke" fill="sym-fill">
-  2 0 0 2 64 666 e
-  </path>
-  <path matrix="0.5 0 0 0.5 -32 -330" stroke="sym-stroke" fill="sym-stroke">
-  1 0 0 1 64 660 e
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/Arrow out normal(sfp)">
-  <group matrix="1 0 0 1 -24 -8">
-  <path matrix="1 0 0 1 8 0" stroke="sym-stroke" fill="sym-fill">
-  3 0 0 3 16 8 e
-  </path>
-  <path stroke="sym-stroke" fill="sym-stroke">
-  1 0 0 1 24 8 e
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/S curve(sp)">
-  <path layer="alpha" matrix="1 0 0 1 -192 -48" stroke="sym-stroke" pen="small">
-  192 48 m
-  192 42
-  192 38
-  190 42
-  190 38
-  190 32 c
-  </path>
-</symbol>
-
-<symbol name="Arrows/S curve long(sp)">
-  <path layer="alpha" matrix="1 0 0 1 -200 -48" stroke="sym-stroke" pen="small">
-  200 48 m
-  200 34
-  200 30
-  198 34
-  198 30
-  198 24 c
-  </path>
-</symbol>
-
-<symbol name="Arrows/S curve fdisk(sfp)">
-  <group layer="alpha" matrix="1 0 0 1 -72 -40">
-  <path matrix="0.5 0 0 0.5 36 20" stroke="sym-stroke" fill="sym-fill" pen="small">
-  1 0 0 1 72 40 e
-  </path>
-  <path matrix="1 0 0 1 -120 -8" stroke="sym-stroke" pen="small">
-  192 48 m
-  192 42
-  192 38
-  190 42
-  190 38
-  190 32 c
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/S curve long fdisk(sfp)">
-  <group layer="alpha" matrix="1 0 0 1 -80 -40">
-  <path matrix="1 0 0 1 -120 -8" stroke="sym-stroke" pen="small">
-  200 48 m
-  200 34
-  200 30
-  198 34
-  198 30
-  198 24 c
-  </path>
-  <path matrix="0.5 0 0 0.5 44 20" stroke="sym-stroke" fill="sym-fill" pen="small">
-  1 0 0 1 72 40 e
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/S curve arrow(sp)">
-  <path layer="alpha" matrix="1 0 0 1 -192 -48" stroke="sym-stroke" pen="small" rarrow="normal/tiny">
-  192 48 m
-  192 42
-  192 38
-  190 42
-  190 38
-  190 32 c
-  </path>
-</symbol>
-
-<symbol name="Arrows/S curve long arrow(sp)">
-  <path layer="alpha" matrix="1 0 0 1 -200 -48" stroke="sym-stroke" pen="small" rarrow="normal/tiny">
-  200 48 m
-  200 34
-  200 30
-  198 34
-  198 30
-  198 24 c
-  </path>
-</symbol>
-
-<symbol name="Arrows/Coordinate system xy(sp)">
-  <group>
-  <path matrix="1.14286 0 0 1 -93.7143 -720" stroke="sym-stroke" cap="1" join="1" arrow="normal/normal">
-  82 720 m
-  96 720 l
-  </path>
-  <path matrix="1 0 0 1.14286 -80 -825.143" stroke="sym-stroke" cap="1" join="1" arrow="normal/normal">
-  80 722 m
-  80 736 l
-  </path>
-  </group>
-</symbol>
-
-<symbol name="Arrows/Coordinate system xyz(sp)">
-  <group matrix="1 0 0 1 -80 -720">
-  <use name="Arrows/Arrow out small(sfp)" pos="80 720"/>
-  <path stroke="sym-stroke" arrow="normal/normal">
-  82 720 m
-  96 720 l
-  </path>
-  <path stroke="sym-stroke" arrow="normal/normal">
-  80 722 m
-  80 736 l
-  </path>
-  <text matrix="1 0 0 1 5 19" transformations="translations" pos="78 717" stroke="sym-stroke" type="label" width="5.629" height="4.535" depth="2.25" valign="top" style="math">y</text>
-  <text matrix="1 0 0 1 18 6" transformations="translations" pos="78 717" stroke="sym-stroke" type="label" width="5.569" height="4.543" depth="0.07" halign="right" valign="bottom" style="math">x</text>
-  <group>
-  <group>
-  <text matrix="1 0 0 1 -1 0" transformations="translations" pos="78 717" stroke="sym-stroke" type="label" width="5.131" height="4.543" depth="0.07" halign="right" valign="top" style="math">z</text>
-  </group>
-  </group>
-  </group>
-</symbol>
-
 <symbol name="Sensors/Current sensor horizontal(s)" snap="-8 0 8 0 0 0">
   <group matrix="1 0 0 1 -8 0">
   <path matrix="0 -1 1 0 -40 68" stroke="sym-stroke">
@@ -1309,7 +1195,6 @@
   </path>
   </group>
 </symbol>
-
 
 <symbol name="Sources/Current source arrow(s)" snap="0 -16 0 16 0 0">
   <group>
