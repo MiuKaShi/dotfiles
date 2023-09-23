@@ -37,7 +37,7 @@ case "$1" in
         pdfpath=$(fd -g "$filename" "$HOME" | head -1)
         notify-send "Open $filename" "Go to page $page..."
         setsid -f $READER "$pdfpath" --page "$(($page+1))" ;;
-	*png|*jpg|*jpe|*jpeg|*gif)
+	*png|*jpg|*jpe|*jpeg|*gif|*webp)
 		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
 	*pdf|*cbz|*cbr)
 		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;

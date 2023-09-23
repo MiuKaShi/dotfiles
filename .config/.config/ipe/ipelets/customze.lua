@@ -46,3 +46,6 @@ shortcuts["verticalalignment|bottom"] = "Alt+Shift+B"
 shortcuts["verticalalignment|baseline"] = "Alt+B"
 shortcuts["verticalalignment|vcenter"] = "Alt+Shift+C"
 shortcuts["verticalalignment|top"] = "Alt+Shift+T"
+
+shortcuts.ipelet_1_scale = "Ctrl+Alt+S"
+shortcuts.ipelet_1_quicklink = "Ctrl+Alt+L"
