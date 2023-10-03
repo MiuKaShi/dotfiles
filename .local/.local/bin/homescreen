@@ -6,8 +6,6 @@ xrandr --dpi 138 --fb 6000x3840 --output DP1 --scale 1.5x1.5 --pos 3840x0 --rota
 
 export LIBVA_DRIVER_NAME=iHD
 export VDPAU_DRIVER=va_gl
-#a better way to "disable" DPMS,
-xset dpms 0 0 0
 
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
 xrdbpid=$!

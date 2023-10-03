@@ -216,31 +216,21 @@ proxies:
   - {
       name: "江苏2",
       type: vmess,
-      server: 36.150.27.57,
-      port: 443,
+      server: 43.248.139.81,
+      port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
-        },
+      network: ws,
+      ws-opts: { path: /, headers: { Host: www.youku.com } },
+      ws-path: /,
+      ws-headers: { Host: www.youku.com },
     }
   - {
       name: "四川",
       type: vmess,
-      server: 222.211.75.179,
+      server: 183.222.27.50,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
@@ -267,17 +257,12 @@ proxies:
     }
   - {
       name: "香港2",
-      type: vmess,
-      server: cfcdn3.sanfencdn.net,
-      port: "2052",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
+      type: trojan,
+      server: waphk.mjt001.com,
+      port: 443,
+      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
       udp: true,
-      network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: sg4.sanfencdn2.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: sg4.sanfencdn2.com },
+      sni: waphk.mjt001.com,
     }
   - {
       name: "香港3",
@@ -426,7 +411,7 @@ proxies:
   - {
       name: "台湾2",
       type: vmess,
-      server: d041a585-0c1e-e928-dfbb-c5c4bb7f9685.cnnic.rip,
+      server: 23341317-8bba-3a70-9085-b1e032767e01.nachoneko.ltd,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
@@ -440,7 +425,7 @@ proxies:
   - {
       name: "台湾3",
       type: vmess,
-      server: 18c035a5-cfa0-6e07-6906-834de3b3eb73.cnnic.rip,
+      server: 72879ec6-6e4f-672e-0882-61232310cf6b.nachoneko.ltd,
       port: 80,
       uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
@@ -491,16 +476,20 @@ proxies:
   - {
       name: "日本1",
       type: vmess,
-      server: cfcdn5.sanfencdn.net,
+      server: cfcdn3.sanfencdn9.com,
       port: "80",
       uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: jp2.sanfencdn2.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: jp2.sanfencdn2.com },
+      ws-opts:
+        {
+          path: /video/uubCdJtK,
+          headers: { Host: jp17aab72a7.chvsifetrj.xyz },
+        },
+      ws-path: /video/uubCdJtK,
+      ws-headers: { Host: jp17aab72a7.chvsifetrj.xyz },
     }
   - {
       name: "日本2",
@@ -519,16 +508,20 @@ proxies:
   - {
       name: "日本3",
       type: vmess,
-      server: cfcdn5.sanfencdn.net,
+      server: cfcdn3.sanfencdn9.com,
       port: "80",
       uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: jp3.sanfencdn2.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: jp3.sanfencdn2.com },
+      ws-opts:
+        {
+          path: /video/iMGdpGpR,
+          headers: { Host: jp29f261871.chvsifetrj.xyz },
+        },
+      ws-path: /video/iMGdpGpR,
+      ws-headers: { Host: jp29f261871.chvsifetrj.xyz },
     }
   - {
       name: "日本4",
@@ -542,16 +535,20 @@ proxies:
   - {
       name: "日本5",
       type: vmess,
-      server: cfcdn5.sanfencdn.net,
+      server: cfcdn3.sanfencdn9.com,
       port: "80",
       uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: jp1.sanfencdn2.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: jp1.sanfencdn2.com },
+      ws-opts:
+        {
+          path: /video/EUBRFrBA,
+          headers: { Host: jp3ffe82816.chvsifetrj.xyz },
+        },
+      ws-path: /video/EUBRFrBA,
+      ws-headers: { Host: jp3ffe82816.chvsifetrj.xyz },
     }
 proxy-groups:
   - name: Auto - UrlTest

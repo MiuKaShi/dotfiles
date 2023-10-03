@@ -115,7 +115,3 @@ case $monitor_name in
         ln -sf $HOME/.config/rofi/notebook.rasi $HOME/.config/rofi/config.rasi
         ;;
 esac
-
-# disable dispaly DPMS
-sleep 1
-xset dpms 0 0 0
