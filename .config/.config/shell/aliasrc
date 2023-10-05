@@ -98,7 +98,7 @@ alias \
     mbt="mat cmd" \
     dic="rmall -e -L" \
     ipy="ipython --no-banner --TerminalInteractiveShell.editing_mode=vi" \
-    jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/sysimage.so"
+    jl="julia --banner no --sysimage=/home/miuka/.julia/sysimage/mysys.so"
 
 # These common commands are just too long! Abbreviate them.
 alias \
