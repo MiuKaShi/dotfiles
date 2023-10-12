@@ -243,17 +243,21 @@ proxies:
     }
   - {
       name: "香港1",
-      type: vmess,
-      server: 87e217b2-484e-f28b-5881-8e331740ce3a.nachoneko.ltd,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      server: hk01.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: 0NCO_rNBm2pvGm91poaN8VoAfTN8cpibJmujVlDAPg4,
+          short-id: 6ba85179e30d4fc1,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "香港2",
@@ -266,69 +270,75 @@ proxies:
     }
   - {
       name: "香港3",
-      type: vmess,
-      server: hk2.quick-connect.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: http,
-      http-opts:
+      server: hk02.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
         {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
+          public-key: Ka2NyttWVLiahJRSEkwfwWMwzWeHrDnqRnD6cD6JYgQ,
+          short-id: 6ba85179e30d4fc3,
         },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "香港4",
-      type: vmess,
-      server: hk1.quick-connect.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: a.189.cn } },
-      ws-path: /,
-      ws-headers: { Host: a.189.cn },
+      server: hk03.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: NTjTy8NzcHte2Nj-rZkYmife1oz3Q1VcSX8SzPykzF0,
+          short-id: 6ba85179e30d4fc9,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "香港5",
-      type: vmess,
-      server: zfc.windowsupdate1.com,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: hk3.quick-connect.buzz } },
-      ws-path: /,
-      ws-headers: { Host: hk3.quick-connect.buzz },
+      server: hk04.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: 1mFHFntAzonvI-2JU5-1IlxpfR9aruUgGhck4lnTW2Q,
+          short-id: 6ba85179e30d4fb8,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "香港ipv6",
-      type: vmess,
-      server: "2407:cdc0:b005::ee",
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      server: hk05.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: 9u8WT-x2A3ByM4EvWk6ky3uv_caUdhZE8ICiCtPxpRo,
+          short-id: 6ba85179e30d4fb6,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "美国1",
@@ -346,19 +356,21 @@ proxies:
     }
   - {
       name: "美国2",
-      type: vmess,
-      server: cfcdn2.sanfencdn.net,
-      port: "443",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
+      server: us01.ctcxianyu.com,
+      port: 10020,
+      reality-opts:
+        {
+          public-key: GnUNEUb0bt69P1d9jPq2tmcFfyAhpNqZwqm_Cs3bYzI,
+          short-id: 6ba85179e30d4ea2,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
       tls: true,
-      servername: us1.sanfencdn1.com,
-      network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: us2.sanfencdn1.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: us2.sanfencdn1.com },
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "美国3",
@@ -370,20 +382,21 @@ proxies:
     }
   - {
       name: "美国4",
-      type: vmess,
-      server: cfcdn2.sanfencdn.net,
-      port: "443",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
+      server: us02.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: 99W25N2SUrhApnoN5SKMd0FBnjx-xOhrYrxV-k6qOGI,
+          short-id: 6ba85179e30d4ea3,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
       tls: true,
-      skip-cert-verify: true,
-      servername: us1.sanfencdn1.com,
-      network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: us3.sanfencdn1.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: us3.sanfencdn1.com },
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "美国5",
@@ -475,21 +488,21 @@ proxies:
     }
   - {
       name: "日本1",
-      type: vmess,
-      server: cfcdn3.sanfencdn9.com,
-      port: "80",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts:
+      server: jp02.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
         {
-          path: /video/uubCdJtK,
-          headers: { Host: jp17aab72a7.chvsifetrj.xyz },
+          public-key: YdiSlF6IzRPoHdqnyN34mgggF8srSzzzz4RFU-FuhwY,
+          short-id: 6ba85179e30d4fc6,
         },
-      ws-path: /video/uubCdJtK,
-      ws-headers: { Host: jp17aab72a7.chvsifetrj.xyz },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "日本2",
@@ -507,21 +520,21 @@ proxies:
     }
   - {
       name: "日本3",
-      type: vmess,
-      server: cfcdn3.sanfencdn9.com,
-      port: "80",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts:
+      server: jp01.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
         {
-          path: /video/iMGdpGpR,
-          headers: { Host: jp29f261871.chvsifetrj.xyz },
+          public-key: p_MH9-3JNzcYppZLnNc8Q8fB_taYCdwqzKfkkr3l93k,
+          short-id: 6ba85179e30d4fc4,
         },
-      ws-path: /video/iMGdpGpR,
-      ws-headers: { Host: jp29f261871.chvsifetrj.xyz },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "日本4",
@@ -534,21 +547,21 @@ proxies:
     }
   - {
       name: "日本5",
-      type: vmess,
-      server: cfcdn3.sanfencdn9.com,
-      port: "80",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts:
+      server: jp03.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
         {
-          path: /video/EUBRFrBA,
-          headers: { Host: jp3ffe82816.chvsifetrj.xyz },
+          public-key: zXCD_jI0dyHuelY72yW489t223krmHt753fHTuyrFjg,
+          short-id: 6ba85179e30d4fb6,
         },
-      ws-path: /video/EUBRFrBA,
-      ws-headers: { Host: jp3ffe82816.chvsifetrj.xyz },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
 proxy-groups:
   - name: Auto - UrlTest
@@ -715,6 +728,8 @@ rules:
   - DOMAIN-SUFFIX,nextdns.io,DIRECT
   - DOMAIN-SUFFIX,quad9.net,DIRECT
   - DOMAIN-SUFFIX,test-ipv6.com,DIRECT
+  # deppl
+  - DOMAIN-SUFFIX,yahoo.co.jp,DIRECT
   # wol
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   # yahoo.co.jp

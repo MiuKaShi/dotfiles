@@ -9,7 +9,9 @@ case $BLOCK_BUTTON in
         iwd-dmenu
         pkill -RTMIN+4 dwmblocks
         ;;
-    3) notify-send "🌎 Internet module" "\- Click to connect
+		2) setsid -f "$TERMINAL" -e bluetuith ;;
+    3) notify-send "🌎 Internet module" "\- Left click to connect
+- Mid click opens bluetuith
 ❌: no network
 📶: wifi connection with quality
 🌎: ethernet working

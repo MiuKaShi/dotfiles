@@ -3,13 +3,14 @@ prefs.max_zoom = 200
 prefs.tex_engine = "xetex"
 prefs.spell_check = false
 prefs.auto_run_latex = true
-prefs.autosave_interval = nil
 prefs.start_screen = "maximized"
 prefs.normal_resolution = 92
 prefs.scroll["pan"] = false
 prefs.scroll.vertical_sign = -1
 prefs.ui_scale = 200
 prefs.toolbar_scale = 200
+prefs.autosave_filename = "/tmp/%s.autosave"
+prefs.autosave_interval = 300 -- 5 minutes
 
 -- Substitute with absolute /path/to/ElectricalEngineering.isy
 prefs.styles = { "basic", "color", "symbol", "latex" }
