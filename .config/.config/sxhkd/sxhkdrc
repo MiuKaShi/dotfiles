@@ -9,6 +9,9 @@ mod3 + q
 mod3 + space
     dwmc zoom
 
+mod3 + x
+	xprop-notify
+
 mod3 + f
 	fd-search
 

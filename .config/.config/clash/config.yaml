@@ -400,17 +400,11 @@ proxies:
     }
   - {
       name: "美国5",
-      type: vmess,
-      server: cfcdn2.sanfencdn.net,
-      port: "2052",
-      uuid: 1840656d-9c35-4e45-b6e2-f75f98808c72,
-      alterId: 0,
-      cipher: auto,
+      type: trojan,
+      server: usla.mjt001.com,
+      port: 443,
+      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
       udp: true,
-      network: ws,
-      ws-opts: { path: /zh-cn, headers: { Host: us5.sanfencdn2.com } },
-      ws-path: /zh-cn,
-      ws-headers: { Host: us5.sanfencdn2.com },
     }
   - {
       name: "台湾1",
@@ -478,13 +472,21 @@ proxies:
     }
   - {
       name: "台湾5",
-      type: trojan,
-      server: dl-tw4.steamdownload.top,
-      port: 443,
-      password: 1dcc67cf-af62-4b8c-930e-c9696ba19b45,
-      udp: true,
-      sni: data-tw.xn--vur082k.cc,
-      skip-cert-verify: true,
+      server: tw.ctcxianyu.com,
+      port: 10010,
+      reality-opts:
+        {
+          public-key: -Q5moZIOCHB2_viuOLQDaWTUZ4sdMIT-4tlIukqRUh4,
+          short-id: 6ba85179e30d4ea1,
+        },
+      client-fingerprint: chrome,
+      type: vless,
+      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
+      tls: true,
+      tfo: false,
+      servername: download.cdp.bethesda.net,
+      flow: xtls-rprx-vision,
+      skip-cert-verify: false,
     }
   - {
       name: "日本1",
