@@ -1,6 +1,14 @@
 name: "spell-en.yml"
 parent: default
 matches:
+  - trigger: cip-csl2
+    replace: CIP-CSL2
+    propagate_case: true
+    word: true
+  - trigger: cip
+    replace: CIP
+    propagate_case: true
+    word: true
   - trigger: markdwon
     replace: markdown
     propagate_case: true
@@ -75,6 +83,10 @@ matches:
     word: true
   - trigger: navier-stokes
     replace: Navier-Stokes
+    propagate_case: true
+    word: true
+  - trigger: yagi
+    replace: Yagi
     propagate_case: true
     word: true
   - trigger: ;jfo

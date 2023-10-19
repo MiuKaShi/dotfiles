@@ -35,9 +35,7 @@ shortcuts.apply_properties = "Ctrl+Q"
 shortcuts.zoom_in = "Ctrl+="
 shortcuts.zoom_out = "Ctrl+-"
 shortcuts.delete = "backspace"
-
 shortcuts.fit_page = ","
-shortcuts.ipelet_1_symbols = "Shift+S"
 
 shortcuts["horizontalalignment|left"] = "Alt+Shift+L"
 shortcuts["horizontalalignment|hcenter"] = "Alt+Shift+H"
@@ -48,5 +46,9 @@ shortcuts["verticalalignment|baseline"] = "Alt+B"
 shortcuts["verticalalignment|vcenter"] = "Alt+Shift+C"
 shortcuts["verticalalignment|top"] = "Alt+Shift+T"
 
+-- ipelet
+shortcuts.ipelet_1_symbols = "Shift+S"
 shortcuts.ipelet_1_scale = "Ctrl+Alt+S"
 shortcuts.ipelet_1_quicklink = "Ctrl+Alt+L"
+shortcuts.ipelet_1_exportpng = "Ctrl+Alt+E"
+shortcuts.ipelet_1_tangentlines = "Alt+t"
