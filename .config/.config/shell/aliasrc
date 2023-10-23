@@ -57,6 +57,9 @@ alias wget="wget --continue --progress=bar --timestamping"
 # mamba
 alias mamba="micromamba"
 
+# foam
+alias fo10="source $FOAM_INSTALL/OpenFOAM-10/etc/bashrc"
+
 # kitty
 alias icat="kitty +kitten icat"
 

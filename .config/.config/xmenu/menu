@@ -22,6 +22,7 @@ IMG:$HOME/.config/xmenu/icons/workrave.svg							Application
 		IMG:$HOME/.config/xmenu/icons/obsidian.svg							Obsidian 	obsidian
 		IMG:$HOME/.config/xmenu/icons/Zoom.svg							Zoom 	zoom
 		IMG:$HOME/.config/xmenu/icons/raindrop.svg							Raindrop 	raindrop
+		IMG:$HOME/.config/xmenu/icons/freecad.svg							FreeCAD 	freecad
 	Music
 		IMG:$HOME/.config/xmenu/icons/youtube-music.svg							Youtube-music						youtube-music
 		IMG:$HOME/.config/xmenu/icons/cider.svg							Apple-music						cider
