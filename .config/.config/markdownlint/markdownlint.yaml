@@ -13,4 +13,4 @@ MD052: false                  # reference-links-images - Reference links and ima
 MD011: false                  #no-reversed-links - Reversed link syntax
 MD045: false                  #Images should have alternate text (alt text)
 MD049: false                  #emphasis-style - Emphasis style should be consistent
-blank_lines: false 
+blank_lines: false

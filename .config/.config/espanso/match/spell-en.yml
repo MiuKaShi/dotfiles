@@ -1,6 +1,14 @@
 name: "spell-en.yml"
 parent: default
 matches:
+  - trigger: poiseuille
+    replace: Poiseuille
+    propagate_case: true
+    word: true
+  - trigger: couette
+    replace: Couette
+    propagate_case: true
+    word: true
   - trigger: cip-csl2
     replace: CIP-CSL2
     propagate_case: true
