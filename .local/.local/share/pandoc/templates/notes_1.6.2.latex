@@ -1,4 +1,4 @@
-% This is the pandoc LaTeX template based on eisvogel.
+% This is the pandoc LaTeX template based on pandoc V1.6.2
 
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
@@ -50,7 +50,7 @@ $endif$
 \usepackage{mhchem}     % Typesetting chemical molecular formulae and equations
 
 %%%%%%%%%%% font
-\usepackage[T1]{fontenc}
+\usepackage{fontspec} % 为了设置字体
 
 % 西文字体
 \setmainfont{Times New Roman}
@@ -176,30 +176,28 @@ $endif$
 
 %%%%%%%%%%%%%% reference
 $if(csl-refs)$
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-% avoid brackets around text for \cite:
-\makeatletter
- \def\@biblabel#1{}
- \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacing}
-\setlength{\cslentryspacing}{0em}
-\usepackage{enumitem}
-\newlist{CSLReferences}{itemize}{1}
-\setlist[CSLReferences]{label={},
-  leftmargin=\cslhangindent,
-  itemindent=-1\cslhangindent,
-  parsep=\parskip,
-  itemsep=-2em, % <-- Adjust this value to your preference
-  before={\section*{Reference}\small},   % <--- Add title and set font size here
-  after={\normalsize}}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+{% don't indent paragraphs
+	\setlength{\parindent}{0pt}
+	% add a section title "Reference"
+	\section*{Reference}
+	% set reference font size
+	\footnotesize
+	% turn on hanging indent if param 1 is 1
+	\ifodd #1
+		\let\oldpar\par
+		\def\par{\hangindent=\cslhangindent\oldpar}
+	\fi
+	% set entry spacing
+	\setlength{\parskip}{#2\cslentryspacingunit}
+}%
+{}
 \usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
@@ -207,21 +205,6 @@ $if(csl-refs)$
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
 
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{$if(urlstyle)$$urlstyle$$else$same$endif$}
-
-$if(natbib)$
-\usepackage[$natbiboptions$]{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-
-$if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
-$endif$
 
 $if(nocite-ids)$
 \nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
@@ -231,6 +214,9 @@ $if(csquotes)$
 \usepackage{csquotes}
 $endif$
 
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{$if(urlstyle)$$urlstyle$$else$same$endif$}
 
 
 \hypersetup{

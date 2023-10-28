@@ -2,19 +2,21 @@
 
 file=$(readlink -f "$1")
 
-pandoc "$file" \
+pandoc --listings "$file" \
     -f markdown \
-    --pdf-engine=tectonic \
+    --pdf-engine=xelatex \
     --mathjax \
     --template=notes \
     --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
-    --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
     --lua-filter=infobox.lua \
     --lua-filter=diagram-generator.lua \
     --metadata=javaPath:/usr/bin/java \
     --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
-    --filter=pandoc-crossref \
     --citeproc \
     --bibliography="$BIB" \
-    --csl="$CSL" \
+    --csl="$CSL2" \
     -t pdf "${@:2}"
+
+# --filter=pandoc-crossref \
+# --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
+# --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \

@@ -59,21 +59,24 @@ case "$1" in
         set_brightness "$brightness"
         ;;
     dark)
-        brightness=0
+        brightness=20
         number_temperature=0x04
         set_brightness "$brightness"
         set_temperature "$number_temperature"
+        sct 2800
         ;;
     light)
         brightness=100
         number_temperature=0x06
         set_brightness "$brightness"
         set_temperature "$number_temperature"
+        sct 7000
         ;;
     day)
         brightness=30
         number_temperature=0x05
         set_brightness "$brightness"
         set_temperature "$number_temperature"
+        sct 6500
         ;;
 esac

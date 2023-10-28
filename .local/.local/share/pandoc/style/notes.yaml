@@ -1,86 +1,31 @@
 ---
-# 开启封面
-# titlepage: true,
+papersize: a4
+fontsize: 12pt
 
-# 封面颜色
-#titlepage-color: "3C9F53"
+geometry:
+  - left=2cm
+  - right=2cm
+  - top=2cm
+  - bottom=1.5cm
+  - includehead=true
+  - includefoot=true
 
-# 封面字体颜色
-#titlepage-text-color: "FFFFFF"
-#titlepage-rule-color: "360049"
-#titlepage-rule-height: 2
+hyperrefoptions:
+  - hidelinks
 
-# 封面logo
-# logo: "logo.pdf"
-# logo-width: 120
-
-# 封面背景
-# titlepage-background: "./style/backgrounds/background1.pdf"
-
-# 正文背景
-# page-background: "./style/backgrounds/background1.pdf"
-
-# 开启页眉页脚
-disable-header-and-footer: true,
-
-# 页眉页脚设置
-# header-left: "\\hspace{1cm}"
-# header-center: "\\leftmark"
-# header-right: "Page \\thepage"
-# footer-left: "\\thetitle"
-# footer-center: "This is \\LaTeX{}"
-# footer-right: "\\theauthor"
-
-# 设置图表title位置
-caption-justification: centering
-
-# 设置table颜色
-table-use-row-colors: false
-
-# 设置字体(中文在tex中设置)
-mainfont: Times New Roman
-sansfont: Times New Roman
-CJKmainfont: SimSun
-
-# LaTeX package includes
-# Use this to include packages required usually in custom templates.
-header-includes: \usepackage[multiple]{footmisc}
-  \usepackage{fontspec}
-  \usepackage{xeCJK}
-  \usepackage{svg}
-  \usepackage{svgcolor}
-
-# Enable PDF Links
+# Enable Reference Links
 link-citations: true
-link-references: true
+# DOI to link
+# link-bibliography: true
+
+# ulr link as footnotes
+links-as-notes: true
 
 # Select color for each type of link
 colorlinks: true
-linkcolor: NavyBlue
-toccolor: NavyBlue
-citecolor: NavyBlue
-urlcolor: NavyBlue
+# linkcolor: NavyBlue
+citecolor: red
+# urlcolor: NavyBlue
 
-# Geometric aspects (1.5in=2cm)
-papersize: A4
-margin-left: 2cm
-margin-right: 2cm
-margin-top: 2cm
-margin-bottom: 1.5cm
-fontsize: 12pt
-
-# 设置引用格式
-figPrefix:
-  - "Fig."
-  - "Figs."
-tblPrefix:
-  - "Table"
-  - "Tables"
-eqnPrefix:
-  - "Eq."
-  - "Eqs."
-
-# 设置reference
-#bibliography:
-#csl:
+linestretch: 1.15
 ---

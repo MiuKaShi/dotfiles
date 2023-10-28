@@ -68,8 +68,7 @@ case "$ext" in
     norg) mdpdf -o "$file" ;;
     md) if [ -x "$(command -v pandoc)" ]; then
         # mdpdf "$file" > "$base".pdf
-        pandoc-extra $file -o "$base".pdf
-        open "$base"
+        pandoc-extra $file -o "$base".pdf && open "$base"
     elif [ -x "$(command -v groffdown)" ]; then
         groffdown -i "$file" | groff >"$base.pdf"
     else
