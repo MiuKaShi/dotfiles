@@ -154,9 +154,12 @@ $endif$
 $if(graphics)$
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+% 设置 \maxwidth 为 17cm 或 \linewidth 中较小的一个
+\def\maxwidth{\ifdim\Gin@nat@width>17cm 17cm\else\Gin@nat@width\fi}
+% 设置 \maxheight 为文本高度的一半或图像自然高度中较小的一个
+\def\maxheight{\ifdim\Gin@nat@height>0.5\textheight 0.5\textheight\else\Gin@nat@height\fi}
 \makeatother
+% 设置图像的默认宽度和高度
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 \makeatletter
 \usepackage{float}
