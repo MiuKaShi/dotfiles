@@ -16,15 +16,18 @@ hyperrefoptions:
 # Enable Reference Links
 link-citations: true
 # DOI to link
-# link-bibliography: true
+link-bibliography: true
 
 # ulr link as footnotes
 links-as-notes: true
 
+# zero-width-non-joiner: true
+# indent: false
+
 # Select color for each type of link
 colorlinks: true
 # linkcolor: NavyBlue
-citecolor: red
+citecolor: blue
 # urlcolor: NavyBlue
 
 linestretch: 1.15

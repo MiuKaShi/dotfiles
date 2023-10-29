@@ -8,15 +8,15 @@ pandoc --listings "$file" \
     --mathjax \
     --template=notes \
     --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
+    --filter=pandoc-crossref \
     --lua-filter=infobox.lua \
     --lua-filter=diagram-generator.lua \
     --metadata=javaPath:/usr/bin/java \
     --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
     --citeproc \
     --bibliography="$BIB" \
-    --csl="$CSL2" \
+    --csl="$CSL" \
     -t pdf "${@:2}"
 
-# --filter=pandoc-crossref \
 # --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
 # --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
