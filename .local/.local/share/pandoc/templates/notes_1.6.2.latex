@@ -59,7 +59,7 @@ $endif$
 
 % 中文字体
 \usepackage{xeCJK}
-\setCJKmainfont{SimSun}
+\setCJKmainfont{imSun}
 \setCJKsansfont{SimHei}
 \setCJKmonofont{FangSong_GB2312}
 \newCJKfontfamily[zhsong]\songti{SimSun}

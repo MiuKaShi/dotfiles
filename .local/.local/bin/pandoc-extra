@@ -9,7 +9,7 @@ pandoc --listings "$file" \
     --template=notes \
     --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
     --filter=pandoc-crossref \
-    --lua-filter=infobox.lua \
+    --lua-filter=box.lua  \
     --lua-filter=diagram-generator.lua \
     --metadata=javaPath:/usr/bin/java \
     --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \

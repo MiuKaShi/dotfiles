@@ -6,6 +6,7 @@ name=$(basename "$file")
 fname="${name%.*}"
 base="/tmp/$fname"
 ext="${file##*.}"
+css="$HOME/.local/share/pandoc/templates/mdpdf.css"
 
 cd "$dir" || exit 1
 
@@ -45,7 +46,7 @@ pandocpdf() {
 
 case "$ext" in
     norg) lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf >"$base".pdf ;;
-    md) md2pdf "$file" -o "$base".pdf || pandocpdf ;;
+    md) md2pdf -c $css "$file" -o "$base".pdf || pandocpdf || mdpdf ;;
     mom) preconv "$file" | refer -PS -e | groff -mom -kept -T pdf >"$base".pdf ;;
     ms) preconv "$file" | refer -PS -e | groff -me -ms -kept -T pdf >"$base".pdf ;;
     org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
