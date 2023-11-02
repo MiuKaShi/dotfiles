@@ -6,7 +6,7 @@ port: 7890
 socks-port: 7891
 redir-port: 7892
 allow-lan: false
-bind-address: "*"
+bind-address: '*'
 ipv6: true
 unified-delay: true
 tcp-concurrent: true #【Meta专属】TCP连接并发，如果域名解析结果对应多个IP，并发所有IP，选择握手最快的IP进行连接
@@ -14,7 +14,7 @@ log-level: silent #日志等级（info/warning/error/debug/silent）
 mode: rule
 # control ui
 external-controller: 127.0.0.1:9090
-secret: ""
+secret: ''
 external-ui: ui #https://github.com/haishanh/yacd.git
 routing-mark: 6666 # fwmark on Linux only
 find-process-mode: strict
@@ -42,70 +42,70 @@ dns:
     # - 8.8.8.8
   fake-ip-range: 198.18.0.1/16 # 默认为198.18.0.1/16
   fake-ip-filter: #Fake-ip过滤，列表中的域名返回真实ip
-    - "*.lan"
+    - '*.lan'
     #音乐版权
     - music.163.com
-    - "*.music.163.com"
-    - "*.126.net"
+    - '*.music.163.com'
+    - '*.126.net'
     - musicapi.taihe.com
     - music.taihe.com
     - songsearch.kugou.com
     - trackercdn.kugou.com
-    - "*.kuwo.cn"
+    - '*.kuwo.cn'
     - api-jooxtt.sanook.com
     - api.joox.com
     - joox.com
     - y.qq.com
-    - "*.y.qq.com"
+    - '*.y.qq.com'
     - streamoc.music.tc.qq.com
     - mobileoc.music.tc.qq.com
     - isure.stream.qqmusic.qq.com
     - dl.stream.qqmusic.qq.com
     - aqqmusic.tc.qq.com
     - amobile.music.tc.qq.com
-    - "*.xiami.com"
-    - "*.music.migu.cn"
+    - '*.xiami.com'
+    - '*.music.migu.cn'
     - music.migu.cn
     #常用网站优化
-    - "+.srv.nintendo.net"
-    - "+.stun.playstation.net"
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
     - xbox.*.microsoft.com
-    - "+.xboxlive.com"
+    - '+.xboxlive.com'
     - xbox.*.*.microsoft.com
-    - "*.taobao.com"
-    - "*.*.taobao.com"
-    - "*.*.*.taobao.com"
+    - '*.taobao.com'
+    - '*.*.taobao.com'
+    - '*.*.*.taobao.com'
     - taobao.com
-    - "*.alicdn.com"
-    - "*.mcdn.bilivideo.cn"
-    - "*.cainiao.com"
-    - "*.*.cainiao.com"
+    - '*.alicdn.com'
+    - '*.mcdn.bilivideo.cn'
+    - '*.cainiao.com'
+    - '*.*.cainiao.com'
     - amap.com
-    - "*.amap.com"
-    - "*.snssdk.com"
-    - "*.alibabausercontent.com"
-    - "*.effirst.com"
-    - "*.*.*.aliyuncs.com"
-    - "*.alipay.com"
+    - '*.amap.com'
+    - '*.snssdk.com'
+    - '*.alibabausercontent.com'
+    - '*.effirst.com'
+    - '*.*.*.aliyuncs.com'
+    - '*.alipay.com'
     - cable.auth.com
     - detectportal.firefox.com
     - global.turn.twilio.com
     - global.stun.twilio.com
     - localhost.ptlogin2.qq.com
-    - "*.logon.battlenet.com.cn"
-    - "*.logon.battle.net"
-    - "*.blzstatic.cn"
+    - '*.logon.battlenet.com.cn'
+    - '*.logon.battle.net'
+    - '*.blzstatic.cn'
     - proxy.golang.org
-    - "*.cmpassport.com"
+    - '*.cmpassport.com'
     - id6.me
     - open.e.189.cn
     - mdn.open.wo.cn
     - opencloud.wostore.cn
     - auth.wosms.cn
-    - "*.jegotrip.com.cn"
-    - "*.icitymobile.mobi"
-    - "*.pingan.com.cn"
-    - "*.cmbchina.com"
+    - '*.jegotrip.com.cn'
+    - '*.icitymobile.mobi'
+    - '*.pingan.com.cn'
+    - '*.cmbchina.com'
     - stun.*.*
     - stun.*.*.*
     #NTP服务
@@ -140,57 +140,57 @@ dns:
     - time3.google.com
     - time4.google.com
     - time.asia.apple.com
-    - "*.ntp.org.cn"
-    - "*.openwrt.pool.ntp.org"
+    - '*.ntp.org.cn'
+    - '*.openwrt.pool.ntp.org'
     - time1.cloud.tencent.com
     - time.ustc.edu.cn
     - pool.ntp.org
-    - "*.time.edu.cn"
+    - '*.time.edu.cn'
     #网络检测服务
     - network-test.debian.org
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
     - heartbeat.belkin.com
     #VPN服务
-    - "*.uuuglass.*"
-    - "*.iqyun.*"
-    - "*.iqzone.*"
-    - "*.ovoglass.*"
-    - "*.iqdnsio.*"
-    - "*.iqiq.*"
+    - '*.uuuglass.*'
+    - '*.iqyun.*'
+    - '*.iqzone.*'
+    - '*.ovoglass.*'
+    - '*.iqdnsio.*'
+    - '*.iqiq.*'
     #DNS服务
     - resolver1.opendns.com
-    - "*.adguard-dns.*"
-    - "*.linksys.com"
-    - "*.linksyssmartwifi.com"
-    - "+.battlenet.com.cn"
-    - "*.nextdns.*"
+    - '*.adguard-dns.*'
+    - '*.linksys.com'
+    - '*.linksyssmartwifi.com'
+    - '+.battlenet.com.cn'
+    - '*.nextdns.*'
     - dns.google
-    - "+.dns.google"
-    - "*.passcloud.*"
+    - '+.dns.google'
+    - '*.passcloud.*'
     - dns.sb
-    - "*.dns.sb"
+    - '*.dns.sb'
 
 proxies:
   - {
-      name: "日本",
+      name: '日本',
       type: ss,
       server: 91.199.209.235,
       port: 47451,
       cipher: chacha20-ietf-poly1305,
-      password: "ZKxwmr123",
+      password: 'ZKxwmr123',
       udp: true,
     }
   - {
-      name: "学校",
+      name: '学校',
       type: ss,
       server: 91.199.209.235,
       port: 47456,
       cipher: chacha20-ietf-poly1305,
-      password: "ZKxwmr123",
+      password: 'ZKxwmr123',
     }
   - {
-      name: "江苏1",
+      name: '江苏1',
       type: vmess,
       server: 43.248.139.121,
       port: 80,
@@ -214,7 +214,7 @@ proxies:
         },
     }
   - {
-      name: "江苏2",
+      name: '江苏2',
       type: vmess,
       server: 43.248.139.81,
       port: 80,
@@ -228,7 +228,7 @@ proxies:
       ws-headers: { Host: www.youku.com },
     }
   - {
-      name: "四川",
+      name: '四川',
       type: vmess,
       server: 183.222.27.50,
       port: 80,
@@ -242,25 +242,24 @@ proxies:
       ws-headers: { Host: www.youku.com },
     }
   - {
-      name: "香港1",
+      name: '香港1',
+      type: vless,
       server: hk01.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: 0NCO_rNBm2pvGm91poaN8VoAfTN8cpibJmujVlDAPg4,
-          short-id: 6ba85179e30d4fc1,
+          public-key: hs4D8lcgizw_ABq13Nca58YrkIXQ-E8gcJYjadr3eFs,
+          short-id: 6ba85179e30d4fa1,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "香港2",
+      name: '香港2',
       type: trojan,
       server: waphk.mjt001.com,
       port: 443,
@@ -269,79 +268,75 @@ proxies:
       sni: waphk.mjt001.com,
     }
   - {
-      name: "香港3",
+      name: '香港3',
+      type: vless,
       server: hk02.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: t6.ssl.ak.tiles.virtualearth.net,
       reality-opts:
         {
-          public-key: Ka2NyttWVLiahJRSEkwfwWMwzWeHrDnqRnD6cD6JYgQ,
-          short-id: 6ba85179e30d4fc3,
+          public-key: maLgncvymgclx5osvnjjw_jVmUWwN2ntvN3Td5uFM2Y,
+          short-id: 6ba85179e30d4fa2,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "香港4",
+      name: '香港4',
+      type: vless,
       server: hk03.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: NTjTy8NzcHte2Nj-rZkYmife1oz3Q1VcSX8SzPykzF0,
-          short-id: 6ba85179e30d4fc9,
+          public-key: nPrpK13rRBZ5lfQFjMwxHnZZ2SZszXRBhCz8KAHOYDw,
+          short-id: 6ba85179e30d4fa3,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "香港5",
+      name: '香港5',
+      type: vless,
       server: hk04.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: 1mFHFntAzonvI-2JU5-1IlxpfR9aruUgGhck4lnTW2Q,
-          short-id: 6ba85179e30d4fb8,
+          public-key: QbFCJusMOi8YFLX7br2-80nBc1NVkyhjGJX8nQRaFDM,
+          short-id: 6ba85179e30d4fa4,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "香港ipv6",
+      name: '香港ipv6',
+      type: vless,
       server: hk05.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: content.cdp.bethesda.net,
       reality-opts:
         {
-          public-key: 9u8WT-x2A3ByM4EvWk6ky3uv_caUdhZE8ICiCtPxpRo,
-          short-id: 6ba85179e30d4fb6,
+          public-key: CZDNyl-1E9NidwVgSzKueC9CqNxUJt1vjebN-e1lJFQ,
+          short-id: 6ba85179e30d4fa5,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "美国1",
+      name: '美国1',
       type: vmess,
       server: us1.ningmengshui.cyou,
       port: 80,
@@ -355,25 +350,24 @@ proxies:
       ws-headers: { Host: dm.toutiao.com },
     }
   - {
-      name: "美国2",
+      name: '美国2',
+      type: vless,
       server: us01.ctcxianyu.com,
       port: 10020,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: d1--ov-gotcha07.bilivideo.com,
       reality-opts:
         {
-          public-key: GnUNEUb0bt69P1d9jPq2tmcFfyAhpNqZwqm_Cs3bYzI,
-          short-id: 6ba85179e30d4ea2,
+          public-key: 6uwcEmiiF64Z_W-0PxKvZKJsmrdApHPFPcxHnkCCrRM,
+          short-id: 6ba85179e30d4fe1,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "美国3",
+      name: '美国3',
       type: trojan,
       server: usla.mjt001.com,
       port: 443,
@@ -381,25 +375,24 @@ proxies:
       udp: true,
     }
   - {
-      name: "美国4",
+      name: '美国4',
+      type: vless,
       server: us02.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: d1--ov-gotcha07.bilivideo.com,
       reality-opts:
         {
-          public-key: 99W25N2SUrhApnoN5SKMd0FBnjx-xOhrYrxV-k6qOGI,
-          short-id: 6ba85179e30d4ea3,
+          public-key: 1SveLkasag1RCTLuY6DXbrRfGOsAgTlln8S8iHj8jxE,
+          short-id: 6ba85179e30d4fe2,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "美国5",
+      name: '美国5',
       type: trojan,
       server: usla.mjt001.com,
       port: 443,
@@ -407,7 +400,7 @@ proxies:
       udp: true,
     }
   - {
-      name: "台湾1",
+      name: '台湾1',
       type: trojan,
       server: hinet.mjt001.com,
       port: 443,
@@ -416,7 +409,7 @@ proxies:
       sni: hinet.mjt001.com,
     }
   - {
-      name: "台湾2",
+      name: '台湾2',
       type: vmess,
       server: 23341317-8bba-3a70-9085-b1e032767e01.nachoneko.ltd,
       port: 80,
@@ -430,7 +423,7 @@ proxies:
       ws-headers: { Host: tms.dingtalk.com },
     }
   - {
-      name: "台湾3",
+      name: '台湾3',
       type: vmess,
       server: 72879ec6-6e4f-672e-0882-61232310cf6b.nachoneko.ltd,
       port: 80,
@@ -447,7 +440,7 @@ proxies:
         },
     }
   - {
-      name: "台湾4",
+      name: '台湾4',
       type: vmess,
       server: 1aa446879971445766cdf92fae0fa673.n40.kkyml.ningmengshui.cyou,
       port: 80,
@@ -471,43 +464,42 @@ proxies:
         },
     }
   - {
-      name: "台湾5",
+      name: '台湾5',
+      type: vless,
       server: tw.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: content.cdp.bethesda.net,
       reality-opts:
         {
-          public-key: -Q5moZIOCHB2_viuOLQDaWTUZ4sdMIT-4tlIukqRUh4,
-          short-id: 6ba85179e30d4ea1,
+          public-key: u42OMDZO9ltS-9iHZa7laOOyMenaF5XU4PFpxF6zUWg,
+          short-id: 6ba85179e30d4fc1,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
+
   - {
-      name: "日本1",
+      name: '日本1',
+      type: vless,
       server: jp02.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: YdiSlF6IzRPoHdqnyN34mgggF8srSzzzz4RFU-FuhwY,
-          short-id: 6ba85179e30d4fc6,
+          public-key: zt0P-GHHIL8FgLZ3FCKDK1eX4tTLVAq1GKDhw29KQkk,
+          short-id: 6ba85179e30d4fd2,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "日本2",
+      name: '日本2',
       type: vmess,
       server: opc.jp.quick-connect.buzz,
       port: 80,
@@ -521,25 +513,24 @@ proxies:
       ws-headers: { Host: dm.toutiao.com },
     }
   - {
-      name: "日本3",
+      name: '日本3',
+      type: vless,
       server: jp01.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: p_MH9-3JNzcYppZLnNc8Q8fB_taYCdwqzKfkkr3l93k,
-          short-id: 6ba85179e30d4fc4,
+          public-key: t8dFz7NGHUzFy5qMK2up0UwDNnRRcuWi0bjL6K1T5V4,
+          short-id: 6ba85179e30d4fd1,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
   - {
-      name: "日本4",
+      name: '日本4',
       type: trojan,
       server: jp.mjt001.com,
       port: 443,
@@ -548,180 +539,179 @@ proxies:
       sni: jp.mjt001.com,
     }
   - {
-      name: "日本5",
+      name: '日本5',
+      type: vless,
       server: jp03.ctcxianyu.com,
       port: 10010,
+      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      udp: true,
+      tls: true,
+      servername: gamedownloads-rockstargames-com.akamaized.net,
       reality-opts:
         {
-          public-key: zXCD_jI0dyHuelY72yW489t223krmHt753fHTuyrFjg,
-          short-id: 6ba85179e30d4fb6,
+          public-key: bOcq5MtF39erbkLr6MzwaTfJ233g66MQQW8wRhObknI,
+          short-id: 6ba85179e30d4fd3,
         },
-      client-fingerprint: chrome,
-      type: vless,
-      uuid: 9803ae53-32c7-4dff-a327-1edd6baaa470,
-      tls: true,
-      tfo: false,
-      servername: download.cdp.bethesda.net,
-      flow: xtls-rprx-vision,
-      skip-cert-verify: false,
     }
 proxy-groups:
   - name: Auto - UrlTest
     type: url-test
     proxies:
-      - "日本"
-      - "学校"
-      - "江苏1"
-      - "江苏2"
-      - "四川"
-      - "香港1"
-      - "香港2"
-      - "香港3"
-      - "香港4"
-      - "香港5"
-      - "香港ipv6"
-      - "美国1"
-      - "美国2"
-      - "美国3"
-      - "美国4"
-      - "美国5"
-      - "台湾1"
-      - "台湾2"
-      - "台湾3"
-      - "台湾4"
-      - "台湾5"
-      - "日本1"
-      - "日本2"
-      - "日本3"
-      - "日本4"
-      - "日本5"
-      - "均衡日本"
-      - "均衡台湾"
-      - "均衡中国"
-      - "均衡香港"
-      - "均衡美国"
+      - '日本'
+      - '学校'
+      - '江苏1'
+      - '江苏2'
+      - '四川'
+      - '香港1'
+      - '香港2'
+      - '香港3'
+      - '香港4'
+      - '香港5'
+      - '香港ipv6'
+      - '美国1'
+      - '美国2'
+      - '美国3'
+      - '美国4'
+      - '美国5'
+      - '台湾1'
+      - '台湾2'
+      - '台湾3'
+      - '台湾4'
+      - '台湾5'
+      - '日本1'
+      - '日本2'
+      - '日本3'
+      - '日本4'
+      - '日本5'
+      - '均衡日本'
+      - '均衡台湾'
+      - '均衡中国'
+      - '均衡香港'
+      - '均衡美国'
     url: http://www.msftconnecttest.com/connecttest.txt
-    interval: "600"
-    tolerance: "150"
+    interval: '600'
+    tolerance: '150'
   - name: 均衡日本
     type: load-balance
     url: http://www.google.com/generate_204
     interval: 300
     strategy: consistent-hashing
     proxies:
-      - "日本"
-      - "日本1"
-      - "日本2"
-      - "日本3"
-      - "日本4"
-      - "日本5"
+      - '日本'
+      - '日本1'
+      - '日本2'
+      - '日本3'
+      - '日本4'
+      - '日本5'
   - name: 均衡台湾
     type: load-balance
     url: http://www.google.com/generate_204
     interval: 300
     strategy: round-robin
     proxies:
-      - "台湾1"
-      - "台湾2"
-      - "台湾3"
-      - "台湾4"
-      - "台湾5"
+      - '台湾1'
+      - '台湾2'
+      - '台湾3'
+      - '台湾4'
+      - '台湾5'
   - name: 均衡中国
     type: load-balance
-    url: "http://www.gstatic.com/generate_204"
+    url: 'http://www.gstatic.com/generate_204'
     interval: 300
     strategy: round-robin
     proxies:
-      - "江苏1"
-      - "江苏2"
-      - "四川"
+      - '江苏1'
+      - '江苏2'
+      - '四川'
   - name: 均衡香港
     type: load-balance
     url: http://www.google.com/generate_204
     interval: 300
     strategy: round-robin
     proxies:
-      - "香港1"
-      - "香港2"
-      - "香港3"
-      - "香港4"
-      - "香港5"
-      - "香港ipv6"
+      - '香港1'
+      - '香港2'
+      - '香港3'
+      - '香港4'
+      - '香港5'
+      - '香港ipv6'
   - name: 均衡美国
     type: load-balance
-    url: "http://www.gstatic.com/generate_204"
+    url: 'http://www.gstatic.com/generate_204'
     interval: 300
     strategy: round-robin
     proxies:
-      - "美国1"
-      - "美国2"
-      - "美国3"
-      - "美国4"
-      - "美国5"
+      - '美国1'
+      - '美国2'
+      - '美国3'
+      - '美国4'
+      - '美国5'
   - name: CN
     type: select
     proxies:
-      - "均衡中国"
-      - "均衡日本"
-      - "均衡香港"
-      - "日本"
-      - "江苏1"
-      - "江苏2"
-      - "四川"
+      - '均衡中国'
+      - '均衡日本'
+      - '均衡香港'
+      - '日本'
+      - '江苏1'
+      - '江苏2'
+      - '四川'
       - DIRECT
   - name: HK
     type: select
     proxies:
-      - "均衡香港"
-      - "香港1"
-      - "香港2"
-      - "香港3"
-      - "香港4"
-      - "香港5"
-      - "香港ipv6"
+      - '均衡香港'
+      - '香港1'
+      - '香港2'
+      - '香港3'
+      - '香港4'
+      - '香港5'
+      - '香港ipv6'
       - DIRECT
   - name: TW
     type: select
     proxies:
-      - "均衡台湾"
-      - "台湾1"
-      - "台湾2"
-      - "台湾3"
-      - "台湾4"
-      - "台湾5"
+      - '均衡台湾'
+      - '台湾1'
+      - '台湾2'
+      - '台湾3'
+      - '台湾4'
+      - '台湾5'
       - DIRECT
   - name: USA
     type: select
     proxies:
-      - "均衡美国"
-      - "美国1"
-      - "美国2"
-      - "美国3"
-      - "美国4"
-      - "美国5"
+      - '均衡美国'
+      - '美国1'
+      - '美国2'
+      - '美国3'
+      - '美国4'
+      - '美国5'
       - DIRECT
   - name: Scihub
     type: select
     proxies:
-      - "日本"
-      - "日本1"
-      - "美国1"
+      - '日本'
+      - '日本1'
+      - '美国1'
   - name: Journal
     type: select
     proxies:
-      - "学校"
-      - "日本"
+      - '学校'
+      - '日本'
       - DIRECT
   - name: Others
     type: select
     proxies:
-      - "日本"
-      - "美国2"
-      - "均衡日本"
-      - "均衡中国"
-      - "均衡香港"
-      - "均衡台湾"
-      - "均衡美国"
+      - '日本'
+      - '美国2'
+      - '均衡日本'
+      - '均衡中国'
+      - '均衡香港'
+      - '均衡台湾'
+      - '均衡美国'
       - DIRECT
 rules:
   # Local direct servers
