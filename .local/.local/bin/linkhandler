@@ -29,7 +29,7 @@ case "$1" in
 		notify-send "📀 mpv " "Wait to play..."
         setsid -f mpv -quiet "$URL" --referrer=https://www.bilibili.com --sub-file=/tmp/"$BVID"/danmaku.ass  >/dev/null 2>&1 ;;
 	*nivod.tv*|*iop.org*|*tandfonline.com*|*sciencedirect.com*)
-      BROWSER=librewolf
+      BROWSER=mercury-browser
 		  setsid -f "$BROWSER" "$1" >/dev/null 2>&1  && notify-send "Browser" "Open with $BROWSER..." ;;
 	reference://*)
         filename=$(echo "$1" | tr \& '\n' | grep -oP '(?<=file=).*')

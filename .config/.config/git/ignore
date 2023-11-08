@@ -1,0 +1,23 @@
+# production stuff / builds
+node_modules
+venv
+.venv
+__pycache__
+
+# safety net to prevent sensitive data being accidentally moved
+*.kdb
+*.kdbx
+*.pfx
+*.key
+pw.txt
+pw.md
+.zsh_history
+.bash_history
+
+# prevent accidental inclusion of big files or partial downloads
+*.part
+*.crdownload
+*.mp4
+*.mkv
+*.tiff
+*.heic

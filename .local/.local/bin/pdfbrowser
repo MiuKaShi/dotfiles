@@ -4,7 +4,7 @@
 FILE=$(readlink -f "$1")
 DIRECTORY=${FILE%/*}
 FILENAME=$(basename "$FILE")
-BROWSER=librewolf
+BROWSER=mercury-browser
 PORT="25851"
 
 # Get the process ID of the process listening on the specified port

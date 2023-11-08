@@ -2,7 +2,7 @@
 
 # 获取输入的.bib文件名
 bib_file="$1"
-if [[ -z $bib_file ]]; then
+if [ -z "$bib_file" ]; then
     echo "请提供输入的.bib文件"
     exit 1
 fi
@@ -14,8 +14,10 @@ output_file="${file_name%.*}_bib.pdf"
 # 创建临时Markdown文件
 cat >temp.md <<EOL
 ---
+fontsize: 12pt
 nocite: '@*'
 ---
+
 # References
 EOL
 
