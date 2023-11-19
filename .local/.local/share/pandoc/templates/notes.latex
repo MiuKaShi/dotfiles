@@ -42,7 +42,6 @@ $endif$
 
 %%%%%%%%%% math and Science
 \usepackage{amsmath,amssymb}
-\usepackage{unicode-math} % unicode math support
 \usepackage{algorithmicx}
 \usepackage{xfrac}  % For nice small sized fractions, typically text mode.
 \usepackage{siunitx} % Consistent numbers and units, ranges, decimals etc.
@@ -56,32 +55,67 @@ $endif$
 \usepackage{mhchem}     % Typesetting chemical molecular formulae and equations
 
 %%%%%%%%%%% font
-\usepackage[T1]{fontenc}
-
+% load fontspec without math because use unicode-math for math font
+% \usepackage[no-math]{fontspec}
+\usepackage{fontspec}
 % 西文字体
-\setmainfont{Times New Roman}
+\IfFontExistsTF{Minion Pro}{
+	\setmainfont{Minion Pro}
+}{
+	\setmainfont{Times New Roman}
+}
 \setsansfont{Arial}
 \setmonofont{Courier New}
 
 % 中文字体
 \usepackage{xeCJK}
-\def\CJKFontOptions{AutoFakeBold, AutoFakeSlant}
 \def\CJKFontFamilyOptions{BoldFont=*, ItalicFont=*, BoldItalicFont=*}
-\setCJKmainfont{SimSun}[\CJKFontOptions]
-\setCJKsansfont{SimHei}[\CJKFontOptions]
-\setCJKmonofont{FangSong_GB2312}[\CJKFontOptions]
+% 中文默认字体：宋体，粗体以黑体代替，斜体以楷书代替
+\setCJKmainfont{SimSun}[AutoFakeBold,ItalicFont=KaiTi_GB2312]
+% 中文无衬线字体：微软雅黑，粗体为对应的微软雅黑粗体
+\setCJKsansfont{Microsoft YaHei}[BoldFont = * Bold]
+% 中文等宽字体：仿宋
+\setCJKmonofont{FangSong_GB2312}
+% 设置中文字族
 \newCJKfontfamily[zhsong]\songti{SimSun}[\CJKFontFamilyOptions]
 \newCJKfontfamily[zhhei]\heiti{SimHei}[\CJKFontFamilyOptions]
 \newCJKfontfamily[zhkai]\kaishu{KaiTi_GB2312}[\CJKFontFamilyOptions]
 \newCJKfontfamily[zhfs]\fangsong{FangSong_GB2312}[\CJKFontFamilyOptions]
+\newCJKfontfamily[zhyahei]\yahei{Microsoft YaHei}[BoldFont = * Bold]
 
 % 重定义 \emph 和 \strong 的样式，参见 fontspec 宏包文档
 \emfontdeclare{\kaishu\itshape}
 \strongfontdeclare{\heiti\bfseries}
 
 % math font support
+\usepackage{unicode-math} % unicode math support
 \unimathsetup{math-style=ISO, bold-style=ISO}  % 需放在设置字体之前
-\setmathfont{XITS Math} % 设置数学字体
+\IfFontExistsTF{Minion Math}{
+% 数学符号设置 ss08 is for slanted integral symbol
+	\setmathfont[RawFeature = +ss08]{Libertinus Math}
+	\setmathfont[version = bold, RawFeature = {embolden = 3, +ss08}]{Libertinus Math}
+	% 数学字体设置
+	\setmathfont[range = { bb, up, it, \mathbin, \mathord, \mathrel}]{Minion Math}[
+		SizeFeatures = {
+				{Size = -6.01,  Font = MinionMath-Tiny, Style = MathScriptScript},
+				{Size = 6.01-8.41,  Font = MinionMath-Capt, Style = MathScript},
+				{Size = 8.41-13.01, Font = MinionMath-Regular},
+				{Size = 13.01-19.91, Font = MinionMath-Subh},
+				{Size = 19.91-,Font = MinionMath-Disp}
+			}
+	]
+	\setmathfont{Minion Math}[range = {bfup->up,bfit->it},
+		SizeFeatures = {
+				{Size = -6.01,  Font = MinionMath-BoldTiny,Style = MathScriptScript},
+				{Size = 6.01-8.41,  Font = MinionMath-BoldCapt, Style = MathScript},
+				{Size = 8.41-13.01, Font = MinionMath-Bold},
+				{Size = 13.01-19.91, Font = MinionMath-BoldSubh},
+				{Size = 19.91-,      Font = MinionMath-BoldDisp}
+			}
+	]
+}{
+	\setmathfont{XITS Math} % 设置数学字体fallback
+}
 \defaultfontfeatures{Scale=MatchLowercase}
 \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 

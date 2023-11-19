@@ -32,7 +32,7 @@ c.downloads.location.directory = "~/Downloads"
 c.downloads.location.prompt = False
 c.confirm_quit = ["multiple-tabs", "downloads"]
 # pacman -S pdfjs-legacy
-c.content.pdfjs = True
+c.content.pdfjs = False
 c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.editor.command = ["st", "-e", "nvim", "{}"]
