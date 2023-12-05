@@ -13,9 +13,9 @@
 \usepackage{xeCJK}
 \setCJKmainfont{SimSun}
 
-%
-\renewcommand\normalsize{%
-\fontsize{12bp}{14bp}\selectfont%
-}
+% For paper
+% \renewcommand\normalsize{\fontsize{10pt}{10pt}\selectfont}
+% For thesis
+\renewcommand\normalsize{\fontsize{10pt}{12pt}\selectfont}
 </preamble>
 </ipestyle>

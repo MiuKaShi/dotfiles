@@ -16,7 +16,7 @@ hyperrefoptions:
 # Enable Reference Links
 link-citations: true
 # DOI to link
-link-bibliography: true
+link-bibliography: false
 
 # ulr link as footnotes
 links-as-notes: true

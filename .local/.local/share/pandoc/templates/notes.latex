@@ -56,8 +56,7 @@ $endif$
 
 %%%%%%%%%%% font
 % load fontspec without math because use unicode-math for math font
-% \usepackage[no-math]{fontspec}
-\usepackage{fontspec}
+\usepackage[no-math]{fontspec}
 % 西文字体
 \IfFontExistsTF{Minion Pro}{
 	\setmainfont{Minion Pro}

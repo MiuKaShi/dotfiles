@@ -15,6 +15,9 @@ unset command
 # vsv-user
 alias vsv-user="vsv -d $HOME/.runit/runsvdir"
 
+# emacs
+alias ee="emacs -nw"
+
 alias \
     ls="lsd" \
     l="ls -l" \

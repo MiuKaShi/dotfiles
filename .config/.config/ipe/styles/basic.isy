@@ -25,12 +25,11 @@
 <textsize name="footnote" value="\footnotesize"/>
 <textsize name="tiny" value="\tiny"/>
 
-<textstyle name="center" begin="\begin{center}"
-end="\end{center}"/>
-<textstyle name="itemize" begin="\begin{itemize}"
-end="\end{itemize}"/>
-<textstyle name="item" begin="\begin{itemize}\item{}"
-end="\end{itemize}"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="left" begin="\begin{flushleft}" end="\end{flushleft}"/>
+<textstyle name="right" begin="\begin{flushright}" end="\end{flushright}"/>
+<textstyle name="align*" begin="\begin{align*}" end="\end{align*}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
 
 <symbolsize name="small" value="2"/>
 <symbolsize name="tiny" value="1.1"/>

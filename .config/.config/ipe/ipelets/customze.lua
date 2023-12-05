@@ -1,4 +1,4 @@
-prefs.external_editor = "code --wait %s"
+prefs.external_editor = "subl --wait %s"
 prefs.max_zoom = 200
 prefs.tex_engine = "xetex"
 prefs.spell_check = false
@@ -14,6 +14,9 @@ prefs.autosave_interval = 300 -- 5 minutes
 
 -- Substitute with absolute /path/to/ElectricalEngineering.isy
 prefs.styles = { "basic", "color", "symbol", "latex" }
+
+-- fix https://github.com/otfried/ipe/issues/359
+prefs.freeze_in_latex = true
 
 -- shortcuts
 shortcuts.mode_select = "1"
