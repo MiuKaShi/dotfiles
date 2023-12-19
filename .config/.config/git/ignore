@@ -1,8 +1,16 @@
 # production stuff / builds
-node_modules
 venv
 .venv
 __pycache__
+
+# Log files
+*.log
+
+# Temp and backup files
+*.tmp
+*.temp
+*.bak
+*.backup
 
 # safety net to prevent sensitive data being accidentally moved
 *.kdb
@@ -21,3 +29,42 @@ pw.md
 *.mkv
 *.tiff
 *.heic
+
+# Version control directories
+.git/*
+.hg/*
+.subversion/*
+
+# NodeJS
+node_modules/*
+
+# Compiled source files
+*.com
+*.class
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Databases
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini

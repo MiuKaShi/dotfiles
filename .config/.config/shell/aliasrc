@@ -16,7 +16,9 @@ unset command
 alias vsv-user="vsv -d $HOME/.runit/runsvdir"
 
 # emacs
-alias ee="emacs -nw"
+alias ew="emacs -nw"
+alias ee="emacsclient -c -n -a emacs"
+alias emacskill='emacsclient -e "(kill-emacs)"'
 
 alias \
     ls="lsd" \
@@ -146,7 +148,6 @@ alias 9='cd -9'
 alias npmlist="npm list -g --depth 0"
 
 alias tldrf='tldr --list | fzf  --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
-alias ?='tldrf'
 alias ducks='du -chsh * | sort -rn | head -11'
 alias wea='curl wttr.in' #check weather
 alias bookdl="clibgen search"

@@ -5,9 +5,9 @@ https://rss.sciencedirect.com/publication/science/0301679X "~Paper: Tribology In
 https://link.springer.com/search.rss?facet-content-type=Article&amp;facet-journal-id=11249&amp;channel-name=Tribology+Letters "~Paper: Triboloy Letters"
 https://www.tandfonline.com/feed/rss/utrb20 "~Paper: Triboloy Transactions"
 https://journals.sagepub.com/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=pija&type=etoc&feed=rss "~Paper: Proc IMech, Part J: J Engineering Tribology"
-https://rss.miukashi.xyz/springer/journal/40544?key=MiuKa123 "~Paper: Friction"
-https://rss.miukashi.xyz/cnki/journals/MCXX?key=MiuKa123 "~Paper: 摩擦学学报"
-https://rss.miukashi.xyz/cnki/journals/RHMF?key=MiuKa123 "~Paper: 润滑于密封"
+https://www.tribology.com.cn/rss/current.xml "~Paper: 摩擦学学报"
+https://rss.miukashi.top/springer/journal/40544?key=MiuKa123 "~Paper: Friction"
+http://www.rhymf.com.cn//download_upload_file.aspx?file_name=/rss/rhymf/cn/current.xml "~Paper: 润滑与密封"
 
 # Youtube
 https://www.youtube.com/feeds/videos.xml?channel_id=UC27M3BS9uxhJfPjYYys7y8w "~Youtube: ColorBee Photography Life Channel"
@@ -18,12 +18,12 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCAQmUESq4GxO1b_iBCrYlTA "~Y
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMpQA4MMSpl_bMvNTZ5rODQ "~Youtube: LKs OFFICIAL CHANNEL"
 
 # Bilibili
-https://rss.miukashi.xyz/bilibili/user/video/11455098?key=MiuKa123 "~Bilibili: 橙猫涉影"
-https://rss.miukashi.xyz/bilibili/user/video/356692611?key=MiuKa123 "~Bilibili: Julia中文社区"
-https://rss.miukashi.xyz/bilibili/user/video/303522232?key=MiuKa123 "~Bilibili: 称呼我C先生"
-https://rss.miukashi.xyz/bilibili/user/video/1833524110?key=MiuKa123 "~Bilibili: 含亮老师"
-https://rss.miukashi.xyz/bilibili/user/video/3461562830424779?key=MiuKa123 "~Bilibili: 北京大学 Linux 俱乐部"
-https://rss.miukashi.xyz/bilibili/user/video/13081489?key=MiuKa123 "~Bilibili: TheCW"
+https://rss.miukashi.top/bilibili/user/dynamic/11455098?key=MiuKa123 "~Bilibili: 橙猫涉影"
+https://rss.miukashi.top/bilibili/user/dynamic/356692611?key=MiuKa123 "~Bilibili: Julia中文社区"
+https://rss.miukashi.top/bilibili/user/dynamic/303522232?key=MiuKa123 "~Bilibili: 称呼我C先生"
+https://rss.miukashi.top/bilibili/user/dynamic/1833524110?key=MiuKa123 "~Bilibili: 含亮老师"
+https://rss.miukashi.top/bilibili/user/dynamic/3461562830424779?key=MiuKa123 "~Bilibili: 北京大学 Linux 俱乐部"
+https://rss.miukashi.top/bilibili/user/dynamic/13081489?key=MiuKa123 "~Bilibili: TheCW"
 
 # Linux
 https://viralinstruction.com/feed.xml "~Linux: Julia viralinstruction"
@@ -32,8 +32,10 @@ https://artixlinux.org/feed.php "~Linux: artixlinux"
 https://www.archlinux.org/feeds/news/ "~Linux: archlinux"
 https://blog.lilydjwg.me/feed "~Linux: 依云"
 https://tuna.moe/feed.xml "~Linux: 清华大学TUNA"
+https://emacstalk.codeberg.page/index.xml "~Emacs: EmacsTalk"
 
-
+# Blog
+https://matt.might.net/articles/feed.rss "~Blog: matt Blog"
 
 # Others
 https://sspai.com/feed "~Others: sspai 少数派"
