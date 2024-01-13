@@ -1,0 +1,2 @@
+#!/bin/bash
+exec node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"

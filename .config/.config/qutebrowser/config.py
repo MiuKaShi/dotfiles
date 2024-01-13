@@ -236,7 +236,7 @@ config.bind(
 # config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
 # config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
 config.bind("<Ctrl-[>", "mode-leave", mode="insert")
-config.bind("<Ctrl-x>", "mode-leave", mode="passthrough")
+# config.bind("<Ctrl-x>", "mode-leave", mode="passthrough")
 
 # Leader key: `;`
 config.bind(

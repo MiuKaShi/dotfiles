@@ -8,7 +8,7 @@ file=$(readlink -f "$1")
 # Define functions
 remove_pages() {
     num=$(echo | dmenu -p "Pages:")
-		pdfcpu page rem -pages "$num" "$file"
+    pdfcpu pages remove -p "$num" "$file"
     notify-send -t 3000 "Remove Page $num"
 }
 
