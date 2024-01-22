@@ -238,10 +238,11 @@ cmd extract ${{
         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
         *.tar.gz|*.tgz) tar xzvf $f;;
         *.gz) gzip -dk $f;;
-		*.tar.xz|*.txz) tar xJvf $f;;
+				*.tar.xz|*.txz) tar xJvf $f;;
         *.pkg.tar|*.tar) tar xvf $f;;
         *.tar.zst|*.zst) unzstd xJvf $f;;
         *.zip) unar $f;;
+				*.Z) uncompress $fx;;
         *.rar) unrar x $f;;
         *.7z) 7z X $f;;
       *) echo "Unsupported format" ;;

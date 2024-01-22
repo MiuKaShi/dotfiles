@@ -175,7 +175,7 @@ proxies:
   - {
       name: '日本',
       type: ss,
-      server: 91.199.209.235,
+      server: 38.47.99.36,
       port: 47451,
       cipher: chacha20-ietf-poly1305,
       password: 'ZKxwmr123',
@@ -184,7 +184,7 @@ proxies:
   - {
       name: '学校',
       type: ss,
-      server: 91.199.209.235,
+      server: 38.47.99.36,
       port: 47456,
       cipher: chacha20-ietf-poly1305,
       password: 'ZKxwmr123',

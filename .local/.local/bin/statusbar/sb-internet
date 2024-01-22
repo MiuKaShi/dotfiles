@@ -16,7 +16,7 @@ case $BLOCK_BUTTON in
 📶: wifi connection with quality
 🌎: ethernet working
 " ;;
-    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+		6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 # Wifi

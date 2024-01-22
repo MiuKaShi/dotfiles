@@ -15,10 +15,6 @@ image() {
     fi
 }
 
-ifub() {
-    [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && command -V ueberzug >/dev/null 2>&1
-}
-
 view_sqlite() {
     echo -e "\e[33m# \e[34m$(basename "$1")\e[0m"
     echo -e "\n\e[35m## \e[34mTABLES\e[0m\n"
@@ -72,6 +68,11 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
     *.epub | *.mobi)
         CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
         [ ! -f "$CACHE.jpg" ] && gnome-epub-thumbnailer "$1" "$CACHE.jpg"
+        image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
+        ;;
+    *.djvu)
+        CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/lf/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"
+        [ ! -f "$CACHE.jpg" ] && djvused "$1" -e 'select 1; save-page-with /dev/stdout' | convert -density 200 - "$CACHE.jpg" >/dev/null 2>&1
         image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1"
         ;;
     *.excalidraw.md)
