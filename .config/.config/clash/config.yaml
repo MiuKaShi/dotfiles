@@ -246,20 +246,13 @@ proxies:
     }
   - {
       name: '香港1',
-      type: vless,
-      server: hk01.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-hk-03.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: gamedownloads-rockstargames-com.akamaized.net,
-      reality-opts:
-        {
-          public-key: hs4D8lcgizw_ABq13Nca58YrkIXQ-E8gcJYjadr3eFs,
-          short-id: 6ba85179e30d4fa1,
-        },
+      skip-cert-verify: false,
+      sni: rm-hk-03.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港2',
@@ -289,97 +282,63 @@ proxies:
     }
   - {
       name: '香港3',
-      type: vless,
-      server: hk02.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-hk-04.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: object-bnolauncher-ct.bandainamco-ol.jp,
-      reality-opts:
-        {
-          public-key: maLgncvymgclx5osvnjjw_jVmUWwN2ntvN3Td5uFM2Y,
-          short-id: 6ba85179e30d4fa2,
-        },
+      skip-cert-verify: false,
+      sni: rm-hk-04.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港4',
-      type: vless,
-      server: hk04.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-hk-05.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: gamedownloads-rockstargames-com.akamaized.net,
-      reality-opts:
-        {
-          public-key: QbFCJusMOi8YFLX7br2-80nBc1NVkyhjGJX8nQRaFDM,
-          short-id: 6ba85179e30d4fa4,
-        },
+      skip-cert-verify: false,
+      sni: rm-hk-05.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港5',
-      type: vless,
-      server: hk04.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-hk-08.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: gamedownloads-rockstargames-com.akamaized.net,
-      reality-opts:
-        {
-          public-key: QbFCJusMOi8YFLX7br2-80nBc1NVkyhjGJX8nQRaFDM,
-          short-id: 6ba85179e30d4fa4,
-        },
+      skip-cert-verify: false,
+      sni: rm-hk-08.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港ipv6',
-      type: vless,
-      server: hk05.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-hk-10.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: www.douyin.com,
-      reality-opts:
-        {
-          public-key: CZDNyl-1E9NidwVgSzKueC9CqNxUJt1vjebN-e1lJFQ,
-          short-id: 6ba85179e30d4fa5,
-        },
+      skip-cert-verify: false,
+      sni: rm-hk-10.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '美国1',
-      type: trojan,
-      server: usla.mjt000.com,
-      port: 443,
-      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
+      server: rm-us-01.409648.xyz,
+      port: 14946,
       udp: true,
-      sni: usla.mjt000.com,
+      skip-cert-verify: false,
+      sni: rm-us-01.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '美国2',
-      type: vless,
-      server: us01.ctcxianyu.com,
-      port: 10020,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-us-02.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: d1--ov-gotcha07.bilivideo.com,
-      reality-opts:
-        {
-          public-key: 6uwcEmiiF64Z_W-0PxKvZKJsmrdApHPFPcxHnkCCrRM,
-          short-id: 6ba85179e30d4fe1,
-        },
+      skip-cert-verify: false,
+      sni: rm-us-02.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '美国3',
@@ -396,29 +355,23 @@ proxies:
     }
   - {
       name: '美国4',
-      type: vless,
-      server: us02.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-us-07.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: d1--ov-gotcha07.bilivideo.com,
-      reality-opts:
-        {
-          public-key: 1SveLkasag1RCTLuY6DXbrRfGOsAgTlln8S8iHj8jxE,
-          short-id: 6ba85179e30d4fe2,
-        },
+      skip-cert-verify: false,
+      sni: rm-us-07.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '美国5',
-      type: trojan,
-      server: usla.mjt000.com,
-      port: 443,
-      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
+      server: rm-us-05.409648.xyz,
+      port: 14946,
       udp: true,
-      sni: usla.mjt000.com,
+      skip-cert-verify: false,
+      sni: rm-us-05.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '台湾1',
@@ -446,17 +399,13 @@ proxies:
     }
   - {
       name: '台湾2',
-      type: vmess,
-      server: 23341317-8bba-3a70-9085-b1e032767e01.nachoneko.ltd,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
-      alterId: 0,
-      cipher: auto,
+      server: rm-tw-02.409648.xyz,
+      port: 14946,
       udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
-      ws-path: /,
-      ws-headers: { Host: tms.dingtalk.com },
+      skip-cert-verify: false,
+      sni: rm-tw-02.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '台湾3',
@@ -518,22 +467,13 @@ proxies:
     }
   - {
       name: '日本1',
-      type: vless,
-      server: jp3g.xn--vhq70hxyat50h6wk.xinsranlaoba.top,
-      port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      network: tcp,
-      tls: true,
+      server: rm-jp-01.409648.xyz,
+      port: 14946,
       udp: true,
-      xudp: true,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
-      reality-opts:
-        {
-          public-key: C-R_RDPH3rwHIL_O4_Z4IpfGEgB6dFfG_t3NTpovkC0,
-          short-id: 1a52395f,
-        },
-      servername: www.amazon.com,
+      skip-cert-verify: false,
+      sni: rm-jp-01.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '日本2',
@@ -551,20 +491,13 @@ proxies:
     }
   - {
       name: '日本3',
-      type: vless,
-      server: jp01.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-jp-04.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: gamedownloads-rockstargames-com.akamaized.net,
-      reality-opts:
-        {
-          public-key: t8dFz7NGHUzFy5qMK2up0UwDNnRRcuWi0bjL6K1T5V4,
-          short-id: 6ba85179e30d4fd1,
-        },
+      skip-cert-verify: false,
+      sni: rm-jp-04.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '日本4',
@@ -577,20 +510,13 @@ proxies:
     }
   - {
       name: '日本5',
-      type: vless,
-      server: jp02.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      server: rm-jp-03.409648.xyz,
+      port: 14946,
       udp: true,
-      tls: true,
-      servername: gamedownloads-rockstargames-com.akamaized.net,
-      reality-opts:
-        {
-          public-key: bOcq5MtF39erbkLr6MzwaTfJ233g66MQQW8wRhObknI,
-          short-id: 6ba85179e30d4fd3,
-        },
+      skip-cert-verify: false,
+      sni: rm-jp-03.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
 proxy-groups:
   - name: Auto - UrlTest

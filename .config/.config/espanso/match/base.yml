@@ -1,35 +1,23 @@
-global_vars:
-  - name: first_name
-    type: echo
-    params:
-      echo: "Ke"
-  - name: last_name
-    type: echo
-    params:
-      echo: "Zhang"
+# espanso match file
 
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
 matches:
-  - trigger: "@ky"
-    replace: "zhang.ke.867@s.kyushu-u.ac.jp"
-    label: "Email/school"
-  - trigger: "@gm1"
-    replace: "d.lolimiuku@gmail.com"
-    label: "Email/gmail1"
-  - trigger: "@gm2"
-    replace: "d.oczeroner@gmail.com"
-    label: "Email/gmail2"
-  - trigger: "@yh"
-    replace: "zhangchouka@yahoo.co.jp"
-    label: "Email/yahoo"
-  - trigger: ";ad"
-    replace: "〒819-0041 福岡市西区拾六町3-8-13レイナ拾六町 204室"
-    label: "Address/home"
-  - trigger: ";my"
-    replace: "チョウ　カ"
-    label: "Name/jp"
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
 
-# Print the current date
-  - trigger: ";da"
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - trigger: ":date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -37,8 +25,8 @@ matches:
         params:
           format: "%m/%d/%Y"
 
-# Print the output of a shell command
-  - trigger: ";shell"
+  # Print the output of a shell command
+  - trigger: ":shell"
     replace: "{{output}}"
     vars:
       - name: output
@@ -46,16 +34,4 @@ matches:
         params:
           cmd: "echo 'Hello from your shell'"
 
-# Email signature
-  - trigger: ";sig"
-    replace: "{{output}}"
-    label: "Email signature"
-    vars:
-      - name: output
-        type: choice
-        params:
-          values:
-            - "Regards,\n{{first_name}} {{last_name}}"
-            - "Sincerely,\n{{first_name}} {{last_name}}"
-            - "Thank you,\n{{first_name}} {{last_name}}"
-
+  # And much more! For more information, visit the docs: https://espanso.org/docs/

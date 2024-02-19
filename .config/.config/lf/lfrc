@@ -91,7 +91,6 @@ map <delete> delete
 map n search-next
 map N search-prev
 map fi filter
-map zl push :z-jump<space>
 map <c-f> :fzf_jump
 # }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> extract & zip >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 map tz zip
@@ -120,8 +119,12 @@ map rr rename
 map rp renamepaper
 map rb  $printf '%s\n' $fx | vidir -
 map rbb batch_rename
-map zz zoteradd
 map W $setsid -f $TERMINAL >/dev/null 2>&1
+
+
+map bb getbib
+map zz zoteradd
+map zi zi
 
 # ========
 # = functions
@@ -137,14 +140,14 @@ map W $setsid -f $TERMINAL >/dev/null 2>&1
 # commands run in the shell, you can use $f, $fs, $fx vars.
 # you can also send remote commands.
 
-cmd on-cd &{{
-    if b=$(git branch --show-current) && [[ -n $b ]]; then
-        lf -remote 'send '$id' set promptfmt "\033[2m%d at \033[33m'$b'"'
-    elif [[ $lf_promptfmt == *' at '* ]]; then
-        lf -remote 'send '$id' set promptfmt "\033[2m%d"'
-    fi
+cmd zi ${{
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
-on-cd
+
+cmd on-cd &{{
+        zoxide add "$PWD"
+}}
 
 cmd renamepaper $pdfrenamer "$f" >> /dev/null 2>&1
 
@@ -391,15 +394,10 @@ cmd fzf_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-map zc ${{
+cmd getbib ${{
     filename="$(basename "${f##*/}" | sed 's/\(.*\)\..*/\1/' | sed 's/[ ][ ]*/_/g')"
     curl -X POST -H "Accept: application/x-bibtex" --form input=@"$f" --form consolidateCitations=2 https://kermitt2-grobid.hf.space/api/processReferences > $filename.bib
     bibtex2html $filename.bib
-}}
-
-cmd z-jump ${{
-  z_exe="/usr/share/zsh/plugins/z.lua/z.lua"
-  lf -remote "send ${id} cd '$($z_exe -I -e $1)'"
 }}
 
 # define a custom 'delete' command

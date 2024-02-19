@@ -1,4 +1,4 @@
-name: "spell-en.yml"
+name: 'spell-en.yml'
 parent: default
 matches:
   - trigger: poiseuille
@@ -140,4 +140,22 @@ matches:
   - trigger: ausas
     replace: Ausas
     propagate_case: true
+    word: true
+  - trigger: arent
+    replace: aren't
+    word: true
+  - trigger: isnt
+    replace: isn't
+    word: true
+  - trigger: Bibtex
+    replace: BibTex
+    word: true
+  - trigger: Github
+    replace: GitHub
+    word: true
+  - trigger: Youtube
+    replace: YouTube
+    word: true
+  - trigger: url
+    replace: URL
     word: true

@@ -1,5 +1,5 @@
-# Z-jump:
-eval "$(lua /usr/share/zsh/plugins/z.lua/z.lua --init zsh enhanced once)"
+# zoxide-jump:
+eval "$(zoxide init zsh)"
 
 # Change prompt:
 autoload -U colors && colors	# Load colors
