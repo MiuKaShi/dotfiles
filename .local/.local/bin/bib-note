@@ -12,7 +12,7 @@ create_md() {
 ---
 id: "$ID"
 aliases:
-  - "@$TITLE"
+  - @$TITLE
 tags: []
 ---
 
@@ -28,7 +28,7 @@ tags: []
 EOF
 }
 
-FILE=$(grep "\- \"@$TITLE"\" $PAPER_NOTES/*.md | cut -d':' -f1)
-[[ -z "$FILE" ]] && FILE=$(grep "\- \"@$TITLE"\" $DAY_NOTES/*.md | cut -d':' -f1)
+FILE=$(grep "\- @$TITLE" $PAPER_NOTES/*.md | cut -d':' -f1)
+[[ -z "$FILE" ]] && FILE=$(grep "\- @$TITLE" $DAY_NOTES/*.md | cut -d':' -f1)
 [[ -z "$FILE" ]] && create_md
 $TERMINAL -e $EDITOR "$FILE"

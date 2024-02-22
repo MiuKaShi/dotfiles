@@ -32,7 +32,7 @@ fi
 [ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌎LAN"
 
 # Clash
-[ -n "$(cat /sys/class/net/Meta*/operstate 2>/dev/null)" ] && tunicon="🔒"
+[ -n "$(cat /sys/class/net/utun*/operstate 2>/dev/null)" ] && tunicon="🔒"
 
 [ -z "$wifiicon" ] && [ -z "$ethericon" ] && [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] && { ([ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && wifiicon="📡") || wifiicon="❌"; }
 

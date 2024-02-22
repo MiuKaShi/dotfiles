@@ -98,6 +98,7 @@ map tt tar
 map tg tgz
 map tu extract
 map tl sendf
+map ts srt-deepl
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Quick Preview <<<<<<<<<<<<<<<<<<<<<<<<<<
 map i $LESS='-iWQMXR~' bat --paging=always --theme=TwoDark "$f"
 map I $$PAGER "$f"
@@ -150,6 +151,8 @@ cmd on-cd &{{
 }}
 
 cmd renamepaper $pdfrenamer "$f" >> /dev/null 2>&1
+
+cmd srt-deepl $srt-deepl "$f" >> /dev/null 2>&1
 
 # paste as a symbolic link to original
 cmd paste_link %{{

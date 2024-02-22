@@ -13,7 +13,7 @@ tcp-concurrent: true #【Meta专属】TCP连接并发，如果域名解析结果
 log-level: silent #日志等级（info/warning/error/debug/silent）
 mode: rule
 # control ui
-external-controller: 127.0.0.1:9090
+external-controller: 0.0.0.0:9090
 secret: ''
 external-ui: ui #https://github.com/haishanh/yacd.git
 routing-mark: 6666 # fwmark on Linux only
@@ -24,7 +24,7 @@ profile: #缓存设置(文件位置./cache.db)
   store-fake-ip: true #fake-ip缓存
 tun:
   enable: true
-  device: Meta
+  device: utun
   stack: system
   dns-hijack:
     - any:53
@@ -491,11 +491,13 @@ proxies:
     }
   - {
       name: '日本3',
-      server: rm-jp-04.409648.xyz,
-      port: 14946,
+      server: rm-jp-06.409648.xyz,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
-      sni: rm-jp-04.409648.xyz,
+      sni: rm-jp-06.409648.xyz,
       type: hysteria2,
       password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
@@ -510,13 +512,22 @@ proxies:
     }
   - {
       name: '日本5',
-      server: rm-jp-03.409648.xyz,
-      port: 14946,
+      type: vless,
+      server: jp3g.xn--vhq70hxyat50h6wk.xinsranlaoba.top,
+      port: 443,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      network: tcp,
+      tls: true,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-jp-03.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      xudp: true,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      reality-opts:
+        {
+          public-key: '-wWKdoMQW2tzq_9wGyvHJKiOiQ02NdiuvyC0vdJppQI',
+          short-id: e715f894,
+        },
+      servername: maps.apple.com,
     }
 proxy-groups:
   - name: Auto - UrlTest

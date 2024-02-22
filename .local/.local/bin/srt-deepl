@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# dependence https://github.com/sinedie/SRTranslator
+
+# Set the DEEPL_TOKEN variable to the value of the DEEPL_KEY file in the .api_keys directory in the user's home directory
+DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPL_KEY)"
+SRC_LANG="en"
+DEST_LANG="zh"
+
+python -m srtranslator "$1" -i "$SRC_LANG"  -o "$DEST_LANG" -t deepl-api --auth "$DEEPL_TOKEN"
