@@ -192,8 +192,8 @@ proxies:
   - {
       name: '江苏1',
       type: vmess,
-      server: 43.248.139.121,
-      port: 443,
+      server: 43.248.139.165,
+      port: 8080,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
@@ -206,43 +206,26 @@ proxies:
   - {
       name: '江苏2',
       type: vmess,
-      server: 43.248.139.165,
-      port: 443,
+      server: 124.71.170.25,
+      port: 47452,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
-        },
+      network: ws,
+      ws-opts: { path: /, headers: { Host: www.youku.com } },
+      ws-path: /,
+      ws-headers: { Host: www.youku.com },
     }
   - {
       name: '四川',
       type: vmess,
-      server: 223.113.54.141,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
+      server: shenzhen2.ednovas.org,
+      port: 22222,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          path: [/],
-          method: GET,
-          headers: { Connection: [keep-alive], Host: [tms.dingtalk.com] },
-        },
     }
   - {
       name: '香港1',
@@ -410,43 +393,22 @@ proxies:
   - {
       name: '台湾3',
       type: vmess,
-      server: 72879ec6-6e4f-672e-0882-61232310cf6b.nachoneko.ltd,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
+      server: hkgtw2.ednovas.org,
+      port: 443,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          path: [/],
-          method: GET,
-          headers: { Connection: [keep-alive], Host: [tms.dingtalk.com] },
-        },
     }
   - {
       name: '台湾4',
       type: vmess,
-      server: 1aa446879971445766cdf92fae0fa673.n40.kkyml.ningmengshui.cyou,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      server: hinettw.ednovas.org,
+      port: 443,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
-        },
     }
   - {
       name: '台湾5',
@@ -622,12 +584,18 @@ proxy-groups:
       - '美国3'
       - '美国4'
       - '美国5'
+  - name: RelayLink
+    type: relay
+    proxies:
+      - '四川'
+      - '江苏1'
   - name: CN
     type: select
     proxies:
       - '均衡中国'
       - '均衡日本'
       - '均衡香港'
+      - 'RelayLink'
       - '日本'
       - '江苏1'
       - '江苏2'
@@ -1624,6 +1592,24 @@ rules:
   - DOMAIN-SUFFIX,sandai.net,CN
   - DOMAIN-SUFFIX,thundercdn.com,CN
   - DOMAIN-SUFFIX,xunlei.com,CN
+  # CNKI
+  - DOMAIN-SUFFIX,bbf.org.cn,CN
+  - DOMAIN-SUFFIX,bjsbnet.com,CN
+  - DOMAIN-SUFFIX,chndoi.cn,CN
+  - DOMAIN-SUFFIX,chndoi.com,CN
+  - DOMAIN-SUFFIX,chndoi.com.cn,CN
+  - DOMAIN-SUFFIX,chndoi.net,CN
+  - DOMAIN-SUFFIX,chndoi.org,CN
+  - DOMAIN-SUFFIX,cnki.net,CN
+  - DOMAIN-SUFFIX,cnkidoi.cn,CN
+  - DOMAIN-SUFFIX,cnkidoi.com,CN
+  - DOMAIN-SUFFIX,cnkidoi.net,CN
+  - DOMAIN-SUFFIX,cnkidoi.org,CN
+  - DOMAIN-SUFFIX,wuxizazhi.cn,CN
+  - DOMAIN-SUFFIX,wuxizazhi.com,CN
+  - DOMAIN-SUFFIX,wuxizazhi.com.cn,CN
+  - DOMAIN-SUFFIX,wuxizazhi.net,CN
+  - DOMAIN-SUFFIX,wuxizazhi.net.cn,CN
   # AccelerateDirectSites,CN
   - DOMAIN-SUFFIX,10010.com,CN
   - DOMAIN-SUFFIX,115.com,CN
@@ -1671,7 +1657,6 @@ rules:
   - DOMAIN-SUFFIX,cnbeta.com,CN
   - DOMAIN-SUFFIX,cnbetacdn.com,CN
   - DOMAIN-SUFFIX,cnblogs.com,CN
-  - DOMAIN-SUFFIX,cnki.net,CN
   - DOMAIN-SUFFIX,cnmstl.net,CN
   - DOMAIN-SUFFIX,coolapk.com,CN
   - DOMAIN-SUFFIX,coolapkmarket.com,CN

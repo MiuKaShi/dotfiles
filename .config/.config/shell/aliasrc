@@ -25,6 +25,8 @@ alias \
     l="ls -l" \
     la="ls -a" \
     ll="ls -lah" \
+    ils="timg --grid=5 -ps --upscale=i --center --title --frames=1" \
+    ilk="timg --grid=5 -pk --upscale=i --center --title --frames=1" \
     lt="ls --tree"
 
 # Verbosity and settings that you pretty much just always are going to want.
@@ -195,6 +197,7 @@ alias restow='stow -R'
 # vps alias
 alias lab='ssh -R 2489:127.0.0.1:2489 lab'
 alias jp='ssh -R 2489:127.0.0.1:2489 jp'
+alias cn='ssh -R 2489:127.0.0.1:2489 cn'
 alias us='ssh -R 2489:127.0.0.1:2489 us'
 alias air='ssh air'
 alias nuc='ssh nuc'

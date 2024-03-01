@@ -86,6 +86,7 @@ c.content.blocking.method = "both"
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
     "https://easylist.to/easylist/easyprivacy.txt",
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
     "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
     "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
     "https://easylist-downloads.adblockplus.org/easylistchina.txt",
@@ -237,7 +238,7 @@ config.bind(
 # config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
 
 # Unbindings for passthrough mode
-#config.bind("<Ctrl-x>", "mode-leave", mode="passthrough")
+# config.bind("<Ctrl-x>", "mode-leave", mode="passthrough")
 config.unbind("<Ctrl-v>")
 config.bind("<Ctrl-[>", "mode-leave", mode="insert")
 

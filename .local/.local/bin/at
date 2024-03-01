@@ -4,8 +4,10 @@
 # -x flag only match processes whose name (or command line if -f is
 # specified) exactly match the pattern.
 
-if ls -U /run/user/$(id -u)/Alacritty-*.sock >/dev/null 2>&1; then
-  exec alacritty msg create-window "$@"
-else
-  exec alacritty "$@"
-fi
+# if ls -U /run/user/$(id -u)/Alacritty-*.sock >/dev/null 2>&1; then
+#   exec alacritty msg create-window "$@"
+# else
+#   exec alacritty "$@"
+# fi
+
+exec kitty -1 --start-as minimized "$@"

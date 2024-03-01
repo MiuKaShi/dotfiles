@@ -8,7 +8,7 @@ case "$1" in
         $cmd +ObsidianSearch
         ;;
     'new')
-        $cmd +ObsidianToday
+        $cmd +ObsidianNew
         ;;
 esac
 xdotool key super

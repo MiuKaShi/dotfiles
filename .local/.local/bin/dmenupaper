@@ -5,7 +5,7 @@
 # Get citekey from user input or command line argument
 get_citekey() {
     if [ -z "$1" ]; then
-        citekey=$(grep '@' <"$BIB" | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open papers with citekey:")
+        citekey=$(grep '@' <"$BIB" | grep -oP '(?<={).*' | tr -d ',' | dmenu -i -p "Open papers with citekey:") || exit 0
     else
         citekey="$1"
     fi
