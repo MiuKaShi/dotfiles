@@ -159,3 +159,18 @@ matches:
   - trigger: url
     replace: URL
     word: true
+  - trigger: '@todo'
+    replace: 'TODO:'
+    word: true
+  - trigger: '@fixme'
+    replace: 'FIXME:'
+    word: true
+  - trigger: '@note'
+    replace: 'NOTE:'
+    word: true
+  - trigger: '@hack'
+    replace: 'HACK:'
+    word: true
+  - trigger: '@bug'
+    replace: 'HACK:'
+    word: true
