@@ -192,16 +192,15 @@ proxies:
   - {
       name: '江苏1',
       type: vmess,
-      server: 43.248.139.165,
-      port: 8080,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      server: jp-aws.nanako.org,
+      port: 2096,
+      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
       cipher: auto,
       udp: true,
+      tls: true,
+      skip-cert-verify: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: a.189.cn } },
-      ws-path: /,
-      ws-headers: { Host: a.189.cn },
     }
   - {
       name: '江苏2',
@@ -220,17 +219,22 @@ proxies:
   - {
       name: '四川',
       type: vmess,
-      server: shenzhen2.ednovas.org,
-      port: 22222,
-      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      server: jp-aws.nanako.org,
+      port: 2087,
+      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
       cipher: auto,
       udp: true,
+      tls: true,
+      skip-cert-verify: true,
+      network: ws,
     }
   - {
       name: '香港1',
       server: rm-hk-03.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-hk-03.409648.xyz,
@@ -265,18 +269,36 @@ proxies:
     }
   - {
       name: '香港3',
-      server: rm-hk-04.409648.xyz,
-      port: 14946,
+      type: vmess,
+      server: hk3.qingze-quick.buzz,
+      port: 443,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-hk-04.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      tls: true,
+      servername: hk3.qingze-quick.buzz,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [data.video.qiyi.com] },
+        },
     }
   - {
       name: '香港4',
       server: rm-hk-05.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-hk-05.409648.xyz,
@@ -286,7 +308,9 @@ proxies:
   - {
       name: '香港5',
       server: rm-hk-08.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-hk-08.409648.xyz,
@@ -296,7 +320,9 @@ proxies:
   - {
       name: '香港ipv6',
       server: rm-hk-10.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-hk-10.409648.xyz,
@@ -306,7 +332,9 @@ proxies:
   - {
       name: '美国1',
       server: rm-us-01.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-us-01.409648.xyz,
@@ -338,18 +366,22 @@ proxies:
     }
   - {
       name: '美国4',
-      server: rm-us-07.409648.xyz,
-      port: 14946,
+      server: rm-us-06.409648.xyz,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
-      sni: rm-us-07.409648.xyz,
+      sni: rm-us-06.409648.xyz,
       type: hysteria2,
       password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '美国5',
       server: rm-us-05.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-us-05.409648.xyz,
@@ -383,7 +415,9 @@ proxies:
   - {
       name: '台湾2',
       server: rm-tw-02.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-tw-02.409648.xyz,
@@ -430,7 +464,9 @@ proxies:
   - {
       name: '日本1',
       server: rm-jp-01.409648.xyz,
-      port: 14946,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
       sni: rm-jp-01.409648.xyz,
@@ -440,16 +476,28 @@ proxies:
   - {
       name: '日本2',
       type: vmess,
-      server: opc.jp.quick-connect.buzz,
-      port: 80,
+      server: jp6.qingze-quick.buzz,
+      port: 443,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: dm.toutiao.com } },
-      ws-path: /,
-      ws-headers: { Host: dm.toutiao.com },
+      tls: true,
+      servername: jp6.qingze-quick.buzz,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [data.video.qiyi.com] },
+        },
     }
   - {
       name: '日本3',
@@ -475,7 +523,7 @@ proxies:
   - {
       name: '日本5',
       type: vless,
-      server: jp3g.xn--vhq70hxyat50h6wk.xinsranlaoba.top,
+      server: jp1g.xn--vhq70hxyat50h6wk.xinsranlaoba.top,
       port: 443,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       network: tcp,
@@ -486,10 +534,10 @@ proxies:
       client-fingerprint: chrome,
       reality-opts:
         {
-          public-key: '-wWKdoMQW2tzq_9wGyvHJKiOiQ02NdiuvyC0vdJppQI',
-          short-id: e715f894,
+          public-key: _6pwD3ZXyuHLlop3rbk2CImSr6siXhXoVX7jRHMh7Dk,
+          short-id: '24159e40',
         },
-      servername: maps.apple.com,
+      servername: swcdn.apple.com,
     }
 proxy-groups:
   - name: Auto - UrlTest

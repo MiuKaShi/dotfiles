@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
-<ipestyle name="Color.gray">
+<ipestyle name="Color">
 <color name="red"      value="0.967 0.192 0.192"/>
 <color name="blue"     value="0.000 0.400 0.800"/>
 <color name="green"    value="0.518 0.824 0.000"/>

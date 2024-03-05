@@ -18,6 +18,7 @@ EOF
 
 save_channels() {
   m3u_url=$(cat "$m3u_url_file")
+	rm -rf $channels_file
 
   printf "\nLoading channels... "
   curl -s "$m3u_url" | grep EXTINF: -A 2 > $tmp_playlist
