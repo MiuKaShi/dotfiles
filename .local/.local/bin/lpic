@@ -30,6 +30,6 @@ upload_clipboard() {
 case "$1" in
     "-w") upload_web ;;
     "-d") delete_image ;;
-    "-p") upload_image ;;
     "-c") upload_clipboard ;;
+    "-p") upload_image ;;
 esac

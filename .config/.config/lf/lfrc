@@ -63,6 +63,7 @@ map <c-c> cmd-interrupt
 map pp paste
 map pt $xclip-pastefile
 map pl paste_link
+map pu uploadpic
 # {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Make >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 map af push :touch<space>
 map mf mkfile
@@ -118,6 +119,7 @@ map yn yank-basename
 map yN yank-basename-without-extension
 map gf $lf -remote "send $id select $(fzf)"
 map rr rename
+map rf no_space
 map rp renamepaper
 map rb  $printf '%s\n' $fx | vidir -
 map rbb batch_rename
@@ -225,7 +227,7 @@ cmd sudomkfile ${{
 }}
 
 cmd caj ${{
-    cajpdf $fx 
+    cajpdf $fx
 }}
 
 cmd copyto ${{
@@ -279,23 +281,13 @@ cmd tgz ${{
 }}
 
 cmd sendf ${{
-    sendfile $fx 
+    sendfile $fx
 }}
 
-map rf ${{
-	dir="$(dirname "$fx")" 
+cmd no_space ${{
+	dir="$(dirname "$fx")"
 	name="$(basename -a -- $fx | sed -e 's/ /_/g')"
-	mv "$fx" "$dir/$name" 
-}}
-
-# Edit filename before the extension
-map re ${{
-	# get 'basename' of the selection
-	filename="${f##*/}"
-	# quote it so we won't deal with quotes in the lf -remote command
-	filename="$(printf '%q' "$filename")"
-	filename="${filename// /<space>}"
-	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
+	mv "$fx" "$dir/$name"
 }}
 
 cmd showpreview &{{
@@ -311,8 +303,7 @@ cmd nopreview &{{
 }}
 
 cmd zoteradd ${{
-            zotadd "$f"
-
+    zotadd "$f"
 }}
 
 # copy the path of the highlighted file
@@ -433,6 +424,11 @@ cmd chmodd %{{
 	find $fx -type d -print0 | xargs -0 chmod 0755
 }}
 
+# upload picutre
+cmd uploadpic ${{
+  lpic -p $f
+	notify-send "📋 Picture(s) uploaded."
+}}
 
 # Select based on glob filter
 cmd filter %{{

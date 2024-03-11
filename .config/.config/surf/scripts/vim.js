@@ -282,15 +282,15 @@ function get_key(evt){
 //////////////////////////////////////////////////////////////////////////////////////////
 function up() {
 	if (window.scrollByLines)
-		window.scrollByLines(-1); // gecko
+		window.scrollByLines(-10); // gecko
 	else
-		window.scrollBy(0, -12); // webkit
+		window.scrollBy(0, -120); // webkit
 }
 function down() {
 	if (window.scrollByLines)
-		window.scrollByLines(1); // gecko
+		window.scrollByLines(10); // gecko
 	else
-		window.scrollBy(0, 12); // webkit
+		window.scrollBy(0, 120); // webkit
 }
 function pageup() {
 	if (window.scrollByPages)
