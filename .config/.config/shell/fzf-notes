@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-FZF_NOTES_DIR="/home/miuka/coding/code_snippets"
+FZF_NOTES_DIR="/home/miuka/Documents/Tech_notes"
 FZF_PREVIEW_BIN="fzf-notes"
 FZF_NOTES_PROMPT="Notes> "
 FZF_PREVIEW_LINES="12"

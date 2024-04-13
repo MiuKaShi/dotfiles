@@ -185,12 +185,12 @@ proxies:
       name: '学校',
       type: ss,
       server: 38.47.99.36,
-      port: 47456,
+      port: 50010,
       cipher: chacha20-ietf-poly1305,
       password: 'ZKxwmr123',
     }
   - {
-      name: '江苏1',
+      name: '江苏',
       type: vmess,
       server: jp-aws.nanako.org,
       port: 2096,
@@ -203,10 +203,10 @@ proxies:
       network: ws,
     }
   - {
-      name: '江苏2',
+      name: '上海',
       type: vmess,
-      server: 124.71.170.25,
-      port: 47452,
+      server: 39.91.137.58,
+      port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
@@ -217,29 +217,38 @@ proxies:
       ws-headers: { Host: www.youku.com },
     }
   - {
-      name: '四川',
+      name: '浙江',
       type: vmess,
-      server: jp-aws.nanako.org,
-      port: 2087,
-      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
+      server: 110.42.102.61,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      tls: true,
-      skip-cert-verify: true,
-      network: ws,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
+        },
     }
   - {
       name: '香港1',
-      server: rm-hk-03.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      type: vmess,
+      server: hytronhk.ednovas.org,
+      port: 443,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-hk-03.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港2',
@@ -270,64 +279,52 @@ proxies:
   - {
       name: '香港3',
       type: vmess,
-      server: hk3.qingze-quick.buzz,
+      server: anyhkhgc.ednovas.org,
       port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,
       udp: true,
-      tls: true,
-      servername: hk3.qingze-quick.buzz,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
-        },
     }
   - {
       name: '香港4',
-      server: rm-hk-05.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      type: vmess,
+      server: gcorehk.ednovas.org,
+      port: 443,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-hk-05.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港5',
-      server: rm-hk-08.409648.xyz,
+      server: rm-hk-07.409648.xyz,
       port: 9000,
       ports: 9000-20000,
       mport: 9000-20000,
       udp: true,
       skip-cert-verify: false,
-      sni: rm-hk-08.409648.xyz,
+      sni: rm-hk-07.409648.xyz,
       type: hysteria2,
       password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '香港ipv6',
+      type: vless,
       server: rm-hk-10.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
+      tls: true,
       skip-cert-verify: false,
-      sni: rm-hk-10.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
+        {
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
+        },
     }
   - {
       name: '美国1',
@@ -353,16 +350,13 @@ proxies:
     }
   - {
       name: '美国3',
-      server: us2.qingze-quick.buzz,
-      port: 8443,
-      sni: us2.qingze-quick.buzz,
-      up: 500,
-      down: 500,
-      skip-cert-verify: false,
-      type: hysteria2,
-      password: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      obfs: salamander,
-      obfs-password: NzdlYjdlOTM4Njg4ZGMwMw==,
+      type: vmess,
+      server: viieusfrontier.ednovas.org,
+      port: 51737,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
     }
   - {
       name: '美国4',
@@ -446,20 +440,13 @@ proxies:
     }
   - {
       name: '台湾5',
-      type: vless,
-      server: tw.ctcxianyu.com,
-      port: 10010,
-      uuid: c5084fb6-9ff6-4dd6-ba08-9b944d599568,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
+      type: vmess,
+      server: viiehinet.ednovas.org,
+      port: 49910,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      tls: true,
-      servername: content.cdp.bethesda.net,
-      reality-opts:
-        {
-          public-key: u42OMDZO9ltS-9iHZa7laOOyMenaF5XU4PFpxF6zUWg,
-          short-id: 6ba85179e30d4fc1,
-        },
     }
   - {
       name: '日本1',
@@ -513,31 +500,25 @@ proxies:
     }
   - {
       name: '日本4',
-      type: trojan,
-      server: jp.mjt000.com,
-      port: 443,
-      password: 7ea40c08-9f39-4da3-b6dc-207bd8d1337d,
+      server: rm-jp-05.409648.xyz,
+      port: 9000,
+      ports: 9000-20000,
+      mport: 9000-20000,
       udp: true,
-      sni: jp.mjt000.com,
+      skip-cert-verify: false,
+      sni: rm-jp-05.409648.xyz,
+      type: hysteria2,
+      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
     }
   - {
       name: '日本5',
-      type: vless,
-      server: jp1g.xn--vhq70hxyat50h6wk.xinsranlaoba.top,
+      type: vmess,
+      server: gcorejp.ednovas.org,
       port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      network: tcp,
-      tls: true,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      xudp: true,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
-      reality-opts:
-        {
-          public-key: _6pwD3ZXyuHLlop3rbk2CImSr6siXhXoVX7jRHMh7Dk,
-          short-id: '24159e40',
-        },
-      servername: swcdn.apple.com,
     }
 proxy-groups:
   - name: Auto - UrlTest
@@ -545,9 +526,9 @@ proxy-groups:
     proxies:
       - '日本'
       - '学校'
-      - '江苏1'
-      - '江苏2'
-      - '四川'
+      - '江苏'
+      - '上海'
+      - '浙江'
       - '香港1'
       - '香港2'
       - '香港3'
@@ -606,9 +587,9 @@ proxy-groups:
     interval: 300
     strategy: round-robin
     proxies:
-      - '江苏1'
-      - '江苏2'
-      - '四川'
+      - '江苏'
+      - '上海'
+      - '浙江'
   - name: 均衡香港
     type: load-balance
     url: http://www.google.com/generate_204
@@ -635,8 +616,8 @@ proxy-groups:
   - name: RelayLink
     type: relay
     proxies:
-      - '四川'
-      - '江苏1'
+      - '浙江'
+      - '上海'
   - name: CN
     type: select
     proxies:
@@ -645,9 +626,9 @@ proxy-groups:
       - '均衡香港'
       - 'RelayLink'
       - '日本'
-      - '江苏1'
-      - '江苏2'
-      - '四川'
+      - '江苏'
+      - '上海'
+      - '浙江'
       - DIRECT
   - name: HK
     type: select
@@ -692,6 +673,15 @@ proxy-groups:
       - '学校'
       - '日本'
       - DIRECT
+  - name: Game
+    type: select
+    proxies:
+      - '学校'
+      - '日本'
+      - '江苏'
+      - '上海'
+      - '浙江'
+      - DIRECT
   - name: Others
     type: select
     proxies:
@@ -729,6 +719,48 @@ rules:
   - DOMAIN-SUFFIX,stripe.com,DIRECT
   - DOMAIN-SUFFIX,arkoselabs.com,DIRECT
   - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,DIRECT
+  # AbemaTV
+  - DOMAIN-KEYWORD,abematv.akamaized.net,DIRECT
+  - DOMAIN,api-abematv.bucketeer.jp,DIRECT
+  - DOMAIN-SUFFIX,abema-tv.com,DIRECT
+  - DOMAIN-SUFFIX,abema.io,DIRECT
+  - DOMAIN-SUFFIX,abema.tv,DIRECT
+  - DOMAIN-SUFFIX,ameba.jp,DIRECT
+  - DOMAIN-SUFFIX,hayabusa.io,DIRECT
+  - DOMAIN-SUFFIX,hayabusa.dev,DIRECT
+  - DOMAIN-SUFFIX,hayabusa.media,DIRECT
+  - DOMAIN-SUFFIX,ds-linear-abematv.akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,ds-vod-abematv.akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,linear-abematv.akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,vod-abematv.akamaized.net,DIRECT
+  # Netflix
+  - DOMAIN-SUFFIX,flxvpn.net,DIRECT
+  - DOMAIN-SUFFIX,netflix.ca,DIRECT
+  - DOMAIN-SUFFIX,netflix.com,DIRECT
+  - DOMAIN-SUFFIX,netflix.com.au,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest10.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest1.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest2.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest3.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest4.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest5.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest6.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest7.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest8.com,DIRECT
+  - DOMAIN-SUFFIX,netflixdnstest9.com,DIRECT
+  - DOMAIN-SUFFIX,netflixinvestor.com,DIRECT
+  - DOMAIN-SUFFIX,netflix.net,DIRECT
+  - DOMAIN-SUFFIX,netflixstudios.com,DIRECT
+  - DOMAIN-SUFFIX,netflixtechblog.com,DIRECT
+  - DOMAIN-SUFFIX,nflxext.com,DIRECT
+  - DOMAIN-SUFFIX,nflximg.com,DIRECT
+  - DOMAIN-SUFFIX,nflximg.net,DIRECT
+  - DOMAIN-SUFFIX,nflxso.net,DIRECT
+  - DOMAIN-SUFFIX,nflxvideo.net,DIRECT
+  - DOMAIN-SUFFIX,e13252.dscg.akamaiedge.net,DIRECT
+  - DOMAIN-SUFFIX,h-netflix.online-metrix.net,DIRECT
+  - DOMAIN-SUFFIX,onetrust.com,DIRECT
+  - DOMAIN-SUFFIX,cookielaw.org,DIRECT
   # China DNS
   - IP-CIDR,114.114.115.115/32,CN,no-resolve
   - IP-CIDR,223.5.5.5/32,CN,no-resolve
@@ -1911,6 +1943,11 @@ rules:
   - DOMAIN-SUFFIX,52e.cc,CN
   - DOMAIN-SUFFIX,mgtv.com,CN
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+  # encoreTVB
+  - PROCESS-NAME,com.tvbusa.encore,HK
+  - DOMAIN-SUFFIX,encoretvb.com,HK
+  - DOMAIN,content.jwplatform.com,HK
+  - DOMAIN,videos-f.jwpsrv.com,HK
   ## TVB
   - DOMAIN,bcbolt446c5271-a.akamaihd.net,HK
   - DOMAIN,edge.api.brightcove.com,HK
@@ -2031,5 +2068,55 @@ rules:
   # FuboTV
   - DOMAIN-SUFFIX,fubo.tv,USA
   - DOMAIN-SUFFIX,fubotv.com,USA
+  # 王者荣耀
+  - DOMAIN,oth.str.mdt.qq.com,Game
+  - DOMAIN,receiver.tdm.qq.com,Game
+  - DOMAIN,snowflake.qq.com,Game
+  - DOMAIN-SUFFIX,tplay.qq.com,Game
+  - DOMAIN-SUFFIX,kohesport.qq.com,Game
+  - DOMAIN-SUFFIX,eve.mdt.qq.com,Game
+  - DOMAIN-SUFFIX,sj.qq.com,Game
+  - DOMAIN-SUFFIX,smoba.qq.com,Game
+  - DOMAIN-SUFFIX,pvp.qq.com,Game
+  - DOMAIN-SUFFIX,cloud.tgpa.qq.com,Game
+  - DOMAIN-SUFFIX,ip6.ssl.msdk.qq.com,Game
+  - DOMAIN-SUFFIX,ios.bugly.qq.com,Game
+  - DOMAIN-SUFFIX,cloudctrl.gcloud.qq.com,Game
+  - DOMAIN-SUFFIX,guid.tpns.sh.tencent.com,Game
+  - DOMAIN-SUFFIX,vv.video.qq.com,Game
+  - DOMAIN-SUFFIX,stat.tpns.sh.tencent.com,Game
+  - DOMAIN-SUFFIX,mazu.m.qq.com,Game
+  - DOMAIN-SUFFIX,dlied5.qq.com,Game
+  - DOMAIN-SUFFIX,kohcloud.tgpa.qq.com,Game
+  - DOMAIN-SUFFIX,down.anticheatexpert.com,Game
+  - DOMAIN-SUFFIX,jiazhang.qq.com,Game
+  - DOMAIN-SUFFIX,cdn-go.cn,Game
+  - DOMAIN-SUFFIX,aegis.qq.com,Game
+  - DOMAIN-SUFFIX,jz.game.qq.com,Game
+  - DOMAIN-SUFFIX,ip6.ssl.msdk.qq.com,Game
+  - DOMAIN-SUFFIX,flow.qq.com,Game
+  - DOMAIN-SUFFIX,dig.bdurl.net,Game
+  - DOMAIN-SUFFIX,pc-api.300624.com,Game
+  - DOMAIN-SUFFIX,lv-pc-api.ulikecam.com,Game
+  - DOMAIN-SUFFIX,api.unipay.qq.com,Game
+  - DOMAIN-SUFFIX,priv.igame.qq.com,Game
+  - DOMAIN-SUFFIX,img.ssl.msdk.qq.com,Game
+  - DOMAIN-SUFFIX,wx.qlogo.cn,Game
+  - DOMAIN-SUFFIX,down.pandora.qq.com,Game
+  - DOMAIN-SUFFIX,idcconfig.gcloudsdk.com,Game
+  - DOMAIN-SUFFIX,app.ingame.qq.com,Game
+  - DOMAIN-SUFFIX,op.tga.qq.com,Game
+  - DOMAIN-SUFFIX,priv.igame.qq.com,Game
+  - DOMAIN-SUFFIX,szmg.qq.com,Game
+  - DOMAIN-SUFFIX,down.game.qq.com,Game
+  - DOMAIN-SUFFIX,sdk.xyapi.game.qq.com,Game
+  - DOMAIN-SUFFIX,game.qq.com,Game
+  - DOMAIN-SUFFIX,apps.game.qq.com,Game
+  - DOMAIN-SUFFIX,pvp.qq.com,Game
+  - DOMAIN-SUFFIX,game.gtimg.cn,Game
+  - DOMAIN-SUFFIX,lewan.baidu.com,Game
+  - DOMAIN-SUFFIX,videopic.bdstatic.com,Game
+  - DOMAIN-SUFFIX,t9.baidu.com,Game
+  - DOMAIN-SUFFIX,pics3.baidu.com,Game
   # Others
   - MATCH,Others

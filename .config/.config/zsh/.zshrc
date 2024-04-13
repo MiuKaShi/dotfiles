@@ -47,8 +47,8 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 
 # see https://github.com/TheLocehiliosan/yadm/issues/355
-__git_files () { 
-    _wanted files expl 'local files' _files     
+__git_files () {
+    _wanted files expl 'local files' _files
 }
 
 #ZSH_HISTORY

@@ -8,6 +8,7 @@ hash -d pc=/home/miuka/Pictures
 hash -d h=/home/miuka 
 hash -d co=/home/miuka/coding
 hash -d nn=/home/miuka/notes 
+hash -d tn=/home/miuka/Documents/Tech_notes 
 hash -d ww=/home/miuka/work 
 hash -d bb=/home/miuka/books 
 hash -d mm=/home/miuka/Music 

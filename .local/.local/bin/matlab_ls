@@ -1,2 +1,5 @@
 #!/bin/bash
-exec /usr/bin/node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"
+
+source /usr/share/nvm/init-nvm.sh
+nvm use 20.0.0
+exec /home/miuka/.nvm/versions/node/v20.0.0/bin/node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"

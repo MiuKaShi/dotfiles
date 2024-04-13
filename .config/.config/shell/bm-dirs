@@ -9,6 +9,7 @@ pc   ${XDG_DOWNLOAD_DIR:-$HOME/Pictures}
 h   $HOME
 co   $HOME/coding
 nn   $HOME/notes
+tn   $HOME/Documents/Tech_notes
 ww   $HOME/work
 bb  $HOME/books
 mm   ${XDG_MUSIC_DIR:-$HOME/Music}

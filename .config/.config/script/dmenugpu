@@ -129,7 +129,7 @@ EndSection
 
 Section "Device"
     Identifier "intel"
-    Driver "modesetting"
+    Driver "intel"
 EndSection
 
 Section "Screen"

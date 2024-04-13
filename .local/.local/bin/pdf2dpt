@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# opt pdf to fit sony dpt-s1 e-ink reader
+
+# Get the absolute path of the input file
+input_file=$(readlink -f "$1")
+
+# Extract the filename and directory from the input file path
+file_name=$(basename "$input_file")
+output_file="${file_name%.*}_opt.pdf"
+
+k2pdfopt -wrap- -c -odpi 150 -cbox- -ibox- -cbox 0in,0in,-1in,-1in -h 1600 -w 1200 -ws -0.005 -ui- -title "${file_name%.*}" -x -o "$output_file" "$1"

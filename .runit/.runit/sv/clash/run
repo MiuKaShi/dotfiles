@@ -1,5 +1,6 @@
 #!/bin/sh
 
+exec 2>&1
 sv check iwd >/dev/null || sv check NetworkManager >/dev/null || exit 1
 /usr/bin/setcap "cap_net_bind_service=+ep cap_net_admin=+ep" /usr/bin/clash
-exec /usr/bin/clash -d /home/miuka/.config/clash 2>&1
+exec /usr/bin/clash -d /home/miuka/.config/clash 1>/dev/null
