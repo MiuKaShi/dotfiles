@@ -169,7 +169,8 @@ config.bind("I", "hint images download")
 config.bind("cr", "config-source")
 
 # Download management
-config.bind("aa", "download")
+config.bind("aa", "hint links userscript dl2aria", "normal")
+#config.bind("aa", "download")
 config.bind("au", "download-open;;download-remove")
 config.bind("ac", "download-clear")
 config.bind("ad", "download-delete")

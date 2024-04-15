@@ -20,6 +20,11 @@ alias ew="emacs -nw"
 alias ee="emacsclient -c -n -a emacs"
 alias emacskill='emacsclient -e "(kill-emacs)"'
 
+# aria2
+alias \
+    dr="aria2p autoclear" \
+    ds="aria2p show" \
+
 alias \
     ls="lsd" \
     l="ls -l" \

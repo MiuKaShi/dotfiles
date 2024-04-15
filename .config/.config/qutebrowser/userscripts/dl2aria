@@ -1,0 +1,26 @@
+#!/bin/bash
+# File              : dmenu_aria2
+# License           : MIT License
+# Author            : M. Nabil Adani <nblid48@gmail.com>
+# Date              : Rabu, 06/11/2019 04:51 WIB
+# Last Modified Date: Kamis, 23/04/2020 12:51 WIB
+# Last Modified By  : M. Nabil Adani <nblid48@gmail.com>
+
+
+# required
+# 1. aria2p (https://github.com/pawamoy/aria2p)
+# 2. clipmenu (https://github.com/cdown/clipmenu)
+
+ARIA2URI="http://localhost:6800/jsonrpc"
+
+function datagen() {
+    jq -n --arg id "$(date +%N)" --arg url "$1" \
+        '{ "jsonrpc": "2.0", "id": $id, "method":"aria2.addUri", "params":[[$url]], }'
+}
+
+if [[ ! -z $QUTE_URL ]]; then
+    notify-send "Aria2 | Downloading" "$QUTE_URL" -u normal
+
+    data=$(datagen "$QUTE_URL")
+    curl -s --request POST --url $ARIA2URI --header 'Content-Type: application/json' --data "$data"
+fi
