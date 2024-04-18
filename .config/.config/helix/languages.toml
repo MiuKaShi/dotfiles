@@ -1,0 +1,49 @@
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-language-server"]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
+
+[[language]]
+name = "css"
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
+language-servers = ["pyright"]
+auto-format = true
+formatter = { command = "black", args = ["--quiet", "-"] }
+
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "mdpls"]
+soft-wrap.enable = true
+
+
+[language-server.pyright]
+config = {}
+timeout = 60
+
+[[language]]
+name = "matlab"
+scope = "source.m"
+file-types = ["m"]
+comment-token = "%"
+shebangs = ["matlab"]
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["matlab_ls"]
+
+[language-server.matlab_ls]
+command = "matlab_ls"
+args = ["--stdio"]
+
+[language-server.matlab_ls.config.MATLAB]
+installPath = "/home/miuka/.local/MATLAB/R2024a"
+indexWorkspace = "true"
+matlabConnectionTiming = "onStart"
+telemetry = "false"
