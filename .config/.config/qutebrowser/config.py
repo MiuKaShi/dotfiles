@@ -43,6 +43,9 @@ c.tabs.mousewheel_switching = False
 c.scrolling.bar = "never"
 c.statusbar.show = "never"
 c.tabs.show = "switching"
+c.backend = 'webengine'
+## Fix for crashes
+c.qt.workarounds.remove_service_workers = True
 
 # enable GPU acceleration
 # see https://github.com/qutebrowser/qutebrowser/discussions/6573
@@ -95,7 +98,7 @@ c.content.blocking.adblock.lists = [
 ]
 
 # privacy
-c.content.cookies.accept = "no-3rdparty"
+c.content.cookies.accept = 'all'
 c.content.media.audio_capture = "ask"
 c.content.media.video_capture = "ask"
 c.content.tls.certificate_errors = "ask"

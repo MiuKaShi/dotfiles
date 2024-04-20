@@ -1,0 +1,11 @@
+#!/bin/bash
+
+HOSTNAME=$(cat ~/.rdphosts | awk '{print $1}' | dmenu -i -p "Please Select Host") || exit 0
+
+HOSTINFO=$(cat ~/.rdphosts | grep $HOSTNAME)
+
+read IP USER PASS <<<$(echo $HOSTINFO | awk '{print $2, $3, $4}')
+
+HOME="/home/$(whoami)"
+
+xfreerdp /f -grab-keyboard -themes +clipboard +fonts +glyph-cache /aero /window-drag /menu-anims /bpp:32 /scale:180 /network:lan /smart-sizing /gdi:sw /gfx /gfx-progressive /cert-ignore /audio-mode:0 /sound:sys:alsa /u:$USER /v:$IP /p:$PASS /drive:home,$HOME /log-level:OFF &
