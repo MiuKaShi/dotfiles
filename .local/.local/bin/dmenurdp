@@ -4,8 +4,31 @@ HOSTNAME=$(cat ~/.rdphosts | awk '{print $1}' | dmenu -i -p "Please Select Host"
 
 HOSTINFO=$(cat ~/.rdphosts | grep $HOSTNAME)
 
-read IP USER PASS <<<$(echo $HOSTINFO | awk '{print $2, $3, $4}')
+read IP NET USER PASS <<<$(echo $HOSTINFO | awk '{print $2, $3, $4, $5}')
 
 HOME="/home/$(whoami)"
 
-xfreerdp /f -grab-keyboard -themes +clipboard +fonts +glyph-cache /aero /window-drag /menu-anims /bpp:32 /scale:180 /network:lan /smart-sizing /gdi:sw /gfx /gfx-progressive /cert-ignore /audio-mode:0 /sound:sys:alsa /u:$USER /v:$IP /p:$PASS /drive:home,$HOME /log-level:OFF &
+xfreerdp \
+		/dynamic-resolution \
+    +clipboard \
+    +fonts \
+    +aero \
+    +window-drag \
+    +menu-anims \
+    +glyph-cache \
+		-compression \
+    -themes \
+    /bpp:32 \
+    /scale:180 \
+    -grab-keyboard \
+		/gfx:rfx,avc420,avc444 \
+		/rfx-mode:video \
+    /gdi:hw \
+    /cert-ignore \
+    /auto-reconnect \
+    /auto-reconnect-max-retries:3 \
+    /audio-mode:0 \
+    /sound:sys:pulse \
+    /u:$USER /v:$IP /p:$PASS /network:$NET /drive:home,$HOME &
+    # /f \
+    # /log-level:OFF \

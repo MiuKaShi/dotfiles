@@ -24,6 +24,7 @@ alias emacskill='emacsclient -e "(kill-emacs)"'
 alias \
     dr="aria2p autoclear" \
     ds="aria2p show" \
+    da="aria2p add" \
 
 alias \
     ls="lsd" \
