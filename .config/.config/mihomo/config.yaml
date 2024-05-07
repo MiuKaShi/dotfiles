@@ -205,40 +205,27 @@ proxies:
   - {
       name: '上海',
       type: vmess,
-      server: 39.91.137.58,
+      server: 183.232.170.98,
       port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: www.youku.com } },
-      ws-path: /,
-      ws-headers: { Host: www.youku.com },
+      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
     }
   - {
       name: '浙江',
       type: vmess,
-      server: 110.42.102.61,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      server: global-hk.nnki.cc,
+      port: 2087,
+      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [a.189.cn] },
-        },
+      tls: true,
+      skip-cert-verify: true,
+      network: ws,
     }
   - {
       name: '香港1',
@@ -462,28 +449,20 @@ proxies:
     }
   - {
       name: '日本2',
-      type: vmess,
-      server: jp6.qingze-quick.buzz,
-      port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
+      type: vless,
+      server: rm-jp-03.409648.xyz,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
       tls: true,
-      servername: jp6.qingze-quick.buzz,
-      network: http,
-      http-opts:
+      skip-cert-verify: false,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
         {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
         },
     }
   - {
@@ -514,7 +493,7 @@ proxies:
       name: '日本5',
       type: vmess,
       server: gcorejp.ednovas.org,
-      port: 443,
+      port: 22222,
       uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,

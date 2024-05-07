@@ -20,15 +20,15 @@ dbus-update-activation-environment --all
 session=${1:-dwm}
 
 case $session in
-    dwm) ssh-agent dwm ;;
+    dwm) dbus-launch ssh-agent dwm ;;
     gnome)
         export XDG_SESSION_TYPE=x11
         export GDK_BACKEND=x11
-        ssh-agent gnome-session
+        dbus-launch ssh-agent gnome-session
         ;;
     xfce)
-        ssh-agent startxfce4
+        dbus-launch ssh-agent startxfce4
         ;;
-    cinnamon) ssh-agent gnome-session-cinnamon ;;
-    *) ssh-agent $1 ;;
+    cinnamon) dbus-launch ssh-agent gnome-session-cinnamon ;;
+    *) dbus-launch ssh-agent $1 ;;
 esac
