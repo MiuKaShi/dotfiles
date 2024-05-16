@@ -12,10 +12,11 @@ if [ ! -d "$output_dir" ]; then
 fi
 
 # Generate summary if output file doesn't exist
-if [ ! -e $output_file ]; then
+if [ ! -e "$output_file" ]; then
     # Set environment variables
     cd ~/.config/script/chatpaper || exit
-    source ~/.config/mamba/mamba_env.sh
+		# shellcheck source=/.config/mamba/mamba_env.sh
+    . ~/.config/mamba/mamba_env.sh
     micromamba activate chatgpt_env
 
     # Notify user that summary is being generated

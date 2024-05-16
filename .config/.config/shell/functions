@@ -12,7 +12,8 @@ c() { clear ; }                                    # c:            Clear termina
 path() { echo -e ${PATH//:/\\n} ; }                # path:         Echo all executable Paths
 
 ### Functions (network) ###
-myip() { curl --silent https://ipapi.com/ip_api.php?ip=$(curl --silent ifconfig.me) | jq ; }   # myip:   Public facing IP Address
+myip4() { curl -sSLk https://api.ipdata.co/"$(curl -sSLk -4 ip.sb)"?api-key=513d4b07583037a5a89b6cff4ebff0083bef180977dc71dd73804cf8 | jq ; }   # myip:   Public facing IP Address
+myip6() { curl -sSLk https://api.ipdata.co/"$(curl -sSLk -6 ip.sb)"?api-key=513d4b07583037a5a89b6cff4ebff0083bef180977dc71dd73804cf8 | jq ; }   # myip:   Public facing IP Address
 netCons() { lsof -i ; }                            # netCons:      Show all open TCP/IP sockets
 lsock() { sudo /usr/sbin/lsof -i -P ; }            # lsock:        Display open sockets
 lsockU() { sudo /usr/sbin/lsof -nP | grep UDP ; }  # lsockU:       Display only open UDP sockets

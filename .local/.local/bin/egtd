@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if ! emacsclient -e "t" >/dev/null 2>&1; then
+    emacs --daemon >~/.config/emacs/etc/log/emacs_start.log 2>&1
+fi
+emacsclient -c -n "$HOME/Org/inbox.org"

@@ -7,4 +7,7 @@ DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPL_KEY)"
 SRC_LANG="en"
 DEST_LANG="zh"
 
+# shellcheck source=/.config/mamba/mamba_env.sh
+source ~/.config/mamba/mamba_env.sh
+micromamba activate srt_env
 python -m srtranslator "$1" -i "$SRC_LANG"  -o "$DEST_LANG" -t deepl-api --auth "$DEEPL_TOKEN"
