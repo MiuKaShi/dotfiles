@@ -371,26 +371,20 @@ proxies:
     }
   - {
       name: '台湾1',
-      type: vmess,
-      server: twg.xn--vhq70hxyat50h6wk.qingze-quick.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
+      type: vless,
+      server: rm-tw-01.409648.xyz,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
-      network: http,
-      http-opts:
+      tls: true,
+      skip-cert-verify: false,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
         {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
         },
     }
   - {
