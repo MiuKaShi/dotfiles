@@ -67,7 +67,7 @@ case $monitor_name in
         # dpi_env
         lab_dpi
         # 显卡设置(nvidia setting first: to enable forcecomposition)
-        nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+        # nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
         xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources
         # rofi setting
         ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
