@@ -1,4 +1,4 @@
-prefs.external_editor = "subl --wait %s"
+prefs.external_editor = "neovide %s"
 prefs.max_zoom = 200
 prefs.tex_engine = "xetex"
 prefs.spell_check = false

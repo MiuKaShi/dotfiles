@@ -749,6 +749,8 @@ rules:
   - DOMAIN-SUFFIX,libgen.rocks,Scihub
   - DOMAIN-SUFFIX,libgen.me,Scihub
   - DOMAIN,bib.miukashi.xyz,Scihub
+  # University
+  - DOMAIN-SUFFIX,kyushu-u.ac.jp,Journal
   # Journal
   - DOMAIN-SUFFIX,acm.org,Journal
   - DOMAIN-SUFFIX,acs.org,Journal
