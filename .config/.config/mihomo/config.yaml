@@ -751,6 +751,7 @@ rules:
   - DOMAIN,bib.miukashi.xyz,Scihub
   # University
   - DOMAIN-SUFFIX,kyushu-u.ac.jp,Journal
+  - DOMAIN-SUFFIX,kyushuuv.jp,Journal
   # Journal
   - DOMAIN-SUFFIX,acm.org,Journal
   - DOMAIN-SUFFIX,acs.org,Journal
