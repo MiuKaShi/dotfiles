@@ -4,14 +4,16 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
 #pre-setting
+# msi-isw &
 #homescreen # NUC
-notescreen # laptop
+#notescreen # laptop
+labscreen # lap
 setbg &    # set the background
 xclick &
 
 # xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 
-autostart="msi-isw watchfile unclutter blurlock xplugd mpd"
+autostart="watchfile unclutter blurlock xplugd mpd"
 
 for program in $autostart; do
     pidof -sx "$program" || "$program" &
