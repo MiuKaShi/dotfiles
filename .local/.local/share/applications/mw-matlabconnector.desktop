@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=MATLAB Connector
+Exec=/home/miuka/.MathWorks/ServiceHost/lab/v2024.4.0.2/bin/glnxa64/OpenMathWorksDesktopApp %u
+StartupNotify=false
+MimeType=x-scheme-handler/mw-matlabconnector;

@@ -29,7 +29,7 @@ if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ]; then
 fi
 
 # Ethernet
-[ "$(cat /sys/class/net/e*/operstate 2>/dev/null)" = 'up' ] && ethericon="🌎LAN"
+grep -q 'up' /sys/class/net/e*/operstate 2>/dev/null && ethericon="🌎LAN"
 
 # Clash
 [ -n "$(cat /sys/class/net/utun*/operstate 2>/dev/null)" ] && tunicon="🔒"

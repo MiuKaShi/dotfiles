@@ -1,0 +1,40 @@
+#! /bin/sh
+
+dpi_env="$HOME/.config/shell/hidpi"
+
+lab_dpi() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for lab
+export MONITOR_ENV=lab
+#for QT5
+# export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_SCALE_FACTOR=2
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=132
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
+
+xrandr \
+    --dpi 108 \
+    --fb 4000x2560 \
+    --output DP-3 \
+    --pos 2560x0 \
+    --rotate left \
+    --output DP-0 --primary \
+    --mode 2560x1440 \
+    --pos 0x540 \
+    --rotate normal \
+    --panning 1440x2560+2560+0 \
+    --output DP-1 --off \
+    --output DP-2 --off
+# dpi_env
+lab_dpi
+# 显卡设置(nvidia setting first: to enable forcecomposition)
+nvidia-settings --assign "CurrentMetaMode=DPY-2: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources
+# rofi setting
+ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
