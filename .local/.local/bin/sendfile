@@ -2,7 +2,7 @@
 
 file=$(readlink -f "$1")
 dest=$(dirname "$file")
-server="$(printf "lab\\nnuc\\njp\\nus" | fzf --prompt='send_to>' --select-1 --exit-0)"
+server="$(printf "lab\\nart\\njp" | fzf --prompt='send_to>' --select-1 --exit-0)"
 
 ssh "$server" "mkdir -p $dest" && notify-send "🚚 File(s) send." "File(s) send to $server:$dest."
 scp -r "$file" "$server:$dest"
