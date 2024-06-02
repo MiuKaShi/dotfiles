@@ -4,14 +4,12 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
 #pre-setting
-# msi-isw &
+msi-isw &
 #homescreen # NUC
-# notescreen # laptop
-labscreen # lap
+notescreen # laptop
+# labscreen # lap
 setbg &    # set the background
 xclick &
-
-# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 
 autostart="watchfile unclutter blurlock xplugd mpd"
 
@@ -23,5 +21,6 @@ done >/dev/null 2>&1
 runsvdir -P ~/.runit/runsvdir &
 runsvdir_pid=$!
 
+# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
-[ -n "$xrdbpid" ] && wait "$xrdbpid"
+# [ -n "$xrdbpid" ] && wait "$xrdbpid"
