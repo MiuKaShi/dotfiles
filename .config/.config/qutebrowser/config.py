@@ -198,6 +198,8 @@ config.bind("<", "tab-move -")
 config.bind(">", "tab-move +")
 config.bind("<Ctrl+H>", "tab-prev")
 config.bind("<Ctrl+L>", "tab-next")
+# reload config
+config.bind("<Ctrl+r>", "config-source")
 config.bind("x", "tab-close")
 config.bind("X", "undo")
 

@@ -1,0 +1,64 @@
+# Maintainer: Jat <chat@jat.email>
+
+_pkgname='xorgxrdp'
+pkgname="$_pkgname-git-nosystemd"
+pkgver=0.10.1.r0.g0e13e5d
+pkgrel=1
+pkgdesc='Xorg drivers for xrdp. Git version, devel branch.'
+arch=('i686' 'x86_64' 'armv6h' 'armv7l' 'aarch64')
+url='https://github.com/neutrinolabs/xorgxrdp'
+license=('X11')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+depends=('xorg-server')
+makedepends=('nasm' 'xorg-server-devel' 'xrdp-git-nosystemd')
+checkdepends=('check' 'xorg-xdpyinfo')
+options=('staticlibs')
+source=(
+	"git+$url#branch=v0.10"
+	'glamor.patch'
+)
+sha256sums=(
+	'SKIP'
+	'10d289d1a11c9a5a8b4c6af534c2f9e7900ae2b4351860a063ba572010d95912'
+)
+
+pkgver() {
+	cd "$srcdir/$_pkgname"
+
+	_tag=$(git tag -l --sort -v:refname | sed '/rc[0-9]*/d' | head -n1)
+	_rev=$(git rev-list --count "$_tag"..HEAD)
+	_hash=$(git rev-parse --short HEAD)
+	printf "%s.r%s.g%s" "$_tag" "$_rev" "$_hash" | sed 's/^v//; s/-/_/'
+}
+
+prepare() {
+	cd "$srcdir/$_pkgname"
+	# https://github.com/neutrinolabs/xrdp/issues/1029#issuecomment-724105386
+	patch -p1 -i"$srcdir/glamor.patch"
+}
+
+build() {
+	cd "$srcdir/$_pkgname"
+
+	./bootstrap
+
+	CFLAGS="$CFLAGS -ffat-lto-objects" \
+		./configure --prefix=/usr \
+		--with-simd \
+		--enable-glamor
+
+	make
+}
+
+check() {
+	cd "$srcdir/$_pkgname"
+  XORG=/usr/lib/Xorg make check
+}
+
+package() {
+	cd "$srcdir/$_pkgname"
+
+	make DESTDIR="$pkgdir" install
+	install -Dm644 'COPYING' -t "$pkgdir/usr/share/licenses/$_pkgname"
+}

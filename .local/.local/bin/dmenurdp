@@ -4,7 +4,7 @@ HOSTNAME=$(cat ~/.rdphosts | awk '{print $1}' | dmenu -i -p "Please Select Host"
 
 HOSTINFO=$(cat ~/.rdphosts | grep $HOSTNAME)
 
-SCALE=$(printf "180\n140\n100" | dmenu -p "Choose Scale:")
+SCALE=$(printf "140\n180\n100" | dmenu -p "Choose Scale:")
 
 read IP NET USER PASS <<<$(echo $HOSTINFO | awk '{print $2, $3, $4, $5}')
 

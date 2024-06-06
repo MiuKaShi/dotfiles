@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# xinitrc for xrdp.
+
+remaps &
+dunst &
+flameshot &
+clipmenud &
+sxhkd &
+
+eval $(ssh-agent)
+
+session=${1:-cinnamon}
+# session=${1:-dwm}
+
+case $session in
+    dwm) exec dwm ;;
+    gnome)
+        export XDG_SESSION_TYPE=x11
+        export GDK_BACKEND=x11
+        exec gnome-session
+        ;;
+    cinnamon)
+        exec cinnamon-session ;;
+    *) exec $1 ;;
+esac
+
