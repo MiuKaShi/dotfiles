@@ -10,16 +10,22 @@ sxhkd &
 
 eval $(ssh-agent)
 
-session=${1:-cinnamon}
+# session=${1:-xfce4}
+session=${1:-lxde}
+# Session=${1:-cinnamon}
 # session=${1:-dwm}
 
 case $session in
     dwm) exec dwm ;;
-    gnome)
+    xfce4)
         export XDG_SESSION_TYPE=x11
         export GDK_BACKEND=x11
-        exec gnome-session
+        exec xfce4-session
         ;;
+    lxde)
+        export XDG_SESSION_TYPE=x11
+        export GDK_BACKEND=x11
+        exec startlxde ;;
     cinnamon)
         exec cinnamon-session ;;
     *) exec $1 ;;
