@@ -192,7 +192,7 @@ proxies:
   - {
       name: '江苏',
       type: vmess,
-      server: jp-aws.nanako.org,
+      server: global-hk.nnki.cc,
       port: 2096,
       uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
@@ -205,27 +205,40 @@ proxies:
   - {
       name: '上海',
       type: vmess,
-      server: 183.232.170.98,
-      port: 80,
-      uuid: d89e09f8-ec93-47a4-bb94-580c9d3a423b,
+      server: 111.6.43.42,
+      port: 443,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: tms.dingtalk.com } },
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [www.youku.com] },
+        },
     }
   - {
       name: '浙江',
       type: vmess,
-      server: global-hk.nnki.cc,
-      port: 2087,
-      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
+      server: 120.220.19.73,
+      port: 8081,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
-      tls: true,
-      skip-cert-verify: true,
       network: ws,
+      ws-opts: { path: /, headers: { Host: a.189.cn } },
+      ws-path: /,
+      ws-headers: { Host: a.189.cn },
     }
   - {
       name: '香港1',
