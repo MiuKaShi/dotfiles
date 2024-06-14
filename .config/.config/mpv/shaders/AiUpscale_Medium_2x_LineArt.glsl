@@ -1,11 +1,11 @@
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!WIDTH LUMA.w 2 *
 //!HEIGHT LUMA.h 2 *
 //!COMPONENTS 1
 //!BIND LUMA
 //!SAVE LANCZOS3
-//!DESC (AU_M_2x_LA) lanczos3
+//!DESC [AiUpscale_Medium_2x_LineArt] lanczos3
 
 #define FIX(c)		max(abs(c), 1e-5)
 #define PI		3.141592653
@@ -46,11 +46,11 @@ vec4 hook()
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE1
-//!DESC (AU_M_2x_LA) feature map 1
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 1
 
 vec4 hook()
 {
@@ -85,11 +85,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE2
-//!DESC (AU_M_2x_LA) feature map 2
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 2
 
 vec4 hook()
 {
@@ -124,11 +124,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE3
-//!DESC (AU_M_2x_LA) feature map 3
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 3
 
 vec4 hook()
 {
@@ -163,11 +163,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE4
-//!DESC (AU_M_2x_LA) feature map 4
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 4
 
 vec4 hook()
 {
@@ -202,11 +202,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE5
-//!DESC (AU_M_2x_LA) feature map 5
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 5
 
 vec4 hook()
 {
@@ -241,11 +241,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE6
-//!DESC (AU_M_2x_LA) feature map 6
+//!DESC [AiUpscale_Medium_2x_LineArt] feature map 6
 
 vec4 hook()
 {
@@ -280,7 +280,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -289,7 +289,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL1
-//!DESC (AU_M_2x_LA) mapping 1_1
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_1
 
 vec4 hook()
 {
@@ -353,7 +353,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -362,7 +362,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL2
-//!DESC (AU_M_2x_LA) mapping 1_2
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_2
 
 vec4 hook()
 {
@@ -426,7 +426,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -435,7 +435,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL3
-//!DESC (AU_M_2x_LA) mapping 1_3
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_3
 
 vec4 hook()
 {
@@ -499,7 +499,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -508,7 +508,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL4
-//!DESC (AU_M_2x_LA) mapping 1_4
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_4
 
 vec4 hook()
 {
@@ -572,7 +572,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -581,7 +581,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL5
-//!DESC (AU_M_2x_LA) mapping 1_5
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_5
 
 vec4 hook()
 {
@@ -645,7 +645,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
@@ -654,7 +654,7 @@ return res;
 //!BIND FEATURE5
 //!BIND FEATURE6
 //!SAVE MODEL6
-//!DESC (AU_M_2x_LA) mapping 1_6
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 1_6
 
 vec4 hook()
 {
@@ -718,7 +718,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -727,7 +727,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL7
-//!DESC (AU_M_2x_LA) mapping 2_1
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_1
 
 vec4 hook()
 {
@@ -791,7 +791,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -800,7 +800,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL8
-//!DESC (AU_M_2x_LA) mapping 2_2
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_2
 
 vec4 hook()
 {
@@ -864,7 +864,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -873,7 +873,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL9
-//!DESC (AU_M_2x_LA) mapping 2_3
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_3
 
 vec4 hook()
 {
@@ -937,7 +937,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -946,7 +946,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL10
-//!DESC (AU_M_2x_LA) mapping 2_4
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_4
 
 vec4 hook()
 {
@@ -1010,7 +1010,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1019,7 +1019,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL11
-//!DESC (AU_M_2x_LA) mapping 2_5
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_5
 
 vec4 hook()
 {
@@ -1083,7 +1083,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1092,7 +1092,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL12
-//!DESC (AU_M_2x_LA) mapping 2_6
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 2_6
 
 vec4 hook()
 {
@@ -1156,7 +1156,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1165,7 +1165,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL1
-//!DESC (AU_M_2x_LA) mapping 3_1
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_1
 
 vec4 hook()
 {
@@ -1229,7 +1229,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1238,7 +1238,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL2
-//!DESC (AU_M_2x_LA) mapping 3_2
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_2
 
 vec4 hook()
 {
@@ -1302,7 +1302,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1311,7 +1311,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL3
-//!DESC (AU_M_2x_LA) mapping 3_3
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_3
 
 vec4 hook()
 {
@@ -1375,7 +1375,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1384,7 +1384,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL4
-//!DESC (AU_M_2x_LA) mapping 3_4
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_4
 
 vec4 hook()
 {
@@ -1448,7 +1448,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1457,7 +1457,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL5
-//!DESC (AU_M_2x_LA) mapping 3_5
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_5
 
 vec4 hook()
 {
@@ -1521,7 +1521,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -1530,7 +1530,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE MODEL6
-//!DESC (AU_M_2x_LA) mapping 3_6
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 3_6
 
 vec4 hook()
 {
@@ -1594,7 +1594,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1603,7 +1603,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL7
-//!DESC (AU_M_2x_LA) mapping 4_1
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_1
 
 vec4 hook()
 {
@@ -1667,7 +1667,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1676,7 +1676,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL8
-//!DESC (AU_M_2x_LA) mapping 4_2
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_2
 
 vec4 hook()
 {
@@ -1740,7 +1740,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1749,7 +1749,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL9
-//!DESC (AU_M_2x_LA) mapping 4_3
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_3
 
 vec4 hook()
 {
@@ -1813,7 +1813,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1822,7 +1822,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL10
-//!DESC (AU_M_2x_LA) mapping 4_4
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_4
 
 vec4 hook()
 {
@@ -1886,7 +1886,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1895,7 +1895,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL11
-//!DESC (AU_M_2x_LA) mapping 4_5
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_5
 
 vec4 hook()
 {
@@ -1959,7 +1959,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
@@ -1968,7 +1968,7 @@ return res;
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL12
-//!DESC (AU_M_2x_LA) mapping 4_6
+//!DESC [AiUpscale_Medium_2x_LineArt] mapping 4_6
 
 vec4 hook()
 {
@@ -2032,7 +2032,7 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL7
 //!BIND MODEL8
@@ -2041,7 +2041,7 @@ return res;
 //!BIND MODEL11
 //!BIND MODEL12
 //!SAVE SUBCONV1
-//!DESC (AU_M_2x_LA) sup-pixel convolution 1
+//!DESC [AiUpscale_Medium_2x_LineArt] sup-pixel convolution 1
 
 vec4 hook()
 {
@@ -2104,12 +2104,12 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!WIDTH LUMA.w 2 *
 //!HEIGHT LUMA.h 2 *
 //!BIND SUBCONV1
 //!BIND LANCZOS3
-//!DESC (AU_M_2x_LA) depth to space
+//!DESC [AiUpscale_Medium_2x_LineArt] depth to space
 
 vec4 hook()
 {

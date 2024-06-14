@@ -1,11 +1,11 @@
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!WIDTH LUMA.w 2 *
 //!HEIGHT LUMA.h 2 *
 //!COMPONENTS 1
 //!BIND LUMA
 //!SAVE LANCZOS3
-//!DESC (AU_F_2x_P) lanczos3
+//!DESC [AiUpscale_Fast_2x_Photo] lanczos3
 
 #define FIX(c)		max(abs(c), 1e-5)
 #define PI		3.141592653
@@ -46,11 +46,11 @@ vec4 hook()
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE1
-//!DESC (AU_F_2x_P) feature map 1
+//!DESC [AiUpscale_Fast_2x_Photo] feature map 1
 
 vec4 hook()
 {
@@ -85,11 +85,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE2
-//!DESC (AU_F_2x_P) feature map 2
+//!DESC [AiUpscale_Fast_2x_Photo] feature map 2
 
 vec4 hook()
 {
@@ -124,11 +124,11 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND LUMA
 //!SAVE FEATURE3
-//!DESC (AU_F_2x_P) feature map 3
+//!DESC [AiUpscale_Fast_2x_Photo] feature map 3
 
 vec4 hook()
 {
@@ -163,13 +163,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
 //!BIND FEATURE3
 //!SAVE MODEL1
-//!DESC (AU_F_2x_P) mapping 1_1
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 1_1
 
 vec4 hook()
 {
@@ -206,13 +206,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
 //!BIND FEATURE3
 //!SAVE MODEL2
-//!DESC (AU_F_2x_P) mapping 1_2
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 1_2
 
 vec4 hook()
 {
@@ -249,13 +249,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND FEATURE1
 //!BIND FEATURE2
 //!BIND FEATURE3
 //!SAVE MODEL3
-//!DESC (AU_F_2x_P) mapping 1_3
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 1_3
 
 vec4 hook()
 {
@@ -292,13 +292,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL4
-//!DESC (AU_F_2x_P) mapping 2_1
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 2_1
 
 vec4 hook()
 {
@@ -335,13 +335,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL5
-//!DESC (AU_F_2x_P) mapping 2_2
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 2_2
 
 vec4 hook()
 {
@@ -378,13 +378,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL6
-//!DESC (AU_F_2x_P) mapping 2_3
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 2_3
 
 vec4 hook()
 {
@@ -421,13 +421,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL4
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL1
-//!DESC (AU_F_2x_P) mapping 3_1
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 3_1
 
 vec4 hook()
 {
@@ -464,13 +464,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL4
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL2
-//!DESC (AU_F_2x_P) mapping 3_2
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 3_2
 
 vec4 hook()
 {
@@ -507,13 +507,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL4
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE MODEL3
-//!DESC (AU_F_2x_P) mapping 3_3
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 3_3
 
 vec4 hook()
 {
@@ -550,13 +550,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL4
-//!DESC (AU_F_2x_P) mapping 4_1
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 4_1
 
 vec4 hook()
 {
@@ -593,13 +593,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL5
-//!DESC (AU_F_2x_P) mapping 4_2
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 4_2
 
 vec4 hook()
 {
@@ -636,13 +636,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL1
 //!BIND MODEL2
 //!BIND MODEL3
 //!SAVE MODEL6
-//!DESC (AU_F_2x_P) mapping 4_3
+//!DESC [AiUpscale_Fast_2x_Photo] mapping 4_3
 
 vec4 hook()
 {
@@ -679,13 +679,13 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!COMPONENTS 4
 //!BIND MODEL4
 //!BIND MODEL5
 //!BIND MODEL6
 //!SAVE SUBCONV1
-//!DESC (AU_F_2x_P) sup-pixel convolution 1
+//!DESC [AiUpscale_Fast_2x_Photo] sup-pixel convolution 1
 
 vec4 hook()
 {
@@ -721,12 +721,12 @@ return res;
 }
 
 //!HOOK LUMA
-//!WHEN OUTPUT.w LUMA.w / 1.400 > OUTPUT.h LUMA.h / 1.400 > *
+//!WHEN OUTPUT.w LUMA.w / 1.200 > OUTPUT.h LUMA.h / 1.200 > *
 //!WIDTH LUMA.w 2 *
 //!HEIGHT LUMA.h 2 *
 //!BIND SUBCONV1
 //!BIND LANCZOS3
-//!DESC (AU_F_2x_P) depth to space
+//!DESC [AiUpscale_Fast_2x_Photo] depth to space
 
 vec4 hook()
 {

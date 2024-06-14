@@ -14,12 +14,12 @@
 // License along with this library.
 
 //!HOOK CHROMA
-//!BIND HOOKED
 //!BIND LUMA
+//!BIND HOOKED
 //!SAVE LOWRES_Y
 //!WIDTH LUMA.w
 //!WHEN CHROMA.w LUMA.w <
-//!DESC KrigBilateral Downscaling Y pass 1
+//!DESC [KrigBilateral] Downscaling Y pass 1
 
 #define offset      vec2(0)
 
@@ -52,11 +52,11 @@ vec4 hook() {
 }
 
 //!HOOK CHROMA
-//!BIND HOOKED
 //!BIND LOWRES_Y
+//!BIND HOOKED
 //!SAVE LOWRES_Y
 //!WHEN CHROMA.w LUMA.w <
-//!DESC KrigBilateral Downscaling Y pass 2
+//!DESC [KrigBilateral] Downscaling Y pass 2
 
 #define offset      vec2(0)
 
@@ -96,12 +96,11 @@ vec4 hook() {
 //!HEIGHT LUMA.h
 //!WHEN CHROMA.w LUMA.w <
 //!OFFSET ALIGN
-//!DESC KrigBilateral Upscaling UV
+//!DESC [KrigBilateral] Upscaling UV
 
-#define sqr(x)      dot(x,x)
 #define sigma_nsq   256.0/(255.0*255.0)
-
 #define N           8
+#define sqr(x)      dot(x,x)
 
 #define M(i,j)      Mx[min(i,j)*N + max(i,j) - (min(i,j)*(min(i,j)+1))/2]
 
@@ -135,7 +134,7 @@ vec4 hook() {
     total.xyz /= total.w;
     float localVar = abs(total.y - total.x * total.x) + sigma_nsq;
     float Var = localVar + total.z;
-    float radius = 1.0;
+    float radius = 1.5;  // mix(1.5, 1.0, sigma_nsq / Var);
 
     float y = LUMA_texOff(0).x;
     float Mx[(N*(N+1))/2];
