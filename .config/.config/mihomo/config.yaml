@@ -175,7 +175,7 @@ proxies:
   - {
       name: '日本',
       type: ss,
-      server: 38.47.99.36,
+      server: 34.97.26.135,
       port: 47451,
       cipher: chacha20-ietf-poly1305,
       password: 'ZKxwmr123',
@@ -192,8 +192,8 @@ proxies:
   - {
       name: '江苏',
       type: vmess,
-      server: global-hk.nnki.cc,
-      port: 2096,
+      server: 34.97.58.184,
+      port: 47453,
       uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
       cipher: auto,
@@ -205,8 +205,8 @@ proxies:
   - {
       name: '上海',
       type: vmess,
-      server: 111.6.43.42,
-      port: 443,
+      server: 34.97.58.184,
+      port: 47451,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
@@ -229,8 +229,8 @@ proxies:
   - {
       name: '浙江',
       type: vmess,
-      server: 120.220.19.73,
-      port: 8081,
+      server: 34.97.58.184,
+      port: 47452,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,

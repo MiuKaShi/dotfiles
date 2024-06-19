@@ -37,7 +37,7 @@ case "$mode" in
         switch_notify
         ;;
     *High)
-        max=3400000
+        max=3200000
         sudo -n tlp start -- CPU_BOOST_ON_BAT=1 CPU_BOOST_ON_AC=1 CPU_SCALING_MIN_FREQ_ON_BAT="$min" CPU_SCALING_MAX_FREQ_ON_BAT="$max" CPU_SCALING_MIN_FREQ_ON_AC="$min" CPU_SCALING_MAX_FREQ_ON_AC="$max"
         switch_notify
         ;;
