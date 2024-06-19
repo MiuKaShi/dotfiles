@@ -1,7 +1,0 @@
-#!/bin/sh
-
-POWER=$(nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits | sed ':a;N;$!ba;s/\n/\//' )
-MODE="🚀GPU:Nvidia(${POWER%.*}W)"
-
-RES="$MODE"
-echo "$RES"
