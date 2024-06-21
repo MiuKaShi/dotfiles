@@ -12,7 +12,7 @@ deepl_api() {
     # result=$(echo "$raw_data" | jq -r '.translations[].text')
 
     json_text=$(echo "$text" | sed 's/"/\\"/g; s/$/\\n/' | tr -d '\n')
-    raw_data=$(curl -Ss --location 'http://38.47.99.36:62155/translate' \
+    raw_data=$(curl -Ss --location 'http://34.97.58.184:62155/translate' \
         --header 'Content-Type: application/json' \
         --data "{\"text\": \"$json_text\", \"target_lang\": \"ZH\"}")
     result=$(echo "$raw_data" | jq -r '.data')

@@ -201,11 +201,13 @@ alias unstow='stow -D'
 alias restow='stow -R'
 
 # vps alias
-alias lab='TERM="xterm" ssh -R 2489:127.0.0.1:2489 lab'
-alias jp='ssh -R 2489:127.0.0.1:2489 jp'
+alias office='TERM="xterm" ssh -R 2489:127.0.0.1:2489 office'
+alias jp1='ssh -R 2489:127.0.0.1:2489 jp1'
+alias jp2='ssh -R 2489:127.0.0.1:2489 jp2'
+alias lab='ssh -R 2489:127.0.0.1:2489 lab'
 alias air='ssh air'
 alias nuc='ssh nuc'
-alias frpweb='xdg-open http://45.14.107.211:50002/static/'
+alias frpweb='xdg-open http://34.97.26.135:50002/static/'
 
 alias \
     ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc' \
