@@ -1,6 +1,9 @@
 # mpv
 **/mpv/saved-props.json
 
+# frpc
+**/frpc/*.toml
+
 # runit
 **/supervise/
 
