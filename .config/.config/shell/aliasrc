@@ -200,7 +200,7 @@ alias stow='stow -v'
 alias unstow='stow -D'
 alias restow='stow -R'
 
-# vps alias
+# vps alias need lemonade
 alias office='TERM="xterm" ssh -R 2489:127.0.0.1:2489 office'
 alias jp1='ssh -R 2489:127.0.0.1:2489 jp1'
 alias jp2='ssh -R 2489:127.0.0.1:2489 jp2'

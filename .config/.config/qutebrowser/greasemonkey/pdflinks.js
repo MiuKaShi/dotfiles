@@ -16,6 +16,6 @@ document.body.addEventListener('mouseup', function(e) {
   }
   if (anchor.href.search(/.pdf$/i) != -1) { // change to temporary URL
     setTimeout(func, 1000); // after 1 second
-    anchor.href = anchor.href.replace( /http/, "pdf" );
+    anchor.href = anchor.href.replace( /http/, "pdf-viewlink" );
   }
 });
