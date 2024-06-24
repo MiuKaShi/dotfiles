@@ -7,6 +7,9 @@ set page-padding 1
 set highlight-transparency .1
 set zoom-center "true"
 set selection-clipboard clipboard
+set window-height 1800
+set window-width 1500
+set adjust-open width
 
 map <Space> toggle_index
 map K zoom in
