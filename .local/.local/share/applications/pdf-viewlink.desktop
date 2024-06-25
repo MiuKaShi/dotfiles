@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=PDF View Handler
+Exec=/home/miuka/.local/bin/linkhandler %u
+StartupNotify=false
+MimeType=x-scheme-handler/pdf-viewlink;x-scheme-handler/pdf-viewlinks;

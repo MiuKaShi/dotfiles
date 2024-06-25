@@ -1,5 +1,5 @@
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-JWGHV1.desktop;org.telegram.desktop.desktop;
+x-scheme-handler/tg=org.telegram.desktop.desktop;
 
 [Default Applications]
 application/gzip=file.desktop;
@@ -31,6 +31,6 @@ video/mp4=video.desktop;
 video/x-matroska=video.desktop;
 x-scheme-handler/magnet=torrent.desktop;
 x-scheme-handler/pdf-viewlink=pdf-viewlink.desktop;
-x-scheme-handler/pdf-viewlinks=pdf-viewlink.desktop;
+x-scheme-handler/pdf-viewlinks=pdf-viewlink.desktop;pdf-viewlink.desktop;
 x-scheme-handler/reference=reference-link.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop;
