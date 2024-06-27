@@ -192,8 +192,8 @@ proxies:
   - {
       name: '江苏',
       type: vmess,
-      server: 34.97.58.184,
-      port: 47453,
+      server: global-hk.nnki.cc,
+      port: 2096,
       uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
       alterId: 0,
       cipher: auto,
