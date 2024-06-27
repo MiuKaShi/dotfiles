@@ -2,7 +2,6 @@
 ! Xft settings
 !-------------------------------------------------------------------------------
 
-Xft.dpi:    138
 Xft.rgba:   rgb
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
