@@ -191,16 +191,12 @@ proxies:
     }
   - {
       name: '江苏',
-      type: vmess,
-      server: global-hk.nnki.cc,
-      port: 2096,
-      uuid: d55bb74d-78ed-484e-9529-38a2885f7260,
-      alterId: 0,
-      cipher: auto,
+      type: ss,
+      server: 110.42.36.59,
+      port: 47451,
+      cipher: chacha20-ietf-poly1305,
+      password: 'ZKxwmr123',
       udp: true,
-      tls: true,
-      skip-cert-verify: true,
-      network: ws,
     }
   - {
       name: '上海',
@@ -457,7 +453,7 @@ proxies:
   - {
       name: '日本2',
       type: vless,
-      server: rm-jp-03.409648.xyz,
+      server: rm-jp-04.409648.xyz,
       port: 20725,
       uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
@@ -474,27 +470,40 @@ proxies:
     }
   - {
       name: '日本3',
-      server: rm-jp-06.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      type: vless,
+      server: rm-jp-05.409648.xyz,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
+      tls: true,
       skip-cert-verify: false,
-      sni: rm-jp-06.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
+        {
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
+        },
     }
   - {
       name: '日本4',
-      server: rm-jp-05.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      type: vless,
+      server: jp2.qingze-quick.buzz,
+      port: 443,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      network: tcp,
+      tls: true,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-jp-05.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      xudp: true,
+      flow: xtls-rprx-vision,
+      client-fingerprint: chrome,
+      reality-opts:
+        {
+          public-key: sFyxGRXew6FRKN240hwfSHtVGpwaKDVUyxdWzJ259X4,
+          short-id: a4d74135,
+        },
+      servername: api.podcasts.apple.com,
     }
   - {
       name: '日本5',
