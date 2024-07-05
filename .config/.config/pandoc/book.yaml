@@ -1,0 +1,61 @@
+pdf-engine: xelatex
+from: markdown+fancy_lists+implicit_figures+emoji+auto_identifiers
+to: pdf
+# output-file: gmsh.pdf
+
+filters:
+  - pandoc-crossref
+  - pandoc-include
+  - type: citeproc
+  - box.lua
+  - diagram-generator.lua
+
+input-files:
+  # - content/header.md
+  # - content/ch01.md
+
+listings: true
+
+# highlight-style: tango
+
+variables:
+  book: true
+  papersize: a5
+  fontsize: 12pt
+  geometry:
+    - a4paper
+    - bindingoffset=0mm
+    - inner=30mm
+    - outer=30mm
+    - top=30mm
+    - bottom=30mm
+  linestretch: 1.25
+  color-links: true
+  link-citations: true
+  citecolor: blue
+  linkcolor: blue
+  urlcolor: default-urlcolor
+  toc: true
+  toc-depth: 3
+  toc-title: 'Table of Contents'
+  embed-resources: true
+  cite-method: citeproc
+  classoption:
+    - titlepage
+    - openright
+    - DIV=calc
+    - toc=listof
+    - listof=nochaptergap
+  graphics: true
+  listings-no-page-break: true
+
+metadata:
+  listings: true
+  figPrefix: Fig
+  figureTitle: Figure
+  tableTitle: Table
+  tblPrefix: Tab
+  listingTitle: Code
+  lstPrefix: Code
+  javaPath: /usr/bin/java
+  plantumlPath: /home/miuka/.config/script/plantuml.jar

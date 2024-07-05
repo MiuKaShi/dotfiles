@@ -3,20 +3,15 @@
 file=$(readlink -f "$1")
 
 pandoc --listings "$file" \
-    -f markdown \
-    --pdf-engine=xelatex \
     --mathjax \
-    --template=notes \
-    --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
-    --filter=pandoc-crossref \
+    --template=notes.latex \
+    --defaults="/home/miuka/.local/share/pandoc/style/notes.yaml" \
     --lua-filter=box.lua  \
     --lua-filter=diagram-generator.lua \
     --metadata=javaPath:/usr/bin/java \
     --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
-    --citeproc \
     --bibliography="$BIB" \
-    --csl="$CSL" \
-    -t pdf "${@:2}"
+    --csl="$CSL" "${@:2}"
 
 # --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
 # --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \
