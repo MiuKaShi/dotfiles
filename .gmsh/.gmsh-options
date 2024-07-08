@@ -8,12 +8,16 @@
 // 'General.SaveOptions' is set.
 //
 General.Antialiasing = 1; // Use multisample antialiasing (will slow down rendering)
-General.BoundingBoxSize = 0.3354101966249685; // Overall bounding box size (read-only)
+General.BoundingBoxSize = 1.414213562373095; // Overall bounding box size (read-only)
+General.Camera = 1; // Enable camera view mode
 Geometry.DoubleClickedCurveCommand = "Printf('Curve %g has been double-clicked!',
   Geometry.DoubleClickedEntityTag);"; // Command parsed when double-clicking on a curve, or 'ONELAB' to edit associated ONELAB parameters
+Geometry.CurveLabels = 1; // Display curve labels?
+Geometry.PointLabels = 1; // Display points labels?
 Geometry.Surfaces = 1; // Display geometry surfaces?
 Geometry.SurfaceLabels = 1; // Display surface labels?
 Geometry.SurfaceType = 2; // Surface display type (0: cross, 1: wireframe, 2: solid). Wireframe and solid are not available with the built-in geometry kernel.
+Mesh.Algorithm = 5; // 2D mesh algorithm (1: MeshAdapt, 2: Automatic, 3: Initial mesh only, 5: Delaunay, 6: Frontal-Delaunay, 7: BAMG, 8: Frontal-Delaunay for Quads, 9: Packing of Parallelograms, 11: Quasi-structured Quad)
 Mesh.SmoothNormals = 1; // Smooth the mesh normals?
 Mesh.SurfaceFaces = 1; // Display faces of surface mesh?
 Mesh.VolumeEdges = 0; // Display edges of volume mesh?
