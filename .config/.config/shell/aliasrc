@@ -24,7 +24,7 @@ alias emacskill='emacsclient -e "(kill-emacs)"'
 alias \
     dr="aria2p autoclear" \
     ds="aria2p show" \
-    da="aria2p add" \
+    da="aria2p add"
 
 alias \
     ls="lsd" \
@@ -202,8 +202,7 @@ alias restow='stow -R'
 
 # vps alias need lemonade
 alias office='TERM="xterm" ssh -R 2489:127.0.0.1:2489 office'
-alias jp1='ssh -R 2489:127.0.0.1:2489 jp1'
-alias jp2='ssh -R 2489:127.0.0.1:2489 jp2'
+alias jp='ssh -R 2489:127.0.0.1:2489 jp'
 alias lab='ssh -R 2489:127.0.0.1:2489 lab'
 alias air='ssh air'
 alias nuc='ssh nuc'

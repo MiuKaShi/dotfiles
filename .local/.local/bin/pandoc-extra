@@ -1,17 +1,3 @@
 #!/bin/bash
 
 file=$(readlink -f "$1")
-
-pandoc --listings "$file" \
-    --mathjax \
-    --template=notes.latex \
-    --defaults="/home/miuka/.local/share/pandoc/style/notes.yaml" \
-    --lua-filter=box.lua  \
-    --lua-filter=diagram-generator.lua \
-    --metadata=javaPath:/usr/bin/java \
-    --metadata=plantumlPath:/home/miuka/.config/script/plantuml.jar \
-    --bibliography="$BIB" \
-    --csl="$CSL" "${@:2}"
-
-# --metadata-file="/home/miuka/.local/share/pandoc/style/notes.yaml" \
-# --include-in-header="/home/miuka/.local/share/pandoc/style/notes.tex" \

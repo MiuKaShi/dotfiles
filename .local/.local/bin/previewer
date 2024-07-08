@@ -41,7 +41,7 @@ mdpdf() {
 }
 
 pandocpdf() {
-    pandoc-extra $file -o "$base".pdf
+    pandoc "$file" --template=notes --defaults=notes -o "$base".pdf
 }
 
 case "$ext" in

@@ -1,0 +1,2 @@
+javaPath: /usr/bin/java
+plantumlPath: ${HOME}/.config/script/plantuml.jar

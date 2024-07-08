@@ -1,11 +1,19 @@
-pdf-engine: xelatex
 from: markdown+fancy_lists+implicit_figures+emoji+auto_identifiers
 to: pdf
+pdf-engine: xelatex
+bibliography: ${HOME}/papers/bib/mybib_abb.bib
+csl: ${HOME}/papers/bib/tribology-international.csl
+
+metadata-files:
+  - ${.}/metadata/crossref.yaml
+  - ${.}/metadata/listings.yaml
+  - ${.}/metadata/plantuml.yaml
 
 filters:
   - pandoc-crossref
   - citeproc
 
+listings: true
 
 variables:
   papersize: a4
@@ -18,19 +26,19 @@ variables:
     - headheight=3ex
     - headsep=2ex
   linestretch: 1.15
-  colorlinks: true
-  # linkcolor: NavyBlue
-  citecolor: blue
-  urlcolor: default-urlcolor
-  # Enable Reference Links
+  color-links: true
   link-citations: true
-  # DOI to link
+  citecolor: blue
+  linkcolor: blue
+  urlcolor: default-urlcolor
+  embed-resources: true
+  cite-method: citeproc
+  graphics: true
   link-bibliography: false
-  # ulr link as footnotes
   links-as-notes: false
   listings-disable-line-numbers: false
+  listings-no-page-break: true
   # zero-width-non-joiner: true
   # indent: false
-  cite-method: citeproc
   hyperrefoptions:
     - hidelinks
