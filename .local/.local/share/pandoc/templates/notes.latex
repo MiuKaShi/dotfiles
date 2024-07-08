@@ -197,7 +197,6 @@ $endif$
 
 %%%%%%%%%%%%%% tables
 $if(tables)$
-\usepackage{caption}
 \usepackage{longtable,booktabs,array}
 	$if(multirow)$
 	\usepackage{multirow}
@@ -215,7 +214,6 @@ $if(tables)$
 \arrayrulecolor{table-rule-color}     % color of \toprule, \midrule, \bottomrule
 \setlength\heavyrulewidth{0.2ex}      % thickness of \toprule, \bottomrule
 \renewcommand{\arraystretch}{1.2}     % spacing (padding)
-\captionsetup[table]{labelsep=period}
 $endif$
 
 

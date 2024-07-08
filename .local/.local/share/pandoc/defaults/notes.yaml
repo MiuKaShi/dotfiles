@@ -9,9 +9,14 @@ metadata-files:
   - ${.}/metadata/listings.yaml
   - ${.}/metadata/plantuml.yaml
 
+include-in-header:
+  - ${.}/include-in-header/caption.tex
+
 filters:
   - pandoc-crossref
   - citeproc
+  - box.lua
+  - diagram-generator.lua
 
 listings: true
 

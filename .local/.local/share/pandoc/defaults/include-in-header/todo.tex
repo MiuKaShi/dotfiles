@@ -1,0 +1,28 @@
+% add todo note
+\usepackage{tcolorbox}
+\usepackage{fontawesome}
+\defaultfontfeatures{Extension = .otf}
+\definecolor{lwarn}{HTML}{ff7272}
+\definecolor{ltips}{HTML}{fff591}
+\definecolor{linfo}{HTML}{c2f0fc}
+\definecolor{lques}{HTML}{ffb385}
+\newenvironment{warn}
+{\begin{tcolorbox}[colbacktitle=lwarn!50!white,
+			title=\faExclamationTriangle \quad Warning,coltitle=black,
+			fonttitle=\bfseries]}
+{\end{tcolorbox}}
+\newenvironment{tips}
+{\begin{tcolorbox}[colbacktitle=ltips!50!white,
+			title=\faHandORight \quad Tips,coltitle=black,
+			fonttitle=\bfseries]}
+{\end{tcolorbox}}
+\newenvironment{info}
+{\begin{tcolorbox}[colbacktitle=linfo!50!white,
+			title=\faInfoCircle \quad Info,coltitle=black,
+			fonttitle=\bfseries]}
+{\end{tcolorbox}}
+\newenvironment{ques}
+{\begin{tcolorbox}[colbacktitle=lques!50!white,
+			title=\faQuestionCircle \quad Question,coltitle=black,
+			fonttitle=\bfseries]}
+{\end{tcolorbox}}
