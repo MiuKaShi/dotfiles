@@ -163,14 +163,6 @@ $endif$
 \definecolor{default-urlcolor}{HTML}{831517}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 
-%%%%%%%%%%%%%%% backlinks to footnote reference
-\usepackage{footnotebackref}
-$if(highlighting-macros)$
-$highlighting-macros$
-\usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=$if(code-block-font-size)$$code-block-font-size$$else$\small$endif$,commandchars=\\\{\}}
-$endif$
-
 %%%%%%%%%%%%%% figure
 $if(graphics)$
 \usepackage{graphicx}
@@ -188,6 +180,13 @@ $if(graphics)$
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
+\usepackage{float}
+\floatplacement{figure}{$if(float-placement-figure)$$float-placement-figure$$else$H$endif$}
+\makeatother
+$endif$
+$if(svg)$
+\usepackage{svg}
 $endif$
 
 %%%%%%%%%%%%%% tables
@@ -210,7 +209,6 @@ $if(tables)$
 \setlength\heavyrulewidth{0.2ex}      % thickness of \toprule, \bottomrule
 \renewcommand{\arraystretch}{1.2}     % spacing (padding)
 $endif$
-
 
 %%%%%%%%%%%%% strikeout
 $if(strikeout)$
@@ -367,10 +365,24 @@ pdfcreator={LaTeX via pandoc}}
 $if(listings)$
 \usepackage{listings}
 \newcommand{\passthrough}[1]{#1}  % required from pandoc to provide inline
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
 $endif$
 
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+
+%%%%%%%%%%%%%%% backlinks to footnote reference
+$if(footnotes-disable-backlinks)$
+$else$
+\usepackage{footnotebackref}
+$endif$
+
+$if(highlighting-macros)$
+$highlighting-macros$
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=$if(code-block-font-size)$$code-block-font-size$$else$\small$endif$,commandchars=\\\{\}}
 $endif$
 
 % general listing colors
@@ -501,6 +513,25 @@ $endif$
 }
 $endif$
 
+%%%%%%%%%%%%%% header and footer
+
+$if(disable-header-and-footer)$
+$else$
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+
+\newpairofpagestyles{new-header-footer}{
+  \clearpairofpagestyles
+  \ihead*{$if(header-left)$$header-left$$else$$title$$endif$}
+  \chead*{$if(header-center)$$header-center$$else$$endif$}
+  \ohead*{$if(header-right)$$header-right$$else$$date$$endif$}
+  \ifoot*{$if(footer-left)$$footer-left$$else$$for(author)$$author$$sep$, $endfor$$endif$}
+  \cfoot*{$if(footer-center)$$footer-center$$else$$endif$}
+  \ofoot*{$if(footer-right)$$footer-right$$else$\thepage$endif$}
+  \addtokomafont{pageheadfoot}{\upshape}
+}
+\pagestyle{new-header-footer}
+$endif$
+
 %%%%%%%%%%%%%% title
 $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
@@ -581,7 +612,6 @@ $endif$
 $if(has-frontmatter)$
 \mainmatter
 $endif$
-
 
 $body$
 

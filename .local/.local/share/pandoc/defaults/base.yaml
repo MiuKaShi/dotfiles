@@ -1,6 +1,6 @@
 ---
 ## General options
-from: markdown+tex_math_single_backslash+wikilinks_title_after_pipe+mark+autolink_bare_uris
+from: markdown+fancy_lists+implicit_figures+emoji+auto_identifiers
 to: pdf
 # verbosity: ERROR
 
@@ -77,18 +77,27 @@ variables:
   # toc-title:
 
   # Bib
-  biblatexoptions:
-  biblio-style:
-  biblio-title:
-  bibliography:
-  natbiboptions:
+  # biblatexoptions:
+  # biblio-style:
+  # biblio-title:
+  # bibliography:
+  # natbiboptions:
 
   # Template variable
   graphics: true
-  links-as-notes: false
+  float-placement-figure: H # h: (float here) t: (top of the page), b: (bottom of the page), p: (next page), H: (exactly HERE)
   listings-disable-line-numbers: false
-  listings-no-page-break: true
+  links-as-notes: false
   ref-title: 'References'
   # zero-width-non-joiner: true
   hyperrefoptions:
     - hidelinks
+  footnotes-disable-backlinks: false
+
+  disable-header-and-footer: true
+  header-left: #title
+  header-center:
+  ehader-right: #date
+  footer-left: #author
+  footer-center:
+  footer-right: #\thepage
