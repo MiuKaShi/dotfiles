@@ -163,11 +163,6 @@ $endif$
 \definecolor{default-urlcolor}{HTML}{831517}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 
-%%%%%%%%%%%% header-includes
-$for(header-includes)$
-$header-includes$
-$endfor$
-
 %%%%%%%%%%%%%%% backlinks to footnote reference
 \usepackage{footnotebackref}
 $if(highlighting-macros)$
@@ -248,7 +243,6 @@ $if(pagestyle)$
 $endif$
 
 %%%%%%%%%%%%% reference style
-%% get from https://github.com/Zettlr/Zettlr/issues/4879
 $if(csl-refs)$
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
@@ -267,7 +261,7 @@ $if(csl-refs)$
 \setlength{\csllabelwidth}{3em}
 \newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
 {% This block defines the start of the reference environment
-	\section*{References} % Add a section title for references
+	\section*{$ref-title$} % Add a section title for references
 	\small % Make the font size small
 	\begin{list}{}{%
 			\setlength{\itemindent}{0pt}%
@@ -286,6 +280,11 @@ $if(csl-refs)$
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
+
+%%%%%%%%%%%% header-includes
+$for(header-includes)$
+$header-includes$
+$endfor$
 
 %%%%%%%%%%%%%% bib
 $if(natbib)$

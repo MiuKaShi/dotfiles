@@ -389,10 +389,10 @@ $if(listings)$
 \definecolor{listing-rule}{HTML}{ffffff}
 \definecolor{listing-numbers}{HTML}{928374}
 \definecolor{listing-text-color}{HTML}{000000}
-\definecolor{listing-keyword}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{1015d7}
 \definecolor{listing-keyword-2}{HTML}{d3869b} % additional keywords
 \definecolor{listing-keyword-3}{HTML}{fabd2f} % additional keywords
-\definecolor{listing-identifier}{HTML}{1015d7}
+\definecolor{listing-identifier}{HTML}{000000}
 \definecolor{listing-string}{HTML}{fb4934}
 \definecolor{listing-comment}{HTML}{928374}
 

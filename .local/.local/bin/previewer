@@ -41,7 +41,7 @@ mdpdf() {
 }
 
 pandocpdf() {
-    pandoc "$file" --template=project --defaults=notes -o "$base".pdf
+    pandoc "$file" --defaults=base -o "$base".pdf
 }
 
 case "$ext" in
