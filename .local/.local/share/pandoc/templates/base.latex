@@ -1,9 +1,8 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
 \PassOptionsToPackage{dvipsnames,svgnames,x11names,table}{xcolor}
-$if(CJKmainfont)$
-\PassOptionsToPackage{space}{xeCJK}
 $endif$
 %
 \documentclass[
@@ -559,12 +558,13 @@ $if(title)$
 \begin{titlepage}
 	\vspace*{\fill}
 	\begin{center}
-		{\Huge \textbf{$title$} \par}
-		{\large $subtitle$ \par}
+	{\Huge \textbf{$title$} \par}
+	{\large $subtitle$ \par}
 	\end{center}
 	\vspace*{\fill}
+  {\Large \textbf{\textit{Author:}} $author$ \par}
 	\begin{center}
-		{\Large $date$ \par}
+	{\Large $date$ \par}
 	\end{center}
 \end{titlepage}
 $if(abstract)$

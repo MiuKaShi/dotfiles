@@ -1,0 +1,7 @@
+%pandoc-crossref messes with header-includes so lets un-mess it...
+\usepackage{float}
+\floatstyle{ruled}
+\makeatletter
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\makeatother
