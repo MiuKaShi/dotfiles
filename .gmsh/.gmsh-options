@@ -1,9 +1,9 @@
 // General
 General.TextEditor = "st -e nvim '%s'" ;
-General.FontSize = 28; // font size
-General.GraphicsFontSize  = 28; // font size
-General.GraphicsFontSizeTitle = 28;
-General.MessageFontSize = 22; // font in the message window
+General.FontSize = 22; // font size
+General.GraphicsFontSize  = 22; // font size
+General.GraphicsFontSizeTitle = 22;
+General.MessageFontSize = 16; // font in the message window
 General.PointSize  = 8; // Display size of points (in pixels)
 General.LineWidth = 3; // Display width of lines (in pixels)
 General.ColorScheme = 1; // 0: light, 1: default, 2: grayscale, 3: dark
@@ -15,14 +15,12 @@ General.DoubleBuffer = 1;
 Print.TexForceFontSize = 28;
 
 // Geometry
-Geometry.CurveLabels = 1; // Display curve labels?
-Geometry.PointSize = 12; // Display size of selected points (in pixels)
-Geometry.PointSelectSize = 22; // Display size of points (in pixels)
-Geometry.CurveWidth = 3; // Display width of lines (in pixels)
-Geometry.CurveSelectWidth = 6;
+Geometry.PointSize = 8; // Display size of selected points (in pixels)
+Geometry.PointSelectSize = 16; // Display size of points (in pixels)
+Geometry.CurveWidth = 2; // Display width of lines (in pixels)
+Geometry.CurveSelectWidth = 4;
 Geometry.Surfaces = 1; // Display geometry surfaces?
-Geometry.SurfaceLabels = 1; // Display surface labels?
-Geometry.SurfaceType = 2; // Surface display type (0: cross, 1: wireframe, 2: solid). Wireframe and solid are not available with the built-in geometry kernel.
+Geometry.SurfaceType = 0; // Surface display type (0: cross, 1: wireframe, 2: solid).
 Geometry.Tangents = 0;
 Geometry.Normals = 0;
 Geometry.Color.Points = {33,19,13}; // Normal geometry point color
@@ -30,15 +28,18 @@ Geometry.Color.Curves = {0,0,255}; // Normal geometry curve color
 Geometry.Color.Surfaces = {128,128,128}; // Normal geometry surface color
 Geometry.Color.Volumes = {200,200,0}; // Normal geometry volume color
 Geometry.Color.Selection = {255,0,0}; // Selected geometry color
+// Geometry.CurveLabels = 1; // Display curve labels?
+// Geometry.SurfaceLabels = 1; // Display surface labels?
 
 // Mesh
-Mesh.NodeSize = 12;
+Mesh.NodeSize = 6;
 Mesh.LineWidth = 1;
 Mesh.Normals = 0;
 Mesh.Tangents = 0;
 Mesh.Algorithm = 5; // 2D mesh algorithm (1: MeshAdapt, 2: Automatic, 3: Initial mesh only, 5: Delaunay, 6: Frontal-Delaunay, 7: BAMG, 8: Frontal-Delaunay for Quads, 9: Packing of Parallelograms, 11: Quasi-structured Quad)
 Mesh.SmoothNormals = 1; // Smooth the mesh normals?
 Mesh.SurfaceFaces = 1; // Display faces of surface mesh?
+Mesh.SurfaceEdges = 1;
 Mesh.VolumeEdges = 0; // Display edges of volume mesh?
 View.DoubleClickedCommand = "Printf('View[0] has been double-clicked!');"; // Command parsed when double-clicking on the view
 Mesh.Color.Nodes = {0,0,255};
@@ -47,5 +48,5 @@ Mesh.Color.Lines = {0,255,0};
 View.ArrowSizeMax = 80; // Maximum display size of arrows (in pixels)
 View.LineWidth = 1;
 View.Normals = 3;
-View.PointSize = 8;
+View.PointSize = 6;
 View.Tangents = 0;
