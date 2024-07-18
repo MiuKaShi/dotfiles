@@ -2,30 +2,11 @@
 
 matlab="/home/miuka/.local/MATLAB/R2024a/bin/matlab"
 
-export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+# export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 #This sets us up for hardware-accelerated opengl rendering
-export LD_PRELOAD=/lib64/libfreetype.so
-export MATLAB_LOG_DIR="/tmp"
+# export LD_PRELOAD=/lib64/libfreetype.so
+# export MATLAB_LOG_DIR="/home/miuka/.cache"
 #This reportedly helps with a garbled UI, but doesn't appear to be necessary with openjdk 8
 #export J2D_D3D=false
 
-monitor_and_kill() {
-    while true; do
-        if ! pgrep -f MATLAB >/dev/null; then
-            sleep 5
-            pkill -f MathWorksServiceHost
-            break
-        fi
-        sleep 5
-    done
-}
-
-case $1 in
-    cmd)
-        $matlab -nodesktop -nosplash -r "clc;disp(['Current folder: ' pwd])"
-        ;;
-    *)
-        $matlab -desktop >/dev/null 2>&1 &
-        monitor_and_kill &
-        ;;
-esac
+$matlab "$@"

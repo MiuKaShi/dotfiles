@@ -1,5 +1,9 @@
 #!/bin/bash
 
-source /usr/share/nvm/init-nvm.sh
-nvm use 20.0.0
-exec /home/miuka/.nvm/versions/node/v20.0.0/bin/node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"
+# source /usr/share/nvm/init-nvm.sh
+# nvm use 20.0.0
+# export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+# export LD_PRELOAD=/lib64/libfreetype.so
+# export MATLAB_LOG_DIR="/home/miuka/.cache"
+# exec /home/miuka/.nvm/versions/node/v20.0.0/bin/node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"
+exec /usr/bin/node "/home/miuka/github/MATLAB-language-server/out/index.js" "$@"
