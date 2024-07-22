@@ -1,6 +1,6 @@
 pkgname=tmux-sixel-git-nosystemd
 _gitname=tmux
-pkgver=10224_3.4.r56.gc07e856d
+pkgver=10232_3.4.r64.g3c2621b4
 pkgrel=1
 pkgdesc="A terminal multiplexer(build with sixel)"
 url="https://github.com/tmux/tmux/wiki"

@@ -1,11 +1,51 @@
 #! /bin/sh
 
-unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
+# unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
+# export LIBVA_DRIVER_NAME=iHD
+# export VDPAU_DRIVER=va_gl
 
-xrandr --dpi 138 --fb 6000x3840 --output DP1 --scale 1.5x1.5 --pos 3840x0 --rotate right --output DP2 --primary --mode 3840x2160 --pos 0x345 --rotate normal --output HDMI1 --off --output VIRTUAL1 --off
+dpi_env="$HOME/.config/shell/hidpi"
 
-export LIBVA_DRIVER_NAME=iHD
-export VDPAU_DRIVER=va_gl
+home_dpi() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for home
+export MONITOR_ENV=home
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=2
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=144
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
 
-xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/displayset/homexresources &
-xrdbpid=$!
+# dpi_env
+home_dpi
+
+xrandr --dpi 138 \
+    --fb 6000x3840 \
+    --output HDMI-A-0 \
+    --mode 2560x1440 \
+    --rate 60 \
+    --scale 1.5x1.5 \
+    --pos 3840x0 \
+    --rotate right \
+    --output DisplayPort-0 --primary \
+    --mode 3840x2160 \
+    --rate 60 \
+    --scale 1x1 \
+    --pos 0x340 \
+    --rotate normal \
+    --output DisplayPort-1 --off --output DisplayPort-2 --off \
+    --output DisplayPort-3 --off --output DisplayPort-4 --off \
+    --output DisplayPort-5 --off --output DisplayPort-6 --off
+
+xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources
+# ICC setting
+dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
+dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
+# rofi setting
+ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi

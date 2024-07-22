@@ -1,7 +1,7 @@
 # Maintainer: A modify icons-terminal
 
 pkgname=icons-terminal
-pkgver=r94.3bab2c8
+pkgver=r95.e91e8a3
 pkgrel=1
 pkgdesc="Icon fonts in terminal without a need for replacing or patching existing"
 url="https://github.com/sebastiencs/icons-in-terminal"

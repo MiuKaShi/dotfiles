@@ -5,13 +5,13 @@
 
 #pre-setting
 # msi-isw &
-#homescreen # NUC
+homescreen # NUC
 # notescreen # laptop
-labscreen # lap
-setbg &   # set the background
+# labscreen # lap
+setbg & # set the background
 xclick &
 
-autostart="watchfile unclutter blurlock xplugd mpd"
+autostart="watchfile unclutter xplugd mpd"
 
 for program in $autostart; do
     pidof -sx "$program" || "$program" &

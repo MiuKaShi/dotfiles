@@ -2,7 +2,7 @@
 
 _pkgname='xrdp'
 pkgname="$_pkgname-git-nosystemd"
-pkgver=0.10.0_beta.3.r5.g763c1c58
+pkgver=0.10.0_beta.3.r28.g2938c3d7
 pkgrel=1
 pkgdesc='An open source remote desktop protocol (RDP) server. Git version, devel branch.'
 url='https://github.com/neutrinolabs/xrdp'
