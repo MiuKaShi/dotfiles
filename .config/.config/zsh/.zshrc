@@ -2,24 +2,24 @@
 eval "$(zoxide init zsh)"
 
 # Change prompt:
-autoload -U colors && colors	# Load colors
+autoload -U colors && colors # Load colors
 PS1="%B%{$fg[red]%}%{$fg[blue]%} %{$fg[green]%}%~%{$fg[cyan]%}  %b "
 
 # zsh misc
-setopt auto_cd               # simply type dir name to cd
-setopt auto_pushd            # make cd behave like pushd
-setopt pushd_ignore_dups     # don't pushd duplicates
-setopt pushd_minus           # exchange the meanings of `+` and `-` in pushd
-setopt interactive_comments  # comments in interactive shells
-unsetopt nomatch             # Fix url quote
-stty stop undef		         # Disable ctrl-s to freeze terminal.
+setopt auto_cd              # simply type dir name to cd
+setopt auto_pushd           # make cd behave like pushd
+setopt pushd_ignore_dups    # don't pushd duplicates
+setopt pushd_minus          # exchange the meanings of `+` and `-` in pushd
+setopt interactive_comments # comments in interactive shells
+unsetopt nomatch            # Fix url quote
+stty stop undef             # Disable ctrl-s to freeze terminal.
 
 # ZSH History:
-setopt hist_ignore_all_dups  # no duplicates
-setopt hist_save_no_dups     # don't save duplicates
-setopt hist_ignore_space     # no commands starting with space
-setopt hist_reduce_blanks    # remove all unneccesary spaces
-setopt share_history         # share history between sessions
+setopt hist_ignore_all_dups # no duplicates
+setopt hist_save_no_dups    # don't save duplicates
+setopt hist_ignore_space    # no commands starting with space
+setopt hist_reduce_blanks   # remove all unneccesary spaces
+setopt share_history        # share history between sessions
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 [[ ! -d ${HISTFILE:h} ]] && mkdir -pm700 ${HISTFILE:h}
 HISTORY_IGNORE="(ls|cd|history|lf|exit|reboot)"
@@ -47,7 +47,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 
 # see https://github.com/TheLocehiliosan/yadm/issues/355
-__git_files () {
+__git_files() {
     _wanted files expl 'local files' _files
 }
 
@@ -69,10 +69,10 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select () {
+function zle-keymap-select() {
     case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # beam
+        vicmd) echo -ne '\e[1 q' ;;        # block
+        viins | main) echo -ne '\e[5 q' ;; # beam
     esac
 }
 zle -N zle-keymap-select
@@ -81,11 +81,11 @@ zle-line-init() {
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+echo -ne '\e[5 q'                # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
 
 # Use lf to switch directories and bind it to ctrl-l
-lfcd () {
+lfcd() {
     tmp="$(mktemp -uq)"
     trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
     lf -last-dir-path="$tmp" "$@"
@@ -103,7 +103,8 @@ bindkey -s '^p' '^uchopin-paper\n'
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
 bindkey '^e' edit-command-line
 bindkey -M vicmd '^[[P' vi-delete-char
 bindkey -M vicmd '^e' edit-command-line
@@ -115,7 +116,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 # source /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh 2>/dev/null
 
 # fast-syntax-highlighting
-unset 'FAST_HIGHLIGHT[chroma-man]'  # chroma-man will stuck history browsing
+unset 'FAST_HIGHLIGHT[chroma-man]' # chroma-man will stuck history browsing
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND='1'
