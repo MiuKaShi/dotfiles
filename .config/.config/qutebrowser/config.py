@@ -19,6 +19,7 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 # general
 # HDPI(not support WAYLAND)
 c.qt.highdpi = True
+c.content.images = True
 c.content.autoplay = False
 c.auto_save.session = True
 c.zoom.default = "125%"
@@ -43,13 +44,18 @@ c.tabs.mousewheel_switching = False
 c.scrolling.bar = "never"
 c.statusbar.show = "never"
 c.tabs.show = "switching"
-c.backend = 'webengine'
+c.backend = "webengine"
+c.changelog_after_upgrade = "major"
+# DNS prefetching
+c.content.dns_prefetch = True
+
 ## Fix for crashes
 c.qt.workarounds.remove_service_workers = True
 
 # enable GPU acceleration
 # see https://github.com/qutebrowser/qutebrowser/discussions/6573
-# see https://github.com/qutebrowser/qutebrowser/issues/5378]
+# see https://github.com/qutebrowser/qutebrowser/issues/5378
+# for webopt see https://github.com/qutebrowser/qutebrowser/issues/8222
 c.qt.args = [
     "use-gl=desktop",
     "ignore-gpu-blocklist",
@@ -58,6 +64,7 @@ c.qt.args = [
     "enable-native-gpu-memory-buffers",
     "enable-accelerated-video-decode",
     "enable-zero-copy",
+    "disable-blink-features=WebOTP",
     # 'num-raster-threads=4',
     # 'disable-accelerated-2d-canvas',
 ]
@@ -98,7 +105,7 @@ c.content.blocking.adblock.lists = [
 ]
 
 # privacy
-c.content.cookies.accept = 'all'
+c.content.cookies.accept = "all"
 c.content.media.audio_capture = "ask"
 c.content.media.video_capture = "ask"
 c.content.tls.certificate_errors = "ask"
@@ -106,8 +113,9 @@ c.content.desktop_capture = "ask"
 c.content.mouse_lock = "ask"
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.site_specific_quirks.enabled = False
-# c.content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.6 Chrome/87.0.4280.144 Safari/537.36"
-
+c.content.headers.do_not_track = True
+c.content.headers.referer = "same-domain"
+c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}"
 
 # per-domain settings
 config.set("content.cookies.accept", "all", "chrome-devtools://*")
@@ -173,7 +181,7 @@ config.bind("cr", "config-source")
 
 # Download management
 config.bind("aa", "hint links userscript dl2aria", "normal")
-#config.bind("aa", "download")
+# config.bind("aa", "download")
 config.bind("au", "download-open;;download-remove")
 config.bind("ac", "download-clear")
 config.bind("ad", "download-delete")
