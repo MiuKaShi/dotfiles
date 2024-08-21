@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Black Myth: Wukong Benchmark Tool
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/3132990
+Icon=steam_icon_3132990
+Terminal=false
+Type=Application
+Categories=Game;

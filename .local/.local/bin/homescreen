@@ -53,3 +53,7 @@ dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
 # rofi setting
 ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
 disp_setting # set twice to avoid the first time error
+# set wallpaper
+# Location of link to wallpaper link.
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+xwallpaper --zoom "$bgloc"
