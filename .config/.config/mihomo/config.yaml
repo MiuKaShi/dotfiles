@@ -201,8 +201,8 @@ proxies:
   - {
       name: '上海',
       type: vmess,
-      server: 34.97.58.184,
-      port: 47451,
+      server: sh.qingze-quick.buzz,
+      port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
@@ -219,22 +219,22 @@ proxies:
               /i/mobile/greentip.html,
               /payprod-format/h5/dup_submit,
             ],
-          headers: { Host: [www.youku.com] },
+          headers: { Host: [a.189.cn] },
         },
     }
   - {
       name: '浙江',
       type: vmess,
-      server: 34.97.58.184,
-      port: 47452,
+      server: zj.qingze-quick.buzz,
+      port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
       network: ws,
-      ws-opts: { path: /, headers: { Host: a.189.cn } },
+      ws-opts: { path: /, headers: { Host: www.youku.com } },
       ws-path: /,
-      ws-headers: { Host: a.189.cn },
+      ws-headers: { Host: www.youku.com },
     }
   - {
       name: '香港1',
@@ -248,28 +248,20 @@ proxies:
     }
   - {
       name: '香港2',
-      type: vmess,
-      server: hk4.qingze-quick.buzz,
-      port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
+      type: vless,
+      server: rm-hk-03.409648.xyz,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
       tls: true,
-      servername: hk4.qingze-quick.buzz,
-      network: http,
-      http-opts:
+      skip-cert-verify: false,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
         {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [data.video.qiyi.com] },
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
         },
     }
   - {
@@ -440,15 +432,21 @@ proxies:
     }
   - {
       name: '日本1',
+      type: vless,
       server: rm-jp-01.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      port: 20725,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
+      tls: true,
       skip-cert-verify: false,
-      sni: rm-jp-01.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
+        {
+          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
+          short-id: 0102ac4e,
+        },
     }
   - {
       name: '日本2',
@@ -488,22 +486,13 @@ proxies:
     }
   - {
       name: '日本4',
-      type: vless,
-      server: jp2.qingze-quick.buzz,
-      port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      network: tcp,
-      tls: true,
+      type: vmess,
+      server: snowballoraclejp3.ednovas.org,
+      port: 22222,
+      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      xudp: true,
-      flow: xtls-rprx-vision,
-      client-fingerprint: chrome,
-      reality-opts:
-        {
-          public-key: sFyxGRXew6FRKN240hwfSHtVGpwaKDVUyxdWzJ259X4,
-          short-id: a4d74135,
-        },
-      servername: api.podcasts.apple.com,
     }
   - {
       name: '日本5',
