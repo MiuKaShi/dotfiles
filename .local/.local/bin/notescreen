@@ -82,14 +82,14 @@ case $monitor_name in
             --fb 6000x3840 \
             --output HDMI-0 \
             --mode 2560x1440 \
-						--rate 60 \
+            --rate 60 \
             --scale 1.5x1.5 \
             --pos 3840x0 \
             --rotate right \
             --output DP-0 --primary \
             --mode 3840x2160 \
-						--rate 60 \
-						--scale 1x1 \
+            --rate 60 \
+            --scale 1x1 \
             --pos 0x340 \
             --rotate normal \
             --output DP-1 --off \
