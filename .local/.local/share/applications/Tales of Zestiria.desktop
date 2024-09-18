@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Tales of Zestiria
-Comment=Play this game on Steam
-Exec=steam steam://rungameid/351970
-Icon=steam_icon_351970
-Terminal=false
-Type=Application
-Categories=Game;
