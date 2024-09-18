@@ -3,10 +3,10 @@
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
-#pre-setting
-msi-isw &
-# homescreen # NUC
-notescreen # laptop
+##pre-setting
+# msi-isw &
+homescreen # NUC
+# notescreen # laptop
 # labscreen # lap
 setbg & # set the background
 xclick &

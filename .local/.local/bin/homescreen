@@ -37,9 +37,7 @@ disp_setting() {
         --scale 1x1 \
         --pos 0x340 \
         --rotate normal \
-        --output DisplayPort-1 --off --output DisplayPort-2 --off \
-        --output DisplayPort-3 --off --output DisplayPort-4 --off \
-        --output DisplayPort-5 --off --output DisplayPort-6 --off
+        --output DisplayPort-1 --off
 }
 
 # dpi_env
@@ -52,7 +50,6 @@ dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
 dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
 # rofi setting
 ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
-disp_setting # set twice to avoid the first time error
 # set wallpaper
 # Location of link to wallpaper link.
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
