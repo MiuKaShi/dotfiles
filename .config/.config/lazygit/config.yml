@@ -24,12 +24,12 @@ gui:
     skipDiscardChangeWarning: false
     skipStashWarning: true
 os:
-  Open: "nvim {{filename}}"
-  OS.Edit,EditAtLine: "{{editor}} +{{line}} -- {{filename}}"
+    Open: "nvim {{filename}}"
+    OS.Edit,EditAtLine: "{{editor}} +{{line}} -- {{filename}}"
 git:
-  paging:
-    colorArg: never
-    pager: delta --dark --paging=never --syntax-theme=gruvbox-dark
+    paging:
+        colorArg: never
+        pager: delta --dark --paging=never --syntax-theme=gruvbox-dark
 refresher:
     refreshInterval: 10 # file/submodule refresh interval in seconds
     fetchInterval: 60 # re-fetch interval in seconds
@@ -79,7 +79,7 @@ keybinding:
         scrollDownMain-alt1: 'J' # main panel scrool down
         scrollUpMain-alt2: '<c-u>' # main panel scrool up
         scrollDownMain-alt2: '<c-d>' # main panel scrool down
-        executeCustomCommand: ':'
+        executeShellCommand: ':'
         createRebaseOptionsMenu: 'm'
         pushFiles: 'P'
         pullFiles: 'p'
