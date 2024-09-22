@@ -239,7 +239,7 @@ proxies:
   - {
       name: '香港1',
       type: vmess,
-      server: hytronhk.ednovas.org,
+      server: anyhkhgc.ednovas.org,
       port: 443,
       uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
@@ -267,8 +267,8 @@ proxies:
   - {
       name: '香港3',
       type: vmess,
-      server: anyhkhgc.ednovas.org,
-      port: 443,
+      server: nubehk.ednovas.org,
+      port: 22222,
       uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
       cipher: auto,
@@ -277,7 +277,7 @@ proxies:
   - {
       name: '香港4',
       type: vmess,
-      server: gcorehk.ednovas.org,
+      server: spiketelecomhk16t.ednovas.org,
       port: 443,
       uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
