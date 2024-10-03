@@ -28,6 +28,7 @@ Geometry.Color.Curves = {0,0,255}; // Normal geometry curve color
 Geometry.Color.Surfaces = {128,128,128}; // Normal geometry surface color
 Geometry.Color.Volumes = {200,200,0}; // Normal geometry volume color
 Geometry.Color.Selection = {255,0,0}; // Selected geometry color
+// Geometry.PointLabels = 1; // Display point labels?
 // Geometry.CurveLabels = 1; // Display curve labels?
 // Geometry.SurfaceLabels = 1; // Display surface labels?
 
