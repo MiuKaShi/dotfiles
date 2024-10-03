@@ -50,6 +50,7 @@ alias \
     free="free -h" \
     info="info --vi-keys" \
     yt="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --embed-metadata -i" \
+    yts="yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser --skip-download --write-auto-subs --convert-subtitles srt -i" \
     yta="yt -x -f bestaudio/best" \
     ffmpeg="ffmpeg -hide_banner" \
     ns="newsboat" \

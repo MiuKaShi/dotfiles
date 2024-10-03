@@ -4,6 +4,7 @@
 
 # Set variables
 file=$(readlink -f "$1")
+path=$(dirname "$file")
 
 # Define functions
 remove_pages() {
@@ -19,7 +20,7 @@ delete_pdf() {
 
 extract_pages() {
     pages=$(echo | dmenu -p "pages:")
-    pdfcpu extract -m page -p "$pages" "$file" $HOME/Downloads
+    pdfcpu extract -m page -p "$pages" "$file" "$path"
     notify-send -t 3000 "Extract successfully"
 }
 
