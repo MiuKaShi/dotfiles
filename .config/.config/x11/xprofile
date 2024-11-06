@@ -4,9 +4,9 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
 #pre-setting
-msi-isw &
-# homescreen # NUC
-notescreen # laptop
+# msi-isw &
+homescreen # NUC
+# notescreen # laptop
 # labscreen # lap
 setbg & # set the background
 xclick &
