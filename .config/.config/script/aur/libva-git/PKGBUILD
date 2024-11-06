@@ -1,7 +1,7 @@
 # Maintainer: Daniel Bermond <dbermond@archlinux.org>
 
 pkgname=libva-git
-pkgver=2.22.0.r1.g6e416772
+pkgver=2.22.0.r7.g25381db7
 pkgrel=1
 pkgdesc='Video Acceleration (VA) API for Linux (git version)'
 arch=('x86_64')
@@ -28,8 +28,8 @@ pkgver() {
 }
 
 build() {
-    export CFLAGS+=' -DENABLE_VA_MESSAGING -Dwith_legacy=nvctrl'
-    arch-meson libva build
+    export CFLAGS+=' -DENABLE_VA_MESSAGING'
+    arch-meson libva -Dwith_legacy=nvctrl build
     meson compile -C build
 }
 
