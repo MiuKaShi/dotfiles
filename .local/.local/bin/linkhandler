@@ -34,7 +34,7 @@ case "$1" in
         setsid -f mpv -quiet "$URL" --referrer=https://www.bilibili.com --sub-file=/tmp/"$BVID"/danmaku.ass >/dev/null 2>&1
         ;;
     *nivod.tv* | *iop.org* | *tandfonline.com* | *sciencedirect.com*)
-        BROWSER=mercury-browser
+        BROWSER=mercury-browser-avx2
         setsid -f "$BROWSER" "$1" >/dev/null 2>&1 && notify-send "Browser" "Open with $BROWSER..."
         ;;
     reference://*)
