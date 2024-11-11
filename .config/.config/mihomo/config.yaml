@@ -201,7 +201,21 @@ proxies:
   - {
       name: '上海',
       type: vmess,
-      server: sh.qingze-quick.buzz,
+      server: 110.42.102.24,
+      port: 443,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
+      network: ws,
+      ws-opts: { path: /, headers: { Host: a.189.cn } },
+      ws-path: /,
+      ws-headers: { Host: a.189.cn },
+    }
+  - {
+      name: '浙江',
+      type: vmess,
+      server: 110.42.102.24,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
@@ -223,20 +237,6 @@ proxies:
         },
     }
   - {
-      name: '浙江',
-      type: vmess,
-      server: zj.qingze-quick.buzz,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: www.youku.com } },
-      ws-path: /,
-      ws-headers: { Host: www.youku.com },
-    }
-  - {
       name: '香港1',
       type: vmess,
       server: anyhkhgc.ednovas.org,
@@ -248,31 +248,51 @@ proxies:
     }
   - {
       name: '香港2',
-      type: vless,
-      server: rm-hk-03.409648.xyz,
-      port: 20725,
-      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      type: vmess,
+      server: hk1g.wi-fi-ai.com,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      tls: true,
-      skip-cert-verify: false,
-      flow: xtls-rprx-vision,
-      client-fingerprint: qq,
-      servername: content.cdp.bethesda.net,
-      reality-opts:
+      network: http,
+      http-opts:
         {
-          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
-          short-id: 0102ac4e,
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
         },
     }
   - {
       name: '香港3',
       type: vmess,
-      server: nubehk.ednovas.org,
-      port: 22222,
-      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      server: hk2g.wi-fi-ai.com,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
+        },
     }
   - {
       name: '香港4',
@@ -316,15 +336,27 @@ proxies:
     }
   - {
       name: '美国1',
-      server: rm-us-01.409648.xyz,
-      port: 9000,
-      ports: 9000-20000,
-      mport: 9000-20000,
+      type: vmess,
+      server: cfuc.qingzile.top,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      skip-cert-verify: false,
-      sni: rm-us-01.409648.xyz,
-      type: hysteria2,
-      password: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
+        },
     }
   - {
       name: '美国2',
@@ -432,20 +464,26 @@ proxies:
     }
   - {
       name: '日本1',
-      type: vless,
-      server: rm-jp-01.409648.xyz,
-      port: 20725,
-      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
+      type: vmess,
+      server: jp25g.wi-fi-ai.com,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
       udp: true,
-      tls: true,
-      skip-cert-verify: false,
-      flow: xtls-rprx-vision,
-      client-fingerprint: qq,
-      servername: content.cdp.bethesda.net,
-      reality-opts:
+      network: http,
+      http-opts:
         {
-          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
-          short-id: 0102ac4e,
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
         },
     }
   - {

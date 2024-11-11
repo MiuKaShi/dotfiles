@@ -1,18 +1,31 @@
-from qutebrowser.api import interceptor
-
 config.load_autoconfig(False)
 
-# themes
-config.source("themes/pyqute/draw.py")
+
+# fonts
+font_name = "16pt MonoLisa Nerd Font"
+c.fonts.tabs.selected = font_name
+c.fonts.tabs.unselected = font_name
+c.fonts.statusbar = font_name
+c.fonts.messages.info = font_name
+c.fonts.downloads = c.fonts.statusbar
+c.fonts.prompts = font_name
+c.fonts.keyhint = c.fonts.messages.info
+c.fonts.messages.warning = c.fonts.messages.info
+c.fonts.messages.error = c.fonts.messages.info
+c.fonts.completion.entry = font_name
+c.fonts.completion.category = c.fonts.statusbar
+# c.fonts.hints = "18px MonoLisa Nerd Font"
+# c.fonts.default_size = "18pt"
 
 # ui
-c.fonts.default_size = "18pt"
 c.completion.shrink = True
 c.completion.use_best_match = True
 c.downloads.position = "bottom"
 c.downloads.remove_finished = 10000
 c.statusbar.widgets = ["progress", "keypress", "url", "history"]
+c.statusbar.show = "never"
 c.tabs.show = "multiple"
+c.tabs.show = "switching"
 c.tabs.title.format = "{index}: {audio}{current_title}"
 c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 
@@ -22,7 +35,7 @@ c.qt.highdpi = True
 c.content.images = True
 c.content.autoplay = False
 c.auto_save.session = True
-c.zoom.default = "125%"
+c.zoom.default = "100%"
 c.content.default_encoding = "utf-8"
 c.content.notifications.enabled = True
 c.fileselect.handler = "external"
@@ -38,16 +51,18 @@ c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.editor.command = ["st", "-e", "nvim", "{}"]
 c.completion.height = "30%"
-c.tabs.show = "multiple"
-c.tabs.last_close = "close"
 c.tabs.mousewheel_switching = False
 c.scrolling.bar = "never"
-c.statusbar.show = "never"
-c.tabs.show = "switching"
 c.backend = "webengine"
 c.changelog_after_upgrade = "major"
 # DNS prefetching
 c.content.dns_prefetch = True
+
+# urls
+c.url.default_page = "https://google.com/"
+c.url.start_pages = "https://google.com/"
+c.tabs.last_close = "close"
+# c.tabs.last_close = "startpage"
 
 ## Fix for crashes
 c.qt.workarounds.remove_service_workers = True
@@ -68,8 +83,6 @@ c.qt.args = [
     # 'num-raster-threads=4',
     # 'disable-accelerated-2d-canvas',
 ]
-
-c.qt.highdpi = True
 
 # Don't automatically leave insert mode. qutebrowser will leave insert mode automatically
 config.set("input.insert_mode.auto_leave", False)
@@ -92,70 +105,6 @@ c.hints.prev_regexes = [
     "\\b上一?页\\b",
 ]
 
-c.content.blocking.method = "both"
-c.content.blocking.adblock.lists = [
-    "https://easylist.to/easylist/easylist.txt",
-    "https://easylist.to/easylist/easyprivacy.txt",
-    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
-    "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
-    "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt",
-    "https://easylist-downloads.adblockplus.org/easylistchina.txt",
-    "https://www.i-dont-care-about-cookies.eu/abp/",
-    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
-]
-
-# privacy
-c.content.cookies.accept = "all"
-c.content.media.audio_capture = "ask"
-c.content.media.video_capture = "ask"
-c.content.tls.certificate_errors = "ask"
-c.content.desktop_capture = "ask"
-c.content.mouse_lock = "ask"
-c.content.webrtc_ip_handling_policy = "default-public-interface-only"
-c.content.site_specific_quirks.enabled = False
-c.content.headers.do_not_track = True
-c.content.headers.referer = "same-domain"
-c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}"
-
-# per-domain settings
-config.set("content.cookies.accept", "all", "chrome-devtools://*")
-config.set("content.cookies.accept", "all", "devtools://*")
-config.set("content.headers.accept_language", "", "https://matchmaker.krunker.io/*")
-config.set(
-    "content.headers.user_agent",
-    "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
-    "https://accounts.google.com/*",
-)
-config.set(
-    "content.headers.user_agent",
-    "Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36",
-    "https://*.slack.com/*",
-)
-config.set("content.images", True, "chrome-devtools://*")
-config.set("content.images", True, "devtools://*")
-config.set("content.javascript.enabled", True, "chrome-devtools://*")
-config.set("content.javascript.enabled", True, "devtools://*")
-config.set("content.javascript.enabled", True, "chrome://*/*")
-config.set("content.javascript.enabled", True, "qute://*/*")
-
-# c.qt.args = ["disable-reading-from-canvas"]
-
-# urls
-c.url.default_page = "https://google.com/"
-c.url.start_pages = "https://google.com/"
-c.tabs.last_close = "startpage"
-c.url.searchengines = {
-    "DEFAULT": "https://google.com/search?q={}",
-    "mp": "https://www.google.com/maps?q={}",
-    "yt": "https://youtube.com/results?search_query={}",
-    "gs": "https://scholar.google.com/scholar?q={}",
-    "wiby": "https://wiby.me/?q={}",
-    "bb": "https://search.bilibili.com/all?keyword={}",
-    "aw": "https://wiki.archlinux.org/?search={}",
-    "wk": "http://en.wikipedia.org/w/index.php?title=Special:Search&search={}",
-    "bd": "https://baidu.com/s?wd={}",
-    "zh": "https://zhihu.com/search?q={}",
-}
 
 # cmd aliases
 c.aliases = {
@@ -163,140 +112,8 @@ c.aliases = {
     "br": "spawn --userscript qb-rbuku -r",
 }
 
-config.unbind("b")
-config.unbind("B")
-config.bind("bb", "spawn --userscript qb-rbuku -s")
-config.bind("bn", "spawn --userscript qb-rbuku")
-config.bind("ba", "spawn --userscript qb-rbuku -a")
-config.bind("br", "spawn --userscript qb-rbuku -r")
-# config.bind('<Ctrl+b>', 'bookmark-list -t --jump')
-
-# Keys
-config.bind("ee", "hint links spawn linkhandler {hint-url}")
-config.bind("el", "spawn librewolf {url}")
-config.bind("eL", "hint links spawn librewolf {hint-url}")
-config.bind("E", "spawn --userscript url-handler")
-config.bind("I", "hint images download")
-config.bind("cr", "config-source")
-
-# Download management
-config.bind("aa", "hint links userscript dl2aria", "normal")
-# config.bind("aa", "download")
-config.bind("au", "download-open;;download-remove")
-config.bind("ac", "download-clear")
-config.bind("ad", "download-delete")
-config.bind("as", "download-cancel")
-config.bind("ar", "download-retry")
-
-config.bind("d", "scroll-page 0 0.5")
-config.bind("u", "scroll-page 0 -0.5")
-config.bind("j", "scroll-page 0 0.1")
-config.bind("k", "scroll-page 0 -0.1")
-config.bind("H", "back")
-config.bind("L", "forward")
-
-config.bind("J", "zoom-out")
-config.bind("K", "zoom-in")
-
-config.unbind("gJ")
-config.unbind("gK")
-config.bind("gj", "tab-move -")
-config.bind("gk", "tab-move +")
-config.bind("<", "tab-move -")
-config.bind(">", "tab-move +")
-config.bind("<Ctrl+H>", "tab-prev")
-config.bind("<Ctrl+L>", "tab-next")
-# reload config
-config.bind("<Ctrl+r>", "config-source")
-config.bind("x", "tab-close")
-config.bind("X", "undo")
-
-config.bind("yf", "hint links yank")
-config.bind("yt", "tab-clone")
-
-config.bind("p", "open -- {clipboard}")
-config.bind("P", "open --bg {clipboard}")
-
-config.bind("o", "cmd-set-text -s :open -s")
-config.bind("O", "cmd-set-text -s :open -t -s")
-config.bind("<Ctrl-p>", "cmd-set-text -s :tab-select")
-
-# general
-config.bind("za", "jseval -qf ~/.config/qutebrowser/js/general-alert.js")
-config.bind("zl", "jseval -qf ~/.config/qutebrowser/js/general-save.js")
-config.bind("zu", "jseval -qf ~/.config/qutebrowser/js/general-unsave.js")
-config.bind("zc", "jseval -qf ~/.config/qutebrowser/js/general-copy.js")
-config.bind("zs", "jseval -qf ~/.config/qutebrowser/js/general-sort.js")
-config.bind("zh", "jseval -qf ~/.config/qutebrowser/js/general-home.js")
-config.bind("zf", "jseval -qf ~/.config/qutebrowser/js/general-filter.js")
-config.bind("zx", "jseval -qf ~/.config/qutebrowser/js/close-popup.js")
-
-# Bindings for insert mode
-config.bind("<Alt-Backspace>", "fake-key <Ctrl-Backspace>", mode="insert")
-config.bind("<Ctrl-a>", "fake-key <Home>", mode="insert")
-config.bind("<Ctrl-e>", "fake-key <End>", mode="insert")
-config.bind("<Ctrl-d>", "fake-key <Delete>", mode="insert")
-config.bind("<Ctrl-h>", "fake-key <Backspace>", mode="insert")
-config.bind("<Ctrl-k>", "fake-key <Shift-End> ;; fake-key <Delete>", mode="insert")
-config.bind("<Ctrl-u>", "fake-key <Shift+Home> ;; fake-key <BackSpace>", mode="insert")
-config.bind("<Ctrl-f>", "fake-key <Right>", mode="insert")
-config.bind("<Ctrl-b>", "fake-key <Left>", mode="insert")
-config.bind("<Ctrl-n>", "fake-key <Down>", mode="insert")
-config.bind("<Ctrl-p>", "fake-key <Up>", mode="insert")
-config.bind(
-    "<Escape>",
-    "spawn fcitx5-remote -c Default ;; mode-leave ;; fake-key <Escape>",
-    mode="insert",
-)
-# config.bind('<Escape>', 'mode-leave ;; fake-key <Escape>', mode='insert')
-# config.bind('<Ctrl-[>', 'spawn fcitx5-remote -t ;; mode-leave', mode='insert')
-
-# Unbindings for passthrough mode
-# config.bind("<Ctrl-x>", "mode-leave", mode="passthrough")
-config.unbind("<Ctrl-v>")
-config.bind("<Ctrl-[>", "mode-leave", mode="insert")
-
-# Leader key: `;`
-config.bind(
-    ";;",
-    "config-cycle statusbar.show always never;;config-cycle tabs.show always switching",
-)
-config.bind(";c", "config-cycle colors.webpage.bg '#1d2021' 'white'")
-config.bind(";p", "config-cycle content.proxy system http://localhost:7890/")
-
-# Leader key: `,`
-c.hints.selectors["code"] = [
-    # Selects all code tags whose direct parent is not a pre tag
-    ":not(pre) > code",
-    "pre",
-]
-config.bind(",c", "hint code userscript code_select")
-config.bind(
-    ",d", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/dark.css"
-)
-config.bind(
-    ",l", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/sepia.css"
-)
-config.bind(",,", 'set content.user_stylesheets ""')
-config.bind(",t", "tab-give")
-config.bind(",g", "spawn --userscript git2code")
-config.bind(",r", "spawn --userscript readability-js")
-config.bind(",s", "hint links userscript doi")
-config.bind(",f", "hint links tab")
-config.bind(",o", "cmd-set-text -s :open -w")
-config.bind(",e", "open -t https://www.deepl.com/translator")
-config.bind(",b", "open -t https://bilibili.com")
-config.bind(",n", "open -t https://www.nivod.tv")
-config.bind(",m", "open -t https://mail.google.com")
-config.bind(",v", "open -t https://v2ex.com")
-config.bind(",z", "spawn --userscript zotero")
-config.bind(",Z", "hint links userscript zotero")
-
-# Bindings for cmd
-# Leader key: `\`
-
-config.bind("\\d", "help")
-config.bind("\\h", "history")
-config.bind("\\m", "messages")
-config.bind("\\r", "config-source")
-config.bind("\\u", "adblock-update")
+config.source("bindings.py")
+config.source("search.py")
+config.source("privacy.py")
+config.source("blocks.py")
+config.source("themes/pyqute/draw.py")
