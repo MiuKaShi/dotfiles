@@ -74,6 +74,7 @@ alias mamba="micromamba"
 # foam
 alias fo10="source $FOAM_INSTALL/OpenFOAM-10/etc/bashrc"
 alias fo11="source $FOAM_INSTALL/OpenFOAM-11/etc/bashrc"
+alias fo24="source $FOAM_INSTALL/OpenFOAM-v2406/etc/bashrc"
 
 # kitty
 alias icat="kitty +kitten icat"

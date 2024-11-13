@@ -1,5 +1,5 @@
+# Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
-
 
 # fonts
 font_name = "16pt MonoLisa Nerd Font"
