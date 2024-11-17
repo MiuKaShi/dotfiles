@@ -10,6 +10,6 @@ case $MONITOR_ENV in
         # QT_SCALE_FACTOR=1.5 ipe $@
         ;;
     "note")
-        QT_SCALE_FACTOR=1.0 ipe $@
+        QT_SCALE_FACTOR=1.5 ipe $@
         ;;
 esac
