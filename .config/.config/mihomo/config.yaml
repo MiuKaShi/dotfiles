@@ -202,20 +202,6 @@ proxies:
       name: '上海',
       type: vmess,
       server: 110.42.102.24,
-      port: 443,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: ws,
-      ws-opts: { path: /, headers: { Host: a.189.cn } },
-      ws-path: /,
-      ws-headers: { Host: a.189.cn },
-    }
-  - {
-      name: '浙江',
-      type: vmess,
-      server: 110.42.102.24,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
@@ -237,19 +223,47 @@ proxies:
         },
     }
   - {
-      name: '香港1',
+      name: '浙江',
       type: vmess,
-      server: anyhkhgc.ednovas.org,
-      port: 443,
-      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
+      server: 121.62.28.247,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
       cipher: auto,
       udp: true,
+      network: ws,
+      ws-opts: { path: /, headers: { Host: www.youku.com } },
+      ws-path: /,
+      ws-headers: { Host: www.youku.com },
+    }
+  - {
+      name: '香港1',
+      type: vmess,
+      server: hk1g.wi-fi-ai.com,
+      port: 80,
+      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
+      alterId: 0,
+      cipher: auto,
+      udp: true,
+      network: http,
+      http-opts:
+        {
+          method: GET,
+          path:
+            [
+              /,
+              /TS/recharge/tzUrl.html,
+              /favicon.ico,
+              /i/mobile/greentip.html,
+              /payprod-format/h5/dup_submit,
+            ],
+          headers: { Host: [a.189.cn] },
+        },
     }
   - {
       name: '香港2',
       type: vmess,
-      server: hk1g.wi-fi-ai.com,
+      server: hk2g.wi-fi-ai.com,
       port: 80,
       uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
       alterId: 0,
@@ -297,7 +311,7 @@ proxies:
   - {
       name: '香港4',
       type: vmess,
-      server: spiketelecomhk16t.ednovas.org,
+      server: anyhkhgc.ednovas.org,
       port: 443,
       uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
       alterId: 0,
