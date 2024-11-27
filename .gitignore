@@ -1,13 +1,27 @@
+# env
+.config/.config/x11/xprofile
+
+# fcitx5
+.config/.config/fcitx5/profile
+
 # mpv
 **/mpv/saved-props.json
 
 # frpc
 .config/.config/frpc/frpc.toml
 
+# matlab
+.local/.local/share/applications/mw-simulink.desktop
+.local/.local/share/applications/mw-matlabconnector.desktop
+.local/.local/share/applications/mw-matlab.desktop
+
 # runit
 **/supervise/
 
 # unimportant files
+**/*.cache
+**/*.dir
+**/*.scale
 **/*.pid
 **/*.state
 **/*.log
