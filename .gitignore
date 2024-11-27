@@ -11,8 +11,6 @@
 .config/.config/frpc/frpc.toml
 
 # matlab
-.local/.local/share/applications/mw-simulink.desktop
-.local/.local/share/applications/mw-matlabconnector.desktop
 .local/.local/share/applications/mw-matlab.desktop
 
 # runit
@@ -28,3 +26,5 @@
 **/*.db
 **/*.sqlite
 **/*.o
+.local/.local/share/applications/mw-matlabconnector.desktop
+.local/.local/share/applications/mw-simulink.desktop
