@@ -1,6 +1,3 @@
-# env
-.config/.config/x11/xprofile
-
 # fcitx5
 .config/.config/fcitx5/profile
 
@@ -12,6 +9,8 @@
 
 # matlab
 .local/.local/share/applications/mw-matlab.desktop
+.local/.local/share/applications/mw-matlabconnector.desktop
+.local/.local/share/applications/mw-simulink.desktop
 
 # runit
 **/supervise/
@@ -26,5 +25,3 @@
 **/*.db
 **/*.sqlite
 **/*.o
-.local/.local/share/applications/mw-matlabconnector.desktop
-.local/.local/share/applications/mw-simulink.desktop

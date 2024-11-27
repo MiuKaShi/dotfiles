@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# This file runs when a DM logs you into a graphical session.
+# If you use startx/xinit like a Chad, this file will also be sourced.
+
+#pre-setting
+[ -f "$HOME/.device_env" ] && device_env=$(cat "$HOME/.device_env")
+case $device_env in
+    lab)
+        labscreen # lap
+        ;;
+    home)
+        homescreen # NUC
+        ;;
+    *)
+        msi-isw &
+        notescreen # laptop
+        ;;
+esac
+setbg & # set the background
+xclick &
+
+autostart="watchfile unclutter xplugd mpd"
+
+for program in $autostart; do
+    pidof -sx "$program" || "$program" &
+done >/dev/null 2>&1
+
+# run user services (run under current user) using runsvdir
+runsvdir -P ~/.runit/runsvdir &
+runsvdir_pid=$!
+
+# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+# [ -n "$xrdbpid" ] && wait "$xrdbpid"
