@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 beautify_scaned_pdf() {
     # Get the absolute path of the input file.

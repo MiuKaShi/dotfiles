@@ -1,12 +1,12 @@
 #!/bin/bash
 
-HOSTNAME=$(cat ~/.rdphosts | awk '{print $1}' | dmenu -i -p "Please Select Host") || exit 0
-
-HOSTINFO=$(cat ~/.rdphosts | grep $HOSTNAME)
+RDPHOSTS=$HOME/.rdphosts
+HOSTNAME=$(awk '{print $1}' "$RDPHOSTS" | dmenu -i -p "Please Select Host") || exit 0
+HOSTINFO=$(grep "$HOSTNAME" "$RDPHOSTS")
 
 SCALE=$(printf "140\n180\n100" | dmenu -p "Choose Scale:")
 
-read IP NET USER PASS <<<$(echo $HOSTINFO | awk '{print $2, $3, $4, $5}')
+read -r IP NET USER PASS <<<"$(echo "$HOSTINFO" | awk '{print $2, $3, $4, $5}')"
 
 HOME="/home/$(whoami)"
 
@@ -21,7 +21,7 @@ xfreerdp \
     -compression \
     -themes \
     /bpp:32 \
-    /scale:$SCALE \
+    /scale:"$SCALE" \
     -grab-keyboard \
     /gfx:rfx,avc420,avc444 \
     /rfx-mode:video \
@@ -31,6 +31,6 @@ xfreerdp \
     /auto-reconnect-max-retries:3 \
     /audio-mode:0 \
     /sound:sys:pulse \
-    /u:$USER /v:$IP /p:$PASS /network:$NET /drive:home,$HOME &
+    /u:"$USER" /v:"$IP" /p:"$PASS" /network:"$NET" /drive:home,"$HOME" &
 # /f \
 # /log-level:OFF \
