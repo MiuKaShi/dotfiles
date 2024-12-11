@@ -16,7 +16,7 @@ pp $HOME/papers
 mn /mnt
 tn $HOME/Documents/Tech_notes
 ppt $HOME/Doctors/Presentation_PPT
-dmt $HOME/Documents/Engineering_tools_tutorial
-dml $HOME/Documents/Engineering_languages_tutorial
+dmt $HOME/Documents/Engineering_tools
+dml $HOME/Documents/Engineering_languages
 sc $HOME/.local/bin
 src $HOME/.local/src
