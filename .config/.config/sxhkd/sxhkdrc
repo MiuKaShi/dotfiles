@@ -1,6 +1,6 @@
 #touchbar
 super + ctrl + space
-	touchpadtoggle
+		touchpadtoggle
 
 #dwm
 mod3 + q
@@ -10,10 +10,10 @@ mod3 + space
     dwmc zoom
 
 mod3 + x
-	xprop-notify
+		xprop-notify
 
 mod3 + f
-	fd-search
+		fd-search
 
 mod3 + b
     rbuku
@@ -22,7 +22,7 @@ mod3 + Return
     $TERMINAL
 
 mod3 + d
-	rofi -show drun
+		rofi -show drun
 
 mod3 + z
     zotero
