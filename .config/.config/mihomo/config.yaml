@@ -236,78 +236,9 @@ proxies:
       ws-path: /,
       ws-headers: { Host: www.youku.com },
     }
-  - {
-      name: '香港1',
-      type: vmess,
-      server: hk1g.wi-fi-ai.com,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [a.189.cn] },
-        },
-    }
-  - {
-      name: '香港2',
-      type: vmess,
-      server: hk2g.wi-fi-ai.com,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [a.189.cn] },
-        },
-    }
-  - {
-      name: '香港3',
-      type: vmess,
-      server: hk2g.wi-fi-ai.com,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [a.189.cn] },
-        },
-    }
+  - { name: '香港1', type: vless, server: rm-lite-hk-10.409648.xyz, port: 37735, uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: qq, servername: content.cdp.bethesda.net, reality-opts: { public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU, short-id: 67ed030d } }
+  - { name: '香港2', type: vless, server: rm-lite-hk-13.409648.xyz, port: 37735, uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: qq, servername: content.cdp.bethesda.net, reality-opts: { public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU, short-id: 67ed030d } }
+  - { name: '香港3', type: vless, server: rm-lite-hk-15.409648.xyz, port: 37735, uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: qq, servername: content.cdp.bethesda.net, reality-opts: { public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU, short-id: 67ed030d } }
   - {
       name: '香港4',
       type: vmess,
@@ -476,48 +407,8 @@ proxies:
       cipher: auto,
       udp: true,
     }
-  - {
-      name: '日本1',
-      type: vmess,
-      server: jp25g.wi-fi-ai.com,
-      port: 80,
-      uuid: bacb48e6-3dd2-4f15-b4ed-efabe501f77b,
-      alterId: 0,
-      cipher: auto,
-      udp: true,
-      network: http,
-      http-opts:
-        {
-          method: GET,
-          path:
-            [
-              /,
-              /TS/recharge/tzUrl.html,
-              /favicon.ico,
-              /i/mobile/greentip.html,
-              /payprod-format/h5/dup_submit,
-            ],
-          headers: { Host: [a.189.cn] },
-        },
-    }
-  - {
-      name: '日本2',
-      type: vless,
-      server: rm-jp-04.409648.xyz,
-      port: 20725,
-      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
-      udp: true,
-      tls: true,
-      skip-cert-verify: false,
-      flow: xtls-rprx-vision,
-      client-fingerprint: qq,
-      servername: content.cdp.bethesda.net,
-      reality-opts:
-        {
-          public-key: hceZHd9X9FSbWGXGgm3OWN-4Au26rrsriTcyHw5M3VU,
-          short-id: 0102ac4e,
-        },
-    }
+  - { name: '日本1', type: vless, server: rm-lite-jp-01.409648.xyz, port: 37735, uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: qq, servername: content.cdp.bethesda.net, reality-opts: { public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU, short-id: 67ed030d } }
+  - { name: '日本2', type: vless, server: rm-lite-jp-02.409648.xyz, port: 37735, uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406, udp: true, tls: true, skip-cert-verify: false, flow: xtls-rprx-vision, client-fingerprint: qq, servername: content.cdp.bethesda.net, reality-opts: { public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU, short-id: 67ed030d } }
   - {
       name: '日本3',
       type: vless,
