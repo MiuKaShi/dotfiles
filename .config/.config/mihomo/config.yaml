@@ -175,7 +175,7 @@ proxies:
   - {
       name: '日本',
       type: ss,
-      server: 34.97.26.135,
+      server: 47.245.10.71,
       port: 47451,
       cipher: chacha20-ietf-poly1305,
       password: 'ZKxwmr123',
