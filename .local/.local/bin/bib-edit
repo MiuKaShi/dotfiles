@@ -20,4 +20,3 @@ fi
 
 # Open the .bib file with nvim at the citation key line
 $TERMINAL -e $EDITOR +${LINE_NUM} ${BIBFILE}
-
