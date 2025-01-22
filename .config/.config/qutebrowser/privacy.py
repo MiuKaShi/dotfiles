@@ -1,5 +1,6 @@
 # privacy
 c.content.cookies.accept = "all"
+c.content.geolocation = False
 c.content.media.audio_capture = "ask"
 c.content.media.video_capture = "ask"
 c.content.tls.certificate_errors = "ask"
@@ -27,12 +28,23 @@ url_dict = {
         "qute://*/*",
         "chrome://*/*",
     ],
+    "clipboard": [
+        "*://github.com/*",
+        "*://*.stackexchange.com/*",
+        "*://outlook.office.com/*",
+    ],
+    "mailto": [
+        "*://outlook.office.com/*",
+        "*://calendar.google.com/*",
+        "*://mail.google.com/*",
+    ],
     "image": [
         "chrome-devtools://*",
         "devtools://*",
     ],
     "cookie": [
         "*://*.google.com/*",
+        "*://*.office.com/*",
         "*://*.reddit.com/*",
         "*://*.youtube.com/*",
         "*://*.scienceirect.com/*",
@@ -47,6 +59,12 @@ url_dict = {
 
 for url in url_dict.get("js"):
     config.set("content.javascript.enabled", True, url)
+
+for url in url_dict.get("clipboard"):
+    config.set("content.javascript.clipboard", "access", url)
+
+for url in url_dict.get("mailto"):
+    config.set("content.register_protocol_handler", True, url)
 
 for url in url_dict.get("image"):
     config.set("content.images", True, url)
