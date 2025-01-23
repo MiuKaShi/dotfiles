@@ -17,7 +17,7 @@ prefs.autosave_interval = 300 -- 5 minutes
 prefs.styles = { "basic", "color", "symbol", "latex" }
 
 -- fix https://github.com/otfried/ipe/issues/359
--- prefs.freeze_in_latex = true
+prefs.freeze_in_latex = true
 
 -- shortcuts
 shortcuts.mode_select = "1"
