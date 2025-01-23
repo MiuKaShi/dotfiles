@@ -1,6 +1,7 @@
 # privacy
-c.content.cookies.accept = "all"
+c.content.cookies.accept = "no-3rdparty"
 c.content.geolocation = False
+c.content.canvas_reading = False
 c.content.media.audio_capture = "ask"
 c.content.media.video_capture = "ask"
 c.content.tls.certificate_errors = "ask"
@@ -32,11 +33,13 @@ url_dict = {
         "*://github.com/*",
         "*://*.stackexchange.com/*",
         "*://outlook.office.com/*",
+        "*://mail.yahoo.co.jp/*",
     ],
     "mailto": [
         "*://outlook.office.com/*",
         "*://calendar.google.com/*",
         "*://mail.google.com/*",
+        "*://mail.yahoo.co.jp/*",
     ],
     "image": [
         "chrome-devtools://*",
