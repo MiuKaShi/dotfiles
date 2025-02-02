@@ -21,8 +21,8 @@ convert_images_to_video() {
         -vframes "$end" \
         -vcodec libx264 \
         -crf 25 \
-        -pix_fmt yuv420p \
         "vid-$start-$end.mp4"
+    # -pix_fmt yuv420p \
 }
 
 # Prompt the user for input.

@@ -1,5 +1,5 @@
 -- ipelets & scripts config file: ~/.local/share/ipe
-prefs.external_editor = "neovide %s"
+prefs.external_editor = "emacsclient -c -a emacs %s -c"
 prefs.max_zoom = 200
 prefs.tex_engine = "xetex"
 prefs.spell_check = false
