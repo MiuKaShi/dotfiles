@@ -69,8 +69,9 @@ alias wake-nuc="wol -p 9 94:c6:91:17:03:f9"
 alias wget="wget --continue --progress=bar --timestamping"
 
 # foam
-alias of11="source $FOAM_INSTALL/OpenFOAM-11/etc/bashrc"
-alias of2406="source $FOAM_INSTALL/OpenFOAM-v2406/etc/bashrc"
+alias of12="source /opt/OpenFOAM/OpenFOAM-12/etc/bashrc"
+alias of2406="source /opt/OpenFOAM/OpenFOAM-v2406/etc/bashrc"
+alias paraFoam="paraFoam -builtin"
 
 # kitty
 alias icat="kitty +kitten icat"
