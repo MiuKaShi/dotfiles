@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source ~/.config/mamba/mamba_env.sh
+micromamba activate spyder_env
+spyder $@
