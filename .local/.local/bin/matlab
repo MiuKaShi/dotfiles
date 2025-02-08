@@ -5,7 +5,7 @@ matlab="/home/miuka/.local/MATLAB/R2024b/bin/matlab"
 # export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 #This sets us up for hardware-accelerated opengl rendering
 # export LD_PRELOAD=/lib64/libfreetype.so
-# export MATLAB_LOG_DIR="/home/miuka/.cache"
+export MATLAB_LOG_DIR="/tmp"
 #This reportedly helps with a garbled UI, but doesn't appear to be necessary with openjdk 8
 #export J2D_D3D=false
 
