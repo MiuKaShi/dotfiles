@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DOCINFO=$(printf "APDL\nGMSH" | dmenu -p "Doc:")
+
+case $DOCINFO in
+    *APDL*)
+        DOCPATH=/home/miuka/Documents/Engineering_tools/APDL/help_doc/ans_apdl_v182
+        firefox $DOCPATH/Hlp_C_CmdTOC.html
+        ;;
+    *GMSH*)
+        DOCPATH=/home/miuka/Documents/Engineering_tools/APDL/help_doc/ans_apdl_v182
+        ;;
+esac
