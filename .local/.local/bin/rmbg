@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Description: remove background from image
+file=$(readlink -f "$1")
+name=$(basename "$file")
+fname="${name%.*}"
+ext="${file##*.}"
+
+magick $file -fuzz 10% -transparent white "$fname"_nonbg."$ext"
+mogrify -shave 5x5 "$fname"_nonbg."$ext" || exit 1
