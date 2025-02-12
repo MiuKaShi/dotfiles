@@ -1,0 +1,11 @@
+*.bmp
+*.dat
+*.jpg
+*.mat
+*.png
+*.gif
+.*
+Thumbs.db
+desktop.ini
+tech_notes
+~*
