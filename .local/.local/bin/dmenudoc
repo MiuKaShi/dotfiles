@@ -4,15 +4,15 @@ DOCINFO=$(printf "APDL\nElement\nTheory" | dmenu -p "Docs:")
 
 case $DOCINFO in
     *APDL*)
-        DOCPATH=$HOME/Documents/Engineering_tools/APDL/help_doc/ans_apdl_v182
+        DOCPATH=$HOME/Documents/Engineering_tools/Ansys_Doc_v182/ans_apdl
         firefox "$DOCPATH"/Hlp_C_CmdTOC.html
         ;;
     *Element*)
-        DOCPATH=$HOME/Documents/Engineering_tools/Workbench/help_doc/ans_elem_v182
+        DOCPATH=$HOME/Documents/Engineering_tools/Ansys_Doc_v182/ans_elem
         firefox "$DOCPATH"/Hlp_E_ElemTOC.html
         ;;
     *Theory*)
-        DOCPATH=$HOME/Documents/Engineering_tools/Workbench/help_doc/ans_thry_v182
+        DOCPATH=$HOME/Documents/Engineering_tools/Ansys_Doc_v182/ans_thry
         firefox "$DOCPATH"/ans_thry.html
         ;;
 esac
