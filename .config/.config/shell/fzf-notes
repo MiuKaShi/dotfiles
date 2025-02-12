@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-FZF_NOTES_DIR="/home/miuka/Documents/Tech_notes"
+FZF_NOTES_DIR="/home/miuka/notes/tech_notes"
 FZF_PREVIEW_BIN="fzf-notes"
-FZF_NOTES_PROMPT="Notes> "
+FZF_NOTES_PROMPT="Tech Notes> "
 FZF_PREVIEW_LINES="12"
 FZF_NOTES_PREVIEW_THRESHOLD="160"
 FZF_NOTES_PREVIEW_WINDOW="nohidden|hidden,down"

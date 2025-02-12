@@ -14,7 +14,7 @@ bb $HOME/books
 pj $HOME/Projects
 pp $HOME/papers
 mn /mnt
-tn $HOME/Documents/Tech_notes
+tn $HOME/notes/tech_notes
 ppt $HOME/Doctors/Presentation_PPT
 dmt $HOME/Documents/Engineering_tools
 dml $HOME/Documents/Engineering_languages
