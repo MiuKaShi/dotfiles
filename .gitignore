@@ -1,5 +1,6 @@
 # fcitx5
 .config/.config/fcitx5/profile
+.config/.config/fcitx5/cached_layouts
 
 # mpv
 **/mpv/saved-props.json

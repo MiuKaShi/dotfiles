@@ -1,0 +1,15 @@
+# DOCS https://neovide.dev/config-file.html#available-settings
+
+frame = "full"
+no-multigrid = true # looks a bit off with `nvim-satellite`
+title-hidden = true
+tabs = false
+mouse-cursor-icon = "i-beam"
+
+[font]
+normal = ["MonoLisa Nerd Font"]
+size = 20
+
+
+[font.features]
+"MonoLisa Nerd Font" = [ "+ss01", "+ss07", "+ss11", "-calt", "+ss09", "+ss02", "+ss14" ]

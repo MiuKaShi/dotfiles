@@ -3,7 +3,7 @@
 DOCINFO=$(printf "APDL\nElement\nTheory" | dmenu -p "Docs:")
 
 case $DOCINFO in
-    *APDL*)
+    "APDL")
         DOCPATH=$HOME/Documents/Engineering_tools/Ansys_Doc_v182/ans_apdl
         firefox "$DOCPATH"/Hlp_C_CmdTOC.html
         ;;
