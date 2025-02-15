@@ -1,7 +1,7 @@
 # privacy
 c.content.cookies.accept = "no-3rdparty"
 c.content.geolocation = False
-c.content.canvas_reading = False
+c.content.canvas_reading = True
 c.content.media.audio_capture = "ask"
 c.content.media.video_capture = "ask"
 c.content.tls.certificate_errors = "ask"

@@ -1,7 +1,7 @@
 conky.config = {
 --===Settings=================================================
 	use_xft = true,
-	font = 'Ubuntu:size=11',
+	font = 'monospace:size=11',
 	xftalpha = 0.2,
 	text_buffer_size = 256,
 --############################################################
