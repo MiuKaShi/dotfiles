@@ -68,9 +68,13 @@ case $monitor_name in
         lab_dpi
         # 显卡设置(nvidia setting first: to enable forcecomposition)
         nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-        xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources
         # rofi setting
         ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
+        # set xresources
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
+        # Ensure that xrdb has finished running before moving on to start the WM/DE.
+        # xrdbpid=$!
+        # [ -n "$xrdbpid" ] && wait "$xrdbpid"
         ;;
     *328P6VU* | *T278Q*)
         # 显卡设置(nvidia setting first: to enable forcecomposition)
@@ -97,12 +101,16 @@ case $monitor_name in
             --output DP1 --off \
             --output HDMI1 --off \
             --output VIRTUAL1 --off
-        xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources
         # ICC setting
         dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
         dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
         # rofi setting
         ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
+        # set xresources
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
+        # Ensure that xrdb has finished running before moving on to start the WM/DE.
+        # xrdbpid=$!
+        # [ -n "$xrdbpid" ] && wait "$xrdbpid"
         ;;
     *)
         xrandr \
@@ -113,8 +121,12 @@ case $monitor_name in
         sudo brillo -s intel_backlight -S 50
         # dpi_env
         note_dpi
-        xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/xresources
         # rofi setting
         ln -sf $HOME/.config/rofi/notebook.rasi $HOME/.config/rofi/config.rasi
+        # set xresources
+        xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/xresources
+        # Ensure that xrdb has finished running before moving on to start the WM/DE.
+        # xrdbpid=$!
+        # [ -n "$xrdbpid" ] && wait "$xrdbpid"
         ;;
 esac

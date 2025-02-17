@@ -44,13 +44,23 @@ disp_setting() {
 home_dpi
 disp_setting
 
-xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/homexresources
 # ICC setting
 dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
 dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
+
 # rofi setting
-ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
+ln -sf "$HOME"/.config/rofi/display.rasi "$HOME"/.config/rofi/config.rasi
+
 # set wallpaper
 # Location of link to wallpaper link.
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
 xwallpaper --zoom "$bgloc"
+
+# set xresources
+xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources &
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+# xrdbpid=$!
+# [ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+# set keybinding
+remaps &

@@ -29,7 +29,3 @@ done >/dev/null 2>&1
 # run user services (run under current user) using runsvdir
 runsvdir -P ~/.runit/runsvdir &
 runsvdir_pid=$!
-
-# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
-# Ensure that xrdb has finished running before moving on to start the WM/DE.
-# [ -n "$xrdbpid" ] && wait "$xrdbpid"

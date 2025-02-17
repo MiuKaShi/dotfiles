@@ -34,6 +34,10 @@ xrandr \
 lab_dpi
 # 显卡设置(nvidia setting first: to enable forcecomposition)
 nvidia-settings --assign "CurrentMetaMode=DPY-2: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
-xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/displayset/labxresources
 # rofi setting
 ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
+# set xresources
+xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
+# Ensure that xrdb has finished running before moving on to start the WM/DE.
+# xrdbpid=$!
+# [ -n "$xrdbpid" ] && wait "$xrdbpid"
