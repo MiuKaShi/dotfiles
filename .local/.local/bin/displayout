@@ -45,9 +45,6 @@ lab_others() {
     ln -sf "$HOME"/.config/rofi/display.rasi "$HOME"/.config/rofi/config.rasi
     # set xresources
     xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
-    # Ensure that xrdb has finished running before moving on to start the WM/DE.
-    # xrdbpid=$!
-    # [ -n "$xrdbpid" ] && wait "$xrdbpid"
 }
 
 home_dpi_env() {
@@ -92,9 +89,6 @@ home_others() {
     ln -sf "$HOME"/.config/rofi/display.rasi "$HOME"/.config/rofi/config.rasi
     # set xresources
     xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
-    # Ensure that xrdb has finished running before moving on to start the WM/DE.
-    # xrdbpid=$!
-    # [ -n "$xrdbpid" ] && wait "$xrdbpid"
 }
 
 note_dpi_env() {
