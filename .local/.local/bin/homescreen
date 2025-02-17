@@ -57,7 +57,7 @@ bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
 xwallpaper --zoom "$bgloc"
 
 # set xresources
-xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources &
+xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 # xrdbpid=$!
 # [ -n "$xrdbpid" ] && wait "$xrdbpid"

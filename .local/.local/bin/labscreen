@@ -37,7 +37,7 @@ nvidia-settings --assign "CurrentMetaMode=DPY-2: nvidia-auto-select @2560x1440 +
 # rofi setting
 ln -sf $HOME/.config/rofi/display.rasi $HOME/.config/rofi/config.rasi
 # set xresources
-xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
+xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 # xrdbpid=$!
 # [ -n "$xrdbpid" ] && wait "$xrdbpid"

@@ -1,0 +1,245 @@
+#! /bin/sh
+
+# unset LIBVA_DRIVER_NAME VDPAU_DRIVER DRI_PRIME
+# export LIBVA_DRIVER_NAME=iHD
+# export VDPAU_DRIVER=va_gl
+
+dpi_env="$HOME/.config/shell/hidpi"
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+
+lab_dpi_env() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for lab
+export MONITOR_ENV=lab
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=1.5
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=132
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
+
+lab_disp_layout() {
+    xrandr \
+        --fb 4000x2560 \
+        --output DP-3 \
+        --pos 2560x0 \
+        --rotate left \
+        --output DP-0 --primary \
+        --mode 2560x1440 \
+        --pos 0x540 \
+        --rotate normal \
+        --panning 1440x2560+2560+0 \
+        --output DP-1 --off \
+        --output DP-2 --off
+    # 显卡设置(nvidia setting first: to enable forcecomposition)
+    nvidia-settings --assign "CurrentMetaMode=DPY-2: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+}
+
+lab_others() {
+    # rofi setting
+    ln -sf "$HOME"/.config/rofi/display.rasi "$HOME"/.config/rofi/config.rasi
+    # set xresources
+    xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
+    # Ensure that xrdb has finished running before moving on to start the WM/DE.
+    # xrdbpid=$!
+    # [ -n "$xrdbpid" ] && wait "$xrdbpid"
+}
+
+home_dpi_env() {
+    cat >"$dpi_env" <<EOF
+#DPI setting for home
+export MONITOR_ENV=home
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=2
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=144
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+}
+
+home_disp_layout() {
+    xrandr --dpi 138 \
+        --fb 6000x3840 \
+        --output HDMI-A-0 \
+        --mode 2560x1440 \
+        --rate 60 \
+        --scale 1.5x1.5 \
+        --pos 3840x0 \
+        --rotate right \
+        --output DisplayPort-0 --primary \
+        --mode 3840x2160 \
+        --rate 60 \
+        --scale 1x1 \
+        --pos 0x340 \
+        --rotate normal \
+        --output DisplayPort-1 --off
+}
+
+home_others() {
+    # ICC setting
+    dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
+    dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
+    # rofi setting
+    ln -sf "$HOME"/.config/rofi/display.rasi "$HOME"/.config/rofi/config.rasi
+    # set xresources
+    xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
+    # Ensure that xrdb has finished running before moving on to start the WM/DE.
+    # xrdbpid=$!
+    # [ -n "$xrdbpid" ] && wait "$xrdbpid"
+}
+
+note_dpi_env() {
+    case $monitor_name in
+        *EV2795*)
+            cat >"$dpi_env" <<EOF
+#DPI setting for lab
+export MONITOR_ENV=lab
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=1.5
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=132
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+            ;;
+        *328P6VU* | *T278Q*)
+            cat >"$dpi_env" <<EOF
+#DPI setting for home
+export MONITOR_ENV=home
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=2
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=0
+export QT_FONT_DPI=144
+#for GDK3
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+EOF
+            ;;
+        *)
+            cat >"$dpi_env" <<EOF
+#DPI setting for notebook
+export MONITOR_ENV=note
+#for QT5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+#for QT6
+# export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_FONT_DPI=96
+EOF
+            ;;
+    esac
+}
+
+note_disp_layout() {
+    case $monitor_name in
+        *EV2795*)
+            xrandr \
+                --dpi 108 \
+                --fb 4000x2560 \
+                --output HDMI-0 \
+                --pos 2560x0 \
+                --rotate left \
+                --output DP-0 --primary \
+                --mode 2560x1440 \
+                --pos 0x540 \
+                --rotate normal \
+                --panning 1440x2560+2560+0 \
+                --output DP1 --off \
+                --output eDP1 --off
+            # 显卡设置(nvidia setting first: to enable forcecomposition)
+            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+            ;;
+        *328P6VU* | *T278Q*)
+            # 显卡设置(nvidia setting first: to enable forcecomposition)
+            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +0+340 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {AllowGSYNCCompatible=On, ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+            xrandr --dpi 138 \
+                --fb 6000x3840 \
+                --output HDMI-0 \
+                --mode 2560x1440 \
+                --rate 60 \
+                --scale 1.5x1.5 \
+                --pos 3840x0 \
+                --rotate right \
+                --output DP-0 --primary \
+                --mode 3840x2160 \
+                --rate 60 \
+                --scale 1x1 \
+                --pos 0x340 \
+                --rotate normal \
+                --output DP-1 --off \
+                --output eDP1 --off \
+                --output DP1 --off \
+                --output HDMI1 --off \
+                --output VIRTUAL1 --off
+            ;;
+        *)
+            xrandr \
+                --dpi 96 \
+                --fb 1920x1080 \
+                --output eDP1 --primary \
+                --mode 1920x1080
+            sudo brillo -s intel_backlight -S 50
+            ;;
+    esac
+}
+
+note_others() {
+    case $monitor_name in
+        *EV2795*)
+            # rofi setting
+            ln -sf "$HOME"/.config/rofi/notebook.rasi "$HOME"/.config/rofi/config.rasi
+            xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/lab_xresources
+            ;;
+        *328P6VU* | *T278Q*)
+            # ICC setting
+            dispwin -d1 -I /usr/share/color/icc/colord/PHL328P.icc &
+            dispwin -d2 -I /usr/share/color/icc/colord/T278Q.icc &
+            # rofi setting
+            ln -sf "$HOME"/.config/rofi/notebook.rasi "$HOME"/.config/rofi/config.rasi
+            xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
+            ;;
+        *)
+            msi-isw &
+            # rofi setting
+            ln -sf "$HOME"/.config/rofi/notebook.rasi "$HOME"/.config/rofi/config.rasi
+            xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/xresources
+            ;;
+    esac
+}
+
+[ -f "$HOME/.device_env" ] && device_env=$(cat "$HOME/.device_env")
+
+case $device_env in
+    lab)
+        lab_dpi_env
+        lab_disp_layout
+        lab_others
+        ;;
+    home)
+        home_dpi_env
+        home_disp_layout
+        home_others
+        ;;
+    *)
+        monitor_name=$(xplugd -p | grep -w 'Model\s*:' | cut -d ':' -f 2 | head -n -1)
+        note_dpi_env
+        note_disp_layout
+        note_others
+        ;;
+esac
+
+# update wallpaper
+xwallpaper --zoom "$bgloc"
