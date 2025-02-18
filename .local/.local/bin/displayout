@@ -36,6 +36,9 @@ lab_disp_layout() {
         --panning 1440x2560+2560+0 \
         --output DP-1 --off \
         --output DP-2 --off
+}
+
+lab_graphic_setting() {
     # 显卡设置(nvidia setting first: to enable forcecomposition)
     nvidia-settings --assign "CurrentMetaMode=DPY-2: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
 }
@@ -153,12 +156,8 @@ note_disp_layout() {
                 --panning 1440x2560+2560+0 \
                 --output DP1 --off \
                 --output eDP1 --off
-            # 显卡设置(nvidia setting first: to enable forcecomposition)
-            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
             ;;
         *328P6VU* | *T278Q*)
-            # 显卡设置(nvidia setting first: to enable forcecomposition)
-            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +0+340 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {AllowGSYNCCompatible=On, ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
             xrandr --dpi 138 \
                 --fb 6000x3840 \
                 --output HDMI-0 \
@@ -185,7 +184,19 @@ note_disp_layout() {
                 --fb 1920x1080 \
                 --output eDP1 --primary \
                 --mode 1920x1080
-            sudo brillo -s intel_backlight -S 50
+            ;;
+    esac
+}
+
+note_graphic_setting() {
+    case $monitor_name in
+        *EV2795*)
+            # 显卡设置(nvidia setting first: to enable forcecomposition)
+            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @2560x1440 +0+540 {ViewPortIn=2560x1440, ViewPortOut=2560x1440+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @1440x2560 +2560+0 {ViewPortIn=1440x2560, ViewPortOut=2560x1440+0+0, Rotation=90, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
+            ;;
+        *328P6VU* | *T278Q*)
+            # 显卡设置(nvidia setting first: to enable forcecomposition)
+            nvidia-settings --assign "CurrentMetaMode=DPY-1: nvidia-auto-select @3840x2160 +0+340 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DPY-0: nvidia-auto-select @2160x3840 +3840+0 {AllowGSYNCCompatible=On, ViewPortIn=2160x3840, ViewPortOut=2560x1440+0+0, Rotation=270, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"
             ;;
     esac
 }
@@ -206,6 +217,7 @@ note_others() {
             xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}"/x11/home_xresources
             ;;
         *)
+            sudo brillo -s intel_backlight -S 50
             msi-isw &
             # rofi setting
             ln -sf "$HOME"/.config/rofi/notebook.rasi "$HOME"/.config/rofi/config.rasi
@@ -220,6 +232,7 @@ case $device_env in
     lab)
         lab_dpi_env
         lab_disp_layout
+        lab_graphic_setting
         lab_others
         ;;
     home)
@@ -228,9 +241,11 @@ case $device_env in
         home_others
         ;;
     *)
+        ifinstalled xplugd || exit
         monitor_name=$(xplugd -p | grep -w 'Model\s*:' | cut -d ':' -f 2 | head -n -1)
         note_dpi_env
         note_disp_layout
+        note_graphic_setting
         note_others
         ;;
 esac

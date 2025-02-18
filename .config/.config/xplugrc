@@ -19,12 +19,11 @@ echo "$DISP" | awk '/EV2795/{count++} END {exit !(count == 2)}' && DESC="lab"
 [ -z "$DISP" ] && DESC="notebook"
 
 update_screen() {
-    notescreen
+    displayout # set display layout
     # reload
-    setbg
     kill -HUP "$WMPID"
     # zshrch reoload
-    source "$HOME/.config/zsh/.zshrc"
+    source $HOME/.config/zsh/.zshrc
 }
 
 case "$TYPE,$STATUS,$DESC" in
