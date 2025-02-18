@@ -6,7 +6,9 @@ dl ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 dm ${XDG_DOCUMENTS_DIR:-$HOME/Documents}
 pc ${XDG_PICTURES_DIR:-$HOME/Pictures}
 mm ${XDG_MUSIC_DIR:-$HOME/Music}
+vv ${XDG_VIDEOS_DIR:-$HOME/Videos}
 h $HOME
+hh $HOME/dotfiles
 co $HOME/coding
 nn $HOME/notes
 ww $HOME/works

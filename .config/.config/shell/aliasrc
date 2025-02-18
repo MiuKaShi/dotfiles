@@ -59,7 +59,6 @@ alias \
     bibup="betterbib up -i" \
     cman='man -M /usr/share/man/zh_CN' \
     fiji='fiji --system' \
-    vv="neovide" \
     powerstat="powerstat -d 5 2"
 
 # wake home nuc
