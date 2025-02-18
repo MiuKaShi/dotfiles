@@ -34,6 +34,9 @@ mod3 + shift + BackSpace
     killall screenkey || screenkey --bg-color "#222d32" -s small -f "Apercu Mono" -t 1 --font-color "#BABABA" --mods-mode tux
 
 mod3 + BackSpace
+ 	 	displayout && notify-send -- "Display" "Update display layout"
+
+mod3 + backslash
     find-cursor -l 4 -c "#82a497" -s 150
 
 mod3 + Escape
