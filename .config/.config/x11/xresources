@@ -14,7 +14,6 @@ Xft.rgba: rgb
 
 ! st-color
 /* gruvbox: */
-st.alpha: 0.8
 st.color0: #504945
 st.color1: #ea6962
 st.color2: #a9b665
