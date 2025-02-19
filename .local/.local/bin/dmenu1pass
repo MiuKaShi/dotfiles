@@ -58,7 +58,7 @@ get_item_pw() {
             ;;
     esac
 }
-    
+
 token=$(cat /tmp/.1p_token)
 # if fetching items fails: login and retry:
 if ! items=$(get_items "$token"); then
@@ -77,7 +77,6 @@ selected_index=$(echo "$item_names" | eval "awk '/""${selected_name}""/ {print N
 selected_id=$(echo "$items" | jq -r --arg idx "$selected_index" '.[$idx | tonumber - 1].uuid')
 item_details=$(get_item_details "$token" "$selected_id")
 password=$(get_item_pw "$item_details")
-
 
 item_title=$(echo "$item_details" | jq '.overview.title')
 item_account=$(echo "$item_details" | jq '.overview.ainfo')
