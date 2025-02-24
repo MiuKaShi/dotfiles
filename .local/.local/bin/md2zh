@@ -1,0 +1,28 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+base="${file%.*}"
+mdfile="${base}.md"
+outputmd="${base}_zh.md"
+outputpdf="${base}_zh.pdf"
+
+if [[ ! -f "$mdfile" ]]; then
+    notify-send "No File" "Get markdown file first."
+    exit 1
+fi
+
+translate_md() {
+    notify-send "Translate MD" "English to Chinese..."
+    cd "${HOME}"/.config/script/mdtranslate || exit
+    python "${HOME}"/.config/script/mdtranslate/main.py "$mdfile" "$outputmd"
+}
+
+if [[ ! -f "$outputmd" ]]; then
+    translate_md
+fi
+
+if [[ -f "$outputpdf" ]]; then
+    $TERMINAL -e sioyek "$outputpdf"
+else
+    $TERMINAL -e "$EDITOR" "$outputmd"
+fi

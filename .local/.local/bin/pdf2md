@@ -1,0 +1,37 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+base="${file%.*}"
+output="${base}.md"
+
+DOC2X_TOKEN="$(cat "${HOME}"/.api_keys/DOC2X_KEY)"
+export DOC2X_APIKEY="$DOC2X_TOKEN"
+
+get_md() {
+    notify-send "PDF2MD" "Create file..."
+    python "${HOME}"/.config/script/doc2x.py "$file" "$output"
+    sed -i \
+        -e '/^---/,/^---/d' \
+        -e '/^<!-- Media -->/,/^<!-- Media -->/d' \
+        -e '/^## References/,$ d' \
+        -e '/^## Acknowledgements/,$ d' \
+        -e '/^## Acknowledgments/,$ d' \
+        -e '/^## Nomenclature/,$ d' \
+        -e '/^## Declaration of competing interest/,$ d' \
+        -e '/^## CRediT authorship contribution statement/,$ d' \
+        -e '/^## Funding/,$ d' \
+        -e '/^# /,$!d' \
+        -e 's/^\\\[/$$\
+/' \
+        -e 's/\\\]$/\
+$$/' \
+        -e 's/\\( /$/g' \
+        -e 's/ \\)/$/g' \
+        "$output"
+}
+
+if [[ ! -f "$output" ]]; then
+    get_md
+fi
+
+$TERMINAL -e "$EDITOR" "$output"
