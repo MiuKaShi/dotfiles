@@ -91,10 +91,36 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
                 if end >= len(text):
                     end = len(text)
                 else:
+                    #  尝试第一次匹配
                     match = end_punctuations.search(text, end)
                     if match:
-                        end = match.end()
+                        if match.group() == "." and (
+                            # fix for "et al."
+                            text[max(match.start() - 3, 0) : match.start()] == " al"
+                            # fix for "i.e."
+                            or text[match.end() : match.end() + 2] == "e."
+                            # fix for "Fig. 2" "0.1" "$0. {1}$"
+                            or not any(
+                                char.isalpha()
+                                for char in text[match.end() : match.end() + 2]
+                            )
+                            # TODO: fix "xx. 2.xxx"
+                        ):
+                            # 增加 256 字符后尝试第二次匹配
+                            end = match.end() + 384
+                            if end >= len(text):
+                                end = len(text)
+                            else:
+                                match = end_punctuations.search(text, end)
+                                if match:
+                                    end = match.end()
+                                else:
+                                    # 最大限制为 1024 字符
+                                    end = min(start + 1024, len(text))
+                        else:
+                            end = match.end()
                     else:
+                        # 最大限制为 1024 字符
                         end = min(start + 1024, len(text))
                 segment = text[start:end].strip()
                 if segment:

@@ -2,7 +2,8 @@
 
 file=$(readlink -f "$1")
 base="${file%.*}"
-mdfile="${base}.md"
+mdfile="${base}_txt.md"
+tmpfile="${base}_en.md"
 outputmd="${base}_zh.md"
 outputpdf="${base}_zh.pdf"
 
@@ -13,16 +14,37 @@ fi
 
 translate_md() {
     notify-send "Translate MD" "English to Chinese..."
+    cp -f "$mdfile" "$tmpfile"
+    # remove unnecessary translation parts
+    sed -i \
+        -e '/^## *Reference/I,$ d' \
+        -e '/^## *Acknowledg/I,$ d' \
+        -e '/^## *Nomenclature/I,$ d' \
+        -e '/^## *Declaration of competing/I,$ d' \
+        -e '/^## *CRediT authorship/I,$ d' \
+        -e '/^## *Data availability/I,$ d' \
+        -e '/^## *Statement of original/I,$ d' \
+        -e '/^## Funding/,$ d' \
+        "$tmpfile"
     cd "${HOME}"/.config/script/mdtranslate || exit
-    python "${HOME}"/.config/script/mdtranslate/main.py "$mdfile" "$outputmd"
+    python "${HOME}"/.config/script/mdtranslate/main.py "$tmpfile" "$outputmd"
+    rm -f "$tmpfile"
 }
 
 if [[ ! -f "$outputmd" ]]; then
     translate_md
+    notify-send "Translate MD" "finish!"
 fi
 
-if [[ -f "$outputpdf" ]]; then
-    $TERMINAL -e sioyek "$outputpdf"
-else
-    $TERMINAL -e "$EDITOR" "$outputmd"
-fi
+ACTION=$(printf "MD\nPDF" | dmenu -p "View:")
+case $ACTION in
+    "MD")
+        $TERMINAL -e "$EDITOR" "$outputmd"
+        ;;
+    "PDF")
+        if [[ ! -f "$outputpdf" ]]; then
+            compiler "$outputmd"
+        fi
+        $TERMINAL -e sioyek "$outputpdf"
+        ;;
+esac

@@ -61,7 +61,7 @@ def main():
     input_md_file = sys.argv[1]
     # 输出 MD 文件
     base, _ = os.path.splitext(input_md_file)
-    output_md_file = base + ".md"
+    output_md_file = base + "_txt.md"
 
     if os.path.isfile(output_md_file):
         open_with_editor(output_md_file)
@@ -114,10 +114,23 @@ def main():
             replacement3 = r"$\1$"
             output_markdown = re.sub(pattern3, replacement3, output_markdown)
 
-            # format block math
-            pattern4 = re.compile(r"\\\[\s*(.*?)\s*\\\]", re.DOTALL)
-            replacement4 = r"$$\n\1\n$$"
+            # inline math \mathrm{\;{****}} to ****
+            pattern4 = re.compile(r"\\mathrm\{\s*\\;\{\s*(.*?)\s*\}\s*\}")
+            replacement4 = r"\1"
             output_markdown = re.sub(pattern4, replacement4, output_markdown)
+
+            # inline math \mathrm{****} to ****
+            pattern5 = re.compile(r"\\mathrm\s*\{\s*(.*?)\s*\}")
+            replacement5 = r"\1"
+            output_markdown = re.sub(pattern5, replacement5, output_markdown)
+
+            # format block math
+            pattern6 = re.compile(r"\\\[\s*(.*?)\s*\\\]", re.DOTALL)
+            replacement6 = r"$$\n\1\n$$"
+            output_markdown = re.sub(pattern6, replacement6, output_markdown)
+
+            # remove \;
+            output_markdown = re.sub(r"\\;", "", output_markdown)
 
             # Replace $$$$ with $$\n$$ for better readability
             output_markdown = re.sub(r"\$\$\$\$", "$$\n$$", output_markdown)
