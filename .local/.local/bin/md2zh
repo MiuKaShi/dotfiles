@@ -25,6 +25,7 @@ translate_md() {
         -e '/^## *Data availability/I,$ d' \
         -e '/^## *Statement of original/I,$ d' \
         -e '/^## Funding/,$ d' \
+        -e '/^## Declarations/,$ d' \
         "$tmpfile"
     cd "${HOME}"/.config/script/mdtranslate || exit
     python "${HOME}"/.config/script/mdtranslate/main.py "$tmpfile" "$outputmd"
