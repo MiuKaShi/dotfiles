@@ -1,37 +1,144 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-file=$(readlink -f "$1")
-base="${file%.*}"
-output="${base}.md"
+import os
+import sys
+import re
+import time
+import subprocess
+import requests as rq
 
-DOC2X_TOKEN="$(cat "${HOME}"/.api_keys/DOC2X_KEY)"
-export DOC2X_APIKEY="$DOC2X_TOKEN"
+base_url = "https://v2.doc2x.noedgeai.com"
 
-get_md() {
-    notify-send "PDF2MD" "Create file..."
-    python "${HOME}"/.config/script/doc2x.py "$file" "$output"
-    sed -i \
-        -e '/^---/,/^---/d' \
-        -e '/^<!-- Media -->/,/^<!-- Media -->/d' \
-        -e '/^## References/,$ d' \
-        -e '/^## Acknowledgements/,$ d' \
-        -e '/^## Acknowledgments/,$ d' \
-        -e '/^## Nomenclature/,$ d' \
-        -e '/^## Declaration of competing interest/,$ d' \
-        -e '/^## CRediT authorship contribution statement/,$ d' \
-        -e '/^## Funding/,$ d' \
-        -e '/^# /,$!d' \
-        -e 's/^\\\[/$$\
-/' \
-        -e 's/\\\]$/\
-$$/' \
-        -e 's/\\( /$/g' \
-        -e 's/ \\)/$/g' \
-        "$output"
-}
+api_file = os.path.expanduser("~/.api_keys/DOC2X_KEY")
+if not os.path.isfile(api_file):
+    # print(f"no {api_file} file，exit!")
+    os.system('notify-send "Exit" "API key is not found!"')
+    sys.exit(1)
+with open(api_file, "r", encoding="utf-8") as f:
+    secret = f.read().strip()
 
-if [[ ! -f "$output" ]]; then
-    get_md
-fi
 
-$TERMINAL -e "$EDITOR" "$output"
+def preupload():
+    url = f"{base_url}/api/v2/parse/preupload"
+    headers = {"Authorization": f"Bearer {secret}"}
+    res = rq.post(url, headers=headers)
+    res.raise_for_status()  # Check if HTTP request is successful
+    data = res.json()
+    if data.get("code") == "success":
+        return data["data"]
+    raise Exception(f"get preupload url failed: {data}")
+
+
+def put_file(path: str, url: str):
+    with open(path, "rb") as f:
+        res = rq.put(url, data=f)  # Body is binary file stream
+        res.raise_for_status()  # Check if HTTP request is successful
+
+
+def get_status(uid: str):
+    url = f"{base_url}/api/v2/parse/status?uid={uid}"
+    headers = {"Authorization": f"Bearer {secret}"}
+    res = rq.get(url, headers=headers)
+    res.raise_for_status()  # Check if HTTP request is successful
+    data = res.json()
+    if data.get("code") == "success":
+        return data["data"]
+    raise Exception(f"get status failed: {data}")
+
+
+def open_with_editor(filepath):
+    editor = os.environ.get("EDITOR", "vim")
+    terminal = os.environ.get("$TERMINAL", "st")
+    subprocess.Popen([terminal, "-e", editor, filepath])
+
+
+def main():
+    if len(sys.argv) > 2:
+        print("用法: python get_markdown.py <输入PDF文件>")
+        sys.exit(1)
+
+    # 输入 PDF 文件
+    input_md_file = sys.argv[1]
+    # 输出 MD 文件
+    base, _ = os.path.splitext(input_md_file)
+    output_md_file = base + ".md"
+
+    if os.path.isfile(output_md_file):
+        open_with_editor(output_md_file)
+        sys.exit(0)
+
+    upload_data = preupload()
+    # print(upload_data)
+    url, uid = upload_data["url"], upload_data["uid"]
+
+    put_file(input_md_file, url)
+
+    max_retries = 100
+    for retries in range(max_retries):
+        status_data = get_status(uid)
+        status = status_data.get("status")
+        if status == "success":
+            pages = status_data["result"]["pages"]
+            # 收集所有 md 字段内容
+            input_markdown = []
+            for page in pages:
+                if "md" in page:
+                    input_markdown.append(page["md"])
+            output_markdown = "".join(input_markdown)
+
+            # Preprocess markdown content
+            # Remove media footnote and blank blocks
+            output_markdown = re.sub(
+                r"(?s)<!-- Media -->.*?<!-- Media -->", "", output_markdown
+            )
+            output_markdown = re.sub(
+                r"(?s)<!-- Footnote -->.*?<!-- Footnote -->", "", output_markdown
+            )
+            output_markdown = re.sub(r"(?s)---.*?---", "", output_markdown)
+
+            # format table
+            pattern1 = re.compile(
+                r"\\begin{center}\s*\\adjustbox{max width=\\textwidth}{\s*(.*?)\s*\\end{tabular}\s*}\s*\\end{center}",
+                re.DOTALL,
+            )
+            replacement1 = r"\\begin{center}\n\1\n\\end{tabular}\n\\end{center}"
+            output_markdown = re.sub(pattern1, replacement1, output_markdown)
+
+            # format equation tag
+            pattern2 = re.compile(r"\\tag\{(.*?)\}")
+            replacement2 = r"\\qquad \\text{(\1)}"
+            output_markdown = re.sub(pattern2, replacement2, output_markdown)
+
+            # format inline math
+            pattern3 = re.compile(r"\\\(\s*(.*?)\s*\\\)")
+            replacement3 = r"$\1$"
+            output_markdown = re.sub(pattern3, replacement3, output_markdown)
+
+            # format block math
+            pattern4 = re.compile(r"\\\[\s*(.*?)\s*\\\]", re.DOTALL)
+            replacement4 = r"$$\n\1\n$$"
+            output_markdown = re.sub(pattern4, replacement4, output_markdown)
+
+            # Replace $$$$ with $$\n$$ for better readability
+            output_markdown = re.sub(r"\$\$\$\$", "$$\n$$", output_markdown)
+
+            # 输出 MD 文件
+            os.system('notify-send "PDF2MD" "finished!"')
+            with open(output_md_file, "w", encoding="utf-8") as f:
+                f.write(output_markdown)
+                open_with_editor(output_md_file)
+            return
+        elif status == "failed":
+            # print(status_data)
+            os.system('notify-send "PDF2MD" "failed!"')
+            raise Exception(f"parse failed: {status_data.get('detail')}")
+        elif status == "processing":
+            # print(status_data)
+            # print(f"progress: {status_data.get('progress')}")
+            os.system('notify-send "PDF2MD" "processing..."')
+            time.sleep(3)
+    raise Exception(f"Fails to deal with uid: {uid} after {max_retries} retries")
+
+
+if __name__ == "__main__":
+    main()
