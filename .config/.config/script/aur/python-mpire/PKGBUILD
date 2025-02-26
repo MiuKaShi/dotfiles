@@ -1,0 +1,24 @@
+pkgname=python-mpire
+_name=${pkgname#python-}
+pkgver=2.10.2
+pkgrel=1
+pkgdesc="Standard library MPIRE redistribution."
+arch=('any')
+url="https://github.com/sybrenjansen/mpire/tree/main"
+license=('MIT')
+depends=('python' 'python-multiprocess' 'python-dill')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+source=("${_name}-$pkgver.tar.gz::https://github.com/sybrenjansen/mpire/archive/refs/tags/v$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+	cd "${_name}-$pkgver"
+	python -m build --wheel --no-isolation
+}
+
+package() {
+	cd "${_name}-$pkgver"
+	python -m installer --destdir="$pkgdir" dist/*.whl
+
+	install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}

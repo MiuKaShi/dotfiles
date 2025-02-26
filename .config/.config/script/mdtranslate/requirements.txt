@@ -1,4 +1,5 @@
-openai
-git+https://github.com/ssut/py-googletrans.git
-httpx==0.27.2
+python-sentence-splitter
 python-dotenv
+httpx==0.27.2
+# openai
+# git+https://github.com/ssut/py-googletrans.git

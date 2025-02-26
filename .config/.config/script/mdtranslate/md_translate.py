@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import List
 import concurrent.futures
 from tqdm import tqdm
+from sentence_splitter import split_text_into_sentences
 
 
 @dataclass
@@ -80,59 +81,47 @@ def split_markdown(content: str) -> List[Block]:
 
 
 def split_text_blocks(A: List[Block]) -> List[Block]:
-    end_punctuations = re.compile(r"[。？！.!?;；]")
     new_blocks = []
+
+    def adjust_sentences_length(sentence_list, min_length=512):
+        new_sentence = []
+        index = 0
+        total_index = len(sentence_list)
+
+        while index < total_index:
+            current_sentence = sentence_list[index]
+            # 直接添加满足长度的元素
+            if len(current_sentence) >= min_length:
+                new_sentence.append(current_sentence)
+                index += 1
+            else:
+                # 合并后续元素直至达到最小长度或遍历完成
+                next_index = index + 1
+                while next_index < total_index and len(current_sentence) < min_length:
+                    current_sentence += " " + sentence_list[next_index]
+                    next_index += 1
+                new_sentence.append(current_sentence)
+                index = next_index  # 跳转至未处理元素
+        return new_sentence
+
     for block in A:
         if block.type == "text":
             text = block.content
-            start = 0
-            while start < len(text):
-                end = start + 512
-                if end >= len(text):
-                    end = len(text)
-                else:
-                    #  尝试第一次匹配
-                    match = end_punctuations.search(text, end)
-                    if match:
-                        if match.group() == "." and (
-                            # fix for "et al."
-                            text[max(match.start() - 3, 0) : match.start()] == " al"
-                            # fix for "i.e."
-                            or text[match.end() : match.end() + 2] == "e."
-                            # fix for "Fig. 2" "0.1" "$0. {1}$"
-                            or not any(
-                                char.isalpha()
-                                for char in text[match.end() : match.end() + 2]
-                            )
-                            # TODO: fix "xx. 2.xxx"
-                        ):
-                            # 增加 256 字符后尝试第二次匹配
-                            end = match.end() + 384
-                            if end >= len(text):
-                                end = len(text)
-                            else:
-                                match = end_punctuations.search(text, end)
-                                if match:
-                                    end = match.end()
-                                else:
-                                    # 最大限制为 1024 字符
-                                    end = min(start + 1024, len(text))
-                        else:
-                            end = match.end()
-                    else:
-                        # 最大限制为 1024 字符
-                        end = min(start + 1024, len(text))
-                segment = text[start:end].strip()
-                if segment:
-                    new_blocks.append(
-                        Block(
-                            position=block.position,
-                            sub_position=len(new_blocks) + 1,
-                            type="text",
-                            content=segment,
-                        )
+            sentence_unit = split_text_into_sentences(
+                text=text,
+                language="en",
+                non_breaking_prefix_file="non_breaking_prefixes.txt",
+            )
+            sentences_part = adjust_sentences_length(sentence_unit)
+            for content in sentences_part:
+                new_blocks.append(
+                    Block(
+                        position=block.position,
+                        sub_position=len(new_blocks) + 1,
+                        type="text",
+                        content=content,
                     )
-                start = end
+                )
         else:
             new_blocks.append(block)
     return new_blocks
@@ -262,6 +251,7 @@ def process_markdown(input_markdown: str, translate: callable, thread: int = 10)
     # Process blocks
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks)
+    print(blocks)
     blocks = concurrent_translate(A=blocks, translate=translate, thread=thread)
     output_markdown = combine_blocks(blocks)
     # 移除函数多余空格

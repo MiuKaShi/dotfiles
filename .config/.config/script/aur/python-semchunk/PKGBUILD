@@ -1,0 +1,24 @@
+pkgname=python-semchunk
+_name=${pkgname#python-}
+pkgver=3.1.1
+pkgrel=1
+pkgdesc="Standard library semchunk redistribution."
+arch=('any')
+url="https://github.com/isaacus-dev/semchunk/tree/main"
+license=('MIT')
+depends=('python' 'python-tiktoken')
+makedepends=('python-build' 'python-hatchling' 'python-installer' 'python-setuptools' 'python-wheel')
+source=("${_name}-$pkgver.tar.gz::https://github.com/isaacus-dev/semchunk/archive/refs/tags/v$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+	cd "${_name}-$pkgver"
+	python -m build --wheel --no-isolation
+}
+
+package() {
+	cd "${_name}-$pkgver"
+	python -m installer --destdir="$pkgdir" dist/*.whl
+
+	install -Dm644 LICENCE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
