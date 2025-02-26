@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List
 import concurrent.futures
 from tqdm import tqdm
-from sentence_splitter import split_text_into_sentences
+from sentence_splitter import SentenceSplitter
 
 
 @dataclass
@@ -104,14 +104,13 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
                 index = next_index  # 跳转至未处理元素
         return new_sentence
 
+    splitter = SentenceSplitter(
+        language="en", non_breaking_prefix_file="non_breaking_prefixes.txt"
+    )
     for block in A:
         if block.type == "text":
             text = block.content
-            sentence_unit = split_text_into_sentences(
-                text=text,
-                language="en",
-                non_breaking_prefix_file="non_breaking_prefixes.txt",
-            )
+            sentence_unit = splitter.split(text=text)
             sentences_part = adjust_sentences_length(sentence_unit)
             for content in sentences_part:
                 new_blocks.append(
@@ -251,7 +250,6 @@ def process_markdown(input_markdown: str, translate: callable, thread: int = 10)
     # Process blocks
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks)
-    print(blocks)
     blocks = concurrent_translate(A=blocks, translate=translate, thread=thread)
     output_markdown = combine_blocks(blocks)
     # 移除函数多余空格
