@@ -16,6 +16,7 @@ def google_translate(src: str = "en", dest: str = "zh-cn") -> callable:
         try:
             T = Translator()
             import asyncio
+
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             result = loop.run_until_complete(T.translate(text, src=src, dest=dest))

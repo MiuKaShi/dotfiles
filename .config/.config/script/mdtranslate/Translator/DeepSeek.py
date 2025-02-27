@@ -72,7 +72,7 @@ Please proceed with your analysis and translation.
     def translate(text: str, prev_text: str, next_text: str) -> str:
         retry_count = 0
         max_retries = 2
-        
+
         while retry_count <= max_retries:
             try:
                 client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
@@ -104,16 +104,18 @@ Please proceed with your analysis and translation.
                         return result
                 elif extra_type == "markdown":
                     try:
-                        return result[result.find("```") + 3:result.rfind("```")]
+                        return result[result.find("```") + 3 : result.rfind("```")]
                     except Exception as e:
                         print(f"Having trouble extracting markdown: {e}")
                         return result
                 return result
-                
+
             except Exception as e:
                 retry_count += 1
                 if retry_count <= max_retries:
-                    print(f"Error occurred: {e}. Retrying... (Attempt {retry_count} of {max_retries})")
+                    print(
+                        f"Error occurred: {e}. Retrying... (Attempt {retry_count} of {max_retries})"
+                    )
                     continue
                 else:
                     print(f"Error after {max_retries} retries: {e}")

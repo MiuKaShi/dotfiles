@@ -1,115 +1,60 @@
-from dotenv import load_dotenv
 import os
 import sys
-
-# from Translator.OpenAI import openai_translate
-# from Translator.Ollama import ollama_translate
-# from Translator.DeepSeek import deepseek_translate
-# from Translator.DeepL import deepl_translate
-from Translator.DeepLX import deeplx_translate
 from md_translate import process_markdown
 
-ENV_PATH = ".env" if os.path.exists(".env") else "example.env"
-load_dotenv(ENV_PATH)
 
-# Get translator settings from environment variables
-translate_use = os.getenv("TRANSLATE_USE")
-threads = int(os.getenv("THREADS", 10))
+# Select translators
+# avialbel = ["openai", "ollama", "deepseek", "deeplx", "deepl", "google"]
+translate_use = "deeplx"
+api_file = os.path.expanduser("~/.api_keys/DEEPLX_KEY")
+if not os.path.isfile(api_file):
+    print(f"no {api_file} file，exit!")
+    sys.exit(1)
+with open(api_file, "r", encoding="utf-8") as f:
+    apikey = f.read().strip()
 
-# Get translator-specific settings
-openai_apikey = os.getenv("openai_apikey")
-openai_baseurl = os.getenv("openai_baseurl", "https://api.openai.com/v1")
-openai_model = os.getenv("openai_model", "gpt-4o-mini")
 
-ollama_baseurl = os.getenv("ollama_baseurl", "http://localhost:11434/v1")
-ollama_model = os.getenv("ollama_model", "qwen2.5")
+# translator settings
+threads = 10
 
-deepseek_api = os.getenv("deepseek_api")
+# ========OpenAI==========
+openai_baseurl = "https://api.openai.com/v1"
+openai_model = "gpt-4o-mini"
 
-deeplx_url = os.getenv("deeplx_url", "http://127.0.0.1:1188/translate")
-deeplx_src = os.getenv("deeplx_src", "EN")
-deeplx_dest = os.getenv("deeplx_dest", "ZH")
+# ========Google==========
+google_src = "en"
+google_dest = "zh-cn"
 
-deepl_apikey = os.getenv("deepl_apikey")
-deepl_dest = os.getenv("deepl_dest", "ZH")
+# ========Deeplx==========
+deeplx_src = "EN"
+deeplx_dest = "ZH"
+
+# ========Deepl==========
+deepl_dest = "ZH"
+
+# ========Ollama==========
+ollama_baseurl = "http://localhost:11434/v1"
+ollama_model = "qwen2.5"
 
 # LLM common settings
-temperature = float(os.getenv("temperature", 0.8))
-system_prompt = os.getenv("system_prompt", "")
-input_prompt = os.getenv("input", "")
-extra_type = os.getenv("extra_type", "markdown")
-llm_src = os.getenv("llm_src", "English")
-llm_dest = os.getenv("llm_dest", "中文")
+temperature = 0.8
+system_prompt = ""
+input_prompt = ""
+extra_type = "markdown"
+llm_src = "English"
+llm_dest = "中文"
 
 system_prompt = None if system_prompt == "" else system_prompt
 input_prompt = None if input_prompt == "" else input_prompt
 
 
-def get_translator(choice=None):
-    """Get translator based on environment variable or user selection"""
-    if choice:
-        return create_translator(choice)
-    if translate_use:
-        return create_translator(translate_use)
-
-    print("Please select a translator:")
-    print("1. OpenAI")
-    print("2. Ollama")
-    print("3. DeepSeek")
-    print("4. DeepLX")
-    print("5. DeepL")
-    print("6. Google")
-
-    choice = input("Enter your choice (1-6): ")
-
-    translators = {
-        "1": "openai",
-        "2": "ollama",
-        "3": "deepseek",
-        "4": "deeplx",
-        "5": "deepl",
-        "6": "google",
-    }
-
-    if choice not in translators:
-        print("Invalid choice, using deepseek as default")
-        return create_translator("deepseek")
-
-    return create_translator(translators[choice])
-
-
 def create_translator(name):
-    """Create translator instance based on name"""
-    # Get translator-specific settings from environment variables
-    openai_apikey = os.getenv("openai_apikey")
-    openai_baseurl = os.getenv("openai_baseurl", "https://api.openai.com/v1")
-    openai_model = os.getenv("openai_model", "gpt-4o-mini")
-
-    ollama_baseurl = os.getenv("ollama_baseurl", "http://localhost:11434/v1")
-    ollama_model = os.getenv("ollama_model", "qwen2.5")
-
-    deepseek_api = os.getenv("deepseek_api")
-
-    deeplx_url = os.getenv("deeplx_url", "http://127.0.0.1:1188/translate")
-    deeplx_src = os.getenv("deeplx_src", "EN")
-    deeplx_dest = os.getenv("deeplx_dest", "ZH")
-
-    deepl_apikey = os.getenv("deepl_apikey")
-    deepl_dest = os.getenv("deepl_dest", "ZH")
-
-    # LLM common settings
-    temperature = float(os.getenv("temperature", 0.8))
-    system_prompt = os.getenv("system_prompt", "")
-    input_prompt = os.getenv("input", "")
-    extra_type = os.getenv("extra_type", "markdown")
-    llm_src = os.getenv("llm_src", "English")
-    llm_dest = os.getenv("llm_dest", "中文")
-
-    system_prompt = None if system_prompt == "" else system_prompt
-    input_prompt = None if input_prompt == "" else input_prompt
 
     if name == "openai":
-        if not openai_apikey or openai_apikey == "sk-1234567":
+        from Translator.OpenAI import openai_translate
+
+        openai_apikey = apikey
+        if not openai_apikey:
             print("Error: OpenAI API key not set")
             raise Exception("OpenAI API key not set")
         return openai_translate(
@@ -124,6 +69,8 @@ def create_translator(name):
             extra_type=extra_type,
         )
     elif name == "ollama":
+        from Translator.Ollama import ollama_translate
+
         return ollama_translate(
             base_url=ollama_baseurl,
             src=llm_src,
@@ -135,7 +82,10 @@ def create_translator(name):
             extra_type=extra_type,
         )
     elif name == "deepseek":
-        if not deepseek_api or deepseek_api == "sk-1234567":
+        from Translator.DeepSeek import deepseek_translate
+
+        deepseek_api = apikey
+        if not deepseek_api:
             print("Error: DeepSeek API key not set")
             raise Exception("DeepSeek API key not set")
         return deepseek_translate(
@@ -148,18 +98,22 @@ def create_translator(name):
             extra_type=extra_type,
         )
     elif name == "deeplx":
+        from Translator.DeepLX import deeplx_translate
+
+        deeplx_url = apikey
         return deeplx_translate(base_url=deeplx_url, src=deeplx_src, dest=deeplx_dest)
     elif name == "deepl":
-        if not deepl_apikey or deepl_apikey == "":
+        from Translator.DeepL import deepl_translate
+
+        deepl_apikey = apikey
+        if not deepl_apikey:
             print("Error: DeepL API key not set")
             raise Exception("DeepL API key not set")
         return deepl_translate(api_key=deepl_apikey, dest=deepl_dest)
     elif name == "google":
-        from Translates.Google import google_translate
+        from Translator.Google import google_translate
 
-        return google_translate(
-            src=os.getenv("google_src", "en"), dest=os.getenv("google_dest", "zh-cn")
-        )
+        return google_translate(src=google_src, dest=google_dest)
     else:
         print(f"Unknown translator: {name}")
         raise Exception(f"Unknown translator: {name}")
@@ -180,14 +134,7 @@ def Process_MD(
 
 def main():
     # Get translator
-    translator = get_translator()
-    if os.getenv("SKIP_TEST", "false").lower() != "true":
-        print("Testing translator...")
-        test = translator("Hello, how are you?", "", "")
-        if test == "Hello, how are you?":
-            print("Translator test failed, please check your settings")
-            raise Exception("Translator test failed")
-        print(f"Translator test successful: {test}")
+    translator = create_translator(translate_use)
 
     # Get file path from user
     if len(sys.argv) < 3:

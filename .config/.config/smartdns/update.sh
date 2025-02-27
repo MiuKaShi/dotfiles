@@ -1,4 +1,4 @@
-#/bin/sh
+#! /bin/sh
 
 #ad-list
 wget https://github.com/privacy-protection-tools/anti-AD/raw/master/anti-ad-smartdns.conf
