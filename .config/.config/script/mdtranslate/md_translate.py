@@ -143,7 +143,7 @@ def replace_inline_formula(
 
     def replacer(match):
         nonlocal placeholder_counter
-        placeholder = f"⚛️{placeholder_counter}⚛️"
+        placeholder = f"🐱{placeholder_counter}🐱"
         placeholders[placeholder] = match.group()
         placeholder_counter += 1
         return placeholder
@@ -204,10 +204,12 @@ def concurrent_translate(
             # ensure there is no line break
             translated = re.sub(r"\n", "", translated)
             for placeholder, formula in placeholders.items():
-                # Remove spaces between $ and formula content
+                # Remove spaces $ 2 $ to $2$
                 formula = re.sub(r"\$\s*(.*?)\s*\$", r"$\1$", formula)
                 translated = translated.replace(placeholder, f" {formula} ")
-            if "⚛️" in translated:
+                # 移除连续的多余空格
+                translated = re.sub(r"\s+", " ", translated)
+            if "🐱" in translated:
                 sentences = re.split(r"(?<=[。？！.!?;；])", block.content)
                 translated_sentences = [translate(s, "", "") for s in sentences]
                 translated = "".join(translated_sentences)

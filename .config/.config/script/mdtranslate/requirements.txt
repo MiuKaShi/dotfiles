@@ -1,4 +1,4 @@
 python-sentence-splitter
-httpx==0.27.2
-# openai
+python-openai
+python-httpx==0.27.2
 # git+https://github.com/ssut/py-googletrans.git

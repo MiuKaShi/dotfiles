@@ -50,6 +50,7 @@ Instructions:
 3. Translate only the text content, leaving all Markdown syntax unchanged.
 4. Ensure that the meaning and tone of the original text are preserved in the translation.
 5. Pay attention to any context provided by the previous text, if available.
+6. Do not change the unicode emoji character.
 Before providing your final translation, wrap your analysis in <translation_analysis> tags:
 - List all Markdown elements present in the text, counting them (e.g., 1. Header, 2. Bold text, 3. Italic text, etc.).
 - Identify any culturally specific terms or idioms that might need special attention in translation.

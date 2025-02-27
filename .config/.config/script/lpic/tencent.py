@@ -14,58 +14,62 @@ from lpic import LPic
 class TencentLPic(LPic):
     def __init__(self, conf=None, **option):
         super(TencentLPic, self).__init__(conf, **option)
-        self.cloud_name = '腾讯云'
+        self.cloud_name = "腾讯云"
 
     def auth(self):
-        config = CosConfig(Secret_id=self.cloud['SecretId'],
-                           Secret_key=self.cloud['SecretKey'],
-                           Region=self.cloud['Region'])
+        config = CosConfig(
+            Secret_id=self.cloud["SecretId"],
+            Secret_key=self.cloud["SecretKey"],
+            Region=self.cloud["Region"],
+        )
         self.client = CosS3Client(config)
 
     @property
     def web_url(self):
         params = {
-            'type': 'filelist',
-            'bucketName': self.cloud['Bucket'],
-            'path': '',
-            'region': self.cloud['Region']
+            "type": "filelist",
+            "bucketName": self.cloud["Bucket"],
+            "path": "",
+            "region": self.cloud["Region"],
         }
-        return 'https://console.cloud.tencent.com/cos5/bucket/setting?{}'.format(urlencode(params))
+        return "https://console.cloud.tencent.com/cos5/bucket/setting?{}".format(
+            urlencode(params)
+        )
 
     @LPic.mute_log
-    def upload(self, file, prefix=''):
+    def upload(self, file, prefix=""):
         ret = self.client.put_object_from_local_file(
-            Bucket=self.cloud['Bucket'],
+            Bucket=self.cloud["Bucket"],
             LocalFilePath=file,
-            Key=prefix + os.path.basename(file)
+            Key=prefix + os.path.basename(file),
         )
-        return bool(ret.get('ETag'))
+        return bool(ret.get("ETag"))
 
     @LPic.mute_log
     def list(self, prefix):
         response = self.client.list_objects(
-            Bucket=self.cloud['Bucket'],
-            Prefix=prefix,
-            MaxKeys=self.MAX_KEYS
+            Bucket=self.cloud["Bucket"], Prefix=prefix, MaxKeys=self.MAX_KEYS
         )
-        if 'Contents' in response:
-            def cmp(x):
-                return -datetime.strptime(x['LastModified'], '%Y-%m-%dT%H:%M:%S.000Z').timestamp()
+        if "Contents" in response:
 
-            return [c['Key'] for c in sorted([c for c in response['Contents']], key=cmp)]
+            def cmp(x):
+                return -datetime.strptime(
+                    x["LastModified"], "%Y-%m-%dT%H:%M:%S.000Z"
+                ).timestamp()
+
+            return [
+                c["Key"] for c in sorted([c for c in response["Contents"]], key=cmp)
+            ]
         else:
             return []
 
     @LPic.mute_log
     def delete(self, key):
         ret = self.client.delete_objects(
-            Bucket=self.cloud['Bucket'],
-            Delete={
-                'Object': [{'Key': key}],
-                'Quiet': 'false'
-            }
+            Bucket=self.cloud["Bucket"],
+            Delete={"Object": [{"Key": key}], "Quiet": "false"},
         )
-        return 'Deleted' in ret and len(ret['Deleted']) == 1
+        return "Deleted" in ret and len(ret["Deleted"]) == 1
 
     def close(self):
         # noinspection PyProtectedMember
