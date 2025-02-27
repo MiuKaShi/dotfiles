@@ -19,7 +19,7 @@ def split_markdown(content: str) -> List[Block]:
     block_formula_pattern = (
         r"(?P<block_formula>"
         r"^ *\$\$ *$\n"  # 开头 $$ 独占一行
-        r"([\s\S]*?)\n"  # 中间内容（非贪婪）
+        r"([\s\S]*?)\n"  # 中间内容
         r"^ *\$\$ *$"  # 结尾 $$ 独占一行
         r")"
     )
@@ -90,12 +90,12 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
 
         while index < total_index:
             current_sentence = sentence_list[index]
-            # 直接添加满足长度的元素
+            # 添加满足长度的元素
             if len(current_sentence) >= min_length:
                 new_sentence.append(current_sentence)
                 index += 1
             else:
-                # 合并后续元素直至达到最小长度或遍历完成
+                # 合并后续元素直至达到最小长度或遍历完
                 next_index = index + 1
                 while next_index < total_index and len(current_sentence) < min_length:
                     current_sentence += " " + sentence_list[next_index]
@@ -111,8 +111,8 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
         if block.type == "text":
             text = block.content
             sentence_unit = splitter.split(text=text)
-            sentences_part = adjust_sentences_length(sentence_unit)
-            for content in sentences_part:
+            sentence_parts = adjust_sentences_length(sentence_unit)
+            for content in sentence_parts:
                 new_blocks.append(
                     Block(
                         position=block.position,
