@@ -60,6 +60,7 @@ It's OK for this section to be quite long.
 After your analysis, provide the translated Markdown text. Remember:
 - Do NOT modify any existing Markdown commands.
 - Ensure that your translation accurately reflects the content and style of the original text.
+- Ensure only shows the translated text.
 Format your output and only give as follows:
 ```
 [Your translated Markdown text here, preserving all original Markdown formatting]

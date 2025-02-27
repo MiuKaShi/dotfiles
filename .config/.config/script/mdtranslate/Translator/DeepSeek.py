@@ -4,6 +4,7 @@ import json
 
 def deepseek_translate(
     api_key: str,
+    base_url: str = "https://api.deepseek.com",
     src: str = "English",
     dest: str = "中文",
     model="deepseek-chat",
@@ -59,6 +60,7 @@ It's OK for this section to be quite long.
 After your analysis, provide the translated Markdown text. Remember:
 - Do NOT modify any existing Markdown commands.
 - Ensure that your translation accurately reflects the content and style of the original text.
+- Ensure only shows the translated text.
 Format your output and only give as follows:
 ```
 [Your translated Markdown text here, preserving all original Markdown formatting]
@@ -71,11 +73,11 @@ Please proceed with your analysis and translation.
 
     def translate(text: str, prev_text: str, next_text: str) -> str:
         retry_count = 0
-        max_retries = 2
+        max_retries = 10
 
         while retry_count <= max_retries:
             try:
-                client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+                client = OpenAI(api_key=api_key, base_url=base_url)
                 response = client.chat.completions.create(
                     model=model,
                     messages=[

@@ -1,4 +1,5 @@
 import re
+import copy
 from dataclasses import dataclass
 from typing import List
 import concurrent.futures
@@ -33,13 +34,22 @@ def split_markdown(content: str) -> List[Block]:
         flags=re.MULTILINE,
     )
 
+    # 拆分text内换行部分
+    def split_text_blocks(text: str):
+        parts = text.split("\n\n")
+        for part in parts:
+            part = part.strip()
+            if part:
+                A.append(Block(position=len(A) + 1, type="text", content=part))
+
     pos = 0
     for match in pattern.finditer(content):
         start, end = match.span()
         if start > pos:
             text = content[pos:start].strip()
             if text:
-                A.append(Block(position=len(A) + 1, type="text", content=text))
+                # A.append(Block(position=len(A) + 1, type="text", content=text))
+                split_text_blocks(text)
         if match.group("title"):
             A.append(
                 Block(position=len(A) + 1, type="title", content=match.group("title"))
@@ -191,6 +201,8 @@ def concurrent_translate(
             translated = translate(
                 translated_content, prev_block or "", next_block or ""
             )
+            # ensure there is no line break
+            translated = re.sub(r"\n", "", translated)
             for placeholder, formula in placeholders.items():
                 # Remove spaces between $ and formula content
                 formula = re.sub(r"\$\s*(.*?)\s*\$", r"$\1$", formula)
@@ -216,25 +228,49 @@ def concurrent_translate(
     return A
 
 
-def combine_blocks(A: List[Block]) -> str:
+def combine_blocks(A: List[Block], raw: List[Block], style: str) -> str:
     combined = []
-    special_types = ["title", "table", "block_formula", "image", "link_image", "link"]
-    for i, block in enumerate(A):
-        # Add newline before special blocks
-        if i != 0 and block.type in special_types:
-            if block.type == "title" and A[i - 1].type == "title":
-                combined.append("\n\n")
-            if block.type != A[i - 1].type:
-                combined.append("\n\n")
+    i = 0
+    count = 0
+    while i < len(A):
+        # en-zh-large 混排
+        if style == "en-zh-large":
+            if A[i].type == "text":
+                count += 1
+                combined.append(raw[i].content)
+                if i == len(A) - 1 or A[i].position != A[i + 1].position:
+                    start = i - count + 1
+                    end = i + 1
+                    combined.append("\n\n")
+                    for j in range(start, end):
+                        if j == start:
+                            combined.append("> " + A[j].content)
+                        else:
+                            combined.append(A[j].content)
+                    count = 0  # 重置计数器
+            else:
+                combined.append(raw[i].content)
+        # en-zh-small 混排
+        elif style == "en-zh-small":
+            if A[i].type == "text":
+                if A[i].type == A[i - 1].type:
+                    combined.append("\n\n")
+                    combined.append(raw[i].content)
+                    combined.append("\n\n")
+                else:
+                    combined.append(raw[i].content)
+                    combined.append("\n\n")
+                combined.append("> " + A[i].content)
+            else:
+                combined.append(raw[i].content)
+        # zh 排
+        elif style == "zh":
+            combined.append(A[i].content)
 
-        combined.append(block.content)
-
-        # Add newline after special blocks
-        if block.type in special_types:
-            if block.type == "block_formula" and A[i + 1].type == "block_formula":
-                combined.append("\n\n")
-            if block.type != A[i + 1].type:
-                combined.append("\n\n")
+        # 空行
+        if i < len(A) - 1 and A[i].position != A[i + 1].position:
+            combined.append("\n\n")
+        i += 1
 
     return "".join(combined)
 
@@ -246,12 +282,18 @@ def fix_dollar_signs(output_markdown: str) -> str:
     return output_markdown
 
 
-def process_markdown(input_markdown: str, translate: callable, thread: int = 10) -> str:
+def process_markdown(
+    input_markdown: str,
+    translate: callable,
+    thread: int = 10,
+    style: str = "zh",
+) -> str:
     # Process blocks
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks)
+    raw_blocks = copy.deepcopy(blocks)
     blocks = concurrent_translate(A=blocks, translate=translate, thread=thread)
-    output_markdown = combine_blocks(blocks)
+    output_markdown = combine_blocks(blocks, raw=raw_blocks, style=style)
     # 移除函数多余空格
     output_markdown = fix_dollar_signs(output_markdown)
     return output_markdown
