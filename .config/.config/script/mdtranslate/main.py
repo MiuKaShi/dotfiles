@@ -21,8 +21,8 @@ with open(api_file, "r", encoding="utf-8") as f:
 # translator settings
 threads = 10
 #
-# avialbel = ["zh", "en-zh-large", "en-zh-small"]
-style = "en-zh-large"
+# avialbel = ["zh", "zh-en", "en-zh"]
+style = "zh-en"
 
 
 # ========Google==========

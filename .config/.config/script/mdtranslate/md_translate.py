@@ -235,25 +235,24 @@ def combine_blocks(A: List[Block], raw: List[Block], style: str) -> str:
     i = 0
     count = 0
     while i < len(A):
-        # en-zh-large 混排
-        if style == "en-zh-large":
+        # zh-en 混排
+        if style == "zh-en":
             if A[i].type == "text":
                 count += 1
+                if count == 1:
+                    combined.append("> " + raw[i].content)
                 combined.append(raw[i].content)
                 if i == len(A) - 1 or A[i].position != A[i + 1].position:
                     start = i - count + 1
                     end = i + 1
                     combined.append("\n\n")
                     for j in range(start, end):
-                        if j == start:
-                            combined.append("> " + A[j].content)
-                        else:
-                            combined.append(A[j].content)
+                        combined.append(A[j].content)
                     count = 0  # 重置计数器
             else:
                 combined.append(raw[i].content)
-        # en-zh-small 混排
-        elif style == "en-zh-small":
+        # en-zh 混排
+        elif style == "en-zh":
             if A[i].type == "text":
                 if A[i].type == A[i - 1].type:
                     combined.append("\n\n")
