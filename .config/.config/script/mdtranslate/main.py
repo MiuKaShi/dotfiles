@@ -5,11 +5,15 @@ from md_translate import process_markdown
 
 # Select translators
 # avialbel = ["openai", "ollama", "deepseek", "deeplx", "deepl", "google"]
-translate_use = "deepseek"
-api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
+# translate_use = "deepseek"
+# api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
+
+translate_use = "gemini"
+api_file = os.path.expanduser("~/.api_keys/Gemini_KEY")
 
 # translate_use = "deeplx"
 # api_file = os.path.expanduser("~/.api_keys/DEEPLX_KEY")
+
 
 if not os.path.isfile(api_file):
     print(f"no {api_file} file，exit!")
@@ -40,6 +44,10 @@ deepl_dest = "ZH"
 openai_baseurl = "https://api.openai.com/v1"
 openai_model = "gpt-4o-mini"
 
+# ========Gemini==========
+gemini_model = "gemini-2.0-flash"
+deepseek_baseurl = "https://generativelanguage.googleapis.com/v1beta/openai/"
+
 # ========Deepseek==========
 deepseek_baseurl = "https://ark.cn-beijing.volces.com/api/v3"
 deepseek_model = "deepseek-v3-241226"
@@ -49,9 +57,15 @@ ollama_baseurl = "http://localhost:11434/v1"
 ollama_model = "qwen2.5"
 
 # LLM common settings
-temperature = 0.8
-system_prompt = ""
-input_prompt = ""
+# Read prompt
+with open("system_prompt.txt", "r", encoding="utf-8") as file:
+    system_prompt = file.read()
+
+with open("input_prompt.txt", "r", encoding="utf-8") as file:
+    input_prompt = file.read()
+
+
+temperature = 0.4
 extra_type = "markdown"
 llm_src = "English"
 llm_dest = "中文"
@@ -75,6 +89,23 @@ def create_translator(name):
             src=llm_src,
             dest=llm_dest,
             model=openai_model,
+            tempterature=temperature,
+            system_prompt=system_prompt if system_prompt else None,
+            input_prompt=input_prompt if input_prompt else None,
+            extra_type=extra_type,
+        )
+    elif name == "gemini":
+        from Translator.Gemini import gemini_translate
+
+        gemini_api = apikey
+        if not gemini_api:
+            print("Error: Gemini API key not set")
+            raise Exception("Gemini API key not set")
+        return gemini_translate(
+            api_key=gemini_api,
+            src=llm_src,
+            dest=llm_dest,
+            model=gemini_model,
             tempterature=temperature,
             system_prompt=system_prompt if system_prompt else None,
             input_prompt=input_prompt if input_prompt else None,

@@ -1,0 +1,22 @@
+Elements for this task:
+
+1. Previous text (for context):
+   <previous_text>
+   {{prev_text}}
+   </previous_text>
+2. The Markdown text to translate:
+   <markdown_text>
+   {{text}}
+   </markdown_text>
+
+Remember:
+1. Read through the Markdown text carefully.
+2. Use previous text (if provided) for coherence and consistency.
+3. Ensure that the meaning and tone of the original text are preserved in the translation.
+4. Translate into {{dest}} and show only the translated text
+
+Format your output and only give as follows:
+
+```
+[Your translated Markdown text here, preserving all original Markdown formatting]
+```

@@ -241,7 +241,8 @@ def combine_blocks(A: List[Block], raw: List[Block], style: str) -> str:
                 count += 1
                 if count == 1:
                     combined.append("> " + raw[i].content)
-                combined.append(raw[i].content)
+                else:
+                    combined.append(raw[i].content)
                 if i == len(A) - 1 or A[i].position != A[i + 1].position:
                     start = i - count + 1
                     end = i + 1

@@ -28,45 +28,17 @@ def ollama_translate(
         callable: The translate function that can be used for translation
     """
     if system_prompt is None:
-        system_prompt = f"You are a specialized language model trained in translating Markdown documents while preserving their formatting. Your task is to translate a given Markdown text from {src} to {dest}."
+        system_prompt = "You are a specialized language model trained to translate Markdown documents while preserving their formatting. Your task is to translate a given Markdown text from {{src}} to {{dest}}, ensuring academic precision, clarity, and logical consistency."
     if input_prompt is None:
         input_prompt = """
-Here are the key elements for this task:
-1. Previous text (for context):
-<previous_text>
-{{prev_text}}
-</previous_text>
-2. The language to translate into:
-<destination_language>
-{{dest}}
-</destination_language>
-3. The Markdown text to translate:
+The Markdown text to translate:
 <markdown_text>
 {{text}}
 </markdown_text>
-Instructions:
-1. Read through the Markdown text carefully.
-2. Identify all Markdown formatting elements (e.g., headers, bold, italic, links, lists).
-3. Translate only the text content, leaving all Markdown syntax unchanged.
-4. Ensure that the meaning and tone of the original text are preserved in the translation.
-5. Pay attention to any context provided by the previous text, if available.
-6. Do not change the unicode emoji character.
-Before providing your final translation, wrap your analysis in <translation_analysis> tags:
-- List all Markdown elements present in the text, counting them (e.g., 1. Header, 2. Bold text, 3. Italic text, etc.).
-- Identify any culturally specific terms or idioms that might need special attention in translation.
-- Note any areas where the sentence structure might need to be significantly altered in the target language.
-- Consider how the previous text (if provided) might influence the translation.
-- Plan how to maintain the original text's structure and meaning in the target language.
-It's OK for this section to be quite long.
-After your analysis, provide the translated Markdown text. Remember:
-- Do NOT modify any existing Markdown commands.
-- Ensure that your translation accurately reflects the content and style of the original text.
-- Ensure only shows the translated text.
-Format your output and only give as follows:
+Ensure only shows the translated text and format your output as follows:
 ```
 [Your translated Markdown text here, preserving all original Markdown formatting]
 ```
-Please proceed with your analysis and translation.
 """
 
     if "{{text}}" not in input_prompt:
@@ -80,7 +52,9 @@ Please proceed with your analysis and translation.
                 messages=[
                     {
                         "role": "system",
-                        "content": system_prompt,
+                        "content": system_prompt.replace("{{src}}", src).replace(
+                            "{{dest}}", dest
+                        ),
                     },
                     {
                         "role": "user",

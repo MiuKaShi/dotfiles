@@ -2,16 +2,16 @@ from openai import OpenAI
 import json
 
 
-def openai_translate(
+def gemini_translate(
     api_key: str,
-    base_url: str = "https://api.openai.com/v1",
+    base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/",
     src: str = "English",
     dest: str = "中文",
-    model="gpt-4o-mini",
-    tempterature=1.0,
+    model="gemini-2.0-flash",
+    tempterature: float = 1.0,
     system_prompt: str = None,
     input_prompt: str = None,
-    extra_type="markdown",
+    extra_type: str = "markdown",
 ) -> callable:
     """Initialize and return the translate function
 
@@ -45,8 +45,10 @@ Ensure only shows the translated text and format your output as follows:
         raise ValueError("input_prompt must contain {{text}} placeholder")
 
     def translate(text: str, prev_text: str, next_text: str) -> str:
-        retries = 2
-        while retries >= 0:
+        retry_count = 0
+        max_retries = 10
+
+        while retry_count <= max_retries:
             try:
                 client = OpenAI(api_key=api_key, base_url=base_url)
                 response = client.chat.completions.create(
@@ -66,6 +68,7 @@ Ensure only shows the translated text and format your output as follows:
                             .replace("{{next_text}}", next_text),
                         },
                     ],
+                    n=1,
                     temperature=tempterature,
                     stream=False,
                 )
@@ -79,18 +82,24 @@ Ensure only shows the translated text and format your output as follows:
                         return result
                 elif extra_type == "markdown":
                     try:
-                        return result[result.find("```") + 3 : result.rfind("```")]
+                        start = result.find("```")
+                        end = result.rfind("```")
+                        if start != -1 and end != -1 and end > start:
+                            return result[start + 3 : end].strip()
+                        return result
                     except Exception as e:
                         print(f"Having trouble extracting markdown: {e}")
                         return result
                 return result
             except Exception as e:
-                if retries > 0:
-                    print(f"Error occurred: {e}. Retrying... ({retries} attempts left)")
-                    retries -= 1
+                retry_count += 1
+                if retry_count <= max_retries:
+                    print(
+                        f"Error occurred: {e}. Retrying... (Attempt {retry_count} of {max_retries})"
+                    )
                     continue
                 else:
-                    print(f"Error after all retries: {e}")
+                    print(f"Error after {max_retries} retries: {e}")
                     return text
 
     return translate
