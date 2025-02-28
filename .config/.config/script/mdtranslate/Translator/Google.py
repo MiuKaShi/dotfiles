@@ -1,3 +1,4 @@
+from typing import Tuple
 from googletrans import Translator
 
 
@@ -12,7 +13,11 @@ def google_translate(src: str = "en", dest: str = "zh-cn") -> callable:
         callable: The translate function that can be used for translation
     """
 
-    def translate(text: str, prev_text: str, next_text: str) -> str:
+    def translate(text: str, prev_text: str, next_text: str) -> Tuple[str, dict]:
+        tokens = {
+            "sent_tokens": 0,
+            "received_tokens": 0,
+        }
         try:
             T = Translator()
             import asyncio
@@ -21,9 +26,9 @@ def google_translate(src: str = "en", dest: str = "zh-cn") -> callable:
             asyncio.set_event_loop(loop)
             result = loop.run_until_complete(T.translate(text, src=src, dest=dest))
             loop.close()
-            return result.text
+            return result.text, tokens
         except Exception as e:
             print(f"Error: {e}")
-            return text
+            return text, tokens
 
     return translate

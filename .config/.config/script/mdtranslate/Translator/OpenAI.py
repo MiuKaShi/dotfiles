@@ -1,5 +1,7 @@
-from openai import OpenAI
 import json
+import tiktoken
+from typing import Tuple
+from openai import OpenAI
 
 
 def openai_translate(
@@ -44,46 +46,62 @@ Ensure only shows the translated text and format your output as follows:
     if "{{text}}" not in input_prompt:
         raise ValueError("input_prompt must contain {{text}} placeholder")
 
-    def translate(text: str, prev_text: str, next_text: str) -> str:
+    def count_tokens(string: str, model_name: str = "cl100k_base") -> int:
+        encoding = tiktoken.get_encoding(model_name)
+        return len(encoding.encode(string))
+
+    def translate(text: str, prev_text: str, next_text: str) -> Tuple[str, dict]:
         retries = 2
         while retries >= 0:
             try:
                 client = OpenAI(api_key=api_key, base_url=base_url)
+                messages = [
+                    {
+                        "role": "system",
+                        "content": system_prompt.replace("{{src}}", src).replace(
+                            "{{dest}}", dest
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": input_prompt.replace("{{prev_text}}", prev_text)
+                        .replace("{{dest}}", dest)
+                        .replace("{{text}}", text)
+                        .replace("{{next_text}}", next_text),
+                    },
+                ]
                 response = client.chat.completions.create(
                     model=model,
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": system_prompt.replace("{{src}}", src).replace(
-                                "{{dest}}", dest
-                            ),
-                        },
-                        {
-                            "role": "user",
-                            "content": input_prompt.replace("{{prev_text}}", prev_text)
-                            .replace("{{dest}}", dest)
-                            .replace("{{text}}", text)
-                            .replace("{{next_text}}", next_text),
-                        },
-                    ],
+                    messages=messages,
                     temperature=tempterature,
                     stream=False,
                 )
                 result = response.choices[0].message.content
+                # get the send and receive tokens
+                sent_tokens = sum(count_tokens(msg["content"]) for msg in messages)
+                received_tokens = count_tokens(result)
+                tokens = {
+                    "sent_tokens": sent_tokens,
+                    "received_tokens": received_tokens,
+                }
 
                 if extra_type == "json":
                     try:
-                        return json.loads(result)["translated"]
+                        translated = json.loads(result)["translated"]
                     except Exception as e:
                         print(f"Having trouble extracting JSON: {e}")
-                        return result
+                        translated = result
+                    return translated, tokens
                 elif extra_type == "markdown":
                     try:
-                        return result[result.find("```") + 3 : result.rfind("```")]
+                        translated = result[
+                            result.find("```") + 3 : result.rfind("```")
+                        ]
                     except Exception as e:
                         print(f"Having trouble extracting markdown: {e}")
-                        return result
-                return result
+                    return translated, tokens
+                else:
+                    return result, tokens
             except Exception as e:
                 if retries > 0:
                     print(f"Error occurred: {e}. Retrying... ({retries} attempts left)")
@@ -91,6 +109,9 @@ Ensure only shows the translated text and format your output as follows:
                     continue
                 else:
                     print(f"Error after all retries: {e}")
-                    return text
+                    # 错误时仅计算发送的 tokens
+                    sent_tokens = sum(count_tokens(msg["content"]) for msg in messages)
+                    tokens = {"sent_tokens": sent_tokens, "received_tokens": 0}
+                    return text, tokens
 
     return translate

@@ -1,5 +1,6 @@
 import httpx
 import json
+from typing import Tuple
 
 
 def deepl_translate(api_key: str, dest: str = "ZH") -> callable:
@@ -13,7 +14,11 @@ def deepl_translate(api_key: str, dest: str = "ZH") -> callable:
         callable: The translate function that can be used for translation
     """
 
-    def translate(text: str, prev_text: str, next_text: str) -> str:
+    def translate(text: str, prev_text: str, next_text: str) -> Tuple[str, dict]:
+        tokens = {
+            "sent_tokens": 0,
+            "received_tokens": 0,
+        }
         try:
             deepl_api = "https://api.deepl.com/v2/translate"
             headers = {
@@ -28,9 +33,9 @@ def deepl_translate(api_key: str, dest: str = "ZH") -> callable:
             if response.status_code != 200:
                 raise Exception(f"HTTP request failed: {response.text}")
             result = json.loads(response.text)
-            return result["translations"][0]["text"]
+            return result["translations"][0]["text"], tokens
         except Exception as e:
             print(f"Error: {e}")
-            return text
+            return text, tokens
 
     return translate

@@ -5,11 +5,11 @@ from md_translate import process_markdown
 
 # Select translators
 # avialbel = ["openai", "ollama", "deepseek", "deeplx", "deepl", "google"]
-# translate_use = "deepseek"
-# api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
+translate_use = "deepseek"
+api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
 
-translate_use = "gemini"
-api_file = os.path.expanduser("~/.api_keys/Gemini_KEY")
+# translate_use = "gemini"
+# api_file = os.path.expanduser("~/.api_keys/Gemini_KEY")
 
 # translate_use = "deeplx"
 # api_file = os.path.expanduser("~/.api_keys/DEEPLX_KEY")
@@ -164,17 +164,74 @@ def create_translator(name):
         raise Exception(f"Unknown translator: {name}")
 
 
+def token_cost(tokens: dict, name: str) -> dict:
+    # 汇率
+    usd_to_cny = 7.0
+    # 定价（单位：美元/1000 tokens），分别指定发送和接收 token 的价格
+    pricing_rates = {
+        "gemini-2.0-flash": {"sent": 0.0001, "received": 0.0004},
+        "deepseek-v3-241226": {"sent": 0.00028, "received": 0.0011},
+        "gpt-4o-mini": {"sent": 0.001, "received": 0.002},
+        "deeplx": {"sent": 0.0, "received": 0.0},
+        "deepl": {"sent": 0.0, "received": 0.0},
+        "google": {"sent": 0.0, "received": 0.0},
+    }
+
+    if name == "openai":
+        model_name = openai_model
+    elif name == "gemini":
+        model_name = gemini_model
+    elif name == "ollama":
+        model_name = ollama_model
+    elif name == "deepseek":
+        model_name = deepseek_model
+    elif name == "deeplx":
+        model_name = "deeplx"
+    elif name == "deepl":
+        model_name = "deepl"
+    elif name == "google":
+        model_name = "google"
+    else:
+        raise ValueError(f"Unknown translator: {name}")
+
+    rates = pricing_rates[model_name]
+    # 从 tokens 字典中分别获取发送和接收 token 数量，默认值为 0
+    sent_tokens = tokens.get("sent_tokens", 0)
+    received_tokens = tokens.get("received_tokens", 0)
+    all_tokens = sent_tokens + received_tokens
+
+    # 分别计算发送和接收 token 的费用（美元）
+    all_cost_usd = (sent_tokens / 1000) * rates["sent"] + (
+        received_tokens / 1000
+    ) * rates["received"]
+
+    # 总费用(人民币)
+    total_cost_cny = all_cost_usd * usd_to_cny
+
+    print(all_tokens)
+    print(total_cost_cny)
+
+    return {
+        "all_tokens": all_tokens,
+        "total_cost": total_cost_cny,
+    }
+
+
 def Process_MD(
     md_file: str, output_md_file: str, translate: callable, thread: int = 10
 ):
-    print(f"Processing markdown file: {md_file}")
     with open(md_file, "r", encoding="utf-8") as f:
         input_md = f.read()
-    output_md = process_markdown(
+    output_md, tokens = process_markdown(
         input_markdown=input_md, translate=translate, thread=thread, style=style
     )
     with open(output_md_file, "w", encoding="utf-8") as f:
         f.write(output_md)
+    cost_cny = token_cost(tokens=tokens, name=translate_use)
+    # save cost to tmp
+    with open("/tmp/tokens", "w") as f:
+        f.write(str(cost_cny["all_tokens"]) + "\n")
+        f.write(str(cost_cny["total_cost"]) + "\n")
 
 
 def main():

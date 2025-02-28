@@ -1,7 +1,7 @@
 import re
 import copy
 from dataclasses import dataclass
-from typing import List
+from typing import List, Tuple
 import concurrent.futures
 from tqdm import tqdm
 from sentence_splitter import SentenceSplitter
@@ -153,12 +153,14 @@ def replace_inline_formula(
 
 def concurrent_translate(
     A: List[Block], translate: callable, thread: int
-) -> List[Block]:
+) -> Tuple[List[Block], dict]:
     placeholders = {}
+    token_counter = {"sent_tokens": 0, "received_tokens": 0}
     placeholder_counter = 1
 
     def process_block(block: Block):
         nonlocal placeholder_counter
+        nonlocal token_counter
         if block.type in [
             "title",
             "table",
@@ -194,14 +196,19 @@ def concurrent_translate(
                 elif b.position == block.position + 1:
                     next_block = b.content
                     break
+            # 处理行内公式替换
             translated_content = replace_inline_formula(
                 block.content, placeholder_counter, placeholders
             )
             placeholder_counter += len(placeholders)
-            translated = translate(
+            # 调用翻译函数，返回翻译后的文本以及累计 tokens 数
+            translated, tokens = translate(
                 translated_content, prev_block or "", next_block or ""
             )
-            # ensure there is no line break
+            # 合并 token_counter
+            token_counter["sent_tokens"] += tokens["sent_tokens"]
+            token_counter["received_tokens"] += tokens["received_tokens"]
+            # 移除换行符
             translated = re.sub(r"\n", "", translated)
             for placeholder, formula in placeholders.items():
                 # Remove spaces $ 2 $ to $2$
@@ -227,7 +234,7 @@ def concurrent_translate(
                 unit="block",
             )
         )
-    return A
+    return A, token_counter
 
 
 def combine_blocks(A: List[Block], raw: List[Block], style: str) -> str:
@@ -289,13 +296,13 @@ def process_markdown(
     translate: callable,
     thread: int = 10,
     style: str = "zh",
-) -> str:
+) -> Tuple[str, int]:
     # Process blocks
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks)
     raw_blocks = copy.deepcopy(blocks)
-    blocks = concurrent_translate(A=blocks, translate=translate, thread=thread)
+    blocks, tokens = concurrent_translate(A=blocks, translate=translate, thread=thread)
     output_markdown = combine_blocks(blocks, raw=raw_blocks, style=style)
     # 移除函数多余空格
     output_markdown = fix_dollar_signs(output_markdown)
-    return output_markdown
+    return output_markdown, tokens
