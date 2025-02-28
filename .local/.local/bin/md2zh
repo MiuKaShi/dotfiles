@@ -35,7 +35,7 @@ translate_md() {
 if [[ ! -f "$outputmd" ]]; then
     translate_md
     notify-send "Translate MD" "finish!"
-    [ -f /tmp/md2zh.pdf ] && {
+    [ -f /tmp/tokens ] && {
         tokens=$(sed -n '1p' /tmp/tokens)
         cost=$(sed -n '2p' /tmp/tokens | awk '{printf "%.3f", $0}')
         notify-send "Translate Fee" "All Tokens: $tokens, Cost: $cost CNY"

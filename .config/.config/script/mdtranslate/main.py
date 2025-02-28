@@ -5,11 +5,11 @@ from md_translate import process_markdown
 
 # Select translators
 # avialbel = ["openai", "ollama", "deepseek", "deeplx", "deepl", "google"]
-translate_use = "deepseek"
-api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
+# translate_use = "deepseek"
+# api_file = os.path.expanduser("~/.api_keys/DEEPSEEK_V3_KEY")
 
-# translate_use = "gemini"
-# api_file = os.path.expanduser("~/.api_keys/Gemini_KEY")
+translate_use = "gemini"
+api_file = os.path.expanduser("~/.api_keys/Gemini_KEY")
 
 # translate_use = "deeplx"
 # api_file = os.path.expanduser("~/.api_keys/DEEPLX_KEY")
