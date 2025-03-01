@@ -66,6 +66,8 @@ def main():
     if os.path.isfile(output_md_file):
         open_with_editor(output_md_file)
         sys.exit(0)
+    else:
+        os.system('notify-send "PDF2MD" "processing..."')
 
     upload_data = preupload()
     # print(upload_data)

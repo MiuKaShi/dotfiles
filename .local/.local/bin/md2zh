@@ -40,18 +40,18 @@ if [[ ! -f "$outputmd" ]]; then
         cost=$(sed -n '2p' /tmp/tokens | awk '{printf "%.3f", $0}')
         notify-send "Translate Fee" "All Tokens: $tokens, Cost: $cost CNY"
     }
-
+    $TERMINAL -e "$EDITOR" "$outputmd"
+else
+    ACTION=$(printf "MD\nPDF" | dmenu -p "View:")
+    case $ACTION in
+        "MD")
+            $TERMINAL -e "$EDITOR" "$outputmd"
+            ;;
+        "PDF")
+            if [[ ! -f "$outputpdf" ]]; then
+                compiler "$outputmd"
+            fi
+            $TERMINAL -e sioyek "$outputpdf"
+            ;;
+    esac
 fi
-
-ACTION=$(printf "MD\nPDF" | dmenu -p "View:")
-case $ACTION in
-    "MD")
-        $TERMINAL -e "$EDITOR" "$outputmd"
-        ;;
-    "PDF")
-        if [[ ! -f "$outputpdf" ]]; then
-            compiler "$outputmd"
-        fi
-        $TERMINAL -e sioyek "$outputpdf"
-        ;;
-esac
