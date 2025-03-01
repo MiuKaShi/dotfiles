@@ -6,6 +6,7 @@ import re
 import time
 import subprocess
 import requests as rq
+from bs4 import BeautifulSoup
 
 base_url = "https://v2.doc2x.noedgeai.com"
 
@@ -52,6 +53,61 @@ def open_with_editor(filepath):
     subprocess.Popen([terminal, "-e", editor, filepath])
 
 
+def format_table(table):
+    soup = BeautifulSoup(table, "html.parser")
+    rows = soup.find_all("tr")
+    table_data = []
+
+    for row in rows:
+        cells = row.find_all(["th", "td"])
+        row_data = [cell.decode_contents().strip() for cell in cells]
+        table_data.append(row_data)
+
+    if not table_data:
+        return ""
+
+    # 自动补全缺失的列，使每行列数一致
+    num_cols = max(len(row) for row in table_data)
+    for row in table_data:
+        if len(row) < num_cols:
+            row.extend([""] * (num_cols - len(row)))
+
+    col_widths = [max(len(row[i]) for row in table_data) for i in range(num_cols)]
+    markdown_lines = []
+    header = table_data[0]
+    header_line = (
+        "| "
+        + " | ".join(header[i].ljust(col_widths[i]) for i in range(num_cols))
+        + " |"
+    )
+    markdown_lines.append(header_line)
+    divider_line = (
+        "| " + " | ".join("-" * col_widths[i] for i in range(num_cols)) + " |"
+    )
+    markdown_lines.append(divider_line)
+
+    # 数据行
+    for row in table_data[1:]:
+        row_line = (
+            "| "
+            + " | ".join(row[i].ljust(col_widths[i]) for i in range(num_cols))
+            + " |"
+        )
+        markdown_lines.append(row_line)
+
+    return "\n".join(markdown_lines)
+
+
+def convert_tables(markdown_text):
+    pattern = re.compile(r"<table>.*?</table>", re.DOTALL)
+
+    def repl(match):
+        table = match.group(0)
+        return format_table(table)
+
+    return pattern.sub(repl, markdown_text)
+
+
 def main():
     if len(sys.argv) > 2:
         print("用法: python get_markdown.py <输入PDF文件>")
@@ -62,6 +118,7 @@ def main():
     # 输出 MD 文件
     base, _ = os.path.splitext(input_md_file)
     output_md_file = base + "_txt.md"
+    output_media_file = base + "_med.md"
 
     if os.path.isfile(output_md_file):
         open_with_editor(output_md_file)
@@ -89,59 +146,83 @@ def main():
             output_markdown = "".join(input_markdown)
 
             # Preprocess markdown content
-            # Remove media footnote and blank blocks
+
+            # format equation tag
+            pattern = re.compile(r"\\tag\{(.*?)\}")
+            replacement = r"\\qquad \\text{(\1)}"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # inline math \( \) to $
+            pattern = re.compile(r"\\\(\s*(.*?)\s*\\\)")
+            replacement = r"$\1$"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # inline math \mathrm{\;{****}} to ****
+            pattern = re.compile(r"\\mathrm\{\s*\\;\{\s*(.*?)\s*\}\s*\}")
+            replacement = r"\1"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # inline math \mathrm{****} to ****
+            pattern = re.compile(r"\\mathrm\s*\{\s*(.*?)\s*\}")
+            replacement = r"\1"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # block math \[ \] to $$
+            pattern = re.compile(r"\\\[\s*(.*?)\s*\\\]", re.DOTALL)
+            replacement = r"$$\n\1\n$$"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # replace $$$$ with $$\n$$ for better readability
+            output_markdown = re.sub(r"\$\$\$\$", "$$\n$$", output_markdown)
+
+            # format URL
+            pattern = re.compile(r'<img\s+src\s*=\s*"([^"]+)"\s*/?>')
+            replacement = r"![](\1)"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # format table
+            pattern = re.compile(
+                r"\\begin{center}\s*\\adjustbox{max width=\\textwidth}{\s*(.*?)\s*\\end{tabular}\s*}\s*\\end{center}",
+                re.DOTALL,
+            )
+            replacement = r"\\begin{center}\n\1\n\\end{tabular}\n\\end{center}"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
+            # Extract media blocks from output_markdown
+            media_markdown = re.findall(
+                r"<!-- Media -->(.*?)<!-- Media -->", output_markdown, flags=re.DOTALL
+            )
+            media_markdown = "".join(media_markdown)
+            # tables to markdown tables
+            media_markdown = convert_tables(media_markdown)
+
+            # remove media blocks from output_markdown
             output_markdown = re.sub(
                 r"(?s)<!-- Media -->.*?<!-- Media -->", "", output_markdown
             )
+
+            # Remove footnote and blank blocks
             output_markdown = re.sub(
                 r"(?s)<!-- Footnote -->.*?<!-- Footnote -->", "", output_markdown
             )
             output_markdown = re.sub(r"(?s)---.*?---", "", output_markdown)
 
-            # format table
-            pattern1 = re.compile(
-                r"\\begin{center}\s*\\adjustbox{max width=\\textwidth}{\s*(.*?)\s*\\end{tabular}\s*}\s*\\end{center}",
-                re.DOTALL,
-            )
-            replacement1 = r"\\begin{center}\n\1\n\\end{tabular}\n\\end{center}"
-            output_markdown = re.sub(pattern1, replacement1, output_markdown)
-
-            # format equation tag
-            pattern2 = re.compile(r"\\tag\{(.*?)\}")
-            replacement2 = r"\\qquad \\text{(\1)}"
-            output_markdown = re.sub(pattern2, replacement2, output_markdown)
-
-            # inline math \( \) to $
-            pattern3 = re.compile(r"\\\(\s*(.*?)\s*\\\)")
-            replacement3 = r"$\1$"
-            output_markdown = re.sub(pattern3, replacement3, output_markdown)
-
-            # inline math \mathrm{\;{****}} to ****
-            pattern4 = re.compile(r"\\mathrm\{\s*\\;\{\s*(.*?)\s*\}\s*\}")
-            replacement4 = r"\1"
-            output_markdown = re.sub(pattern4, replacement4, output_markdown)
-
-            # inline math \mathrm{****} to ****
-            pattern5 = re.compile(r"\\mathrm\s*\{\s*(.*?)\s*\}")
-            replacement5 = r"\1"
-            output_markdown = re.sub(pattern5, replacement5, output_markdown)
-
-            # block math \[ \] to $$
-            pattern6 = re.compile(r"\\\[\s*(.*?)\s*\\\]", re.DOTALL)
-            replacement6 = r"$$\n\1\n$$"
-            output_markdown = re.sub(pattern6, replacement6, output_markdown)
-
             # remove \;
             output_markdown = re.sub(r"\\;", "", output_markdown)
 
-            # Replace $$$$ with $$\n$$ for better readability
-            output_markdown = re.sub(r"\$\$\$\$", "$$\n$$", output_markdown)
+            # format blank lines
+            pattern = re.compile(r"(\n\s*){2,}")
+            replacement = "\n\n"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+            media_markdown = re.sub(pattern, replacement, media_markdown)
 
             # 输出 MD 文件
             os.system('notify-send "PDF2MD" "finished!"')
             with open(output_md_file, "w", encoding="utf-8") as f:
                 f.write(output_markdown)
-                open_with_editor(output_md_file)
+            with open(output_media_file, "w", encoding="utf-8") as f:
+                f.write(media_markdown)
+            open_with_editor(output_md_file)
             return
         elif status == "failed":
             # print(status_data)
