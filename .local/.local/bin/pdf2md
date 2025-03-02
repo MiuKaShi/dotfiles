@@ -127,12 +127,12 @@ def main():
     input_md_file = sys.argv[1]
     # 输出 MD 文件
     base, _ = os.path.splitext(input_md_file)
-    filename = os.path.splitext(os.path.basename(input_md_file))[0]
     output_md_file = base + "_txt.md"
     output_media_file = base + "_med.md"
     parent_dir = os.path.dirname(input_md_file)
     media_dir = os.path.join(parent_dir, "pdf_media")
     # record media path
+    filename = os.path.splitext(os.path.basename(input_md_file))[0]
     index_media_path = os.path.join(media_dir, "index")
 
     if not os.path.exists(media_dir):

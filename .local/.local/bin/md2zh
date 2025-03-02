@@ -38,13 +38,13 @@ translate_md() {
 
 action_view() {
     if [[ -f "$mediafile" ]]; then
-        ACTION=$(printf "md\nmedia" | dmenu -p "View:")
+        ACTION=$(printf "zh\nmedia" | dmenu -p "View:")
         case $ACTION in
-            "md")
+            "zh")
                 $TERMINAL -e "$EDITOR" "$outputmd"
                 ;;
             "media")
-                $TERMINAL -e sioyek "$mediafile"
+                sioyek "$mediafile"
                 ;;
         esac
         exit 0
