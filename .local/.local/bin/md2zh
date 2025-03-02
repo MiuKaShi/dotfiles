@@ -1,10 +1,15 @@
 #!/bin/bash
 
 file=$(readlink -f "$1")
+filepath=$(dirname "$file")
+filename=$(basename "$file")
+filename_without_extension="${filename%.*}"
 base="${file%.*}"
 mdfile="${base}_txt.md"
 tmpfile="${base}_en.md"
 outputmd="${base}_zh.md"
+mediapath="${filepath}/pdf_media"
+mediafile="${mediapath}/${filename_without_extension}_med.pdf"
 
 if [[ ! -f "$mdfile" ]]; then
     notify-send "No File" "Get markdown file first."
@@ -31,6 +36,21 @@ translate_md() {
     rm -f "$tmpfile"
 }
 
+action_view() {
+    if [[ -f "$mediafile" ]]; then
+        ACTION=$(printf "md\nmedia" | dmenu -p "View:")
+        case $ACTION in
+            "md")
+                $TERMINAL -e "$EDITOR" "$outputmd"
+                ;;
+            "media")
+                $TERMINAL -e sioyek "$mediafile"
+                ;;
+        esac
+        exit 0
+    fi
+}
+
 if [[ ! -f "$outputmd" ]]; then
     translate_md
     notify-send "Translate MD" "finish!"
@@ -39,5 +59,7 @@ if [[ ! -f "$outputmd" ]]; then
         cost=$(sed -n '2p' /tmp/tokens | awk '{printf "%.3f", $0}')
         notify-send "Translate Fee" "All Tokens: $tokens, Cost: $cost CNY"
     }
+else
+    action_view
 fi
 $TERMINAL -e "$EDITOR" "$outputmd"
