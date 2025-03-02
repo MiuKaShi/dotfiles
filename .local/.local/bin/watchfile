@@ -5,5 +5,7 @@
 
 SCRIPT="/home/miuka/.config/script"
 BIB="/home/miuka/papers/bib/mybib.bib"
+PDF_MEDIA_INDEX="/home/miuka/papers/pdf/pdf_media/index"
 
 echo "$BIB" | entr -p -n $SCRIPT/updatebib.sh >>/dev/null 2>&1 &
+echo "$PDF_MEDIA_INDEX" | entr -p -n $SCRIPT/updatepdf.sh >>/dev/null 2>&1 &

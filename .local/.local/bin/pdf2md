@@ -5,6 +5,7 @@ import sys
 import re
 import time
 import subprocess
+import shutil
 import requests as rq
 from bs4 import BeautifulSoup
 
@@ -47,33 +48,40 @@ def get_status(uid: str):
     raise Exception(f"get status failed: {data}")
 
 
-def open_with_editor(filepath):
+def open_with_editor(path: str):
     editor = os.environ.get("EDITOR", "vim")
     terminal = os.environ.get("$TERMINAL", "st")
-    subprocess.Popen([terminal, "-e", editor, filepath])
+    subprocess.Popen([terminal, "-e", editor, path])
 
 
-def format_table(table):
-    soup = BeautifulSoup(table, "html.parser")
+def format_table(html_table: str):
+    soup = BeautifulSoup(html_table, "html.parser")
     rows = soup.find_all("tr")
     table_data = []
 
     for row in rows:
+        # 保留inline math 表达式
         cells = row.find_all(["th", "td"])
         row_data = [cell.decode_contents().strip() for cell in cells]
         table_data.append(row_data)
 
+    # 过滤空的行
+    table_data = [row for row in table_data if any(cell for cell in row)]
+
     if not table_data:
         return ""
 
-    # 自动补全缺失的列，使每行列数一致
+    # 补全缺失列
     num_cols = max(len(row) for row in table_data)
     for row in table_data:
         if len(row) < num_cols:
             row.extend([""] * (num_cols - len(row)))
-
     col_widths = [max(len(row[i]) for row in table_data) for i in range(num_cols)]
+
+    # 左对齐
     markdown_lines = []
+
+    # 表头
     header = table_data[0]
     header_line = (
         "| "
@@ -81,6 +89,8 @@ def format_table(table):
         + " |"
     )
     markdown_lines.append(header_line)
+
+    # 分隔行
     divider_line = (
         "| " + " | ".join("-" * col_widths[i] for i in range(num_cols)) + " |"
     )
@@ -98,14 +108,14 @@ def format_table(table):
     return "\n".join(markdown_lines)
 
 
-def convert_tables(markdown_text):
+def convert_tables(media_markdown: str):
     pattern = re.compile(r"<table>.*?</table>", re.DOTALL)
 
     def repl(match):
         table = match.group(0)
         return format_table(table)
 
-    return pattern.sub(repl, markdown_text)
+    return pattern.sub(repl, media_markdown)
 
 
 def main():
@@ -117,14 +127,22 @@ def main():
     input_md_file = sys.argv[1]
     # 输出 MD 文件
     base, _ = os.path.splitext(input_md_file)
+    filename = os.path.splitext(os.path.basename(input_md_file))[0]
     output_md_file = base + "_txt.md"
     output_media_file = base + "_med.md"
+    parent_dir = os.path.dirname(input_md_file)
+    media_dir = os.path.join(parent_dir, "pdf_media")
+    # record media path
+    index_media_path = os.path.join(media_dir, "index")
+
+    if not os.path.exists(media_dir):
+        os.makedirs(media_dir)
 
     if os.path.isfile(output_md_file):
         open_with_editor(output_md_file)
         sys.exit(0)
     else:
-        os.system('notify-send "PDF2MD" "processing..."')
+        os.system('notify-send "PDF2MD" "Processing..."')
 
     upload_data = preupload()
     # print(upload_data)
@@ -147,24 +165,9 @@ def main():
 
             # Preprocess markdown content
 
-            # format equation tag
-            pattern = re.compile(r"\\tag\{(.*?)\}")
-            replacement = r"\\qquad \\text{(\1)}"
-            output_markdown = re.sub(pattern, replacement, output_markdown)
-
             # inline math \( \) to $
             pattern = re.compile(r"\\\(\s*(.*?)\s*\\\)")
             replacement = r"$\1$"
-            output_markdown = re.sub(pattern, replacement, output_markdown)
-
-            # inline math \mathrm{\;{****}} to ****
-            pattern = re.compile(r"\\mathrm\{\s*\\;\{\s*(.*?)\s*\}\s*\}")
-            replacement = r"\1"
-            output_markdown = re.sub(pattern, replacement, output_markdown)
-
-            # inline math \mathrm{****} to ****
-            pattern = re.compile(r"\\mathrm\s*\{\s*(.*?)\s*\}")
-            replacement = r"\1"
             output_markdown = re.sub(pattern, replacement, output_markdown)
 
             # block math \[ \] to $$
@@ -172,8 +175,21 @@ def main():
             replacement = r"$$\n\1\n$$"
             output_markdown = re.sub(pattern, replacement, output_markdown)
 
+            # remove space \; in math
+            output_markdown = re.sub(r"\\;", "", output_markdown)
+
+            # math \mathrm{{****}} or \mathrm{****} to ****
+            pattern = re.compile(r"\\mathrm\{\s*(?:\{(.*?)\}|(.*?))\s*\}")
+            replacement = r"\1\2"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
+
             # replace $$$$ with $$\n$$ for better readability
             output_markdown = re.sub(r"\$\$\$\$", "$$\n$$", output_markdown)
+
+            # format equation tag
+            pattern = re.compile(r"\\tag\{(.*?)\}")
+            replacement = r"\\qquad \\text{(\1)}"
+            output_markdown = re.sub(pattern, replacement, output_markdown)
 
             # format URL
             pattern = re.compile(r'<img\s+src\s*=\s*"([^"]+)"\s*/?>')
@@ -207,31 +223,33 @@ def main():
             )
             output_markdown = re.sub(r"(?s)---.*?---", "", output_markdown)
 
-            # remove \;
-            output_markdown = re.sub(r"\\;", "", output_markdown)
-
-            # format blank lines
+            # markdown format
             pattern = re.compile(r"(\n\s*){2,}")
             replacement = "\n\n"
             output_markdown = re.sub(pattern, replacement, output_markdown)
             media_markdown = re.sub(pattern, replacement, media_markdown)
 
-            # 输出 MD 文件
-            os.system('notify-send "PDF2MD" "finished!"')
+            # 输出TxT MD 文件
             with open(output_md_file, "w", encoding="utf-8") as f:
                 f.write(output_markdown)
+            open_with_editor(output_md_file)
+            os.system('notify-send "PDF2MD" "TXT Finished!"')
+            # 输出MEDIA 文件
             with open(output_media_file, "w", encoding="utf-8") as f:
                 f.write(media_markdown)
-            open_with_editor(output_md_file)
+            shutil.move(output_media_file, media_dir)
+            # 追加写入 index 文件
+            with open(index_media_path, "a+", encoding="utf-8") as index_file:
+                index_file.write(filename)
             return
         elif status == "failed":
             # print(status_data)
-            os.system('notify-send "PDF2MD" "failed!"')
+            os.system('notify-send "PDF2MD" "Failed!"')
             raise Exception(f"parse failed: {status_data.get('detail')}")
         elif status == "processing":
             # print(status_data)
             # print(f"progress: {status_data.get('progress')}")
-            os.system('notify-send "PDF2MD" "processing..."')
+            os.system('notify-send "PDF2MD" "Processing..."')
             time.sleep(3)
     raise Exception(f"Fails to deal with uid: {uid} after {max_retries} retries")
 

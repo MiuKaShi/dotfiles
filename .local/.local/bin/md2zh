@@ -5,7 +5,6 @@ base="${file%.*}"
 mdfile="${base}_txt.md"
 tmpfile="${base}_en.md"
 outputmd="${base}_zh.md"
-outputpdf="${base}_zh.pdf"
 
 if [[ ! -f "$mdfile" ]]; then
     notify-send "No File" "Get markdown file first."
@@ -40,18 +39,5 @@ if [[ ! -f "$outputmd" ]]; then
         cost=$(sed -n '2p' /tmp/tokens | awk '{printf "%.3f", $0}')
         notify-send "Translate Fee" "All Tokens: $tokens, Cost: $cost CNY"
     }
-    $TERMINAL -e "$EDITOR" "$outputmd"
-else
-    ACTION=$(printf "MD\nPDF" | dmenu -p "View:")
-    case $ACTION in
-        "MD")
-            $TERMINAL -e "$EDITOR" "$outputmd"
-            ;;
-        "PDF")
-            if [[ ! -f "$outputpdf" ]]; then
-                compiler "$outputmd"
-            fi
-            $TERMINAL -e sioyek "$outputpdf"
-            ;;
-    esac
 fi
+$TERMINAL -e "$EDITOR" "$outputmd"
