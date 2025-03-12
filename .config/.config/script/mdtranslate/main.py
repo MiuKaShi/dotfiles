@@ -146,7 +146,9 @@ def create_translator(name):
         from Translator.DeepLX import deeplx_translate
 
         deeplx_url = apikey
-        return deeplx_translate(base_url=deeplx_url, src=deeplx_src, dest=deeplx_dest)
+        return deeplx_translate(
+            base_url=deeplx_url, src=deeplx_src, dest=deeplx_dest
+        )
     elif name == "deepl":
         from Translator.DeepL import deepl_translate
 

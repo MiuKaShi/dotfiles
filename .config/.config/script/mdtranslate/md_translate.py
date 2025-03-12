@@ -52,11 +52,19 @@ def split_markdown(content: str) -> List[Block]:
                 split_text_blocks(text)
         if match.group("title"):
             A.append(
-                Block(position=len(A) + 1, type="title", content=match.group("title"))
+                Block(
+                    position=len(A) + 1,
+                    type="title",
+                    content=match.group("title"),
+                )
             )
         elif match.group("table"):
             A.append(
-                Block(position=len(A) + 1, type="table", content=match.group("table"))
+                Block(
+                    position=len(A) + 1,
+                    type="table",
+                    content=match.group("table"),
+                )
             )
         elif match.group("block_formula"):
             A.append(
@@ -68,7 +76,11 @@ def split_markdown(content: str) -> List[Block]:
             )
         elif match.group("img"):
             A.append(
-                Block(position=len(A) + 1, type="image", content=match.group("img"))
+                Block(
+                    position=len(A) + 1,
+                    type="image",
+                    content=match.group("img"),
+                )
             )
         elif match.group("link_img"):
             A.append(
@@ -80,7 +92,11 @@ def split_markdown(content: str) -> List[Block]:
             )
         elif match.group("link"):
             A.append(
-                Block(position=len(A) + 1, type="link", content=match.group("link"))
+                Block(
+                    position=len(A) + 1,
+                    type="link",
+                    content=match.group("link"),
+                )
             )
         pos = end
     if pos < len(content):
@@ -93,7 +109,7 @@ def split_markdown(content: str) -> List[Block]:
 def split_text_blocks(A: List[Block]) -> List[Block]:
     new_blocks = []
 
-    def adjust_sentences_length(sentence_list, min_length=512):
+    def adjust_sentences_length(sentence_list, min_length=2048):
         new_sentence = []
         index = 0
         total_index = len(sentence_list)
@@ -107,7 +123,10 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
             else:
                 # 合并后续元素直至达到最小长度或遍历完
                 next_index = index + 1
-                while next_index < total_index and len(current_sentence) < min_length:
+                while (
+                    next_index < total_index
+                    and len(current_sentence) < min_length
+                ):
                     current_sentence += " " + sentence_list[next_index]
                     next_index += 1
                 new_sentence.append(current_sentence)
@@ -301,7 +320,9 @@ def process_markdown(
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks)
     raw_blocks = copy.deepcopy(blocks)
-    blocks, tokens = concurrent_translate(A=blocks, translate=translate, thread=thread)
+    blocks, tokens = concurrent_translate(
+        A=blocks, translate=translate, thread=thread
+    )
     output_markdown = combine_blocks(blocks, raw=raw_blocks, style=style)
     # 移除函数多余空格
     output_markdown = fix_dollar_signs(output_markdown)
