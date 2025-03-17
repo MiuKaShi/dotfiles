@@ -16,8 +16,6 @@ AllowedTags = {
     "{YYYY}": " \t\t=\t Year of publication",
     "{MM}": " \t\t=\t Month of publication (in digits)",
     "{DD}": " \t\t=\t Day of publication (in digits)",
-    "{J}": " \t\t=\t Full name of Journal",
-    "{Jabbr}": " \t=\t Abbreviated name of Journal, if any available (otherwise full name is used)",
     "{Aall}": " \t\t=\t Last name of all authors (separated by comma)",
     "{Aetal}": " \t=\t Last name of the first author, add 'et al.' if more authors are present",
     "{A3etal}": " \t=\t Last name of the first three authors (separated by comma), add 'et al.' if more authors are present",
@@ -93,10 +91,6 @@ def month_to_number(month_string):
     return valid_months.get(month_string, "00")
 
 
-def validate_journal(journal):
-    return journal
-
-
 def is_valid_integer(string, number_digits):
     if not isinstance(string, str):
         string = str(string)
@@ -133,45 +127,18 @@ def sanitize(string):
     string = pdf2bib.remove_latex_codes(string)
 
     # Step 3. Remove any residual special character
-    invalid = "<>\"/\|*{}'?:"
-    for char in invalid:
-        string = string.replace(char, "")
+    # invalid = "<>\"/\|*{}'?:"
+    # for char in invalid:
+    #     string = string.replace(char, "")
+    # 只保留字母、数字、下划线、连字符
+    string = re.sub(r'[^a-zA-Z0-9\-_]', '', string)
     # Step 4. #Make a final check that the string is only made out of ascii characters (i.e. no accents, tildes, etc.)
     string = unidecode.unidecode(string)
 
     # Step 5. If there are multiple spaces, replace them with only one
-    string = re.sub(" +", " ", string)
+    string = re.sub(" ", "", string)
 
     return string
-
-
-def find_abbreviation_journal(journal_name):
-    """
-    Find a journal abbreviation for a given journal name.
-
-    Parameters
-    ----------
-    journal_name : string
-        Name of the Journal.
-
-    Returns
-    -------
-    string
-        The abbreviation of the journal if any is found, or None if no abbraviation is found
-
-    """
-    to_search = sanitize((journal_name.strip() + " = ").lower())
-
-    data = pkgutil.get_data(__name__, "UserDefinedAbbreviations.txt").decode("utf8")
-    for line in data.splitlines():
-        if (line.lower()).startswith(to_search):
-            return line[len(to_search) :].rstrip()
-
-    data = pkgutil.get_data(__name__, "StandardAbbreviations.txt").decode("utf8")
-    for line in data.splitlines():
-        if (line.lower()).startswith(to_search):
-            return line[len(to_search) :].rstrip()
-    return None
 
 
 def find_tags_in_format(format):
@@ -247,21 +214,6 @@ def build_filename(infos, format=None, tags=None):
                 rep_dict["{DD}"] = infos["day"]
             elif is_valid_integer(infos["day"], 1):
                 rep_dict["{DD}"] = "0" + infos["day"]
-
-    if ("{J}" in rep_dict.keys()) or ("{Jabbr}" in rep_dict.keys()):
-        if ("journal" in infos) and infos["journal"]:
-            rep_dict["{J}"] = validate_journal(infos["journal"])
-            Jabbr = find_abbreviation_journal(infos["journal"])
-            if Jabbr:
-                rep_dict["{Jabbr}"] = Jabbr
-            else:
-                rep_dict["{Jabbr}"] = rep_dict["{J}"]
-        elif ("ejournal" in infos) and infos["ejournal"]:
-            rep_dict["{J}"] = infos["ejournal"]
-            rep_dict["{Jabbr}"] = infos["ejournal"]
-        else:
-            rep_dict["{J}"] = "[NoJournal]"
-            rep_dict["{Jabbr}"] = "[NoJourn]"
 
     author_info = ""
     if "author" in infos.keys():

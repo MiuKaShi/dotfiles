@@ -1,0 +1,42 @@
+# Maintainer: envolution
+# Contributor: Jingbei Li <i@jingbei.li>
+# Contributor: Xwang <xwaang1976@gmail.com>
+# Contributor: George Eleftheriou <eleftg>
+# Contributor: Andrew Fischer <andrew_at_apastron.co>
+# shellcheck shell=bash disable=SC2034,SC2154
+
+pkgbase=openfoam
+pkgname=openfoam-org
+pkgver=12.20250206
+pkgrel=4
+pkgdesc="The open source CFD toolbox (www.openfoam.org)"
+_distpkgbase=OpenFOAM
+arch=('x86_64')
+url="http://www.openfoam.org"
+license=("GPL-3.0-or-later")
+depends=(
+    'bzip2'
+    'parmetis-git' #git until parmetis is fixed
+    'scotch'
+    'boost'
+    'flex'
+    'cgal'
+    'zoltan' # provided separately from 'trilinos'
+)
+makedepends=('bash')
+provides=('openfoam')
+source=("${pkgname}.pkg.tar.zst::https://mirrors.aliyun.com/arch4edu/x86_64/${pkgname}-${pkgver}-${pkgrel}-x86_64.pkg.tar.zst")
+noextract=("${pkgname}.pkg.tar.zst")
+md5sums=('SKIP')
+
+package() {
+    # 将预编译包解压提取出来
+    mkdir -p "${srcdir}/extracted"
+    bsdtar -xf "${srcdir}/${pkgname}.pkg.tar.zst" -C "${srcdir}/extracted"
+
+    # 安装需要的文件
+    cp -avR "${srcdir}/extracted/opt" "${pkgdir}/opt"
+    chmod -R go+r "${pkgdir}"/opt
+}
+
+# vim:set ts=2 sw=2 et:

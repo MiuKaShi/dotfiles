@@ -1,0 +1,33 @@
+# Maintainer: Norbert Weber <norbert.weber_at_hzdr.de>
+# Contributor: Carlos Aznarán <caznaranl@uni.pe>
+# Contributor: Marc Olesen
+# Contributor: Xwang <xwaang1976@gmail.com>
+# Contributor: George Eleftheriou <eleftg>
+# Contributor: Andrew Fischer <andrew_at_apastron.co>
+# Contributor: <gucong43216@gmail.com>
+
+# Installs as (for example)
+# /opt/OpenFOAM/OpenFOAM-v2406
+
+pkgbase=openfoam
+pkgname=openfoam-com
+pkgver=v2406
+pkgrel=2
+pkgdesc="The open source CFD toolbox (www.openfoam.com)"
+arch=('x86_64')
+url="https://www.${pkgname//-/.}"
+license=(GPL-3.0-or-later)
+depends=(cgal fftw boost openmpi scotch parmetis-git kahip) # 移除 paraview
+source=("${pkgname}.pkg.tar.zst::https://mirrors.aliyun.com/arch4edu/x86_64/${pkgname}-${pkgver}-${pkgrel}-x86_64.pkg.tar.zst")
+noextract=("openfoam-com.pkg.tar.zst")
+md5sums=('SKIP')
+
+package() {
+    # 将预编译包解压提取出来
+    mkdir -p "${srcdir}/extracted"
+    bsdtar -xf "${srcdir}/${pkgname}.pkg.tar.zst" -C "${srcdir}/extracted"
+
+    # 安装需要的文件
+    cp -avR "${srcdir}/extracted/opt" "${pkgdir}/opt"
+    chmod -R go+r "${pkgdir}"/opt
+}
