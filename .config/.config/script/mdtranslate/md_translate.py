@@ -106,10 +106,12 @@ def split_markdown(content: str) -> List[Block]:
     return A
 
 
-def split_text_blocks(A: List[Block]) -> List[Block]:
+def split_text_blocks(
+    A: List[Block], min_length: int
+) -> Tuple[List[Block], int]:
     new_blocks = []
 
-    def adjust_sentences_length(sentence_list, min_length=2048):
+    def adjust_sentences_length(sentence_list, min_length):
         new_sentence = []
         index = 0
         total_index = len(sentence_list)
@@ -140,7 +142,7 @@ def split_text_blocks(A: List[Block]) -> List[Block]:
         if block.type == "text":
             text = block.content
             sentence_unit = splitter.split(text=text)
-            sentence_parts = adjust_sentences_length(sentence_unit)
+            sentence_parts = adjust_sentences_length(sentence_unit, min_length)
             for content in sentence_parts:
                 new_blocks.append(
                     Block(
@@ -313,12 +315,13 @@ def fix_dollar_signs(output_markdown: str) -> str:
 def process_markdown(
     input_markdown: str,
     translate: callable,
+    style: str,
     thread: int = 10,
-    style: str = "zh",
+    min_length: int = 1024,
 ) -> Tuple[str, int]:
     # Process blocks
     blocks = split_markdown(input_markdown)
-    blocks = split_text_blocks(blocks)
+    blocks = split_text_blocks(blocks, min_length=min_length)
     raw_blocks = copy.deepcopy(blocks)
     blocks, tokens = concurrent_translate(
         A=blocks, translate=translate, thread=thread
