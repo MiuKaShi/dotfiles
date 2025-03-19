@@ -5,7 +5,7 @@
 
 xmenu <<EOF | sh &
 IMG:$HOME/.config/xmenu/icons/st.svg							Terminal 					st
-IMG:$HOME/.config/xmenu/icons/Alacritty.svg							Alacritty 					at
+IMG:$HOME/.config/xmenu/icons/kitty.svg							Kitty 					at
 IMG:$HOME/.config/xmenu/icons/openai.svg							Claude 			thorium-browser	--gtk-version=4 https://claude.ai/new/
 IMG:$HOME/.config/xmenu/icons/rss.svg							Rss 					st -e newsboat
 IMG:$HOME/.config/xmenu/icons/zotero.svg							Zotero 					zotero
