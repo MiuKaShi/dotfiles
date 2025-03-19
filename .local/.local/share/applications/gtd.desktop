@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Get Things Done
+Exec=egtd %u
+StartupNotify=false
+MimeType=text/org;
