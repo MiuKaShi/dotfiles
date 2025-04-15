@@ -42,7 +42,13 @@ c.editor.command = ["st", "-e", "nvim", "{}"]
 c.fileselect.handler = "external"
 c.fileselect.folder.command = ["st", "-e", "lfub", "-last-dir-path", "{}"]
 c.fileselect.single_file.command = ["st", "-e", "lfub", "-selection-path", "{}"]
-c.fileselect.multiple_files.command = ["st", "-e", "lfub", "-selection-path", "{}"]
+c.fileselect.multiple_files.command = [
+    "st",
+    "-e",
+    "lfub",
+    "-selection-path",
+    "{}",
+]
 c.downloads.location.directory = "~/Downloads"
 c.downloads.location.prompt = False
 c.confirm_quit = ["multiple-tabs", "downloads"]
