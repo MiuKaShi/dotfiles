@@ -1,0 +1,20 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+base="${file%.*}"
+output="${base}.docx"
+template="/home/miuka/Downloads/article.docx"
+
+pandoc "$file" \
+    --from=markdown \
+    --to=docx \
+    --embed-resources \
+    --standalone \
+    --bibliography="$BIB" \
+    --reference-doc="$template" \
+    --csl="$CSL" \
+    --citeproc \
+    -M reference-section-title="References" \
+    -M link-citations=true \
+    --dpi=600 \
+    --output="$output"
