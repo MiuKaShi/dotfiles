@@ -26,7 +26,7 @@ with open(api_file, "r", encoding="utf-8") as f:
 threads = 10
 
 # min sentence length to translate
-min_length = 2048
+min_length = 1024
 
 # avialbel = ["zh", "zh-en", "en-zh"]
 style = "zh-en"

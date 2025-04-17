@@ -11,7 +11,7 @@ c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.site_specific_quirks.enabled = False
 c.content.headers.do_not_track = True
 c.content.headers.referer = "same-domain"
-c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}"
+c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/122.0.0.0 Safari/{webkit_version}"
 
 url_dict = {
     "js": [
@@ -77,7 +77,9 @@ for url in url_dict.get("cookie"):
 
 
 # per-domain settings
-config.set("content.headers.accept_language", "", "https://matchmaker.krunker.io/*")
+config.set(
+    "content.headers.accept_language", "", "https://matchmaker.krunker.io/*"
+)
 config.set(
     "content.headers.user_agent",
     "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
