@@ -12,7 +12,7 @@ deepl_api() {
     # result=$(echo "$raw_data" | jq -r '.translations[].text')
 
     json_text=$(echo "$text" | sed 's/"/\\"/g; s/$/\\n/' | tr -d '\n')
-    raw_data=$(curl -Ss --location 'https://api.deeplx.org/tVbCnP5dq5y--UrREE3zUKHbpvLpGydQ5yW3q3QCG-I/translate' \
+    raw_data=$(curl -Ss -k --location 'https://api.deeplx.org/SFqpvL0jqFuv5W0r3TO5nSHKFvPjB2t9XVDjr9-qu24/translate' \
         --header 'Content-Type: application/json' \
         --data "{\"text\": \"$json_text\", \"target_lang\": \"ZH\"}")
     result=$(echo "$raw_data" | jq -r '.data')
@@ -36,7 +36,7 @@ case "$1" in
         ;;
     '-s')
         # Get usage information from the DeepL API and display it to the user
-        usage_data=$(curl -Ss -X POST 'https://api-free.deepl.com/v2/usage' -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN")
+        usage_data=$(curl -Ss -k -X POST 'https://api-free.deepl.com/v2/usage' -H "Authorization: DeepL-Auth-Key $DEEPL_TOKEN")
         count_info=$(echo "$usage_data" | jq -r '.character_count')
         limit_info=$(echo "$usage_data" | jq -r '.character_limit')
         echo "usage: $count_info/$limit_info"
