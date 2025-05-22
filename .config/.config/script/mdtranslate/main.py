@@ -23,13 +23,13 @@ with open(api_file, "r", encoding="utf-8") as f:
 
 
 # translator settings
-threads = 10
+threads = 5
 
 # min sentence length to translate
 min_length = 2048
 
 # avialbel = ["zh", "zh-en", "en-zh"]
-style = "zh-en"
+style = "zh"
 
 # ========Google==========
 google_src = "en"
@@ -47,7 +47,7 @@ openai_baseurl = "https://api.openai.com/v1"
 openai_model = "gpt-4o-mini"
 
 # ========Gemini==========
-gemini_model = "gemini-2.0-flash"
+gemini_model = "gemini-2.5-flash-preview-05-20"
 deepseek_baseurl = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 # ========Deepseek==========
@@ -148,9 +148,7 @@ def create_translator(name):
         from Translator.DeepLX import deeplx_translate
 
         deeplx_url = apikey
-        return deeplx_translate(
-            base_url=deeplx_url, src=deeplx_src, dest=deeplx_dest
-        )
+        return deeplx_translate(base_url=deeplx_url, src=deeplx_src, dest=deeplx_dest)
     elif name == "deepl":
         from Translator.DeepL import deepl_translate
 
@@ -205,9 +203,7 @@ def token_cost(tokens: dict, name: str) -> dict:
     all_tokens = sent_tokens + received_tokens
 
     # 分别计算发送和接收 token 的费用（美元）
-    all_cost_usd = (sent_tokens / 1000) * rates["sent"] + (
-        received_tokens / 1000
-    ) * rates["received"]
+    all_cost_usd = (sent_tokens / 1000) * rates["sent"] + (received_tokens / 1000) * rates["received"]
 
     # 总费用(人民币)
     total_cost_cny = all_cost_usd * usd_to_cny

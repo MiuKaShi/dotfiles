@@ -239,7 +239,7 @@ proxies:
   - {
       name: '香港1',
       type: vless,
-      server: rm-lite-hk-10.409648.xyz,
+      server: rm-lite-hk-03.409648.xyz,
       port: 37735,
       uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
@@ -257,7 +257,7 @@ proxies:
   - {
       name: '香港2',
       type: vless,
-      server: rm-lite-hk-13.409648.xyz,
+      server: rm-lite-hk-08.409648.xyz,
       port: 37735,
       uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
@@ -275,7 +275,7 @@ proxies:
   - {
       name: '香港3',
       type: vless,
-      server: rm-lite-hk-15.409648.xyz,
+      server: rm-lite-hk-13.409648.xyz,
       port: 37735,
       uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
@@ -292,13 +292,21 @@ proxies:
     }
   - {
       name: '香港4',
-      type: vmess,
-      server: anyhkhgc.ednovas.org,
-      port: 443,
-      uuid: a5206a55-d5bd-41b9-92a5-bd27a90355ff,
-      alterId: 0,
-      cipher: auto,
+      type: vless,
+      server: rm-lite-hk-02.409648.xyz,
+      port: 37735,
+      uuid: e6e0ec6a-e22c-4714-bf0d-96cabbe80406,
       udp: true,
+      tls: true,
+      skip-cert-verify: false,
+      flow: xtls-rprx-vision,
+      client-fingerprint: qq,
+      servername: content.cdp.bethesda.net,
+      reality-opts:
+        {
+          public-key: vT1uppVdoyWg0f7sEynK0SnjtYrYKxYJAVhA2fuO7SU,
+          short-id: 67ed030d,
+        },
     }
   - {
       name: '香港5',
