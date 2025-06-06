@@ -15,6 +15,7 @@ c.content.headers.user_agent = "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_vers
 
 url_dict = {
     "js": [
+        "*://*.linux.do/*",
         "*://*.youtube.com/*",
         "*://127.0.0.1/*",
         "*://darksky.net/*",
@@ -47,6 +48,7 @@ url_dict = {
     ],
     "cookie": [
         "*://*.google.com/*",
+        "*://*.linux.do/*",
         "*://*.office.com/*",
         "*://*.reddit.com/*",
         "*://*.youtube.com/*",
@@ -77,9 +79,7 @@ for url in url_dict.get("cookie"):
 
 
 # per-domain settings
-config.set(
-    "content.headers.accept_language", "", "https://matchmaker.krunker.io/*"
-)
+config.set("content.headers.accept_language", "", "https://matchmaker.krunker.io/*")
 config.set(
     "content.headers.user_agent",
     "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
@@ -89,4 +89,9 @@ config.set(
     "content.headers.user_agent",
     "Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36",
     "https://*.slack.com/*",
+)
+config.set(
+    "content.headers.user_agent",
+    "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
+    "https://linux.do/*",
 )

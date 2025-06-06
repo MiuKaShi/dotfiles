@@ -70,6 +70,8 @@ c.url.start_pages = "https://google.com/"
 c.tabs.last_close = "close"
 # c.tabs.last_close = "startpage"
 
+c.qt.force_software_rendering = 'chromium'
+
 ## Fix for crashes
 c.qt.workarounds.remove_service_workers = True
 
@@ -78,7 +80,6 @@ c.qt.workarounds.remove_service_workers = True
 # see https://github.com/qutebrowser/qutebrowser/issues/5378
 # for webopt see https://github.com/qutebrowser/qutebrowser/issues/8222
 c.qt.args = [
-    "use-gl=angle",
     "ignore-gpu-blocklist",
     "enable-gpu-rasterization",
     "enable-webrtc-pipewire-capturer",
