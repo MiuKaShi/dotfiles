@@ -29,7 +29,7 @@ threads = 5
 min_length = 2048
 
 # avialbel = ["zh", "zh-en", "en-zh"]
-style = "zh"
+style = "en-zh"
 
 # ========Google==========
 google_src = "en"
@@ -47,7 +47,7 @@ openai_baseurl = "https://api.openai.com/v1"
 openai_model = "gpt-4o-mini"
 
 # ========Gemini==========
-gemini_model = "gemini-2.5-flash-preview-05-20"
+gemini_model = "gemini-2.0-flash"
 deepseek_baseurl = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 # ========Deepseek==========
