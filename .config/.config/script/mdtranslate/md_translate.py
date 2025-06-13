@@ -106,9 +106,7 @@ def split_markdown(content: str) -> List[Block]:
     return A
 
 
-def split_text_blocks(
-    A: List[Block], min_length: int
-) -> Tuple[List[Block], int]:
+def split_text_blocks(A: List[Block], min_length: int) -> Tuple[List[Block], int]:
     new_blocks = []
 
     def adjust_sentences_length(sentence_list, min_length):
@@ -125,19 +123,14 @@ def split_text_blocks(
             else:
                 # 合并后续元素直至达到最小长度或遍历完
                 next_index = index + 1
-                while (
-                    next_index < total_index
-                    and len(current_sentence) < min_length
-                ):
+                while next_index < total_index and len(current_sentence) < min_length:
                     current_sentence += " " + sentence_list[next_index]
                     next_index += 1
                 new_sentence.append(current_sentence)
                 index = next_index  # 跳转至未处理元素
         return new_sentence
 
-    splitter = SentenceSplitter(
-        language="en", non_breaking_prefix_file="non_breaking_prefixes.txt"
-    )
+    splitter = SentenceSplitter(language="en", non_breaking_prefix_file="non_breaking_prefixes.txt")
     for block in A:
         if block.type == "text":
             text = block.content
@@ -157,9 +150,7 @@ def split_text_blocks(
     return new_blocks
 
 
-def replace_inline_formula(
-    text: str, placeholder_counter: int, placeholders: dict
-) -> str:
+def replace_inline_formula(text: str, placeholder_counter: int, placeholders: dict) -> str:
     inline_formula_pattern = re.compile(r"\$[^$]+\$")
 
     def replacer(match):
@@ -172,9 +163,7 @@ def replace_inline_formula(
     return inline_formula_pattern.sub(replacer, text)
 
 
-def concurrent_translate(
-    A: List[Block], translate: callable, thread: int
-) -> Tuple[List[Block], dict]:
+def concurrent_translate(A: List[Block], translate: callable, thread: int) -> Tuple[List[Block], dict]:
     placeholders = {}
     token_counter = {"sent_tokens": 0, "received_tokens": 0}
     placeholder_counter = 1
@@ -196,10 +185,7 @@ def concurrent_translate(
             next_block = None
             if block.sub_position > 1:
                 for b in reversed(A[: A.index(block)]):
-                    if (
-                        b.position == block.position
-                        and b.sub_position == block.sub_position - 1
-                    ):
+                    if b.position == block.position and b.sub_position == block.sub_position - 1:
                         prev_block = b.content
                         break
             else:
@@ -208,24 +194,17 @@ def concurrent_translate(
                         prev_block = b.content
                         break
             for b in A[A.index(block) + 1 :]:
-                if (
-                    b.position == block.position
-                    and b.sub_position == block.sub_position + 1
-                ):
+                if b.position == block.position and b.sub_position == block.sub_position + 1:
                     next_block = b.content
                     break
                 elif b.position == block.position + 1:
                     next_block = b.content
                     break
             # 处理行内公式替换
-            translated_content = replace_inline_formula(
-                block.content, placeholder_counter, placeholders
-            )
+            translated_content = replace_inline_formula(block.content, placeholder_counter, placeholders)
             placeholder_counter += len(placeholders)
             # 调用翻译函数，返回翻译后的文本以及累计 tokens 数
-            translated, tokens = translate(
-                translated_content, prev_block or "", next_block or ""
-            )
+            translated, tokens = translate(translated_content, prev_block or "", next_block or "")
             # 合并 token_counter
             token_counter["sent_tokens"] += tokens["sent_tokens"]
             token_counter["received_tokens"] += tokens["received_tokens"]
@@ -323,9 +302,7 @@ def process_markdown(
     blocks = split_markdown(input_markdown)
     blocks = split_text_blocks(blocks, min_length=min_length)
     raw_blocks = copy.deepcopy(blocks)
-    blocks, tokens = concurrent_translate(
-        A=blocks, translate=translate, thread=thread
-    )
+    blocks, tokens = concurrent_translate(A=blocks, translate=translate, thread=thread)
     output_markdown = combine_blocks(blocks, raw=raw_blocks, style=style)
     # 移除函数多余空格
     output_markdown = fix_dollar_signs(output_markdown)

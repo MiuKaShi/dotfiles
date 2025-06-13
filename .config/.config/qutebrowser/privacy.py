@@ -82,7 +82,7 @@ for url in url_dict.get("cookie"):
 config.set("content.headers.accept_language", "", "https://matchmaker.krunker.io/*")
 config.set(
     "content.headers.user_agent",
-    "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
+    "Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version} Edg/{upstream_browser_version}",
     "https://accounts.google.com/*",
 )
 config.set(
@@ -92,6 +92,6 @@ config.set(
 )
 config.set(
     "content.headers.user_agent",
-    "Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
     "https://linux.do/*",
 )

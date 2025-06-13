@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
+# export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 export MATLAB_LOG_DIR="/tmp"
 # OpenGL hardware-accelerated and fonts rendering
 export LD_PRELOAD="/usr/lib/libstdc++.so /lib64/libfreetype.so"

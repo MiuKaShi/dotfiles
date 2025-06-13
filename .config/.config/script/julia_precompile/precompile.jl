@@ -13,7 +13,7 @@ Pkg.add("PackageCompiler")
 using PackageCompiler
 
 packages = [
-    :Revise, :OhMyREPL, :PyCall, :IJulia,
+    :OhMyREPL, :IJulia,
     :FileIO, :JLD2, :DataFrames,
     :CSV, :BenchmarkTools,
     :StaticArrays
