@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-host="https://sci-hub.se"
+host="https://sci-hub.ren"
+# host="https://sci-hub.vg"
 
 input="$1"
 start=$(echo "$input" | cut -c -3)
