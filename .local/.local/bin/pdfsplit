@@ -2,12 +2,13 @@
 
 ifinstalled pdftk || exit
 
-input_file="$1"
+input_file=$(readlink -f "$1")
+filename=$(basename "$input_file")
 pages_per_split=$(printf "20\n10\n30" | dmenu -p "Range of pages:") || exit 0
 
 # 获取总页数
 total_pages=$(pdftk "$input_file" dump_data | grep NumberOfPages | awk '{print $2}')
-notify-send "总页数: $total_pages" && exit 1
+notify-send "总页数: $total_pages" || exit 1
 
 # 计算需要分割的文件数
 num_splits=$(((total_pages + pages_per_split - 1) / pages_per_split))
@@ -19,9 +20,7 @@ for ((i = 0; i < num_splits; i++)); do
     if [ $end_page -gt $total_pages ]; then
         end_page=$total_pages
     fi
-
-    output_file="part$(printf "%02d" $((i + 1))).pdf"
-
+    output_file="${filename%.*}-$((i + 1)).pdf"
     pdftk "$input_file" cat $start_page-$end_page output "$output_file"
-    notify-send "创建 $output_file (第 $start_page-$end_page 页)" && exit 1
+    notify-send "创建 $output_file (第 $start_page-$end_page 页)" || exit 1
 done
