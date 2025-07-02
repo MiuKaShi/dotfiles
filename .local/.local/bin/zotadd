@@ -28,13 +28,11 @@ if __name__ == "__main__":
     print(fname)
     # TODO: replace this hacky approach
     with TemporaryDirectory() as tmp_dir:
-        print(tmp_dir) 
+        print(tmp_dir)
         # serve file
         copyfile(fname, tmp_dir + "/" + os.path.basename(fname))
         os.chdir(tmp_dir)
-        zserv_process = subprocess.Popen(
-            ["python3", "-m", "http.server", "{}".format(zserv_port)]
-        )
+        zserv_process = subprocess.Popen(["python3", "-m", "http.server", "{}".format(zserv_port)])
 
         zserv_url = "http://localhost:{}/{}".format(zserv_port, quote(os.path.basename(fname)))
         print(zserv_url)
