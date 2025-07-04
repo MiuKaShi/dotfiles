@@ -697,8 +697,6 @@ rules:
   - DOMAIN-SUFFIX,kyushu-u.ac.jp,Journal
   - DOMAIN-SUFFIX,kyushuuv.jp,Journal
   # Journal
-  - DOMAIN-SUFFIX,google.co.jp,Journal
-  - DOMAIN-SUFFIX,google.com,Journal
   - DOMAIN-SUFFIX,acm.org,Journal
   - DOMAIN-SUFFIX,acs.org,Journal
   - DOMAIN-SUFFIX,aip.org,Journal
@@ -1014,127 +1012,127 @@ rules:
   - IP-CIDR,23.40.242.10/32,CN,no-resolve
   - IP-CIDR,23.53.32.88/32,CN,no-resolve
   # > bilibili
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3z.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctt.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctu.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc31.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc3t.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpba.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpbz.ourdvsss.com,CN
-  - DOMAIN,0gr4uqmtt8y41hcjzgazdrpjt.ourdvsss.com,CN
-  - DOMAIN,112-81-125-43.dhost.00cdn.com,CN
-  - DOMAIN,113-219-145-1.ksyungslb.com,CN
-  - DOMAIN,114-236-92-129.ksyungslb.com,CN
-  - DOMAIN,180-101-74-1.ksyungslb.com,CN
-  - DOMAIN,1geadrmttge3nhcjwgazdope.ourdvsss.com,CN
-  - DOMAIN,1geadrmttge3nhcjwgwzdqqe.ourdvsss.com,CN
-  - DOMAIN,1gr3uomttgr31hcjo8yzdnco.ourdvsss.com,CN
-  - DOMAIN,1gr3uomttgr31hcjo8yzdnpy.ourdvsss.com,CN
-  - DOMAIN,1gr3uomttgr31hcjtgezdkcy.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqca.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqce.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqco.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjigazdqpo.ourdvsss.com,CN
-  - DOMAIN,1gr4uqmtt8y41hcjzgwzdkqe.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdcca.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdcco.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkca.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkco.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkpe.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkpy.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj38yzdkqy.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcpa.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcpe.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcpo.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcj3gczdcqy.ourdvsss.com,CN
-  - DOMAIN,1gr5dgmttgha1hcttgrzdnpo.ourdvsss.com,CN
-  - DOMAIN,1graukmttga4nhcjtgozdgce.ourdvsss.com,CN
-  - DOMAIN,218-91-225-1.ksyungslb.com,CN
-  - DOMAIN,219-155-150-1.ksyungslb.com,CN
-  - DOMAIN,222-188-6-1.ksyungslb.com,CN
-  - DOMAIN,36-104-134-1.ksyungslb.com,CN
-  - DOMAIN,36-25-252-1.ksyungslb.com,CN
-  - DOMAIN,3ge3drmttga5nhcbqge3ur.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdnqbofa5do.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdnqbofa5dy.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdrcbzfahue.ourdvsss.com,CN
-  - DOMAIN,3geauymtsgrzdrcbzfahuk.ourdvsss.com,CN
-  - DOMAIN,4go41hcjtgazdoctqge4o.ourdvsss.com,CN
-  - DOMAIN,p-bstarstatic.akamaized.net,CN
-  - DOMAIN,p.bstarstatic.com,CN
-  - DOMAIN,upos-bstar-mirrorakam.akamaized.net,CN
-  - DOMAIN,upos-bstar1-mirrorakam.akamaized.net,CN
-  - DOMAIN-SUFFIX,acg.tv,CN
-  - DOMAIN-SUFFIX,acgvideo.com,CN
-  - DOMAIN-SUFFIX,animetamashi.cn,CN
-  - DOMAIN-SUFFIX,animetamashi.com,CN
-  - DOMAIN-SUFFIX,anitama.cn,CN
-  - DOMAIN-SUFFIX,anitama.net,CN
-  - DOMAIN-SUFFIX,b23.tv,CN
-  - DOMAIN-SUFFIX,baka.im,CN
-  - DOMAIN-SUFFIX,bigfun.cn,CN
-  - DOMAIN-SUFFIX,bigfunapp.cn,CN
-  - DOMAIN-SUFFIX,bili22.cn,CN
-  - DOMAIN-SUFFIX,bili2233.cn,CN
-  - DOMAIN-SUFFIX,bili23.cn,CN
-  - DOMAIN-SUFFIX,bili33.cn,CN
-  - DOMAIN-SUFFIX,biliapi.com,CN
-  - DOMAIN-SUFFIX,biliapi.net,CN
-  - DOMAIN-SUFFIX,bilibili.cc,CN
-  - DOMAIN-SUFFIX,bilibili.cn,CN
-  - DOMAIN-SUFFIX,bilibili.co,CN
-  - DOMAIN-SUFFIX,bilibili.com,CN
-  - DOMAIN-SUFFIX,bilibili.net,CN
-  - DOMAIN-SUFFIX,bilibili.tv,CN
-  - DOMAIN-SUFFIX,bilibiligame.cn,CN
-  - DOMAIN-SUFFIX,bilibiligame.co,CN
-  - DOMAIN-SUFFIX,bilibiligame.net,CN
-  - DOMAIN-SUFFIX,bilibilipay.cn,CN
-  - DOMAIN-SUFFIX,bilibilipay.com,CN
-  - DOMAIN-SUFFIX,bilicdn1.com,CN
-  - DOMAIN-SUFFIX,bilicdn2.com,CN
-  - DOMAIN-SUFFIX,bilicdn3.com,CN
-  - DOMAIN-SUFFIX,bilicdn4.com,CN
-  - DOMAIN-SUFFIX,bilicdn5.com,CN
-  - DOMAIN-SUFFIX,biligame.cn,CN
-  - DOMAIN-SUFFIX,biligame.co,CN
-  - DOMAIN-SUFFIX,biligame.com,CN
-  - DOMAIN-SUFFIX,biligame.net,CN
-  - DOMAIN-SUFFIX,biligo.com,CN
-  - DOMAIN-SUFFIX,biliimg.com,CN
-  - DOMAIN-SUFFIX,biliintl.com,CN
-  - DOMAIN-SUFFIX,biliplus.com,CN
-  - DOMAIN-SUFFIX,bilivideo.cn,CN
-  - DOMAIN-SUFFIX,bilivideo.com,CN
-  - DOMAIN-SUFFIX,bilivideo.net,CN
-  - DOMAIN-SUFFIX,corari.com,CN
-  - DOMAIN-SUFFIX,dyhgames.com,CN
-  - DOMAIN-SUFFIX,hdslb.com,CN
-  - DOMAIN-SUFFIX,hdslb.com.w.kunlunhuf.com,CN
-  - DOMAIN-SUFFIX,hdslb.com.w.kunlunpi.com,CN
-  - DOMAIN-SUFFIX,hdslb.net,CN
-  - DOMAIN-SUFFIX,hdslb.org,CN
-  - DOMAIN-SUFFIX,im9.com,CN
-  - DOMAIN-SUFFIX,maoercdn.com,CN
-  - DOMAIN-SUFFIX,mcbbs.net,CN
-  - DOMAIN-SUFFIX,mincdn.com,CN
-  - DOMAIN-SUFFIX,sharejoytech.com,CN
-  - DOMAIN-SUFFIX,smtcdns.net,CN
-  - DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,CN
-  - DOMAIN-SUFFIX,uposdash-302-bilivideo.yfcdn.net,CN
-  - DOMAIN-SUFFIX,yo9.com,CN
-  - DOMAIN-KEYWORD,bili,CN
-  - DOMAIN-KEYWORD,bili-inter,CN
-  - IP-CIDR,106.75.74.76/32,CN,no-resolve
-  - IP-CIDR,111.206.25.147/32,CN,no-resolve
-  - IP-CIDR,119.3.238.64/32,CN,no-resolve
-  - IP-CIDR,120.92.108.182/32,CN,no-resolve
-  - IP-CIDR,120.92.113.99/32,CN,no-resolve
-  - IP-CIDR,120.92.153.217/32,CN,no-resolve
-  - IP-CIDR,134.175.207.130/32,CN,no-resolve
-  - IP-CIDR,203.107.1.0/24,CN,no-resolve
+  # - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3s.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjsgrzdrc3z.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctt.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjsgrzdrctu.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc31.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjz8yzdnc3t.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjzgazdrpba.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjzgazdrpbz.ourdvsss.com,CN
+  # - DOMAIN,0gr4uqmtt8y41hcjzgazdrpjt.ourdvsss.com,CN
+  # - DOMAIN,112-81-125-43.dhost.00cdn.com,CN
+  # - DOMAIN,113-219-145-1.ksyungslb.com,CN
+  # - DOMAIN,114-236-92-129.ksyungslb.com,CN
+  # - DOMAIN,180-101-74-1.ksyungslb.com,CN
+  # - DOMAIN,1geadrmttge3nhcjwgazdope.ourdvsss.com,CN
+  # - DOMAIN,1geadrmttge3nhcjwgwzdqqe.ourdvsss.com,CN
+  # - DOMAIN,1gr3uomttgr31hcjo8yzdnco.ourdvsss.com,CN
+  # - DOMAIN,1gr3uomttgr31hcjo8yzdnpy.ourdvsss.com,CN
+  # - DOMAIN,1gr3uomttgr31hcjtgezdkcy.ourdvsss.com,CN
+  # - DOMAIN,1gr4uqmtt8y41hcjigazdqca.ourdvsss.com,CN
+  # - DOMAIN,1gr4uqmtt8y41hcjigazdqce.ourdvsss.com,CN
+  # - DOMAIN,1gr4uqmtt8y41hcjigazdqco.ourdvsss.com,CN
+  # - DOMAIN,1gr4uqmtt8y41hcjigazdqpo.ourdvsss.com,CN
+  # - DOMAIN,1gr4uqmtt8y41hcjzgwzdkqe.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdcca.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdcco.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdkca.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdkco.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdkpe.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdkpy.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj38yzdkqy.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj3gczdcpa.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj3gczdcpe.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj3gczdcpo.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcj3gczdcqy.ourdvsss.com,CN
+  # - DOMAIN,1gr5dgmttgha1hcttgrzdnpo.ourdvsss.com,CN
+  # - DOMAIN,1graukmttga4nhcjtgozdgce.ourdvsss.com,CN
+  # - DOMAIN,218-91-225-1.ksyungslb.com,CN
+  # - DOMAIN,219-155-150-1.ksyungslb.com,CN
+  # - DOMAIN,222-188-6-1.ksyungslb.com,CN
+  # - DOMAIN,36-104-134-1.ksyungslb.com,CN
+  # - DOMAIN,36-25-252-1.ksyungslb.com,CN
+  # - DOMAIN,3ge3drmttga5nhcbqge3ur.ourdvsss.com,CN
+  # - DOMAIN,3geauymtsgrzdnqbofa5do.ourdvsss.com,CN
+  # - DOMAIN,3geauymtsgrzdnqbofa5dy.ourdvsss.com,CN
+  # - DOMAIN,3geauymtsgrzdrcbzfahue.ourdvsss.com,CN
+  # - DOMAIN,3geauymtsgrzdrcbzfahuk.ourdvsss.com,CN
+  # - DOMAIN,4go41hcjtgazdoctqge4o.ourdvsss.com,CN
+  # - DOMAIN,p-bstarstatic.akamaized.net,CN
+  # - DOMAIN,p.bstarstatic.com,CN
+  # - DOMAIN,upos-bstar-mirrorakam.akamaized.net,CN
+  # - DOMAIN,upos-bstar1-mirrorakam.akamaized.net,CN
+  # - DOMAIN-SUFFIX,acg.tv,CN
+  # - DOMAIN-SUFFIX,acgvideo.com,CN
+  # - DOMAIN-SUFFIX,animetamashi.cn,CN
+  # - DOMAIN-SUFFIX,animetamashi.com,CN
+  # - DOMAIN-SUFFIX,anitama.cn,CN
+  # - DOMAIN-SUFFIX,anitama.net,CN
+  # - DOMAIN-SUFFIX,b23.tv,CN
+  # - DOMAIN-SUFFIX,baka.im,CN
+  # - DOMAIN-SUFFIX,bigfun.cn,CN
+  # - DOMAIN-SUFFIX,bigfunapp.cn,CN
+  # - DOMAIN-SUFFIX,bili22.cn,CN
+  # - DOMAIN-SUFFIX,bili2233.cn,CN
+  # - DOMAIN-SUFFIX,bili23.cn,CN
+  # - DOMAIN-SUFFIX,bili33.cn,CN
+  # - DOMAIN-SUFFIX,biliapi.com,CN
+  # - DOMAIN-SUFFIX,biliapi.net,CN
+  # - DOMAIN-SUFFIX,bilibili.cc,CN
+  # - DOMAIN-SUFFIX,bilibili.cn,CN
+  # - DOMAIN-SUFFIX,bilibili.co,CN
+  # - DOMAIN-SUFFIX,bilibili.com,CN
+  # - DOMAIN-SUFFIX,bilibili.net,CN
+  # - DOMAIN-SUFFIX,bilibili.tv,CN
+  # - DOMAIN-SUFFIX,bilibiligame.cn,CN
+  # - DOMAIN-SUFFIX,bilibiligame.co,CN
+  # - DOMAIN-SUFFIX,bilibiligame.net,CN
+  # - DOMAIN-SUFFIX,bilibilipay.cn,CN
+  # - DOMAIN-SUFFIX,bilibilipay.com,CN
+  # - DOMAIN-SUFFIX,bilicdn1.com,CN
+  # - DOMAIN-SUFFIX,bilicdn2.com,CN
+  # - DOMAIN-SUFFIX,bilicdn3.com,CN
+  # - DOMAIN-SUFFIX,bilicdn4.com,CN
+  # - DOMAIN-SUFFIX,bilicdn5.com,CN
+  # - DOMAIN-SUFFIX,biligame.cn,CN
+  # - DOMAIN-SUFFIX,biligame.co,CN
+  # - DOMAIN-SUFFIX,biligame.com,CN
+  # - DOMAIN-SUFFIX,biligame.net,CN
+  # - DOMAIN-SUFFIX,biligo.com,CN
+  # - DOMAIN-SUFFIX,biliimg.com,CN
+  # - DOMAIN-SUFFIX,biliintl.com,CN
+  # - DOMAIN-SUFFIX,biliplus.com,CN
+  # - DOMAIN-SUFFIX,bilivideo.cn,CN
+  # - DOMAIN-SUFFIX,bilivideo.com,CN
+  # - DOMAIN-SUFFIX,bilivideo.net,CN
+  # - DOMAIN-SUFFIX,corari.com,CN
+  # - DOMAIN-SUFFIX,dyhgames.com,CN
+  # - DOMAIN-SUFFIX,hdslb.com,CN
+  # - DOMAIN-SUFFIX,hdslb.com.w.kunlunhuf.com,CN
+  # - DOMAIN-SUFFIX,hdslb.com.w.kunlunpi.com,CN
+  # - DOMAIN-SUFFIX,hdslb.net,CN
+  # - DOMAIN-SUFFIX,hdslb.org,CN
+  # - DOMAIN-SUFFIX,im9.com,CN
+  # - DOMAIN-SUFFIX,maoercdn.com,CN
+  # - DOMAIN-SUFFIX,mcbbs.net,CN
+  # - DOMAIN-SUFFIX,mincdn.com,CN
+  # - DOMAIN-SUFFIX,sharejoytech.com,CN
+  # - DOMAIN-SUFFIX,smtcdns.net,CN
+  # - DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net,CN
+  # - DOMAIN-SUFFIX,uposdash-302-bilivideo.yfcdn.net,CN
+  # - DOMAIN-SUFFIX,yo9.com,CN
+  # - DOMAIN-KEYWORD,bili,CN
+  # - DOMAIN-KEYWORD,bili-inter,CN
+  # - IP-CIDR,106.75.74.76/32,CN,no-resolve
+  # - IP-CIDR,111.206.25.147/32,CN,no-resolve
+  # - IP-CIDR,119.3.238.64/32,CN,no-resolve
+  # - IP-CIDR,120.92.108.182/32,CN,no-resolve
+  # - IP-CIDR,120.92.113.99/32,CN,no-resolve
+  # - IP-CIDR,120.92.153.217/32,CN,no-resolve
+  # - IP-CIDR,134.175.207.130/32,CN,no-resolve
+  # - IP-CIDR,203.107.1.0/24,CN,no-resolve
   ## >> PPS
   - DOMAIN-SUFFIX,baiying.com,CN
   - DOMAIN-SUFFIX,pps.tv,CN
