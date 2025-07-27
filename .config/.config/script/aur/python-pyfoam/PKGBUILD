@@ -1,0 +1,21 @@
+# Maintainer: Tobias Baust <tobias.baust at tutanota dot com>
+# Maintainer: Gianluca Pettinello <g_pet at hotmail dot com>
+pkgname=python-pyfoam
+_name=PyFoam
+pkgver=2023.7
+pkgrel=1
+_pkgname=PyFoam-2023.7-py2.py3-none-any
+pkgdesc='support for working with the OpenSource CFD-toolbox [OpenFOAM]'
+arch=('any')
+url='https://pypi.org/project/PyFoam'
+license=('GPL3')
+depends=(python)
+optdepends=('python-numpy: required by some functions')
+makedepends=(python-build python-installer python-wheel)
+source=("https://files.pythonhosted.org/packages/e8/04/ab62021ebbc7d25f90f34c998f6c72d9b43f196c832b6f21b2098023596e/${_pkgname}.whl")
+md5sums=('SKIP')
+
+package() {
+    #    cd $_name-$pkgver
+    python -m installer --destdir="$pkgdir" *.whl
+}
