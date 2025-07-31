@@ -8,6 +8,11 @@ export LD_LIBRARY_PATH=/usr/lib/dri/
 #This reportedly helps with a garbled UI, but doesn't appear to be necessary with openjdk 8
 #export J2D_D3D=false
 
+# Clean any GUI scale factors as I can it set in matlab.
+unset QT_SCREEN_SCALE_FACTORS
+unset QT_AUTO_SCREEN_SCALE_FACTOR
+unset QT_ENABLE_HIGHDPI_SCALING
+
 monitor_and_kill() {
     while true; do
         if ! pgrep -f MATLAB >/dev/null; then
