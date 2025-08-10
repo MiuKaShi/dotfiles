@@ -696,6 +696,12 @@ rules:
   # University
   - DOMAIN-SUFFIX,kyushu-u.ac.jp,Journal
   - DOMAIN-SUFFIX,kyushuuv.jp,Journal
+  # Google Scholar
+  - DOMAIN,schloar.google.com,Journal
+  - DOMAIN,schloar.google.com.hk,Journal
+  - DOMAIN,googleusercontent.com,Journal
+  - DOMAIN,catalyzex.com,Journal
+  - DOMAIN-SUFFIX,inmediahk.net,Journal
   # Journal
   - DOMAIN-SUFFIX,acm.org,Journal
   - DOMAIN-SUFFIX,acs.org,Journal

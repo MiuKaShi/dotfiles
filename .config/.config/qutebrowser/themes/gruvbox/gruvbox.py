@@ -4,21 +4,21 @@
 # COLORS #
 ##########
 
-# base16 colors but with variable names that 
+# base16 colors but with variable names that
 # reflect what the color is mainly used for
 
-bg_default = "#282c34"          # main shade darkest
+bg_default = "#282c34"  # main shade darkest
 bg_lighter = "#504945"
 bg_selection = "#d5c4a1"
 fg_disabled = "#565c64"
 fg_default = "#e78a4e"
-bg_lightest = "#928374"         # main shade lightest
-fg_error = "#ea6962"            # red
-bg_hint = "#e3a84e"             # yellow
-fg_matched_text = "#a9b665"     # green
-bg_passthrough_mode = "#89b482" # teal
-bg_insert_mode = "#83a598"      # blue
-bg_warning = "#d3869b"          # purple
+bg_lightest = "#928374"  # main shade lightest
+fg_error = "#ea6962"  # red
+bg_hint = "#e3a84e"  # yellow
+fg_matched_text = "#a9b665"  # green
+bg_passthrough_mode = "#89b482"  # teal
+bg_insert_mode = "#83a598"  # blue
+bg_warning = "#d3869b"  # purple
 # "#be5046"                     # dark red
 
 ############
@@ -81,12 +81,12 @@ c.colors.contextmenu.disabled.fg = fg_disabled
 c.colors.contextmenu.menu.bg = bg_default
 
 # Foreground color of the context menu. If set to null, the Qt default is used.
-c.colors.contextmenu.menu.fg =  fg_default
+c.colors.contextmenu.menu.fg = fg_default
 
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.bg = bg_selection
 
-#Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
+# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = fg_default
 
 # Background color for the download bar.

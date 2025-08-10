@@ -31,7 +31,6 @@ c.tabs.title.format_pinned = "{index}: {audio}{current_title}"
 
 # general
 # HDPI(not support WAYLAND)
-c.qt.highdpi = True
 c.content.images = True
 c.content.autoplay = False
 c.auto_save.session = True
@@ -58,11 +57,17 @@ c.input.insert_mode.auto_load = True
 c.spellcheck.languages = ["en-US"]
 c.completion.height = "30%"
 c.tabs.mousewheel_switching = False
-c.scrolling.bar = "never"
 c.backend = "webengine"
 c.changelog_after_upgrade = "major"
 # DNS prefetching
 c.content.dns_prefetch = True
+
+
+# Scrolling
+# c.scrolling.smooth = False
+# c.scrolling.bar = "overlay"
+# c.scrolling.bar = "when-searching"
+c.scrolling.bar = "never"
 
 # urls
 c.url.default_page = "https://google.com/"
@@ -70,23 +75,30 @@ c.url.start_pages = "https://google.com/"
 c.tabs.last_close = "close"
 # c.tabs.last_close = "startpage"
 
-c.qt.force_software_rendering = 'chromium'
-
-## Fix for crashes
-c.qt.workarounds.remove_service_workers = True
 
 # enable GPU acceleration
 # see https://github.com/qutebrowser/qutebrowser/discussions/6573
 # see https://github.com/qutebrowser/qutebrowser/issues/5378
 # for webopt see https://github.com/qutebrowser/qutebrowser/issues/8222
+
+## QT
+
+c.qt.highdpi = True
+# c.qt.force_software_rendering = 'chromium'
+c.qt.workarounds.remove_service_workers = False
 c.qt.args = [
+    "force-light-mode",
+    "light-mode-settings",
+    "disable-pinch",
     "ignore-gpu-blocklist",
     "enable-gpu-rasterization",
     "enable-webrtc-pipewire-capturer",
     "enable-native-gpu-memory-buffers",
     "enable-accelerated-video-decode",
     "enable-zero-copy",
+    "enable-quic",
     "disable-blink-features=WebOTP",
+    "enable-features=VaapiVideoDecoder,VaapiVideoEncoder",
     # 'num-raster-threads=4',
     # 'disable-accelerated-2d-canvas',
 ]
