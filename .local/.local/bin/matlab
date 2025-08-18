@@ -9,4 +9,9 @@ export MATLAB_LOG_DIR="/tmp"
 #This reportedly helps with a garbled UI, but doesn't appear to be necessary with openjdk 8
 #export J2D_D3D=false
 
+# Clean any GUI scale factors as I can it set in matlab.
+unset QT_SCREEN_SCALE_FACTORS
+unset QT_AUTO_SCREEN_SCALE_FACTOR
+unset QT_ENABLE_HIGHDPI_SCALING
+
 $matlab "$@"
