@@ -98,7 +98,7 @@ c.qt.args = [
     "enable-zero-copy",
     "enable-quic",
     "disable-blink-features=WebOTP",
-    "enable-features=VaapiVideoDecoder,VaapiVideoEncoder",
+    "enable-features=JXL,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization",
     # 'num-raster-threads=4',
     # 'disable-accelerated-2d-canvas',
 ]
