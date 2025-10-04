@@ -21,6 +21,8 @@ convert_images_to_video() {
         -vframes "$end" \
         -vcodec libx264 \
         -crf 25 \
+        -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" \
+        -movflags +faststart \
         "vid-$start-$end.mp4"
     # -pix_fmt yuv420p \
 }

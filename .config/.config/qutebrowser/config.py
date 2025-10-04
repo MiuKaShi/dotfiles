@@ -90,7 +90,7 @@ c.qt.args = [
     "force-light-mode",
     "light-mode-settings",
     "disable-pinch",
-    "ignore-gpu-blocklist",
+    # "ignore-gpu-blocklist",
     "enable-gpu-rasterization",
     "enable-webrtc-pipewire-capturer",
     "enable-native-gpu-memory-buffers",
