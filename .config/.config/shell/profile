@@ -1,0 +1,161 @@
+#!/bin/sh
+# shellcheck disable=SC2155
+
+# Profile file, runs on login. Environmental variables are set here.
+
+# Adds `~/.local/bin` to $PATH
+export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -)"
+
+unsetopt PROMPT_SP 2>/dev/null
+
+# Default programs:
+export TERMINAL="st"
+export TERMINAL_PROG="st"
+export WM="dwm"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BROWSER="qutebrowser"
+export OPENER="xdg-open"
+export TFM="lf"
+export READER="sioyek"
+export ZOTOOLS="/home/miuka/.config/zotools/config.json"
+
+# XDG dirs
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Adds program to $PATH
+# golang:go
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
+# rust:cargo
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export JLBIN="$HOME/.julia/bin"
+# docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+# node:npm
+export NPM_HOME="$XDG_DATA_HOME/npm"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node/history
+export TS_NODE_HISTORY="$XDG_STATE_HOME"/node/ts.history
+
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:$GEM_HOME/bin"
+export PATH="$PATH:$NPM_HOME/bin"
+export PATH="$PATH:$JLBIN"
+
+#fix retrieving accessibility bus address
+# export NO_AT_BRIDGE=1
+
+# GPU-CUDA
+# export CUDA_HOME="/opt/cuda"
+# export PATH="$PATH:$CUDA_HOME/bin"
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CUDA_HOME/lib64"
+
+# export fcitx5 environment variables
+export INPUT_METHOD="fcitx"
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export SDL_IM_MODULE="fcitx"
+export GLFW_IM_MODULE="ibus"
+
+# proxy
+#[ -x "$(which clash)" ] && export http_proxy="http://127.0.0.1:7890" && export https_proxy="http://127.0.0.1:7890"
+
+# fix firefox VA-API
+export MOZ_DISABLE_RDD_SANDBOX="1"
+
+# julia
+export JULIA_NUM_THREADS=8
+
+# better Java font
+export JAVA_FONTS="/usr/share/fonts/TTF"
+
+# Adds to Perl5
+export PERL5LIB="$HOME/.local/share/perl5/lib/perl5"
+export PERL_LOCAL_LIB_ROOT="$HOME/.local/share/perl5"
+export PERL_MB_OPT="--install_base '$HOME/.local/share/perl5'"
+export PERL_MM_OPT="INSTALL_BASE=$HOME/.local/share/perl5"
+
+# My Citation:
+export BIB="$HOME/papers/bib/mybib_abb.bib"
+export CSL="$HOME/papers/bib/tribology-international.csl"
+export CSL1="$HOME/papers/bib/tribology-letters.csl"
+export CSL2="$HOME/papers/bib/ieee-with-url.csl"
+
+# Home Cleanup
+export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
+export NODE_PATH="$HOME/.local/share/npm/lib/node_modules"
+# export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel ${_JAVA_OPTIONS}"
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch-config"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export KODI_DATA="$XDG_DATA_HOME/kodi"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
+export UNISON="$XDG_DATA_HOME/unison"
+export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
+export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
+export ATOM_HOME="$XDG_DATA_HOME/atom"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+export MAXIMA_USERDIR="$XDG_CONFIG_HOME/maxima"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+
+# Other program settings:
+export DICS="/usr/share/stardict/dic/"
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export LESS="R"
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export QT_QPA_PLATFORMTHEME="gtk2"        # Have QT use gtk2 theme.
+export MOZ_USE_XINPUT2=1                  # Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1      # Fix for Java applications in dwm
+export CM_SELECTIONS="clipboard"
+export CM_OUTPUT_CLIP=1
+export CM_MAX_CLIPS=10
+
+# fzf default settings
+export FZF_DEFAULT_COMMAND="fd --hidden"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'bat --color=always --line-range :100 {}'"
+export FZF_CTRL_T_COMMAND="fd --type f --hidden"
+export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'tree -C {} | head -50'"
+export FZF_ALT_C_COMMAND="fd --hidden"
+export FZF_CTRL_T_COMMAND="fd --type f --hidden"
+
+# pfetch
+export PF_INFO="ascii title os kernel wm editor shell uptime pkgs memory palette"
+export PF_SEP=":"
+export PF_COLOR=1
+
+# GPU env
+[ -f "$XDG_CONFIG_HOME/shell/gpu" ] && . "$XDG_CONFIG_HOME/shell/gpu"
+
+# Start graphical server on user's current tty if not already running.
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
+
+[ ! -f "$XDG_CONFIG_HOME/shell/shortcutrc" ] && setsid -f shortcuts >/dev/null 2>&1
+
+# Switch escape and caps if tty and no passwd required:
+sudo -n loadkeys "$XDG_DATA_HOME/larbs/ttymaps.kmap" 2>/dev/null
