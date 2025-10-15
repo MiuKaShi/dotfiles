@@ -5,9 +5,6 @@
 # mpv
 **/mpv/saved-props.json
 
-# frpc
-.config/.config/frpc/frpc.toml
-
 # mimeapps
 .local/share/applications/mimeapps.list
 .config/.config/mimeapps.list
