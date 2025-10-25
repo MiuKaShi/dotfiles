@@ -1,7 +1,7 @@
 # Maintainer: Antoine Viallon <antoine@lesviallon.fr>
 
 _pkgname=ananicy-cpp
-pkgname=ananicy-cpp-nosystemd-git
+pkgname=ananicy-cpp-nosystemd-runit-git
 _pkgver=1.1.1
 pkgver=1.1.1.r17.g7fb9ed8
 pkgrel=1
@@ -9,7 +9,7 @@ pkgdesc="Ananicy Cpp is a full rewrite of Ananicy in C++, featuring lower CPU an
 arch=(x86_64 x86_64_v3 i386 armv7h aarch64 pentium4)
 url="https://gitlab.com/ananicy-cpp/ananicy-cpp"
 license=('GPLv3')
-mdepends=(
+depends=(
     gcc-libs
     glibc
     libbpf
@@ -18,15 +18,25 @@ mdepends=(
     libspdlog.so
     zlib
     pcre2
+    runit
 )
 
-akedepends=(cmake ninja clang git nlohmann-json bpf)
+makedepends=(cmake ninja clang git nlohmann-json bpf)
 optdepends=("ananicy-rules-git: community rules"
     "ananicy-rules: Rules based for ananicy-cpp")
-source=("${_pkgname}::git+https://gitlab.com/ananicy-cpp/ananicy-cpp.git")
-sha512sums=('SKIP')
+source=(
+    "${_pkgname}::git+https://gitlab.com/ananicy-cpp/ananicy-cpp.git"
+    "ananicy-cpp-runit.finish"
+    "ananicy-cpp-runit.run"
+    "ananicy-cpp-runit.start")
+sha512sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP')
 provides=('ananicy-cpp')
 conflicts=('ananicy-cpp')
+install=ananicy-cpp-runit.install
 
 pkgver() {
     cd "${srcdir}/${_pkgname}"
@@ -47,12 +57,12 @@ build() {
         -GNinja \
         -DCMAKE_BUILD_TYPE=None \
         -DCMAKE_INSTALL_PREFIX=/usr \
-        -DUSE_EXTERNAL_SPDLOG=OFF \
+        -DUSE_EXTERNAL_SPDLOG=ON \
         -DUSE_EXTERNAL_JSON=ON \
         -DUSE_EXTERNAL_FMTLIB=ON \
         -DENABLE_SYSTEMD=OFF \
         -DUSE_BPF_PROC_IMPL=ON \
-        -DBPF_BUILD_LIBBPF=OFF
+        -DENABLE_REGEX_SUPPORT=ON
 
     cmake --build build --target ananicy-cpp --parallel $_cpuCount
 }
@@ -62,6 +72,11 @@ package() {
     DESTDIR="${pkgdir}" cmake --install build --component Runtime
 
     install -m755 -d "${pkgdir}/etc/ananicy.d"
+    # set runit
+    mkdir -p "$pkgdir/etc/runit/sv/ananicy-cpp"
+    install -D -m0755 "${srcdir}/ananicy-cpp-runit.finish" "${pkgdir}/etc/runit/sv/ananicy-cpp/finish"
+    install -D -m0755 "${srcdir}/ananicy-cpp-runit.run" "${pkgdir}/etc/runit/sv/ananicy-cpp/run"
+    install -D -m0755 "${srcdir}/ananicy-cpp-runit.start" "${pkgdir}/etc/runit/sv/ananicy-cpp/start"
 }
 
 # vim:set sw=2 sts=2 et:
