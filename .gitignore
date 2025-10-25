@@ -9,6 +9,9 @@
 .local/share/applications/mimeapps.list
 .config/.config/mimeapps.list
 
+# frpc
+.config/.config/frpc/frpc.toml
+
 # matlab
 .local/.local/share/applications/mw-matlab.desktop
 .local/.local/share/applications/mw-matlabconnector.desktop
