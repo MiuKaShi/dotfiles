@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the DEEPL_TOKEN variable to the value of the DEEPL_KEY file in the .api_keys directory in the user's home directory
-DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPL_KEY)"
+DEEPL_TOKEN="$(cat "${HOME}"/.api_keys/DEEPLX_KEY)"
 
 # Translate the given text using the DeepL API and return the result
 deepl_api() {
@@ -12,7 +12,7 @@ deepl_api() {
     # result=$(echo "$raw_data" | jq -r '.translations[].text')
 
     json_text=$(echo "$text" | sed 's/"/\\"/g; s/$/\\n/' | tr -d '\n')
-    raw_data=$(curl -Ss -k --location 'https://api.deeplx.org/SFqpvL0jqFuv5W0r3TO5nSHKFvPjB2t9XVDjr9-qu24/translate' \
+    raw_data=$(curl -Ss -k --location "$DEEPL_TOKEN" \
         --header 'Content-Type: application/json' \
         --data "{\"text\": \"$json_text\", \"target_lang\": \"ZH\"}")
     result=$(echo "$raw_data" | jq -r '.data')
