@@ -3,7 +3,7 @@
 # export MATLAB_JAVA=/usr/lib/jvm/java-8-openjdk/jre
 export MATLAB_LOG_DIR="/tmp"
 # OpenGL hardware-accelerated and fonts rendering
-export LD_PRELOAD="/usr/lib/libstdc++.so /lib64/libfreetype.so"
+export LD_PRELOAD="/usr/lib/libstdc++.so.6 /lib64/libfreetype.so"
 export LD_LIBRARY_PATH=/usr/lib/dri/
 #This reportedly helps with a garbled UI, but doesn't appear to be necessary with openjdk 8
 #export J2D_D3D=false

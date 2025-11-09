@@ -204,7 +204,7 @@ ix() {
 
 
 yi() {
-	pack=$(bkt --ttl=1d --stale=12h -- yay -Slq | fzf --exact --multi --preview 'yay -Si {1}')
+	pack=$(bkt --ttl=1d --stale=12h -- yay -Sql | fzf --exact --multi --preview 'yay -Si {1}')
   echo "Pending to install $pack"
 	yay -S $pack
 }
