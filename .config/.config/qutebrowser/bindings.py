@@ -108,12 +108,8 @@ c.hints.selectors["code"] = [
     "pre",
 ]
 config.bind(",c", "hint code userscript code_select")
-config.bind(
-    ",d", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/dark.css"
-)
-config.bind(
-    ",l", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/sepia.css"
-)
+config.bind(",d", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/dark.css")
+config.bind(",l", "set content.user_stylesheets ~/.config/qutebrowser/stylesheets/sepia.css")
 config.bind(",,", 'set content.user_stylesheets ""')
 config.bind(",t", "tab-give")
 config.bind(",g", "spawn --userscript git2code")
@@ -121,11 +117,11 @@ config.bind(",r", "spawn --userscript readability-js")
 config.bind(",s", "hint links userscript doi")
 config.bind(",f", "hint links tab")
 config.bind(",o", "cmd-set-text -s :open -w")
-config.bind(",e", "open -t https://www.deepl.com/translator")
 config.bind(",b", "open -t https://bilibili.com")
 config.bind(",q", "open -t https://wangchujiang.com/reference/")
 config.bind(",y", "open -t https://youtube.com")
-config.bind(",n", "open -t https://www.nivod.tv")
+config.bind(",e", "open -t https://dida365.com/webapp/")
+config.bind(",n", "open -t https://calendar.google.com")
 config.bind(",m", "open -t https://mail.google.com")
 config.bind(",v", "open -t https://v2ex.com")
 config.bind(",z", "spawn --userscript zotero")
