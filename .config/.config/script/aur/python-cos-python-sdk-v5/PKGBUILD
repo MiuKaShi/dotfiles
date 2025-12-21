@@ -1,0 +1,32 @@
+# Maintainer: yjun <jerrysteve1101 at gmail dot com>
+
+pkgname=python-cos-python-sdk-v5
+_pkgname=${pkgname/python-/}
+pkgver=1.9.40
+pkgrel=1
+pkgdesc="腾讯云COSV5Python SDK"
+arch=('any')
+_pkgname=${pkgname%-bin}
+url="https://github.com/tencentyun/cos-python-sdk-v5"
+license=('MIT')
+depends=('python-requests'
+    'python-six'
+    'python-xmltodict'
+    'python-crcmod'
+    'python-pycryptodome')
+makedepends=('python-setuptools')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/tencentyun/cos-python-sdk-v5/archive/V${pkgver}.tar.gz")
+sha256sums=('b64ac357f719110c97b916c09ba498a5af812fa06d757f235600feb3b99b7f61')
+
+build() {
+    cd cos-python-sdk-v5-1.9.40
+
+    python setup.py build
+}
+
+package() {
+    cd cos-python-sdk-v5-1.9.40
+    python setup.py install --root="${pkgdir}" --optimize=1 --skip-build
+    install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
+}
+# vim: ts=2 sw=2 et:
