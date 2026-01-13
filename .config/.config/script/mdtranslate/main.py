@@ -47,7 +47,7 @@ openai_baseurl = "https://api.openai.com/v1"
 openai_model = "gpt-4o-mini"
 
 # ========Gemini==========
-gemini_model = "gemini-2.0-flash"
+gemini_model = "gemini-2.5-flash"
 deepseek_baseurl = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 # ========Deepseek==========
@@ -172,7 +172,7 @@ def token_cost(tokens: dict, name: str) -> dict:
     # 定价（单位：美元/1000 tokens），分别指定发送和接收 token 的价格
     pricing_rates = {
         "gemini-2.5-flash-preview-05-20": {"sent": 0.00015, "received": 0.0006},
-        "gemini-2.0-flash": {"sent": 0.0001, "received": 0.0004},
+        "gemini-2.5-flash": {"sent": 0.0003, "received": 0.0025},
         "deepseek-v3-241226": {"sent": 0.00028, "received": 0.0011},
         "gpt-4o-mini": {"sent": 0.001, "received": 0.002},
         "deeplx": {"sent": 0.0, "received": 0.0},

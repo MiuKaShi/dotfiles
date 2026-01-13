@@ -530,18 +530,12 @@ proxy-groups:
       - '美国3'
       - '美国4'
       - '美国5'
-  - name: RelayLink
-    type: relay
-    proxies:
-      - '浙江'
-      - '上海'
   - name: CN
     type: select
     proxies:
       - '均衡中国'
       - '均衡日本'
       - '均衡香港'
-      - 'RelayLink'
       - '日本'
       - '江苏'
       - '上海'
