@@ -30,15 +30,15 @@ shortcuts.mode_rectangles1 = "R"
 shortcuts.mode_label = "T"
 shortcuts.mode_lines = "B"
 shortcuts.mode_circle1 = "E"
-shortcuts.mode_shredder = "X"
-shortcuts.pan_here = "Z"
 shortcuts.mode_math = "Shift+M"
 shortcuts.mode_splines = "S"
 shortcuts.pick_properties = "Q"
 shortcuts.apply_properties = "Ctrl+Q"
-shortcuts.zoom_in = "Ctrl+="
-shortcuts.zoom_out = "Ctrl+-"
 shortcuts.delete = "backspace"
+shortcuts.fit_objects = nil
+shortcuts.fit_width = nil
+shortcuts.zoom_in = "="
+shortcuts.zoom_out = "-"
 shortcuts.fit_page = ","
 
 shortcuts["horizontalalignment|left"] = "Alt+Shift+L"
@@ -50,10 +50,29 @@ shortcuts["verticalalignment|baseline"] = "Alt+B"
 shortcuts["verticalalignment|vcenter"] = "Alt+Shift+C"
 shortcuts["verticalalignment|top"] = "Alt+Shift+T"
 
--- ipelet
+-- symbols shortcuts
 shortcuts.ipelet_1_symbols = "Shift+S"
+-- scale shortcuts
 shortcuts.ipelet_1_scale = "Ctrl+Alt+S"
+-- quicklink shortcuts
 shortcuts.ipelet_1_quicklink = "Ctrl+Alt+L"
+-- exportpng shortcuts
 shortcuts.ipelet_1_exportpng = "Ctrl+Alt+E"
+-- tangentlines shortcuts
 shortcuts.ipelet_1_tangentlines = "Alt+t"
-shortcuts.ipelet_1_lassotool = "Ctrl+Shift+D"
+-- lassotool shortcuts
+shortcuts.ipelet_1_lassotool = "Shift+1"
+--arrowkeymove
+shortcuts.ipelet_1_arrowkeymove = "Ctrl+="
+shortcuts.ipelet_2_arrowkeymove = "Ctrl+-"
+shortcuts.ipelet_3_arrowkeymove = "Up"
+shortcuts.ipelet_4_arrowkeymove = "Down"
+shortcuts.ipelet_5_arrowkeymove = "Left"
+shortcuts.ipelet_6_arrowkeymove = "Right"
+shortcuts.ipelet_7_arrowkeymove = "Shift+Up"
+shortcuts.ipelet_8_arrowkeymove = "Shift+Down"
+shortcuts.ipelet_9_arrowkeymove = "Shift+Left"
+shortcuts.ipelet_10_arrowkeymove = "Shift+Right"
+--selectiontools
+shortcuts.normal_size = nil
+shortcuts.ipelet_2_selectiontools = "/"
