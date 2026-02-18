@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # if can not work, it may be need run: cd /usr/include && sudo h2ph -r -l .
 # dependence: lynx atool pandoc lib32-glibc
 readonly BASH_BINARY="$(which bash)"
@@ -6,8 +7,18 @@ declare -r -x DEFAULT_PREVIEW_POSITION="right"
 declare -r -x UEBERZUG_FIFO="$(mktemp --dry-run --suffix "fzf-$$-ueberzug")"
 declare -r -x PREVIEW_ID="preview"
 
-function is_option_key [[ "${@}" =~ ^(\-.*|\+.*) ]]
-function is_key_value [[ "${@}" == *=* ]]
+# 检测 ueberzug++ 
+if command -v ueberzugpp >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzugpp"
+elif command -v ueberzug >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzug"
+else
+    echo "Error: ueberzug++ not found" >&2
+    exit 1
+fi
+
+function is_option_key { [[ "${@}" =~ ^(\-.*|\+.*) ]]; }
+function is_key_value { [[ "${@}" == *=* ]]; }
 
 map_options() {
     local -n options="${1}"
@@ -33,9 +44,11 @@ parse_options() {
     declare -g -r -x PREVIEW_POSITION="${mapped_options[--preview-window]%%:[^:]*}"
 }
 
+
 start_ueberzug() {
     mkfifo "${UEBERZUG_FIFO}"
-    ueberzug <"${UEBERZUG_FIFO}" layer --parser bash --silent &
+    # 使用 json parser（兼容 ueberzug++）
+		${UEBERZUG_CMD} layer -s <"${UEBERZUG_FIFO}" -p json &
     # prevent EOF
     exec 3>"${UEBERZUG_FIFO}"
 }
@@ -67,21 +80,22 @@ calculate_position() {
 
 draw_preview() {
 		hash_file() {
+      mkdir -p "$HOME/.cache/fzf"
 			printf '%s/.cache/fzf/%s' "$HOME" \
 				"$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- \
 				"$(readlink -f "${@}")" | sha256sum | awk '{print $1}')"
 		}
-		draw() {
-			>"${UEBERZUG_FIFO}" declare -A -p cmd=( \
-					[action]=add [identifier]="${PREVIEW_ID}" \
-					[x]="${X}" [y]="${Y}" \
-					[width]="${COLUMNS}" [height]="${LINES}" \
-					[scaler]=contain [scaling_position_x]=0.5 [scaling_position_y]=0.5 \
-					[path]="$1")
-		}
-		clear_preview() {
-			>"${UEBERZUG_FIFO}" declare -A -p cmd=([action]=remove [identifier]="${PREVIEW_ID}")
-		}
+    # 改用 JSON 格式写入 FIFO
+    draw() {
+        printf '{"action": "add", "identifier": "%s", "x": %d, "y": %d, "width": %d, "height": %d, "scaler": "contain", "scaling_position_x": 0.5, "scaling_position_y": 0.5, "path": "%s"}\n' \
+            "${PREVIEW_ID}" "${X}" "${Y}" "${COLUMNS}" "${LINES}" "$1" \
+            >"${UEBERZUG_FIFO}"
+    }
+    clear_preview() {
+        printf '{"action": "remove", "identifier": "%s"}\n' \
+            "${PREVIEW_ID}" \
+            >"${UEBERZUG_FIFO}"
+    }
 		cache() {
 			if [ -f "$1" ]; then
 				draw "$1"

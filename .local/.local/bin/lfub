@@ -6,6 +6,16 @@
 
 set -e
 
+# 检测 ueberzug++ 
+if command -v ueberzugpp >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzugpp"
+elif command -v ueberzug >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzug"
+else
+    echo "Error: ueberzug++ not found" >&2
+    exit 1
+fi
+
 cleanup() {
     exec 3>&-
 	rm "$FIFO_UEBERZUG"
@@ -17,7 +27,7 @@ else
 	[ ! -d "$HOME/.cache/lf" ] && mkdir -p "$HOME/.cache/lf"
 	export FIFO_UEBERZUG="$HOME/.cache/lf/ueberzug-$$"
 	mkfifo "$FIFO_UEBERZUG"
-	ueberzug layer -s <"$FIFO_UEBERZUG" -p json &
+	$UEBERZUG_CMD layer -s <"$FIFO_UEBERZUG" -p json &
 	exec 3>"$FIFO_UEBERZUG"
 	trap cleanup HUP INT QUIT TERM PWR EXIT
 	lf "$@" 3>&-

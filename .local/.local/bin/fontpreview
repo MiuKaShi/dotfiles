@@ -1,10 +1,6 @@
 #!/bin/sh
 # Font preview with ueberzug and fzf
-# This is inspired by https://github.com/sdushantha/fontpreview
 
-# TODO: trap 'notify-send hello' WINCH
-# Checking for environment variables if available.
-# These are compatible with original fontpreview.
 SIZE=${FONTPREVIEW_SIZE:-800x800}
 FONT_SIZE=${FONTPREVIEW_FONT_SIZE:-72}
 BG_COLOR=${FONTPREVIEW_BG_COLOR:-#ebdbb2}
@@ -14,9 +10,9 @@ PREVIEW_TEXT=${FONTPREVIEW_PREVIEW_TEXT:-"ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\n\
 abcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@#$\%^&*,.;:\n_-=+'\"|\\(){}[]\n\你好"}
 
 # Ueberzug related variables
-FIFO="/tmp/fontpreview-ueberzug-fifo"
-IMAGE="/tmp/fontpreview-ueberzug-img.png"
-ID="fontpreview-ueberzug"
+FIFO="/tmp/fontpreview-fifo"
+IMAGE="/tmp/fontpreview-img.png"
+ID="fontpreview"
 WIDTH=$FZF_PREVIEW_COLUMNS
 HEIGHT=$FZF_PREVIEW_LINES
 # fzf changes its preview paddings several times, its confusing
@@ -25,15 +21,24 @@ VPAD=$(fzf --version | {
     [ "$v1" = 0 ] && [ "$v2" -le 26 ] && echo 0 || echo 4
 })
 
+# 检测 ueberzug++ 
+if command -v ueberzugpp >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzugpp"
+elif command -v ueberzug >/dev/null 2>&1; then
+    UEBERZUG_CMD="ueberzug"
+else
+    echo "Error: ueberzug++ not found" >&2
+    exit 1
+fi
+
 usage() {
-    echo "Usage: fontpreview-ueberzug [-h] [-a ALIGNMENT] [-s FONT_SIZE] [-b BG] [-f FG] [-t TEXT]"
+    echo "Usage: fontpreview [-h] [-a ALIGNMENT] [-s FONT_SIZE] [-b BG] [-f FG] [-t TEXT]"
 }
 
 start_ueberzug() {
     mkfifo "$FIFO" || exit 1
     touch "$IMAGE" || exit 1
-    ueberzug layer --parser json --silent <"$FIFO" &
-    # https://github.com/seebye/ueberzug/issues/54#issuecomment-502869935
+		$UEBERZUG_CMD layer -s <"${FIFO}" -p json &
     exec 3>"$FIFO"
 }
 
@@ -43,18 +48,15 @@ stop_ueberzug() {
 }
 
 preview() {
-    [ "$TEXT_ALIGN" = center ] || [ "$TEXT_ALIGN" = south ] || [ "$TEXT_ALIGN" = north ] || PADDING=50
-    fontfile=$(echo "$1" | cut -f2)
-    # In fzf the cols and lines are those of the preview pane
-    magick -size "$SIZE" xc:"$BG_COLOR" -fill "$FG_COLOR" \
-        -pointsize "$FONT_SIZE" -font "$fontfile" -gravity "$TEXT_ALIGN" \
-        -annotate +${PADDING:-0}+0 "$PREVIEW_TEXT" "$IMAGE" \
-        && {
-            printf '{ "action": "add", "identifier": "%s", "path": "%s",' "$ID" "$IMAGE"
-            printf '"x": %d, "y": %d, "scaler": "fit_contain",' 2 1
-            printf '"width": %d, "height": %d }\n' "$((WIDTH - VPAD))" "$((HEIGHT - 2))"
-        } >"$FIFO" \
-        || printf '{ "action": "remove", "identifier": "%s" }\n' "$ID" >"$FIFO"
+      printf '{ "action": "add", "identifier": "%s", "path": "%s", "x": %d, "y": %d, "scaler": "contain", "width": %d, "height": %d }\n' \
+        "$ID" "$IMAGE" 2 1 "$((WIDTH - VPAD))" "$((HEIGHT - 2))" \
+      >"${FIFO}"
+}
+
+clear_preview() {
+  	printf '{"action": "remove", "identifier": "%s"}\n' \
+      	"${ID}" \
+      	>"${FIFO}"
 }
 
 while getopts "a:hs:b:f:t:" arg; do
@@ -73,7 +75,7 @@ done
 shift $((OPTIND - 1))
 
 if [ "$#" = 0 ]; then
-    trap stop_ueberzug EXIT QUIT INT TERM
+	  trap stop_ueberzug HUP INT QUIT TERM PWR EXIT
     # Prepare
     rm -rf $FIFO
     start_ueberzug
@@ -90,5 +92,10 @@ if [ "$#" = 0 ]; then
         | fzf --with-nth 1 --delimiter "\t" --layout=reverse --preview "sh $0 {}" \
             --preview-window "left:50%:noborder:wrap"
 elif [ "$#" = 1 ]; then
-    [ -p "$FIFO" ] && preview "$1"
+    [ "$TEXT_ALIGN" = center ] || [ "$TEXT_ALIGN" = south ] || [ "$TEXT_ALIGN" = north ] || PADDING=50
+    fontfile=$(echo "$1" | cut -f2)
+    magick -size "$SIZE" xc:"$BG_COLOR" -fill "$FG_COLOR" \
+        -pointsize "$FONT_SIZE" -font "$fontfile" -gravity "$TEXT_ALIGN" \
+        -annotate +${PADDING:-0}+0 "$PREVIEW_TEXT" "$IMAGE"
+		preview "$1"
 fi
