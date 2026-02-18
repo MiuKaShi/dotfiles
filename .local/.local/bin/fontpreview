@@ -48,15 +48,9 @@ stop_ueberzug() {
 }
 
 preview() {
-      printf '{ "action": "add", "identifier": "%s", "path": "%s", "x": %d, "y": %d, "scaler": "contain", "width": %d, "height": %d }\n' \
+      printf '{ "action": "add", "identifier": "%s", "path": "%s", "x": %d, "y": %d, "scaler": "fit-contain", "width": %d, "height": %d }\n' \
         "$ID" "$IMAGE" 2 1 "$((WIDTH - VPAD))" "$((HEIGHT - 2))" \
       >"${FIFO}"
-}
-
-clear_preview() {
-  	printf '{"action": "remove", "identifier": "%s"}\n' \
-      	"${ID}" \
-      	>"${FIFO}"
 }
 
 while getopts "a:hs:b:f:t:" arg; do
