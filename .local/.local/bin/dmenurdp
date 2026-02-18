@@ -13,7 +13,6 @@ HOME="/home/$(whoami)"
 xfreerdp \
     /dynamic-resolution \
     +clipboard \
-    +fonts \
     +aero \
     +window-drag \
     +menu-anims \
@@ -23,10 +22,12 @@ xfreerdp \
     /bpp:32 \
     /scale:"$SCALE" \
     -grab-keyboard \
-    /gfx:rfx,avc420,avc444 \
+    +gfx-progressive \
+    /gfx:avc444,avc420 \
+    /rfx \
     /rfx-mode:video \
     /gdi:hw \
-    /cert-ignore \
+    /cert:ignore \
     /auto-reconnect \
     /auto-reconnect-max-retries:3 \
     /audio-mode:0 \
