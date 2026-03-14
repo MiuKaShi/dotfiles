@@ -1,6 +1,6 @@
 _pkgname=ipe
 pkgname=ipe-git
-pkgver=r205.56d9527
+pkgver=r210.d948b7e
 pkgrel=1
 pkgdesc="The extensible drawing editor"
 url="https://github.com/otfried/ipe"
