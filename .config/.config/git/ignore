@@ -1,10 +1,15 @@
-# production stuff / builds
-venv
-.venv
+# stuff / builds
 __pycache__
+node_modules
+*.pyc
 
 # Log files
 *.log
+
+# MS Office temporary files
+~$*.docx
+~$*.xlsx
+~$*.pptx
 
 # Temp and backup files
 *.tmp
@@ -12,17 +17,21 @@ __pycache__
 *.bak
 *.backup
 
-# safety net to prevent sensitive data being accidentally moved
+# sensitive data
+.zsh_history
+.bash_history
+zsh_history
+bash_history
 *.kdb
 *.kdbx
 *.pfx
 *.key
+*.env
+.env
 pw.txt
 pw.md
-.zsh_history
-.bash_history
 
-# prevent accidental inclusion of big files or partial downloads
+# big files
 *.part
 *.crdownload
 *.mp4
@@ -34,9 +43,6 @@ pw.md
 .git/*
 .hg/*
 .subversion/*
-
-# NodeJS
-node_modules/*
 
 # Compiled source files
 *.com

@@ -1,0 +1,16 @@
+# vim: filetype=config
+# DOCS https://www.mankier.com/1/yt-dlp#Configuration
+#──────────────────────────────────────────────────────────────────────────────#
+
+# DOWNLOAD
+--concurrent-fragments=3
+--console-title # display progress in the terminal window title
+
+# FILE SYSTEM
+--paths="home:~/Downloads" # default download location
+
+# FILE NAME
+--trim-filenames=60
+--replace-in-metadata "title" "FULL SCENE" "" # remove from title (regex supported)
+--output "%(title)s.%(ext)s" # https://github.com/yt-dlp/yt-dlp#output-template
+

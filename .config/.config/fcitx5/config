@@ -1,7 +1,7 @@
 [Hotkey]
-# Trigger Input Method
+# Toggle Input Method
 TriggerKeys=
-# Enumerate when press trigger key repeatedly
+# Enumerate when holding modifier of Toggle key
 EnumerateWithTriggerKeys=False
 # Skip first input method while enumerating
 EnumerateSkipFirst=False
@@ -9,6 +9,16 @@ EnumerateSkipFirst=False
 EnumerateGroupForwardKeys=
 # Enumerate Input Method Group Backward
 EnumerateGroupBackwardKeys=
+# Time limit in milliseconds for triggering modifier key shortcuts
+ModifierOnlyKeyTimeout=250
+
+[Hotkey/ActivateKeys]
+0=Hyper+1
+1=Hyper+2
+2=Hyper+3
+
+[Hotkey/DeactivateKeys]
+0=Hangul_Romaja
 
 [Hotkey/AltTriggerKeys]
 0=Shift_L
@@ -18,14 +28,6 @@ EnumerateGroupBackwardKeys=
 
 [Hotkey/EnumerateBackwardKeys]
 0=Control+Shift_R
-
-[Hotkey/ActivateKeys]
-0=Hyper+1
-1=Hyper+2
-2=Hyper+3
-
-[Hotkey/DeactivateKeys]
-0=Hangul_Romaja
 
 [Hotkey/PrevPage]
 0=Up
@@ -45,6 +47,8 @@ EnumerateGroupBackwardKeys=
 [Behavior]
 # Active By Default
 ActiveByDefault=False
+# Reset state on Focus In
+resetStateWhenFocusIn=No
 # Share Input State
 ShareInputState=No
 # Show preedit in application
@@ -59,9 +63,9 @@ CompactInputMethodInformation=True
 ShowFirstInputMethodInformation=True
 # Default page size
 DefaultPageSize=5
-# Override Xkb Option
+# Override XKB Option
 OverrideXkbOption=False
-# Custom Xkb Option
+# Custom XKB Option
 CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=

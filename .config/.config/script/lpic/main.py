@@ -29,12 +29,8 @@ def _main():
     parser.add_argument("dest", nargs="?", help="")
     parser.add_argument("-n", action="store_false", dest="adjust", help="不进行预处理")
     parser.add_argument("-u", "--use", dest="use", help="使用指定的云服务")
-    parser.add_argument(
-        "-y", "--yes", action="store_true", dest="yes", help="始终选择y"
-    )
-    parser.add_argument(
-        "-a", "--all", action="store_true", dest="use_all", help="使用全部云服务"
-    )
+    parser.add_argument("-y", "--yes", action="store_true", dest="yes", help="始终选择y")
+    parser.add_argument("-a", "--all", action="store_true", dest="use_all", help="使用全部云服务")
     args = parser.parse_args()
 
     root = logging.getLogger()
@@ -55,9 +51,7 @@ def _main():
             for p in os.listdir(os.path.abspath(os.path.dirname(__file__))):
                 basepart, ext = os.path.splitext(os.path.basename(p))
                 use = basepart.rstrip("_")
-                if ext.startswith(".py") and (
-                    (args.use_all and use in lp.clouds()) or (args.use or lp.use) == use
-                ):
+                if ext.startswith(".py") and ((args.use_all and use in lp.clouds()) or (args.use or lp.use) == use):
                     module = importlib.import_module(basepart)
                     for cls in inspect.getmembers(module, inspect.isclass):
                         if cls[1] != LPic:
