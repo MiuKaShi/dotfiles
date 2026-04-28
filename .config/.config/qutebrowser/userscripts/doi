@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # doi --- DOI to Sci-Hub
-# needed to set `sci` for sci-hub search engine 
+# needed to set `sci` for sci-hub search engine
 
 import os
 import re

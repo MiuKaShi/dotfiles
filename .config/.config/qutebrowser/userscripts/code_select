@@ -5,6 +5,7 @@ import html
 import re
 import sys
 import xml.etree.ElementTree as ET
+
 try:
     import pyperclip
 except ImportError:
@@ -35,8 +36,7 @@ def main():
         pyperclip.copy(code_text)
         send_command_to_qute(
             "message-info 'copied to clipboard: {info}{suffix}'".format(
-                info=code_text.splitlines()[0],
-                suffix="..." if len(code_text.splitlines()) > 1 else ""
+                info=code_text.splitlines()[0], suffix="..." if len(code_text.splitlines()) > 1 else ""
             )
         )
     else:
@@ -50,4 +50,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -38,9 +38,9 @@ SAVEHIST=10000
 
 # Basic auto/tab complete:
 autoload -Uz compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 for dump in ~/.config/zsh/.zcompdump(N.mh+24); do
-  compinit
+    compinit
 done
 compinit -C
 zstyle ':completion:*' menu select
