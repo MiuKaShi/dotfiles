@@ -12,6 +12,7 @@ source=("git+https://github.com/otfried/ipe.git"
     "ipe.bash-completion::https://aur.archlinux.org/cgit/aur.git/plain/ipe.bash-completion?h=ipe"
     "config.patch::https://aur.archlinux.org/cgit/aur.git/plain/config.patch?h=ipe"
     "ipe.desktop::https://aur.archlinux.org/cgit/aur.git/plain/ipe.desktop?h=ipe"
+    "gcc16.patch"
 )
 
 pkgver() {
@@ -26,6 +27,9 @@ prepare() {
 
     sed -i -e 's/"ipefonts.h"/<ipefonts.h>/' ipepresenter/ipepresenter.h
     sed -i -e 's/"ipethumbs.h"/<ipethumbs.h>/' ipepresenter/ipepresenter_qt.cpp
+
+    cd "$srcdir/$_pkgname"
+    patch "src/include/ipebase.h" <"$srcdir/gcc16.patch"
 }
 
 build() {
@@ -70,4 +74,5 @@ package() {
 md5sums=('SKIP'
     '694f0d5402655901be385647e5d8d6e3'
     '9b8ef63e12862f93ab8907a5763fb683'
-    '19fd2cac2564125afa0149105d00d3dd')
+    '19fd2cac2564125afa0149105d00d3dd'
+    'SKIP')

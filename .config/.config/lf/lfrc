@@ -25,7 +25,7 @@ set autoquit true
 # = maps
 # ========
 
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Remove >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Remove default mappings
 map t
 map m
 map n
@@ -39,40 +39,46 @@ map r
 map f
 map v
 map p
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Basic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Basic
 map <esc> :quit
+map <delete> delete
+map <enter> open
+map o open
+map O &handlr open $f
 map v :toggle; down
 map . set hidden!
-map DD delete
 map x cut
-map <enter> open
-map bg $setbg $f
 map K top
 map J bottom
 map R reload
 map U unselect
-map O &handlr open $f
 map = chmod+rx
 map - chmod-x
 map ch chmod
 map cf chmodf
 map cd chmodd
+map dd $trash -rf $fx
+map DD delete
 map zp nopreview
 map g? $lf -doc | less
 map <c-c> cmd-interrupt
+map bg $setbg $f
+
 map pp paste
 map pt $xclip-pastefile
 map pl paste_link
 map pu uploadpic
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Make >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Make
 map af push :touch<space>
 map mf mkfile
 map md mkdir
 map mr sudomkfile
 map ms $mkscript
 map M moveto
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Open >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+# Open
 map ee $$EDITOR "$f"
 map es $sudo $EDITOR "$f"
 map cz $$EDITOR ~/.config/zsh/.zshrc
@@ -80,36 +86,40 @@ map cn $$EDITOR ~/.config/nvim/plugin/general.lua
 map cl $$EDITOR ~/.config/lf/lfrc
 map cj caj
 map C copyto
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Dragon >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Dragon
 map dr dragon
 map ds dragon-stay
 map di dragon-individual
 map dm mvdragon
 map dc cpdragon
 map dl dlfile
-map dd $trash -rf $fx
-map <delete> delete
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Search >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Search
 map n search-next
 map N search-prev
 map fi filter
 map <c-f> :fzf_jump
-# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> extract & zip >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# extract & zip
 map tz zip
 map tt tar
 map tg tgz
 map tu extract
 map tl sendf
 map ts srt-deepl
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Quick Preview <<<<<<<<<<<<<<<<<<<<<<<<<<
+
+# Quick Preview
 map i $LESS='-iWQMXR~' bat --paging=always --theme=TwoDark "$f"
 map I $$PAGER "$f"
-# {{{ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Sort <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-map sn :{{ set sortby natural; set info size; set preview; set ratios 1:2:3; }}
-map sa :{{ set sortby natural; set info size; set nopreview; set ratios 3:5; }}
+
+# Sort
 map ss :{{ set sortby size; set info size; set preview; }}
 map st :{{ set sortby time; set info time; set preview; }}
-# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Copy >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+map sa :{{ set sortby natural; set info size; set nopreview; set ratios 3:5; }}
+map sA :{{ set sortby natural; set info size; set preview; set ratios 1:2:3; }}
+
+# copy
 map yy copy
 map yb yank-bibtex
 map yc yank-citeinfo
@@ -118,6 +128,8 @@ map yp yank-path
 map yn yank-basename
 map yN yank-basename-without-extension
 map gf $lf -remote "send $id select $(fzf)"
+
+# rename
 map rr rename
 map rf no_space
 map rp renamepaper
@@ -461,5 +473,5 @@ cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
 cmd dlfile %dlfile
 
-# }}} >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Bookmarks >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Bookmarks
 source "~/.config/lf/shortcutrc"
