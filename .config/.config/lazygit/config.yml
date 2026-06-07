@@ -24,8 +24,8 @@ gui:
   skipDiscardChangeWarning: false
   skipStashWarning: true
 os:
-  Open: "nvim {{filename}}"
-  OS.Edit,EditAtLine: "{{editor}} +{{line}} -- {{filename}}"
+  Open: 'nvim {{filename}}'
+  OS.Edit,EditAtLine: '{{editor}} +{{line}} -- {{filename}}'
 git:
   pagers:
     - colorArg: never
@@ -141,7 +141,6 @@ keybinding:
     pasteCommits: 'v'
     tagCommit: 'T'
     checkoutCommit: '<space>'
-    resetCherryPick: '<c-R>'
     copyCommitMessageToClipboard: '<c-y>'
   stash:
     popStash: 'g'
