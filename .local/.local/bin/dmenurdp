@@ -10,21 +10,20 @@ read -r IP NET USER PASS <<<"$(echo "$HOSTINFO" | awk '{print $2, $3, $4, $5}')"
 
 HOME="/home/$(whoami)"
 
-xfreerdp \
-    /dynamic-resolution \
-    +clipboard \
+xfreerdp3 \
+    +dynamic-resolution \
+    /clipboard \
     +aero \
     +window-drag \
     +menu-anims \
-    +glyph-cache \
+    /cache:bitmap:on,glyph:on,offscreen:on,persist \
     -compression \
     -themes \
     /bpp:32 \
     /scale:"$SCALE" \
     -grab-keyboard \
-    +gfx-progressive \
-    /gfx:avc444,avc420 \
-    /rfx \
+    /gfx:AVC444:on,AVC420:on,progressive:on,small-cache:on,frame-ack:on \
+    +rfx \
     /rfx-mode:video \
     /gdi:hw \
     /cert:ignore \

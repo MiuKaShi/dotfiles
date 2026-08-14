@@ -27,9 +27,9 @@ os:
   Open: 'nvim {{filename}}'
   OS.Edit,EditAtLine: '{{editor}} +{{line}} -- {{filename}}'
 git:
-  pagers:
+  diffRenderers:
     - colorArg: never
-      pager: delta --dark --paging=never --syntax-theme=gruvbox-dark
+      command: delta --dark --paging=never --syntax-theme=gruvbox-dark
 refresher:
   refreshInterval: 10 # file/submodule refresh interval in seconds
   fetchInterval: 60 # re-fetch interval in seconds
