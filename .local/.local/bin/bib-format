@@ -17,9 +17,9 @@ EOF
 if [ $# -lt 1 ]; then usage 1; fi
 
 # Default options.
-INPLACE=1 # Update source file.
+INPLACE=1    # Update source file.
 EDITVALUES=1 # Edit selected field values.
-NONASCII=0 # Do not print non ascii characters.
+NONASCII=0   # Do not print non ascii characters.
 
 # Parse command line options.
 for arg; do
@@ -32,7 +32,6 @@ for arg; do
     # With option '-p' print non ascii characters.
     if [[ "$arg" == "-p" ]]; then NONASCII=1; fi
 done
-
 
 # Function to replace double quotes by curly brackets.
 function replace_quotes() { # replace_quotes bibfile
@@ -76,10 +75,8 @@ s/[ \t]*\n[ \t]*/ /g # At other places replace space+newline by single space.
 ' "$1"
 }
 
-
 # Iterate bib files.
-for bibfile in "$@"
-do
+for bibfile in "$@"; do
     # Skip options.
     test "$bibfile" != "-n" || continue
     test "$bibfile" != "-u" || continue
@@ -94,13 +91,12 @@ do
     test -f "$bibfile" || {
         [[ "$bibfile" =~ ^- ]] \
             && echo "$(basename $0): $option: Unknown option" >/dev/stderr \
-            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
         continue
     }
 
     # Only print non ascii characters with option '-p'.
-    if [[ $NONASCII -eq 1 ]]
-    then
+    if [[ $NONASCII -eq 1 ]]; then
         grep -P -n -H "[^\x00-\x7F]" "$bibfile" \
             | grep -v [Aa]bstract \
             | grep --color='auto' -P -n "[^\x00-\x7F]"
@@ -158,8 +154,7 @@ do
     # Merge lines.
     merge_lines "$tmpfile"
 
-    if [ "$EDITVALUES" ]
-    then
+    if [ "$EDITVALUES" ]; then
 
         # Replace some utf8 signs (do not change abstract).
         sed -i "/^  [Aa]bstract/!{
@@ -248,7 +243,7 @@ do
                     printf("%s", $i)
                 }
             }
-        }' > "$tmpfile"; } < "$tmpfile"
+        }' >"$tmpfile"; } <"$tmpfile"
 
         # Remove html part or 'doi:', 'DOI ' prefix from doi.
         sed -i '/^  Doi = .*doi.org/s_[htps:/dx.]*doi.org/__' "$tmpfile"
@@ -272,14 +267,12 @@ do
             }
             printf("\n")
         }
-        !/ = /{print $0}' "$tmpfile" > "$awktmp"
+        !/ = /{print $0}' "$tmpfile" >"$awktmp"
     mv "$awktmp" "$tmpfile"
 
     # In case of changes update source file or print diff.
-    if ! diff -q "$bibfile" "$tmpfile" >/dev/null
-    then
-        if [ $INPLACE -eq 1 ]
-        then
+    if ! diff -q "$bibfile" "$tmpfile" >/dev/null; then
+        if [ $INPLACE -eq 1 ]; then
             mv "$tmpfile" "$bibfile"
         else
             echo "=== changes for »$bibfile« ==="

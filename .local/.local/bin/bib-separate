@@ -20,7 +20,7 @@ EOF
 if [ $# -lt 1 ]; then usage 1; fi
 
 # Default options.
-USEFILE=1 # Use the Field field for output filenames.
+USEFILE=1  # Use the Field field for output filenames.
 OVERRIDE=0 # Do not override existing output files.
 
 # Parse command line options.
@@ -33,10 +33,8 @@ for arg; do
     if [[ "$arg" == "-f" ]]; then OVERRIDE=1; fi
 done
 
-
 # Iterate bib files.
-for bibfile in "$@"
-do
+for bibfile in "$@"; do
     # Skip options.
     test "$bibfile" != "-k" || continue
     test "$bibfile" != "-f" || continue
@@ -45,7 +43,7 @@ do
     test -f "$bibfile" || {
         [[ "$bibfile" =~ ^- ]] \
             && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
-            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
         continue
     }
 

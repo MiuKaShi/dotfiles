@@ -1,6 +1,6 @@
 _pkgname=ipe
 pkgname=ipe-git
-pkgver=r210.d948b7e
+pkgver=r306.04f8e2f
 pkgrel=1
 pkgdesc="The extensible drawing editor"
 url="https://github.com/otfried/ipe"
@@ -20,17 +20,17 @@ pkgver() {
     printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-prepare() {
-    cd "$srcdir/$_pkgname/src"
-    patch config.mak <"$srcdir/config.patch"
-    sed -i '/#include <xlocale.h>/d' ipelib/ipeplatform.cpp
-
-    sed -i -e 's/"ipefonts.h"/<ipefonts.h>/' ipepresenter/ipepresenter.h
-    sed -i -e 's/"ipethumbs.h"/<ipethumbs.h>/' ipepresenter/ipepresenter_qt.cpp
-
-    cd "$srcdir/$_pkgname"
-    patch "src/include/ipebase.h" <"$srcdir/gcc16.patch"
-}
+# prepare() {
+#     cd "$srcdir/$_pkgname/src"
+#     patch config.mak <"$srcdir/config.patch"
+#     sed -i '/#include <xlocale.h>/d' ipelib/ipeplatform.cpp
+#
+#     sed -i -e 's/"ipefonts.h"/<ipefonts.h>/' ipepresenter/ipepresenter.h
+#     sed -i -e 's/"ipethumbs.h"/<ipethumbs.h>/' ipepresenter/ipepresenter_qt.cpp
+#
+#     cd "$srcdir/$_pkgname"
+#     patch "src/include/ipebase.h" <"$srcdir/gcc16.patch"
+# }
 
 build() {
     # Ipe

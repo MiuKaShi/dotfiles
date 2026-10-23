@@ -19,9 +19,9 @@ EOF
 if [ $# -lt 1 ]; then usage 1; fi
 
 # Default options.
-INPLACE=1 # Update source file.
-REMOVE=0 # Do not remove reference.
-PRINTREFS=0 # Do not print actual references.
+INPLACE=1    # Update source file.
+REMOVE=0     # Do not remove reference.
+PRINTREFS=0  # Do not print actual references.
 PRINTFILE=-H # Print filename with actual keys.
 
 # Parse command line options.
@@ -41,13 +41,10 @@ if [[ $# -eq $((3 - $INPLACE)) ]]; then
     PRINTFILE=""
 fi
 
-
 # Function to update or insert path to pdf file in a bibtex file.
 function updatepdf() { # updatepdf pdffile bibfile [-i]
-    if grep -q '^ *[Ff]ile  *= {:[^:]*:PDF}' "$bibfile"
-    then
-        if [ $REMOVE -eq 1 ]
-        then
+    if grep -q '^ *[Ff]ile  *= {:[^:]*:PDF}' "$bibfile"; then
+        if [ $REMOVE -eq 1 ]; then
             # Remove reference.
             sed $3 "$2" -e '/^ *[Ff]ile  *= {:[^:]*:PDF}/d'
         else
@@ -55,8 +52,7 @@ function updatepdf() { # updatepdf pdffile bibfile [-i]
             sed $3 "$2" -e '/^ *[Ff]ile  *= {:[^:]*:PDF}/s|{[^}]*}|'"{:"$1":PDF}"'|'
         fi
     else
-        if [ $REMOVE -eq 1 ]
-        then
+        if [ $REMOVE -eq 1 ]; then
             sed $3 "$2" -e ''
         else
             # Insert new reference.
@@ -66,10 +62,8 @@ function updatepdf() { # updatepdf pdffile bibfile [-i]
     fi
 }
 
-
 # Iterate bib files.
-for bibfile in "$@"
-do
+for bibfile in "$@"; do
     # Skip options.
     test "$bibfile" != "-n" || continue
     test "$bibfile" != "-r" || continue
@@ -84,12 +78,11 @@ do
     test -f "$bibfile" || {
         [[ "$bibfile" =~ ^- ]] \
             && echo "$(basename $0): $option: Unknown option" >/dev/stderr \
-            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
         continue
     }
 
-    if [ $PRINTREFS -eq 1 ]
-    then
+    if [ $PRINTREFS -eq 1 ]; then
         # Only print actual reference.
         grep $PRINTFILE -i "\<File\> *=" "$bibfile" \
             | sed 's/ *[Ff]ile *= *{[ :]*/ /;s/ *}[, ]*$//;s/:PDF//;s/^ //'
@@ -97,29 +90,26 @@ do
     fi
 
     # Skip multi record files.
-    nr=`sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | wc -l`
-    if [ $nr -gt 1 ]
-    then
+    nr=$(sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | wc -l)
+    if [ $nr -gt 1 ]; then
         echo "WARNING: Do not insert reference to pdf file into multi record file '$bibfile'." >/dev/stderr
         continue
     fi
 
     # In case of changes insert reference to pdf document or print diff.
-    if ! updatepdf "$pdffile" "$bibfile" | diff -q "$bibfile" - >/dev/null 2>&1
-    then
+    if ! updatepdf "$pdffile" "$bibfile" | diff -q "$bibfile" - >/dev/null 2>&1; then
         if [ $REMOVE -eq 1 ] || {
             [ -f "$pdffile" ] && $(file "$pdffile" | grep -q "PDF document")
-        }
-        then
+        }; then
             # Apply or show reference update.
-            if [ $INPLACE -eq 1 ]
-            then
+            if [ $INPLACE -eq 1 ]; then
                 # Update reference to pdf file and show result.
                 updatepdf "$pdffile" "$bibfile" -i \
                     && grep -H -i "\<File\> *=" "$bibfile" \
                     || if [ $REMOVE -eq 0 ]; then
                         echo "Inserting reference into '${bibfile}' failed!" \
-                            >/dev/stderr; fi
+                            >/dev/stderr
+                    fi
             else
                 # Show changes only.
                 echo "=== changes for »$bibfile« ==="

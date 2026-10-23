@@ -22,7 +22,7 @@ EOF
 if [ $# -lt 1 ]; then usage 1; fi
 
 # Default options.
-CHECK=0 # Only check if sorted.
+CHECK=0   # Only check if sorted.
 INPLACE=0 # Edit files in place.
 OPTIONS=
 
@@ -45,17 +45,14 @@ for arg; do
 done
 
 # Sort bib-unite options as required.
-OPTIONS=$(tr ' ' '\n' <<< "${OPTIONS# }" | sort | tr '\n' ' ')
-
+OPTIONS=$(tr ' ' '\n' <<<"${OPTIONS# }" | sort | tr '\n' ' ')
 
 # If not check only and not writing in place, sort all
 # bibfiles and possibly stdandard input at once.
-if [ $CHECK -eq 0 ] && [ $INPLACE -eq 0 ]
-then
+if [ $CHECK -eq 0 ] && [ $INPLACE -eq 0 ]; then
     # Iterate bib files.
     tmp=$(mktemp)
-    for bibfile in "$@"
-    do
+    for bibfile in "$@"; do
         # Skip options.
         test "$bibfile" != "-c" || continue
         test "$bibfile" != "-i" || continue
@@ -68,12 +65,12 @@ then
         test -f "$bibfile" -o "$bibfile" = "-" || {
             [[ "$bibfile" =~ ^- ]] \
                 && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
-                || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+                || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
             continue
         }
 
         # Append contents to temporary file.
-        cat "$bibfile" >> "$tmp"
+        cat "$bibfile" >>"$tmp"
     done
     # Sort temporary file and print contents.
     bash $0 -i ${OPTIONS% } "$tmp"
@@ -82,11 +79,9 @@ then
     exit 0
 fi
 
-
 # Iterate bib files.
 EXIT_CODE=0
-for bibfile in "$@"
-do
+for bibfile in "$@"; do
     # Skip options.
     test "$bibfile" != "-c" || continue
     test "$bibfile" != "-i" || continue
@@ -99,28 +94,27 @@ do
     test -f "$bibfile" -o "$bibfile" = "-" || {
         [[ "$bibfile" =~ ^- ]] \
             && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
-            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
         continue
     }
 
     tmp=$(mktemp)
-    bib-unite ${OPTIONS% } "$bibfile" > "$tmp" || { rm "$tmp"; exit 1; }
-    if [ $CHECK -eq 1 ]
-    then
+    bib-unite ${OPTIONS% } "$bibfile" >"$tmp" || {
+        rm "$tmp"
+        exit 1
+    }
+    if [ $CHECK -eq 1 ]; then
         # Check for sorted input.
-        if diff -q "$tmp" "$bibfile" >/dev/null
-        then
+        if diff -q "$tmp" "$bibfile" >/dev/null; then
             echo "File '$bibfile' is sorted"
         else
             echo "File '$bibfile' is not sorted"
             EXIT_CODE=1
         fi
         rm "$tmp"
-    elif [ $INPLACE -eq 1 ]
-    then
+    elif [ $INPLACE -eq 1 ]; then
         # Abort if reading from stdin.
-        if [ "$bibfile" = "-" ]
-        then
+        if [ "$bibfile" = "-" ]; then
             echo "$(basename $0): skip standard input with option '-i'"
             rm "$tmp"
             exit 1

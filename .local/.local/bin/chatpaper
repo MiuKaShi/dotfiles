@@ -15,7 +15,7 @@ fi
 if [ ! -e "$output_file" ]; then
     # Set environment variables
     cd ~/.config/script/chatpaper || exit
-		# shellcheck source=/.config/mamba/mamba_env.sh
+    # shellcheck source=/.config/mamba/mamba_env.sh
     . ~/.config/mamba/mamba_env.sh
     micromamba activate chatgpt_env
 

@@ -1,0 +1,5 @@
+[languages]
+sh = ["shfmt"]
+bash = ["shfmt"]
+python = ["black --fast -"]
+lua = ["stylua -s -"]

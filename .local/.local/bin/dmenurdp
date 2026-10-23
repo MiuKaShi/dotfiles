@@ -1,14 +1,28 @@
 #!/bin/bash
 
+HOME="/home/$(whoami)"
 RDPHOSTS=$HOME/.rdphosts
 HOSTNAME=$(awk '{print $1}' "$RDPHOSTS" | dmenu -i -p "Please Select Host") || exit 0
 HOSTINFO=$(grep "$HOSTNAME" "$RDPHOSTS")
 
 SCALE=$(printf "140\n180\n100" | dmenu -p "Choose Scale:")
 
-read -r IP NET USER PASS <<<"$(echo "$HOSTINFO" | awk '{print $2, $3, $4, $5}')"
+read -r IP NET USER PASS MAC <<<"$(echo "$HOSTINFO" | awk '{print $2, $3, $4, $5, $6}')"
+RDP_IP="${IP%:*}"
+RDP_PORT="${IP##*:}"
 
-HOME="/home/$(whoami)"
+rdp_available() {
+    nc -z -w 3 "$RDP_IP" "$RDP_PORT"
+}
+
+if ! rdp_available; then
+    wol "$MAC" && notify-send "Waking up PC!"
+    until rdp_available; do
+        :
+    done
+fi
+
+sleep 1
 
 xfreerdp3 \
     +dynamic-resolution \

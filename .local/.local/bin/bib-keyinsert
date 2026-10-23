@@ -35,14 +35,14 @@ EOF
 if [ $# -lt 1 ]; then usage 1; fi
 
 # Default options.
-INPLACE=1 # Update source file.
+INPLACE=1    # Update source file.
 IGNORECASE=0 # Do not ignore case.
-PRINTKEYS=0 # Do not print actual keys.
-QUIET=0 # Do not show newly inserted keys.
-SKIPJ=0 # Skip journal abbreviation (faster).
+PRINTKEYS=0  # Do not print actual keys.
+QUIET=0      # Do not show newly inserted keys.
+SKIPJ=0      # Skip journal abbreviation (faster).
 PRINTFILE=-H # Print filename with actual keys.
-PRINTDUPS=0 # Do not print duplicate keys.
-PRINTUNIQ=0 # Do not print unique keys.
+PRINTDUPS=0  # Do not print duplicate keys.
+PRINTUNIQ=0  # Do not print unique keys.
 
 # Parse command line options.
 for arg; do
@@ -79,11 +79,11 @@ if [[ $# -eq $((3 - $INPLACE + $IGNORECASE)) ]]; then
     PRINTFILE=""
 fi
 # Set ignore case option for diff.
-if [[ $IGNORECASE -eq 1 ]]
-then IGNORECASE=-i
-else IGNORECASE=
+if [[ $IGNORECASE -eq 1 ]]; then
+    IGNORECASE=-i
+else
+    IGNORECASE=
 fi
-
 
 # Shell string to create citation key letters from journal abbreviation.
 fmtjournal="bib-conva \
@@ -241,12 +241,10 @@ function updatekeys() { # updatekeys bibfile skipj bibfile [letter]
 
 # Function to find and print duplicates.
 function duplicates() { # echo keys | duplicates
-    if [ $PRINTDUPS -eq 1 ]
-    then
+    if [ $PRINTDUPS -eq 1 ]; then
         sort /dev/stdin | uniq -c | grep -v '^ *1 ' \
             | awk 'BEGIN{OFS="\t"}{print $1, $2}'
-    elif [ $PRINTUNIQ -eq 1 ]
-    then
+    elif [ $PRINTUNIQ -eq 1 ]; then
         sort /dev/stdin | uniq -c | grep '^ *1 ' \
             | awk 'BEGIN{OFS="\t"}{print $2}'
     else
@@ -254,10 +252,8 @@ function duplicates() { # echo keys | duplicates
     fi
 }
 
-
 # Iterate bib files.
-for bibfile in "$@"
-do
+for bibfile in "$@"; do
     # Skip options.
     test "$bibfile" != "-n" || continue
     test "$bibfile" != "-i" || continue
@@ -268,23 +264,22 @@ do
     test "$bibfile" != "-s" || continue
 
     # Possibly select letter suffix from command line ('filename:letter').
-    letter=$(grep -o ':[a-z]*$' <<< "$bibfile" | head -n1)
-    test -z "$letter" || bibfile=$(sed 's/:[a-z]*$//' <<< "$bibfile")
+    letter=$(grep -o ':[a-z]*$' <<<"$bibfile" | head -n1)
+    test -z "$letter" || bibfile=$(sed 's/:[a-z]*$//' <<<"$bibfile")
 
     # Replace »name.pdf« by »name.pdf.bib«.
-    bibfile=$(sed 's/\.pdf$/&.bib/' <<< "$bibfile")
-    pdffile=$(sed -n '/\.pdf\.bib$/{s//.pdf/;p}' <<< "$bibfile")
+    bibfile=$(sed 's/\.pdf$/&.bib/' <<<"$bibfile")
+    pdffile=$(sed -n '/\.pdf\.bib$/{s//.pdf/;p}' <<<"$bibfile")
 
     # Skip if not a regular file.
     test -f "$bibfile" || {
         [[ "$bibfile" =~ ^- ]] \
             && echo "$(basename $0): $bibfile: Unknown option" >/dev/stderr \
-            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr;
+            || echo "$(basename $0): $bibfile: File not found" >/dev/stderr
         continue
     }
 
-    if [ $PRINTKEYS -eq 1 ]
-    then
+    if [ $PRINTKEYS -eq 1 ]; then
         # Only print actual keys.
         grep $PRINTFILE '^ *@' "$bibfile" \
             | sed 's/@[^{]*{ */ /;s/ *, *$//;s/^ //'
@@ -292,13 +287,11 @@ do
     fi
 
     # Ignore letter suffix in case of multi record files.
-    nr=`sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | head -n2 | wc -l`
-    if [ $nr -gt 1 ]
-    then
-        if [ -n "$letter" ]
-        then
+    nr=$(sed -r '/@([A-Za-z]+)* *\{.*,/!d' "$bibfile" | head -n2 | wc -l)
+    if [ $nr -gt 1 ]; then
+        if [ -n "$letter" ]; then
             echo "WARNING: Do not insert letter '$letter'" \
-               "into multi record file '$bibfile'." >/dev/stderr
+                "into multi record file '$bibfile'." >/dev/stderr
             letter=""
         fi
     fi
@@ -306,18 +299,15 @@ do
     # Create temporary file with updated citation keys.
     tmpfile="$(mktemp)"
     trap "rm -f $tmpfile" EXIT
-    updatekeys "$bibfile" $SKIPJ "$bibfile" "$letter" > "$tmpfile"
+    updatekeys "$bibfile" $SKIPJ "$bibfile" "$letter" >"$tmpfile"
 
     # In case of changes update source file or print diff.
-    if ! diff -q $IGNORECASE "$bibfile" "$tmpfile" >/dev/null
-    then
-        if [ $INPLACE -eq 1 ]
-        then
+    if ! diff -q $IGNORECASE "$bibfile" "$tmpfile" >/dev/null; then
+        if [ $INPLACE -eq 1 ]; then
             # Update keys.
             mv "$tmpfile" "$bibfile"
 
-            if [[ $QUIET -eq 0 ]]
-            then
+            if [[ $QUIET -eq 0 ]]; then
                 # Show results.
                 grep -H ^@ "$bibfile"
             fi

@@ -16,8 +16,8 @@ EOF
 }
 
 # Default options.
-FILE="" # No filename, read from stdin.
-FILTER="" # No filter, edit all contents.
+FILE=""       # No filename, read from stdin.
+FILTER=""     # No filter, edit all contents.
 SHORTLIST="0" # Use all replacement lists.
 
 # Parse command line options.
@@ -27,20 +27,17 @@ for arg; do
     if [[ "$arg" == "-s" ]]; then SHORTLIST=1; fi
 done
 
-if [[ "$1" == "-i" ]]
-then
+if [[ "$1" == "-i" ]]; then
     [[ "$#" -ge 2 ]] && FILE="$2" \
         || echo "Missing argument to option '-i'!" >/dev/stderr
     shift 2 || shift 1
 fi
 
-if [[ "$1" == "-f" ]]
-then
+if [[ "$1" == "-f" ]]; then
     [[ "$#" -ge 2 ]] && FILTER="$2" \
         || echo "Missing argument to option '-f'!" >/dev/stderr
     shift 2 || shift 1
 fi
-
 
 # Replace '{\"a}' and '\"a' to '\"{a}'.
 FORMAT="
@@ -140,15 +137,12 @@ s/\\\\'{O}/Ó/g
 s/\\\\'{U}/Ú/g
 "
 
-
 # For option '-s' use short list of replacements.
-if [ $SHORTLIST -eq 1 ]
-then
+if [ $SHORTLIST -eq 1 ]; then
     # Remove ampersand escaping (for journal names).
     ADD_REPLSQ='s/\\&/\&/g'
     ADD_REPLDQ=""
 fi
-
 
 # Function to replace latex code by unicode characters.
 function latex_to_utf() { # echo text | latex_to_utf
@@ -162,9 +156,7 @@ function latex_to_utf() { # echo text | latex_to_utf
              }" "$@"
 }
 
-
-if [ -z "$FILE" ]
-then
+if [ -z "$FILE" ]; then
     cat /dev/stdin | latex_to_utf
 else
     latex_to_utf -i "$FILE"

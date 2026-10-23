@@ -25,7 +25,7 @@ __version__ = "0.1"
 
 
 DEFAULT_ZOTERO_PATH = Path.home() / "Zotero"
-DEFAULT_ZOTERO_BASE_DIR = Path.home() / "papers"
+DEFAULT_ZOTERO_BASE_DIR = Path.home() / "papers/pdf"
 DEFAULT_ROFI_ARGS = "-threads 0 -matching regex -i"  # case insensitive
 DEFAULT_VIEWER = "xdg-open %u"
 DEFAULT_PROMPT_PAPER = "paper"

@@ -24,17 +24,15 @@ for arg; do
     if [[ "$arg" == "-h" ]]; then usage 0; fi
 done
 
-
 # Select bib file from first argument (possibly '-' for standard input).
 bibfile=$1
 shift
 
 # Replace »name.pdf« by »name.pdf.bib«.
-bibfile=$(sed 's/\.pdf$/&.bib/' <<< "$bibfile")
+bibfile=$(sed 's/\.pdf$/&.bib/' <<<"$bibfile")
 
 # Read from standard in or check if file exists.
-if [ "$bibfile" ==  "-" ]
-then
+if [ "$bibfile" == "-" ]; then
     bibfile=/dev/stdin
 else
     test -f "$bibfile" || usage 1

@@ -29,10 +29,12 @@ for arg; do
     if [[ "$arg" == "-n" ]]; then DRY_RUN=1; fi
 done
 
-if [[ "$1" == "-s" ]]
-then
+if [[ "$1" == "-s" ]]; then
     [[ "$#" -ge 2 ]] && PIXELS_PER_DOT="$2" \
-        || { echo "Missing argument to option '-s'!" >/dev/stderr; exit 1; }
+        || {
+            echo "Missing argument to option '-s'!" >/dev/stderr
+            exit 1
+        }
     shift 2 || shift 1
 fi
 
@@ -41,7 +43,7 @@ if [[ $DRY_RUN -eq 1 ]]; then shift; fi
 if [ $# -lt 1 ]; then usage 1; fi
 
 bib-txt -f '$link ${fauthor%% *}_${year}_${journal//[a-z .]}' "$@" \
-	| awk -vnumber="$PIXELS_PER_DOT" -vsuffix="$SUFFIX" -vdryrun="$DRY_RUN" '
+    | awk -vnumber="$PIXELS_PER_DOT" -vsuffix="$SUFFIX" -vdryrun="$DRY_RUN" '
 NF > 1 {
 	cmd = sprintf("qrencode -s %d %s -o %s%s", number, $1, $2, suffix)
 	if (dryrun) {
