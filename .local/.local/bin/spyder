@@ -2,4 +2,5 @@
 
 source ~/.config/mamba/mamba_env.sh
 micromamba activate spyder_env
-spyder $@
+export QT_XCB_GL_INTEGRATION=none
+setsid -f spyder > /dev/null 2>&1 < /dev/null

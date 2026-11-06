@@ -1,6 +1,3 @@
-# zoxide-jump:
-eval "$(zoxide init zsh)"
-
 # Change prompt:
 autoload -U colors && colors # Load colors
 PS1="%B%{$fg[red]%}%{$fg[blue]%} %{$fg[green]%}%~%{$fg[cyan]%}  %b "
@@ -120,5 +117,8 @@ unset 'FAST_HIGHLIGHT[chroma-man]' # chroma-man will stuck history browsing
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND='1'
+
+# zoxide-jump:
+eval "$(zoxide init zsh)"
 
 # eval "$(starship init zsh)"
