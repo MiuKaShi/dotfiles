@@ -7,7 +7,7 @@
 
 # mimeapps
 .local/share/applications/mimeapps.list
-.config/.config/mimeapps.list
+#.config/.config/mimeapps.list
 
 # matlab
 .local/.local/share/applications/mw-matlab.desktop
