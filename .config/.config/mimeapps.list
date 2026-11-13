@@ -27,6 +27,8 @@ text/plain=text.desktop;
 text/x-algol68=text.desktop;
 text/x-shellscript=text.desktop;
 application/json=text.desktop;
+application/pdf=pdf.desktop;
+application/postscript=pdf.desktop;
 text/org=gtd.desktop;
 video/mp4=video.desktop;
 video/x-matroska=video.desktop;
@@ -35,13 +37,10 @@ x-scheme-handler/pdf-viewlink=pdf-viewlink.desktop;
 x-scheme-handler/pdf-viewlinks=pdf-viewlink.desktop;pdf-viewlink.desktop;
 x-scheme-handler/reference=reference-link.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop;
-x-scheme-handler/tonsite=org.telegram.desktop
-x-scheme-handler/ton=org.telegram.desktop.desktop
-; pdf viewer
-application/pdf=pdf.desktop
-application/postscript=pdf.desktop;
-; browser
-x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
-x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
-text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/tonsite=org.telegram.desktop;
+x-scheme-handler/ton=org.telegram.desktop.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+text/html=org.qutebrowser.qutebrowser.desktop;
 application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
+
