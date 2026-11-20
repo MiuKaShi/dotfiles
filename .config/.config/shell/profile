@@ -48,6 +48,9 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="$PATH:$NPM_HOME/bin"
 export PATH="$PATH:$JLBIN"
 
+# dbus address
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
 #fix retrieving accessibility bus address
 # export NO_AT_BRIDGE=1
 

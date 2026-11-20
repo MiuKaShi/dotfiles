@@ -16,6 +16,9 @@ for program in $autostart; do
     pidof -sx "$program" || "$program" &
 done >/dev/null 2>&1
 
+# start user session dbus
+dbus-daemon --session --fork --address="$DBUS_SESSION_BUS_ADDRESS"
+
 # run user services (run under current user) using runsvdir
 runsvdir -P ~/.runit/runsvdir &
 runsvdir_pid=$!
