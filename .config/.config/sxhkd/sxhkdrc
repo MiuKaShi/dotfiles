@@ -2,6 +2,16 @@
 super + ctrl + space
 		touchpadtoggle
 
+#fcitx5
+mod3 + 1
+    fcitx5-switch en
+
+mod3 + 2
+    fcitx5-switch cn
+
+mod3 + 3
+    fcitx5-switch jp
+
 #dwm
 mod3 + q
     dwmc killclient

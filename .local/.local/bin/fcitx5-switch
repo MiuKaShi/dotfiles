@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# dwmblocks 输入法模块的 Signal 编号
+SIGNAL=5
+
+# 切换输入法
+case "$1" in
+    en)
+        fcitx5-remote -s keyboard-us
+        ;;
+    cn)
+        fcitx5-remote -s rime
+        ;;
+    jp)
+        fcitx5-remote -s mozc
+        ;;
+    *)
+        fcitx5-remote -t
+        ;;
+esac
+
+# 更新 dwmblocks
+pkill -RTMIN+"$SIGNAL" -x dwmblocks
