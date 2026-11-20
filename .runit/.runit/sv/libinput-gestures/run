@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec libinput-gestures 2>&1
