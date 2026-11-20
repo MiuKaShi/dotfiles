@@ -21,7 +21,7 @@ VPAD=$(fzf --version | {
     [ "$v1" = 0 ] && [ "$v2" -le 26 ] && echo 0 || echo 4
 })
 
-# 检测 ueberzug++ 
+# 检测 ueberzug++
 if command -v ueberzugpp >/dev/null 2>&1; then
     UEBERZUG_CMD="ueberzugpp"
 elif command -v ueberzug >/dev/null 2>&1; then

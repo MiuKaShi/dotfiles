@@ -6,7 +6,7 @@
 
 set -e
 
-# 检测 ueberzug++ 
+# 检测 ueberzug++
 if command -v ueberzugpp >/dev/null 2>&1; then
     UEBERZUG_CMD="ueberzugpp"
 elif command -v ueberzug >/dev/null 2>&1; then
