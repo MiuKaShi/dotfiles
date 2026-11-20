@@ -14,7 +14,7 @@ set timefmt '2006-01-02 15:04:05 -0700'
 set errorfmt  "\033[31m%s\033[0m"
 # set info size
 set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/preview'
+set previewer '~/.config/lf/scope'
 set autoquit true
 # set sixel true
 # set smartcase
@@ -134,7 +134,7 @@ map rr rename
 map rf no_space
 map rp renamepaper
 map rb  $printf '%s\n' $fx | vidir -
-map rbb batch_rename
+map B batch_rename
 map W $setsid -f $TERMINAL >/dev/null 2>&1
 
 
@@ -212,7 +212,7 @@ cmd open ${{
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
-  mkdir $ans
+  mkdir -p $ans
 }}
 
 cmd mkfile ${{
@@ -262,6 +262,7 @@ cmd copyto ${{
 }}
 
 cmd extract ${{
+		clear; tput cup $(($(tput lines)/3)); tput bold
     set -f
     case $f in
         *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
@@ -338,26 +339,24 @@ cmd copy_path ${{
 
 # rename multiple files the way nnn does it
 cmd batch_rename !{{
-    contentsfile=$(mktemp)
-    trap 'rm $contentsfile' INT TERM EXIT
-    dircontents="$(command ls -1p)"
-    printf "%s" "$dircontents" | nl -n ln > "$contentsfile";
-    $EDITOR "$contentsfile"
-    printf "%s" "$dircontents" | paste "$contentsfile" -d'\t' - \
-        | while read -r line; do
-        orig="$(printf "%s" "$line" | cut -f3 | sed 's!/$!!')"
-        new="$(printf "%s" "$line" | cut -f2 | sed 's!/$!!')"
-        if [ "$new" != "$orig" ]; then
-            if [ -e "$new" ]; then
-                printf "%s already exists, not overwriting.\n" "$new"
-            else
-                printf "./%s -> ./%s\n" "$orig" "$new"
-                command mv -i ./"$orig" ./"$new"
-            fi
-        fi
+    tmpfile_old="$(mktemp)"
+    tmpfile_new="$(mktemp)"
+
+    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
+
+    echo "$fs" > "$tmpfile_old"
+    echo "$fs" > "$tmpfile_new"
+    $EDITOR "$tmpfile_new"
+
+    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
+
+    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst
+    do
+        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
     done
-    rm "$contentsfile"
-    trap - INT TERM EXIT
+
+    rm -f "$tmpfile_old" "$tmpfile_new"
+    lf -remote "send $id unselect"
 }}
 
 cmd yank-bibtex $papers extract "$f" | xclip -sel clip
