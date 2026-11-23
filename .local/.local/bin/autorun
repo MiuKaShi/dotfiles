@@ -2,7 +2,7 @@
 
 # Function for starting conky based on monitor model
 start_conky() {
-    local monitor_model=$(sudo ddcutil detect | grep "Mfg" | awk '{print $3}')
+    local monitor_model=$(ddcutil detect | grep "Mfg" | awk '{print $3}')
     case $monitor_model in
         *"ENC"*)
             conky -c ~/.config/conky/lab/.conkyrc >>/dev/null 2>&1 &

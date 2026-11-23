@@ -3,7 +3,7 @@
 # This script allows control monitor brightness
 
 # Get monitor info
-monitor_info=$(sudo ddcutil detect)
+monitor_info=$(ddcutil detect)
 
 # Check if DDC is supported
 echo "$monitor_info" | awk '/Display 1/,0' | grep -q "DDC communication failed" && dunstify "DDC Not Support" && exit 1
@@ -14,7 +14,7 @@ id=$(echo "$model_info" | grep -oP '(?<=i2c-)\w+')
 
 # Set initial brightness value
 if [ ! -f ~/.cache/brightness ]; then
-    current_brightness=$(sudo ddcutil --noverify getvcp 10 | grep "current value" | awk '{print $9}' | sed 's/,*$//g')
+    current_brightness=$(ddcutil --noverify getvcp 10 | grep "current value" | awk '{print $9}' | sed 's/,*$//g')
     echo "$current_brightness" >~/.cache/brightness
 fi
 brightness=$(cat ~/.cache/brightness)
@@ -27,14 +27,14 @@ send_notification() {
 # Modify this function as needed to handle setting your monitor brightness
 set_brightness() {
     while read -r line; do
-        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 10 "$brightness" >/dev/null 2>&1
+        ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 10 "$brightness" >/dev/null 2>&1
     done <<<"$id"
 }
 
 # Modify this function as needed to handle setting your monitor temperature
 set_temperature() {
     while read -r line; do
-        sudo ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 14 "$number_temperature" >/dev/null 2>&1
+        ddcutil --noverify --bus "$line" --sleep-multiplier 0.1 setvcp 14 "$number_temperature" >/dev/null 2>&1
     done <<<"$id"
 }
 

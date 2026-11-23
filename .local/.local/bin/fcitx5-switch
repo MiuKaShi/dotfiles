@@ -20,4 +20,4 @@ case "$1" in
 esac
 
 # 更新 dwmblocks
-pkill -RTMIN+"$SIGNAL" -x dwmblocks
+pkill -RTMIN+"$SIGNAL" "${STATUSBAR:-dwmblocks}"

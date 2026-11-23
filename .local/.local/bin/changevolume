@@ -2,45 +2,30 @@
 
 # Sends a notification with the current volume level
 function send_notification() {
-    local volume=$(pamixer --get-volume)
-    notify-send -a Pamixer -u low -r 993 -h int:value:"$volume" -i "volume-$1" "Volume: ${volume}%" -t 2000
-}
-
-# Increases the volume by 5%
-function increase_volume() {
-    pamixer -u
-    pamixer -i 5 --allow-boost
-    send_notification up
-}
-
-# Decreases the volume by 5%
-function decrease_volume() {
-    pamixer -u
-    pamixer -d 5 --allow-boost
-    send_notification down
+    local volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f", $2 * 100}')
+    notify-send -a Volume -u low -r 993 -h int:value:"$volume" -i "volume-$1" "Volume: ${volume}%" -t 2000
 }
 
 # Toggles mute on/off
-function toggle_mute() {
-    pamixer -t
-    if "$(pamixer --get-mute)"; then
-        notify-send -a Pamixer -i volume-mute -t 2000 -r 993 -u low "Muted"
-    else
-        send_notification up
-    fi
+toggle_mute() {
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    [[ "$(wpctl get-volume @DEFAULT_AUDIO_SINK@)" == *"[MUTED]"* ]] && notify-send -a Volume -i volume-mute -t 2000 -r 993 -u low "Muted" \
+        || notify-send -a Volume -i volume-unmute -t 2000 -r 993 -u low "Unmuted"
 }
 
 # Main script
 case $1 in
     up)
-        increase_volume
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+        send_notification up
         ;;
     down)
-        decrease_volume
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+        send_notification down
         ;;
-    mute)
+    toggle)
         toggle_mute
         ;;
 esac
 
-kill -44 "$(pidof dwmblocks)"
+pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
