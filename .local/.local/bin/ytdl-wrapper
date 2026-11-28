@@ -1,2 +1,3 @@
 #!/bin/sh
-yt-dlp --cookies-from-browser chromium:~/.local/share/qutebrowser $@
+# pacman -S deno for yt-dlp
+exec yt-dlp --cookies-from-browser "chromium:$HOME/.local/share/qutebrowser" "$@"
