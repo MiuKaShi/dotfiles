@@ -10,22 +10,23 @@ Author: Hans Chen (contact@hanschen.org)
 """
 
 import argparse
+import configparser
 import os
-import shutil
+import re
 import shlex
+import shutil
 import sqlite3
 import subprocess
 import sys
 import tempfile
-
+from collections import defaultdict
 from pathlib import Path
-
 
 __version__ = "0.1"
 
-
+DEFAULT_ZOTERO_CONFIG = Path.home() / ".zotero"
 DEFAULT_ZOTERO_PATH = Path.home() / "Zotero"
-DEFAULT_ZOTERO_BASE_DIR = Path.home() / "papers/pdf"
+DEFAULT_ZOTERO_BASE_DIR = Path.home() / "papers"
 DEFAULT_ROFI_ARGS = "-threads 0 -matching regex -i"  # case insensitive
 DEFAULT_VIEWER = "xdg-open %u"
 DEFAULT_PROMPT_PAPER = "paper"
@@ -33,7 +34,7 @@ DEFAULT_PROMPT_ATTACHMENT = "attachment"
 
 FORMAT_ITEM = "{year} - {title}"
 FORMAT_ITEM_WITHOUT_YEAR = "{author} - {title}"
-FORMAT_ITEM_WITHOUT_AUTHOR = "Unknown {year} - {title}"
+FORMAT_ITEM_WITHOUT_AUTHOR = "Unknown ({year}) - {title}"
 FORMAT_ITEM_WITHOUT_AUTHOR_AND_YEAR = "Unknown - {title}"
 
 FORMAT_AUTHORS_SINGLE = "{author1}"
@@ -59,10 +60,15 @@ _QUERY_AUTHORS = """
                ON t1.itemID = items.itemID)
 """
 
+_QUERY_DATE_ADDED = """
+    SELECT itemID,
+           dateAdded
+    FROM items
+"""
+
 _QUERY_TITLES = """
     SELECT parentInfo.itemID,
-           parentItemDataValues.value,
-           attachmentInfo.key
+           parentItemDataValues.value
     FROM   itemAttachments
            INNER JOIN items AS attachmentInfo
                    ON attachmentInfo.itemID = itemAttachments.itemID
@@ -105,6 +111,7 @@ _QUERY_DATES = """
 
 _QUERY_PATHS = """
     SELECT parentInfo.itemID,
+           attachmentInfo.key,
            path
     FROM   itemAttachments
            INNER JOIN items AS attachmentInfo
@@ -144,8 +151,7 @@ def format_authors(author_list):
     if len(author_list) == 1:
         author_string = FORMAT_AUTHORS_SINGLE.format(author1=author_list[0])
     elif len(author_list) == 2:
-        author_string = FORMAT_AUTHORS_TWO.format(author1=author_list[0],
-                                                  author2=author_list[1])
+        author_string = FORMAT_AUTHORS_TWO.format(author1=author_list[0], author2=author_list[1])
     else:
         author_string = FORMAT_AUTHORS_MULTIPLE.format(author1=author_list[0])
 
@@ -210,8 +216,7 @@ def format_item(title, author=None, year=None):
     if author and year:
         item_string = FORMAT_ITEM.format(title=title, author=author, year=year)
     elif author:
-        item_string = FORMAT_ITEM_WITHOUT_YEAR.format(title=title,
-                                                      author=author)
+        item_string = FORMAT_ITEM_WITHOUT_YEAR.format(title=title, author=author)
     elif year:
         item_string = FORMAT_ITEM_WITHOUT_AUTHOR.format(title=title, year=year)
     else:
@@ -242,6 +247,89 @@ def get_item_info(zotero_sqlite_file, query):
     return items
 
 
+def get_user_prefs(config_dir, profile=None):
+    """Get profile preference file in ``config_dir`` directory
+
+    Parameters
+    ----------
+    config_dir : str or pathlib.Path
+        Path to configuration folder, from where the profiles are
+        read. Usually ``~/.zotero``.
+
+    profile : str, optional
+        Name of the profile to be chosen. If None is given, then the default profile is
+        chosen (the default profile is the one that is automatically selected when
+        Zotero starts).
+        Default: None
+
+    Returns
+    -------
+    pathlib.Path or None
+        Path to the preference file of the selected profile with name ``profile``.
+        If ``profile`` is None, default profile is is chosen.
+        Existence of the Path is not checked, will result in FileNotFoundError
+
+    Raises
+    ------
+        RuntimeError: If ``profile`` is not None but no corresponding profile exists.
+        RuntimeError: If no profiles are found in the directory.
+    """
+
+    config_dir = Path(config_dir) / "zotero"
+    parser = configparser.ConfigParser()
+    parser.read(str(config_dir / "profiles.ini"))
+    config = {s: dict(parser.items(s)) for s in parser.sections()}
+    profiles = {k: v for k, v in config.items() if "path" in v.keys()}
+    if len(profiles) <= 0:
+        raise RuntimeError(f"No profiles found in {str(config_dir)}.")
+
+    if profile is not None:
+        for k in profiles.keys():
+            if "name" in profiles[k] and profiles[k]["name"] == profile:
+                return config_dir / profiles[k]["path"] / "prefs.js"
+        raise RuntimeError(f"No profile with name {profile}")
+
+    # If no name is given or name not found fall back to default
+    for k in profiles.keys():
+        if "default" in profiles[k] and profiles[k]["default"] == "1":
+            return config_dir / profiles[k]["path"] / "prefs.js"
+
+    # If no default is found, fall back to first element
+    first_key = list(profiles.keys())[0]
+    return config_dir / profiles[first_key]["path"] / "prefs.js"
+
+
+def get_path_pref(pref_path, preference):
+    """Reads data directory from preference file
+
+    Parameters
+    ----------
+    pref_path : str or pathlib.Path
+        File containing user preferences. This file is assumed to exist. Raises
+        FileNotFoundError otherwise.
+
+    preference : str
+        The preference setting, e.g. ``extensions.zotero.dataDir``.
+
+    Returns
+    -------
+    pathlib.Path or None
+        Path to the data directory or None if setting is not present.
+
+    """
+    pref_path = Path(pref_path)
+    data_path = None
+    for line in pref_path.read_text(encoding="utf-8").splitlines():
+        if preference in line:
+            # each line in pref_path is a function call with two arguments
+            # of which we extract the second.
+            data_path = re.search(r",.*\"(.*)\"", line)
+            if data_path is not None:
+                return Path(data_path[1])
+            else:
+                return None
+
+
 def open_file(app, file_path, only_return_command=False):
     """Attempt to open ``file_path`` using ``app``.
 
@@ -266,7 +354,7 @@ def open_file(app, file_path, only_return_command=False):
     if "%u" not in app_and_args:
         app_and_args.append("%u")
 
-    command = [arg if arg != '%u' else file_path for arg in app_and_args]
+    command = [arg if arg != "%u" else file_path for arg in app_and_args]
 
     if not only_return_command:
         subprocess.run(command)
@@ -288,94 +376,154 @@ def parse_args():
 
     default_viewer_without_percent = DEFAULT_VIEWER.replace("%", "%%")
 
-    parser.add_argument('-v', '--version', action='version',
-                        version=f"%(prog)s {__version__}")
-    parser.add_argument('-p', '--zotero-path', type=Path,
-                        default=DEFAULT_ZOTERO_PATH,
-                        help=(f'Path to Zotero data directory. '
-                              f'Default: "{DEFAULT_ZOTERO_PATH}"'))
-    parser.add_argument('-b', '--zotero-base-dir', type=Path,
-                        default=DEFAULT_ZOTERO_BASE_DIR,
-                        help=(f'Base directory for relative paths in Zotero. '
-                              f'Default: "{DEFAULT_ZOTERO_BASE_DIR}"'))
-    parser.add_argument('-l', '--list', action='store_true', default=False,
-                        help=('Print out list of results instead of passing '
-                              'it to Rofi'))
-    parser.add_argument('--rofi-args', type=str,
-                        default=DEFAULT_ROFI_ARGS,
-                        help=(f'Arguments to Rofi, usually given as: '
-                              f'--rofi-args="-i -t theme '
-                              f'-p title\\ with\\ space". '
-                              f'Default: "{DEFAULT_ROFI_ARGS}"'))
-    parser.add_argument('--viewer', type=str,
-                        default=DEFAULT_VIEWER,
-                        help=(f'Application to open attachments, with "%%u" '
-                              f'to indicate where the path should go. '
-                              f'Default: "{default_viewer_without_percent}"'))
-    parser.add_argument('--prompt-paper', type=str,
-                        default=DEFAULT_PROMPT_PAPER,
-                        help=(f'Prompt title when searching through papers. '
-                              f'Default: "{DEFAULT_PROMPT_PAPER}"'))
-    parser.add_argument('--prompt-attachment', type=str,
-                        default=DEFAULT_PROMPT_ATTACHMENT,
-                        help=(f'Prompt title when searching through '
-                              f'attachments. '
-                              f'Default: "{DEFAULT_PROMPT_ATTACHMENT}"'))
+    parser.add_argument("-v", "--version", action="version", version=f"%(prog)s {__version__}")
+    parser.add_argument(
+        "-p",
+        "--profile",
+        type=str,
+        default=None,
+        help=("name of the Zotero profile to use. Default: The default Zotero profile"),
+    )
+    parser.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        default=False,
+        help=("print out list of results instead of passing it to Rofi"),
+    )
+    parser.add_argument(
+        "--rofi-args",
+        type=str,
+        default=DEFAULT_ROFI_ARGS,
+        help=(
+            f"arguments to Rofi, usually given as: "
+            f'--rofi-args="-i -t theme -p title\\ with\\ space". '
+            f'Default: "{DEFAULT_ROFI_ARGS}"'
+        ),
+    )
+    parser.add_argument(
+        "--viewer",
+        type=str,
+        default=DEFAULT_VIEWER,
+        help=(
+            f'application to open attachments, with "%%u" '
+            f"to indicate where the path should go. "
+            f'Default: "{default_viewer_without_percent}"'
+        ),
+    )
+    parser.add_argument(
+        "--prompt-paper",
+        type=str,
+        default=DEFAULT_PROMPT_PAPER,
+        help=(f"prompt title when searching through papers. " f'Default: "{DEFAULT_PROMPT_PAPER}"'),
+    )
+    parser.add_argument(
+        "--prompt-attachment",
+        type=str,
+        default=DEFAULT_PROMPT_ATTACHMENT,
+        help=(f"prompt title when searching through attachments. " f'Default: "{DEFAULT_PROMPT_ATTACHMENT}"'),
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        type=Path,
+        default=DEFAULT_ZOTERO_CONFIG,
+        help=(f'path to Zotero config directory. Default: "{DEFAULT_ZOTERO_CONFIG}"'),
+    )
 
     return parser.parse_args()
 
 
-def main(zotero_path=None, zotero_base_dir=None,
-         list=False, viewer="xdg-open %u", rofi_args="-i",
-         prompt_paper="paper", prompt_attachment="attachment"):
+def main(
+    config=None,
+    profile=None,
+    list=False,
+    viewer="xdg-open %u",
+    rofi_args="-i",
+    prompt_paper="paper",
+    prompt_attachment="attachment",
+):
     """Run main program.
 
     Parameters
     ----------
-    zotero_path : str or pathlib.Path, optional
-        Path to Zotero data directory. Default: "$HOME/Zotero"
-    zotero_base_dir : str or pathlib.Path, optional
-        Base directory for relative paths stored in Zotero (see Preferences ->
-        Advanced -> Files and Folders -> Base directory in Zotero).
-        Default: "$HOME/papers"
+    config : str or pathlib.Path, optional
+        Path to Zotero config directory. Default: DEFAULT_ZOTERO_CONFIG
+    profile : str, optional
+        Profile name, or None for the default profile. Default: None.
     list : bool, optional
         Set to True to print out list of results instead of passing it to Rofi.
         Default: False.
-    viewer : str
+    viewer : str, optional
         Application to open attachments. Use '%u' to specify the path to the
         file to open. Default: "xdg-open %u"
-    rofi_args : str
+    rofi_args : str, optional
         Arguments to pass to Rofi. Default: "-i"
-    prompt_paper: str
+    prompt_paper: str, optional
         Prompt title when searching through Zotero items. Default: "paper"
-    prompt_attachment: str
+    prompt_attachment: str, optional
         Prompt title when searching through attachments for a specific item.
         Default: "attachment"
 
     """
-    if zotero_path is None:
-        zotero_path = Path.home() / "Zotero"
 
-    if zotero_base_dir is None:
-        zotero_base_dir = Path.home() / "papers"
+    if config is None:
+        config = DEFAULT_ZOTERO_CONFIG
+    config = Path(config)
 
     rofi_args = shlex.split(rofi_args)
-    zotero_path = Path(zotero_path)
-    zotero_base_dir = Path(zotero_base_dir)
 
-    # Check if Rofi is in PATH early on, as it is also used to show error
-    # messages
+    # Check if Rofi is in PATH early on, as it is also used to show error messages
+    if shutil.which("rofi") is None:
+        print(
+            "'rofi' command not found, make sure it is installed and that it is in PATH",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # Compute Zotero paths
+    if not config.exists():
+        show_error(
+            f"Zotero config directory not found: {config}\n"
+            f"Use the --config option to specify the path to the config directory."
+        )
+        return
+    try:
+        pref_path = get_user_prefs(config, profile)
+    except RuntimeError as e:
+        show_error(f"{str(e)}\nUse the --profile option to specify the Zotero profile.")
+        return
+    except FileNotFoundError as e:
+        show_error(f"{str(e)}\n" f"Use the --config option to specify the path to the config directory.")
+        return
+
+    # Extract Zotero paths
+    if not pref_path.exists() or not pref_path.is_file():
+        show_error(
+            f"Could the find preference file {str(pref_path)}.\n"
+            f"Use the -c option to specify the path to the config directory.\n"
+        )
+        return
+
+    zotero_path = get_path_pref(pref_path, "extensions.zotero.dataDir")
+    zotero_base_dir = get_path_pref(pref_path, "extensions.zotero.baseAttachmentPath")
+
+    if zotero_path is None:
+        zotero_path = DEFAULT_ZOTERO_PATH
+    if zotero_base_dir is None:
+        zotero_base_dir = DEFAULT_ZOTERO_BASE_DIR
+
     if not zotero_path.exists():
-        show_error(f"Zotero data directory not found: {zotero_path}\n"
-                   f"Use the -p option to specify the path to the data "
-                   f"directory")
+        show_error(
+            f"Zotero data directory not found: {zotero_path}\n" f"Use the -p option to specify the zotero profile."
+        )
         return
 
     zotero_sqlite_file = zotero_path / _ZOTERO_SQLITE_FILE
     if not zotero_sqlite_file.exists():
-        show_error(f"Zotero database not found: {zotero_sqlite_file}\n"
-                   f"Use the -p option to specify the path to the Zotero data "
-                   f"directory")
+        show_error(
+            f"Zotero database not found: {zotero_sqlite_file}\n" f"Use the -p option to specify the zotero profile."
+        )
         return
 
     # Create a temporary copy of the database to avoid issues with locking
@@ -387,26 +535,18 @@ def main(zotero_path=None, zotero_base_dir=None,
     all_titles = get_item_info(database_copy, _QUERY_TITLES)
     all_dates = get_item_info(database_copy, _QUERY_DATES)
     all_paths = get_item_info(database_copy, _QUERY_PATHS)
+    all_date_added = get_item_info(database_copy, _QUERY_DATE_ADDED)
 
     os.remove(database_copy)
 
-    id = all_authors[0][0]
-    author_list = []
-    authors = {}
+    author_lists = defaultdict(lambda: [])
     for author_id, author in all_authors:
-        if author_id != id:
-            authors[id] = format_authors(author_list)
-            author_list = []
-            id = author_id
+        author_lists[author_id].append(author)
 
-        author_list.append(author)
+    authors = {id: format_authors(author_list) for id, author_list in author_lists.items()}
 
-    titles = {}
-    keys = {}
-    for title_id, title, key in all_titles:
-        if title_id not in titles:
-            titles[title_id] = title
-            keys[title_id] = key
+    titles = {title_id: title for title_id, title in all_titles}
+    date_added = {item_id: date for item_id, date in all_date_added}
 
     years = {}
     for date_id, date in all_dates:
@@ -414,7 +554,7 @@ def main(zotero_path=None, zotero_base_dir=None,
             years[date_id] = date.split("-")[0]
 
     paths = {}
-    for path_id, path in all_paths:
+    for path_id, key, path in all_paths:
         if path is None:
             continue
 
@@ -426,7 +566,7 @@ def main(zotero_path=None, zotero_base_dir=None,
             path = zotero_base_dir / path
         elif path.startswith("storage:"):
             path = path.replace("storage:", "", 1)
-            path = zotero_path / _ZOTERO_STORAGE_DIR / keys[path_id] / path
+            path = zotero_path / _ZOTERO_STORAGE_DIR / key / path
         else:
             path = Path(path)
 
@@ -440,9 +580,11 @@ def main(zotero_path=None, zotero_base_dir=None,
         year = years.get(item_id)
         item_string = format_item(title=title, author=author, year=year)
         item_list_with_ids.append((item_string, item_id))
-
-    item_list_with_ids = sorted(item_list_with_ids, key=lambda x: x[1], reverse=True)
-    # item_list_with_ids.sort()
+    # 按照 Zotero 添加时间排序，最新添加的文献优先
+    item_list_with_ids.sort(
+        key=lambda x: date_added.get(x[1], ""),
+        reverse=True,
+    )
     item_list = [item for item, _ in item_list_with_ids]
     items_input = "\n".join(item_list)
 
@@ -450,12 +592,10 @@ def main(zotero_path=None, zotero_base_dir=None,
         print(items_input)
         return
 
-    # note: rofi seems to prefer the first -p argument, so if -p is given in
-    # rofi_args, the latter -p argument should be ignored
-    rofi_command = (["rofi", "-dmenu", "-format", "i"] + rofi_args +
-                    ["-p", prompt_paper])
-    rofi = subprocess.run(rofi_command, capture_output=True, text=True,
-                          input=items_input)
+    # NOTE: Rofi seems to prefer the first -p argument, so if -p is given in rofi_args,
+    # the latter -p argument should be ignored
+    rofi_command = ["rofi", "-dmenu", "-format", "i"] + rofi_args + ["-p", prompt_paper]
+    rofi = subprocess.run(rofi_command, capture_output=True, text=True, input=items_input)
 
     selected_index = rofi.stdout.strip()
     if not selected_index:
@@ -469,17 +609,15 @@ def main(zotero_path=None, zotero_base_dir=None,
         file_to_open = files_to_open[0]
     else:
         format_opts = {
-            'maxlen': FORMAT_PATH_MAXLEN,
-            'fullpath': FORMAT_PATH_FULLPATH,
-            'ending_fraction': FORMAT_PATH_ENDING_FRACTION,
+            "maxlen": FORMAT_PATH_MAXLEN,
+            "fullpath": FORMAT_PATH_FULLPATH,
+            "ending_fraction": FORMAT_PATH_ENDING_FRACTION,
         }
         files = [format_path(p, **format_opts) for p in files_to_open]
         files_input = "\n".join(files)
 
-        rofi_command = (["rofi", "-dmenu", "-format", "i"] + rofi_args +
-                        ["-p", prompt_attachment])
-        rofi = subprocess.run(rofi_command, capture_output=True, text=True,
-                              input=files_input)
+        rofi_command = ["rofi", "-dmenu", "-format", "i"] + rofi_args + ["-p", prompt_attachment]
+        rofi = subprocess.run(rofi_command, capture_output=True, text=True, input=files_input)
         selected_index = rofi.stdout.strip()
         if not selected_index:
             return
@@ -490,12 +628,10 @@ def main(zotero_path=None, zotero_base_dir=None,
         try:
             open_file(viewer, file_to_open)
         except FileNotFoundError:
-            viewer_command = open_file(viewer, file_to_open,
-                                       only_return_command=True)
+            viewer_command = open_file(viewer, file_to_open, only_return_command=True)
             viewer_command = [str(cmd_part) for cmd_part in viewer_command]
             viewer_command = " ".join(viewer_command)
-            show_error(f"Could not run command: '{viewer_command}'\n"
-                       f"Make sure the viewer is installed")
+            show_error(f"Could not run command: '{viewer_command}'\n" f"Make sure the viewer is installed")
     else:
         show_error(f"Could not find file: {file_to_open}", rofi_args)
 
