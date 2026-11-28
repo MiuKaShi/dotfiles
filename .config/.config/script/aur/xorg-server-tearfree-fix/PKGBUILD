@@ -1,4 +1,4 @@
-pkgname=xorg-server-tearfree
+pkgname=xorg-server-tearfree-fix
 pkgver=21.1.26
 pkgrel=1
 arch=('x86_64')
@@ -86,8 +86,7 @@ _install() {
   done
 }
 
-
-package_xorg-server-tearfree() {
+package_xorg-server-tearfree-fix() {
   pkgdesc="Xorg X server"
   depends=(libepoxy libxfont2 pixman xorg-server-common libunwind
            dbus libgl xf86-input-libinput nettle
@@ -112,5 +111,5 @@ package_xorg-server-tearfree() {
   install -m755 -d "${pkgdir}/etc/X11/xorg.conf.d"
 
   # license
-  install -m644 -Dt "${pkgdir}/usr/share/licenses/${pkgname}" "xorg-server/COPYING"
+  install -m644 -Dt "${pkgdir}/usr/share/licenses/xorg-server" "xorg-server/COPYING"
 }
